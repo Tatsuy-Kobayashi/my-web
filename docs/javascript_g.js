@@ -59,8 +59,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let employeeCodePattern = /^[a-z0-9]+$/; // アルファベット小文字と数字のみ
         let passwordPattern = /^[a-z0-9]+$/; // アルファベット小文字と数字のみ
         // 正しい社員コードとパスワード
-        let validEmployeeCodes = ['user0000', 'user1111'];
-        let validPasswords = ['uplp0000', 'uplp1111'];
+        let validEmployeeCodes = ['user0000', 'user1111', 'astt1', 'astt2', 'astt3'];
+        let validPasswords = ['uplp0000', 'uplp1111', 'astt1', 'astt2', 'astt3'];
         if (!employeeCodePattern.test(employeeCode) || !passwordPattern.test(password)) {
             // 社員コードまたはパスワードの形式が不正な場合、エラーメッセージを表示してリダイレクトを防ぐ
             alert('社員コードとパスワードはアルファベット小文字と数字のみを使用してください。');

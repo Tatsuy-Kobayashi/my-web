@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>社員情報編集　HTML課題</title>
+	<link rel="stylesheet" media="all" href="css_f.css" />
+	<script src="javascript_f.js"></script>
+</head>
+<body>
+	<div id="header">
+		<h1 id="headline">社員情報編集</h1>
+		<div class="cell">
+			<a href="login.html">
+			<button class="btn logout-btn-clickable" name="commit">ログアウト</button>
+			</a>
+		</div>
+	</div>
+	<hr>
+	<div class="main">
+		<div class="main_left">
+			<table class="blind_table">
+				<tr>
+					<td class="input_form_left">社員コード: </td>
+					<td>
+						<input class="input-field form-control employeeCodeEdit-input white-input-lg" type="text" name="employee_code_edit" id="employee_code_edit" />
+					</td>
+				</tr>
+				<tr>
+					<td class="input_form_left">社員名称: </td>
+					<td>
+						<input class="input-field form-control employeeNameEdit-input white-input-lg" type="text" name="employee_name_edit" id="employee_name_edit" />
+					</td>
+				</tr>
+				<tr>
+					<td class="input_form_left">住所: </td>
+					<td>
+						<input class="input-field form-control addressEdit-input white-input-lg" type="text" name="address_edit" id="address_edit" />
+					</td>
+				</tr>
+				<tr>
+					<td class="input_form_left">最寄駅: </td>
+					<td>
+						<input class="input-field form-control nearestHomeEdit-input white-input-lg" type="text" name="nearest_home_edit" id="nearest_home_edit" />
+						線
+						<input class="input-field form-control nearestOfficeEdit-input white-input-lg" type="text" name="nearest_office_edit" id="nearest_office_edit" />
+						駅
+					</td>
+				</tr>
+				<tr>
+					<td class="input_form_left">経験年数: </td>
+					<td>
+						<input class="input-field form-control serviceLengthEdit-input white-input-lg" type="text" name="service_length_edit" id="service_length_edit" />
+						年<span class="common_space"></span>性別:<input type="radio" name="man_or_woman_edit" value="男">男<input type="radio" name="man_or_woman_edit" value="女">女
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="main_right">
+			<table class="blind_table">
+				<tr>
+					<td class="input_form_right">資格: </td>
+					<td>
+						<input class="input-field form-control quslificationEdit-input white-input-lg" type="text" name="quslification_edit" id="quslification_edit" />
+					</td>
+				</tr>
+				<tr>
+					<td class="input_form_right">生年月日: </td>
+					<td>
+						<input class="input-field form-control birthEdit-input white-input-lg" type="text" name="birth_edit" id="birth_edit" />(YYYY/MM/DD) 
+					</td>
+				</tr>
+				<tr>
+					<td class="input_form_right">学歴1: </td>
+					<td>
+						<input class="input-field form-control educationYearEdit1-input white-input-lg" type="text" name="educationYear1_edit" id="educationYear1_edit" />(YYYY/MM) 卒業
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<input class="input-field form-control educationEdit1-input white-input-lg" type="text" name="education1_edit" id="education1_edit" />
+					</td>
+				</tr>
+				<tr>
+					<td class="input_form_right">学歴2: </td>
+					<td>
+						<input class="input-field form-control educationYearEdit2-input white-input-lg" type="text" name="educationYear2_edit" id="educationYear2_edit" />(YYYY/MM) 卒業
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<input class="input-field form-control educationEdit2-input white-input-lg" type="text" name="education2_edit" id="education2_edit" />
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div id="search">
+		<h3 style="margin-left: 35px;">業務経歴一覧</h3>
+	</div>
+	<table class="common_table" id="common_table2">
+		<tr>
+			<th colspan="2" width="320px">期間</th>
+			<th rowspan="2" width="250px">職種</th>
+			<th rowspan="2" width="600px">業務内容</th>
+			<th rowspan="2" width="200px">機種</th>
+			<th rowspan="2" width="200px">OS･DB/DC</th>
+			<th rowspan="2" width="205px">言語</th>
+			<!--期間が2つ分取っている-->
+		</tr>
+		<tr>
+			<th>開始</th>
+			<th>終了</th>
+			<!--th消す-->
+			<!--th消す-->
+			<!--th消す-->
+			<!--th消す-->
+			<!--th消す-->
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+	<div class="footer" style="display: flex; justify-content: space-between; margin: 20px 40px 0 40px;">
+		<div class="footer_left" style="align-self: flex-start;">
+			<table>
+				<tr>
+					<td style="width: 170px" class="cell">
+						<input type="button" value="経歴追加" onclick="window.open('option.html','subwin','width=1300,height=650');return false;" class="btn option-btn-clickable" name="commit">
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="footer_right" style="align-self: flex-end;">
+			<table>
+				<tr>
+					<td style="width: 170px" class="cell">
+						<a href="list.html">
+						<input type="button" value="登録" class="btn registration-btn-clickable" name="commit" id="registrationButton1" onclick="alert('入力内容を登録しました')">
+						</a>
+					</td>
+					<td style="width: 170px" class="cell">
+						<a href="list.html">
+						<button class="btn return-btn-clickable" name="commit">戻る</button>
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

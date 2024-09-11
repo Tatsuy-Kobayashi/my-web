@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>ログイン画面 HTML課題</title>
+	<link rel="stylesheet" media="all" href="css_f.css" />
+	<!-- type="text/css"は、HTML5ではこの属性は必須ではなくなりました。
+	HTML5では、<link rel="stylesheet">という記述だけで、リンクされているファイルがCSSであるとブラウザが理解します。そのため、現代のHTML文書ではtype="text/css"を省略することが一般的です
+	相対パスを利用しているため、各ファイルを保存するディレクトリに注意すること -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+	<!-- Webサイトにアイコンや記号などを簡単に挿入できるサービスFont Awesomeから。pwd入力フォームの横の目アイコンを取得するため -->
+	<script src="javascript_f.js"></script>
+	<script src="javascript_g.js"></script>
+</head>
+<body>
+	<h1 id="headline">ログイン</h1>
+	<hr>
+	<div class="main_login">
+		<!-- このままではjavascript_f.jsのテキストから容易にid、pwdを閲覧できてしまうので、
+		必要に応じて<div class="main"> ...... </div>を<form action="login.php" method="post"> ...... </form>に書き換えlogin.phpを作成する必要がある。
+		-->
+		<table class="blind_table">
+			<tr>
+				<td class="input_form">社員コード：</td>
+				<td>
+					<input autofocus required="required" class="input-field form-control signup-input white-input-lg" type="text" name="user_auth[sign_in_id]" id="user_auth_sign_in_id" />
+					<!-- input タグの autofocus 属性はブール型属性で、存在するだけで有効になるため、値は不要 -->
+				</td>
+			</tr>
+			<tr class="empty-row"><td></td></tr> <!-- 空白行 -->
+			<tr>
+				<td class="input_form">パスワード：</td>
+				<td>
+					<input autocomplete="off" required class="input-field form-control signup-input white-input-lg" type="password" name="user_auth[password]" id="user_auth_password" />
+					<!-- input タグの required 属性はブール型属性で、存在するだけで有効になるため、値は不要 -->
+					<span id="buttonEye" class="fa fa-eye" onmousedown="showPassword(event)" onmouseup="hidePassword(event)"></span> <!-- onclick="loginControl()" -->
+					<!-- fa fa-eyeは、font-awesome/5.15.1/css/all.min.cssのクラス -->
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="cell">
+		<!-- ログインボタン -->
+		<a href="list.html">
+		<input type="submit" name="commit" value="ログイン" class="btn login-btn-clickable" id="submit-btn" data-disable-with="ログイン" />
+		</a>
+	</div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>経歴追加　HTML課題</title>
+	<link rel="stylesheet" media="all" href="css_f.css" />
+	<script src="javascript_f.js"></script>
+</head>
+<body>
+	<h1 id="headline">経歴追加</h1>
+	<hr>
+	<div class="main option_main">
+		<div class="main_left">
+			<table class="blind_table">
+				<tr>
+					<td class="input_form_left">
+						期間: 
+					</td>
+					<td class="empty-row"></td>
+				</tr>
+				<tr>
+					<td colspan="2" class="term_option">
+						開始: <input class="input-field form-control serviceStartOption-input white-input-lg" type="text" name="service_start_option" id="service_start_option" />(YYYY/MM)
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="term_option">
+						終了: <input class="input-field form-control serviceOverOption-input white-input-lg" type="text" name="service_over_option" id="service_over_option" />(YYYY/MM)
+					</td>
+				</tr>
+				<tr>
+					<td class="input_form_left">
+						職種: 
+					</td>
+					<td>
+						<input class="input-field form-control typeOption-input white-input-lg" type="text" name="type_option" id="type_option" />
+					</td>
+				</tr>
+				<tr style="vertical-align: top">
+					<td class="input_form_left content_Option">
+						業務内容: 
+					</td>
+					<td>
+						<textarea class="input-field form-control contentOption-input white-input-lg" name="content_option" id="content_option" style="height: 210px;"></textarea>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="main_right">
+			<table class="blind_table">
+				<tr class="empty-row"><td></td></tr> <!-- 空白行 -->
+				<tr>
+					<td class="input_form_right">
+						機種1: 
+					</td>
+					<td>
+						<input class="input-field form-control model1Option-input white-input-lg" type="text" name="model1_option" id="model1_option" />
+					</td>
+				</tr>
+				<tr>
+					<td class="input_form_right">
+						機種2: 
+					</td>
+					<td>
+						<input class="input-field form-control model2Option-input white-input-lg" type="text" name="model2_option" id="model2_option" />
+					</td>
+				</tr>
+				<tr>
+					<td class="input_form_right">
+						機種3: 
+					</td>
+					<td>
+						<input class="input-field form-control model3Option-input white-input-lg" type="text" name="model3_option" id="model3_option" />
+					</td>
+				</tr>
+				<tr>
+					<td class="input_form_right">
+						OS･DB/DC1: 
+					</td>
+					<td>
+						<input class="input-field form-control osdbdc1Option-input white-input-lg" type="text" name="osdbdc1_option" id="osdbdc1_option" />
+					</td>
+				</tr>
+				<tr>
+					<td class="input_form_right">
+						OS･DB/DC2: 
+					</td>
+					<td>
+						<input class="input-field form-control osdbdc2Option-input white-input-lg" type="text" name="osdbdc2_option" id="osdbdc2_option" />
+					</td>
+				</tr>
+				<tr>
+					<td class="input_form_right">
+						OS･DB/DC3: 
+					</td>
+					<td>
+						<input class="input-field form-control osdbdc3Option-input white-input-lg" type="text" name="osdbdc3_option" id="osdbdc3_option" />
+					</td>
+				</tr>
+				<tr>
+					<td class="input_form_right">言語1: </td>
+					<td>
+						<input class="input-field form-control language1Option-input white-input-lg" type="text" name="language1_option" id="language1_option" />
+					</td>
+				</tr>
+				<tr>
+					<td class="input_form_right">言語2: </td>
+					<td>
+						<input class="input-field form-control language2Option-input white-input-lg" type="text" name="language2_option" id="language2_option" />
+					</td>
+				</tr>
+				<tr>
+					<td class="input_form_right">言語3: </td>
+					<td>
+						<input class="input-field form-control language3Option-input white-input-lg" type="text" name="language3_option" id="language3_option" />
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<table class="footer" style="display: flex; justify-content: flex-end; margin-top: 20px; text-align: right;">
+		<tr>
+			<td style="width: 170px" class="cell">
+				<a href="list.html" style="margin: 20px 0 0 20px">
+					<input type="button" value="登録" class="btn registration-btn-clickable" name="commit" id="registrationButton2" onclick="alert('入力内容を登録しました'); window.opener.location.href='list.html'; window.close();">
+				</a>
+			</td>
+			<td style="width: 170px" class="cell">
+				<input type="button" value="キャンセル" class="btn cancel-btn-clickable" name="commit" onclick="window.close()">
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

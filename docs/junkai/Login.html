@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>じゅん君</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" href="bootstrap.css"><link rel="stylesheet" href="font-awesome.css"><link rel="stylesheet" href="custom.css"><link rel="stylesheet" href="font.css"><link rel="stylesheet" href="backtotop.css">
+<style>
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        .inner {
+            width: 100%;
+            height: 100%;
+            display: block;
+            padding-top: 100px;
+            padding-bottom: 40px;
+            background-color: #eee;
+            background: url("/bg.jpg") center center / cover no-repeat fixed;
+        }
+        .header-title {
+            font-size: 27px;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        .header-title h1 {
+            font-size: 23px;
+            display: inline;
+        }
+        body .panel-body {
+            margin-top: 25px;
+            padding: 0;
+        }
+        .form-group input {
+            width: 100%;
+        }
+        body .panel-body .copy {
+            font-size: 10px;
+            text-shadow: 0px 0px 7px #FFF;
+        }
+        .login_area {
+            background-color: rgba(256, 256, 256, 0.7);
+            padding: 25px 20px 5px;
+            /*-webkit-border-radius: 10px;*/
+            /*-moz-border-radius: 10px;*/
+            /*border-radius: 10px;*/
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+        }
+    </style>
+    <script>
+        function clearAll(){
+            document.getElementById("loginid").value = "";
+            document.getElementById("password").value = "";
+            $('.alert').css('display','none');
+            $('#loginid').focus();
+            return false;
+        }
+        $(function() {
+            var n = Date.parse("2010/05/16");
+            var m = new Date();
+            var x =(m - n)/1000/60/60/24;
+            x = Math.floor(x);
+            var img_no = x%17 + 1;
+            $('.inner').css('background-image','url(/bg_'+img_no+'.jpg)');
+            if (img_no != "a"){
+                $('inner').css({
+                    'background-position':'center center',
+                    'background-size'    :'cover',
+                    'background-repeat'  :'no-repeat'
+                });
+            }
+            $('.inner').hide();
+        });
+    
+        $(window).on('load' , function() {
+            // if ($('.error').length) {
+            //  $('.inner').show();
+            // } else {
+                setTimeout(function(){
+                    fade_img();
+                },500);
+            // }
+        });
+        function fade_img(){
+            $('.inner').fadeIn(1000);
+        }
+        $(function(){
+            $("#reissue_btn").on("click",function(){
+                location.href = main.web_root + "/Reissue";
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="inner">
+        <div class="container">
+            <div class="login_cnt">
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4 login_area">
+                        <div class="header-title text-center">
+                            <span><img src="logo.png" alt="logo" style="vertical-align: middle;"/></span>
+                            <h1>巡回報告一覧</h1>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <input type="text" maxlength="20" name="loginid" required id="loginid" class="form-control imeOff ime-off" placeholder="ログインID" autofocus value=""/>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="password_kokai" required id="password" class="form-control imeOff ime-off" placeholder="パスワード"/>
+                            </div>
+                            <div class="form-group text-center">
+                                <button id="btnLogin" name="login" class="btn btn-primary" type="submit">ログイン</button>
+                                <!--
+                                <button id="btnClear" name="clear" type="button" class="btn btn-primary" onclick="clearAll();">クリア</button>
+                                -->
+                            </div>
+                            <div class="form-group text-center">
+                                <span class="copy">Copy</span>
+                            </div>
+                            <div class="alert alert-danger" role="alert"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- /container -->
+    </div> <!-- /inner -->
+</body>
+</html>

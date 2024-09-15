@@ -1,0 +1,1079 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>巡回報告一覧</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="bootstrap.css"><link rel="stylesheet" href="font-awesome.css"><link rel="stylesheet" href="custom.css"><link rel="stylesheet" href="font.css"><link rel="stylesheet" href="jquery-ui.css"><link rel="stylesheet" href="backtotop.css"><link rel="stylesheet" href="Menu.css"><script src="jquery-3.1.0.min.js"></script><script src="jquery-ui-1.10.4.custom.min.js"></script><script src="/junkun/js/bootstrap.js?date=20231127102322"></script><script src="/junkun/js/application.js?date=20231127102322"></script><script src="/junkun/js/Error.js?date=20231127102322"></script><script src="/junkun/js/mainScript.js?date=20231127102322"></script><script src="/junkun/js/default.js?date=20231127102322"></script><script src="/junkun/js/jquery.blockUI.js?date=20231127102322"></script><script src="/junkun/js/jquery.ui.datepicker-ja.js?date=20231127102322"></script><script src="/junkun/js/jquery.ui.ympicker.js?date=20231127102322"></script><script src="/junkun/js/Master.js?date=20231127102322"></script><script src="/junkun/js/jquery.metisMenu.js?date=20231127102322"></script><script src="/junkun/js/JisekiKanryoHokoku.js?date=20240827112946"></script><script src="/junkun/js/backtotop.js?date=20231127102322"></script><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCepPyQwvGeRh3W65Pn72Z8WC0rQQhE_is&lang=ja"></script><script src="/junkun/js/message.js?date=20231127102322"></script><script src="/junkun/js/UtilClass.js?date=20231127102322"></script><script src="/junkun/js/jquery-clear-button.js?date=20231127102322"></script>    </head>
+<body programName="/junkun/">
+    <input id="POSTAL1" name="LAT_NUM" value="" type="hidden">
+    <input id="POSTAL2" name="LAT_NUM" value="" type="hidden">
+    <input id="ADDRESS" name="LAT_NUM" value="" type="hidden">
+    <input id="LAT_NUM" name="LAT_NUM" value="" type="hidden">
+    <input id="LNG_NUM" name="LNG_NUM" value="" type="hidden">
+    <div id="wrapper">
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <nav class="navbar navbar-default navbar-cls-top " role="navigation"
+                style="margin-bottom: 0">
+
+        
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" >じゅん君</a>
+                </div>
+                        <ul class="nav navbar-nav navbar-right">
+                    <li class=""><a href="javascript:;"
+                        class="user-profile dropdown-toggle" data-toggle="dropdown"
+                        aria-expanded="false">
+                    <i class="fa fa-user"></i>アズ・スタット                    <span class=" fa fa-angle-down"></span>
+                    </a>
+                        <ul class="dropdown-menu dropdown-usermenu pull-right">
+                            <li><a href="/junkun/account/AccountChange" target="_blank"> パスワード変更</a></li>
+                            <!-- <li><a href="javascript:;">ヘルプ(未実装)</a></li> -->
+                            <li><a
+                                href="/junkun/Users/logout"><i
+                                    class="fa fa-sign-out pull-right"></i> ログアウト</a></li>
+                        </ul></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- top navigation -->
+
+        <!-- sidebar menu -->
+                <div id="page-wrapper" style="margin: -10px 0px 0px 0px;">
+            <div id="page-inner">
+                <div class="container-fluid right-nospace left-nospace">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-success" role="alert">
+                                <ul id="altSuccess"></ul>
+                            </div>
+                            <div class="alert alert-danger" role="alert">
+                                <ul id="altError"></ul>
+                            </div>
+                                <script src="/junkun/js/CustomerMaster.js?date=20231127102322"></script><script src="/junkun/js/BukenMaster.js?date=20231127102322"></script><script src="/junkun/js/jquery.tablesorter.custom.js?date=20231127102322"></script><script src="/junkun/js/jquery.tablesorter.pager.custom_2.js?date=20231127102322"></script><div>
+   <h3>巡回報告一覧</h3>
+</div>
+<div  id="JisekiKanryoHokoku" pageResultCnt="25" 
+    shanai_flg="0"
+    owner_flg="0"
+    list_color_flg="1"
+      kokai_custom_flg_yoteibi="1">
+    <form name="searchForm"role="form" method="get">
+<!--
+        <input type="hidden" id="kanrikbn1" value="" >
+        <input type="hidden" id="kanrikbn2" value="" >
+-->
+        <div class="panel-button fixheader">
+            <div class="row" id="search_header">
+                <div class="col-md-3 col-sm-3 text-left">
+                    <div class="input-group_2 clearfix">
+                        <button type="button" id="btnClear" name="btnClear" class="btn btn-primary"><i class="fa fa-refresh text_side"></i>クリア</button>
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-9 button-con text-right">
+                    <div class="input-group_2 clearfix">
+                        <button id="btnSearch" name="btnSearch" type="button" class="btn btn-primary"><i class="fa fa-search text_side"></i>検索</button>
+                        <button id="printJiseki" name="printJiseki" type="button" class="btn btn-info" disabled><i class="fa fa-file-text-o text_side"></i>CSV出力</button>
+                        <button id="ikatsuDL" name="ikatsuDL" type="button" class="btn btn-info" disabled><i class="fa fa-file-text-o text_side"></i>一括ダウンロード</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-success syutoken-border">
+            <div class="panel-heading">
+                検索条件
+            </div>
+            <div class="panel-body">
+                <div>
+                    <!--div class="row">
+                        <div class="col-md-5 col-sm-6" style="padding-right:0px;">
+                            <div class="input-group">
+                                <span class="input-group-addon ">部門</span>
+                                <select id="center" name="center" class="form-control" tabindex="1">
+                                    <option value="0"></option-->
+                                                                    <!--/select>
+                            </div>
+                        </div>
+                    </div-->
+
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 padding_right_zero">
+                            <div class="input-group">
+                                <label class="input-group-addon syutoken-span">得意先</label>
+                                <input id="customer_code" name="customer_code" class="form-control ime-off" type="text" tabindex="2" disabled value="472" customer_id="30517">
+                                <label class="input-group-btn">
+                                    <button id="search_customer" type="button" class="btn-primary btn" disabled><i class="fa fa-search"></i></button>
+                                    <input type="hidden" id="gyomushubetsu_limit" value="0">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 padding_left_zero">
+                            <div class="input-group">
+                                <label class="input-group-addon syutoken-span">得意先名</label>
+                                <input id="customer_name" name="customer_name" class="form-control" type="text" placeholder="得意先名・TEL・住所・かな" tabindex="3" value="株式会社アズ・スタット" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 padding_left_zero">
+                            <div class="input-group">
+                                <span class="input-group-addon syutoken-span">管理区分１</span>
+                                <select id="kanrikbn1" name="kanrikbn1" class="form-control" tabindex="4" disabled>
+                                    <option value="0" selected></option>
+                                                                                                                    <option value="939" >山邊梅花住宅</option>
+                                                                                                                    <option value="940" >sun　seed尼崎駅前</option>
+                                                                                                                    <option value="941" >コートスクエア</option>
+                                                                                                                    <option value="942" >ハマユウハイツ</option>
+                                                                                                                    <option value="943" >ラポール21</option>
+                                                                                                                    <option value="944" >サンディアル潮江</option>
+                                                                                                                    <option value="945" >est　foglia</option>
+                                                                                                                    <option value="946" >アクシス常光寺</option>
+                                                                                                                    <option value="947" >ボナール常光寺</option>
+                                                                                                                    <option value="871" >アドバンス三宮グルーブ</option>
+                                                                                                                    <option value="872" >ラ・フォンテ春日野</option>
+                                                                                                                    <option value="873" >カトルセゾン</option>
+                                                                                                                    <option value="762" >OS２</option>
+                                                                                                                    <option value="761" >法人課</option>
+                                                                                                                    <option value="760" >OS１</option>
+                                                                                                                    <option value="763" >開発課</option>
+                                                                                                                    <option value="865" >アドバンス神戸ラフィナート</option>
+                                                                                                                    <option value="866" >レオパレス上筒井</option>
+                                                                                                                    <option value="867" >アドバンス神戸プリンスパーク</option>
+                                                                                                                    <option value="868" >メルヴェーユ春日野</option>
+                                                                                                                    <option value="869" >シャルムメゾン春日野道</option>
+                                                                                                                    <option value="870" >HCフラッツ三宮東</option>
+                                                                                                                    <option value="874" >ラ・フォンテ　三宮</option>
+                                                                                                                    <option value="875" >フォルテ鈴蘭台</option>
+                                                                                                                    <option value="876" >コスモメイト鈴蘭西</option>
+                                                                                                                    <option value="877" >クレア山の街</option>
+                                                                                                                    <option value="878" >スプリングハイツ5</option>
+                                                                                                                    <option value="800" >OS</option>
+                                                                                                                    <option value="764" >PM</option>
+                                                                                                                    <option value="765" >京都支店</option>
+                                                                                                                    <option value="916" >Luxe東灘</option>
+                                                                                                                    <option value="804" >工務部</option>
+                                                                                                                    <option value="879" >パレスサントノーレ</option>
+                                                                                                                    <option value="766" >神戸支店</option>
+                                                                                                                    <option value="917" >グランディコート御影塚町</option>
+                                                                                                                    <option value="1289" >Luxe深江橋</option>
+                                                                                                                    <option value="880" >リトル湊川</option>
+                                                                                                                    <option value="881" >アポロマンション</option>
+                                                                                                                    <option value="882" >ワコーレヴィータ神戸上沢通PRIME</option>
+                                                                                                                    <option value="883" >OLIEVE　GARDEN</option>
+                                                                                                                    <option value="884" >水木通マンション</option>
+                                                                                                                    <option value="885" >みやびアローズ神戸</option>
+                                                                                                                    <option value="886" >エリータ兵庫</option>
+                                                                                                                    <option value="887" >文化　ラメール</option>
+                                                                                                                    <option value="888" >大野マンション</option>
+                                                                                                                    <option value="890" >シンプルライフ新開地Ⅱ</option>
+                                                                                                                    <option value="891" >ランド・アート神戸</option>
+                                                                                                                    <option value="918" >Arc-en-ciel住吉本町</option>
+                                                                                                                    <option value="889" >シャトー弐番館</option>
+                                                                                                                    <option value="892" >クライストチャーチ</option>
+                                                                                                                    <option value="893" >moco－01</option>
+                                                                                                                    <option value="894" >リベルテ駒ヶ林</option>
+                                                                                                                    <option value="895" >長田ビル</option>
+                                                                                                                    <option value="896" >フェイス神戸</option>
+                                                                                                                    <option value="897" >ブルーラバンハイツ</option>
+                                                                                                                    <option value="898" >グリーンコート宮川</option>
+                                                                                                                    <option value="899" >花みずき</option>
+                                                                                                                    <option value="900" >REGINA</option>
+                                                                                                                    <option value="901" >カメリアハウス</option>
+                                                                                                                    <option value="902" >シャーメゾン堀切</option>
+                                                                                                                    <option value="903" >ジョイフル板宿</option>
+                                                                                                                    <option value="904" >フロール須磨（８・９Ｆ）</option>
+                                                                                                                    <option value="919" >ルーミハイツ</option>
+                                                                                                                    <option value="905" >フロール須磨（３－７Ｆ）</option>
+                                                                                                                    <option value="906" >HOOP須磨浦</option>
+                                                                                                                    <option value="907" >中央ビル</option>
+                                                                                                                    <option value="908" >前田ハイツ</option>
+                                                                                                                    <option value="909" >HOOP霞ヶ丘</option>
+                                                                                                                    <option value="910" >サンシャイン舞子</option>
+                                                                                                                    <option value="911" >永手コスモハイツ</option>
+                                                                                                                    <option value="912" >マイコート六甲Ⅱ</option>
+                                                                                                                    <option value="913" >マイコート六甲Ⅰ</option>
+                                                                                                                    <option value="914" >レジデンスSAKURA</option>
+                                                                                                                    <option value="915" >Luxe芦屋南</option>
+                                                                                                                    <option value="920" >メゾンハピネス御影中町</option>
+                                                                                                                    <option value="921" >グランフォルム御影山手</option>
+                                                                                                                    <option value="922" >セレコート東灘</option>
+                                                                                                                    <option value="923" >吉光アドニス芦屋</option>
+                                                                                                                    <option value="924" >アルファ七松</option>
+                                                                                                                    <option value="925" >セレコート南立花</option>
+                                                                                                                    <option value="926" >ピュア立花</option>
+                                                                                                                    <option value="927" >聖ハイツ</option>
+                                                                                                                    <option value="928" >クリエオーレ稲葉元町</option>
+                                                                                                                    <option value="929" >アルバニール</option>
+                                                                                                                    <option value="930" >グレースメモリー立花</option>
+                                                                                                                    <option value="931" >ドリームコート武庫川</option>
+                                                                                                                    <option value="932" >清山マンション</option>
+                                                                                                                    <option value="933" >エクシオⅡ</option>
+                                                                                                                    <option value="934" >ハイツ武庫川</option>
+                                                                                                                    <option value="1001" >マンジュリー</option>
+                                                                                                                    <option value="935" >エルシオンⅡ北原</option>
+                                                                                                                    <option value="936" >アズマビル</option>
+                                                                                                                    <option value="937" >サンディアル長洲</option>
+                                                                                                                    <option value="1002" >牧文化</option>
+                                                                                                                    <option value="1003" >小林ハイツ</option>
+                                                                                                                    <option value="938" >長洲貸家</option>
+                                                                                                                    <option value="948" >ルシエール寺島</option>
+                                                                                                                    <option value="949" >上野ビル</option>
+                                                                                                                    <option value="950" >SHIKOKUⅧ</option>
+                                                                                                                    <option value="951" >阪南ビル</option>
+                                                                                                                    <option value="952" >プレジオ尼崎</option>
+                                                                                                                    <option value="953" >レオパレス桜木</option>
+                                                                                                                    <option value="954" >ユニテック43</option>
+                                                                                                                    <option value="955" >三番館</option>
+                                                                                                                    <option value="956" >メゾンドグリーン</option>
+                                                                                                                    <option value="957" >Luxe尼崎WEST</option>
+                                                                                                                    <option value="958" >Grandir　Nakao</option>
+                                                                                                                    <option value="959" >ウェルス尼崎</option>
+                                                                                                                    <option value="960" >ダイシンマンション</option>
+                                                                                                                    <option value="961" >S－RESIDENCE東難波</option>
+                                                                                                                    <option value="962" >伊藤マンション</option>
+                                                                                                                    <option value="963" >KT13</option>
+                                                                                                                    <option value="964" >ルシェール東難波</option>
+                                                                                                                    <option value="965" >アースハイツⅠ・Ⅱ</option>
+                                                                                                                    <option value="966" >ファニーコートS</option>
+                                                                                                                    <option value="967" >ジョイ塚口</option>
+                                                                                                                    <option value="968" >リバストン塚口Ｅ棟</option>
+                                                                                                                    <option value="969" >リバストン塚口Ｗ棟</option>
+                                                                                                                    <option value="970" >ウィディ塚口</option>
+                                                                                                                    <option value="971" >グローバル塚口</option>
+                                                                                                                    <option value="972" >マイドーム塚口</option>
+                                                                                                                    <option value="973" >櫻</option>
+                                                                                                                    <option value="974" >福永マンション</option>
+                                                                                                                    <option value="975" >プチロイヤル真英</option>
+                                                                                                                    <option value="976" >プレジール塚口</option>
+                                                                                                                    <option value="977" >VILLETTA塚口</option>
+                                                                                                                    <option value="978" >レジデンス武庫之荘</option>
+                                                                                                                    <option value="979" >FLATS塚口</option>
+                                                                                                                    <option value="980" >塚口吉光ビル</option>
+                                                                                                                    <option value="981" >フィオーレ</option>
+                                                                                                                    <option value="982" >愛ハイツ</option>
+                                                                                                                    <option value="983" >サンブライト南塚口</option>
+                                                                                                                    <option value="984" >ジョイフル塚口</option>
+                                                                                                                    <option value="985" >ジョイフル南塚口Ⅰ号館</option>
+                                                                                                                    <option value="986" >ハイツソレイユ</option>
+                                                                                                                    <option value="987" >ハイムM＆M</option>
+                                                                                                                    <option value="988" >プレシードＡ・Ｂ棟</option>
+                                                                                                                    <option value="989" >プロヴァンス南塚口</option>
+                                                                                                                    <option value="990" >MARIMOマンション</option>
+                                                                                                                    <option value="991" >ルミエール武庫之荘</option>
+                                                                                                                    <option value="992" >ナロード上ノ島</option>
+                                                                                                                    <option value="993" >クローバーメゾン尼崎</option>
+                                                                                                                    <option value="994" >木谷ハイツ</option>
+                                                                                                                    <option value="995" >グランヒル・尾浜</option>
+                                                                                                                    <option value="996" >南塚口橋本セントラル弐番館</option>
+                                                                                                                    <option value="997" >ジョイフル山善</option>
+                                                                                                                    <option value="998" >グレース南塚口</option>
+                                                                                                                    <option value="999" >カーサ立花</option>
+                                                                                                                    <option value="1000" >センジュリー</option>
+                                                                                                                    <option value="1004" >シェリール武庫</option>
+                                                                                                                    <option value="1005" >セレッソ武庫之荘</option>
+                                                                                                                    <option value="1006" >ピュアティ武庫之荘Ⅲ</option>
+                                                                                                                    <option value="1007" >グランドシャトー・キシ</option>
+                                                                                                                    <option value="1008" >サザンカ荘</option>
+                                                                                                                    <option value="1009" >ボナールキシ</option>
+                                                                                                                    <option value="1010" >シャンボール武庫之荘Ⅱ</option>
+                                                                                                                    <option value="1011" >西興第一マンション</option>
+                                                                                                                    <option value="1012" >アリーザ武庫之荘</option>
+                                                                                                                    <option value="1013" >オークヒルズ武庫之荘</option>
+                                                                                                                    <option value="1014" >ネックス武庫之荘</option>
+                                                                                                                    <option value="1015" >ハイツ24</option>
+                                                                                                                    <option value="1016" >鳳翔</option>
+                                                                                                                    <option value="1017" >アルカンシェル武庫之荘</option>
+                                                                                                                    <option value="1018" >エミネンス武庫之荘Ⅱ</option>
+                                                                                                                    <option value="1019" >シティ南武庫</option>
+                                                                                                                    <option value="1020" >シャンボール武庫之荘Ⅲ</option>
+                                                                                                                    <option value="1021" >リアーズ武庫之荘</option>
+                                                                                                                    <option value="1022" >ルー・エーベル武庫之荘</option>
+                                                                                                                    <option value="1023" >Aurora Court武庫之荘</option>
+                                                                                                                    <option value="1024" >ローレ武庫之荘</option>
+                                                                                                                    <option value="1025" >サンロイヤル武庫之荘Ⅰ</option>
+                                                                                                                    <option value="1026" >レオ武庫之荘</option>
+                                                                                                                    <option value="1027" >KYハイツ</option>
+                                                                                                                    <option value="1028" >サザンコート３番館</option>
+                                                                                                                    <option value="1029" >シャンボール武庫之荘</option>
+                                                                                                                    <option value="1030" >メゾンファミーユ</option>
+                                                                                                                    <option value="1031" >アンシャンテ武庫之荘</option>
+                                                                                                                    <option value="1032" >サンハイム元町</option>
+                                                                                                                    <option value="1033" >シャーメゾン武庫元町</option>
+                                                                                                                    <option value="1034" >キヨヤマハウス</option>
+                                                                                                                    <option value="1035" >サンガーデン武庫Ａ棟</option>
+                                                                                                                    <option value="1036" >サンガーデン武庫Ｂ棟</option>
+                                                                                                                    <option value="1037" >ジュエル武庫之荘Ⅱ</option>
+                                                                                                                    <option value="1038" >T’sCourt武庫之荘</option>
+                                                                                                                    <option value="1039" >パークハイツ武庫川</option>
+                                                                                                                    <option value="1040" >ラ・ポール　キヨヤマ</option>
+                                                                                                                    <option value="1041" >カトルセゾン西昆陽</option>
+                                                                                                                    <option value="1042" >ラリーブ銀杏館</option>
+                                                                                                                    <option value="1043" >七草コーポ</option>
+                                                                                                                    <option value="1044" >七草住宅（北棟）</option>
+                                                                                                                    <option value="1045" >七草住宅（南棟）</option>
+                                                                                                                    <option value="1046" >七草ハイツ</option>
+                                                                                                                    <option value="1047" >クレール・ド・園田</option>
+                                                                                                                    <option value="1048" >東園田マンション</option>
+                                                                                                                    <option value="1049" >エスポワール園田</option>
+                                                                                                                    <option value="1050" >プティM．I</option>
+                                                                                                                    <option value="1051" >メルヘンハイツ東園田</option>
+                                                                                                                    <option value="1052" >リーフエイジ園田</option>
+                                                                                                                    <option value="1053" >アビタ24</option>
+                                                                                                                    <option value="1054" >ウォーターフロント園田</option>
+                                                                                                                    <option value="1055" >アビタ16</option>
+                                                                                                                    <option value="1056" >神崎ハイツⅠ</option>
+                                                                                                                    <option value="1057" >神崎ハイツⅡ</option>
+                                                                                                                    <option value="1058" >グリーンコート神崎</option>
+                                                                                                                    <option value="1059" >サンディアル神崎</option>
+                                                                                                                    <option value="1060" >ベルリード寺内</option>
+                                                                                                                    <option value="1061" >アネックス明光</option>
+                                                                                                                    <option value="1062" >ナカマハイツⅠ</option>
+                                                                                                                    <option value="1063" >ナカマハイツⅡ</option>
+                                                                                                                    <option value="1064" >明光ハイム</option>
+                                                                                                                    <option value="1065" >サンディアル次屋</option>
+                                                                                                                    <option value="1066" >レジデンス30</option>
+                                                                                                                    <option value="1067" >浜３丁目住宅</option>
+                                                                                                                    <option value="1068" >7’sLUCK</option>
+                                                                                                                    <option value="1069" >ブレスグラン</option>
+                                                                                                                    <option value="1070" >おぞのパークハイツＡ棟</option>
+                                                                                                                    <option value="1350" >ｴﾙﾋﾞﾙ</option>
+                                                                                                                    <option value="1071" >おぞのパークハイツＢ棟</option>
+                                                                                                                    <option value="1072" >おぞのパークハイツＣ棟</option>
+                                                                                                                    <option value="1073" >おぞのパークハイツＤ棟</option>
+                                                                                                                    <option value="1074" >ヌーベルエトワール若王寺</option>
+                                                                                                                    <option value="1075" >ハイツコスモ</option>
+                                                                                                                    <option value="1076" >ビアンカ園田</option>
+                                                                                                                    <option value="1077" >フレイグラント坂山</option>
+                                                                                                                    <option value="1078" >ネオ・ハーモニーYM</option>
+                                                                                                                    <option value="1079" >ハイツSKY　Ａ棟・Ｂ棟・Ｃ棟</option>
+                                                                                                                    <option value="1080" >ハーモニーYM</option>
+                                                                                                                    <option value="1081" >N’S夙川ビル</option>
+                                                                                                                    <option value="1082" >ヒルズサカト</option>
+                                                                                                                    <option value="1083" >ジュネス夙川</option>
+                                                                                                                    <option value="1084" >成見夢夙川</option>
+                                                                                                                    <option value="1085" >ヒューゲル夙川</option>
+                                                                                                                    <option value="1086" >阪急西宮ボンボア北口Ａ棟・Ｂ棟</option>
+                                                                                                                    <option value="1087" >AZ城ヶ堀</option>
+                                                                                                                    <option value="1088" >ハイムシャトー</option>
+                                                                                                                    <option value="1089" >ALBA西宮</option>
+                                                                                                                    <option value="1090" >PARTIR　FUJI</option>
+                                                                                                                    <option value="1091" >Verde西宮</option>
+                                                                                                                    <option value="1092" >クリアグランツ西宮</option>
+                                                                                                                    <option value="1093" >グランディ阪神西宮</option>
+                                                                                                                    <option value="1094" >Grandi阪神西宮Park4</option>
+                                                                                                                    <option value="1095" >グランディ阪神西宮Park1</option>
+                                                                                                                    <option value="1096" >グランドコート</option>
+                                                                                                                    <option value="1097" >ラ・メール西宮</option>
+                                                                                                                    <option value="1098" >ランド・アート西宮</option>
+                                                                                                                    <option value="1099" >西宮ファーストビル</option>
+                                                                                                                    <option value="1100" >センチュリービル</option>
+                                                                                                                    <option value="1101" >センチュリービル（水、Ｐ、トランクルーム）</option>
+                                                                                                                    <option value="1102" >ファミーユパティオ</option>
+                                                                                                                    <option value="1103" >SinEi</option>
+                                                                                                                    <option value="1105" >Lappiness西宮</option>
+                                                                                                                    <option value="1106" >SUN　CUBE</option>
+                                                                                                                    <option value="1107" >パルフェミソノ</option>
+                                                                                                                    <option value="1108" >梶原マンション</option>
+                                                                                                                    <option value="1109" >エルコート上甲子園</option>
+                                                                                                                    <option value="1110" >上甲子園アーバンリズ</option>
+                                                                                                                    <option value="1111" >アンシャンプル</option>
+                                                                                                                    <option value="1112" >ツインコート甲子園</option>
+                                                                                                                    <option value="1113" >トレスアイジツ</option>
+                                                                                                                    <option value="1114" >Serdina西宮</option>
+                                                                                                                    <option value="1115" >Grandi甲子園ParkV</option>
+                                                                                                                    <option value="1116" >パレス野田</option>
+                                                                                                                    <option value="1117" >KT9</option>
+                                                                                                                    <option value="1118" >フローラルハウス花水木</option>
+                                                                                                                    <option value="1119" >サニーウエスト</option>
+                                                                                                                    <option value="1120" >サンロイヤル今津</option>
+                                                                                                                    <option value="1121" >荻野ＭＧレヂデンス２</option>
+                                                                                                                    <option value="1122" >南文化</option>
+                                                                                                                    <option value="1123" >ユニライフ石坪</option>
+                                                                                                                    <option value="1124" >寺本東前田平屋</option>
+                                                                                                                    <option value="1125" >ヌーベルエトワール寺本１st</option>
+                                                                                                                    <option value="1127" >ハイムリーベＢ棟</option>
+                                                                                                                    <option value="1128" >ハイムリーベＡ棟</option>
+                                                                                                                    <option value="1129" >キクノハイツ</option>
+                                                                                                                    <option value="1130" >フラッツ・アゼリア</option>
+                                                                                                                    <option value="1131" >桑津３丁目倉庫付駐車場</option>
+                                                                                                                    <option value="1132" >パーシモン伊丹</option>
+                                                                                                                    <option value="1133" >リベルタス伊丹郷町</option>
+                                                                                                                    <option value="1134" >ドリームコート伊丹</option>
+                                                                                                                    <option value="1135" >ベルクフリート</option>
+                                                                                                                    <option value="1136" >エルブリッジⅡ</option>
+                                                                                                                    <option value="1137" >エルブリッジⅠ</option>
+                                                                                                                    <option value="1138" >サンライズ平松Ⅰ</option>
+                                                                                                                    <option value="1139" >N’sフラット</option>
+                                                                                                                    <option value="1140" >サンハイネス稲野</option>
+                                                                                                                    <option value="1141" >聖光園</option>
+                                                                                                                    <option value="1142" >ストーク梅ノ木</option>
+                                                                                                                    <option value="1143" >デューＮＨ新伊丹</option>
+                                                                                                                    <option value="1144" >エスペランサ伊丹</option>
+                                                                                                                    <option value="1145" >メゾン西台</option>
+                                                                                                                    <option value="1146" >エイトエイティーンメゾン</option>
+                                                                                                                    <option value="1147" >小澤文化</option>
+                                                                                                                    <option value="1148" >グレースコートM＆T</option>
+                                                                                                                    <option value="1149" >若菱ハイツ</option>
+                                                                                                                    <option value="1150" >グレスト野間</option>
+                                                                                                                    <option value="1151" >グレースコーポ</option>
+                                                                                                                    <option value="1152" >サザンコート２番館</option>
+                                                                                                                    <option value="1153" >リラハイツ</option>
+                                                                                                                    <option value="1154" >北斗七星</option>
+                                                                                                                    <option value="1155" >昆陽の里マンション</option>
+                                                                                                                    <option value="1156" >サンビレッジ昆陽の森Ｅ棟</option>
+                                                                                                                    <option value="1157" >サンビレッジ昆陽の森Ｆ棟</option>
+                                                                                                                    <option value="1158" >サンビレッジ昆陽の森Ａ棟</option>
+                                                                                                                    <option value="1159" >サンビレッジ昆陽の森Ｃ棟</option>
+                                                                                                                    <option value="1160" >サンビレッジ昆陽の森Ｄ棟</option>
+                                                                                                                    <option value="1161" >サンビレッジ昆陽の森Ｂ棟</option>
+                                                                                                                    <option value="1162" >ドミール昆陽</option>
+                                                                                                                    <option value="1163" >庄栄マンション</option>
+                                                                                                                    <option value="1164" >宝塚ヒルズ</option>
+                                                                                                                    <option value="1165" >サカセイーストビル</option>
+                                                                                                                    <option value="1166" >メゾンマリーゴールド</option>
+                                                                                                                    <option value="1167" >北山ハイツⅢ</option>
+                                                                                                                    <option value="1168" >北山ハイツⅡ</option>
+                                                                                                                    <option value="1169" >北山ハイツⅠ</option>
+                                                                                                                    <option value="1170" >グラネックス宝樹園</option>
+                                                                                                                    <option value="1171" >脇屋ハイツ</option>
+                                                                                                                    <option value="1172" >アンボワーズ売布</option>
+                                                                                                                    <option value="1173" >ポルテ宝塚</option>
+                                                                                                                    <option value="1174" >売布ケ丘スカイハイツ</option>
+                                                                                                                    <option value="1175" >ジャルダン宝塚六番館</option>
+                                                                                                                    <option value="1176" >星の荘マンション</option>
+                                                                                                                    <option value="1177" >サンハイツ坂末</option>
+                                                                                                                    <option value="1178" >宝樹園</option>
+                                                                                                                    <option value="1179" >ドリームシャトー</option>
+                                                                                                                    <option value="1180" >アルカンシェール川西</option>
+                                                                                                                    <option value="1181" >オルヴィエート</option>
+                                                                                                                    <option value="1182" >フローラル美園</option>
+                                                                                                                    <option value="1183" >リバーハイツ小花</option>
+                                                                                                                    <option value="1184" >ハーフェン小花</option>
+                                                                                                                    <option value="1185" >フレアコート</option>
+                                                                                                                    <option value="1186" >シャトーグリーン</option>
+                                                                                                                    <option value="1187" >トライアングル下加茂</option>
+                                                                                                                    <option value="1188" >川西ハイツ</option>
+                                                                                                                    <option value="1189" >ジュエル川西</option>
+                                                                                                                    <option value="1190" >ウイング花屋敷</option>
+                                                                                                                    <option value="1191" >KMビル</option>
+                                                                                                                    <option value="1192" >リゾうねのⅠ</option>
+                                                                                                                    <option value="1193" >今北連棟貸家</option>
+                                                                                                                    <option value="1194" >FLATS塚口（水道検針）</option>
+                                                                                                                    <option value="1195" >クローバーメゾン尼崎（水道検針）</option>
+                                                                                                                    <option value="1196" >アリーザ武庫之荘（水道検針）</option>
+                                                                                                                    <option value="1197" >レオ武庫之荘（水道検針）</option>
+                                                                                                                    <option value="1198" >N’S夙川ビル（水道検針　電気検針）</option>
+                                                                                                                    <option value="1199" >PARTIR　FUJI（水道　電気検針）</option>
+                                                                                                                    <option value="1200" >Lappiness西宮（水道　電気検針）</option>
+                                                                                                                    <option value="1201" >N’sフラット（水道検針）</option>
+                                                                                                                    <option value="1202" >聖光園（電気検針）</option>
+                                                                                                                    <option value="1203" >昆陽の里マンション（水道検針）</option>
+                                                                                                                    <option value="1204" >宝塚ヒルズ（水道検針）</option>
+                                                                                                                    <option value="1205" >サカセイーストビル（水道検針）</option>
+                                                                                                                    <option value="1206" >ポルテ宝塚（水道検針）</option>
+                                                                                                                    <option value="1207" >ジャルダン宝塚六番館（水道検針）</option>
+                                                                                                                    <option value="1208" >リバーハイツ小花（水道検針）</option>
+                                                                                                                    <option value="1209" >トライアングル下加茂（水道検針）</option>
+                                                                                                                    <option value="1210" >Luxe尼崎WEST（電気検針）</option>
+                                                                                                                    <option value="1211" >プチガーデン西宮（電気検針）</option>
+                                                                                                                    <option value="1212" >REGINA（テナント）</option>
+                                                                                                                    <option value="1213" >小俣モータープール（駐車場巡回）</option>
+                                                                                                                    <option value="1214" >小俣モータープール（駐車場清掃）</option>
+                                                                                                                    <option value="1215" >STANDZ今出川通</option>
+                                                                                                                    <option value="1216" >マンションKLM</option>
+                                                                                                                    <option value="1217" >マンションKLM（電気検針）</option>
+                                                                                                                    <option value="1218" >ジュネス野江</option>
+                                                                                                                    <option value="1219" >プロスパーみなみすいた公園</option>
+                                                                                                                    <option value="1220" >ハピネス江坂</option>
+                                                                                                                    <option value="1221" >フェリーチェ京都</option>
+                                                                                                                    <option value="1222" >西宮ファーストビル（電気検針）</option>
+                                                                                                                    <option value="1223" >フラッツＹ</option>
+                                                                                                                    <option value="1224" >レジデンスシーズⅤ</option>
+                                                                                                                    <option value="1225" >STANDZ今出川通（水道検針）</option>
+                                                                                                                    <option value="1226" >協栄ビル大宮</option>
+                                                                                                                    <option value="1227" >ラグゼ山科</option>
+                                                                                                                    <option value="1228" >i・レジデンス上鳥羽</option>
+                                                                                                                    <option value="1229" >プレージア京都聖護院ノ邸</option>
+                                                                                                                    <option value="1230" >グレース山科</option>
+                                                                                                                    <option value="1231" >ヴェルフィオーレ嵐山</option>
+                                                                                                                    <option value="1232" >シャトー神田</option>
+                                                                                                                    <option value="1233" >ラグゼ山科（水道検針）</option>
+                                                                                                                    <option value="1234" >i・レジデンス上鳥羽（水道検針）</option>
+                                                                                                                    <option value="1235" >プレージア京都聖護院ノ邸（水道検針）</option>
+                                                                                                                    <option value="1236" >HF梅田レジデンス</option>
+                                                                                                                    <option value="1237" >グランスター大宮</option>
+                                                                                                                    <option value="1238" >シェリロ神山</option>
+                                                                                                                    <option value="1239" >サンパレスとよふく中山手</option>
+                                                                                                                    <option value="1240" >ヤマトビル</option>
+                                                                                                                    <option value="1241" >ヤマトビル（水道検針・ガス検針）</option>
+                                                                                                                    <option value="1242" >DAIWA RESIDENCE YASU</option>
+                                                                                                                    <option value="1243" >DAIWA RESIDENCE YASU（水道検針）</option>
+                                                                                                                    <option value="1244" >アビリティK</option>
+                                                                                                                    <option value="1245" >アビリティK（水道検針）</option>
+                                                                                                                    <option value="1246" >エステルハイツ</option>
+                                                                                                                    <option value="1247" >エステルハイツ（水道検針）</option>
+                                                                                                                    <option value="1248" >オーベルジュ宝塚</option>
+                                                                                                                    <option value="1249" >門戸サンヴァレイハイツ</option>
+                                                                                                                    <option value="1250" >曽根東マンション</option>
+                                                                                                                    <option value="1251" >曽根東マンション（水道検針）</option>
+                                                                                                                    <option value="1252" >Felice Nanba Ovest</option>
+                                                                                                                    <option value="1253" >アドバンス京都北大路レフィナード</option>
+                                                                                                                    <option value="1254" >アドバンス京都北大路レフィナード（水道検針）</option>
+                                                                                                                    <option value="1255" >ユリスト西天満</option>
+                                                                                                                    <option value="1256" >ユリスト西天満（電気検針）</option>
+                                                                                                                    <option value="1257" >カインド中百舌鳥</option>
+                                                                                                                    <option value="1258" >クレインハイツ南堀江</option>
+                                                                                                                    <option value="1259" >プレジオ西三国</option>
+                                                                                                                    <option value="1260" >アステイオス</option>
+                                                                                                                    <option value="1261" >collection千里</option>
+                                                                                                                    <option value="1262" >Luxe京都西大路</option>
+                                                                                                                    <option value="1263" >Luxe中書島</option>
+                                                                                                                    <option value="1264" >フェリーチェ茨木</option>
+                                                                                                                    <option value="1265" >サンアイリオ</option>
+                                                                                                                    <option value="1266" >DAIWA RESIDENCE IBARAKI</option>
+                                                                                                                    <option value="1267" >シャルムK</option>
+                                                                                                                    <option value="1268" >プチメゾン高石</option>
+                                                                                                                    <option value="1269" >ウィンディアK</option>
+                                                                                                                    <option value="1270" >ヌーベルコート三国ヶ丘</option>
+                                                                                                                    <option value="1271" >フィオレ・レジデンス出島海岸通</option>
+                                                                                                                    <option value="1272" >Luxe浜寺A棟</option>
+                                                                                                                    <option value="1273" >Luxe浜寺B棟</option>
+                                                                                                                    <option value="1274" >アーバンコート</option>
+                                                                                                                    <option value="1275" >グリーンパーク戸松</option>
+                                                                                                                    <option value="1276" >ネオコーポ四條畷</option>
+                                                                                                                    <option value="1277" >ネオコーポ寺澤2号館</option>
+                                                                                                                    <option value="1278" >ヴェルデエスパシオ</option>
+                                                                                                                    <option value="1279" >土佐ビル　No.4</option>
+                                                                                                                    <option value="1280" >マキシム吹田</option>
+                                                                                                                    <option value="1281" >グリーンパレス竹園</option>
+                                                                                                                    <option value="1282" >collection忠岡</option>
+                                                                                                                    <option value="1283" >Luxe西田辺</option>
+                                                                                                                    <option value="1284" >Luxe天王寺</option>
+                                                                                                                    <option value="1285" >インターナショナル高殿</option>
+                                                                                                                    <option value="1286" >此花マンション</option>
+                                                                                                                    <option value="1287" >パールハイツ</option>
+                                                                                                                    <option value="1288" >グランドール姫松</option>
+                                                                                                                    <option value="1290" >田代マンション</option>
+                                                                                                                    <option value="1292" >都ハイツ</option>
+                                                                                                                    <option value="1293" >ドミールデリーブ</option>
+                                                                                                                    <option value="1294" >Luxe緑橋</option>
+                                                                                                                    <option value="1295" >レジア小路</option>
+                                                                                                                    <option value="1296" >Luxe今里Ⅱ</option>
+                                                                                                                    <option value="1297" >アルファライフ阿波座</option>
+                                                                                                                    <option value="1298" >ミーネ新町弐番館</option>
+                                                                                                                    <option value="1299" >ウィンヒルズ難波南</option>
+                                                                                                                    <option value="1300" >トイズコート</option>
+                                                                                                                    <option value="1301" >ドリームコート岸里</option>
+                                                                                                                    <option value="1302" >Luxe大正</option>
+                                                                                                                    <option value="1303" >セレニテ日本橋EST</option>
+                                                                                                                    <option value="1304" >アーバンフラッツ上町</option>
+                                                                                                                    <option value="1305" >Luxe本町</option>
+                                                                                                                    <option value="1306" >グランディール清水谷</option>
+                                                                                                                    <option value="1307" >エクセル東大門</option>
+                                                                                                                    <option value="1308" >WT.NET.BLD</option>
+                                                                                                                    <option value="1309" >グリーンハウス天王寺</option>
+                                                                                                                    <option value="1310" >レジナコート</option>
+                                                                                                                    <option value="1311" >DO kitatanabe</option>
+                                                                                                                    <option value="1312" >ハウスアイ上新庄</option>
+                                                                                                                    <option value="1313" >永和ﾏﾝｼｮﾝ</option>
+                                                                                                                    <option value="1314" >ラグゼ新大阪北</option>
+                                                                                                                    <option value="1315" >コラール大桐</option>
+                                                                                                                    <option value="1316" >ベルドミール</option>
+                                                                                                                    <option value="1317" >Luxe海老江Ⅱ</option>
+                                                                                                                    <option value="1318" >Luxe福島</option>
+                                                                                                                    <option value="1319" >山源ハイツ</option>
+                                                                                                                    <option value="1320" >アミティ平野</option>
+                                                                                                                    <option value="1321" >PrimaveraⅠ</option>
+                                                                                                                    <option value="1322" >PrimaveraⅡ</option>
+                                                                                                                    <option value="1323" >PrimaveraⅢ</option>
+                                                                                                                    <option value="1324" >PrimaveraⅣ</option>
+                                                                                                                    <option value="1325" >ソアール梅田</option>
+                                                                                                                    <option value="1326" >Tスクエア梅田WEST</option>
+                                                                                                                    <option value="1327" >Luxe三国Ⅱ</option>
+                                                                                                                    <option value="1328" >Luxe新大阪Ⅰ</option>
+                                                                                                                    <option value="1329" >Luxe新大阪Ⅱ</option>
+                                                                                                                    <option value="1330" >プレジオ新大阪</option>
+                                                                                                                    <option value="1331" >CASA MT 東三国</option>
+                                                                                                                    <option value="1332" >CASA MT 恵美須駅前</option>
+                                                                                                                    <option value="1333" >ルラーシェナンバ</option>
+                                                                                                                    <option value="1334" >ラフォンテ難波南</option>
+                                                                                                                    <option value="1335" >vineﾙミエール大国町</option>
+                                                                                                                    <option value="1336" >Luxe住道</option>
+                                                                                                                    <option value="1337" >パークヴィラ中島</option>
+                                                                                                                    <option value="1338" >クリエオーレ荒本Ⅱ</option>
+                                                                                                                    <option value="1339" >Luxe布施北Ⅰ</option>
+                                                                                                                    <option value="1340" >Luxe布施北Ⅱ</option>
+                                                                                                                    <option value="1341" >ジャルディーノ</option>
+                                                                                                                    <option value="1342" >トゥールモンド</option>
+                                                                                                                    <option value="1343" >ハートフルスイーツ蛍池</option>
+                                                                                                                    <option value="1344" >メゾンアヴニール</option>
+                                                                                                                    <option value="1345" >ヌーボー豊門</option>
+                                                                                                                    <option value="1346" >シブヤハイツ</option>
+                                                                                                                    <option value="1347" >クレスティ曽根</option>
+                                                                                                                    <option value="1348" >グランベガ緑地公園</option>
+                                                                                                                    <option value="1349" >レジデンスシーズⅢ</option>
+                                                                                                                    <option value="1351" >レジデンスシーズⅡ</option>
+                                                                                                                    <option value="1352" >レジデンスシーズⅠ</option>
+                                                                                                                    <option value="1353" >ル・リアン</option>
+                                                                                                                    <option value="1354" >ディアーレコトブキB</option>
+                                                                                                                    <option value="1355" >ディアーレコトブキA</option>
+                                                                                                                    <option value="1356" >ドミール浜寺</option>
+                                                                                                                    <option value="1357" >F mirai bliss</option>
+                                                                                                                    <option value="1358" >F mirai baum</option>
+                                                                                                                    <option value="1359" >Reve朝日が丘</option>
+                                                                                                                    <option value="1360" >STADION</option>
+                                                                                                                    <option value="1361" >フェリーチェ百舌鳥</option>
+                                                                                                                    <option value="1362" >Luxe我孫子</option>
+                                                                                                                    <option value="1363" >Luxe難波WEST</option>
+                                                                                                                    <option value="1364" >シャンブル神戸</option>
+                                                                                                                    <option value="1365" >シャルムセンチュリー</option>
+                                                                                                                    <option value="1366" >Luxe神戸WEST</option>
+                                                                                                                    <option value="1367" >エルミタージュ難波南Ⅴ</option>
+                                                                                                                    <option value="1368" >L－FLORA此花</option>
+                                                                                                                    <option value="1369" >Verde与古道</option>
+                                                                                                                    <option value="1370" >ディクス福島レジデンス</option>
+                                                                                                                    <option value="1371" >グレイスフル中崎Ⅰ</option>
+                                                                                                                    <option value="1372" >グレイスフル中崎Ⅱ</option>
+                                                                                                                    <option value="1373" >アドバンス西梅田ジェイス</option>
+                                                                                                                    <option value="1374" >マンションアスカ</option>
+                                                                                                                    <option value="1375" >バザーリ立花</option>
+                                                                                                                    <option value="1376" >レジデンスシーズⅥ</option>
+                                                                                                                    <option value="1377" >F　asecia　Velos</option>
+                                                                                                                    <option value="1378" >F　asecia　vague</option>
+                                                                                                                    <option value="1379" >シャーメゾンエリゼ</option>
+                                                                                                                    <option value="1380" >甚樹園マンション</option>
+                                                                                                                    <option value="1381" >DAIWA RESIDENCE TAKATSUKI</option>
+                                                                                                                    <option value="1382" >ラ・ヴィラ阿倍野</option>
+                                                                                                                    <option value="1383" >オーズ篠原北町</option>
+                                                                                                                    <option value="1384" >武田御影ハイム</option>
+                                                                                                                    <option value="1385" >アンビエンス柳之町</option>
+                                                                                                                    <option value="1386" >Casa Fortunata</option>
+                                                                                                                    <option value="1387" >アネールエレ江戸堀</option>
+                                                                                                                    <option value="1388" >誠和ハイツ</option>
+                                                                                                                    <option value="1389" >F asecia fonte</option>
+                                                                                                                    <option value="1390" >ダブルナインレジデンス西宮</option>
+                                                                                                                    <option value="1391" >篠崎ハイツ</option>
+                                                                                                                    <option value="1392" >BENISSIMO西宮</option>
+                                                                                                                    <option value="1393" >プリーマ甲風園</option>
+                                                                                                                    <option value="1394" >パーフェクトライフ京橋駅前</option>
+                                                                                                                    <option value="1395" >La Casa Siesta</option>
+                                                                                                                    <option value="1396" >DUR</option>
+                                                                                                                    <option value="1397" >AXIS</option>
+                                                                                                                    <option value="1398" >西天満ワークビル</option>
+                                                                                                                    <option value="1399" >ヘーベルメゾン松並</option>
+                                                                                                                    <option value="1400" >フェリーチェ本町エスト</option>
+                                                                                                                    <option value="1401" >シャトー江之子島</option>
+                                                                                                                    <option value="1402" >メルベーユ</option>
+                                                                                                                    <option value="1404" >カームヒルズ</option>
+                                                                                                                    <option value="1405" >グランパシフィック大今里南</option>
+                                                                                                                    <option value="1406" >フォルス御崎</option>
+                                                                                                                    <option value="1407" >フォルス塚口</option>
+                                                                                                                    <option value="1408" >THE CITY京都五条</option>
+                                                                                                                    <option value="1409" >プラザ花園</option>
+                                                                                                                    <option value="1410" >プリオール</option>
+                                                                                                                    <option value="1411" >グリンヒルズ</option>
+                                                                                                                    <option value="1412" >ロイヤルメゾン御影Ⅳ</option>
+                                                                                                                    <option value="1413" >第3ハートビル</option>
+                                                                                                                    <option value="1414" >celeste東中島</option>
+                                                                                                                    <option value="1415" >Perfect Life西天満</option>
+                                                                                                                    <option value="1416" >シロハイヌ文の里</option>
+                                                                                                                    <option value="1417" >ヴィクトリアンハウス</option>
+                                                                                                                    <option value="1418" >IB豊津</option>
+                                                                                                                    <option value="1419" >サンハイツ六甲</option>
+                                                                                                                    <option value="1420" >サンハイツ平野</option>
+                                                                                                                    <option value="1421" >大進ビル</option>
+                                                                                                                    <option value="1422" >シャルムハイツ王子</option>
+                                                                                                                    <option value="1423" >サニーウェルKIHARA（旧：レオパレスHIRATA）</option>
+                                                                                                                    <option value="1424" >梅田東ユーリプラザ</option>
+                                                                                                                    <option value="1425" >北野台ハイツ</option>
+                                                                                                                    <option value="1426" >メゾン・ド・トウダ</option>
+                                                                                                                    <option value="1427" >メゾン・ヴィヴレ</option>
+                                                                                                                    <option value="1428" >阪急曽根ユーリプラザ</option>
+                                                                                                                    <option value="1429" >プラージュ中小阪</option>
+                                                                                                                    <option value="1430" >レジデンス大阪城東アペリオ</option>
+                                                                                                                    <option value="1431" >東三国ユーリプラザ</option>
+                                                                                                                    <option value="1432" >星陵台マンション</option>
+                                                                                                                    <option value="1433" >HEBEL MAISON 甲子園口北町 North</option>
+                                                                                                                    <option value="1435" >コスモタウン中川西</option>
+                                                                                                                    <option value="1436" >吉川マンション</option>
+                                                                                                                    <option value="1437" >スプランディッド尼崎駅前Ⅰ</option>
+                                                                                                                    <option value="1438" >スプランディッド尼崎駅前Ⅱ</option>
+                                                                                                                    <option value="1439" >コスモス東豊中</option>
+                                                                                                                    <option value="1440" >Beeハイム</option>
+                                                                                                                    <option value="1441" >レジュールアッシュ塚本レジデンス</option>
+                                                                                                                    <option value="1520" >セリオ蔵前</option>
+                                                                                                                    <option value="1528" >R GARDEN NOZAKI</option>
+                                                                                                                    <option value="1556" >伊東ビル</option>
+                                                                                                                    <option value="1559" >ミルフェスト北堀川</option>
+                                                                                                                    <option value="1577" >Sky Garden</option>
+                                                                                                                    <option value="1579" >ジオエント御所北寺町通</option>
+                                                                                                                    <option value="1580" >宝荘</option>
+                                                                                                                    <option value="1582" >セジュール西ノ京</option>
+                                                                                                                    <option value="1584" >レジデンスシーズⅦ</option>
+                                                                                                                    <option value="1585" >アルバ</option>
+                                                                                                                    <option value="1586" >THE･SUN･ARINO</option>
+                                                                                                                    <option value="1587" >アル　ソーレ</option>
+                                                                                                                    <option value="1589" >シエル・エトワール</option>
+                                                                                                                    <option value="1588" >セントハイム</option>
+                                                                                                                    <option value="1590" >フレア難波</option>
+                                                                                                                    <option value="1592" >グランプラス</option>
+                                                                                                                    <option value="1626" >美杉マンション</option>
+                                                                                                                    <option value="1627" >LA CERCA</option>
+                                                                                                                    <option value="1628" >レヴェ パルテール</option>
+                                                                                                                    <option value="1639" >アドバンス渋川</option>
+                                                                                                                    <option value="1637" >パラドール大蓮東</option>
+                                                                                                                    <option value="1854" >へーベルメゾン鳴尾</option>
+                                                                                                                    <option value="2003" >クレール若竹</option>
+                                                                                                                    <option value="1855" >フェニーチェⅡ</option>
+                                                                                                                    <option value="1856" >piaisir西宮北口</option>
+                                                                                                                    <option value="1737" >plaisir夙川</option>
+                                                                                                                    <option value="1759" >パーソナルハイツ</option>
+                                                                                                                    <option value="1747" >フロンティア１</option>
+                                                                                                                    <option value="1831" >ALEGRIA三国</option>
+                                                                                                                    <option value="1767" >クレール西多聞通</option>
+                                                                                                                    <option value="1776" >エル・モンテ緑橋</option>
+                                                                                                                    <option value="1777" >トミィーハイツ</option>
+                                                                                                                    <option value="1774" >ネオシティ阿倍野</option>
+                                                                                                                    <option value="1780" >アンソレイエ古川橋</option>
+                                                                                                                    <option value="1959" >フォーシーズンズ1</option>
+                                                                                                                    <option value="1808" >アルモニア江坂</option>
+                                                                                                                    <option value="1810" >Sandan2</option>
+                                                                                                                    <option value="1811" >Sandan3</option>
+                                                                                                                    <option value="1812" >ハイライフ須佐野</option>
+                                                                                                                    <option value="1813" >STUDIO南船場</option>
+                                                                                                                    <option value="1815" >Luxe難波南</option>
+                                                                                                                    <option value="1826" >ヴィラ・セントラルイースト</option>
+                                                                                                                    <option value="1816" >GarageR</option>
+                                                                                                                    <option value="1817" >リバーハイム分銅A・B棟</option>
+                                                                                                                    <option value="1828" >名古屋支店</option>
+                                                                                                                    <option value="1819" >アネックス古結Ⅱ</option>
+                                                                                                                    <option value="1827" >ログハウスこだち</option>
+                                                                                                                    <option value="1839" >ラグゼ姫路</option>
+                                                                                                                    <option value="1853" >EQUUS池開</option>
+                                                                                                                    <option value="1862" >BLANCHE甲子園口</option>
+                                                                                                                    <option value="1863" >sola</option>
+                                                                                                                    <option value="1867" >Rich Leaf Ⅰ</option>
+                                                                                                                    <option value="1880" >ALZA立売堀</option>
+                                                                                                                    <option value="1893" >ペディコート池田豊島南</option>
+                                                                                                                    <option value="1882" >Flair京都五条烏丸</option>
+                                                                                                                    <option value="1906" >Perfect Life緑橋</option>
+                                                                                                                    <option value="1918" >シャーメゾンローリエ</option>
+                                                                                                                    <option value="1919" >プロムナード菊水</option>
+                                                                                                                    <option value="1920" >ヴィラペントハウス京橋Ⅳ</option>
+                                                                                                                    <option value="1921" >ハイツイケダ</option>
+                                                                                                                    <option value="1922" >池田ビル</option>
+                                                                                                                    <option value="1931" >LuneLion</option>
+                                                                                                                    <option value="1934" >VegaCircle立花</option>
+                                                                                                                    <option value="1936" >セレニテ難波西</option>
+                                                                                                                    <option value="1938" >第5伊東ビル</option>
+                                                                                                                    <option value="1948" >ジェントリーT.M.Y</option>
+                                                                                                                    <option value="1940" >コーポハヤシ</option>
+                                                                                                                    <option value="1949" >ジェントリーT.M.YⅡ</option>
+                                                                                                                    <option value="1942" >オーズ神明町</option>
+                                                                                                                    <option value="1952" >プリエール阪神尼崎</option>
+                                                                                                                    <option value="1957" >シーマ大和高田</option>
+                                                                                                                    <option value="1971" >フォーラム城ヶ岡参番館</option>
+                                                                                                                    <option value="1291" >ソレイユ(今福)</option>
+                                                                                                                    <option value="1973" >ソレイユ(神戸)</option>
+                                                                                                                    <option value="1976" >Prestige桂川</option>
+                                                                                                                    <option value="1978" >ロイヤル明宝</option>
+                                                                                                                    <option value="1974" >ローレルマンション</option>
+                                                                                                                    <option value="2001" >NOY NISHINOMIYA</option>
+                                                                                                                    <option value="1982" >ハピネス東須磨</option>
+                                                                                                                    <option value="1983" >ドエル城ヶ堀FINE</option>
+                                                                                                                    <option value="2000" >エアリーコート上高丸</option>
+                                                                                                                    <option value="1434" >THE CITY 太秦</option>
+                                                                                                                    <option value="2008" >ハウス陽新</option>
+                                                                                                                    <option value="2010" >東加賀屋4丁目貸家</option>
+                                                                                                                    <option value="2012" >エアリーコート勢野北口</option>
+                                                                                                                    <option value="1403" >TLRレジデンス難波東</option>
+                                                                                                                    <option value="2019" >HDX京都桂川</option>
+                                                                                                                    <option value="2018" >オーズ篠原中町</option>
+                                                                                                                    <option value="2017" >オーズ櫨塚町</option>
+                                                                                                                    <option value="2026" >KT-8</option>
+                                                                                                                    <option value="2029" >サテライト王子公園</option>
+                                                                                                                    <option value="2030" >モデラート江上</option>
+                                                                                                                    <option value="2031" >ジーアップルーチェ</option>
+                                                                                                                    <option value="2036" >大栄・西天満BLD.</option>
+                                                                                                                    <option value="2628" >SWISS千里藤白台</option>
+                                                                                                                    <option value="2629" >グランドール・メゾン</option>
+                                                                                                                    <option value="2634" >阪急曽根ユーリプラザⅡ</option>
+                                                                                                                    <option value="2648" >ノーブル甲東園</option>
+                                                                                                                    <option value="2650" >レジデンス伊川谷</option>
+                                                                                                                    <option value="2651" >クイーンズコート</option>
+                                                                                                                    <option value="2654" >シティコア西舞子</option>
+                                                                                                                    <option value="2658" >サンコート蔵之宮</option>
+                                                                                                                    <option value="2660" >へーベルメゾンブラン甲子園口</option>
+                                                                                                                    <option value="2661" >REX夙川通り</option>
+                                                                                                                    <option value="2662" >Grand　Master六甲道</option>
+                                                                                                                    <option value="2663" >Klim鈴蘭台Ⅰ・Ⅱ</option>
+                                                                                                                    <option value="2680" >シャルム垂水</option>
+                                                                                                                    <option value="2681" >アネーロ国分</option>
+                                                                                                                    <option value="2682" >パラス・ティラ平野west</option>
+                                                                                                                    <option value="2677" >ハイツ熊谷</option>
+                                                                                                                    <option value="2678" >フォレスト</option>
+                                                                                                                    <option value="2679" >シャルマン鳳駅前</option>
+                                                                                                                    <option value="2687" >あさひのハウス</option>
+                                                                                                                    <option value="2694" >堺綾ノ町ビル</option>
+                                                                                                                    <option value="2699" >オーシャン姫里</option>
+                                                                                                                    <option value="2700" >KT-14</option>
+                                                                                                                    <option value="2716" >Perfect Life夕陽ヶ丘 </option>
+                                                                                                                    <option value="2717" >東明マンション江坂</option>
+                                                                                                                    <option value="2719" >リュクス尼崎</option>
+                                                                                                                    <option value="2720" >千島ハウス</option>
+                                                                                                                    <option value="2730" >M’S GRANDE MINATO MOTOMACHI</option>
+                                                                                                                    <option value="2911" >プレサージュ</option>
+                                                                                                                    <option value="2769" >第2まやハイツ</option>
+                                                                                                                    <option value="2770" >アクイラ西宮北口</option>
+                                                                                                                    <option value="2777" >コンフェリア秦</option>
+                                                                                                                    <option value="3015" >メゾンオオセンド</option>
+                                                                                                                    <option value="3043" >メゾンクレール城が山</option>
+                                                                                                                    <option value="3076" >ナチュラル甲風園</option>
+                                                                                                                    <option value="3175" >ドミールハヤシ</option>
+                                                                                                                    <option value="3176" >スペーシア高羽</option>
+                                                                                                                    <option value="3178" >ハイツ上甲子園</option>
+                                                                                                                    <option value="3177" >フローリスコート</option>
+                                                                                                                    <option value="3179" >大箇マンション</option>
+                                                                                                                    <option value="3181" >ジョリヴェルジュ</option>
+                                                                                                                    <option value="3208" >ワイズレジデンス南草津</option>
+                                                                                                                    <option value="3241" >グランネイ甲子園</option>
+                                                                                                                    <option value="1104" >アドレス香櫨園Ⅱ</option>
+                                                                                                                    <option value="3244" >エルドラード甲子園</option>
+                                                                                                                    <option value="3439" >フルーク美鈴</option>
+                                                                                                                    <option value="3604" >F.Ashiya</option>
+                                                                    </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 padding_left_zero">
+                            <div class="input-group">
+                                <span class="input-group-addon syutoken-span">管理区分２</span>
+                                <select id="kanrikbn2" name="kanrikbn2" class="form-control" tabindex="5" disabled>
+                                    <option value="0" selected></option>
+                                                                                                                    <option value="789" >法人課　藤本　健人</option>
+                                                                                                                    <option value="788" >開発課　佐藤　富彦</option>
+                                                                                                                    <option value="790" >法人課　松岡　竜義</option>
+                                                                                                                    <option value="769" >OS1-1　住澤　亮</option>
+                                                                                                                    <option value="774" >OS1-2　川端　将也</option>
+                                                                                                                    <option value="776" >OS2-1　山下　正幸</option>
+                                                                                                                    <option value="778" >OS2-2　石井　克征</option>
+                                                                                                                    <option value="780" >OS2-2　安岡　貴也</option>
+                                                                                                                    <option value="791" >神戸支店　鈴江　欣也</option>
+                                                                                                                    <option value="793" >OS2　管理者　宇佐美　和弘</option>
+                                                                                                                    <option value="794" >OS2-1　眞田　邦彦</option>
+                                                                                                                    <option value="795" >PM　管理者　市川　清治</option>
+                                                                                                                    <option value="796" >京都支店　管理者　中村　智亮</option>
+                                                                                                                    <option value="798" >法人課　管理者　金田　雅史</option>
+                                                                                                                    <option value="799" >OS1　管理者　堀田　典和</option>
+                                                                                                                    <option value="801" >幹部　佐々木　真弘</option>
+                                                                                                                    <option value="767" >OS1-1　馬淵　浩隆</option>
+                                                                                                                    <option value="797" >神戸支店　管理者　渡邊　茂</option>
+                                                                                                                    <option value="768" >OS1-1　安田　豊</option>
+                                                                                                                    <option value="770" >OS1-1　西山　修平</option>
+                                                                                                                    <option value="775" >OS2-1　久富　雄太</option>
+                                                                                                                    <option value="777" >OS2-1　太田　真崇</option>
+                                                                                                                    <option value="779" >OS2-2　芝﨑　清樹</option>
+                                                                                                                    <option value="781" >OS2-2　石出　紘輝</option>
+                                                                                                                    <option value="792" >神戸支店　木村　亮太</option>
+                                                                                                                    <option value="805" >工務部　西村　公一</option>
+                                                                                                                    <option value="771" >OS1-2　月元　昭次</option>
+                                                                                                                    <option value="782" >PM　山田　通也</option>
+                                                                                                                    <option value="772" >OS1-2　吉井　雅紀</option>
+                                                                                                                    <option value="783" >PM　川崎　武志</option>
+                                                                                                                    <option value="773" >OS1-2　森　誠</option>
+                                                                                                                    <option value="784" >PM　川上　雄矢</option>
+                                                                                                                    <option value="785" >開発課　佐尾　信一郎</option>
+                                                                                                                    <option value="786" >開発課　髙橋　貞行</option>
+                                                                                                                    <option value="787" >開発課　鳥越　祐真</option>
+                                                                    </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 padding_right_zero">
+                            <div class="input-group">
+                                <label class="input-group-addon syutoken-span">物件</label>
+                                <input id="buken_code" name="buken_code" class="form-control ime-off" type="text" tabindex="6">
+                                <label class="input-group-btn">
+                                    <button id="search_buken" type="button" class="btn-primary btn"><i class="fa fa-search"></i></button>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 padding_left_zero">
+                            <div class="input-group">
+                                <label class="input-group-addon syutoken-span">物件名</label>
+                                <input id="name_buken" name="name_buken" class="form-control" type="text" placeholder="名称・コード・管理会社用物件コード・住所・かな" tabindex="7">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 padding_left_zero">
+                            <div class="input-group">
+                                <label class="input-group-addon syutoken-span">部屋番号</label>
+                                <input id="room_no" name="room_no" class="form-control ime-off" type="text" tabindex="8">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 padding_left_zero">
+                            <div class="input-group">
+                                <label class="input-group-addon syutoken-span">作業</label>
+                                <input id="item_name" name="item_name" class="form-control ime-on" type="text" tabindex="9">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="input-group">
+                                <label class="input-group-addon syutoken-span">実施予定日</label>
+                                <input id="yotei_date_from" name="yotei_date_from" class="form-control" type="text" tabindex="10" value="2024/09/01" >
+                                <label class="input-group-addon syutoken-span span-small">～</label>
+                                <input id="yotei_date_to" name="yotei_date_to" class="form-control" type="text" tabindex="11" value="2024/09/30" >
+                                <label class="input-group-addon syutoken-span">実施日</label>
+                                <input id="result_date_from" name="result_date_from" class="form-control" type="text" tabindex="12" >
+                                <label class="input-group-addon syutoken-span span-small">～</label>
+                                <input id="result_date_to" name="result_date_to" class="form-control" type="text" tabindex="13" >
+                            </div>
+                        </div>
+                        <div class="col-md-3 padding_left_zero">
+                            <div class="input-group hidden">
+                                <label class="input-group-addon syutoken-span">巡回担当者</label>
+                                <input id="junkai_tanto" name="junkai_tanto" class="form-control ime-on" type="text" tabindex="14">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 padding_right_zero">
+                            <div class="input-group">
+                                <label class="input-group-addon syutoken-span">問題程度</label>
+                                <div class="form-control" >
+                                  <label style="font-weight:normal;vertical-align:middle;"><input type="radio" id="mondai_teido" name="mondai_teido" tabindex=15 value="0" checked>指定なし</label>&nbsp;
+                                  <label style="font-weight:normal;vertical-align:middle;"><input type="radio" id="mondai_teido" name="mondai_teido" tabindex=16 value="2" >要対処</label>&nbsp;
+                                  <label style="font-weight:normal;vertical-align:middle;"><input type="radio" id="mondai_teido" name="mondai_teido" tabindex=17 value="3" >至急対処</label>&nbsp;
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 ">
+                            <div class="input-group">
+                                <label class="input-group-addon syutoken-span">報告内容</label>
+                                <input id="hokokusho_naiyo" name="hokokusho_naiyo" class="form-control " type="text" tabindex=18 >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-md-5 padding_right_zero">
+                            <div class="input-group">
+                                <label class="input-group-addon syutoken-span">解約・空室</label>
+                                <div class="form-control" >
+                                    <label style="font-weight:normal;vertical-align:middle;"><input type="checkbox" id="kanryo" name="kanryo" value="1" tabindex=19 >完了分</label>&nbsp;
+                                    <label style="font-weight:normal;vertical-align:middle;"><input type="checkbox" id="shuzen" name="shuzen" value="1" tabindex=20 >修繕分</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7 padding_right_zero">
+                            <div class="input-group">
+                                <label class="input-group-addon syutoken-span">出力オプション</label>
+                                <div class="form-control" >
+                                  <label style="font-weight:normal;vertical-align:middle;"><input type="radio" id="output_option" name="output_option" value="1" tabindex=21 checked>物件一覧</label>&nbsp;
+                                  <label style="font-weight:normal;vertical-align:middle;"><input type="radio" id="output_option" name="output_option" value="2" tabindex=22 >詳細（巡回）</label>&nbsp;
+                                  <label style="font-weight:normal;vertical-align:middle;" ><input type="radio" id="output_option" name="output_option" value="3" tabindex=23 >詳細（解約）</label>&nbsp;
+                                  <label style="font-weight:normal;vertical-align:middle;" ><input type="radio" id="output_option" name="output_option" value="4" tabindex=24 >詳細（空室）</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 ">
+                            <div class="input-group">
+                                <label class="input-group-addon syutoken-span">抽出オプション</label>
+                                <div class="form-control" >
+                                    <label style="font-weight:normal;vertical-align:middle;"><input type="checkbox" id="dl_jogai" name="dl_jogai" value="1" tabindex=25 >未ダウンロード</label>
+                                    <label style="font-weight:normal;vertical-align:middle;"><input type="checkbox" id="dl_saisakusei" name="dl_saisakusei" value="1" tabindex=26 >変更</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <!-- /panel 一覧 -->
+    <div class="panel panel-info syutoken-border" id="search_result_wrap">
+        <div class="panel-heading syutoken-heading" id="search_result_title">
+            <div class="row">
+                <div class="col-md-2 col-sm-3 text-left" id="list_title">
+                    巡回報告一覧
+                </div>
+                <div class="col-md-5 col-sm-3 kanryo-list-text" >
+                    <div style="float:left; padding:5px">
+                        <div class="list-info" style="border-style: solid ; border-width: 1px;width:50px;height:20px;"></div>
+                    </div>
+                    <div style="float:left; padding:5px">
+                        <span >対処不要</span>
+                    </div>
+                    <div style="float:left; padding:5px;padding-left:25px">
+                        <div class="list-warning" style="border-style: solid ; border-width: 1px;width:50px;height:20px;"></div>
+                    </div>
+                    <div style="float:left; padding:5px">
+                        <span >要対処</span>
+                    </div>
+                    <div style="float:left; padding:5px;padding-left:25px">
+                        <div class="list-danger" style="border-style: solid ; border-width: 1px;width:50px;height:20px;"></div>
+                    </div>
+                    <div style="float:left; padding:5px">
+                        <span >至急対処</span>
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-9 text-right" id="csv_pagination" style="display:none;">
+                    <div class="pager">
+                        <button type='button' class='first glyphicon'></button>
+                        <button type='button' class='prev glyphicon'></button>
+
+                        <!--span class="pagedisplay" value=""/-->
+                        <input type="text" class="pagedisplay" disabled="disabled"/>
+
+                        <button type='button' class='next glyphicon'></button>
+                        <button type='button' class='last glyphicon'></button>
+
+                        <select class="pagesize" id="pagesize">
+                            <option value="10">10</option>
+                            <option value="25" selected>25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table id="jissekiTbl" class="table table-hover table-bordered pagination_target">
+                            <thead class="">
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- page content -->
+
+    </div>
+</body>
+</html>

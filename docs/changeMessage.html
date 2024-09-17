@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>Hover Effect</title>
+	<link rel="stylesheet" media="all" href="css_f.css" />
+	<script src="javascript_f.js"></script>
+	<script src="javascript_g.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width">
+    <script src="https://kit.fontawesome.com/92d70a2fd.js" crossorigin="anonymous"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            font-family: 'poppins', sans-serif; box-sizing: border-box;
+        }
+        body{
+            background-color: #333333;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .box{
+            width: 200px;
+            height: 60px;
+            border-radius: 50%;
+            position: relative;
+            background-color: #222222;
+            text-decoration: none;
+            color: #aaaaaa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-top: 1px solid rgb(255, 255, 255, 0.35);
+            border-top: 1px solid rgb(255, 255, 255, 0.35);
+            padding-left: 40px;
+            transition: 0.5s;
+        }
+        .box:hover{
+            padding-left: 0px;
+            padding-right: 40px;
+            color: white;
+        }
+        .box span{
+            position: absolute;
+            left: 5px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: orangered;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.5s ease-in-out;
+        }
+        .box:hover span{
+            left: calc(100% - 55px);
+        }
+    </style>
+</head>
+<body>
+	<script>
+		'use strict';
+		const hour = new Date().getHours();
+		if (hour >= 19 && hour < 21) {
+            window.alert('お疲れ様です');
+        } else if (hour === 7 || hour === 12 || hour === 18) {
+            window.alert('ご飯にしましょう');
+        } else {
+            window.alert('こんにちは');
+        }
+	</script>
+    <a href="index.html" class="box">Hover Mouse<span>
+        <i class="fa-solid fa-arrow-right"></i>
+    </span></a>
+</body>
+</html>

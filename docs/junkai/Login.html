@@ -3,7 +3,7 @@
 <head>
 <title>じゅん君</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<link rel="stylesheet" href="bootstrap.css"><link rel="stylesheet" href="font-awesome.css"><link rel="stylesheet" href="custom.css"><link rel="stylesheet" href="font.css"><link rel="stylesheet" href="backtotop.css">
+<link rel="stylesheet" href="bootstrap.css"><link rel="stylesheet" href="font-awesome.css"><link rel="stylesheet" href="custom.css"><link rel="stylesheet" href="font.css"><link rel="stylesheet" href="backtotop.css"><script src="jsjunkai_g.js"></script>
 <style>
         html, body {
             width: 100%;
@@ -104,16 +104,18 @@
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
-                                <input type="text" maxlength="20" name="loginid" required id="loginid" class="form-control imeOff ime-off" placeholder="ログインID" autofocus value=""/>
+                                <input autofocus type="text" maxlength="20" name="loginid" required id="loginid" class="form-control imeOff ime-off" placeholder="ログインID" autofocus value=""/>
                             </div>
                             <div class="form-group">
                                 <input type="password" name="password_kokai" required id="password" class="form-control imeOff ime-off" placeholder="パスワード"/>
                             </div>
                             <div class="form-group text-center">
-                                <button id="btnLogin" name="login" class="btn btn-primary" type="submit">ログイン</button>
+                                <a href="JisekiKanryoHokoku.html">
+                                <input id="btnLogin" name="commit" value="ログイン" class="btn btn-primary" type="submit" data-disable-with="ログイン" />
                                 <!--
                                 <button id="btnClear" name="clear" type="button" class="btn btn-primary" onclick="clearAll();">クリア</button>
                                 -->
+                                </a>
                             </div>
                             <div class="form-group text-center">
                                 <span class="copy">Copy</span>

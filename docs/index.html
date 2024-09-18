@@ -1,39 +1,91 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="ja">
 <head>
 	<meta charset="UTF-8">
-	<title>index画面 HTML課題</title>
-	<link rel="stylesheet" media="all" href="css_f.css" />
-	<script src="javascript_f.js"></script>
-	<script src="javascript_g.js"></script>
+	<title>index画面</title>
+	<link rel="stylesheet" media="all" href="special.css" />
+	<link rel="stylesheet" media="all" href="style.css" />
+    <script src="jquery-3.4.1.min.js"></script>
     <style>
         .cell {
             display: flex;
             justify-content: space-around;
         }
     </style>
+    <script>
+        'use strict';
+        
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+      
+        gtag('config', 'UA-97506477-1');
+
+        $(document).ready(function() {
+            $('#open_nav').on('click', function() {
+                $('#wrapper, #nav').toggleClass('show');
+            });
+        });
+      </script>
 </head>
 <body>
-	<div class="cell">
-		<!-- ログインボタン -->
-		<a href="shain/login.html">
-		<input type="submit" name="commit" value="社員検索" class="btn login-btn-clickable" id="submit-btn" data-disable-with="ログイン" />
-		</a>
-	</div>
-    <br>
-	<div class="cell">
-		<!-- ログインボタン -->
-		<a href="junkai/Login.html">
-		<input type="submit" name="commit" value="報告書閲覧" class="btn login-btn-clickable" id="submit-btn" data-disable-with="ログイン" />
-		</a>
-	</div>
-    <br>
-    <div class="cell">
-        <!-- ログインボタン -->
-        <a href="changeMessage.html">
-        <input type="submit" name="commit" value="markup" class="btn login-btn-clickable" data-disable-with="練習" />
-        </a>
+    <div id="wrapper">
+        <header>
+            <div class="container">
+                <div class="hamburger" id="open_nav">
+                    <img src="hamburger.png" alt="">
+                </div>
+                <div class="title-block">
+                    <h1>ラクして数理研究所</h1>
+                    <h2>Home</h2>            
+                </div>
+            </div><!-- /.container -->
+        </header>
+        <main>
+        <div class="container">
+        <section>
+            <div class="key">
+                <img src="key.jpg" alt="">
+            </div>
+            <div class="content">
+                <h1>コンセプト</h1>
+                <p>数学や物理学が好きで将来研究したいが、<br>
+                専門書に連敗中のあなた<br>
+                Pythonと数学の専門知識を使って、着実に数理研究ができるように導きます</p>
+            </div>
+            <div class="archive">
+                <h3>アーカイブ</h3>
+                <div class="archive-box">
+                    <figure>
+                        <img src="thumb1.jpg" alt="">
+                        <figcaption>########</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="thumb2.jpg" alt="">
+                        <figcaption>########</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+        </div><!-- /.container -->
+        </main>
+    
+        <footer>
+        <div class="container">
+        <p>ラクして数理研究所</p>
+        </div><!-- /.container -->
+        </footer>
     </div>
+    
+    <nav id="nav">
+        <div class="logo"><img src="logo.svg" alt=""></div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shain/login.html">社員検索</a></li>
+            <li><a href="junkai/Login.html">報告書閲覧</a></li>
+            <li><a href="changeMessage.html">Practice</a></li>
+            <li><a href="#">お問い合わせ</a></li>
+        </ul>
+    </nav>
 </body>
 </html>

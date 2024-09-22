@@ -33,10 +33,8 @@ header {
     border-bottom: #ead963 6px solid;
 }
 header .container {
-    min-height: 60px;
     padding-top: 0;
     padding-bottom: 0;
-    padding-left: 76px;
     background-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/icon.png);
     background-repeat: no-repeat;
     background-size: 53px;

@@ -31,12 +31,12 @@
             overflow: hidden;
         }
         .main {
-            margin: 0 10px 0 10px; /*上・右・下・左の余白*/
+            margin: 0 10px 0 50px; /*上・右・下・左の余白*/
             width: 700px;
             float: left;
         }
         .annotation {
-            margin: 0 10px 0 10px;
+            margin: 0 50px 0 10px;
             width: 300px;
             float: right;
         }
@@ -83,42 +83,50 @@
                     &emsp;ライプニッツへの種々の手紙<sup>‡</sup>のうち、1697から1704の間に書かれたものの中で、ヤコブ・ベルヌーイはその方程式について言及している。彼はそれを（括弧内は現代的記法）
                 </p>
                 \[
-                    dy=yydx+xxdx&ensp;(x ̇(t)=x^{2} (t)+t^{2} )
+                    dy=yydx+xxdx \quad\text{($\dot{x}(t)=x^{2} (t)+t^{2}$),}
                 \]
                 <p>
-                    という形式で与え、また何度も自分にはそれを解決する
-                    <ruby>
-                        術
-                        <rp>（</rp><rt>
-                            すべ
-                        </rt><rp>）</rp>
-                    </ruby>
-                    がないと述べている。彼は以下のように書いている(1697年1/27)「また、この $dy = yydx + xxdx$ も試したかどうか知りたい。私は何千もの形に変形させたが、私の注意は常に難解な課題にさらされていた。<sup>1)</sup>」5年後、彼はその方程式を二階線形方程式に変換することに成功し、ライプニッツへ以下のように書いた<sup>§</sup>（1702年11/15）: "この機会に、前に述べた方程式 $dy = yydx + x^2 dx$ を思い出す。この方程式では、あたかも方程式が単なる微分のままであるかのように、変数を互いに分離することができなかったが、方程式をこの差微分 $d dy∶y =-x^2 dx^2$ に変換することでそれらを分離した。<sup>2)</sup>」
+                    という形式で与え、また何度も自分にはそれを解決する<ruby>術<rp>（</rp><rt>すべ</rt><rp>）</rp></ruby>がないと述べている。彼は以下のように書いている(1697年1/27)「また、この $dy = yydx + xxdx$ も試したかどうか知りたい。私は何千もの形に変形させたが、私の注意は常に難解な課題にさらされていた。<sup>1)</sup>」5年後、彼はその方程式を二階線形方程式に変換することに成功し、ライプニッツへ以下のように書いた<sup>§</sup>（1702年11/15）: "この機会に、前に述べた方程式 $dy = yydx + x^2 dx$ を思い出す。この方程式では、あたかも方程式が単なる微分のままであるかのように、変数を互いに分離することができなかったが、方程式をこの差微分<sup>‖</sup> $d dy∶y =-x^2 dx^2$ に変換することでそれらを分離した。<sup>2)</sup>」
                 </p>
-        この発見で為されている、それは最後の方程式を級数で解くための簡単なステップであり、つまり2つ
-
-
+                <p>
+                    &emsp;この発見が<ruby>為<rp>（</rp><rt>な</rt><rp>）</rp></ruby>されたとき、それは最後の方程式を級数で解き、2つの冪級数の商として一階微分方程式の解を得るための簡単なステップだった。
+                </p>
+                <p>
+                    &emsp;そして実際、この形式の方程式の解法は、1年以内にヤコブ・ベルヌーイ（1703年10月3日）によって以下の条件でライプニッツに伝えられました*:
+                </p>
+                <p>
+                    &emsp;「ここで、方程式 $dy=yydx+xxdx$ を分数に分解します。各項は級数、つまり
+                </p>
+                \[
+                    y=\frac{\frac{x^3}{3}-\frac{x^7}{3\cdot4\cdot7}+\frac{x^{11}}{3\cdot4\cdot7\cdot8\cdot11}-\frac{x^{15}}{3\cdot4\cdot7\cdot8\cdot11\cdot12\cdot15}+\frac{x^{19}}{3\cdot4\cdot7\cdot8\cdot11\cdot12\cdot15\cdot16\cdot19}-\text{etc}.}{1-\frac{x^4}{3\cdot4}+\frac{x^8}{3\cdot4\cdot7\cdot8}-\frac{x^{12}}{3\cdot4\cdot7\cdot8\cdot11\cdot12}+\frac{x^{16}}{3\cdot4\cdot7\cdot8\cdot11\cdot12\cdot15\cdot16}-\text{etc}.}
+                \]
+                <p>
+                    で表される。両方の級数を、実際に分割することによって確かに 1 つに融合することができますが、その開発手順はそれほど簡単に明らかにはならないが、
+                </p>
+                \[
+                    y=\frac{x^3}{3}+\frac{x^7}{3\cdot3\cdot7}+\frac{2x^{11}}{3\cdot3\cdot3\cdot7\cdot11}+\frac{3x^{15}}{3\cdot3\cdot3\cdot3\cdot5\cdot7\cdot7\cdot11}+\text{etc}.
+                \]
+                <p>
+                    となる」
+                </p>
+                <p>
+                    &emsp;ご存知の通り、当時、微分方程式に関する限り、有限の項で解を得ることについて、数学者たちは彼らの心血を注いだ。その結果ヤコブ・ベルヌーイは、彼の発見が彼に与えた完全な栄誉をほとんど受け取っていないように思える。そのため、22年後、その論文†、というのもリッカチ伯爵が現在彼の名前を冠するタイプの方程式を最初に言及したものに続き、ダニエル・ベルヌーイによって、その中で方程式§
+                </p>
+                \[
+                    ax^{n} dx+uudx=bdu \quad\text{($b\dot{x}(t)=x^{2} (t)+at^{n}$).}
+                \]
+        
+        
+       
+        
+        
+        
+        
+        
+        
         
 
-        　‖ この方程式とベッセルの方程式の特殊な形との関連性は、§4•3で見られるだろう。
-        の冪級数の商として一階微分方程式の解を得るための簡単なステップだった。
-        　そして、実際、この形式の解決策は、1年以内にヤコブ・ベルヌーイ（1703年10月3日）に以下の条件でライプニッツに伝えられました*：
-        　「ここで、方程式 dy=yydx+xxdx を分数に分解します。各項は級数、つまり
-        y=(x^3/3-x^7/(3∙4∙7)+x^11/(3∙4∙7∙8∙11)-x^15/(3∙4∙7∙8∙11∙12∙15)+x^19/(3∙4∙7∙8∙11∙12∙15∙16∙19)-etc.)/(1-x^4/(3∙4)+x^8/(3∙4∙7∙8)-x^12/(3∙4∙7∙8∙11∙12)+x^16/(3∙4∙7∙8∙11∙12∙15∙16)-etc.)
-        で表されます。
-        両方の級数を、実際に分割することによって確かに 1 つに融合することができますが、その開発手順はそれほど簡単に明らかにはならないが、
-        y=x^3/3+x^7/(3∙3∙7)+(2x^11)/(3∙3∙3∙7∙11)+(13x^15)/(3∙3∙3∙3∙5∙7∙7∙11)+etc.
-        となる。
-        Reduco autem aequationem dy = yydx + xxdx ad fractionem cujus uterque
-        terminus per seriem exprimitur, ita
-        y=(x^3/3-x^7/(3∙4∙7)+x^11/(3∙4∙7∙8∙11)-x^11/(3∙4∙7∙8∙11∙12∙15)+x^11/(3∙4∙7∙8∙11∙12∙15∙16∙19)-etc.)/(1-x^4/(3∙4)+x^8/(3∙4∙7∙8)-x^12/(3∙4∙7∙8∙11∙12)+x^16/(3∙4∙7∙8∙11∙12∙15∙16)-etc.)
-        quae series quidem actuali divisione in unam conflari possunt, sed in qua ratio progressionis non tam facile patescat, scil.
-        y=x^3/3+x^7/(3∙3∙7)+(2x^11)/(3∙3∙3∙7∙11)+(13x^15)/(3∙3∙3∙3∙5∙7∙7∙11)+etc.
-        」
-        　ご存知の通り、当時、微分方程式に関する限り、有限の項で解を得ることについて、数学者たちは彼らの心血を注いだ。その結果ヤコブ・ベルヌーイは、彼の発見が彼に与えた完全な栄誉をほとんど受け取っていないように思える。そのため、22年後、その論文†、というのもリッカチ伯爵が現在彼の名前を冠するタイプの方程式を最初に言及したものに続き、ダニエル・ベルヌーイによって、その中で方程式§
-        ax^n dx+uudx=bdu     (bx ̇(t)=x^2 (t)+at^n )
-
-        　* ライプニッツの著作集Leibnizens gesamellte Werke, Dritte Folge (Mathematik), III. (Halle, 1855), p. 75. を見よ。
+        
         　† 科学雑誌8巻. 補冊Acta Eruditorum, Suppl. Ⅷ. (1724), pp. 66—73. リッカチは方程式を
         x^m dq=du+uu dx∶q,
         と取った。ここで、q=x^n。
@@ -197,7 +205,20 @@
                     によって定義される新しい変数 $u$ を取得し、$u$ を $y$ に置き換えるというものだった。
                 </p>
                 <p>
-                    2. Qua occasione recordor aequationes alias memoratae dy = yydx + x²dx in qua nunquam separare potui indeterminatas a se invicem, sicut aequatio maneret simpliciter differentialis: sed separavi illas reducendo aequationem ad hanc differentio-differentialem‖ d dy∶y =-x^2 dx^2.
+                    2. Qua occasione recordor aequationes alias memoratae dy = yydx + x²dx in qua nunquam separare potui indeterminatas a se invicem, sicut aequatio maneret simpliciter differentialis: sed separavi illas reducendo aequationem ad hanc differentio-differentialem<sup>‖</sup> d dy∶y =-x^2 dx^2.
+                </p>
+                <p>
+                    ‖ この方程式とベッセルの方程式の特殊な形との関連性は、§4•3で見られるだろう。
+                </p>
+                <p>
+                    * ライプニッツの著作集Leibnizens gesamellte Werke, Dritte Folge (Mathematik), III. (Halle, 1855), p. 75. を見よ。
+                </p>
+                <p>
+                    Reduco autem aequationem dy = yydx + xxdx ad fractionem cujus uterque
+                    terminus per seriem exprimitur, ita
+                    y=(x^3/3-x^7/(3∙4∙7)+x^11/(3∙4∙7∙8∙11)-x^11/(3∙4∙7∙8∙11∙12∙15)+x^11/(3∙4∙7∙8∙11∙12∙15∙16∙19)-etc.)/(1-x^4/(3∙4)+x^8/(3∙4∙7∙8)-x^12/(3∙4∙7∙8∙11∙12)+x^16/(3∙4∙7∙8∙11∙12∙15∙16)-etc.)
+                    quae series quidem actuali divisione in unam conflari possunt, sed in qua ratio progressionis non tam facile patescat, scil.
+                    y=x^3/3+x^7/(3∙3∙7)+(2x^11)/(3∙3∙3∙7∙11)+(13x^15)/(3∙3∙3∙3∙5∙7∙7∙11)+etc.
                 </p>
             </div> <!-- /annotation -->
         </div> <!-- /content -->

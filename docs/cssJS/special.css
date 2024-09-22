@@ -43,7 +43,7 @@ header .container {
 .hamburger {
     flex: 0 0 32px;
     align-self: center;
-    margin-left: 16px;
+    margin: 0 16px 0 16px;
     text-align: center;
     color: #fff;
 }
@@ -76,6 +76,9 @@ header .container {
 }
 
 /* メインコンテンツ */
+main .container {
+    padding: 0;
+}
 .key {
     width: 100%;
 }

@@ -10,6 +10,7 @@ body *, ::before, ::after {
     box-sizing: border-box;
 }
 body {
+    margin: 0;
     font-family: 'M PLUS 1p', sans-serif;
     font-weight: 400;
     background-color: #fff;

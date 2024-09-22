@@ -1,0 +1,118 @@
+body {
+	background-color: #CCFFFF; /*背景カラー*/
+}
+#header,#search {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+#headline,#searchline {
+	margin-left: 2rem;
+}
+hr {
+	margin-bottom: 1.5em;
+	border: 0.8px solid #000000;
+}
+.main_login {
+	margin: 100px 0 0 100px; /*上・右・下・左の余白*/
+	display: flex;
+}
+.main {
+	margin: 10px 0 0 40px;
+	display: flex;
+}
+.empty-row td {
+	height: 30px;
+}
+.main_left,.main_right {
+	flex: 1;
+}
+.input_form {
+	margin-left: 2rem;
+}
+.input-field {
+	height: 1.5em;
+}
+.input_form_left,.input_form_right {
+	text-align: right;
+}
+.employeeName-input {
+	width: 30em;
+	max-width: 100%;
+}
+.quslification-input,.model-input,.osdbdc-input,.language-input,.employeeNameEdit-input,.employeeAddressEdit-input,.quslificationEdit-input,
+.educationEdit1-input,.educationEdit2-input,.typeOption-input,.model1Option-input,.model2Option-input,.model3Option-input,.osdbdc1Option-input,
+.osdbdc2Option-input,.osdbdc3Option-input,.language1Option-input,.language2Option-input,.language3Option-input {
+	width: 35em;
+	max-width: 100%;
+}
+.serviceLength-input,.ageMin-input,.ageMax-input,.serviceLengthEdit-input {
+	width: 4em;
+	max-width: 100%;
+	line-height: 1;
+}
+.nearestHome-input,.nearestOffice-input,.nearestHomeEdit-input,.nearestOfficeEdit-input {
+	width: 15em;
+	max-width: 100%;
+}
+.employeeCodeEdit-input {
+	width: 16em;
+	max-width: 100%;
+}
+.birthEdit-input,.educationYearEdit1-input,.educationYearEdit2-input {
+	width: 13em;
+	max-width: 100%;
+}
+.term_option {
+	padding: 0 0 0 50px;
+}
+.contentOption-input {
+	width: 35em;
+	max-width: 100%;
+	height: 210px;
+}
+.blind_table {
+	vertical-align: top;
+}
+.blind_table tr {
+    height: 35px;
+}
+.common_space {
+	padding: 0 0 0 50px;
+}
+.btn {
+	height: 35px;
+	width: 150px;
+	cursor: pointer;
+}
+.login-btn-clickable {
+	margin: 35px 0 0 400px;
+}
+.logout-btn-clickable {
+	margin:2em;
+	margin-right: 2rem;
+}
+.common_table {
+	border-collapse: collapse;
+	border: solid 2px;
+	margin: 0 38px 0 38px; /*上・右・下・左の余白*/
+}
+.common_table th, .common_table td {
+	border: solid 1px black;
+}
+.common_table th{
+	background: #FFFF99;
+}
+#common_table1 th {
+	height: 51px;
+}
+.common_table td {
+	background: #FFFFFF;
+	padding: 0 20px 0 20px;
+	height: 24px;
+}
+.footer {
+	display: flex;
+	margin: 0 50px 0 20px;
+	align-items: center;
+}

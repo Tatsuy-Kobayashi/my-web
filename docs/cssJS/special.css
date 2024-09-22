@@ -76,15 +76,8 @@ header .container {
 }
 
 /* メインコンテンツ */
-main .container {
-    padding: 0;
-}
 .key {
     width: 100%;
-}
-.content {
-    padding: 0 30px;
-    text-align: center;
 }
 .archive {
     margin: 40px 0 0;

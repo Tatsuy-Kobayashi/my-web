@@ -10,13 +10,14 @@
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/special.css" />
 	<link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/style.css" />
     <script src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
             TeX: { equationNumbers: { autoNumber: "AMS" } },
             tex2jax: {
                 inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [['$$','$$'], ['\\[','\\]']],
                 processEscapes: true
             },
             "HTML-CSS": { mathFontHeight: false },
@@ -26,18 +27,18 @@
     </script>
     <style>
         .content {
-            width: 1100px;
+            width: 1400px;
             display: flex;
             overflow: hidden;
         }
         .main {
             margin: 0 10px 0 50px; /*上・右・下・左の余白*/
-            width: 700px;
+            width: 900px;
             float: left;
         }
         .annotation {
             margin: 0 50px 0 10px;
-            width: 300px;
+            width: 400px;
             float: right;
         }
     </style>
@@ -86,13 +87,13 @@
                     dy=yydx+xxdx \quad\text{($\dot{x}(t)=x^{2} (t)+t^{2}$),}
                 \]
                 <p>
-                    という形式で与え、また何度も自分にはそれを解決する<ruby>術<rp>（</rp><rt>すべ</rt><rp>）</rp></ruby>がないと述べている。彼は以下のように書いている(1697年1/27)「また、この $dy = yydx + xxdx$ も試したかどうか知りたい。私は何千もの形に変形させたが、私の注意は常に難解な課題にさらされていた<sup id="ref_4"><a href="#note_4">[4]</a></sup>」。5年後、彼はその方程式を二階線形方程式に変換することに成功し、ライプニッツへ以下のように書いた<sup id="ref_5"><a href="#note_5">[5]</a></sup>（1702年11/15）: "この機会に、前に述べた方程式 $dy = yydx + x^2 dx$ を思い出す。この方程式では、あたかも方程式が単なる微分のままであるかのように、変数を互いに分離することができなかったが、方程式をこの差微分<sup>‖</sup> $d dy∶y =-x^2 dx^2$ に変換することでそれらを分離した。<sup>2)</sup>」
+                    という形式で与え、また何度も自分にはそれを解決する<ruby>術<rp>（</rp><rt>すべ</rt><rp>）</rp></ruby>がないと述べている。彼は以下のように書いている(1697年1/27)「また、この $dy = yydx + xxdx$ も試したかどうか知りたい。私は何千もの形に変形させたが、私の注意は常に難解な課題にさらされていた<sup id="ref_4"><a href="#note_4">[4]</a></sup>」。5年後、彼はその方程式を二階線形方程式に変換することに成功し、ライプニッツへ以下のように書いた<sup id="ref_5"><a href="#note_5">[5]</a></sup>（1702年11/15）: "この機会に、前に述べた方程式 $dy = yydx + x^2 dx$ を思い出す。この方程式では、あたかも方程式が単なる微分のままであるかのように、変数を互いに分離することができなかったが、方程式をこの差微分<sup id="ref_6"><a href="#note_6">[6]</a></sup> $d dy∶y =-x^2 dx^2$ に変換することでそれらを分離した。<sup id="ref_7"><a href="#note_7">[7]</a></sup>」
                 </p>
                 <p>
                     &emsp;この発見が<ruby>為<rp>（</rp><rt>な</rt><rp>）</rp></ruby>されたとき、それは最後の方程式を級数で解き、2つの冪級数の商として一階微分方程式の解を得るための簡単なステップだった。
                 </p>
                 <p>
-                    &emsp;そして実際、この形式の方程式の解法は、1年以内にヤコブ・ベルヌーイ（1703年10月3日）によって以下の条件でライプニッツに伝えられました*:
+                    &emsp;そして実際、この形式の方程式の解法は、1年以内にヤコブ・ベルヌーイ（1703年10月3日）によって以下の条件でライプニッツに伝えられました<sup id="ref_8"><a href="#note_8">[8]</a></sup>:
                 </p>
                 <p>
                     &emsp;「ここで、方程式 $dy=yydx+xxdx$ を分数に分解します。各項は級数、つまり
@@ -101,24 +102,47 @@
                     y=\frac{\frac{x^3}{3}-\frac{x^7}{3\cdot4\cdot7}+\frac{x^{11}}{3\cdot4\cdot7\cdot8\cdot11}-\frac{x^{15}}{3\cdot4\cdot7\cdot8\cdot11\cdot12\cdot15}+\frac{x^{19}}{3\cdot4\cdot7\cdot8\cdot11\cdot12\cdot15\cdot16\cdot19}-\text{etc}.}{1-\frac{x^4}{3\cdot4}+\frac{x^8}{3\cdot4\cdot7\cdot8}-\frac{x^{12}}{3\cdot4\cdot7\cdot8\cdot11\cdot12}+\frac{x^{16}}{3\cdot4\cdot7\cdot8\cdot11\cdot12\cdot15\cdot16}-\text{etc}.}
                 \]
                 <p>
-                    で表される。両方の級数を、実際に分割することによって確かに 1 つに融合することができますが、その開発手順はそれほど簡単に明らかにはならないが、
+                    で表される。実際に両方の級数を分割することによって、確かに1つに融合することはできるが、その計算手順はそれほど簡明にはならないが、
                 </p>
                 \[
                     y=\frac{x^3}{3}+\frac{x^7}{3\cdot3\cdot7}+\frac{2x^{11}}{3\cdot3\cdot3\cdot7\cdot11}+\frac{3x^{15}}{3\cdot3\cdot3\cdot3\cdot5\cdot7\cdot7\cdot11}+\text{etc}.
                 \]
                 <p>
-                    となる」
+                    となる<sup id="ref_9"><a href="#note_9">[9]</a></sup>」
                 </p>
                 <p>
-                    &emsp;ご存知の通り、当時、微分方程式に関する限り、有限の項で解を得ることについて、数学者たちは彼らの心血を注いだ。その結果ヤコブ・ベルヌーイは、彼の発見が彼に与えた完全な栄誉をほとんど受け取っていないように思える。そのため、22年後、その論文†、というのもリッカチ伯爵が現在彼の名前を冠するタイプの方程式を最初に言及したものに続き、ダニエル・ベルヌーイによって、その中で方程式§
+                    &emsp;ご存知の通り、当時の数学者たちは、微分方程式に関する限り、<span style="transform: skewX(-20deg); display: inline-block;">有限の項で</span>解を得ることについて、自分たちの心血を注いだ。その結果、ヤコブ・ベルヌーイは、彼の発見が彼に与えた完全な栄誉をほとんど受け取っていないように思える。そのため、22年後、その論文<sup id="ref_10"><a href="#note_10">[10]</a></sup>、というのもリッカチ伯爵が現在彼の名前を冠するタイプの方程式を最初に言及したものに続き、ダニエル・ベルヌーイによって、その中で方程式<sup id="ref_11"><a href="#note_11">[11]</a></sup>
                 </p>
                 \[
-                    ax^{n} dx+uudx=bdu \quad\text{($b\dot{x}(t)=x^{2} (t)+at^{n}$).}
+                    ax^{n} dx+uudx=bdu \quad\text{($b\dot{x}(t)=x^{2} (t)+at^{n}$)}
                 \]
-        
-        
-       
-        
+                <p>
+                    の解はこれまで未解決の問題だったと述べられていた<sup id="ref_12"><a href="#note_12">[12]</a></sup>。メモには、解法のアナグラムの発表で終えられていた: 「著名なリッカチ氏による問題の解法は、次のアナグラムで隠されている。Solutio problematis ab Ill. Riccato proposito characteribus occultis involuta. 24a, 6b, 6c, 8d, 33e, 5f, 2g, 4h, 33i, 6l, 21m, 26n, 16o, 8p, 5q, 17r, 16s, 25t, 32u, 5x, 3y, +, -, ——, ±, =, 4, 2, 1.」<br>
+                    （Ill.とは、“Illustris” の略で、ラテン語で “尊敬すべき” や “著名な” といった意味。通常、著者の名前の前につけて、尊敬の意を表現する。）<br>
+                    （ダニエル・ベルヌーイは弟のニコラス3世と競争しており、彼らは自分たちの成果を隠蔽するためにアナグラムを使用していた; アナグラムは24a、6b、...と膨大な数の組み合わせ！で構成されており、読むことはできないものの発見日を特定している。）
+                </p>
+                <p>
+                    &emsp;そのアナグラムは未だに解決されていないようだが、ベルヌーイはそのアナグラムの出版から約1年後にこの問題の自身の解法<sup id="ref_13"><a href="#note_13">[13]</a></sup>を発表しました。その解は、$n=-4m/(2m±1)$の集合の場合、決定的である（原文から追記: $n=-2$も求積法で解けるがベルヌーイによるものではない）。ここで$m$は任意の整数であり、方程式は有限項で解ける。この解の詳細については、§§4:1, 4•11に記載している。
+                </p>
+                <p>
+                    &emsp;ダニエル・ベルヌーイによってリッカチの研究に与えられた傑出した成果と、&emsp;リッカチの方程式の方がジョン・ベルヌーイの方程式<sup id="ref_14"><a href="#note_14">[14]</a></sup>よりもわずかに一般的なタイプであったという事実と&emsp;が組み合わさり、「リッカチ」の名は、彼が解けずに議論した方程式だけでなく、さらに一般的なタイプの方程式とも関連付けられるようになった。
+                </p>
+                <p>
+                    &emsp;ゆえに現在では、
+                    \[
+                        \frac{dy}{dx}=P+Qy+Ry^{2},
+                    \]
+                    という形式の方程式に、<span style="transform: skewX(-20deg); display: inline-block;">一般化されたリッカチ方程式</span>という名前を付ける<sup id="ref_15"><a href="#note_15">[15]</a></sup>のが通例となっている。ここで、$P$、$Q$、$R$ は $x$ の関数として与えられる。
+                </p>
+                <p>
+                    &emsp;$P$ と $R$ のどちらかあるいは両方とも恒等的に$0$ではないと仮定される。もし$R=0$ならば方程式は線形であり; もし$P=0$のならば、方程式は新たに変数として$1/y$を取ることで線形形式に還元できる<sup id="ref_16"><a href="#note_16">[16]</a></sup>。
+                </p>
+                <p>
+                    &emsp;最後の方程式（さっきの$P=0$）はオイラー<sup id="ref_17"><a href="#note_17">[17]</a></sup>によって研究された（$∂∂y+P ∂x ∂y+Qy ∂x^{2}=0$）。それは二階の一般線形微分方程式に還元でき、この方程式は変数変換によってベッセルの微分方程式に還元できる場合もある (§§ 3･1、4･3、4･31 を参照)。
+                </p>
+                <p>
+                    &emsp;ここでオイラーによる2つのメモについて触れておきたい。まず<sup id="ref_18"><a href="#note_18">[18]</a></sup>、一般化されたリッカチ方程式の特性解$y_{1}$<sup id="ref_19"><a href="#note_19">[19]</a></sup>が既知の場合、方程式は$y$ を $y_1+1/u$ に置換する（$y$, $y_{1}$が$x$の関数ならば、$u$も$x$の関数）ことによって、（ベルヌーイの微分方程式から）一階の線形微分方程式に還元でき、それによって一般解が求積法による2つの不定積分によって求められることが証明されている。また、2つの特性解がわかっている場合、方程式は求積法による1つ不定積分で完全に解けることも示されている (同書、p. 59)。そしてこの結果は、2つの論文のうちの2番目の論文<sup id="ref_20"><a href="#note_20">[20]</a></sup>にも記載されています。
+                </p>
         
         
         
@@ -126,47 +150,15 @@
         
         
 
-        
-        　† 科学雑誌8巻. 補冊Acta Eruditorum, Suppl. Ⅷ. (1724), pp. 66—73. リッカチは方程式を
-        x^m dq=du+uu dx∶q,
-        と取った。ここで、q=x^n。
-        　‡ 同書. pp. 73—75. ダニエル・ベルヌーイは、彼の他の3人の親族—ジョンとニコラスそして若い方のニコラスによって解決策が得られたと述べた。
-        § 読者は、置換
-        u=-b/z  dz/dx
-        によって、級数で簡単に解ける方程式が生じることに注意せよ。
-        の解はこれまで未解決の問題だったと述べられていた。メモには解法のアナグラムの発表で終えられていた：「著名なリッカチ氏による問題の解法は、次のアナグラムで隠されていた。Solutio problematis ab Ill. Riccato proposito characteribus occultis involuta. 24a, 6b, 6c, 8d, 33e, 5f, 2g, 4h, 33i, 6l, 21m, 26n, 16o, 8p, 5q, 17r, 16s, 25t, 32u, 5x, 3y, +, -, ——, ±, =, 4, 2, 1.」
-        （Ill.とは、“Illustris” の略で、ラテン語で “尊敬すべき” や “著名な” といった意味。通常、著者の名前の前につけて、尊敬の意を表現する。）
-        （ダニエル・ベルヌーイは弟のニコラス3世と競争しており、彼らはアナグラムで自分たちの寄与を隠蔽するために使用されていた;
-        アナグラムは24a、6b、...と膨大な数の組み合わせ！で構成されており、読むことはできないものの発見日を特定している。）
-        　そのアナグラムは未だに解決されていないようだが、ベルヌーイはそのアナグラムの出版から約1年後にこの問題の自身の解法‖を発表しました。その解は、n=-4m⁄((2m±1) )の集合で決定される（原文から追記：n=-2も求積法で解けるがベルヌーイによるものではない）。ここでmは任意の整数であり、方程式は有限項で解ける。この解の詳細については、§§4:1, 4•11に記載している。
-        　ダニエル・ベルヌーイによってリッカチの研究に与えられた傑出した成果と、
-        リッカチの方程式の方がジョン・ベルヌーイの方程式*よりもわずかに一般的なタイプであったという事実とが組み合わさり、リッカチの名は、彼が解けずに議論した方程式だけでなく、さらに一般的なタイプの方程式とも関連付けられるようになりました。
-        　現在では、
-        dy/dx=P+Qy+Ry^2,
-        という形式の方程式に、一般化されたリッカチ方程式という名前を付ける†のが通例となっている。ここで、P、Q、R は x の関数として与えられる。
-        　P と R のどちらかあるいは両方とも恒等的に0ではないと仮定される。もしR=0ならば方程式は線形であり; もしP=0のならば、方程式は新たに変数として1⁄yを取ることで線形形式に還元できる。
-        y^(-2)  dy⁄dx=Qy^(-1)+R
-        s(x)=1⁄yとおくと、
-        s^'  (x)=ds/dx=(dy^(-1))/dx=(dy^(-1))/dy  dy/dx=-1∙y^(-2)  dy/dx
-
-        　‖ 数学問題集(ベネチア、1724) Exercitationes quaedam mathematicae (Venice, 1724), pp. 77—80; 科学雑誌Acta Eruditorum, 1725, pp. 465—473.
-        　* ベルヌーイの「全集第2巻」(ジュネーヴ、1744)を見よJames Bernoulli, Opera Omnia, Ⅱ. (Geneva, 1744), pp. 1054—1057; it is stated that the point of Riccati's problem is the determination of a solution in finite terms, and a solution which resembles the solution by Daniel Bernoulli is given.
-        　† 「リッカチの方程式Riccati's equation」という語は1770年に出版された「ベルリン科学アカデミーの歴史第14巻Hist. de l'Acad. R. des Sci. de Berlin, ⅩⅨ.」の1763年の論文でダランベールによって用いられた, Hist. de l'Acad. R. des Sci. de Berlin, ⅩⅨ. (1763), [published 1770], p. 242.
-
-        ∴ y^(-2)  dy/dx=-s^'
-        -s^'=Qs+R
-        　最後の方程式（さっきのP=0）はオイラー‡によって研究された（∂∂y+P ∂x ∂y+Qy ∂x^2=0）。それは二階の一般線形微分方程式に還元でき、この方程式は変数変換によってベッセルの微分方程式に還元できる場合もあります (の§§ 3･1、4･3、4･31 を参照)。
-        　ここでオイラーによる2つのメモについて触れておきたい。まず§、一般化されたリッカチ方程式の特性解y_1（y_1^'=P+Qy_1+Ry_1^2 を満たす。解の一般化はできないが、代数関数になりそうだとか、指数関数になりそうだとか、あたりをつけることができれば解ける場合がある。ちなみに P、Q、R が定数のとき、y_1は定数、y_1^'=0）が既知の場合、方程式はy を y_1+1⁄u に置換する（y, y₁がxの関数ならば、uもxの関数）ことによって、（ベルヌーイの微分方程式から）一階の線形微分方程式に還元でき、それによって一般解が求積法による2つの不定積分によって求められることが証明されている。また、2つの特性解がわかっている場合、方程式は求積法による1つ不定積分で完全に解けることも示されている (同書、p. 59)。そしてこの結果は、2つの論文のうちの2番目の論文‖にも記載されています。
-
-        　1•2. ダニエル・ベルヌーイの問題
+        　1.2. ダニエル・ベルヌーイの問題
         　1738年、ダニエル・ベルヌーイは、重い鎖の振動に関する多くの定理の発表を含むメモ¶を出版した。これらの第8番**は次のとおりである：「連続的に振動する鎖の形状について。」鎖ACは均一の重さで完全に柔軟（完全弾性）で、点Aから吊るされているとし、それが均一な振動をしていることが知られている。鎖は位置AMFに達している（鎖上に位置A, M, Fを仮定する）。チェーンの長さ=l が与えられ、任意の部分の長さ FM=x について、その値†† n を取得すると、
         1-l/n+ll/4nn-l^3/(4∙9n^3 )+l^4/(4∙9∙16n^4 )-l^5/(4∙9∙16∙25n^5 )+etc.=0.
         "De figura catenae uniformiter oscillantis. Sit catena AC uniformiter gravis et perfecte flexilis suspensa de puncto A, eaque oscillationes facere uniformes intelligatur: pervenerit catena in situm AMF; fueritque longitudo catenae =l: longitudo cujuscunque partis FM=x, sumatur n ejus valoris†† ut fit
         1-l/n+ll/4nn-l^3/(4∙9n^3 )+l^4/(4∙9∙16n^4 )-l^5/(4∙9∙16∙25n^5 )+etc.=0.
 
-        　‡ Institutiones Calculi Integralis, Ⅱ. (Petersburg, 1769), §831, pp. 88—89. In connexion with the reduction, see James Bernoulli's letter to Leibniz already quoted.
-        　§ Novi Comm. Acad. Petrop. Ⅷ. (1760—1761), [published 1763], p. 32.
-        　‖ Ibid. Ⅸ. (1762—1763), [published 1764], pp. 163—164.
+        
+        
+        
         　¶ "Theoremata de oscillationibus corporum filo flexili connexorum et catenae verticaliter suspensae," Comm. Acad. Sci. Imp. Petrop. Ⅵ. (1732—3), [published 1738], pp. 108—122.
         　** Loc. cit; p. 116.
         "Loc. cit" はラテン語の "loco citato" の略で、直訳すると「前述の場所で」という意味です。これは先行の引用と同じ場所を指しており、同じ著者や同じ文献が以前に引用された場所を示す際に使われます。
@@ -187,43 +179,100 @@
                 ページ注釈
                 <ol class="olAnnotation">
                     <li id="note_1"><a href="#ref_1">^</a>
-                        ライプツィヒで出版された科学雑誌Acta Eruditorum publicata Lipsiae, 1694, pp. 435—437.
+                        ライプツィヒで出版された科学雑誌<i>Acta Eruditorum publicata Lipsiae</i>, 1694, pp. 435—437.
                     </li>
                     <li id="note_2"><a href="#ref_2">^</a>
-                        "次の微分方程式 $x^{2}dx +y^{2}dx = a^{2}dy$ が変数の分離によって構築できるかどうかはまだ試していない。Esto proposita aequatio differentialis haec x²dx +y²dx = a²dy quae an per separationem indeterminatarum construi possit nondum tentavi" (p. 436).
+                        "次の微分方程式 $x^{2}dx +y^{2}dx = a^{2}dy$ が変数の分離によって構築できるかどうかはまだ試していない。Esto proposita aequatio differentialis haec $x^{2}dx +y^{2}dx = a^{2}dy$ quae an per separationem indeterminatarum construi possit nondum tentavi" (p. 436).
                     </li>
                     <li id="note_3"><a href="#ref_3">^</a>
-                        ライプニッツの著作集、シリーズ3（数学）Leibnizens gesamellte Werke, Dritte Folge (Mathematik), Ⅲ. (Halle, 1855), pp. 50—87.を見よ。
+                        ライプニッツの著作集、シリーズ3（数学）<i>Leibnizens gesamellte Werke</i>, Dritte Folge (Mathematik), Ⅲ. (Halle, 1855), pp. 50—87.を見よ。
                     </li>
                     <li id="note_4"><a href="#ref_4">^</a>
+                        ラテン語原文<br>
                         Vellem porro ex Te scire num et hanc tentaveris $dy = yydx + xxdx$S. Ego in mille formas transmutavi, sed operam meam improbum Problema perpetuo lusit.
                     </li>
                     <li id="note_5"><a href="#ref_5">^</a>
-                        § 同書 p. 65.　ベルヌーイの手順は、実質的には、方程式 $dy/dx = x² + y²$ において、式
+                        同書 p. 65.　ベルヌーイの手順は、実質的には、方程式 $dy/dx = x^{2} + y^{2}$ において、式
                         \[
                             -\frac{1}{u}\frac{du}{dx}=y
                         \]
                         によって定義される新しい変数 $u$ を取得し、$u$ を $y$ に置き換えるというものだった。
                     </li>
-                    <p>
-                        
-                    </p>
-                    <p>
-                        2. Qua occasione recordor aequationes alias memoratae dy = yydx + x²dx in qua nunquam separare potui indeterminatas a se invicem, sicut aequatio maneret simpliciter differentialis: sed separavi illas reducendo aequationem ad hanc differentio-differentialem<sup>‖</sup> d dy∶y =-x^2 dx^2.
-                    </p>
-                    <p>
-                        ‖ この方程式とベッセルの方程式の特殊な形との関連性は、§4•3で見られるだろう。
-                    </p>
-                    <p>
-                        * ライプニッツの著作集Leibnizens gesamellte Werke, Dritte Folge (Mathematik), III. (Halle, 1855), p. 75. を見よ。
-                    </p>
-                    <p>
-                        Reduco autem aequationem dy = yydx + xxdx ad fractionem cujus uterque
+                    <li id="note_6"><a href="#ref_6">^</a>
+                        この方程式とベッセルの方程式の特殊な形との関連性は、§4•3で見られるだろう。
+                    </li>
+                    <li id="note_7"><a href="#ref_7">^</a>
+                        Qua occasione recordor aequationes alias memoratae $dy = yydx + x^{2}dx$ in qua nunquam separare potui indeterminatas a se invicem, sicut aequatio maneret simpliciter differentialis: sed separavi illas reducendo aequationem ad hanc differentio-differentialem<sup id="ref_6"><a href="#note_6">[6]</a></sup> $d dy∶y =-x^2 dx^2$.
+                    </li>
+                    <li id="note_8"><a href="#ref_8">^</a>
+                        ライプニッツの著作集Leibnizens gesamellte Werke, Dritte Folge (Mathematik), III. (Halle, 1855), p. 75. を見よ。
+                    </li>
+                    <li id="note_9"><a href="#ref_9">^</a>
+                        Reduco autem aequationem $dy = yydx + xxdx$ ad fractionem cujus uterque
                         terminus per seriem exprimitur, ita
-                        y=(x^3/3-x^7/(3∙4∙7)+x^11/(3∙4∙7∙8∙11)-x^11/(3∙4∙7∙8∙11∙12∙15)+x^11/(3∙4∙7∙8∙11∙12∙15∙16∙19)-etc.)/(1-x^4/(3∙4)+x^8/(3∙4∙7∙8)-x^12/(3∙4∙7∙8∙11∙12)+x^16/(3∙4∙7∙8∙11∙12∙15∙16)-etc.)
+                        \[
+                            y=\frac{\frac{x^3}{3}-\frac{x^7}{3\cdot4\cdot7}+\frac{x^{11}}{3\cdot4\cdot7\cdot8\cdot11}-\text{etc}.}{1-\frac{x^4}{3\cdot4}+\frac{x^8}{3\cdot4\cdot7\cdot8}-\text{etc}.}
+                        \]
                         quae series quidem actuali divisione in unam conflari possunt, sed in qua ratio progressionis non tam facile patescat, scil.
-                        y=x^3/3+x^7/(3∙3∙7)+(2x^11)/(3∙3∙3∙7∙11)+(13x^15)/(3∙3∙3∙3∙5∙7∙7∙11)+etc.
-                    </p>
+                        \[
+                            y=\frac{x^3}{3}+\frac{x^7}{3\cdot3\cdot7}+\frac{2x^{11}}{3\cdot3\cdot3\cdot7\cdot11}+\text{etc}.
+                        \]
+                    </li>
+                    <li id="note_10"><a href="#ref_10">^</a>
+                        科学雑誌8巻. 補冊Acta Eruditorum, Suppl. Ⅷ. (1724), pp. 66—73. リッカチは方程式を
+                        \[
+                            x^{m} dq=du+uu dx:q,
+                        \]
+                        と取った。ここで、$q=x^{n}$。
+                    </li>
+                    <li id="note_11"><a href="#ref_11">^</a>
+                        読者は、置換
+                        \[
+                            u=-\frac{b}{z}\frac{dz}{dx}
+                        \]
+                        によって、級数で簡単に解ける方程式が生じることに注意せよ。
+                    </li>
+                    <li id="note_12"><a href="#ref_12">^</a>
+                        同書. pp. 73—75. ダニエル・ベルヌーイは、彼の他の3人の親族—ジョンとニコラスそして若い方のニコラスによって解決策が得られたと述べた。
+                    </li>
+                    <li id="note_13"><a href="#ref_13">^</a>
+                        数学問題集(ベネチア、1724) Exercitationes quaedam mathematicae (Venice, 1724), pp. 77—80; 科学雑誌Acta Eruditorum, 1725, pp. 465—473.
+                    </li>
+                    <li id="note_14"><a href="#ref_14">^</a>
+                        ジェームス（ヤコブ）・ベルヌーイの「全集第2巻」(ジュネーヴ、1744)James Bernoulli, Opera Omnia, Ⅱ. (Geneva, 1744), pp. 1054—1057を見よ; リッカチの問題の要点は、有限の項で解を決定することであり、ダニエル・ベルヌーイによる解に似た解が与えられていることが述べられている。
+                    </li>
+                    <li id="note_15"><a href="#ref_15">^</a>
+                        「リッカチの方程式Riccati's equation」という語は1770年に出版された「ベルリン科学アカデミーの歴史第14巻Hist. de l'Acad. R. des Sci. de Berlin, ⅩⅨ.」の1763年の論文でダランベールによって用いられた, Hist. de l'Acad. R. des Sci. de Berlin, ⅩⅨ. (1763), [published 1770], p. 242.
+                    </li>
+                    <li id="note_16"><a href="#ref_16">^</a>
+                        $\frac{dy}{dx}=P+Qy+Ry^{2}$は$P=0$のとき、
+                        \[
+                            y^{-2}  dy/dx=Qy^{-1}+R
+                        \]
+                        $s(x)=1/y$とおくと、
+                        
+                        \begin{align*}
+                        s'(x) &= \frac{ds}{dx}=\frac{dy^{-1}}{dx} \\
+                            &=\frac{dy^{-1}}{dy}\frac{dy}{dx} = -1\cdot y^{-2}\frac{dy}{dx}
+                        \end{align*}
+                        \begin{align*}
+                        \therefore y^{-2}  \frac{dy}{dx} &= -s' \\
+                            -s'&=Qs+R
+                        \end{align*}
+                        これは線形微分方程式である。
+                    </li>
+                    <li id="note_17"><a href="#ref_17">^</a>
+                        Institutiones Calculi Integralis, Ⅱ. (Petersburg, 1769), §831, pp. 88—89. In connexion with the reduction, see James Bernoulli's letter to Leibniz already quoted.
+                    </li>
+                    <li id="note_18"><a href="#ref_18">^</a>
+                        Novi Comm. Acad. Petrop. Ⅷ. (1760—1761), [published 1763], p. 32.
+                    </li>
+                    <li id="note_19"><a href="#ref_19">^</a>
+                        特性解$y_{1}$ は、$y'_{1} = P + Q y_{1} + R y_{1}^{2}$ を満たす。解の一般化はできないが、代数関数になりそうだとか、指数関数になりそうだとか、あたりをつけることができれば解ける場合がある。ちなみに $P$、$Q$、$R$ が定数のとき、$y_1$は定数、$y'_{1}=0$。
+                    </li>
+                    <li id="note_20"><a href="#ref_20">^</a>
+                        Ibid. Ⅸ. (1762—1763), [published 1764], pp. 163—164.
+                    </li>
                 </ol>
             </div> <!-- /annotation -->
         </div> <!-- /content -->

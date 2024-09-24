@@ -30,6 +30,7 @@
 
 	<link rel="stylesheet" media="all" href="cssJS/special.css" />
 	<link rel="stylesheet" media="all" href="cssJS/style.css" />
+	<link rel="stylesheet" media="all" href="cssJS/search.css" />
     <script src="cssJS/jquery-3.4.1.min.js"></script>
     <style>
         .cell {
@@ -51,19 +52,23 @@
                 $('#wrapper, #nav').toggleClass('show');
             });
         });
-      </script>
+    </script>
 </head>
 <body>
     <div id="wrapper">
         <header>
             <div class="container">
                 <div class="hamburger" id="open_nav">
-                    <img src="https://tatsuy-kobayashi.github.io/my-web/docs/hamburger.png" alt="">
+                    <img src="https://tatsuy-kobayashi.github.io/my-web/docs/images/hamburger.png" alt="icon">
                 </div>
                 <div class="title-block">
                     <h1>ラクして数理研究所</h1>
-                    <h2>Home</h2>
+                    <h2>Easy Math and Science Laboratory</h2>
                 </div>
+                <aside id="search-3" class="widget widget_search"><form method="get" id="searchform" action="#">
+                    <input type="text" placeholder="Search Rakusu" name="s" id="s">
+                    <input type="submit" id="searchsubmit" value="">
+                </form></aside>
             </div><!-- /.container -->
         </header>
         <main>
@@ -99,6 +104,10 @@
         <div class="container">
         <p>ラクして数理研究所</p>
         </div><!-- /.container -->
+        <div id="page-top" style="display: block;">
+            <a id="move-page-top"><span class="fa fa-angle-double-up fa-2x"></span></a>
+        
+        </div>
         </footer>
     </div>
     

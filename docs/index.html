@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head prefix="og: http://ogp.me/ns#">
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="format-detection" content="telephone=no">
-	<title>index画面</title>
+    <title>index画面</title>
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="icon" />
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="icon" />
@@ -28,10 +28,11 @@
     <meta name="twitter:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/">
     <meta name="twitter:image" content="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png">
 
-	<link rel="stylesheet" media="all" href="cssJS/special.css" />
-	<link rel="stylesheet" media="all" href="cssJS/style.css" />
-	<link rel="stylesheet" media="all" href="cssJS/search.css" />
-    <script src="cssJS/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" media="all" href="cssJS/special.css" />
+    <link rel="stylesheet" media="all" href="cssJS/style.css" />
+    <link rel="stylesheet" media="all" href="cssJS/search.css" />
+    <script type="text/javascript" src="cssJS/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
     <style>
         .cell {
             display: flex;
@@ -51,64 +52,54 @@
             $('#open_nav').on('click', function() {
                 $('#wrapper, #nav').toggleClass('show');
             });
+
+            // ヘッダーとフッターを動的に読み込む
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector('header').innerHTML = data;
+                });
+
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector('footer').innerHTML = data;
+                });
         });
     </script>
 </head>
 <body>
     <div id="wrapper">
-        <header>
-            <div class="container">
-                <div class="hamburger" id="open_nav">
-                    <img src="https://tatsuy-kobayashi.github.io/my-web/docs/images/hamburger.png" alt="icon">
-                </div>
-                <div class="title-block">
-                    <h1>ラクして数理研究所</h1>
-                    <h2>Easy Math and Science Laboratory</h2>
-                </div>
-                <aside id="search-3" class="widget widget_search"><form method="get" id="searchform" action="#">
-                    <input type="text" placeholder="Search Rakusu" name="s" id="s">
-                    <input type="submit" id="searchsubmit" value="">
-                </form></aside>
-            </div><!-- /.container -->
-        </header>
+        <header></header>
         <main>
-        <div class="container">
-        <section>
-            <div class="key">
-                <img src="key.jpg" alt="">
-            </div>
-            <div class="content">
-                <h1>コンセプト</h1>
-                <p>数学や物理学が好きで将来研究したいが、<br>
-                専門書に連敗中のあなた<br>
-                Pythonと数学の専門知識を使って、着実に数理研究ができるように導きます</p>
-            </div>
-            <div class="archive">
-                <h3>アーカイブ</h3>
-                <div class="archive-box">
-                    <figure>
-                        <img src="thumb1.jpg" alt="">
-                        <figcaption>########</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="thumb2.jpg" alt="">
-                        <figcaption>########</figcaption>
-                    </figure>
-                </div>
-            </div>
-        </section>
-        </div><!-- /.container -->
+            <div class="container">
+                <section>
+                    <div class="key">
+                        <img src="key.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h1>コンセプト</h1>
+                        <p>数学や物理学が好きで将来研究したいが、<br>
+                        専門書に連敗中のあなた<br>
+                        Pythonと数学の専門知識を使って、着実に数理研究ができるように導きます</p>
+                    </div>
+                    <div class="archive">
+                        <h3>アーカイブ</h3>
+                        <div class="archive-box">
+                            <figure>
+                                <img src="thumb1.jpg" alt="">
+                                <figcaption>########</figcaption>
+                            </figure>
+                            <figure>
+                                <img src="thumb2.jpg" alt="">
+                                <figcaption>########</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </section>
+            </div><!-- /.container -->
         </main>
-    
-        <footer>
-        <div class="container">
-        <p>ラクして数理研究所</p>
-        </div><!-- /.container -->
-        <div id="page-top" style="display: block;">
-            <a id="move-page-top"><span class="fa fa-angle-double-up fa-2x"></span></a>
-        
-        </div>
-        </footer>
+        <footer></footer>
     </div>
     
     <nav id="nav">
@@ -120,10 +111,10 @@
             <li><a href="changeMessage.html">Practice</a></li>
             <details>
                 <summary>学問</summary>
-                <li><a href="academicDiscipline/humanities/ocelotl.html">&emsp;人文科学</a></li>
+                <li><a href="academicDiscipline/humanities/ocelotl.html"> 人文科学</a></li>
                 <details>
                 <summary>自然科学</summary>
-                    <li><a href="academicDiscipline/science/mathematics.html">&emsp;&emsp;数学</a></li>
+                    <li><a href="academicDiscipline/science/mathematics.html">  数学</a></li>
                     <li><a href="#">物理</a></li>
                 </details>
             </details>

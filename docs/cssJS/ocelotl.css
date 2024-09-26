@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'OcelotlFont';
+    src: url('Ocelotl.woff2') format('woff2'),
+        url('Ocelotl.woff') format('woff');
+}
+ocelotl {
+    font-family: 'OcelotlFont', sans-serif;
+}

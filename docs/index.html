@@ -32,7 +32,6 @@
     <link rel="stylesheet" media="all" href="cssJS/style.css" />
     <link rel="stylesheet" media="all" href="cssJS/search.css" />
     <script type="text/javascript" src="cssJS/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
     <style>
         .cell {
             display: flex;
@@ -49,7 +48,8 @@
         gtag('config', 'UA-97506477-1');
 
         $(document).ready(function() {
-            $('#open_nav').on('click', function() {
+            // イベントデリゲーションを使用して、動的に読み込まれた要素にクリックイベントをバインド
+            $(document).on('click', '#open_nav', function() {
                 $('#wrapper, #nav').toggleClass('show');
             });
 

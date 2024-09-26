@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="format-detection" content="telephone=no">
     <!-- 他のmetaタグと共にCSPを指定 -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; script-src 'self'">
-	<title>数学</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://tatsuy-kobayashi.github.io https://cdnjs.cloudflare.com; img-src 'self' data:; script-src 'self' https://cdnjs.cloudflare.com 'nonce-abc123';">
+    <title>数学</title>
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="apple-touch-icon" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/special.css" />
@@ -14,7 +14,8 @@
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/include.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">
+    <!-- <script type="text/x-mathjax-config"> これはカスタム設定スクリプト用だが、今回はCSPでセキュリティ制限しているので必要ない -->
+    <script nonce="abc123">
         MathJax.Hub.Config({
             TeX: { equationNumbers: { autoNumber: "AMS" } },
             tex2jax: {
@@ -27,6 +28,7 @@
             displayIndent: "2em"
         });
     </script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/drawer.js"></script>
     <style>
         .content {
             display: flex;
@@ -51,12 +53,6 @@
         gtag('js', new Date());
         
         gtag('config', 'UA-97506477-1');
-
-        $(document).ready(function() {
-            $('#open_nav').on('click', function() {
-                $('#wrapper, #nav').toggleClass('show');
-            });
-        });
     </script>
 </head>
 <body>

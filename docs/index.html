@@ -31,41 +31,23 @@
     <link rel="stylesheet" media="all" href="cssJS/special.css" />
     <link rel="stylesheet" media="all" href="cssJS/style.css" />
     <link rel="stylesheet" media="all" href="cssJS/search.css" />
-    <script type="text/javascript" src="cssJS/jquery-3.4.1.min.js"></script>
     <style>
         .cell {
             display: flex;
             justify-content: space-around;
         }
     </style>
+    <script type="text/javascript" src="cssJS/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="cssJS/include.js"></script>
     <script>
+        // JavaScriptの厳格モード使用
         'use strict';
 
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
       
-        gtag('config', 'UA-97506477-1');
-
-        $(document).ready(function() {
-            // イベントデリゲーションを使用して、動的に読み込まれた要素にクリックイベントをバインド
-            $(document).on('click', '#open_nav', function() {
-                $('#wrapper, #nav').toggleClass('show');
-            });
-
-            // ヘッダーとフッターを動的に読み込む
-            fetch('header.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.querySelector('header').innerHTML = data;
-                });
-
-            fetch('footer.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.querySelector('footer').innerHTML = data;
-                });
-        });
+        /*gtag('config', 'トラッキングID');*/
     </script>
 </head>
 <body>
@@ -102,24 +84,6 @@
         <footer></footer>
     </div>
     
-    <nav id="nav">
-        <div class="logo"><img src="logo.svg" alt=""></div>
-        <ul>
-            <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/">Home</a></li>
-            <li><a href="shain/login.html">社員検索</a></li>
-            <li><a href="junkai/Login.html">報告書閲覧</a></li>
-            <li><a href="changeMessage.html">Practice</a></li>
-            <details>
-                <summary>学問</summary>
-                <li><a href="academicDiscipline/humanities/ocelotl.html"> 人文科学</a></li>
-                <details>
-                <summary>自然科学</summary>
-                    <li><a href="academicDiscipline/science/mathematics.html">  数学</a></li>
-                    <li><a href="#">物理</a></li>
-                </details>
-            </details>
-            <li><a href="#">お問い合わせ</a></li>
-        </ul>
-    </nav>
+    <nav id="nav"></nav>
 </body>
 </html>

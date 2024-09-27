@@ -36,6 +36,50 @@
             display: flex;
             justify-content: space-around;
         }
+        .archive{
+            overflow-y: auto;
+            height: 400px;
+            width: 600px;
+            -webkit-overflow-scrolling: touch;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+        }
+        th, td {
+            vertical-align: middle;
+            padding: 20px;
+            border: 1px solid #000;
+            color: #000;
+            font-size: 14px;
+            text-align: center;
+            white-space: nowrap;
+        }
+        th {
+            background: #000;
+        }
+        td {
+            background: #fff;
+        }
+        .sticky {
+            position: sticky;
+            top: 0;
+            left: 0;
+            border-top: none;
+        }
+        .sticky::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
+            background: #ccc;
+            z-index: -1;
+        }
     </style>
     <script type="text/javascript" src="cssJS/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="cssJS/include.js"></script>
@@ -66,24 +110,42 @@
                         Pythonと数学の専門知識を使って、着実に数理研究ができるように導きます</p>
                     </div>
                     <div class="archive">
-                        <h3>アーカイブ</h3>
-                        <div class="archive-box">
-                            <figure>
-                                <img src="thumb1.jpg" alt="">
-                                <figcaption>########</figcaption>
-                            </figure>
-                            <figure>
-                                <img src="thumb2.jpg" alt="">
-                                <figcaption>########</figcaption>
-                            </figure>
-                        </div>
+                        <table>
+                            <tr>
+                                <th class="sticky">アーカイブ</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    第7節&emsp;銃、戦争、死別
+                                    <br>
+                                    2024/09/27
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    A Treatise on the Theory of Bessel Functions<br>
+                                    1.1. リッカチの微分方程式
+                                    <br>
+                                    2024/09/26
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    ラクして数理研究所<br>
+                                    ホーム
+                                    <br>
+                                    2024/09/19
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </section>
             </div><!-- /.container -->
+            <br>
+            contents
         </main>
         <footer></footer>
     </div>
-    
     <nav id="nav"></nav>
 </body>
 </html>

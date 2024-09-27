@@ -15,21 +15,6 @@
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/commentary.css" />
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/include.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <!-- <script type="text/x-mathjax-config"> これはカスタム設定スクリプト用だが、今回はCSPでセキュリティ制限しているので必要ない -->
-    <script nonce="text/x-mathjax-config">
-        MathJax.Hub.Config({
-            TeX: { equationNumbers: { autoNumber: "AMS" } },
-            tex2jax: {
-                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                displayMath: [['$$','$$'], ['\\[','\\]']],
-                processEscapes: true
-            },
-            "HTML-CSS": { mathFontHeight: false },
-            displayAlign: "left",
-            displayIndent: "2em"
-        });
-    </script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/drawer.js"></script>
     <script>
         'use strict';
@@ -39,6 +24,20 @@
         gtag('js', new Date());
         
         gtag('config', 'UA-97506477-1');
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script nonce="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            TeX: { equationNumbers: { autoNumber: "AMS" } },
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ['\\[','\\]'] ],
+                processEscapes: true
+            },
+            "HTML-CSS": { mathFontHeight: false },
+            displayAlign: "left",
+            displayIndent: "2em"
+        });
     </script>
 </head>
 <body>

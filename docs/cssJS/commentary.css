@@ -23,7 +23,7 @@
 }
 
 figure, blockquote {
-    margin: 0; /* ブラウザデフォルトの隙間をリセット */
+    margin: 0 10px 0 50px; /* ブラウザデフォルトの隙間をリセット */
 }
 .figure-quote { 
     padding: 0 0 0 0.5em; /* 左側に余白 */

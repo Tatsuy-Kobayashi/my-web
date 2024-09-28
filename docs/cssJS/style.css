@@ -39,8 +39,8 @@ header .container {
     padding-left: 76px;
     background-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/icon.png);
     background-repeat: no-repeat;
-    background-size: 53px;
-    background-position: 16px 10px;
+    background-size: 55px;
+    background-position: 0 0;
 }
 @media (min-width: 768px) {
     header .container {

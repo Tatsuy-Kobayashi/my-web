@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <!-- 他のmetaタグと共にCSPを指定
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://tatsuy-kobayashi.github.io https://cdnjs.cloudflare.com; img-src 'self' data:; script-src 'self' https://cdnjs.cloudflare.com 'nonce-abc123';">
+    -->
+    <title>数学</title>
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="apple-touch-icon" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/special.css" />
+	<link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/style.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/search.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/commentary.css" />
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/include.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/drawer.js"></script>
+    <script>
+        'use strict';
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'UA-97506477-1');
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script nonce="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            TeX: { equationNumbers: { autoNumber: "AMS" } },
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ['\\[','\\]'] ],
+                processEscapes: true
+            },
+            "HTML-CSS": { mathFontHeight: false },
+            displayAlign: "left",
+            displayIndent: "2em"
+        });
+    </script>
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    <script type="text/tikz">
+        \begin{tikzpicture}
+          \draw (0,0) circle (3cm);
+        \end{tikzpicture}
+    </script>
+</head>
+<body>
+    <div id="wrapper">
+        <header></header>
+        <div class="content">
+            <div class="main">
+                1.1. リッカチの微分方程式
+                <p>
+                    &emsp;ベッセル関数論は、リッカチの微分方程式として知られる一階微分方程式のあるタイプの理論と密接に関連している。実際、ベッセル関数は、通常、変数変換（elementary transformation）によってリッカチの微分方程式から派生した二階線形微分方程式（ベッセルの微分方程式として知られている）の特殊解として定義される。
+                </p>
+                <script type="text/tikz">
+                \begin{tikzpicture}
+                \draw[thin] (0,1) -- (5,1);
+                \draw (0,0) -- (5,0);
+                \draw[thick] (0,-1) -- (5,-1);
+                \draw[very thick] (0,-2) -- (5,-2);
+                \draw[ultra thick] (0,-3) -- (5,-3);
+                \end{tikzpicture}
+                </script>
+                <script type="text/tikz">
+                    \begin{tikzpicture}
+                       \fill (2,1) circle (2cm);
+                    \end{tikzpicture}
+                </script>
+                <p>
+                    &emsp;ライプニッツへの種々の手紙<sup id="ref_3"><a href="#note_3">[3]</a></sup>のうち、1697から1704の間に書かれたものの中で、ヤコブ・ベルヌーイはその方程式について言及している。彼はそれを（括弧内は現代的記法）
+                </p>
+                <p>
+                    という形式で与え、また何度も自分にはそれを解決する<ruby>術<rp>（</rp><rt>すべ</rt><rp>）</rp></ruby>がないと述べている。彼は以下のように書いている(1697年1/27)「また、この $dy = yydx + xxdx$ も試したかどうか知りたい。私は何千もの形に変形させたが、私の注意は常に難解な課題にさらされていた<sup id="ref_4"><a href="#note_4">[4]</a></sup>」。5年後、彼はその方程式を二階線形方程式に変換することに成功し、ライプニッツへ以下のように書いた<sup id="ref_5"><a href="#note_5">[5]</a></sup>（1702年11/15）: "この機会に、前に述べた方程式 $dy = yydx + x^2 dx$ を思い出す。この方程式では、あたかも方程式が単なる微分のままであるかのように、変数を互いに分離することができなかったが、方程式をこの差微分<sup id="ref_6"><a href="#note_6">[6]</a></sup> $d dy∶y =-x^2 dx^2$ に変換することでそれらを分離した。<sup id="ref_7"><a href="#note_7">[7]</a></sup>」
+                </p>
+                <p>
+                    &emsp;この発見が<ruby>為<rp>（</rp><rt>な</rt><rp>）</rp></ruby>されたとき、それは最後の方程式を級数で解き、2つの冪級数の商として一階微分方程式の解を得るための簡単なステップだった。
+                </p>
+                <p>
+                    &emsp;そして実際、この形式の方程式の解法は、1年以内にヤコブ・ベルヌーイ（1703年10月3日）によって以下の条件でライプニッツに伝えられました<sup id="ref_8"><a href="#note_8">[8]</a></sup>:
+                </p>
+
+            </div> <!-- /.main -->
+            <div class="annotation">
+                ページ注釈
+                <ol class="olAnnotation">
+                    <li id="note_1"><a href="#ref_1">^</a>
+                        ライプツィヒで出版された科学雑誌<i>Acta Eruditorum publicata Lipsiae</i>, 1694, pp. 435—437.
+                    </li>
+                    <li id="note_20"><a href="#ref_20">^</a>
+                        Ibid. Ⅸ. (1762—1763), [published 1764], pp. 163—164.
+                    </li>
+                </ol>
+            </div> <!-- /annotation -->
+        </div> <!-- /content -->
+        <footer></footer>
+    </div> <!-- /wrapper -->
+    <nav id="nav"></nav>
+</body>

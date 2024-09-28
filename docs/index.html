@@ -32,10 +32,6 @@
     <link rel="stylesheet" media="all" href="cssJS/style.css" />
     <link rel="stylesheet" media="all" href="cssJS/search.css" />
     <style>
-        .cell {
-            display: flex;
-            justify-content: space-around;
-        }
         .archive{
             overflow-y: auto;
             height: 400px;
@@ -61,6 +57,12 @@
         }
         td {
             background: #fff;
+        }
+        @media (max-width: 768px) {
+            th, td {
+                padding: 10px;
+                font-size: 12px;
+            }
         }
         .sticky {
             position: sticky;

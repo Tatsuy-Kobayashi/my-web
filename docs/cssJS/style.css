@@ -129,6 +129,10 @@ a:hover {
     padding: 10px;
     display: none;
     z-index: 10;
+    
+    /* 最大の高さを設定して、スクロールできるようにする */
+    max-height: 200px;
+    overflow-y: auto;
 }
 .preview-link:hover + .link-preview {
     display: block;
@@ -140,8 +144,18 @@ a:hover {
 .preview-title {
     font-size: 1.2em;
     margin: 10px 0;
+
+    /* タイトルが長すぎた場合の折り返し設定 */
+    word-wrap: break-word;
 }
 .preview-description {
     font-size: 0.9em;
     color: #555;
+
+    /* 説明文が長すぎた場合の折り返し設定 */
+    word-wrap: break-word;
+    white-space: pre-wrap; /* 改行も尊重 */
 }
+
+
+

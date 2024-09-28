@@ -12,3 +12,18 @@
     margin: 0 50px 0 10px;
     float: right;
 }
+
+figure, blockquote {
+    margin: 0; /* ブラウザデフォルトの隙間をリセット */
+}
+.figure-quote { 
+    padding: 0 0 0 0.5em; /* 左側に余白 */
+    border-left: solid 3px black; /* 左側に線 */
+    font-style: italic; /* 引用文を斜体に */
+}
+.figure-quote p {
+    margin: 0.5em 0;
+}
+.figure-quote figcaption {
+    text-align: right; /* 出典は右寄せに */
+}

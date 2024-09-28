@@ -31,14 +31,9 @@
 	<link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/style.css" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/search.css" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/commentary.css" />
-    <style>
-        .cell {
-            display: flex;
-            justify-content: space-around;
-        }
-    </style>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/include.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/drawer.js"></script>
     <script>
         // JavaScriptの厳格モード使用
         'use strict';
@@ -85,23 +80,46 @@
                     &emsp;そういうことを言っているコメンテータたちは実際AI一つでIT関連の製品（アプリケーションや携帯電話、ロボット、etc.）を作ったことがあるのでしょうか？少なくとも、私はそのような人たちが上記のような仕事を<ruby>熟<rp>（</rp><rt>こな</rt><rp>）</rp></ruby>したという話を聞いたことがありませんね。皆さん自身、試してみても良いでしょう。今どきAIなんて電子の画面を通せばいくらでも溢れていますから。そして作業中必ずブラウザで調べたり、教科書を手に取りたくなるはずです。なぜなら、AIは聞いたことには答えてくれますが、関連する周辺分野や知識までは揃えてくれないからです。これは、教授たちが学生らにWikipediaのような百科事典を使わせたがらないことと似ています。AIも百科事典も周辺知識や体系的知識の習得がおろそかになりがちなのです。
                 </p>
                 <p>
-                    &emsp;体系的知識とは、謂わば教科書です。ユーザの求める情報だけでなくその基礎や応用、演習、周辺知識などを取りまとめ、ユーザの知識習得に重きを置いた情報媒体。つまり、レポートなどで百科事典を使うというのは、目の前の課題をどうにかやり過ごしたいだけであって、何かを習得したいという意識が欠如していると言えます。
+                    &emsp;体系的知識とは、謂わば教科書です。ユーザの求める情報だけでなくその基礎や応用、演習、周辺知識などを取りまとめ、ユーザの知識習得に重きを置いた情報媒体。つまり、レポートなどで百科事典を使うというのは、目の前の課題をどうにかやり過ごしたいだけであって、何かを習得したいという意識が欠如していると言えます。そのような学生を教育者が良しとしない理由は分かりますね？
                 </p>
                 <script type="text/tikz">
                     \begin{tikzpicture}
                         \tikzset{block/.style={rectangle, fill=cyan!10, text width=3cm, text centered, rounded corners, minimum height=1.5cm}};
-                        \node[block] {学問} [level distance=3cm, sibling distance=4cm, edge from parent/.style={<-,draw}]
-                            child{ node[block] {人文科学} }
-                            child{ node[block]{child2}
-                                child{ node[block]{child2-1} }
+                        \node[block] {Academic discipline} [level distance=3cm, sibling distance=4cm, edge from parent/.style={-,draw}]
+                            child{ node[block] {Humanities} }
+                            child{ node[block]{Social science}
+                                child{ node[block]{Economics} }
                             }
-                            child{ node[block] {child3} };
+                            child{ node[block] {Natural science}
+                                child{ node[block]{Mathematics} }
+                                child{ node[block]{Physics} }
+                            };
                     \end{tikzpicture}
                 </script>
                 <p>
-                    &emsp;そのような学生を教育者が良しとしない理由は分かりますね？
+                    &emsp;しかし、最近では「未来の教科書」なるものも作られていて、教科書のような体系的知識をAIが与えてくれるようになるのかもしれません。その場合いよいよ人は学ぶ必要が無くなってくるのでしょうか？
                 </p>
-
+                <p>
+                    &emsp;まあ、「人が学ばなくなったら、AIは誰のために体系的知識を生成するのか？」という矛盾はさて置き、それでもやっぱり人は学び続けなければなりません。それについて議論する前に、文化・文明の発展と抽象・具体について話しておきましょう。
+                </p>
+                <p>
+                    &emsp;文化の進化とは、複雑化していくことです。一方で、文明の発展とは、抽象化していくことです。たとえば、コンピュータ。これは計算機や情報伝達などの機能を持っていますが、本来人間が<ruby>熟<rp>（</rp><rt>こな</rt><rp>）</rp></ruby>すべきだったそれらの作業──ペンを持って、紙を用意して、足し算や掛け算をするために時には九九表なんかも思い出しながら……など──を「計算」という一つの抽象的な言葉に丸め込み、単純な入力から難解な過程を飛ばして答えを示してくれているのです。なので、計算機を扱う人間にとって「計算する」とは、計算前の数式を解釈して、筆算やそろばんを弾いて……といったような具体的作業ではなく、「計算機を使う」という抽象的な作業に過ぎないのです。
+                </p>
+                <p>
+                    &emsp;ですが、これ自体は何も忌避すべき事柄ではありません。なぜなら学問自体がこの抽象化あるいは具体化による変化の繰り返しで発展してきたからです。たとえば、積分。
+                </p>
+                \[
+                    \int_{0}^{1}{\frac{1}{x+1}}dx
+                \]
+                <p>
+                    これを本来のリーマン積分の意味合いで解釈するなら、直接無限級数
+                </p>
+                \[
+                    \lim_{n\rightarrow \infty}{\frac{1}{n} \sum_{k=1}^{n}{\frac{1}{\frac{k}{n}+1}}}
+                \]
+                <p>
+                    に直して計算するのだろうが、普通は特に説明もなく $\log(x+1)$ の微分の逆として計算される。数学者たちは当然、リーマン積分の定義も微分積分学の定理も知っているのだが、多くの解析学的議論において積分記号 $\int$ とは
+                </p>
 
 
 

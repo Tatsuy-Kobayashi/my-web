@@ -70,6 +70,17 @@
                        \fill (2,1) circle (2cm);
                     \end{tikzpicture}
                 </script>
+                <script type="text/tikz">
+                    \begin{tikzpicture}
+                        \tikzset{block/.style={rectangle, fill=cyan!10, text width=3cm, text centered, rounded corners, minimum height=1.5cm}};
+                        \node[block] {academic} [level distance=3cm, sibling distance=4cm, edge from parent/.style={<-,draw}]
+                            child{ node[block] {humanities} }
+                            child{ node[block]{child2}
+                                child{ node[block]{child2-1} }
+                            }
+                            child{ node[block] {child3} };
+                    \end{tikzpicture}
+                </script>
                 <p>
                     &emsp;ライプニッツへの種々の手紙<sup id="ref_3"><a href="#note_3">[3]</a></sup>のうち、1697から1704の間に書かれたものの中で、ヤコブ・ベルヌーイはその方程式について言及している。彼はそれを（括弧内は現代的記法）
                 </p>

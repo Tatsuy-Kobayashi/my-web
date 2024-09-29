@@ -44,6 +44,16 @@ document.addEventListener('DOMContentLoaded', function() {
         // プレビューボックスにマウスが乗った時の処理
         preview.addEventListener('mouseover', function() {
             isHovering = true;
+
+            const image = preview.querySelector('.preview-image');
+            const title = preview.querySelector('.preview-title');
+            const description = preview.querySelector('.preview-description');
+
+            // data-*属性から動的にプレビュー内容を取得
+            image.src = link.getAttribute('data-image');
+            title.textContent = link.getAttribute('data-title');
+            description.textContent = link.getAttribute('data-description');
+            
             showPreview(); // 再度プレビューを表示
         });
   

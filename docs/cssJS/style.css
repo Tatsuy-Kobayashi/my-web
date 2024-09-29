@@ -128,7 +128,7 @@ a:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 10px;
     display: none;
-    z-index: 10;
+    z-index: 999;
     
     /* 最大の高さを設定して、スクロールできるようにする */
     max-height: 200px;

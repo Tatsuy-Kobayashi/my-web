@@ -19,6 +19,49 @@
     #nav::-webkit-scrollbar {
         display: none;  /* Chrome, Safari, and Opera */
     }
+    #nav {
+        position: fixed;
+        left: -270px;
+        top: 0;
+        width: 270px;
+        height: 100%;
+        overflow-y: auto; /* Enable vertical scrolling */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
+        background: #000;
+        color: white;
+        padding: 24px 24px 0 24px;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;  /* IE and Edge */
+    }
+    #nav::-webkit-scrollbar {
+        display: none;  /* Chrome, Safari, and Opera */
+    }
+
+    #nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    #nav li {
+        padding-left: 10px; /* 基本のインデント */
+    }
+
+    #nav li > details > summary {
+        padding-left: 0; /* 親要素（学問）にはインデントなし */
+    }
+
+    #nav li details > li {
+        padding-left: 10px; /* 第一階層：10pxのインデント */
+    }
+
+    #nav li details li details > li {
+        padding-left: 20px; /* 第二階層：さらに10pxのインデント */
+    }
+
+    #nav li details li details li details > li {
+        padding-left: 30px; /* 第三階層：さらに10pxのインデント */
+    }
 </style>
 <nav id="nav">
     <div class="logo"><img src="logo.svg" alt=""></div>
@@ -31,6 +74,7 @@
             <summary><div class="link-container">
                     <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="学問" data-description="AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう">学問</a>
                     <div class="link-preview">
+                        <img class="preview-image">
                         <h3 class="preview-title">学問</h3>
                         <p class="preview-description">AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう</p>
                     </div> <!-- link-preview -->
@@ -49,6 +93,7 @@
                             <summary><div class="link-container">
                                 <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/science/mathematics/mathematics.html" class="preview-link" data-title="数学" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。">数学</a>
                                 <div class="link-preview">
+                                    <img class="preview-image">
                                     <h3 class="preview-title">数学</h3>
                                     <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
                                 </div> <!-- link-preview -->

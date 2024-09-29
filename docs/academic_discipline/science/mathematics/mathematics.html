@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <title>数学 - ラクして数理研究所</title>
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="apple-touch-icon" />
+    <!-- SEO -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。">
+    <meta name="keywords" content="学問,数学,情報理論,物理学,プログラミング,ラクして数理研究所,教育">
+    <link rel="canonical" href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" />
+    <!-- og -->
+    <meta property="og:type" content="website" /> <!-- articleとか -->
+    <meta property="og:title" content="学問｜ラクして数理研究所" />
+    <meta property="og:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" />
+    <meta property="og:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" />
+    <meta property="og:site_name" content="ラクして数理研究所" />
+    <link rel="dns-prefetch" href="//tatsuy-kobayashi.github.io/" /> <!-- HTTPSページのDNSプリフェッチはできない -->
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="学問｜ラクして数理研究所">
+    <meta name="twitter:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。">
+    <meta name="twitter:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html">
+    <meta name="twitter:image" content="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png">
+
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/special.css" />
+	<link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/style.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/search.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/commentary.css" />
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/include.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/drawer.js"></script>
+    <script>
+        // JavaScriptの厳格モード使用
+        'use strict';
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+      
+        /*gtag('config', 'トラッキングID');*/
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script nonce="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            TeX: { equationNumbers: { autoNumber: "AMS" } },
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ['\\[','\\]'] ],
+                processEscapes: true
+            },
+            "HTML-CSS": { mathFontHeight: false },
+            displayAlign: "left",
+            displayIndent: "2em"
+        });
+    </script>
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+</head>
+<body>
+<div id="wrapper">
+    <header></header>
+        <div class="content">
+            <div class="main">
+                <h1>数学</h1>
+                <h2>目次</h2>
+
+                <h2>AI時代の学問のすゝめ</h2>
+                <figure class="figure-quote">
+                <blockquote><p>「天は人の上に人を造らず人の下に人を造らず」と言えり。されば天より人を生ずるには、万人は万人みな同じ位にして、生まれながら<ruby>貴賤<rp>（</rp><rt>きせん</rt><rp>）</rp></ruby>上下の差別なく、万物の霊たる身と心との働きをもって天地の間にあるよろずの物を<ruby>資<rp>（</rp><rt>と</rt><rp>）</rp></ruby>り、もって衣食住の用を達し、自由自在、互いに人の妨げをなさずしておのおの安楽にこの世を渡らしめ給うの趣意なり。されども今、広くこの人間世界を見渡すに、かしこき人あり、おろかなる人あり、貧しきもあり、富めるもあり、貴人もあり、下人もありて、その有様雲と<ruby>泥<rp>（</rp><rt>どろ</rt><rp>）</rp></ruby>との相違あるに似たるはなんぞや。その次第はなはだ明らかなり。『<ruby>実語教<rp>（</rp><rt>じつごきょう</rt><rp>）</rp></ruby>』に、「人学ばざれば智なし、智なき者は愚人なり」とあり。されば賢人と愚人との別は学ぶと学ばざるとによりてできるものなり。</p></blockquote>
+                <figcaption>
+                    福沢諭吉──『<cite><a href="https://www.aozora.gr.jp/cards/000296/files/47061_29420.html">学問のすゝめ</a></cite>』（初編）の序文より。
+                </figcaption>
+                </figure>
+                <p>
+                    &emsp;現代では生成AIの登場により、ますます学問軽視の傾向が強まったと感じる。たとえば、「プログラミングはAIに任せれば良い」だとか。「レポートの文章はAIに生成させれば良い」だとか。
+                </p>
+                <p>
+                    &emsp;そういうことを言っているコメンテータたちは実際AI一つでIT関連の製品（アプリケーションや携帯電話、ロボット、etc.）を作ったことがあるのだろうか？少なくとも、私はそのような人たちが上記のような仕事を<ruby>熟<rp>（</rp><rt>こな</rt><rp>）</rp></ruby>したという話を聞いたことがない。皆さん自身、試してみても良いだろう。今どきAIなんて電子の画面を通せばいくらでも溢れているのだから。そして作業中必ずブラウザで調べたり、教科書を手に取りたくなるはずだ。なぜなら、AIは聞いたことには答えてくれるが、関連する周辺分野や知識までは揃えてくれないからだ。これは、教授たちが学生らにWikipediaのような百科事典を使わせたがらないことと似ている。AIも百科事典も周辺知識や体系的知識の習得がおろそかになりがちなのだ。
+                </p>
+                <p>
+                    &emsp;体系的知識とは、謂わば教科書だ。ユーザの求める情報だけでなくその基礎や応用、演習、周辺知識などを取りまとめ、ユーザの知識習得に重きを置いた情報媒体。つまり、レポートなどで百科事典を使うというのは、目の前の課題をどうにかやり過ごしたいだけであって、何かを習得したいという意識が欠如していると言える。そのような学生を教育者が良しとしない理由は分かるだろう。
+                </p>
+                <script type="text/tikz">
+                    \begin{tikzpicture}
+                        \tikzset{block/.style={rectangle, fill=cyan!10, text width=2.5cm, text centered, rounded corners, minimum height=1.5cm}};
+                        \node[block] {Academic discipline} [level distance=3cm, sibling distance=5cm, edge from parent/.style={-,draw}]
+                            child{ node[block] {Humanities} }
+                            child{ node[block]{Social science}
+                                child{ node[block]{Economics} } [sibling distance=10cm]
+                            }
+                            child{ node[block] {Natural science} [sibling distance=3cm]
+                                child{ node[block]{Mathematics} }
+                                child{ node[block]{Physics} }
+                            };
+                    \end{tikzpicture}
+                </script>
+                <p>
+                    &emsp;しかし、最近では「未来の教科書」なるものも作られていて、教科書のような体系的知識をAIが与えてくれるようになるのかもしれません。その場合いよいよ人は学ぶ必要が無くなってくるのでしょうか？
+                </p>
+                <p>
+                    &emsp;まあ、「人が学ばなくなったら、AIは誰のために体系的知識を生成するのか？」という矛盾はさて置き、それでもやっぱり人は学び続けなければなりません。それについて議論する前に、文化・文明の発展と抽象・具体について話しておきましょう。
+                </p>
+                <p>
+                    &emsp;文化の進化とは、複雑化していくことです。一方で、文明の発展とは、抽象化していくことです。たとえば、コンピュータ。これは計算機や情報伝達などの機能を持っていますが、本来人間が<ruby>熟<rp>（</rp><rt>こな</rt><rp>）</rp></ruby>すべきだったそれらの作業──ペンを持って、紙を用意して、足し算や掛け算をするために時には九九表なんかも思い出しながら……など──を「計算」という一つの抽象的な言葉に丸め込み、単純な入力から難解な過程を飛ばして答えを示してくれているのです。なので、計算機を扱う人間にとって「計算する」とは、計算前の数式を解釈して、筆算やそろばんを弾いて……といったような具体的作業ではなく、「計算機を使う」という抽象的な作業に過ぎないのです。
+                </p>
+                <p>
+                    &emsp;ですが、これ自体は何も忌避すべき事柄ではありません。なぜなら学問自体がこの抽象化あるいは具体化による変化の繰り返しで発展してきたからです。たとえば、積分。
+                </p>
+                \[
+                    \int_{0}^{1}{\frac{1}{x+1}}dx
+                \]
+                <p>
+                    これを本来のリーマン積分の意味合いで解釈するなら、直接無限級数
+                </p>
+                \[
+                    \lim_{n\rightarrow \infty}{\frac{1}{n} \sum_{k=1}^{n}{\frac{1}{\frac{k}{n}+1}}}
+                \]
+                <p>
+                    に直して計算するのだろうが、普通は特に説明もなく $\log(x+1)$ の微分の逆として計算される。数学者たちは当然、リーマン積分の定義も微分積分学の定理も知っているのだが、多くの解析学的議論において積分記号 $\int$ とは積分計算を表す抽象的な道具に過ぎないのだ。微分積分の<ruby>是非<rp>（</rp><rt>ぜひ</rt><rp>）</rp></ruby>については、解析学やより抽象的な代数学で議論されるし、抽象的な道具となった積分はより具体的な議論（幾何学）での基礎道具の一つとなる。
+                </p>
+                <p>
+                    &emsp;では、我々が新たに獲得した道具──AIはどうだろうか。こちらは残念ながら数学とは違いAIの学んでいる工程はもはや人間では追えなくなっている。最近よく「大規模言語モデル（LLM）が何億、何兆パラメータを扱うようになった」とか言うニュースを耳にしないだろうか？ここで言うパラメータとは、モデルが学習するための重みやバイアスのことを指す。簡単に言えば、パラメータはモデルが入力データから学習するために調整する値である。例えば、動物についての特徴量としては、大きさ、飼いやすさ、人懐っこさなどが挙げられるが、これらの特徴量に基づいてモデルが学習する際に調整される内部の値がパラメータである。それが何億、何兆とあるというのだから人に一つずつ追えるはずもない。
+                </p>
+                <p>
+                    &emsp;となると今後はPCなどのデータの流れや論理回路を一つ一つ追いかけるタイプの人ではなく、高度に抽象化された道具を抽象的なまま扱えるようでないとダメだということだ。とは言うものの、具体的な構造が次元違いなため追いかけられないとしても、AIの理論面という抽象的な部分は他の学問と変わらない。そして、このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。。このページから様々な話題を構造的に見ていこう。
+                </p>
+                <h2>学問の一覧</h2>
+                <h3>人文科学</h3>
+                <h3>社会科学</h3>
+                <h3>自然科学</h3>
+
+
+
+
+
+
+            </div> <!-- /.main -->
+            <div class="annotation">
+                ページ注釈
+                <ol class="olAnnotation">
+                    <li id="note_1"><a href="#ref_1">^</a>
+                        オセロトル語<br>
+                        <ocelotl>
+                            !0123456789:;<=
+                            <br>
+                            ABCDEFGHIJKLMNO
+                            <br>
+                            PQTWXYacehimpqtxy
+                        </ocelotl>
+                    </li>
+                </ol>
+            </div> <!-- /annotation -->
+        </div> <!-- /content -->
+        <footer></footer>
+    </div> <!-- /wrapper -->
+    <nav id="nav"></nav>
+</body>
+</html>

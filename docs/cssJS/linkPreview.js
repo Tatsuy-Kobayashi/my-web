@@ -32,6 +32,14 @@ document.addEventListener('DOMContentLoaded', function() {
             title.textContent = link.getAttribute('data-title');
             description.textContent = link.getAttribute('data-description');
 
+            // Adjust preview position dynamically to ensure visibility
+            const bounding = preview.getBoundingClientRect();
+            if (bounding.bottom > window.innerHeight) {
+                preview.style.top = '-100%'; // Adjust upwards if out of bounds
+            } else {
+                preview.style.top = '100%'; // Default to below the link
+            }
+
             showPreview();
         });
 
@@ -53,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
             image.src = link.getAttribute('data-image');
             title.textContent = link.getAttribute('data-title');
             description.textContent = link.getAttribute('data-description');
-            
+
             showPreview(); // 再度プレビューを表示
         });
   

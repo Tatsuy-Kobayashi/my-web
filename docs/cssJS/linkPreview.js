@@ -43,28 +43,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 preview.style.top = '100%';  // 通常の位置に表示
             }
 
-            console.log('リンクにマウスが乗りました');  // エラーチェック用ログ
             showPreview();
         });
 
         // リンクからマウスが離れたときの処理
         link.addEventListener('mouseout', function() {
             isHoveringLink = false;
-            console.log('リンクからマウスが離れました');
             setTimeout(hidePreview, 100); // 少し遅延を入れる
         });
 
         // プレビューボックスにマウスが乗ったときの処理
         preview.addEventListener('mouseover', function() {
             isHoveringPreview = true;
-            console.log('プレビューボックスにマウスが乗りました');
             showPreview();
         });
 
         // プレビューボックスからマウスが離れたときの処理
         preview.addEventListener('mouseout', function() {
             isHoveringPreview = false;
-            console.log('プレビューボックスからマウスが離れました');
             setTimeout(hidePreview, 100); // 少し遅延を入れる
         });
     });

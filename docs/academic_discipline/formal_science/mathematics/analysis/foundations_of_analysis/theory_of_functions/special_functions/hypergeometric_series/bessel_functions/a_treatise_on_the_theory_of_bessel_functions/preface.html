@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <!-- 他のmetaタグと共にCSPを指定
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://tatsuy-kobayashi.github.io https://cdnjs.cloudflare.com; img-src 'self' data:; script-src 'self' https://cdnjs.cloudflare.com 'nonce-abc123';">
+    -->
+    <title>数学</title>
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="apple-touch-icon" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/special.css" />
+	<link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/style.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/search.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/commentary.css" />
+    <style>
+        .roma-list{
+            list-style-type: upper-roman;
+            margin-left: 15px;
+        }
+    </style>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/include.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/drawer.js"></script>
+    <script>
+        'use strict';
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'UA-97506477-1');
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script nonce="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            TeX: { equationNumbers: { autoNumber: "AMS" } },
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ['\\[','\\]'] ],
+                processEscapes: true
+            },
+            "HTML-CSS": { mathFontHeight: false },
+            displayAlign: "left",
+            displayIndent: "2em"
+        });
+    </script>
+</head>
+<body>
+    <div id="wrapper">
+        <header></header>
+        <div class="content">
+            <div class="main">
+                <h1>ベッセル関数論についての論文</h1>
+                <h2 style="text-align: right">著G. N. WATSON、博士、王立協会フェロー<sup id="ref_1"><a href="#note_1">[1]</a></sup></h2>
+                <p>
+                    G. N. Watson<br>
+                    バーミンガム大学数学教授、ここ最近<sup id="ref_2"><a href="#note_2">[2]</a></sup>はケンブリッジのトリニティ・カレッジのフェロー<br>
+                    以下、解説を挿みつつ内容を紹介する。
+                </p>
+                <h3>序文</h3>
+                <p>
+                    この本は、2つの目的を視野に入れて設計されている。 1つ目は、複素変数関数論の基本的な適用法を開拓することである。この目的において、Besselベッセル関数は見事に適合され、同時にそれらは、実変数関数論の一部の適用に関して、フーリエ級数論での三角関数によって提供されるものよりもかなり広範なものを提供する。
+                </p>
+                <p>
+                    &emsp;2つ目の目的は、研究する過程でBesselベッセル関数に遭遇する数学者や物理学者が増加しているが、彼らにとって価値のある結果の編纂です。このような抄録の存在は、近年数理物理学のさまざまな問題で必要とされているBesselベッセル関数(特に大きな次数の関数)の特性のより顕著な難解さによって必要となっているようだ。
+                </p>
+                <p>
+                    &emsp;私の試みは、<b>純粋な</b>数学者がある程度完璧であると見なすくらいにBesselベッセル関数論についての説明を提供することであるため、私はまた、一般的なものであれ特殊なものであれ、実用的な応用で必要とされるであろう全ての数式を含めるよう努めた。そして、そのような結果は、可能な限りこれらの目的に適した形式で与えられる。これらの目標の広がりと、書籍のサイズを制約内に保つ必要性とのせめぎ合いから、理解可能な範囲でできるだけ簡潔になるよう努力する必要があった。
+                </p>
+                <p>
+                    &emsp;この本は、概ね、Whittakerホイッテーカー教授<sup id="ref_3"><a href="#note_3">[3]</a></sup>と私による現代解析学のコースで説明されている関数論の進捗通りであるため、原典に読本を参照させるよりもその論文を一般的な定理の標準的な参考書と見なすことの方が都合がよかった。
+                </p>
+                <p>
+                    &emsp;ここで、私が2種類目の正規関数と見なした関数、すなわちWeberウェーバー<sup id="ref_4"><a href="#note_4">[4]</a></sup>によって定義され、後にSchläfliシュレーフリ<sup id="ref_5"><a href="#note_5">[5]</a></sup>、Grafグレーフ<sup id="ref_6"><a href="#note_6">[6]</a></sup>とGublerギュブラー<sup id="ref_7"><a href="#note_7">[7]</a></sup>、Nielsenニールセン<sup id="ref_8"><a href="#note_8">[8]</a></sup>らによって使用された関数に注意を引くことが望ましい。歴史的および感傷的な理由から、Hankelハンケル<sup id="ref_9"><a href="#note_9">[9]</a></sup>の2種類目の関数を使用することが正当な理由があると感じたときは喜ばしかったが、しかし、3つの考慮事項がこれを妨げた。1つ目は、2種類目の関数を標準化することの必要性です。そして、私見だが、Weberウェーバーの関数を使用する数学者のグループの権威は、2種類目の関数を使用するもう一方の数学者の権威よりも大きな重みを持っている。2つ目は、Weberウェーバーの関数の使用が2種類のBesselベッセル関数と2種類の三角関数(コサインとサイン)の間で示す類似性です。3つ目は、第XX章の最後にある表IとIIIで補間が可能な道具の存在であり、数値作業にてWeberウェーバーの関数の使用が避けられないようです。
+                </p>
+                <p>
+                    &emsp;各セクションに関連して、以前にセクションの結果を宣言した回顧録や論文を参照することが私の方針だった。しかし、この本で与えられた証明は、必ずしも引用された情報源のいずれかで与えられたものであるとは限らない。本の最後にある参考文献の目録はできるだけ完全にしているが、間違いなく書き漏れが見つかるだろう。私はBesselベッセル関数が言及されているすべての回顧録を挿入したとは主張していないが、関数論にわずかであっても、原本の貢献を含む回顧録を意識的に省略してはいない。例えば、Riccatisリッカチの微分方程式の関連トピックに関しては、私は一般的な枠組みに関連していると思われるそれらの回顧録のみを挿入する程度に留めた。
+                </p>
+                <p>
+                    &emsp;このような解析学の論文の場合、誤字脱字またはその他の間違いが検出されずにあることを期待するのはおそらく無意味だろう。しかし、そのような間違いの数は、同僚のC. I. Preece 氏とT. A. Lumsden氏の批評と注視によって大幅に減少したが、彼らの誤りや不明瞭さを取り除くための努力は最大限の価値がある。揺るぎない忍耐で、非常に複雑な出版作業で、これらの紳士と大学出版局のスタッフらあらゆる援助を与えてくれた人々に、私は感謝の意を捧げます。
+                </p>
+                <p style="text-align: right">G. N. W.</p>
+                <p>August 21, 1922.</p>
+                <br>
+                <h3>目次</h3>
+                <p>CHAP.</p>
+                <ul class="roma-list">
+                    <li>1826年以前のベッセル関数</li>
+                    <li>ベッセル（係）数</li>
+                    <li>ベッセル関数</li>
+                    <li>微分方程式</li>
+                    <li>ベッセル関数のさまざまな特性</li>
+                    <li>ベッセル関数の積分表現</li>
+                    <li>ベッセル関数の漸近展開</li>
+                    <li>大きなオーダーのベッセル関数</li>
+                    <li>ベッセル関数と関連する多項式</li>
+                    <li>ベッセル関数と関連する関数</li>
+                    <li>追加の定理</li>
+                    <li>定積分</li>
+                    <li>広義積分</li>
+                    <li>多重積分</li>
+                    <li>ベッセル関数の零点</li>
+                    <li>ノイマン級数とロンメルの二変数関数</li>
+                    <li>カプタイン級数</li>
+                    <li>ベッセルのフーリエ級数展開とディーニ</li>
+                    <li>シュレーミルヒ級数</li>
+                    <li>ベッセル関数の数表化</li>
+                    ベッセル関数表<br>
+                    参考文献<br>
+                    記号索引<br>
+                    引用著作物の一覧<br>
+                    全般の索引
+                </ul>
+                <p>
+                    &emsp;$P$ と $R$ のどちらかあるいは両方とも恒等的に$0$ではないと仮定される。もし$R=0$ならば方程式は線形であり; もし$P=0$のならば、方程式は新たに変数として$1/y$を取ることで線形形式に還元できる<sup id="ref_16"><a href="#note_16">[16]</a></sup>。
+                </p>
+
+
+            </div> <!-- /.main -->
+            <div class="annotation">
+                <h3>ページ注釈</h3>
+                <ol class="olAnnotation">
+                    <li id="note_1"><a href="#ref_1">^</a>
+                        原文:<br>
+                        G. N. WATSON, Sc.D., F.R.S.
+                        <br>
+                        Sc.D. は Doctor of Science（博士号）を指す。F.R.S. は Fellow of the Royal Society（王立協会フェロー）を指す。
+                    </li>
+                    <li id="note_2"><a href="#ref_2">^</a>
+                        この書籍は1985年に出版されたことに注意。
+                    </li>
+                    <li id="note_3"><a href="#ref_3">^</a>
+                        Sir Edmund Taylor Whittaker（1873年10月24日 - 1956年3月24日）<br>
+                        エドマンド・テイラー・ホイッテーカー卿は、G. N. WATSONの先生。1954年には王立協会のフェロー(FRS)に選出され、1940年代にはエディンバラ王立協会フェロー(FRSE)にも選出された。
+                    </li>
+                    <li id="note_4"><a href="#ref_4">^</a>
+                        Heinrich Martin Weber（1842年 - 1913年）<br>
+                        ハインリヒ・マルティン・ウェーバーは、ウェーバー関数やウェーバーのモジュラー関数の発見者。
+                    </li>
+                    <li id="note_5"><a href="#ref_5">^</a>
+                        Ludwig Schläfli（1814年 - 1895年）<br>
+                        ルートヴィヒ・シュレーフリは、3次元以上の空間の幾何学における先駆的な研究(Theorie der vielfachen Kontinuität)で知られる。
+                    </li>
+                    <li id="note_6"><a href="#ref_6">^</a>
+                        Johann Heinrich Graf（1852年 - 1918年）<br>
+                        ヨハン・ハインリヒ・グレーフは、Schläfliシュレーフリの指導の下で博士課程を修了した。主にBesselベッセル関数の研究で知られる。
+                    </li>
+                    <li id="note_7"><a href="#ref_7">^</a>
+                        Salomon Eduard Gubler（1845年 - 1921年）<br>
+                        サロモン・エドゥアルト・ギュブラーは、Grafグレーフとともに、 2巻本からなる『Einleitung in Die Theorie Der Bessel'schen Funktionenベッセル関数の理論に関する論文』を出版した（1898年 - 1900年）。
+                    </li>
+                    <li id="note_8"><a href="#ref_8">^</a>
+                        Niels Nielsen（1865年 - 1931年）<br>
+                        ニールス・ニールセンは、彼の最も独創的な研究は特殊関数に関するもので、ガンマ関数の理論に重要な貢献をした。
+                    </li>
+                    <li id="note_9"><a href="#ref_9">^</a>
+                        Hermann Hankel（1839年 - 1873年）<br>
+                        ヘルマン・ハンケルは、特殊関数の分野で業績を残し、特にベッセル関数に関しての研究は著名である。
+                    </li>
+                </ol>
+            </div> <!-- /annotation -->
+        </div> <!-- /content -->
+        <footer></footer>
+    </div> <!-- /wrapper -->
+    <nav id="nav"></nav>
+</body>

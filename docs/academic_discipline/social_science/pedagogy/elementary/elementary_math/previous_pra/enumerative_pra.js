@@ -51,9 +51,20 @@ function generateCircles() {
 // タッチイベントの処理
 let currentTouch = null; // 現在操作している円を保存
 
+let offsetX = 0; // タッチ開始時のXオフセット
+let offsetY = 0; // タッチ開始時のYオフセット
+
 function touchStart(event) {
     currentTouch = event.target;
     event.preventDefault();
+    
+    // タッチ位置と円の位置のオフセットを取得
+    const touch = event.touches[0];
+    const circleRect = currentTouch.getBoundingClientRect();
+    
+    // タッチ位置と円の左上角との距離を保存
+    offsetX = touch.pageX - circleRect.left;
+    offsetY = touch.pageY - circleRect.top;
 }
 
 function touchMove(event) {
@@ -62,10 +73,10 @@ function touchMove(event) {
         const circle = currentTouch;
         const boxRect = box.getBoundingClientRect();
 
-        // 円の位置を指に追従させる
+        // 指の位置に基づいて円の位置を移動（オフセットを考慮）
         circle.style.position = 'absolute';
-        circle.style.left = `${touch.pageX - circleSize / 2}px`;
-        circle.style.top = `${touch.pageY - circleSize / 2}px`;
+        circle.style.left = `${touch.pageX - offsetX}px`;
+        circle.style.top = `${touch.pageY - offsetY}px`;
 
         // タッチ中に箱の外に出た場合に削除
         if (

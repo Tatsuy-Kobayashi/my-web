@@ -34,13 +34,56 @@ function generateCircles() {
         circle.setAttribute('draggable', 'true');
         circle.setAttribute('id', `circle${i}`); // 一応ユニークなIDも設定
 
-        // イベントリスナーを追加
+        // マウスイベントリスナーを追加
         circle.addEventListener('dragstart', dragStart);
-        circle.addEventListener('dragend', dragEnd); // dragendを再度追加
+        circle.addEventListener('dragend', dragEnd);
+
+        // タッチイベントリスナーを追加
+        circle.addEventListener('touchstart', touchStart);
+        circle.addEventListener('touchmove', touchMove);
+        circle.addEventListener('touchend', touchEnd);
 
         // 円をコンテナに追加
         circlesContainer.appendChild(circle);
     }
+}
+
+// タッチイベントの処理
+let currentTouch = null; // 現在操作している円を保存
+
+function touchStart(event) {
+    currentTouch = event.target;
+    event.preventDefault();
+}
+
+function touchMove(event) {
+    if (currentTouch) {
+        const touch = event.touches[0];
+        const circle = currentTouch;
+
+        // 円の位置を指に追従させる
+        circle.style.position = 'absolute';
+        circle.style.left = `${touch.pageX - circleSize / 2}px`;
+        circle.style.top = `${touch.pageY - circleSize / 2}px`;
+    }
+}
+
+function touchEnd(event) {
+    const touch = event.changedTouches[0];
+    const boxRect = box.getBoundingClientRect();
+
+    // 指が離れたときに円が箱の中にあるか確認
+    if (
+        touch.pageX > boxRect.left && touch.pageX < boxRect.right &&
+        touch.pageY > boxRect.top && touch.pageY < boxRect.bottom
+    ) {
+        box.appendChild(currentTouch);
+        currentTouch.classList.add('circle-inside-box');
+        positionCircleInGrid(currentTouch);
+        updateCount(1);
+    }
+
+    currentTouch = null; // タッチ操作を終了
 }
 
 // 箱とコンテナ内の全ての円を削除する関数

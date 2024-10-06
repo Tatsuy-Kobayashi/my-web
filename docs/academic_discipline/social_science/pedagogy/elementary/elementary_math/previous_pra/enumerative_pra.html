@@ -43,7 +43,8 @@
         }
         #counter {
             margin-top: 20px;
-            font-size: 18px;
+            text-align: center;
+            font-size: 20px;
         }
         .dropzone {
             position: relative;
@@ -72,18 +73,18 @@
         <header></header>
         <div class="content">
             <div class="main">
-                <h1><ruby>数<rp>（</rp><rt>かぞ</rt><rp>）</rp></ruby>え<ruby>上<rp>（</rp><rt>あ</rt><rp>）</rp></ruby>げの<ruby>練習<rp>（</rp><rt>れんしゅう</rt><rp>）</rp></ruby></h1>
-                <p>
+                <h1><ruby>数<rp>（</rp><rt>かぞ</rt><rp>）</rp></ruby>え<ruby>上<rp>（</rp><rt>あ</rt><rp>）</rp></ruby>げの<ruby>練習<rp>（</rp><rt>れんしゅう</rt><rp>）</rp></ruby>（0&#xff5e;10までの<ruby>数<rp>（</rp><rt>かず</rt><rp>）</rp></ruby>）</h1>
+                <p style="text-align: center; font-size: 20px;">
                     アメを<ruby>動<rp>（</rp><rt>うご</rt><rp>）</rp></ruby>かして、<ruby>箱<rp>（</rp><rt>はこ</rt><rp>）</rp></ruby>の<ruby>中<rp>（</rp><rt>なか</rt><rp>）</rp></ruby>になおしましょう
                 </p>
                 <!-- 入力フォーム -->
-                <div>
+                <div style="text-align: center; font-size: 20px;">
                     <label for="circleCount">生成する円の数を入力してください:</label>
                     <input type="number" id="circleCount" min="1" max="10" value="5">
-                    <button id="generateCircles">アメを集める</button>
+                    <button id="generateCircles" style="user-select: none;">アメを集める</button>
                 </div>
                 <div id="box" class="dropzone">
-                    <p>ここにアメを<ruby>入<rp>（</rp><rt>い</rt><rp>）</rp></ruby>れてください</p>
+                    <p style="text-align: center; font-size: 20px;">ここにアメを<ruby>入<rp>（</rp><rt>い</rt><rp>）</rp></ruby>れてください</p>
                 </div>
                 <div id="counter">
                     <ruby>箱<rp>（</rp><rt>はこ</rt><rp>）</rp></ruby>の<ruby>中<rp>（</rp><rt>なか</rt><rp>）</rp></ruby>のアメの<ruby>数<rp>（</rp><rt>かず</rt><rp>）</rp></ruby>: <span id="count">0</span>
@@ -95,13 +96,14 @@
 
             </div> <!-- /.main -->
             <div class="annotation">
-                <h3>ページ注釈</h3>
+                <h3>保護者の方へ</h3>
                 <ol class="olAnnotation">
-                    <li id="note_1"><a href="#ref_1">^</a>
-                        原文:<br>
-                        G. N. WATSON, Sc.D., F.R.S.
+                    <li id="note_1">^
+                        このページは、幼稚から小学低学年の子どもが物の数え方を学ぶために用意したWebアプリケーションです。<br>
+                        入力はキーボードや右の上下矢印で可能です。1&#xff5e;10個のアメまでしか生成できません。それ以上の数は別のページで勉強してもらいましょう。
                         <br>
-                        Sc.D. は Doctor of Science（博士号）を指す。F.R.S. は Fellow of the Royal Society（王立協会フェロー）を指す。
+                        『アメを集める』ボタンで入力した数だけアメを生成します。このアメはマウスや指フリックで操作できます。アメを操作して箱にしまうことで、下部のカウンタに箱の中のアメの個数が現れるので、子どもが数えた値とカウンタの値を比較することで、正しい数え方を学べることが期待されます。これは1増加の加算の勉強にもなると思います。<br>
+                        アメの操作として、一つずつ箱から取り出すこともできます。取り出したアメは消失するので、『食べた』ことにしてください。これは1減少の減算の勉強にもなると思います。
                     </li>
                 </ol>
             </div> <!-- /annotation -->

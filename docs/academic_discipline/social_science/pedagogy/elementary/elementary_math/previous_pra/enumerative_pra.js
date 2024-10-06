@@ -60,11 +60,24 @@ function touchMove(event) {
     if (currentTouch) {
         const touch = event.touches[0];
         const circle = currentTouch;
+        const boxRect = box.getBoundingClientRect();
 
         // 円の位置を指に追従させる
         circle.style.position = 'absolute';
         circle.style.left = `${touch.pageX - circleSize / 2}px`;
         circle.style.top = `${touch.pageY - circleSize / 2}px`;
+
+        // タッチ中に箱の外に出た場合に削除
+        if (
+            touch.pageX < boxRect.left || touch.pageX > boxRect.right ||
+            touch.pageY < boxRect.top || touch.pageY > boxRect.bottom
+        ) {
+            if (box.contains(circle)) {
+                console.log('箱の外に出ました:', circle);
+                box.removeChild(circle); // 箱から円を削除
+                updateCount(-1); // カウンタを減少
+            }
+        }
     }
 }
 
@@ -77,10 +90,20 @@ function touchEnd(event) {
         touch.pageX > boxRect.left && touch.pageX < boxRect.right &&
         touch.pageY > boxRect.top && touch.pageY < boxRect.bottom
     ) {
-        box.appendChild(currentTouch);
-        currentTouch.classList.add('circle-inside-box');
-        positionCircleInGrid(currentTouch);
-        updateCount(1);
+        // 箱に追加
+        if (!box.contains(currentTouch)) {
+            box.appendChild(currentTouch);
+            currentTouch.classList.add('circle-inside-box');
+            positionCircleInGrid(currentTouch);
+            updateCount(1);
+        }
+    } else {
+        // タッチ終了時に円が箱の外にある場合は削除
+        if (box.contains(currentTouch)) {
+            console.log('タッチ終了時に箱の外に出ました:', currentTouch);
+            box.removeChild(currentTouch); // 箱から円を削除
+            updateCount(-1); // カウンタを減少
+        }
     }
 
     currentTouch = null; // タッチ操作を終了
@@ -128,7 +151,7 @@ function drop(event) {
         if (box.contains(draggedCircle)) {
             box.removeChild(draggedCircle); // 箱から円を削除
             updateCount(-1); // カウンタを減少
-        } 
+        }
         // ドロップされた円が箱に含まれていない場合のみ追加
         else {
             box.appendChild(draggedCircle);
@@ -149,10 +172,7 @@ function dragEnd(event) {
     const boxRect = box.getBoundingClientRect();
 
     // ドラッグ終了位置が箱の範囲外かどうかを判定
-    if (
-        mouseX < boxRect.left || mouseX > boxRect.right || 
-        mouseY < boxRect.top || mouseY > boxRect.bottom
-    ) {
+    if ( mouseX < boxRect.left || mouseX > boxRect.right || mouseY < boxRect.top || mouseY > boxRect.bottom ) {
         console.log('箱の外に出ました:', circle);
         if (box.contains(circle)) {
             box.removeChild(circle); // 箱から円を削除

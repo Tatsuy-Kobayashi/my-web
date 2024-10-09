@@ -31,6 +31,33 @@
 	<link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/style.css" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/search.css" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/commentary.css" />
+    <style>
+        #ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #li {
+            padding-left: 10px; /* 基本のインデント */
+        }
+
+        #li > details > summary {
+            padding-left: 0; /* 親要素（学問）にはインデントなし */
+        }
+
+        #li details > li {
+            padding-left: 10px; /* 第一階層：10pxのインデント */
+        }
+
+        #li details li details > li {
+            padding-left: 20px; /* 第二階層：さらに10pxのインデント */
+        }
+
+        #li details li details li details > li {
+            padding-left: 30px; /* 第三階層：さらに10pxのインデント */
+        }
+    </style>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/include.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/drawer.js"></script>
@@ -69,7 +96,7 @@
                 <h1>形式科学</h1>
                 <h2>目次</h2>
 
-                <h2>AI時代の学問のすゝめ</h2>
+                <h2>形式科学</h2>
                 <figure class="figure-quote">
                 <blockquote><p>「沈黙するか、沈黙よりも価値のあることを言うべきだ。無駄なことを言うくらいなら、真珠を無造作に投げる方がまだましだ。多くの言葉で少しを語るのではなく、少しの言葉で多くを語るが良い」──ピタゴラス</p></blockquote>
                 <figcaption>
@@ -79,12 +106,232 @@
                 <p>
                     &emsp;口を開くなら少しでも価値のあることを述べよ、ということである。形式とは、内容の特殊性を<ruby>捨象<rp>（</rp><rt>しゃしょう</rt><rp>）</rp></ruby>して見出される事物間の関係そのものを指す。
                 </p>
-                <p>
-                    &emsp;となると今後はPCなどのデータの流れや論理回路を一つ一つ追いかけるタイプの人ではなく、高度に抽象化された道具を抽象的なまま扱えるようでないとダメだということだ。とは言うものの、具体的な構造が次元違いなため追いかけられないとしても、AIの理論面という抽象的な部分は他の学問と変わらない。そして、このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。。このページから様々な話題を構造的に見ていこう。
-                </p>
                 <h2>形式科学の一覧</h2>
-                <h3>数学</h3>
-                <h3>統計学</h3>
+                <li><details> <!-- 数学 -->
+                    <summary><div class="link-container">
+                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="数学" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="">数学</a>
+                        <div class="link-preview">
+                            <img class="preview-image">
+                            <h3 class="preview-title">数学</h3>
+                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
+                        </div> <!-- link-preview -->
+                    </div></summary>
+                        <li><details> <!-- 数学用語 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">人文科学</a></summary>
+                        </details></li> <!-- /数学用語 -->
+                        <li><details> <!-- 数学基礎論 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/socialScience/socialScience.html">数学基礎論</a></summary>
+                                <li><a href="#">社会学</a></li>
+                                <li><a href="#">文化学</a></li>
+                                <li><a href="#">地理学</a></li>
+                                <li><a href="#">歴史学</a></li>
+                                <li><a href="#">政治学</a></li>
+                                <li><a href="#">法学</a></li>
+                                <li><a href="#">犯罪学</a></li>
+                                <li><a href="#">経済学</a></li>
+                                <li><a href="#">経営学</a></li>
+                                <li><a href="#">教育学</a></li>
+                                <li><a href="#">人間科学</a></li>
+                        </details></li> <!-- /数学基礎論 -->
+                        <li><details> <!-- 数論 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/formal_science.html">数論</a></summary>
+                                <li><details> <!-- 数学定数 -->
+                                    <summary><div class="link-container">
+                                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html" class="preview-link" data-title="数学定数" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="">数学定数</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">数学定数</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                        <li><a href="#">0</a></li>
+                                        <li><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">4</a></li>
+                                        <li><a href="#">5</a></li>
+                                        <li><a href="#">6</a></li>
+                                        <li><a href="#">7</a></li>
+                                </details></li> <!-- /数学定数 -->
+                                <li><details> <!-- 数列 -->
+                                    <summary><div class="link-container">
+                                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html" class="preview-link" data-title="数列" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="">数列</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">数列</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                        <li><a href="#">数学基礎論</a></li>
+                                        <li><a href="#">代数学</a></li>
+                                        <li><a href="#">数論</a></li>
+                                        <li><a href="#">解析学</a></li>
+                                        <li><a href="#">幾何学</a></li>
+                                        <li><a href="#">離散数学</a></li>
+                                        <li><a href="#">確率論</a></li>
+                                        <li><a href="#">応用数学</a></li>
+                                </details></li> <!-- /数列 -->
+                                <li><details> <!-- 初等整数論 -->
+                                    <summary><div class="link-container">
+                                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html" class="preview-link" data-title="初等整数論" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="">初等整数論</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">初等整数論</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                        <li><a href="#">論</a></li>
+                                </details></li> <!-- /初等整数論 -->
+                                <li><details> <!-- 代数的整数論 -->
+                                    <summary><div class="link-container">
+                                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html" class="preview-link" data-title="代数的整数論" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="">代数的整数論</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">代数的整数論</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                        <li><a href="#">代数的整数</a></li>
+                                        <li><a href="#">ディオファントス数論</a></li>
+                                        <li><a href="#">二次形式論</a></li>
+                                        <li><a href="#">コホモロジー</a></li>
+                                        <li><a href="#">賦値論</a></li>
+                                        <li><a href="#">類体論</a></li>
+                                        <li><a href="#">円分 $\mathbb{Z}_{p}$ 拡大</a></li>
+                                        <li><a href="#">ディリクレ指標</a></li>
+                                        <li><a href="#">$L$ 関数</a></li>
+                                        <li><a href="#">岩澤理論</a></li>
+                                        <li><a href="#">フェルマーの最終定理</a></li>
+                                </details></li> <!-- /代数的整数論 -->
+                                <li><details> <!-- 解析的整数論 -->
+                                    <summary><div class="link-container">
+                                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html" class="preview-link" data-title="解析的整数論" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="">解析的整数論</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">解析的整数論</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                        <li><a href="#">素数研究</a></li>
+                                        <li><a href="#">加法的整数論</a></li>
+                                        <li><a href="#">乗法的整数論</a></li>
+                                        <li><a href="#">保型形式論</a></li>
+                                </details></li> <!-- /解析的整数論 -->
+                                <li><details> <!-- 数論幾何学 -->
+                                    <summary><div class="link-container">
+                                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html" class="preview-link" data-title="数論幾何学" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="">数論幾何学</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">数論幾何学</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                        <li><a href="#">宇宙際タイヒミュラー理論</a></li>
+                                        <li><a href="#">数論力学</a></li>
+                                        <li><a href="https://ja.wikipedia.org/wiki/Category:%E3%83%87%E3%82%A3%E3%82%AA%E3%83%95%E3%82%A1%E3%83%B3%E3%83%88%E3%82%B9%E5%B9%BE%E4%BD%95%E5%AD%A6">ディオファントス幾何学</a></li>アラケロフ理論ボゴモロフ予想アラケロフ理論テイト予想モーデル・ヴェイユの定理
+                                        <li><a href="#">Complex multiplication of abelian varieties</a></li>
+                                        <li><a href="#">遠アーベル幾何学</a></li>Section conjecture
+                                        <li><a href="#">Néron–Ogg–Shafarevich基準</a></li>
+                                </details></li> <!-- /数論幾何学 -->
+                        </details></li> <!-- /数論 -->
+                        <li><details> <!-- 代数学 -->
+                            <summary><a href="#">代数学</a></summary>
+                            <li><a href="#">テンソル代数学</a></li>
+                            <li><details> <!-- 抽象代数学 -->
+                                    <summary><div class="link-container">
+                                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/science/mathematics/mathematics.html" class="preview-link" data-title="抽象代数学" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="">抽象代数学</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">抽象代数学</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                        <li><a href="#">ガロア理論</a></li>
+                                        <li><a href="#">群論</a></li>
+                                        <li><a href="#">環論</a></li>
+                                        <li><a href="#">代数幾何学</a></li>
+                                </details></li> <!-- /抽象代数学 -->
+                                <li><a href="#">普遍代数学</a></li>
+                        </details></li> <!-- /代数学 -->
+                        <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/socialScience.html">学際領域</a></li>
+                </details></li> <!-- /数学 -->
+                <li><details> <!-- 統計学 -->
+                    <summary><div class="link-container">
+                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="統計学" data-description="" data-image="">統計学</a>
+                        <div class="link-preview">
+                            <img class="preview-image">
+                            <h3 class="preview-title">統計学</h3>
+                            <p class="preview-description">AI時代にこそ数学は重要になる。数学の一覧から様々な記事を見てみよう</p>
+                        </div> <!-- link-preview -->
+                    </div></summary>
+                        <li><details> <!-- 人文科学 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">人文科学</a></summary>
+                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/ocelotl.html">芸術学</a></li>
+                                <li><a href="#">宗教学</a></li>
+                                <li><a href="#">言語学</a></li>
+                                <li><a href="#">哲学</a></li>
+                                <li><a href="#">心理学</a></li>
+                                <li><a href="#">人類学</a></li>
+                                <li><a href="#">考古学</a></li>
+                        </details></li> <!-- /人文科学 -->
+                        <li><details> <!-- 社会科学 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/socialScience/socialScience.html">社会科学</a></summary>
+                                <li><a href="#">社会学</a></li>
+                                <li><a href="#">文化学</a></li>
+                                <li><a href="#">地理学</a></li>
+                                <li><a href="#">歴史学</a></li>
+                                <li><a href="#">政治学</a></li>
+                                <li><a href="#">法学</a></li>
+                                <li><a href="#">犯罪学</a></li>
+                                <li><a href="#">経済学</a></li>
+                                <li><a href="#">経営学</a></li>
+                                <li><a href="#">教育学</a></li>
+                                <li><a href="#">人間科学</a></li>
+                        </details></li> <!-- /社会科学 -->
+                        <li><details> <!-- 形式科学 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/formal_science.html">形式科学</a></summary>
+                                <li><details> <!-- 数学 -->
+                                    <summary><div class="link-container">
+                                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html" class="preview-link" data-title="数学" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="">数学</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">数学</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                        <li><a href="#">数学基礎論</a></li>
+                                        <li><a href="#">代数学</a></li>
+                                        <li><a href="#">数論</a></li>
+                                        <li><a href="#">解析学</a></li>
+                                        <li><a href="#">幾何学</a></li>
+                                        <li><a href="#">離散数学</a></li>
+                                        <li><a href="#">確率論</a></li>
+                                        <li><a href="#">応用数学</a></li>
+                                </details></li> <!-- /数学 -->
+                                <li><a href="#">統計学</a></li>
+                        </details></li> <!-- /自然科学 -->
+                        <li><details> <!-- 自然科学 -->
+                            <summary><a href="#">自然科学</a></summary>
+                                <li><details> <!-- 物理学 -->
+                                    <summary><div class="link-container">
+                                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/science/mathematics/mathematics.html" class="preview-link" data-title="物理学" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="">物理学</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">物理学</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                        <li><a href="#">古典力学</a></li>
+                                        <li><a href="#">量子論</a></li>
+                                        <li><a href="#">超ひも理論</a></li>
+                                </details></li> <!-- /物理学 -->
+                                <li><a href="#">化学</a></li>
+                                <li><a href="#">生物学</a></li>
+                                <li><a href="#">地学</a></li>
+                                <li><a href="#">応用科学</a></li>
+                        </details></li> <!-- /自然科学 -->
+                        <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/socialScience.html">学際領域</a></li>
+                </details></li> <!-- /統計学 -->
 
 
 

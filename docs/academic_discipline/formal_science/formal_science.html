@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <title>形式科学 - ラクして数理研究所</title>
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="apple-touch-icon" />
+    <!-- SEO -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。">
+    <meta name="keywords" content="学問,数学,情報理論,形式科学,プログラミング,ラクして数理研究所,教育">
+    <link rel="canonical" href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" />
+    <!-- og -->
+    <meta property="og:type" content="website" /> <!-- articleとか -->
+    <meta property="og:title" content="形式科学｜ラクして数理研究所" />
+    <meta property="og:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" />
+    <meta property="og:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" />
+    <meta property="og:site_name" content="ラクして数理研究所" />
+    <link rel="dns-prefetch" href="//tatsuy-kobayashi.github.io/" /> <!-- HTTPSページのDNSプリフェッチはできない -->
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="形式科学｜ラクして数理研究所">
+    <meta name="twitter:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。">
+    <meta name="twitter:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html">
+    <meta name="twitter:image" content="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png">
+
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/special.css" />
+	<link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/style.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/search.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/commentary.css" />
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/include.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/drawer.js"></script>
+    <script>
+        // JavaScriptの厳格モード使用
+        'use strict';
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+      
+        /*gtag('config', 'トラッキングID');*/
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script nonce="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            TeX: { equationNumbers: { autoNumber: "AMS" } },
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ['\\[','\\]'] ],
+                processEscapes: true
+            },
+            "HTML-CSS": { mathFontHeight: false },
+            displayAlign: "left",
+            displayIndent: "2em"
+        });
+    </script>
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+</head>
+<body>
+<div id="wrapper">
+    <header></header>
+        <div class="content">
+            <div class="main">
+                <h1>形式科学</h1>
+                <h2>目次</h2>
+
+                <h2>AI時代の学問のすゝめ</h2>
+                <figure class="figure-quote">
+                <blockquote><p>「沈黙するか、沈黙よりも価値のあることを言うべきだ。無駄なことを言うくらいなら、真珠を無造作に投げる方がまだましだ。多くの言葉で少しを語るのではなく、少しの言葉で多くを語るが良い」──ピタゴラス</p></blockquote>
+                <figcaption>
+                    TRYON EDWARDS ──『<cite><a href="https://en.wikiquote.org/wiki/Pythagoras#:~:text=It%20is%20better,silent">A Dictionary of Thoughts: Being a Cyclopedia of Laconic Quotations from the Best Authors of the World, both Ancient and Modern</a></cite>』p. 525より。
+                </figcaption>
+                </figure>
+                <p>
+                    &emsp;口を開くなら少しでも価値のあることを述べよ、ということである。形式とは、内容の特殊性を<ruby>捨象<rp>（</rp><rt>しゃしょう</rt><rp>）</rp></ruby>して見出される事物間の関係そのものを指す。
+                </p>
+                <p>
+                    &emsp;となると今後はPCなどのデータの流れや論理回路を一つ一つ追いかけるタイプの人ではなく、高度に抽象化された道具を抽象的なまま扱えるようでないとダメだということだ。とは言うものの、具体的な構造が次元違いなため追いかけられないとしても、AIの理論面という抽象的な部分は他の学問と変わらない。そして、このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。。このページから様々な話題を構造的に見ていこう。
+                </p>
+                <h2>形式科学の一覧</h2>
+                <h3>数学</h3>
+                <h3>統計学</h3>
+
+
+
+
+
+
+            </div> <!-- /.main -->
+            <div class="annotation">
+                ページ注釈
+                <ol class="olAnnotation">
+                    <li id="note_1"><a href="#ref_1">^</a>
+                        オセロトル語<br>
+                        <ocelotl>
+                            !0123456789:;<=
+                            <br>
+                            ABCDEFGHIJKLMNO
+                            <br>
+                            PQTWXYacehimpqtxy
+                        </ocelotl>
+                    </li>
+                </ol>
+            </div> <!-- /annotation -->
+        </div> <!-- /content -->
+        <footer></footer>
+    </div> <!-- /wrapper -->
+    <nav id="nav"></nav>
+</body>
+</html>

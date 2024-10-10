@@ -32,35 +32,67 @@
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/search.css" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/commentary.css" />
     <style>
-        #ul {
+        .main details {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            font-family: 'Arial', sans-serif;
+            transition: background-color 0.3s ease;
+        }
+        .main summary {
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            padding: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .main details[open] {
+            background-color: #e6f7ff;
+        }
+        .main details > ul {
+            padding-left: 20px;
+        }
+        .main ul {
             list-style: none;
             padding: 0;
             margin: 0;
         }
 
-        #li {
+        .main li {
             padding-left: 10px; /* 基本のインデント */
+            list-style-type: none;
+        }
+        .main li a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+        .main li a:hover {
+            color: #1a73e8;
         }
 
-        #li > details > summary {
+        .main li > details > summary {
             padding-left: 0; /* 親要素（学問）にはインデントなし */
         }
 
-        #li details > li {
+        .main li details > li {
             padding-left: 10px; /* 第一階層：10pxのインデント */
         }
 
-        #li details li details > li {
+        .main li details li details > li {
             padding-left: 20px; /* 第二階層：さらに10pxのインデント */
         }
 
-        #li details li details li details > li {
+        .main li details li details li details > li {
             padding-left: 30px; /* 第三階層：さらに10pxのインデント */
         }
     </style>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/include.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/drawer.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/linkPreview.js"></script>
     <script>
         // JavaScriptの厳格モード使用
         'use strict';
@@ -93,6 +125,14 @@
     <header></header>
         <div class="content">
             <div class="main">
+                <span class="link-container">
+                    <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="学問" data-description="AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">学問</a>
+                    <div class="link-preview">
+                        <img class="preview-image" src="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" alt="Preview image">
+                        <h3 class="preview-title">学問</h3>
+                        <p class="preview-description">AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう</p>
+                    </div> <!-- /link-preview -->
+                </span> <!-- /link-preview -->&ensp;&gt;&ensp;形式科学
                 <h1>形式科学</h1>
                 <h2>目次</h2>
 
@@ -104,7 +144,16 @@
                 </figcaption>
                 </figure>
                 <p>
-                    &emsp;口を開くなら少しでも価値のあることを述べよ、ということである。形式とは、内容の特殊性を<ruby>捨象<rp>（</rp><rt>しゃしょう</rt><rp>）</rp></ruby>して見出される事物間の関係そのものを指す。
+                    &emsp;口を開くなら少しでも価値のあることを述べよ、ということである。形式とは、内容の特殊性を<ruby>捨象<rp>（</rp><rt>しゃしょう</rt><rp>）</rp></ruby>して見出される事物間の関係そのものを指す。上記のピタゴラが言ったとされる一節は充分に形式の何たるかを表しているが、この「形式」という概念自体が、哲学によって言葉として現れたのはカント
+                </p>
+                <p>
+                    &emsp;日本では、まだまだ「数学」や「統計学」を自然科学とは別に分類する習慣はないように思う。しかし、やはりこのサイトでは別ものとして扱わせてもらう。
+                </p>
+                <p>
+                    &emsp;自然科学と分類されるものは、ニュートン力学のようにどれだけ簡潔で確かそうなものであっても、ひとたび自然世界で反する事象が観測されれば、次点の理論に格下げされる。光が同媒質中で速度不変だなんて、空間が重力によって曲がるだなんて18世紀の人々からすれば知るはずも無い事情だろう。もちろん、こうやってより良い理論が新しく提唱されていくのは、歓迎すべきことだが、古い理論というのは次々に忘れ去られていく。今やアリストテレスの自然観など知っている人は殆どいないだろう。
+                </p>
+                <p>
+                    &emsp;一方で、形式科学の分野に関しては古い理論だから忘れ去られるというようなことは無い。
                 </p>
                 <h2>形式科学の一覧</h2>
                 <li><details> <!-- 数学 -->
@@ -117,7 +166,7 @@
                         </div> <!-- link-preview -->
                     </div></summary>
                         <li><details> <!-- 数学用語 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">人文科学</a></summary>
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/math_science.html">数学用語</a></summary>
                         </details></li> <!-- /数学用語 -->
                         <li><details> <!-- 数学基礎論 -->
                             <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/socialScience/socialScience.html">数学基礎論</a></summary>

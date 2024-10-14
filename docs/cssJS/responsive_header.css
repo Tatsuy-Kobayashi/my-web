@@ -19,7 +19,7 @@
 #responsive_header ul li {
     margin: 0 15px;
 }
-
+/*ok*/
 #responsive_header ul li a {
     color: white;
     text-decoration: none;
@@ -65,10 +65,9 @@
     display: block;
 }
 
-@media(min-width: 768px) {
+@media(min-width: 400px) {
     /* On larger screens, keep logo at the top and menu below */
     header .container {
-        flex-wrap: wrap; /* Wrap elements to stack them */
         justify-content: center;
     }
 

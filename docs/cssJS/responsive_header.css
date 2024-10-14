@@ -3,12 +3,10 @@
 .title-block {
     flex: 1 1 100%; /* Make sure the title block takes full width */
     text-align: center;
-    padding: 16px 0;
 }
 
 #responsive_header {
     flex: 1 1 100%; /* Ensure nav takes full width as well */
-    margin-top: 10px;
     padding: 0;
 }
 

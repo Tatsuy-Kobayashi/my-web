@@ -1,13 +1,24 @@
 /* Menu Styles */
+/* Title block and navigation adjustments */
+.title-block {
+    flex: 1 1 100%; /* Make sure the title block takes full width */
+    text-align: center;
+    padding: 16px 0;
+}
+
+#responsive_header {
+    flex: 1 1 100%; /* Ensure nav takes full width as well */
+    margin-top: 10px;
+    padding: 0;
+}
+
 #responsive_header ul {
     display: flex;
-    list-style: none;
+    justify-content: center; /* Center the menu items */
     padding: 0;
-    margin: 0;
 }
 
 #responsive_header ul li {
-    position: relative;
     margin: 0 15px;
 }
 
@@ -32,16 +43,13 @@
     padding: 0;
     list-style: none;
 }
-
 .submenu li {
     width: 150px;
 }
-
 .submenu li a {
     padding: 10px;
     border-bottom: 1px solid #114d60;
 }
-
 .submenu li a:hover {
     background-color: #0e3e4d;
 }
@@ -54,6 +62,7 @@
 /* Hamburger menu for small screens */
 .hamburger {
     display: block;
+    align-self: center;
     cursor: pointer;
 }
 
@@ -65,13 +74,20 @@
     display: block;
 }
 
-@media (min-width: 768px) {
+@media(min-width: 768px) {
+    /* On larger screens, keep logo at the top and menu below */
+    header .container {
+        flex-wrap: wrap; /* Wrap elements to stack them */
+        justify-content: center;
+    }
+
     .hamburger {
         display: none;
     }
 
     #responsive_header {
         display: block;
+        margin-top: 10px; /* Ensure nav appears below the title */
     }
 
     #responsive_header ul {

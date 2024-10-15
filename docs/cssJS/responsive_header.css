@@ -57,10 +57,6 @@
     display: block;
 }
 
-#responsive_header {
-    display: none;
-}
-
 .show #responsive_header {
     display: block;
 }
@@ -69,6 +65,10 @@
     /* On larger screens, keep logo at the top and menu below */
     header .container {
         justify-content: center;
+    }
+
+    #responsive_header {
+        display: none;
     }
 
     #responsive_header {

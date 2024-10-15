@@ -83,12 +83,4 @@
     #responsive_header ul {
         flex-direction: row;
     }
-
-    .submenu {
-        display: none;
-    }
-
-    #responsive_header ul li:hover .submenu {
-        display: block;
-    }
 }

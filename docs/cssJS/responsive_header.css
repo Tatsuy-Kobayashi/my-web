@@ -8,6 +8,7 @@
 #responsive_header {
     flex: 1 1 100%; /* Ensure nav takes full width as well */
     padding: 0;
+    display: block;
 }
 
 #responsive_header ul {
@@ -19,6 +20,7 @@
 #responsive_header ul li {
     position: relative;
     margin: 0 15px;
+    list-style-type: none;
 }
 /*ok*/
 #responsive_header ul li a {
@@ -58,29 +60,25 @@
     display: block;
 }
 
-#responsive_header {
-    display: none;
-}
-
-.sticky_header {
-    display: none;
-}
-
 .show #responsive_header {
     display: block;
 }
 
-@media(min-width: 500px) {
+#responsive_header ul {
+    flex-direction: row;
+}
+
+@media(max-width: 768px) {
     /* On larger screens, keep logo at the top and menu below */
     header .container {
         justify-content: center;
     }
 
     #responsive_header {
-        display: block;
+        display: none;
     }
-
-    #responsive_header ul {
-        flex-direction: row;
+    
+    .sticky_header {
+        display: none;
     }
 }

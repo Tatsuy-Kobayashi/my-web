@@ -36,6 +36,7 @@ header .container {
     min-height: 60px;
     padding-top: 0;
     padding-bottom: 0;
+    margin: auto;
     padding-left: 76px;
     background-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/icon.png);
     background-repeat: no-repeat;

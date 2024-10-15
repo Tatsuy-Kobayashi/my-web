@@ -43,6 +43,7 @@
     display: none;
     padding: 0;
     list-style: none;
+    z-index: 999;
 }
 .submenu li {
     width: 150px;

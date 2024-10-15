@@ -61,6 +61,10 @@
     display: none;
 }
 
+.sticky_header {
+    display: none;
+}
+
 .show #responsive_header {
     display: block;
 }

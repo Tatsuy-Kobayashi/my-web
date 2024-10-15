@@ -40,10 +40,9 @@
     top: 100%;
     left: 0;
     background-color: #000;
-    display: none;
+    display: none !important; /* 強制的に非表示にする */
     padding: 0;
     list-style: none;
-    z-index: 999;
 }
 .submenu li {
     width: 150px;
@@ -74,11 +73,9 @@
     header .container {
         justify-content: center;
     }
-
     #responsive_header {
         display: none;
     }
-    
     .sticky_header {
         display: none;
     }

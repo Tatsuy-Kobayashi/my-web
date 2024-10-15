@@ -16,20 +16,16 @@
     justify-content: center; /* Center the menu items */
     padding: 0;
 }
-
 #responsive_header ul li {
     position: relative;
-    margin: 0 15px;
     list-style-type: none;
 }
-/*ok*/
 #responsive_header ul li a {
     color: white;
     text-decoration: none;
     padding: 10px 15px;
     display: block;
 }
-
 #responsive_header ul li a:hover {
     background-color: #0e3e4d;
 }

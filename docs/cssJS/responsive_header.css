@@ -36,12 +36,13 @@
     top: 100%;
     left: 0;
     background-color: #000;
-    display: none !important; /* 強制的に非表示にする */
+    display: none; /* 強制的に非表示にする */
     padding: 0;
     list-style: none;
 }
 .submenu li {
     width: 150px;
+    display: none;
 }
 .submenu li a {
     padding: 10px;
@@ -52,7 +53,8 @@
 }
 
 /* Show submenu on hover */
-#responsive_header ul li:hover .submenu {
+#responsive_header ul li:hover .submenu,
+#responsive_header ul li:hover .submenu li {
     display: block;
 }
 

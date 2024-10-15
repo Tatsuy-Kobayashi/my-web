@@ -65,7 +65,7 @@
     display: block;
 }
 
-@media(min-width: 400px) {
+@media(min-width: 500px) {
     /* On larger screens, keep logo at the top and menu below */
     header .container {
         justify-content: center;

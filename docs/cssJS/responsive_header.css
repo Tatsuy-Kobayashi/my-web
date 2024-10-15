@@ -72,10 +72,6 @@
     }
 
     #responsive_header {
-        display: none;
-    }
-
-    #responsive_header {
         display: block;
     }
 

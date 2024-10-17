@@ -8,9 +8,9 @@ $(document).ready(function() {
             console.log("Checkbox clicked: ", $(this).prop('checked'));  // $(this).prop('checked') を使用
 
             if ($(this).prop('checked')) {
-                $header.addClass('sticky');
+                $header.addClass('sticky_header');
             } else {
-                $header.removeClass('sticky');
+                $header.removeClass('sticky_header');
             }
         });
     });

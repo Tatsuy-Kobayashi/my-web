@@ -159,7 +159,7 @@ a:hover {
 }
 
 /* 固定ヘッダー */
-.sticky {
+.sticky_header {
     position: sticky;   /* ヘッダーをページの固定位置にします */
     top: 0;            /* 画面の上端に固定します */
     left: 0;           /* 左端に位置させます */

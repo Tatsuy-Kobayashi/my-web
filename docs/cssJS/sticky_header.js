@@ -1,9 +1,20 @@
 $(document).ready(function() {
     const $stickyToggle = $("#stickyToggle");
     const $header = $("header");
-    console.log($stickyToggle);
 
-    if (!stickyToggle) {
+    if ($stickyToggle.length === 0) {
+        console.error("stickyToggle is not found in the DOM");
+    } else {
+        console.log("stickyToggle element found:", $stickyToggle);
+    }
+
+    if ($header.length === 0) {
+        console.error("header is not found in the DOM");
+    } else {
+        console.log("header element found:", $header);
+    }
+
+    if (!$stickyToggle) {
         return false;
     }
 

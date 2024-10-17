@@ -1,3 +1,203 @@
 <!DOCTYPE html>
 <html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <title>Home - ラクして数理研究所</title>
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="apple-touch-icon" />
+    <!-- SEO -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="ラクして数理研究所は、数学や物理学が好きで将来研究したいが、まだ専門書には太刀打ちできないという人をプログラミングで支えたい機関。">
+    <meta name="keywords" content="数学,情報理論,物理学,プログラミング,ラクして数理研究所,教育,TOP">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://tatsuy-kobayashi.github.io/my-web/docs/" />
+    <!-- og -->
+    <meta property="og:type" content="website" /> <!-- articleとか -->
+    <meta property="og:title" content="ラクして数理研究所のホームページ｜ラクして数理研究所" />
+    <meta property="og:description" content="ラクして数理研究所は、数学や物理学が好きで将来研究したいが、まだ専門書には太刀打ちできないという人をプログラミングで支えたい機関。" />
+    <meta property="og:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/" />
+    <meta property="og:site_name" content="ラクして数理研究所" />
+    <link rel="dns-prefetch" href="//tatsuy-kobayashi.github.io/" /> <!-- HTTPSページのDNSプリフェッチはできない -->
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ラクして数理研究所">
+    <meta name="twitter:description" content="ラクして数理研究所は、数学や物理学が好きで将来研究したいが、まだ専門書には太刀打ちできないという人をプログラミングで支えたい機関。">
+    <meta name="twitter:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/">
+    <meta name="twitter:image" content="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png">
 
+    <link rel="stylesheet" media="all" href="cssJS/special.css" />
+    <link rel="stylesheet" media="all" href="cssJS/style.css" />
+    <link rel="stylesheet" media="all" href="cssJS/search.css" />
+    <link rel="stylesheet" media="all" href="cssJS/responsive_header.css" />
+    <style>
+        .archive{
+            overflow-y: auto;
+            height: 400px;
+            width: 600px;
+            -webkit-overflow-scrolling: touch;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+        }
+        th, td {
+            vertical-align: middle;
+            padding: 20px;
+            border: 1px solid #000;
+            color: #000;
+            font-size: 14px;
+            text-align: center;
+            white-space: nowrap;
+        }
+        th {
+            background: #000;
+        }
+        td {
+            background: #fff;
+        }
+        @media (max-width: 768px) {
+            .archive {
+                width: 295px;
+            }
+            th, td {
+                padding: 10px;
+                font-size: 12px;
+            }
+        }
+        .sticky {
+            position: sticky;
+            top: 0;
+            left: 0;
+            border-top: none;
+        }
+        .sticky::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
+            background: #ccc;
+            z-index: -1;
+        }
+    </style>
+    <script type="text/javascript" src="cssJS/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="cssJS/include.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/drawer.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/linkPreview.js"></script>
+    <script>
+        // JavaScriptの厳格モード使用
+        'use strict';
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        /*gtag('config', 'トラッキングID');*/
+    </script>
+</head>
+<body>
+    <div id="wrapper">
+        <header></header>
+        <main>
+            <div class="container">
+                <section>
+                    <div class="key">
+                        <img src="key.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h1>コンセプト</h1>
+                        <p>数学や物理学が好きで将来研究したいが、<br>
+                        専門書に連敗中のあなた<br>
+                        Pythonと数学の専門知識を使って、着実に数理研究ができるように導きます</p>
+                    </div>
+                    <div class="archive">
+                        <table>
+                            <tr>
+                                <th class="sticky">アーカイブ</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/formal_science.html">形式科学<br>
+                                        -MOONLIGHT/LOSTROOM-</a>
+                                    <br>
+                                    2024/10/01
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/science_of_art/literary_arts/typemoon/fate/grand_order/story/moonlightlostroom/moonlightlostroom.html">Fate/Grand Order<br>
+                                        -MOONLIGHT/LOSTROOM-</a>
+                                    <br>
+                                    2024/10/01
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/elementary/elementary_math/previous_pra/enumerative_pra.html">かぞえあげれんしゅう</a>
+                                    <br>
+                                    2024/09/30
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/theory_of_functions/special_functions/hypergeometric_series/bessel_functions/a_treatise_on_the_theory_of_bessel_functions/preface.html">A Treatise on the Theory of Bessel Functions<br>
+                                    序文</a>
+                                    <br>
+                                    2024/09/29
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="link-container">
+                                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="学問" data-description="AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">学問</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image" src="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" alt="Preview image">
+                                            <h3 class="preview-title">学問</h3>
+                                            <p class="preview-description">AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう</p>
+                                        </div>
+                                    </div>
+                                    2024/09/28
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    第7節&emsp;銃、戦争、死別
+                                    <br>
+                                    2024/09/25
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    A Treatise on the Theory of Bessel Functions<br>
+                                    1.1. リッカチの微分方程式
+                                    <br>
+                                    2024/09/24
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Home - ラクして数理研究所
+                                    <br>
+                                    2024/09/17
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+            </div><!-- /.container -->
+            <br>
+            contents
+        </main>
+        <footer></footer>
+    </div>
+    <nav id="nav"></nav>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/cssJS/sticky_header.js"></script>
+</body>
+</html>

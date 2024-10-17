@@ -11,7 +11,7 @@ $(document).ready(function() {
         }
 
         // チェックボックスの状態に応じてクラスを追加・削除
-        $stickyToggle.on('change', function() {
+        $stickyToggle.on('click', function() {
             console.log("Checkbox clicked: ", $(this).prop('checked'));  // $(this).prop('checked') を使用
 
             if ($(this).prop('checked')) {

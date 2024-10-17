@@ -157,3 +157,14 @@ a:hover {
     word-wrap: break-word;
     white-space: pre-wrap; /* 改行も尊重 */
 }
+
+/* 固定ヘッダー */
+.sticky {
+    position: sticky;   /* ヘッダーをページの固定位置にします */
+    top: 0;            /* 画面の上端に固定します */
+    left: 0;           /* 左端に位置させます */
+    width: 100%;       /* ヘッダーの幅をページ全体に広げます */
+    z-index: 1000;     /* 他の要素よりも前に表示させるための順序を設定します */
+    background-color: #1aaedb; /* ヘッダーの背景色（透明防止のための指定） */
+    border-bottom: #ead963 6px solid; /* 下に6pxのボーダーを追加 */
+}

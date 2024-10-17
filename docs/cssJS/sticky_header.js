@@ -1,8 +1,12 @@
-var checkBox = document.getElementsById("stickyToggle")[0];
-if(checkBox.checked){
-    // ここにチェックボックスにチェックがあるときの処理を記述
-    alert("チェックボックスにチェックが入っています");
-}else{
-    // ここにチェックボックスにチェックがないときの処理を記述
-    alert("チェックボックスにチェックが入っていません");
-}
+document.addEventListener('DOMContentLoaded', function () {
+    const stickyToggle = document.getElementById("stickyToggle");
+    const header = document.querySelector("header");
+
+    stickyToggle.addEventListener('change', function () {
+        if (this.checked) {
+            header.classList.add('sticky');
+        } else {
+            header.classList.remove('sticky');
+        }
+    });
+});

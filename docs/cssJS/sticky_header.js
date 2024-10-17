@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('load', function(){
     const stickyToggle = document.getElementById("stickyToggle");
     const header = document.querySelector("header");
     console.log(stickyToggle);

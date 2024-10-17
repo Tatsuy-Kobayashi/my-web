@@ -1,17 +1,19 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const stickyToggle = document.getElementById("stickyToggle");
-    const header = document.querySelector("header");
-    console.log(stickyToggle);
+$(document).ready(function() {
+    const $stickyToggle = $("#stickyToggle");
+    const $header = $("header");
+    console.log($stickyToggle);
 
     if (!stickyToggle) {
         return false;
     }
 
-    stickyToggle.addEventListener('click', function () {
+    $stickyToggle.on('change', function() {
+        console.log("Checkbox clicked: ", this.checked);
+
         if (this.checked) {
-            header.classList.add('sticky');
+            $header.addClass('sticky');
         } else {
-            header.classList.remove('sticky');
+            $header.removeClass('sticky');
         }
     });
 });

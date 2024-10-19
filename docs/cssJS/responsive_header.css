@@ -36,9 +36,12 @@
     top: 100%;
     left: 0;
     background-color: #000;
-    display: none; /* 強制的に非表示にする */
+    display: none;
     padding: 0;
     list-style: none;
+}
+.submenu table {
+    display: none;
 }
 .submenu li {
     width: 150px;
@@ -54,7 +57,8 @@
 
 /* Show submenu on hover */
 #responsive_header ul li:hover .submenu,
-#responsive_header ul li:hover .submenu li {
+#responsive_header ul li:hover .submenu li,
+#responsive_header ul li:hover .submenu table {
     display: block;
 }
 

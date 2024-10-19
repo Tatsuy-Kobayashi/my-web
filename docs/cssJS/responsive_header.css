@@ -28,6 +28,8 @@
 }
 #responsive_header ul li a:hover {
     background-color: #0e3e4d;
+    border-radius: 10px;
+    text-shadow: 0px 0px 10px cyan, 0px 0px 20px cyan, 0px 0px 40px cyan, 0px 0px 80px cyan;
 }
 
 /* Submenu Styles */
@@ -68,6 +70,21 @@
 
 #responsive_header ul {
     flex-direction: row;
+}
+
+.stickyHeader span {
+    display: inline-flex; /* アイテムを横並びに */
+    margin: 25px 10px 10px 10px;
+}
+
+.stickyHeader input {
+    vertical-align: middle;  /* チェックボックスを中央揃え */
+    transform: scale(1.5);
+    margin-right: 8px;       /* アイコンとの間に余白を追加 */
+}
+
+.stickyHeader i {
+    vertical-align: middle;  /* アイコンも中央揃え */
 }
 
 @media(max-width: 768px) {

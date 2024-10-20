@@ -130,7 +130,7 @@ a:hover {
     padding: 10px;
     display: none;
     z-index: 9999;
-    
+
     /* 最大の高さを設定して、スクロールできるようにする */
     max-height: 200px;
     overflow-y: auto;

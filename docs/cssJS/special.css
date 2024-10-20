@@ -79,11 +79,8 @@ header .container {
 main .container {
     padding: 0;
 }
-.key {
-    width: 100%;
-}
 .archive {
-    margin: 40px 0 0 10px;
+    margin: 40px 0 0 20px;
 }
 .archive-box {
     margin: 0 auto;

@@ -34,6 +34,7 @@
     <link rel="stylesheet" media="all" href="cssJS/search.css" />
     <!-- ヘッダー部のサブメニューをプルダウンで表示させる -->
     <link rel="stylesheet" media="all" href="cssJS/responsive_header.css" />
+    <link rel="stylesheet" media="all" href="cssJS/show_window.css" />
     <style>
         .archive{
             overflow-y: auto;
@@ -114,7 +115,7 @@
                                 <div class="content">
                                     <div class="name">数学</div>
                                     <div class="description_window">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</div>
-                                    <button>もっと見る</button>
+                                    <button onclick="location.href='https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html'">もっと見る</button>
                                 </div>
                             </div>
                             <div class="item" style="background-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/IMG_7547.jpg);">
@@ -124,13 +125,18 @@
                                     <button>もっと見る</button>
                                 </div>
                             </div>
-                            <div class="item" style="background-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/IMG_275.jpg);">
+                            <div class="item" style="background-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/IMG_275.png);">
                                 <div class="content">
                                     <div class="name">分割関数</div>
                                     <div class="description_window">複素関数が整数値を取りある数列を示す。</div>
                                     <button>もっと見る</button>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="button_slide">
+                            <button class="prev"><i class="fa fa-solid fa-arrow-left"></i></button>
+                            <button class="next"><i class="fa fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
                     <div class="content">
@@ -219,5 +225,6 @@
         <footer></footer>
     </div>
     <nav id="nav"></nav>
+    <script type="text/javascript" src="cssJS/slide_window.js"></script>
 </body>
 </html>

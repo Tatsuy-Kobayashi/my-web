@@ -29,16 +29,16 @@
     height: 100%;
 }
 .slide .item:nth-child(3) {
-    left: 50%;
+    left: 65%;
 }
 .slide .item:nth-child(4) {
-    left: calc(50% + 210px);
+    left: calc(65% + 210px);
 }
 .slide .item:nth-child(5) {
-    left: calc(50% + 430px);
+    left: calc(65% + 430px);
 }
 .slide .item:nth-child(n + 6) {
-    left: calc(50% + 650px);
+    left: calc(65% + 650px);
     opacity: 0;
 }
 

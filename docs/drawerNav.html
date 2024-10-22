@@ -7,9 +7,10 @@
     /* メニュークリック時に表示するリンク一覧の背景 */
     #nav {
         list-style: none;
-        position: absolute;
+        position: fixed;
+        left: -270px; /* 初期状態は隠れる */
         width: 270;
-        height: 100%;
+        height: 100vh;
         top: 0;
         padding: 24px 24px 0 24px;
         overflow-y: auto; /* Enable vertical scrolling */
@@ -17,16 +18,14 @@
         background: var(--background-navbar);
         color: white;
         scrollbar-width: none; /* Firefox */
-        transition: 0.3s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1s;
+        transition: left 0.3s ease;
         transform: scaleY(0);
         transform-origin: top;
     }
 
     /* ボタンクリックでメニュー一覧を表示する　*/
-    .menu-btn:checked ~ #nav {
-        transform: scaleY(1);
-        transform-origin: top;
-        transition: 0.3s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1s;
+    #nav.active {
+        left: 0; /* activeクラスが付与されたときに表示 */
     }
 
     /* ハンバーガーメニュー内のテキスト */
@@ -132,7 +131,7 @@
 
 
     /* ドロワーメニュー */
-    #drawerNav {
+    #nav {
         background-color: #333;
         color: #fff;
         height: 100vh;
@@ -144,21 +143,21 @@
         padding-top: 60px;
     }
 
-    #drawerNav ul {
+    #nav ul {
         padding: 0;
         margin: 0;
     }
 
-    #drawerNav li {
+    #nav li {
         padding: 15px;
     }
 
-    #drawerNav li a {
+    #nav li a {
         color: #fff;
         text-decoration: none;
     }
 
-    .menu-btn:checked ~ #drawerNav {
+    .menu-btn:checked ~ #nav {
         left: 0; /* メニューが表示される */
     }
 

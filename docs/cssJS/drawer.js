@@ -1,9 +1,14 @@
-document.getElementById('menu-btn').addEventListener('click', function() {
-    // ハンバーガーメニューの表示・非表示を制御
-    const drawerNav = document.getElementById('drawerNav');
-    if (this.checked) {
-        drawerNav.style.left = '0'; // 表示
-    } else {
-        drawerNav.style.left = '-250px'; // 隠す
-    }
+$(document).ready(function() {
+    // header.htmlを読み込む
+    $('header').load('header.html', function() {
+        // ハンバーガーメニューのトグル機能
+        $('#menu-btn').on('click', function() {
+            $('#nav').toggleClass('active'); // メニューを開閉
+        });
+    });
+
+    // drawerNav.htmlを読み込む
+    $('#nav').load('drawerNav.html', function() {
+        console.log('drawerNav.htmlが読み込まれました');
+    });
 });

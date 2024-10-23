@@ -9,18 +9,16 @@
         list-style: none;
         position: fixed;
         left: -270px; /* 初期状態は隠れる */
-        width: 270;
+        width: 270px;
         height: 100vh;
         top: 0;
         padding: 24px 24px 0 24px;
         overflow-y: auto; /* Enable vertical scrolling */
-        clear: both;
         background: var(--background-navbar);
         color: white;
         scrollbar-width: none; /* Firefox */
         transition: left 0.3s ease;
-        transform: scaleY(0);
-        transform-origin: top;
+        z-index: 1000;
     }
 
     /* ボタンクリックでメニュー一覧を表示する　*/

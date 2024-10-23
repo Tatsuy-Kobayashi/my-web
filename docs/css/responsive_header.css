@@ -41,6 +41,7 @@
     display: none;
     padding: 0;
     list-style: none;
+    z-index: 401;
 }
 .submenu table {
     display: none;

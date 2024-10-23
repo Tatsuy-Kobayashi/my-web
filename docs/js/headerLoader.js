@@ -19,24 +19,27 @@ $(document).ready(function() {
     $.when(loadHeader, loadDrawer).done(function() {
         console.log("すべての読み込みが完了しました");
 
-        // ハンバーガーメニューのトグル機能
-        $('#menu-btn').on('click', function() {
-            console.log('ハンバーガーメニューが押されました');
-            $('#nav').toggleClass('active'); // メニューを開閉
-        });
+        // DOMの描画が完了した後に少し遅れてイベントをバインドする
+        setTimeout(function() {
+            // ハンバーガーメニューのトグル機能
+            $('#menu-btn').on('click', function() {
+                console.log('ハンバーガーメニューが押されました');
+                $('#nav').toggleClass('active'); // メニューを開閉
+            });
 
-        // sticky headerの処理
-        const $header = $("header");
-        $(document).on('click', '#stickyToggle', function() {
-            if ($(this).prop('checked')) {
-                $header.addClass('sticky_header');
-            } else {
-                $header.removeClass('sticky_header');
-            }
-        });
+            // sticky headerの処理
+            const $header = $("header");
+            $(document).on('click', '#stickyToggle', function() {
+                if ($(this).prop('checked')) {
+                    $header.addClass('sticky_header');
+                } else {
+                    $header.removeClass('sticky_header');
+                }
+            });
 
-        // 画面幅に応じた表示/非表示の処理
-        handleStickyHeaderVisibility();
+            // 画面幅に応じた表示/非表示の処理
+            handleStickyHeaderVisibility();
+        }, 100); // 100ms遅延してイベントをバインド
     });
 
     // 画面の横幅を取得

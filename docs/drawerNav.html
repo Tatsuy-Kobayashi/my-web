@@ -5,7 +5,7 @@
     }
 
     /* メニュークリック時に表示するリンク一覧の背景 */
-    #nav {
+    #nav, #nav_container {
         list-style: none;
         position: fixed;
         left: -290px; /* 初期状態は隠れる */
@@ -22,7 +22,7 @@
     }
 
     /* ボタンクリックでメニュー一覧を表示する　*/
-    #nav.active {
+    #nav.active, #nav_container.active {
         left: 0; /* activeクラスが付与されたときに表示 */
     }
 
@@ -185,7 +185,7 @@
         padding-left: 30px; /* 第三階層：さらに10pxのインデント */
     }
 </style>
-<nav id="nav">
+<nav id="nav_container">
     <div class="logo"><img src="logo.svg" alt=""></div>
     <ul>
         <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/">Home</a></li>

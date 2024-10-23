@@ -25,6 +25,7 @@ $(document).ready(function() {
             $('#menu-btn').on('click', function() {
                 console.log('ハンバーガーメニューが押されました');
                 $('#nav').toggleClass('active'); // メニューを開閉
+                $('#nav_container').toggleClass('active'); // メニューを開閉
             });
 
             // sticky headerの処理

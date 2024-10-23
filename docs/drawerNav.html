@@ -5,7 +5,7 @@
     }
 
     /* メニュークリック時に表示するリンク一覧の背景 */
-    #nav, #nav_container {
+    #nav {
         list-style: none;
         position: fixed;
         left: -290px; /* 初期状態は隠れる */
@@ -19,6 +19,10 @@
         scrollbar-width: none; /* Firefox */
         transition: left 0.3s ease;
         z-index: 500;
+    }
+
+    #nav_container {
+        left: -290px; /* 初期状態は隠れる */
     }
 
     /* ボタンクリックでメニュー一覧を表示する　*/

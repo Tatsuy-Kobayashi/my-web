@@ -5,25 +5,21 @@ $(document).ready(function() {
 
     // header.htmlを読み込む
     $("header").load("header.html", function() {
-        console.log("header.htmlが読み込まれました");
         loadHeader.resolve(); // headerの読み込みが完了
     });
 
     // drawerNav.htmlを読み込む
     $('#nav').load('drawerNav.html', function() {
-        console.log("drawerNav.htmlが読み込まれました");
         loadDrawer.resolve(); // drawerNavの読み込みが完了
     });
 
     // 両方の読み込みが完了した後に実行する
     $.when(loadHeader, loadDrawer).done(function() {
-        console.log("すべての読み込みが完了しました");
 
         // DOMの描画が完了した後に少し遅れてイベントをバインドする
         setTimeout(function() {
             // ハンバーガーメニューのトグル機能
             $('#menu-btn').on('click', function() {
-                console.log('ハンバーガーメニューが押されました');
                 $('#nav').toggleClass('active'); // メニューを開閉
                 $('#nav_container').toggleClass('active'); // メニューを開閉
             });

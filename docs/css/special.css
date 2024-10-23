@@ -11,23 +11,7 @@ img {
 /* ===== 機能の実装に必要なCSS ===== */
 
 /* ドロワーナビゲーションの必須スタイル */
-#nav {
-    position: fixed;
-    left: -270px;
-    top: 0;
-    width: 270px;
-    height: 100%;
-}
 
-/* ドロワーが開かれたときのスタイル */
-.show {
-    transform: translate3d(270px, 0, 0);
-}
-
-/* 開く・閉じるアニメーション */
-#wrapper, #nav {
-    transition: transform 0.3s;
-}
 
 /* ===== ヘッダーにボタンを配置 ===== */
 .header {
@@ -39,13 +23,6 @@ header .container {
 }
 .title-block {
     flex: 1 1 auto;
-}
-.hamburger {
-    flex: 0 0 32px;
-    align-self: center;
-    margin: 0 1px 0 1px;
-    text-align: center;
-    color: #fff;
 }
 
 /* ===== 装飾的なCSS ===== */

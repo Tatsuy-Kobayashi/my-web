@@ -3,6 +3,7 @@ $(document).ready(function() {
     $('header').load('header.html', function() {
         // ハンバーガーメニューのトグル機能
         $('#menu-btn').on('click', function() {
+            console.log('ハンバーガーメニューが押されました');
             $('#nav').toggleClass('active'); // メニューを開閉
         });
     });

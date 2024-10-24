@@ -54,7 +54,7 @@
     .menu-icon {
         display: inline-block;
         position: relative;
-        top: 4S5px;
+        top: 45px;
         cursor: pointer;
         padding: 14px 14px;
         -webkit-tap-highlight-color: #fff;
@@ -175,10 +175,9 @@
         width: 65px;
         height: 45px;
         cursor: pointer;
-        margin: 60px auto;
     }
 
-    .menu-link {
+    .menu-close {
         width: 100%;
         height: 100%;
     }
@@ -270,9 +269,10 @@
 </style>
 <nav id="nav_container">
     <div class="menu-link-wrapper">
-        <div class="menu-link">
-          <span class="menu-close"></span>
-        </div>
+        <input type="checkbox" id="menu-btn" class="menu-btn">
+        <label for="menu-btn" class="menu-close">
+            <span class="lines"></span>
+        </label>
     </div>
     <div class="logo"><img src="logo.svg" alt=""></div>
     <ul>

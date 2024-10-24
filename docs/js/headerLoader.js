@@ -26,8 +26,8 @@ $(document).ready(function() {
 
             // drawerNavのメニュー開閉処理
             $('#drawer-menu-btn').on('click', function() {
-                $('#nav').toggleClass('active');
                 $('.lines').toggleClass('menu-trigger-open');
+                $('#nav').toggleClass('active');
                 $('#nav_container').toggleClass('active');
             });
 

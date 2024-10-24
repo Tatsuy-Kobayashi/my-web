@@ -19,9 +19,16 @@ $(document).ready(function() {
         // DOMの描画が完了した後に少し遅れてイベントをバインドする
         setTimeout(function() {
             // ハンバーガーメニューのトグル機能
-            $('#menu-btn').on('click', function() {
+            $('#header-menu-btn').on('click', function() {
                 $('#nav').toggleClass('active'); // メニューを開閉
                 $('#nav_container').toggleClass('active'); // メニューを開閉
+            });
+
+            // drawerNavのメニュー開閉処理
+            $('#drawer-menu-btn').on('click', function() {
+                $('#nav').toggleClass('active');
+                $('.menu-link-wrapper .menu-link').toggleClass('menu-trigger-open');
+                $('#nav_container').toggleClass('active');
             });
 
             // sticky headerの処理

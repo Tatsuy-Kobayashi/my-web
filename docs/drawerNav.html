@@ -222,23 +222,23 @@
         top: 10px;
     }
 
-    .menu-trigger-open .lines {
+    .menu-trigger-open {
         transition: background 0.2s ease 0s;
     }
 
-    .menu-trigger-open .lines:before,
-    .menu-trigger-open .lines:after {
+    .menu-trigger-open:before,
+    .menu-trigger-open:after {
         transition: top 0.2s ease 0s, width 0.2s ease 0.2s, transform 0.2s ease 0.4s;
         top: 0;
         width: 50%;
         }
 
-    .menu-trigger-open .lines:before {
-        transform: rotate3d(0, 0, 1, 45deg) !important;
+    .menu-trigger-open:before {
+        transform: rotate3d(0, 0, 1, 45deg);
     }
 
-    .menu-trigger-open .lines:after {
-        transform: rotate3d(0, 0, 1, -45deg) !important;
+    .menu-trigger-open:after {
+        transform: rotate3d(0, 0, 1, -45deg);
     }
 </style>
 <nav id="nav_container">

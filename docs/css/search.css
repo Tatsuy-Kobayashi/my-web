@@ -1,22 +1,22 @@
 /************************************
 ** サーチフォーム（Search Form）
 ************************************/
-#searchform{
-  position: relative;
-  margin-top: 25px;
+#searchform {
+    position: relative;
+    margin-top: 25px;
 }
 
-#s{
-  width: 100%;
-  margin-bottom:20px;
-  padding-top:4px;
-  padding-bottom:4px;
-  box-sizing: border-box;
-  height:32px;
-  color: #333;
+#s {
+    width: 100%;
+    margin-bottom:20px;
+    padding-top:4px;
+    padding-bottom:4px;
+    box-sizing: border-box;
+    height:32px;
+    color: #333;
 }
 
-#searchsubmit{
+#searchsubmit {
   position: absolute;
   width: 30px;
   height: 26px;
@@ -57,17 +57,17 @@ textarea {
 
 input#author,
 input#email,
-input#url{
+input#url {
   max-width: 360px;
 }
 
-.gsc-search-box input[type="text"]{
+.gsc-search-box input[type="text"] {
   background-color:#FFF;
   border-radius: 0px;
 }
 
 #comment-area input[type="text"],
-#comment-area textarea{
+#comment-area textarea {
   display: block;
 }
 
@@ -118,6 +118,6 @@ input[type="button"]:hover {
 
 }
 
-select, option{
+select, option {
   padding: 5px;
 }

@@ -20,6 +20,7 @@ $(document).ready(function() {
         setTimeout(function() {
             // ハンバーガーメニューのトグル機能
             $('#header-menu-btn').on('click', function() {
+                $('.lines').toggleClass('menu-trigger-open');
                 $('#nav').toggleClass('active'); // メニューを開閉
                 $('#nav_container').toggleClass('active'); // メニューを開閉
             });

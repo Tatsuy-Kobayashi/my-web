@@ -76,6 +76,7 @@
 .stickyHeader span {
     display: inline-flex; /* アイテムを横並びに */
     margin: 25px 10px 10px 10px;
+    cursor: pointer;
 }
 
 .stickyHeader input {

@@ -20,14 +20,16 @@ $(document).ready(function() {
         setTimeout(function() {
             // ハンバーガーメニューのトグル機能
             $('#header-menu-btn').on('click', function() {
-                $('.lines').toggleClass('menu-trigger-open');
+                $('.navicon').toggleClass('menu-trigger-open'); // 新しいクラスを適用
+                $('.lines').toggleClass('menu-trigger-close');
                 $('#nav').toggleClass('active'); // メニューを開閉
                 $('#nav_container').toggleClass('active'); // メニューを開閉
             });
 
             // drawerNavのメニュー開閉処理
             $('#drawer-menu-btn').on('click', function() {
-                $('.lines').toggleClass('menu-trigger-open');
+                $('.lines').toggleClass('menu-trigger-close');
+                $('.navicon').toggleClass('menu-trigger-open'); // 新しいクラスを適用
                 $('#nav').toggleClass('active');
                 $('#nav_container').toggleClass('active');
             });

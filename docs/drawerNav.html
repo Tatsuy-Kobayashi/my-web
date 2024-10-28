@@ -17,12 +17,13 @@
         background: var(--background-navbar);
         color: white;
         scrollbar-width: none; /* Firefox */
-        transition: left 1.0s ease;
+        transition: left 1.0s ease 0.5s;
         z-index: 500;
     }
 
     #nav_container {
         left: -270px; /* 初期状態は隠れる */
+        transition: left 1.0s ease 0.5s;
     }
 
     /* ボタンクリックでメニュー一覧を表示する　*/
@@ -93,34 +94,54 @@
         bottom: 9px;
     }
 
-    /* ハンバーガーメニュー開閉アニメーション */
+    /* ハンバーガーメニュー開閉アニメーション *//*
     .menu-btn:checked ~ .menu-icon .navicon {
         background-color: transparent;
-    }
+    }*/
 
-    /* 上側の線のアニメーション */
+    /* 上側の線のアニメーション *//*
     .menu-btn:checked ~ .menu-icon .navicon:before {
         transform: rotate(-45deg);
-    }
+    }*/
 
-    /* 下側の線のアニメーション */
+    /* 下側の線のアニメーション *//*
     .menu-btn:checked ~ .menu-icon .navicon:after {
         transform: rotate(45deg);
-    }
+    }*/
 
 
-    /* メニュークリック時の上下の線の位置 */
+    /* メニュークリック時の上下の線の位置 *//*
     .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before {
         top: 0;
     }
     .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
         bottom: 0;
-    }
+    }*/
 
-    /* メニュークリック時の真ん中の線（透明にする） */
+    /* メニュークリック時の真ん中の線（透明にする） *//*
     .menu-btn:checked ~ .menu-icon .navicon {
         background: rgba(0, 0, 0, 0);
         transition: 0.3s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1s;
+    }*/
+
+    /* ハンバーガーメニュー開閉アニメーション */
+    .menu-trigger-open .navicon {
+        background-color: transparent;
+    }
+
+    .menu-trigger-open .navicon:before {
+        transform: rotate(-45deg);
+        top: 0;
+    }
+
+    .menu-trigger-open .navicon:after {
+        transform: rotate(45deg);
+        bottom: 0;
+    }
+
+    /* メニュー開閉時の中央の線（透明にする） */
+    .menu-trigger-open .navicon {
+        background: rgba(0, 0, 0, 0);
     }
 
     /*********ここまで**********/
@@ -182,7 +203,9 @@
         display: inline-block;
         position: relative;
         cursor: pointer;
+        margin: 140px;
         padding: 14px 60px 30px 0;
+        right: 0px;
         -webkit-tap-highlight-color: #fff;
     }
 
@@ -222,28 +245,28 @@
         top: 10px;
     }
 
-    .menu-trigger-open {
+    .menu-trigger-close {
         transition: background 0.2s ease 0s;
     }
 
-    .menu-trigger-open:before,
-    .menu-trigger-open:after {
+    .menu-trigger-close:before,
+    .menu-trigger-close:after {
         transition: top 0.2s ease 0s, width 0.2s ease 0.2s, transform 0.2s ease 0.4s;
         top: 0;
         width: 50%;
         }
 
-    .menu-trigger-open:before {
+    .menu-trigger-close:before {
         transform: rotate3d(0, 0, 1, 45deg);
     }
 
-    .menu-trigger-open:after {
+    .menu-trigger-close:after {
         transform: rotate3d(0, 0, 1, -45deg);
     }
 </style>
 <nav id="nav_container">
     <input type="checkbox" id="drawer-menu-btn" class="menu-btn">
-    <label for="drawer-menu-btn" class="menu-close"><span class="lines menu-trigger-open"></span></label>
+    <label for="drawer-menu-btn" class="menu-close"><span class="lines menu-trigger-close"></span></label>
     <div class="logo"><img src="logo.svg" alt=""></div>
     <ul>
         <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/">Home</a></li>

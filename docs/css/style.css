@@ -19,7 +19,7 @@ body {
 .container {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 16px;
+    padding: 8px;
 }
 @media (min-width: 768px) {
     .container {
@@ -37,7 +37,7 @@ header .container {
     padding-left: 76px;
     background-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/icon.png);
     background-repeat: no-repeat;
-    background-size: 55px;
+    background-size: 85px;
     background-position: 0 0;
 }
 @media (min-width: 768px) {

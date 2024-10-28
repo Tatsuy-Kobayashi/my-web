@@ -25,7 +25,6 @@ body {
     .container {
         max-width: 1000px;
         margin: 0 auto;
-        padding: 30px;
     }
 }
 header {
@@ -45,8 +44,7 @@ header .container {
     header .container {
         min-height: 100px;
         padding-left: 120px;
-        background-size: 80px;
-        background-position: 30px 20px;
+        background-size: 110px;
     }
 }
 header .container h1,

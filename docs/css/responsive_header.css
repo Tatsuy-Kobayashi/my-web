@@ -83,10 +83,12 @@
     vertical-align: middle;  /* チェックボックスを中央揃え */
     transform: scale(1.5);
     margin-right: 8px;       /* アイコンとの間に余白を追加 */
+    cursor: pointer;
 }
 
 .stickyHeader i {
     vertical-align: middle;  /* アイコンも中央揃え */
+    cursor: pointer;
 }
 
 @media(max-width: 768px) {

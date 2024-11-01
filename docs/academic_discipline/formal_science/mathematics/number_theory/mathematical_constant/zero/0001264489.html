@@ -3,7 +3,7 @@
 <head prefix="og: http://ogp.me/ns#">
     <meta charset="UTF-8">
     <meta name="format-detection" content="telephone=no">
-    <title>0 - ラクして数理研究所</title>
+    <title>数学定数 - ラクして数理研究所</title>
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="icon" />
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="icon" />
@@ -15,14 +15,14 @@
     <link rel="canonical" href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" />
     <!-- og -->
     <meta property="og:type" content="website" /> <!-- articleとか -->
-    <meta property="og:title" content="0｜ラクして数理研究所" />
+    <meta property="og:title" content="数学定数｜ラクして数理研究所" />
     <meta property="og:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" />
     <meta property="og:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" />
     <meta property="og:site_name" content="ラクして数理研究所" />
     <link rel="dns-prefetch" href="//tatsuy-kobayashi.github.io/" /> <!-- HTTPSページのDNSプリフェッチはできない -->
     <!-- twitter card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="0｜ラクして数理研究所">
+    <meta name="twitter:title" content="数学定数｜ラクして数理研究所">
     <meta name="twitter:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。">
     <meta name="twitter:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html">
     <meta name="twitter:image" content="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png">
@@ -106,47 +106,54 @@
                     </span> <!-- /link-preview -->&ensp;&gt;&ensp;
                     数学定数
                 </div>
-                <h1>0</h1>
+                <h1>近似値と円周率の誤差$22/7 - \pi$</h1>
                 <h2>目次</h2>
-                <h2>歴史</h2>
+                <h2>概要</h2>
                 <p>
-                    &emsp;おそらく$0$の全てをここで語りきることはできないであろうことを初めに断っておく。
+                    &emsp;円周率の計算式は数あれど、近似値としてよく知られる値と円周率の差が斯くも興味深い式で表せるとは。特に右辺の対称性がおもしろい。
                 </p>
-                <p>
-                    &emsp;よくヨーロッパには0の輸入まで位取り記数法が無かったと言われるが、実際には古代ギリシア人の科学者はバビロニアから伝わった零と六十進法を用いて計算していた<sup id="ref_1"><a href="#note_1">[1]</a></sup>。もちろん日常にはギリシア数字やローマ数字など各文化圏の記数法を用いていたが。そんな中、インドでは4世紀頃からバクシャーリー写本などで0を数として扱っていた。12世紀、インド数字がアラブの数学者により洗練化され、現代のアラビア数字による記数法が整備される。その後、アラビア数字による数記法がアラブ地域を通じてヨーロッパへと到達する。
-                </p>
-                <h2>数学基礎論</h2>
-                <p>
-                    &emsp;$0$は空集合のカーディナル数、ゆえに最小のカーディナル数。この性質は整数を構成するのに役に立つ。だからコンウェイは、左側も右側も空集合である $(\ |\ )$ という記号でゼロを表したのである。
-                </p>
-                <p>
-                    &emsp;最小の順序数。
-                </p>
-                <h2>代数学</h2>
-                <p>
-                    &emsp;ゼロだけからなる集合 $\{\ 0\ \}$ は加法に関して群をなす。これは最小の群であり、位数 $1$ の群はみなこの群に同型である。
-                </p>
-                <p>
-                    &emsp;$\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{R}$, $\mathbb{C}$などでの加法単位元。しかし、$0$を自然数と見做すかは、文化や習慣、利便性による。また、乗法に関する吸収元。零元。
-                </p>
-                <p>
-                    &emsp;正でも負でも素数でも合成数でも単数でもない唯一の実数。一方、$0$ は偶数である。
-                </p>
-                <h2>数論</h2>
-                <p>
-                    &emsp;どの数もゼロをかけるとゼロになる。だから全ての整数の唯一の公倍数である。
-                </p>
-                <p>
-                    &emsp;どの$p$に対しても、三次形式$3x^{3} + 4y^{3} + 5z^{3}$は、$p$進数体$Q_{p}$で$0$を表す。つまり、どの$p$に対しても、$3x^{3} + 4y^{3} + 5z^{3} = 0$は$p$を法として非自明な解をもつ。しかし、整数としては自明な解しかない。この例はセルメによる。同様に、変数の数が$11$以上であるどの三次形式も、$p$進数体では$0$を表すことは分かっている。
-                </p>
+                \[
+                    \frac{22}{7} - \pi = \int_{0}^{1} \frac{x^{4}(1 - x)^{4}}{1 + x^{2}} dx
+                \]
+                <style>
+                    table .code .row {
+                        background-color: #eee;
+                        width: 20px;
+                    }
+                    table .code .editor {
+                        background-color: #f7f7f7;
+                    }
+                </style>
+                <table>
+                    <tr>
+                        <td colspan="2">sample.ipynb</td>
+                    </tr>
+                    <tr class="code">
+                        <td class="row">1<br>2<br>3<br>4<br>5<br>6<br>7</td>
+                        <td class="editor">
+                            import numpy as np<br>
+                            import scipy<br>
+                            <br>
+                            # 円周率と近似値の誤差<br>
+                            result, err = scipy.integrate.quad(lambda x: ((x ** 4) * (1 - x) ** 4) / (1 + x ** 2), 0, 1)<br>
+                            print(f"積分 {result}")<br>
+                            print(f"22/7 - π {22 / 7 - np.pi}")<br>
+                        </td>
+                    </tr>
+                    <tr class="display">
+                        <td></td>
+                        <td>
+                            積分 0.0012644892673496185<br>
+                            22/7-π 0.0012644892673496777
+                        </td>
+                    </tr>
+                </table>
             </div> <!-- /.main -->
             <div class="annotation">
                 ページ注釈
                 <ol class="olAnnotation">
                     <li id="note_1"><a href="#ref_1">^</a>
-                        <a href="https://www.kinokuniya.co.jp/f/dsg-01-9784150503499">異端の数ゼロ―数学・物理学が恐れるもっとも危険な概念</a>
-                        <br>
-                        サイフェ, チャールズC, Seife, 林 大, ハヤカワ文庫
+                        注釈
                     </li>
                 </ol>
             </div> <!-- /annotation -->

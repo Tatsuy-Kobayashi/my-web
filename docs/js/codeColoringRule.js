@@ -27,16 +27,29 @@ document.addEventListener("DOMContentLoaded", function () {
         if (patterns[language]) {
             const { keyword, string, comment, function: func } = patterns[language];
 
+            // タグが崩れないように一時的にエスケープ処理
+            html = html
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+
+            // キーワード
             html = html.replace(keyword, '<span class="syntax-keyword">$&</span>');
+            // 文字列
             html = html.replace(string, '<span class="syntax-string">$&</span>');
+            // コメント
             html = html.replace(comment, '<span class="syntax-comment">$&</span>');
+            // 関数
             html = html.replace(func, '<span class="syntax-function">$&</span>');
+
+            // 再度エスケープを解除
+            html = html
+                .replace(/&lt;/g, "<")
+                .replace(/&gt;/g, ">");
         }
 
         codeBlock.innerHTML = html;
     }
 
-    // 適用するコードブロックを指定
     document.querySelectorAll("code.language-python, code.language-c, code.language-javascript").forEach(block => {
         const language = block.classList.contains("language-python") ? "python" :
                          block.classList.contains("language-c") ? "c" :

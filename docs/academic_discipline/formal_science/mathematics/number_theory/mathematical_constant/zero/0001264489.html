@@ -33,6 +33,54 @@
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/search.css" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/responsive_header.css" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/commentary.css" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // 各言語の正規表現パターン
+            const patterns = {
+                python: {
+                    keyword: /\b(import|from|def|return|lambda|print|as|if|else|elif)\b/g,
+                    string: /(["'`].*?["'`])/g,
+                    comment: /(#.*?$)/gm,
+                    function: /\b\w+(?=\()/g
+                },
+                c: {
+                    keyword: /\b(int|float|double|char|return|if|else|switch|case|default|void)\b/g,
+                    string: /(".*?")/g,
+                    comment: /(\/\/.*?$|\/\*[\s\S]*?\*\/)/gm,
+                    function: /\b\w+(?=\()/g
+                },
+                javascript: {
+                    keyword: /\b(let|const|var|function|return|if|else|for|while|import|export|class)\b/g,
+                    string: /(["'`].*?["'`])/g,
+                    comment: /(\/\/.*?$|\/\*[\s\S]*?\*\/)/gm,
+                    function: /\b\w+(?=\()/g
+                }
+            };
+
+            function applySyntaxHighlighting(codeBlock, language) {
+                let html = codeBlock.innerHTML;
+
+                if (patterns[language]) {
+                    const { keyword, string, comment, function: func } = patterns[language];
+
+                    html = html.replace(keyword, '<span class="syntax-keyword">$&</span>');
+                    html = html.replace(string, '<span class="syntax-string">$&</span>');
+                    html = html.replace(comment, '<span class="syntax-comment">$&</span>');
+                    html = html.replace(func, '<span class="syntax-function">$&</span>');
+                }
+
+                codeBlock.innerHTML = html;
+            }
+
+            // 適用するコードブロックを指定
+            document.querySelectorAll("code.language-python, code.language-c, code.language-javascript").forEach(block => {
+                const language = block.classList.contains("language-python") ? "python" : 
+                                block.classList.contains("language-c") ? "c" : 
+                                "javascript";
+                applySyntaxHighlighting(block, language);
+            });
+        });
+    </script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/include.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/linkPreview.js"></script>
@@ -106,7 +154,7 @@
                     </span> <!-- /link-preview -->&ensp;&gt;&ensp;
                     数学定数
                 </div>
-                <h1>近似値と円周率の誤差$22/7 - \pi$</h1>
+                <h1>近似値と円周率の誤差</h1>
                 <h2>目次</h2>
                 <h2>概要</h2>
                 <p>
@@ -116,38 +164,181 @@
                     \frac{22}{7} - \pi = \int_{0}^{1} \frac{x^{4}(1 - x)^{4}}{1 + x^{2}} dx
                 \]
                 <style>
-                    table .code .row {
-                        background-color: #eee;
-                        width: 20px;
+                    code .coding_file_wrapper {
+                        margin: 30px;
+                        width: 95%;
+                        border: solid 0.3px;
+                        border-color: #000000;
+                        border-radius: 10px;
+                        box-shadow: 0 10px 20px #dbdbdb;
+                        display: grid;
+                        grid-template-rows: 20px auto auto;
+                        grid-template-columns: auto auto;
+                        grid-template-areas:
+                            "file-title file-title"
+                            "row-number code-main"
+                            "output-info output-ifram";
                     }
-                    table .code .editor {
-                        background-color: #f7f7f7;
+                    code .coding_file_wrapper::-webkit-scrollbar {
+                        display: none; /* Webkit系ブラウザでスクロールバーを非表示 */
+                    }
+                    code .fileTitle {
+                        padding-left: 50px;
+                        grid-area: file-title;
+                        border-radius:9px 9px 0 0;
+                    }
+                    code .rowNumber {
+                        grid-area: row-number;
+                        padding: 0 6px 4px 0;
+                        color: #ffffff;
+                        user-select: none;
+                        background-color: #1f1f1f; /* 背景色を合わせる */
+                        z-index: 1; /* 他のセルの上に表示 */
+                    }
+                    code .editor {
+                        grid-area: code-main;
+                        padding: 0 6px 4px 0;
+                        background-color: #1f1f1f;
+                        color: #ffffff;
+                        white-space: nowrap; /* コードセルは横スクロール可能 */
+                        overflow-x: auto; /* テーブル全体に横スクロールを適用 */
+                        -ms-overflow-style: none; /* IE、Edgeでスクロールバーを非表示 */
+                        scrollbar-width: none; /* Firefoxでスクロールバーを非表示 */
+                    }
+                    code .outputInfo {
+                        grid-area: output-info;
+                        top: 0;
+                        padding: 0 6px 4px 0;
+                        user-select: none;
+                    }
+                    code .outputIfram {
+                        grid-area: output-ifram;
+                        padding: 0 6px 4px 0;
+                        white-space: nowrap; /* コードセルは横スクロール可能 */
+                        overflow-x: auto; /* テーブル全体に横スクロールを適用 */
+                        -ms-overflow-style: none; /* IE、Edgeでスクロールバーを非表示 */
+                        scrollbar-width: none; /* Firefoxでスクロールバーを非表示 */
+                    }
+                    code .text-field-descriptive {
+                        color: #ffffff;
+                    }
+                    code .text-field-number {
+                        color: #C7E3B9;
+                    }
+                    code .text-field-str {
+                        color: #D4957B;
+                    }
+                    code .text-field-import,
+                    code .text-field-syntax {
+                        color: #F0A3EA;
+                    }
+                    code .text-field-coment {
+                        color: #86C26C;
+                    }
+                    code .text-field-type {
+                        color: #53D6BC;
+                    }
+                    code .text-field-function {
+                        color: #5BA5E3;
+                    }
+                    code .text-field-functionalName {
+                        color: #E3E3AF;
+                    }
+                    code .text-field-variable {
+                        color: #7CDDFF;
+                    }
+                    code .text-field-brackets {
+                        color: yellow;
+                    }
+                    code .text-field-brackets > .text-field-brackets {
+                        color: #F0A3EA;
+                    }
+                    code .text-field-brackets > .text-field-brackets > .text-field-brackets {
+                        color: #2E8DE6;
+                    }
+                    code .text-field-brackets > .text-field-str {
+                        color: #D4957B;
+                    }
+                    code .text-field-brackets > .text-field-str > .text-field-brackets {
+                        color: #F0A3EA;
+                    }
+                    code .text-field-brackets > .text-field-str > .text-field-brackets > .text-field-brackets {
+                        color: #2E8DE6;
                     }
                 </style>
-                <table>
-                    <tr>
-                        <td colspan="2">sample.ipynb</td>
-                    </tr>
-                    <tr class="code">
-                        <td class="row">1<br>2<br>3<br>4<br>5<br>6<br>7</td>
-                        <td class="editor">
-                            import numpy as np<br>
-                            import scipy<br>
+                <code>
+                    <div class="coding_file_wrapper">
+                        <div class="fileTitle">0001264489.ipynb</div>
+                        <div class="rowNumber">1<br>2<br>3<br>4<br>5<br>6<br>7</div>
+                        <div class="editor">
+                            <span class="text-field-import">
+                                import<span class="text-field-descriptive">&ensp;numpy&ensp;</span>as<span class="text-field-descriptive">&ensp;np</span>
+                            </span>
                             <br>
-                            # 円周率と近似値の誤差<br>
-                            result, err = scipy.integrate.quad(lambda x: ((x ** 4) * (1 - x) ** 4) / (1 + x ** 2), 0, 1)<br>
-                            print(f"積分 {result}")<br>
-                            print(f"22/7 - π {22 / 7 - np.pi}")<br>
-                        </td>
-                    </tr>
-                    <tr class="display">
-                        <td></td>
-                        <td>
-                            積分 0.0012644892673496185<br>
-                            22/7-π 0.0012644892673496777
-                        </td>
-                    </tr>
-                </table>
+                            <span class="text-field-import">
+                                import <span class="text-field-descriptive">scipy</span>
+                            </span>
+                            <br>
+                            <br>
+                            <span class="text-field-coment"># 円周率と近似値の誤差</span>
+                            <br>
+                            result, err = scipy.integrate.quad<span class="text-field-brackets">(<span class="text-field-function">lambda</span>&ensp;<span class="text-field-variable">x</span><span class="text-field-descriptive">:&ensp;</span><span class="text-field-brackets">(<span class="text-field-brackets">(<span class="text-field-descriptive">x **&ensp;</span><span class="text-field-number">4</span>)</span><span class="text-field-descriptive">&ensp;*&ensp;</span><span class="text-field-brackets">(<span class="text-field-descriptive">&ensp;*&ensp;</span><span class="text-field-number">1</span><span class="text-field-descriptive">&ensp;- x</span>)</span><span class="text-field-descriptive">&ensp;**&ensp;</span><span class="text-field-number">4</span>)</span><span class="text-field-descriptive">&ensp;/&ensp;</span><span class="text-field-brackets">(<span class="text-field-number">1</span><span class="text-field-descriptive">&ensp;+ x **&ensp;</span><span class="text-field-number">2</span>)</span><span class="text-field-descriptive">,&ensp;</span><span class="text-field-number">0</span><span class="text-field-descriptive">,&ensp;</span><span class="text-field-number">1</span>)</span>
+                            <br>
+                            <span class="text-field-functionalName">print</span><span class="text-field-brackets">(<span class="text-field-function">f</span><span class="text-field-str">"積分 <span class="text-field-brackets">{<span class="text-field-descriptive">result</span>}</span>"</span>)</span>
+                            <br>
+                            <span class="text-field-functionalName">print</span><span class="text-field-brackets">(<span class="text-field-function">f</span><span class="text-field-str">"22 / 7 - π <span class="text-field-brackets">{<span class="text-field-number">22</span><span class="text-field-descriptive">&ensp;/&ensp;</span><span class="text-field-number">7</span><span class="text-field-descriptive">&ensp;- np.pi</span>}</span>"</span>)</span>
+                        </div>
+                        <div class="outputInfo">-></div>
+                        <div class="outputIfram">
+                            積分 0.0012644892673496185
+                            <br>
+                            22 / 7 - π 0.0012644892673496777
+                        </div>
+                    </div>
+                </code>
+                <style>
+                    /* シンタックスハイライト用の色 */
+                    .syntax-keyword {
+                        color: #F0A3EA;
+                        font-weight: bold;
+                    }
+                    .syntax-string {
+                        color: #D4957B;
+                    }
+                    .syntax-comment {
+                        color: #86C26C;
+                        font-style: italic;
+                    }
+                    .syntax-function {
+                        color: #5BA5E3;
+                    }
+                </style>
+                <code>
+                    <div class="coding_file_wrapper">
+                        <div class="fileTitle">0001264489.ipynb</div>
+                        <div class="rowNumber">1<br>2<br>3<br>4<br>5<br>6<br>7</div>
+                        <div class="editor language-python">
+                            import&ensp;numpy&ensp;as np
+                            <br>
+                            import scipy
+                            <br>
+                            <br>
+                            # 円周率と近似値の誤差
+                            <br>
+                            result, err = scipy.integrate.quad(lambda x: ((x ** 4) * (1 - x) ** 4) / (1 + x ** 2), 0, 1)
+                            <br>
+                            print(f"積分 {result}")
+                            <br>
+                            print(f"22/7 - π {22 / 7 - np.pi}")
+                        </div>
+                        <div class="outputInfo">-></div>
+                        <div class="outputIfram">
+                            積分 0.0012644892673496185
+                            <br>
+                            22 / 7 - π 0.0012644892673496777
+                        </div>
+                    </div>
+                </code>
             </div> <!-- /.main -->
             <div class="annotation">
                 ページ注釈

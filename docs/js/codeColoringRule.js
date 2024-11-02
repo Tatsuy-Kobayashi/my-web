@@ -5,7 +5,7 @@ $(document).ready(function () {
             { type: 'structure', regex: /\b(import|from|return|for|as|if|else|elif|match|continue|while)\b/g },
             { type: 'function', regex: /\b(def|lambda|in)\b/g },
             { type: 'comment', regex: /(#.*?$)/gm },
-            { type: 'functionalName', regex: /\b\w+(?=\()/g }
+            { type: 'functionalName', regex: /(?<!\.)\b\w+(?=\()/g }
         ],
         c: [
             { type: 'string', regex: /(".*?")/g },

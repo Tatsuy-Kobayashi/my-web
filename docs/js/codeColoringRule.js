@@ -2,23 +2,24 @@ $(document).ready(function () {
     const patterns = {
         python: [
             { type: 'string', regex: /(["'`].*?["'`])/g },
-            { type: 'structure', regex: /\b(import|from|return|for|as|if|else|elif)\b/g },
-            { type: 'keyword', regex: /\b(import|from|def|return|lambda|print|as|if|else|elif)\b/g },
+            { type: 'structure', regex: /\b(import|from|return|for|as|if|else|elif|match|continue|while)\b/g },
+            { type: 'function', regex: /\b(def|lambda|in)\b/g },
             { type: 'comment', regex: /(#.*?$)/gm },
-            { type: 'function', regex: /\b\w+(?=\()/g }
+            { type: 'functionalName', regex: /\b\w+(?=\()/g }
         ],
         c: [
             { type: 'string', regex: /(".*?")/g },
-            { type: 'structure', regex: /\b(int|float|double|char|return|if|else|switch|case|default|void)\b/g },
-            { type: 'keyword', regex: /\b(int|float|double|char|return|if|else|switch|case|default|void)\b/g },
+            { type: 'structure', regex: /\b(return|if|else|while|switch|case|default)\b/g },
+            { type: 'keyword', regex: /\b(int|float|double|char|void)\b/g },
             { type: 'comment', regex: /(\/\/.*?$|\/\*[\s\S]*?\*\/)/gm },
             { type: 'function', regex: /\b\w+(?=\()/g }
         ],
         javascript: [
             { type: 'string', regex: /(["'`].*?["'`])/g },
-            { type: 'keyword', regex: /\b(let|const|var|function|return|if|else|for|while|import|export|class)\b/g },
+            { type: 'structure', regex: /\b(return|if|else|for|while|import|export|class)\b/g },
+            { type: 'function', regex: /\b(let|const|var|function|in)\b/g },
             { type: 'comment', regex: /(\/\/.*?$|\/\*[\s\S]*?\*\/)/gm },
-            { type: 'function', regex: /\b\w+(?=\()/g }
+            { type: 'functionName', regex: /\b\w+(?=\()/g }
         ]
     };
 

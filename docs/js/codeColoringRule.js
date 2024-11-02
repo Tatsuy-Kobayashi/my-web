@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+$(document).ready(function () {
     const patterns = {
         python: [
             { type: 'keyword', regex: /\b(import|from|def|return|lambda|print|as|if|else|elif)\b/g },
@@ -20,13 +20,12 @@ document.addEventListener("DOMContentLoaded", function () {
         ]
     };
 
-    function applySyntaxHighlighting(codeBlock, language) {
-        let html = codeBlock.innerHTML;
-
+    function applySyntaxHighlighting($codeBlock, language) {
+        let html = $codeBlock.html();
         console.log(`Processing code block with language: ${language}`);
 
         if (patterns[language]) {
-            // 各パターンを順に処理
+            // 各パターンを順に処理し、置換を一度に適用
             patterns[language].forEach(({ type, regex }) => {
                 html = html.replace(regex, (match) => {
                     console.log(`${type.charAt(0).toUpperCase() + type.slice(1)} matched: ${match}`);
@@ -37,14 +36,16 @@ document.addEventListener("DOMContentLoaded", function () {
             console.warn(`No patterns found for language: ${language}`);
         }
 
-        // 結果を一度に代入して反映
-        codeBlock.innerHTML = html;
+        // 置換結果をコードブロックに適用
+        $codeBlock.html(html);
     }
 
-    document.querySelectorAll("code.language-python, code.language-c, code.language-javascript").forEach(block => {
-        const language = block.classList.contains("language-python") ? "python" :
-                         block.classList.contains("language-c") ? "c" :
+    // 各コードブロックに対してハイライト処理を適用
+    $("code.language-python, code.language-c, code.language-javascript").each(function () {
+        const $block = $(this);
+        const language = $block.hasClass("language-python") ? "python" :
+                         $block.hasClass("language-c") ? "c" :
                          "javascript";
-        applySyntaxHighlighting(block, language);
+        applySyntaxHighlighting($block, language);
     });
 });

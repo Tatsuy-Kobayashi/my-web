@@ -2,12 +2,14 @@ $(document).ready(function () {
     const patterns = {
         python: [
             { type: 'string', regex: /(["'`].*?["'`])/g },
+            { type: 'structure', regex: /\b(import|from|return|for|as|if|else|elif)\b/g },
             { type: 'keyword', regex: /\b(import|from|def|return|lambda|print|as|if|else|elif)\b/g },
             { type: 'comment', regex: /(#.*?$)/gm },
             { type: 'function', regex: /\b\w+(?=\()/g }
         ],
         c: [
             { type: 'string', regex: /(".*?")/g },
+            { type: 'structure', regex: /\b(int|float|double|char|return|if|else|switch|case|default|void)\b/g },
             { type: 'keyword', regex: /\b(int|float|double|char|return|if|else|switch|case|default|void)\b/g },
             { type: 'comment', regex: /(\/\/.*?$|\/\*[\s\S]*?\*\/)/gm },
             { type: 'function', regex: /\b\w+(?=\()/g }

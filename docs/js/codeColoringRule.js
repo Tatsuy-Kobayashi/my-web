@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // 各言語の正規表現パターン
     const patterns = {
         python: {
             keyword: /\b(import|from|def|return|lambda|print|as|if|else|elif)\b/g,
@@ -24,29 +23,39 @@ document.addEventListener("DOMContentLoaded", function () {
     function applySyntaxHighlighting(codeBlock, language) {
         let html = codeBlock.innerHTML;
 
+        console.log(`Processing code block with language: ${language}`);
+
         if (patterns[language]) {
             const { keyword, string, comment, function: func } = patterns[language];
 
-            // タグが崩れないように一時的にエスケープ処理
-            html = html
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;");
+            // キーワードの置換（他のパターンより先に適用）
+            html = html.replace(keyword, (match) => {
+                console.log(`Keyword matched: ${match}`);
+                return `<span class="syntax-keyword">${match}</span>`;
+            });
 
-            // キーワード
-            html = html.replace(keyword, '<span class="syntax-keyword">$&</span>');
-            // 文字列
-            html = html.replace(string, '<span class="syntax-string">$&</span>');
-            // コメント
-            html = html.replace(comment, '<span class="syntax-comment">$&</span>');
-            // 関数
-            html = html.replace(func, '<span class="syntax-function">$&</span>');
+            // 文字列の置換
+            html = html.replace(string, (match) => {
+                console.log(`String matched: ${match}`);
+                return `<span class="syntax-string">${match}</span>`;
+            });
 
-            // 再度エスケープを解除
-            html = html
-                .replace(/&lt;/g, "<")
-                .replace(/&gt;/g, ">");
+            // コメントの置換
+            html = html.replace(comment, (match) => {
+                console.log(`Comment matched: ${match}`);
+                return `<span class="syntax-comment">${match}</span>`;
+            });
+
+            // 関数名の置換
+            html = html.replace(func, (match) => {
+                console.log(`Function matched: ${match}`);
+                return `<span class="syntax-function">${match}</span>`;
+            });
+        } else {
+            console.warn(`No patterns found for language: ${language}`);
         }
 
+        // エスケープ解除の必要がないためそのまま適用
         codeBlock.innerHTML = html;
     }
 

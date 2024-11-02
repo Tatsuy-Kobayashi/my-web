@@ -31,6 +31,7 @@ $(document).ready(function () {
                     console.log(`${type.charAt(0).toUpperCase() + type.slice(1)} matched: ${match}`);
                     return `<span class="syntax-${type}">${match}</span>`;
                 });
+                console.log(`<span class="syntax-${type}">${match}</span>`);
             });
         } else {
             console.warn(`No patterns found for language: ${language}`);

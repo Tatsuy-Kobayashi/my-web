@@ -1,23 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
     const patterns = {
-        python: {
-            keyword: /\b(import|from|def|return|lambda|print|as|if|else|elif)\b/g,
-            string: /(["'`].*?["'`])/g,
-            comment: /(#.*?$)/gm,
-            function: /\b\w+(?=\()/g
-        },
-        c: {
-            keyword: /\b(int|float|double|char|return|if|else|switch|case|default|void)\b/g,
-            string: /(".*?")/g,
-            comment: /(\/\/.*?$|\/\*[\s\S]*?\*\/)/gm,
-            function: /\b\w+(?=\()/g
-        },
-        javascript: {
-            keyword: /\b(let|const|var|function|return|if|else|for|while|import|export|class)\b/g,
-            string: /(["'`].*?["'`])/g,
-            comment: /(\/\/.*?$|\/\*[\s\S]*?\*\/)/gm,
-            function: /\b\w+(?=\()/g
-        }
+        python: [
+            { type: 'keyword', regex: /\b(import|from|def|return|lambda|print|as|if|else|elif)\b/g },
+            { type: 'string', regex: /(["'`].*?["'`])/g },
+            { type: 'comment', regex: /(#.*?$)/gm },
+            { type: 'function', regex: /\b\w+(?=\()/g }
+        ],
+        c: [
+            { type: 'keyword', regex: /\b(int|float|double|char|return|if|else|switch|case|default|void)\b/g },
+            { type: 'string', regex: /(".*?")/g },
+            { type: 'comment', regex: /(\/\/.*?$|\/\*[\s\S]*?\*\/)/gm },
+            { type: 'function', regex: /\b\w+(?=\()/g }
+        ],
+        javascript: [
+            { type: 'keyword', regex: /\b(let|const|var|function|return|if|else|for|while|import|export|class)\b/g },
+            { type: 'string', regex: /(["'`].*?["'`])/g },
+            { type: 'comment', regex: /(\/\/.*?$|\/\*[\s\S]*?\*\/)/gm },
+            { type: 'function', regex: /\b\w+(?=\()/g }
+        ]
     };
 
     function applySyntaxHighlighting(codeBlock, language) {
@@ -26,36 +26,18 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(`Processing code block with language: ${language}`);
 
         if (patterns[language]) {
-            const { keyword, string, comment, function: func } = patterns[language];
-
-            // キーワードの置換（他のパターンより先に適用）
-            html = html.replace(keyword, (match) => {
-                console.log(`Keyword matched: ${match}`);
-                return `<span class="syntax-keyword">${match}</span>`;
-            });
-
-            // 文字列の置換
-            html = html.replace(string, (match) => {
-                console.log(`String matched: ${match}`);
-                return `<span class="syntax-string">${match}</span>`;
-            });
-
-            // コメントの置換
-            html = html.replace(comment, (match) => {
-                console.log(`Comment matched: ${match}`);
-                return `<span class="syntax-comment">${match}</span>`;
-            });
-
-            // 関数名の置換
-            html = html.replace(func, (match) => {
-                console.log(`Function matched: ${match}`);
-                return `<span class="syntax-function">${match}</span>`;
+            // 各パターンを順に処理
+            patterns[language].forEach(({ type, regex }) => {
+                html = html.replace(regex, (match) => {
+                    console.log(`${type.charAt(0).toUpperCase() + type.slice(1)} matched: ${match}`);
+                    return `<span class="syntax-${type}">${match}</span>`;
+                });
             });
         } else {
             console.warn(`No patterns found for language: ${language}`);
         }
 
-        // エスケープ解除の必要がないためそのまま適用
+        // 結果を一度に代入して反映
         codeBlock.innerHTML = html;
     }
 

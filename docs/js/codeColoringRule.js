@@ -24,28 +24,40 @@ $(document).ready(function () {
     };
 
     function applySyntaxHighlighting($codeBlock, language) {
+        console.log("=== Starting syntax highlighting ===");
+
         // 1. 既存の <span> タグを一時的にプレースホルダに変換
+        console.log("Step 1: Converting existing <span> tags to placeholders");
         $codeBlock.find('span').each(function () {
             const $span = $(this);
-            $span.replaceWith(`[data-placeholder="${$span.attr('class')}"]${$span.html()}[/data-placeholder]`);
+            const placeholder = `[data-placeholder="${$span.attr('class')}"]${$span.html()}[/data-placeholder]`;
+            console.log(`Replacing <span> with placeholder: ${placeholder}`);
+            $span.replaceWith(placeholder);
         });
 
         // 2. プレーンテキストとしてハイライト処理を行う
         let html = $codeBlock.html();
+        console.log("Step 2: Applying patterns to plain text");
+        console.log("Initial HTML (after removing <span> tags):", html);
+
         if (patterns[language]) {
             patterns[language].forEach(({ type, regex }) => {
                 html = html.replace(regex, (match) => {
-                    console.log(`<span class="syntax-${type}">${match}</span>`);
+                    console.log(`Matched ${type}: <span class="syntax-${type}">${match}</span>`);
                     return `<span class="syntax-${type}">${match}</span>`;
                 });
             });
         }
 
         // 3. 一時的に変換したプレースホルダを <span> タグに戻す
+        console.log("Step 3: Reverting placeholders back to <span> tags");
         html = html.replace(/\[data-placeholder="(.+?)"\](.+?)\[\/data-placeholder\]/g, '<span class="$1">$2</span>');
+
+        console.log("Final HTML after highlighting:", html);
 
         // 4. 置換結果をコードブロックに適用
         $codeBlock.html(html);
+        console.log("=== Syntax highlighting complete ===");
     }
 
     // 各コードブロックに対してハイライト処理を適用

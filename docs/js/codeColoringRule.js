@@ -26,16 +26,24 @@ $(document).ready(function () {
     function applySyntaxHighlighting($codeBlock, language) {
         console.log("=== Starting syntax highlighting ===");
 
-        // 1. 既存の <span> タグを一時的にプレースホルダに変換
-        console.log("Step 1: Converting existing <span> tags to placeholders");
+        // Step 1: 重要なクラスを含む <span> の内容をプレースホルダに変換
+        const placeholders = {};
+        let placeholderIndex = 0;
+
         $codeBlock.find('span').each(function () {
             const $span = $(this);
-            const placeholder = `[data-placeholder="${$span.attr('class')}"]${$span.html()}[/data-placeholder]`;
-            console.log(`Replacing <span> with placeholder: ${placeholder}`);
-            $span.replaceWith(placeholder);
+            const className = $span.attr('class');
+
+            if (className && (className.includes('text-field-brackets') || className.includes('text-field-descriptive'))) {
+                const content = $span.html();
+                const placeholder = `__PLACEHOLDER_${placeholderIndex++}__`;
+                placeholders[placeholder] = `<span class="${className}">${content}</span>`;
+                $span.replaceWith(placeholder);
+                console.log(`Replaced content of <span class="${className}"> with placeholder: ${placeholder}`);
+            }
         });
 
-        // 2. プレーンテキストとしてハイライト処理を行う
+        // Step 2: プレーンテキストとしてハイライト処理を行う
         let html = $codeBlock.html();
         console.log("Step 2: Applying patterns to plain text");
         console.log("Initial HTML (after removing <span> tags):", html);
@@ -49,9 +57,11 @@ $(document).ready(function () {
             });
         }
 
-        // 3. 一時的に変換したプレースホルダを <span> タグに戻す
-        console.log("Step 3: Reverting placeholders back to <span> tags");
-        html = html.replace(/\[data-placeholder="(.+?)"\](.+?)\[\/data-placeholder\]/g, '<span class="$1">$2</span>');
+        // Step 3: プレースホルダを元の <span> タグに戻す
+        console.log("Step 3: Reverting placeholders back to original <span> tags");
+        Object.keys(placeholders).forEach((placeholder) => {
+            html = html.replace(new RegExp(placeholder, 'g'), placeholders[placeholder]);
+        });
 
         console.log("Final HTML after highlighting:", html);
 

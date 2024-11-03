@@ -36,7 +36,7 @@ $(document).ready(function () {
             patterns[language].forEach(({ type, regex }) => {
                 html = html.replace(regex, (match) => {
                     //console.log(<span class="syntax-${type}">${match}</span>);
-                    return `<span class="syntax-${type}">${match}</span>`;
+                    //return `<span class="syntax-${type}">${match}</span>`;
                 });
             });
         }

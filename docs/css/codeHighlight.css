@@ -86,6 +86,16 @@
 }
 .coding_file_wrapper .text-field-variable {
     color: #7CDDFF;
+}
+/* サーバ獲得後、Node.js環境でSassをインストールして、codeHighlight.scssを使えるようになったら以下の階層は不要 */
+.coding_file_wrapper .text-field-brackets {
+    color: yellow;
+}
+.coding_file_wrapper .text-field-brackets > .text-field-brackets {
+    color: #F0A3EA;
+}
+.coding_file_wrapper .text-field-brackets > .text-field-brackets > .text-field-brackets {
+    color: #2E8DE6;
 }/*
 .coding_file_wrapper .text-field-brackets > .text-field-str {
     color: #D4957B;

@@ -3,6 +3,8 @@ $(document).ready(function () {
         python: [
             { type: 'string', regex: /(["'`].*?["'`])/g },
             { type: 'structure', regex: /\b(import|from|return|for|as|if|else|elif|match|continue|while)\b/g },
+            /* キャスト特化 */
+            { type: 'type', regex: /\b(int|float|complex|bool|str|NoneType|list|tuple|set|dict|sympify|mpf)\(/g },
             { type: 'function', regex: /\b(def|lambda|in)\b/g },
             { type: 'comment', regex: /(#.*?$)/gm },
             { type: 'functionalName', regex: /(?<!\.)\b\w+(?=\()/g }
@@ -10,14 +12,15 @@ $(document).ready(function () {
         c: [
             { type: 'string', regex: /(".*?")/g },
             { type: 'structure', regex: /\b(return|if|else|while|switch|case|default)\b/g },
-            { type: 'keyword', regex: /\b(int|float|double|char|void)\b/g },
+            { type: 'type', regex: /\b(int|float|double|char|void)\b/g },
             { type: 'comment', regex: /(\/\/.*?$|\/\*[\s\S]*?\*\/)/gm },
             { type: 'functionalName', regex: /(?<!\.)\b\w+(?=\()/g }
         ],
         javascript: [
             { type: 'string', regex: /(["'`].*?["'`])/g },
             { type: 'structure', regex: /\b(return|if|else|for|while|import|export|class)\b/g },
-            { type: 'function', regex: /\b(let|const|var|function|in)\b/g },
+            { type: 'type', regex: /\b(let|const|var)\b/g },
+            { type: 'function', regex: /\b(function|in)\b/g },
             { type: 'functionalName', regex: /(?<!\.)\b\w+(?=\()/g },
             { type: 'comment', regex: /(\/\/.*?$|\/\*[\s\S]*?\*\/)/gm }
         ]

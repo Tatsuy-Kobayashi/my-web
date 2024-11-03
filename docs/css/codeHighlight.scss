@@ -1,0 +1,20 @@
+// 色のパターンを配列として定義
+$colors: yellow, #F0A3EA, #2E8DE6;
+$max-depth: 10; // 最大の階層レベルを指定
+
+// 色のループを適用するミックスイン
+@mixin recursive-colors($depth: 0) {
+  // 配列から色を選択
+  color: nth($colors, ($depth % length($colors)) + 1);
+
+  // 次の階層レベルに対して再帰的にミックスインを適用
+  & > .text-field-brackets {
+    @if $depth < $max-depth {
+      @include recursive-colors($depth + 1);
+    }
+  }
+}
+
+.coding_file_wrapper .text-field-brackets {
+  @include recursive-colors();
+}

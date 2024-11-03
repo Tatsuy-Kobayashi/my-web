@@ -1,0 +1,118 @@
+.coding_file_wrapper {
+    margin: 30px;
+    width: 95%;
+    border: solid 0.3px;
+    border-color: #000000;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px #dbdbdb;
+    display: grid;
+    grid-template-rows: 20px auto auto;
+    grid-template-columns: auto auto;
+    grid-template-areas:
+        "file-title file-title"
+        "row-number code-main"
+        "output-info output-ifram";
+}
+.coding_file_wrapper::-webkit-scrollbar {
+    display: none; /* Webkit系ブラウザでスクロールバーを非表示 */
+}
+.coding_file_wrapper .fileTitle {
+    padding-left: 50px;
+    grid-area: file-title;
+    border-radius:9px 9px 0 0;
+    font-family: monospace;
+}
+.coding_file_wrapper .rowNumber {
+    grid-area: row-number;
+    padding: 0 6px 4px 0;
+    background-color: #1f1f1f; /* 背景色を合わせる */
+    color: #ffffff;
+    font-family: monospace;
+    user-select: none;
+    z-index: 1; /* 他のセルの上に表示 */
+}
+.coding_file_wrapper code {
+    grid-area: code-main;
+    padding: 0 6px 4px 0;
+    background-color: #1f1f1f;
+    color: #ffffff;
+    white-space: nowrap; /* コードセルは横スクロール可能 */
+    overflow-x: auto; /* テーブル全体に横スクロールを適用 */
+    -ms-overflow-style: none; /* IE、Edgeでスクロールバーを非表示 */
+    scrollbar-width: none; /* Firefoxでスクロールバーを非表示 */
+}
+.coding_file_wrapper .outputInfo {
+    grid-area: output-info;
+    top: 0;
+    padding: 0 6px 4px 0;
+    font-family: monospace;
+    user-select: none;
+}
+.coding_file_wrapper .outputIfram {
+    grid-area: output-ifram;
+    padding: 0 6px 4px 0;
+    font-family: monospace;
+    white-space: nowrap; /* コードセルは横スクロール可能 */
+    overflow-x: auto; /* テーブル全体に横スクロールを適用 */
+    -ms-overflow-style: none; /* IE、Edgeでスクロールバーを非表示 */
+    scrollbar-width: none; /* Firefoxでスクロールバーを非表示 */
+}
+
+/* 手動 */
+.coding_file_wrapper .text-field-descriptive {
+    color: #ffffff;
+}
+.coding_file_wrapper .text-field-number {
+    color: #C7E3B9;
+}
+.coding_file_wrapper .text-field-str {
+    color: #D4957B;
+}
+.coding_file_wrapper .text-field-import,
+.coding_file_wrapper .text-field-syntax {
+    color: #F0A3EA;
+}
+.coding_file_wrapper .text-field-coment {
+    color: #86C26C;
+}
+.coding_file_wrapper .text-field-type {
+    color: #53D6BC;
+}
+.coding_file_wrapper .text-field-function {
+    color: #5BA5E3;
+}
+.coding_file_wrapper .text-field-functionalName {
+    color: #E3E3AF;
+}
+.coding_file_wrapper .text-field-variable {
+    color: #7CDDFF;
+}/*
+.coding_file_wrapper .text-field-brackets > .text-field-str {
+    color: #D4957B;
+}
+.coding_file_wrapper .text-field-brackets > .text-field-str > .text-field-brackets {
+    color: #F0A3EA;
+}
+.coding_file_wrapper .text-field-brackets > .text-field-str > .text-field-brackets > .text-field-brackets {
+    color: #2E8DE6;
+}*/
+
+/* シンタックスハイライト用の色 */
+.syntax-structure {
+    color: #F0A3EA;
+}
+.syntax-string {
+    color: #D4957B;
+}
+.syntax-type {
+    color: #53D6BC;
+}
+.syntax-comment {
+    color: #86C26C;
+}
+.syntax-function {
+    color: #5BA5E3;
+}
+.syntax-functionalName {
+    color: #E3E3AF;
+}

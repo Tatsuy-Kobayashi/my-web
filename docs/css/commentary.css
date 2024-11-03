@@ -2,6 +2,11 @@
     display: flex;
     width: 100%;
 }
+.main {
+    flex: 2;
+    padding: 0 10px 0 50px; /* 上・右・下・左の余白 */
+    float: left;
+}
 @media (max-width: 768px) {
     .content {
         flex-direction: column;
@@ -10,11 +15,6 @@
         padding: 0 10px 0 50px;
         width: 100%;
     }
-}
-.main {
-    flex: 2;
-    margin: 0 10px 0 50px; /* 上・右・下・左の余白 */
-    float: left;
 }
 .annotation {
     flex: 1;

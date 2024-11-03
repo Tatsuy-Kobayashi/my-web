@@ -26,7 +26,7 @@ $(document).ready(function () {
     function applySyntaxHighlighting($codeBlock, language) {
         console.log("=== Starting syntax highlighting ===");
 
-        // Step 1: 重要なクラスを含む <span> の内容をプレースホルダに変換
+        // Step 1: すべての text-field- プレフィックスを持つ <span> タグをプレースホルダに変換
         const placeholders = {};
         let placeholderIndex = 0;
 
@@ -34,7 +34,8 @@ $(document).ready(function () {
             const $span = $(this);
             const className = $span.attr('class');
 
-            if (className && (className.includes('text-field-brackets') || className.includes('text-field-descriptive'))) {
+            // "text-field-" で始まるクラスを持つタグをプレースホルダに
+            if (className && className.startsWith('text-field-')) {
                 const content = $span.html();
                 const placeholder = `__PLACEHOLDER_${placeholderIndex++}__`;
                 placeholders[placeholder] = `<span class="${className}">${content}</span>`;

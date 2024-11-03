@@ -118,7 +118,7 @@
                     \frac{22}{7} - \pi = \int_{0}^{1} \frac{x^{4}(1 - x)^{4}}{1 + x^{2}} dx
                 \]
                 <style>
-                    code .coding_file_wrapper {
+                    .coding_file_wrapper {
                         margin: 30px;
                         width: 95%;
                         border: solid 0.3px;
@@ -133,15 +133,15 @@
                             "row-number code-main"
                             "output-info output-ifram";
                     }
-                    code .coding_file_wrapper::-webkit-scrollbar {
+                    .coding_file_wrapper::-webkit-scrollbar {
                         display: none; /* Webkit系ブラウザでスクロールバーを非表示 */
                     }
-                    code .fileTitle {
+                    .coding_file_wrapper .fileTitle {
                         padding-left: 50px;
                         grid-area: file-title;
                         border-radius:9px 9px 0 0;
                     }
-                    code .rowNumber {
+                    .coding_file_wrapper .rowNumber {
                         grid-area: row-number;
                         padding: 0 6px 4px 0;
                         color: #ffffff;
@@ -149,7 +149,7 @@
                         background-color: #1f1f1f; /* 背景色を合わせる */
                         z-index: 1; /* 他のセルの上に表示 */
                     }
-                    code .editor {
+                    .coding_file_wrapper code {
                         grid-area: code-main;
                         padding: 0 6px 4px 0;
                         background-color: #1f1f1f;
@@ -159,13 +159,13 @@
                         -ms-overflow-style: none; /* IE、Edgeでスクロールバーを非表示 */
                         scrollbar-width: none; /* Firefoxでスクロールバーを非表示 */
                     }
-                    code .outputInfo {
+                    .coding_file_wrapper .outputInfo {
                         grid-area: output-info;
                         top: 0;
                         padding: 0 6px 4px 0;
                         user-select: none;
                     }
-                    code .outputIfram {
+                    .coding_file_wrapper .outputIfram {
                         grid-area: output-ifram;
                         padding: 0 6px 4px 0;
                         white-space: nowrap; /* コードセルは横スクロール可能 */
@@ -173,84 +173,53 @@
                         -ms-overflow-style: none; /* IE、Edgeでスクロールバーを非表示 */
                         scrollbar-width: none; /* Firefoxでスクロールバーを非表示 */
                     }
-                    code .text-field-descriptive {
+                    .coding_file_wrapper .text-field-descriptive {
                         color: #ffffff;
                     }
-                    code .text-field-number {
+                    .coding_file_wrapper .text-field-number {
                         color: #C7E3B9;
                     }
-                    code .text-field-str {
+                    .coding_file_wrapper .text-field-str {
                         color: #D4957B;
                     }
-                    code .text-field-import,
-                    code .text-field-syntax {
+                    .coding_file_wrapper .text-field-import,
+                    .coding_file_wrapper .text-field-syntax {
                         color: #F0A3EA;
                     }
-                    code .text-field-coment {
+                    .coding_file_wrapper .text-field-coment {
                         color: #86C26C;
                     }
-                    code .text-field-type {
+                    .coding_file_wrapper .text-field-type {
                         color: #53D6BC;
                     }
-                    code .text-field-function {
+                    .coding_file_wrapper .text-field-function {
                         color: #5BA5E3;
                     }
-                    code .text-field-functionalName {
+                    .coding_file_wrapper .text-field-functionalName {
                         color: #E3E3AF;
                     }
-                    code .text-field-variable {
+                    .coding_file_wrapper .text-field-variable {
                         color: #7CDDFF;
                     }
-                    code .text-field-brackets {
+                    .coding_file_wrapper .text-field-brackets {
                         color: yellow;
                     }
-                    code .text-field-brackets > .text-field-brackets {
+                    .coding_file_wrapper .text-field-brackets > .text-field-brackets {
                         color: #F0A3EA;
                     }
-                    code .text-field-brackets > .text-field-brackets > .text-field-brackets {
+                    .coding_file_wrapper .text-field-brackets > .text-field-brackets > .text-field-brackets {
                         color: #2E8DE6;
                     }
-                    code .text-field-brackets > .text-field-str {
+                    .coding_file_wrapper .text-field-brackets > .text-field-str {
                         color: #D4957B;
                     }
-                    code .text-field-brackets > .text-field-str > .text-field-brackets {
+                    .coding_file_wrapper .text-field-brackets > .text-field-str > .text-field-brackets {
                         color: #F0A3EA;
                     }
-                    code .text-field-brackets > .text-field-str > .text-field-brackets > .text-field-brackets {
+                    .coding_file_wrapper .text-field-brackets > .text-field-str > .text-field-brackets > .text-field-brackets {
                         color: #2E8DE6;
                     }
-                </style>
-                <code>
-                    <div class="coding_file_wrapper">
-                        <div class="fileTitle">0001264489.ipynb</div>
-                        <div class="rowNumber">1<br>2<br>3<br>4<br>5<br>6<br>7</div>
-                        <div class="editor">
-                            <span class="text-field-import">
-                                import<span class="text-field-descriptive">&ensp;numpy&ensp;</span>as<span class="text-field-descriptive">&ensp;np</span>
-                            </span>
-                            <br>
-                            <span class="text-field-import">
-                                import <span class="text-field-descriptive">scipy</span>
-                            </span>
-                            <br>
-                            <br>
-                            <span class="text-field-coment"># 円周率と近似値の誤差</span>
-                            <br>
-                            result, err = scipy.integrate.quad<span class="text-field-brackets">(<span class="text-field-function">lambda</span>&ensp;<span class="text-field-variable">x</span><span class="text-field-descriptive">:&ensp;</span><span class="text-field-brackets">(<span class="text-field-brackets">(<span class="text-field-descriptive">x **&ensp;</span><span class="text-field-number">4</span>)</span><span class="text-field-descriptive">&ensp;*&ensp;</span><span class="text-field-brackets">(<span class="text-field-descriptive">&ensp;*&ensp;</span><span class="text-field-number">1</span><span class="text-field-descriptive">&ensp;- x</span>)</span><span class="text-field-descriptive">&ensp;**&ensp;</span><span class="text-field-number">4</span>)</span><span class="text-field-descriptive">&ensp;/&ensp;</span><span class="text-field-brackets">(<span class="text-field-number">1</span><span class="text-field-descriptive">&ensp;+ x **&ensp;</span><span class="text-field-number">2</span>)</span><span class="text-field-descriptive">,&ensp;</span><span class="text-field-number">0</span><span class="text-field-descriptive">,&ensp;</span><span class="text-field-number">1</span>)</span>
-                            <br>
-                            <span class="text-field-functionalName">print</span><span class="text-field-brackets">(<span class="text-field-function">f</span><span class="text-field-str">"積分 <span class="text-field-brackets">{<span class="text-field-descriptive">result</span>}</span>"</span>)</span>
-                            <br>
-                            <span class="text-field-functionalName">print</span><span class="text-field-brackets">(<span class="text-field-function">f</span><span class="text-field-str">"22 / 7 - π <span class="text-field-brackets">{<span class="text-field-number">22</span><span class="text-field-descriptive">&ensp;/&ensp;</span><span class="text-field-number">7</span><span class="text-field-descriptive">&ensp;- np.pi</span>}</span>"</span>)</span>
-                        </div>
-                        <div class="outputInfo">-></div>
-                        <div class="outputIfram">
-                            積分 0.0012644892673496185
-                            <br>
-                            22 / 7 - π 0.0012644892673496777
-                        </div>
-                    </div>
-                </code>
-                <style>
+
                     /* シンタックスハイライト用の色 */
                     .syntax-structure {
                         color: #F0A3EA;
@@ -268,6 +237,30 @@
                         color: #E3E3AF;
                     }
                 </style>
+                <div class="coding_file_wrapper">
+                    <div class="fileTitle">0001264489.ipynb</div>
+                    <div class="rowNumber">1<br>2<br>3<br>4<br>5<br>6<br>7</div>
+                    <code  class="language-python">
+                        import numpy as np
+                        <br>
+                        import scipy
+                        <br>
+                        <br>
+                        # 円周率と近似値の誤差
+                        <br>
+                        result, err = scipy.integrate.quad<span class="text-field-brackets">(lambda&ensp;<span class="text-field-variable">x</span><span class="text-field-descriptive">:&ensp;</span><span class="text-field-brackets">(<span class="text-field-brackets">(<span class="text-field-descriptive">x **&ensp;</span><span class="text-field-number">4</span>)</span><span class="text-field-descriptive">&ensp;*&ensp;</span><span class="text-field-brackets">(<span class="text-field-descriptive">&ensp;*&ensp;</span><span class="text-field-number">1</span><span class="text-field-descriptive">&ensp;- x</span>)</span><span class="text-field-descriptive">&ensp;**&ensp;</span><span class="text-field-number">4</span>)</span><span class="text-field-descriptive">&ensp;/&ensp;</span><span class="text-field-brackets">(<span class="text-field-number">1</span><span class="text-field-descriptive">&ensp;+ x **&ensp;</span><span class="text-field-number">2</span>)</span><span class="text-field-descriptive">,&ensp;</span><span class="text-field-number">0</span><span class="text-field-descriptive">,&ensp;</span><span class="text-field-number">1</span>)</span>
+                        <br>
+                        print<span class="text-field-brackets">(<span class="text-field-function">f</span>"積分 <span class="text-field-brackets">{<span class="text-field-descriptive">result</span>}</span>")</span>
+                        <br>
+                        print<span class="text-field-brackets">(<span class="text-field-function">f</span>"22 / 7 - π <span class="text-field-brackets">{<span class="text-field-number">22</span><span class="text-field-descriptive">&ensp;/&ensp;</span><span class="text-field-number">7</span><span class="text-field-descriptive">&ensp;- np.pi</span>}</span>")</span>
+                    </code>
+                    <div class="outputInfo">-></div>
+                    <div class="outputIfram">
+                        積分 0.0012644892673496185
+                        <br>
+                        22 / 7 - π 0.0012644892673496777
+                    </div>
+                </div>
                 <code class="language-python">
                     import numpy as np
                     <br>

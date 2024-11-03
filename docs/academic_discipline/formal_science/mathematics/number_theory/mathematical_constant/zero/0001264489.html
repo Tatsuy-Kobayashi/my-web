@@ -248,11 +248,11 @@
                         <br>
                         # 円周率と近似値の誤差
                         <br>
-                        result, err = scipy.integrate.quad<span class="text-field-brackets">(lambda&ensp;<span class="text-field-variable">x</span><span class="text-field-descriptive">:&ensp;</span><span class="text-field-brackets">(<span class="text-field-brackets">(<span class="text-field-descriptive">x **&ensp;</span><span class="text-field-number">4</span>)</span><span class="text-field-descriptive">&ensp;*&ensp;</span><span class="text-field-brackets">(<span class="text-field-descriptive">&ensp;*&ensp;</span><span class="text-field-number">1</span><span class="text-field-descriptive">&ensp;- x</span>)</span><span class="text-field-descriptive">&ensp;**&ensp;</span><span class="text-field-number">4</span>)</span><span class="text-field-descriptive">&ensp;/&ensp;</span><span class="text-field-brackets">(<span class="text-field-number">1</span><span class="text-field-descriptive">&ensp;+ x **&ensp;</span><span class="text-field-number">2</span>)</span><span class="text-field-descriptive">,&ensp;</span><span class="text-field-number">0</span><span class="text-field-descriptive">,&ensp;</span><span class="text-field-number">1</span>)</span>
+                        result, err = scipy.integrate.quad(lambda <span class="text-field-variable">x</span><span class="text-field-descriptive">:&ensp;</span><span class="text-field-brackets">(<span class="text-field-brackets">(<span class="text-field-descriptive">x **&ensp;</span><span class="text-field-number">4</span>)</span><span class="text-field-descriptive">&ensp;*&ensp;</span><span class="text-field-brackets">(<span class="text-field-descriptive">&ensp;*&ensp;</span><span class="text-field-number">1</span><span class="text-field-descriptive">&ensp;- x</span>)</span><span class="text-field-descriptive">&ensp;**&ensp;</span><span class="text-field-number">4</span>)</span><span class="text-field-descriptive">&ensp;/&ensp;</span><span class="text-field-brackets">(<span class="text-field-number">1</span><span class="text-field-descriptive">&ensp;+ x **&ensp;</span><span class="text-field-number">2</span>)</span><span class="text-field-descriptive">,&ensp;</span><span class="text-field-number">0</span><span class="text-field-descriptive">,&ensp;</span><span class="text-field-number">1</span>)
                         <br>
-                        print<span class="text-field-brackets">(<span class="text-field-function">f</span>"積分 <span class="text-field-brackets">{<span class="text-field-descriptive">result</span>}</span>")</span>
+                        print(<span class="text-field-function">f</span>"積分 <span class="text-field-brackets">{<span class="text-field-descriptive">result</span>}</span>")
                         <br>
-                        print<span class="text-field-brackets">(<span class="text-field-function">f</span>"22 / 7 - π <span class="text-field-brackets">{<span class="text-field-number">22</span><span class="text-field-descriptive">&ensp;/&ensp;</span><span class="text-field-number">7</span><span class="text-field-descriptive">&ensp;- np.pi</span>}</span>")</span>
+                        print(<span class="text-field-function">f</span>"22 / 7 - π <span class="text-field-brackets">{<span class="text-field-number">22</span><span class="text-field-descriptive">&ensp;/&ensp;</span><span class="text-field-number">7</span><span class="text-field-descriptive">&ensp;- np.pi</span>}</span>")
                     </code>
                     <div class="outputInfo">-></div>
                     <div class="outputIfram">
@@ -260,22 +260,8 @@
                         <br>
                         22 / 7 - π 0.0012644892673496777
                     </div>
-                </div>
-                <code class="language-python">
-                    import numpy as np
-                    <br>
-                    import scipy
-                    <br>
-                    <br>
-                    # 円周率と近似値の誤差
-                    <br>
-                    result, err = scipy.integrate.quad(lambda x: ((x ** 4) * (1 - x) ** 4) / (1 + x ** 2), 0, 1)
-                    <br>
-                    print(f"積分 <span class="text-field-brackets">{<span class="text-field-descriptive">result</span>}</span>")
-                    <br>
-                    print(f"22/7 - π <span class="text-field-brackets">{<span class="text-field-number">22</span><span class="text-field-descriptive">&ensp;/&ensp;</span><span class="text-field-number">7</span><span class="text-field-descriptive">&ensp;- np.pi</span>}</span>")
-                </code>
-            </div> <!-- /.main -->
+                </div> <!-- /coding_file_wrapper -->
+            </div> <!-- /main -->
             <div class="annotation">
                 ページ注釈
                 <ol class="olAnnotation">

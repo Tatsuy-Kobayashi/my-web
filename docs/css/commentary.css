@@ -1,31 +1,51 @@
 .content {
     display: flex;
     width: 100%;
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: auto auto;
+    grid-template-areas:
+        "breadcrumb-list breadcrumb-list"
+        "content-main content-annotation"
+        "output-info output-ifram";
+}
+.breadcrumb_list {
+    grid-area: breadcrumb-list;
 }
 .main {
     flex: 2;
     padding: 0 10px 0 50px; /* 上・右・下・左の余白 */
     float: left;
+    grid-area: content-main;
+}
+.annotation {
+    flex: 1;
+    padding: 0 50px 0 10px;
+    float: right;
+    grid-area: content-annotation;
 }
 @media (max-width: 768px) {
     .content {
         flex-direction: column;
+        display: grid;
+        grid-template-rows: auto auto auto;
+        grid-template-columns: auto;
+        grid-template-areas:
+            "breadcrumb-list"
+            "content-main"
+            "content-annotation";
     }
     .main, .annotation {
         padding: 0 10px 0 50px;
         width: 100%;
     }
 }
-.annotation {
-    flex: 1;
-    margin: 0 50px 0 10px;
-    float: right;
-}
+
 
 figure, blockquote {
     margin: 0 10px 0 50px; /* ブラウザデフォルトの隙間をリセット */
 }
-.figure-quote { 
+.figure-quote {
     padding: 0 0 0 0.5em; /* 左側に余白 */
     border-left: solid 3px black; /* 左側に線 */
     font-style: italic; /* 引用文を斜体に */

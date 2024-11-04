@@ -38,7 +38,7 @@
 }
 .code-content {
     padding: 0 6px 4px 0;
-    line-height: 0px;
+    line-height: 14.4px;
     white-space: pre;
     overflow-x: auto; /* テーブル全体に横スクロールを適用 */
     -ms-overflow-style: none; /* IE、Edgeでスクロールバーを非表示 */

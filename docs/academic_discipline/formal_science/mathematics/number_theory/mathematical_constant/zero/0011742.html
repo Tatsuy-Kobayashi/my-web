@@ -124,29 +124,60 @@
             <h2>目次</h2>
             <h2>概要</h2>
             <p>
-                &emsp;円周率の計算式は数あれど、近似値としてよく知られる値と円周率の差が斯くも興味深い式で表せるとは。特に右辺の対称性がおもしろい。
+                &emsp;ポメランス定数Pomerance  constant
+                友愛数の逆数の和The reciprocal sum of the amicable numbers
+                1.4...未満？
+                https://math.dartmouth.edu/~carlp/mcom3362.pdf
+                10 ** 14未満の数からなる組で、0.0119841556796931142
+                https://digitalcommons.cwu.edu/cgi/viewcontent.cgi?article=1058&context=math
             </p>
-            \[
-                \frac{22}{7} - \pi = \int_{0}^{1} \frac{x^{4}(1 - x)^{4}}{1 + x^{2}} dx
-            \]
+            \begin{align*}
+                \sum_{a amicable} \frac{1}{a} &= \frac{1}{220} + \frac{1}{284} + \frac{1}{1184} + \cdots \\
+                    &=0.011742375699682357
+            \end{align*}
             <div class="coding_file_wrapper">
                 <div class="fileTitle">0001264489.ipynb</div>
                 <div class="code-main">
                     <div class="rowNumber">
-                        1<br>2<br>3<br>4<br>5<br>6<br>7
+                        1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31
                     </div>
-<div class="code-content"><code class="language-python">import numpy as np
-import scipy
+<div class="code-content"><code class="language-python">def divisor(<span class="text-field-variable">num</span>):
+    total = 1
+    for i in range(2, int(num**0.5)+1):
+        if num % i == 0:
+            total += i
+            if i**2 != num:
+                total += num // i
+    return total
 
-# 円周率と近似値の誤差
-result, err = scipy.integrate.quad(lambda <span class="text-field-variable">x</span>: ((x ** 4) * (1 - x) ** 4) / (1 + x ** 2), 0, 1)
-print(<span class="text-field-function">f</span>"積分 {result}")
-print(<span class="text-field-function">f</span>"22 / <span>7</span> - π <span class="text-field-descriptive">{<span class="text-field-number">22</span> / <span class="text-field-number">7</span> - np.pi}</span>")</code></div> <!-- /code-content -->
+# 一度だけ友愛数のリストを生成する
+amical_l = []
+for i in range(1, 10 ** 6 + 1):
+    amical = divisor(i)
+    if amical <= i:
+        continue
+    if divisor(amical) == i:
+        amical_l.append((i, amical))
+
+def amicable_num(<span class="text-field-variable">n</span>):
+    return amical_l[n - 1]
+
+print(len(amical_l))
+print(amicable_num(1)[0])
+
+def amicable_recpr_sum(<span class="text-field-variable">n</span>):
+    result = 0
+    for i in range(1, n + 1):
+        result += 1 / amicable_num(i)[0] + 1 / amicable_num(i)[1]
+    return result
+
+print(amicable_recpr_sum(len(amical_l)))</code></div> <!-- /code-content -->
                 </div> <!-- /code-main -->
                 <div class="output-wrapper">
                     <div class="outputInfo">-></div>
-                    <div class="outputIfram">積分 0.0012644892673496185
-22 / 7 - π 0.0012644892673496777</div>
+                    <div class="outputIfram">13
+220
+0.011742375699682357</div>
                 </div>
             </div> <!-- /coding_file_wrapper -->
         </div> <!-- /main -->

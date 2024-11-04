@@ -31,7 +31,6 @@
 .rowNumber {
     padding: 0 6px 4px 0;
     max-width: 50px;
-    line-height: 14.4px;
     font-family: monospace;
     user-select: none;
     text-align: right;
@@ -44,6 +43,14 @@
     overflow-x: auto; /* テーブル全体に横スクロールを適用 */
     -ms-overflow-style: none; /* IE、Edgeでスクロールバーを非表示 */
     scrollbar-width: none; /* Firefoxでスクロールバーを非表示 */
+}
+@media (max-width: 768px) {
+    .rowNumber {
+        line-height: 15px;
+    }
+    .code-content {
+        line-height: 14.4px;
+    }
 }
 .output-wrapper {
     display: flex;

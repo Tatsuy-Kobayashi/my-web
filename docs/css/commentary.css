@@ -19,7 +19,7 @@
 .annotation {
     grid-area: content-annotation;
     padding: 0 10px 0 10px;
-    min-width: 100px;
+    min-width: 200px;
 }
 @media (max-width: 768px) {
     .content {

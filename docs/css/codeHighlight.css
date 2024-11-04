@@ -21,17 +21,6 @@
     border-radius: 9px 9px 0 0;
     font-family: monospace;
 }
-.rowNumber {
-    padding: 0 6px 4px 0;
-    max-width: 50px;
-    background-color: #1f1f1f;
-    color: #ffffff;
-    font-family: monospace;
-    user-select: none;
-    text-align: right;
-    margin-right: 10px;
-    white-space: nowrap;
-}
 .code-main {
     grid-area: code-main;
     display: flex;
@@ -39,8 +28,17 @@
     color: #ffffff;
     overflow-x: auto;
 }
+.rowNumber {
+    padding: 0 6px 4px 0;
+    max-width: 50px;
+    font-family: monospace;
+    user-select: none;
+    text-align: right;
+    white-space: nowrap;
+}
 .code-content {
     padding: 0 6px 4px 0;
+    line-height: 0px;
     white-space: pre;
     overflow-x: auto; /* テーブル全体に横スクロールを適用 */
     -ms-overflow-style: none; /* IE、Edgeでスクロールバーを非表示 */
@@ -52,7 +50,7 @@
 }
 .outputInfo {
     top: 0;
-    margin-right: 0 6px 4px 0;
+    padding: 0 6px 4px 0;
     max-width: 50px;
     font-family: monospace;
     user-select: none;

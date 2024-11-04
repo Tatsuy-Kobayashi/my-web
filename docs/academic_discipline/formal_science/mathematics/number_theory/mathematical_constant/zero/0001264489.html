@@ -139,9 +139,9 @@
 import scipy
 
 # 円周率と近似値の誤差
-result, err = scipy.integrate.quad(lambda <span class="text-field-variable">x</span><span class="text-field-descriptive">:&ensp;</span><span class="text-field-brackets">(<span class="text-field-brackets">(<span class="text-field-descriptive">x **</span> 4)</span><span class="text-field-descriptive">&ensp;*</span>&ensp;<span class="text-field-brackets">(1 <span class="text-field-descriptive">- x</span>)</span>&ensp;<span class="text-field-descriptive">**</span> 4)</span><span class="text-field-descriptive">&ensp;/&ensp;</span><span class="text-field-brackets">(1 <span class="text-field-descriptive">+ x **</span> 2)</span><span class="text-field-descriptive">,</span> 0<span class="text-field-descriptive">,</span> 1)
-print(<span class="text-field-function">f</span>"積分 <span class="text-field-brackets">{<span class="text-field-descriptive">result</span>}</span>")
-print(<span class="text-field-function">f</span>"22 / <span>7</span> - π <span class="text-field-brackets">{22 <span class="text-field-descriptive">/</span> 7 <span class="text-field-descriptive">- np.pi</span>}</span>")</code></div> <!-- /code-content -->
+result, err = scipy.integrate.quad(lambda <span class="text-field-variable">x</span>: ((x ** 4) * (1 - x) ** 4) / (1 + x ** 2), 0, 1)
+print(<span class="text-field-function">f</span>"積分 {result}")
+print(<span class="text-field-function">f</span>"22 / <span>7</span> - π {22 / 7 - np.pi}")</code></div> <!-- /code-content -->
                 </div> <!-- /code-main -->
                 <div class="output-wrapper">
                     <div class="outputInfo">-></div>

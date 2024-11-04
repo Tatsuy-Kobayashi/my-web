@@ -6,57 +6,66 @@
     border-radius: 10px;
     box-shadow: 0 10px 20px #dbdbdb;
     display: grid;
-    grid-template-rows: 20px auto auto;
+    grid-template-rows: 20px auto;
     grid-template-columns: auto auto;
     grid-template-areas:
         "file-title file-title"
-        "row-number code-main"
-        "output-info output-ifram";
+        "code-main code-main";
 }
 .coding_file_wrapper::-webkit-scrollbar {
     display: none; /* Webkit系ブラウザでスクロールバーを非表示 */
 }
-.coding_file_wrapper .fileTitle {
-    padding-left: 50px;
+.fileTitle {
     grid-area: file-title;
-    border-radius:9px 9px 0 0;
+    padding-left: 50px;
+    border-radius: 9px 9px 0 0;
     font-family: monospace;
 }
-.coding_file_wrapper .rowNumber {
-    grid-area: row-number;
+.rowNumber {
     padding: 0 6px 4px 0;
-    background-color: #1f1f1f; /* 背景色を合わせる */
-    color: #ffffff;
-    font-family: monospace;
-    user-select: none;
-    z-index: 1; /* 他のセルの上に表示 */
-}
-.coding_file_wrapper code {
-    grid-area: code-main;
-    padding: 0 6px 4px 0;
+    max-width: 50px;
     background-color: #1f1f1f;
     color: #ffffff;
-    white-space: nowrap; /* コードセルは横スクロール可能 */
+    font-family: monospace;
+    user-select: none;
+    text-align: right;
+    margin-right: 10px;
+    white-space: nowrap;
+}
+.code-main {
+    grid-area: code-main;
+    display: flex;
+    background-color: #1f1f1f;
+    color: #ffffff;
+    overflow-x: auto;
+}
+.code-content {
+    padding: 0 6px 4px 0;
+    white-space: pre;
     overflow-x: auto; /* テーブル全体に横スクロールを適用 */
     -ms-overflow-style: none; /* IE、Edgeでスクロールバーを非表示 */
     scrollbar-width: none; /* Firefoxでスクロールバーを非表示 */
 }
-.coding_file_wrapper .outputInfo {
-    grid-area: output-info;
+.output-wrapper {
+    display: flex;
+    align-items: flex-start;
+}
+.outputInfo {
     top: 0;
-    padding: 0 6px 4px 0;
+    margin-right: 0 6px 4px 0;
+    max-width: 50px;
     font-family: monospace;
     user-select: none;
 }
-.coding_file_wrapper .outputIfram {
-    grid-area: output-ifram;
+.outputIfram {
     padding: 0 6px 4px 0;
     font-family: monospace;
-    white-space: nowrap; /* コードセルは横スクロール可能 */
+    white-space: pre;
     overflow-x: auto; /* テーブル全体に横スクロールを適用 */
     -ms-overflow-style: none; /* IE、Edgeでスクロールバーを非表示 */
     scrollbar-width: none; /* Firefoxでスクロールバーを非表示 */
 }
+
 
 /* 手動 */
 .coding_file_wrapper .text-field-descriptive {

@@ -1,5 +1,4 @@
 .content {
-    display: flex;
     width: 100%;
     display: grid;
     grid-template-rows: auto auto auto;
@@ -11,18 +10,15 @@
 }
 .breadcrumb_list {
     grid-area: breadcrumb-list;
+    padding: 0 10px 0 50px; /* 上・右・下・左の余白 */
 }
 .main {
-    flex: 2;
-    padding: 0 10px 0 50px; /* 上・右・下・左の余白 */
-    float: left;
     grid-area: content-main;
+    padding: 0 10px 0 50px;
 }
 .annotation {
-    flex: 1;
-    padding: 0 50px 0 10px;
-    float: right;
     grid-area: content-annotation;
+    padding: 0 10px 0 10px;
 }
 @media (max-width: 768px) {
     .content {
@@ -35,7 +31,7 @@
             "content-main"
             "content-annotation";
     }
-    .main, .annotation {
+    .breadcrumb_list, .main, .annotation {
         padding: 0 10px 0 50px;
         width: 100%;
     }

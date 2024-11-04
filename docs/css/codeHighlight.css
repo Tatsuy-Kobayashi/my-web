@@ -128,6 +128,9 @@
 .syntax-string {
     color: #D4957B;
 }
+.syntax-number {
+    color: #C7E3B9;
+}
 .syntax-type {
     color: #53D6BC;
 }

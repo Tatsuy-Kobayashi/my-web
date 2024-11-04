@@ -2,7 +2,7 @@ $(document).ready(function () {
     const patterns = {
         python: [
             { type: 'string', regex: /(["'`].*?["'`])/g },
-            { type: 'number', regex: /(?<=\s|[{}(),+\-*/])(\d+(\.\d+)?|\.\d+)(?=\s|[<{}(),+\-*/])/g },
+            { type: 'number', regex: /(?<=\s|[{}()\[\],+\-*/])(\d+(\.\d+)?|\.\d+)(?=\s|[<{}()\[\],+\-*/])/g },
             { type: 'structure', regex: /\b(import|from|return|for|as|if|else|elif|match|continue|while)\b/g },
             /* キャスト特化 */
             { type: 'type', regex: /\b(int|float|complex|bool|str|NoneType|list|tuple|set|dict|sympify|mpf)\(/g },
@@ -12,7 +12,7 @@ $(document).ready(function () {
         ],
         c: [
             { type: 'string', regex: /(".*?")/g },
-            { type: 'number', regex: /(?<=\s|[{}(),+\-*/])(\d+(\.\d+)?|\.\d+)(?=\s|[<{}(),+\-*/])/g },
+            { type: 'number', regex: /(?<=\s|[{}()\[\],+\-*/])(\d+(\.\d+)?|\.\d+)(?=\s|[<{}()\[\],+\-*/])/g },
             { type: 'structure', regex: /\b(return|if|else|while|switch|case|default)\b/g },
             { type: 'type', regex: /\b(int|float|double|char|void)\b/g },
             { type: 'comment', regex: /(\/\/.*?$|\/\*[\s\S]*?\*\/)/gm },
@@ -20,7 +20,7 @@ $(document).ready(function () {
         ],
         javascript: [
             { type: 'string', regex: /(["'`].*?["'`])/g },
-            { type: 'number', regex: /(?<=\s|[{}(),+\-*/])(\d+(\.\d+)?|\.\d+)(?=\s|[<{}(),+\-*/])/g },
+            { type: 'number', regex: /(?<=\s|[{}()\[\],+\-*/])(\d+(\.\d+)?|\.\d+)(?=\s|[<{}()\[\],+\-*/])/g },
             { type: 'structure', regex: /\b(return|if|else|for|while|import|export|class)\b/g },
             { type: 'type', regex: /\b(let|const|var)\b/g },
             { type: 'function', regex: /\b(function|in)\b/g },

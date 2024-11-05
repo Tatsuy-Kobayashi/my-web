@@ -3,7 +3,7 @@
 <head prefix="og: http://ogp.me/ns#">
     <meta charset="UTF-8">
     <meta name="format-detection" content="telephone=no">
-    <title>0001264489 - ラクして数理研究所</title>
+    <title>ポメランス定数 - ラクして数理研究所</title>
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="icon" />
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="icon" />
@@ -15,14 +15,14 @@
     <link rel="canonical" href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" />
     <!-- og -->
     <meta property="og:type" content="website" /> <!-- articleとか -->
-    <meta property="og:title" content="0001264489｜ラクして数理研究所" />
+    <meta property="og:title" content="ポメランス定数｜ラクして数理研究所" />
     <meta property="og:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" />
     <meta property="og:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" />
     <meta property="og:site_name" content="ラクして数理研究所" />
     <link rel="dns-prefetch" href="//tatsuy-kobayashi.github.io/" /> <!-- HTTPSページのDNSプリフェッチはできない -->
     <!-- twitter card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="0001264489｜ラクして数理研究所">
+    <meta name="twitter:title" content="ポメランス定数｜ラクして数理研究所">
     <meta name="twitter:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。">
     <meta name="twitter:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html">
     <meta name="twitter:image" content="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png">
@@ -120,11 +120,17 @@
             0
         </div>
         <div class="main">
-            <h1>ポメランス定数Pomerance constant</h1>
+            <h1>ポメランス定数Pomerance constant<sup id="ref_1"><a href="#note_1">[1]</a></sup></h1>
             <h2>目次</h2>
             <h2>概要</h2>
             <p>
-                &emsp;友愛数の逆数の和The reciprocal sum of the amicable numbers
+                &emsp;自然数aとbにおいて、a以外の約数（1を含む）の和がbとなり、b以外の約数（1を含む）の和がaとなる、二組みの自然数。例えば、220の約数は、「1」「2」「4」「5」「10」「11」「20」「22」「44」「55」「110」で、この合計が「284」となる。一方284の約数は、「1」「2」「4」「71」「142」で、この合計が「220」となる<sup id="ref_2"><a href="#note_2">[2]</a>。
+            </p>
+            <p>
+                &emsp;1981 年に、ポメランスは、そのような数すべての逆数の和 P が定数であることを示した。
+            </p>
+            <p>
+                &emsp;
                 1.4...未満？
                 https://math.dartmouth.edu/~carlp/mcom3362.pdf
                 10 ** 14未満の数からなる組で、0.0119841556796931142
@@ -135,7 +141,7 @@
                     &=0.011742375699682357
             \end{align*}
             <div class="coding_file_wrapper">
-                <div class="fileTitle">0001264489.ipynb</div>
+                <div class="fileTitle">pomerance_constant.ipynb</div>
                 <div class="code-main">
                     <div class="rowNumber">
                         1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31
@@ -184,7 +190,12 @@ print(amicable_recpr_sum(len(amical_l)))</code></div> <!-- /code-content -->
             ページ注釈
             <ol class="olAnnotation">
                 <li id="note_1"><a href="#ref_1">^</a>
-                    注釈
+                    別題：友愛数の逆数の和The reciprocal sum of the amicable numbers。
+                    <br>
+                    「ポメランス定数」という語は、私が勝手に呼んだものなので、一般的には通らないと思われる。ポメランスPomeranceの名を冠することとしたのは、彼が友愛数の逆数の和を収束する定数であることを示したためである。
+                </li>
+                <li id="note_2"><a href="#ref_2">^</a>
+                    出典　小学館デジタル大辞泉
                 </li>
             </ol>
         </div> <!-- /annotation -->

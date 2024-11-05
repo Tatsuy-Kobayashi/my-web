@@ -124,21 +124,17 @@
             <h2>目次</h2>
             <h2>概要</h2>
             <p>
-                &emsp;自然数aとbにおいて、a以外の約数（1を含む）の和がbとなり、b以外の約数（1を含む）の和がaとなる、二組みの自然数。例えば、220の約数は、「1」「2」「4」「5」「10」「11」「20」「22」「44」「55」「110」で、この合計が「284」となる。一方284の約数は、「1」「2」「4」「71」「142」で、この合計が「220」となる<sup id="ref_2"><a href="#note_2">[2]</a>。
+                &emsp;自然数aとbにおいて、a以外の約数（1を含む）の和がbとなり、b以外の約数（1を含む）の和がaとなる、二組みの自然数。例えば、220の約数は、「1」「2」「4」「5」「10」「11」「20」「22」「44」「55」「110」で、この合計が「284」となる。一方284の約数は、「1」「2」「4」「71」「142」で、この合計が「220」となる<sup id="ref_2"><a href="#note_2">[2]</a></sup>。
             </p>
             <p>
-                &emsp;1981 年に、ポメランスは、そのような数すべての逆数の和 P が定数であることを示した。
+                &emsp;$1981$ 年に、ポメランスは、そのような数すべての逆数の和 $P$ が定数であることを示した<sup id="ref_3"><a href="#note_3">[3]</a></sup><sup id="ref_4"><a href="#note_4">[4]</a></sup>。
             </p>
             <p>
-                &emsp;
-                1.4...未満？
-                https://math.dartmouth.edu/~carlp/mcom3362.pdf
-                10 ** 14未満の数からなる組で、0.0119841556796931142
-                https://digitalcommons.cwu.edu/cgi/viewcontent.cgi?article=1058&context=math
+                &emsp;10 ** 14未満の数からなる友愛数の組による逆数の和は、0.0119841556796931142である<sup id="ref_4"><a href="#note_4">[4]</a></sup>。
             </p>
             \begin{align*}
                 \sum_{a\ \text{amicable}} \frac{1}{a} &= \frac{1}{220} + \frac{1}{284} + \frac{1}{1184} + \cdots \\
-                    &=0.011742375699682357
+                    &=0.01198415567969311\dots
             \end{align*}
             <div class="coding_file_wrapper">
                 <div class="fileTitle">pomerance_constant.ipynb</div>
@@ -185,6 +181,7 @@ print(amicable_recpr_sum(len(amical_l)))</code></div> <!-- /code-content -->
 0.011742375699682357</div>
                 </div>
             </div> <!-- /coding_file_wrapper -->
+            <h2>解説</h2>
         </div> <!-- /main -->
         <div class="annotation">
             ページ注釈
@@ -192,10 +189,16 @@ print(amicable_recpr_sum(len(amical_l)))</code></div> <!-- /code-content -->
                 <li id="note_1"><a href="#ref_1">^</a>
                     別題：友愛数の逆数の和The reciprocal sum of the amicable numbers。
                     <br>
-                    「ポメランス定数」という語は、私が勝手に呼んだものなので、一般的には通らないと思われる。ポメランスPomeranceの名を冠することとしたのは、彼が友愛数の逆数の和を収束する定数であることを示したためである。
+                    「ポメランス定数」という語は、私が勝手に呼んだものなので、一般的には通らないと思われる。ポメランスPomeranceの名を冠することとしたのは、彼が友愛数の逆数の和を収束する定数であることを示したためである<sup id="ref_3"><a href="#note_3">[3]</a></sup>。
                 </li>
                 <li id="note_2"><a href="#ref_2">^</a>
                     出典　小学館デジタル大辞泉
+                </li>
+                <li id="note_3"><a href="#ref_3">^</a>
+                    Carl Pomerance「<a href="https://math.dartmouth.edu/~carlp/mcom3362.pdf">The reciprocal sum of the amicable numbers</a>」Mathematics of Computation（Article electronically published on April 10, 2018）
+                </li>
+                <li id="note_4"><a href="#ref_4">^</a>
+                    Jonathan Bayless、Dominic Klyve「<a href="https://digitalcommons.cwu.edu/cgi/viewcontent.cgi?article=1058&context=math">On the Sum of Reciprocals of Amicable Numbers</a>」2011年6月。
                 </li>
             </ol>
         </div> <!-- /annotation -->

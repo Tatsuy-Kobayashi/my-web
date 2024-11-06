@@ -138,7 +138,7 @@
 <div class="code-content"><code class="language-python">import numpy as np
 import sympy
 
-Groups_of_order_ = [0, 1, 1, 1, 2, 1, 2, 1, 5, 2, 2, 1, 5, 1, 2, 1, 14, 1, 5, 1, 5, 2, 2, 1, 15, 2, 2, 5, 4, 1, 4, 1, 51, 1, 2, 1, 14, 1, 2, 2, 14, 1, 6, 1, 4, 2, 2, 1, 52, 2, 5, 1, 5, 1, 15, 2, 13, 2, 2, 1, 13, 1, 2, 4, 267, 1, 4, 1, 5, 1, 4, 1, 50, 1, 2, 3, 4, 1, 6, 1, 52, 15, 2, 1, 15, 1, 2, 1, 12, 1, 10, 1, 4, 2, 2, 1, 231, 1, 5, 2, 16, 1, 4, 1, 14, 2, 2, 1, 45, 1, 6, 2, 43, 1, 6, 1, 5, 4, 2, 1, 47, 2, 1, 4, 5, 16, 1, 2328, 2, 4, 1, 10, 1, 2, 5, 15, 1, 4, 1, 11, 1, 2, 1, 197, 1, 2, 6, 5, 1, 13, 1, 12, 2, 4, 2, 18, 1, 2, 1, 238, 1, 55, 1, 5, 2, 2, 1, 57, 2, 4, 5, 4, 1, 4, 2, 42, 1, 2, 1, 37, 1, 4, 2, 12, 1, 6, 1, 4, 13, 4, 1, 1543, 1, 2, 2, 12, 1, 10, 1, 52, 2, 2, 2, 12, 2, 2, 2, 51, 1, 12, 1, 5, 1, 2, 1, 177, 1, 2, 2, 15, 1, 6, 1, 197, 6, 2, 1, 15, 1, 4, 2, 14, 1, 16, 1, 4, 2, 4, 1, 208, 1, 5, 67, 5, 2, 4, 1, 12, 1, 15]
+Groups_of_order_ = [0, 1, 1, 1, 2, 1, 2, 1, 5, 2, 2, 1, 5, 1, 2, 1, 14, 1, 5, 1, 5, 2, 2, 1, 15, 2, 2, 5, 4, 1, 4, 1, 51, 1, 2, 1, 14, 1, 2, 2, 14, 1, 6, 1, 4, 2, 2, 1, 52, 2, 5, 1, 5, 1, 15, 2, 13, 2, 2, 1, 13, 1, 2, 4, 267, 1, 4, 1, 5, 1, 4, 1, 50, 1, 2, 3, 4, 1, 6, 1, 52, 15, 2, 1, 15, 1, 2, 1, 12, 1, 10, 1, 4, 2, 2, 1, 231, 1, 5, 2, 16, 1, 4, 1, 14, 2, 2, 1, 45, 1, 6, 2, 43, 1, 6, 1, 5, 4, 2, 1, 47, 2, 2, 1, 4, 5, 16, 1, 2328, 2, 4, 1, 10, 1, 2, 5, 15, 1, 4, 1, 11, 1, 2, 1, 197, 1, 2, 6, 5, 1, 13, 1, 12, 2, 4, 2, 18, 1, 2, 1, 238, 1, 55, 1, 5, 2, 2, 1, 57, 2, 4, 5, 4, 1, 4, 2, 42, 1, 2, 1, 37, 1, 4, 2, 12, 1, 6, 1, 4, 13, 4, 1, 1543, 1, 2, 2, 12, 1, 10, 1, 52, 2, 2, 2, 12, 2, 2, 2, 51, 1, 12, 1, 5, 1, 2, 1, 177, 1, 2, 2, 15, 1, 6, 1, 197, 6, 2, 1, 15, 1, 4, 2, 14, 1, 16, 1, 4, 2, 4, 1, 208, 1, 5, 67, 5, 2, 4, 1, 12, 1, 15]
 
 def GO(n):
     result = Groups_of_order_[n]
@@ -190,110 +190,96 @@ print(2 / 27)</code></div> <!-- /code-content -->
                 ここで、その上限を改善することができれば、(1.1) の上限も改善できるが、両不等式のギャップを完全に埋めることはできない。
             </p>
             <p>
-                &emsp;シリーズの他の論文では、固定した $n$ に対して $p\,f(n, p)$ がどのような関数であるかという、より興味深いかもしれない問題について議論する予定である。もちろん、関数 $f(n,p)$ は $n \leq 5$ の場合には既に知られている（$n \leq 4$ については Burnside、$n = 5$ については Schreier の研究を参照）。これらの場合の結果は、与えられた $n$ に対して整数 $N$ が存在し、$p$ が'$N$ を法とする固定された剰余類'を取ると $f(n, p)$ が多項式であることを示唆している。このことを証明することはできないが、第2論文において、$\Phi$-類が高々 $2$ である $p$-群（つまり、中心基本アーベル部分群を持ち、その商群も基本アーベルである $p$-群）を列挙する関数について対応する結果を証明する。この結果は、$q$ 元を持つ体 $F_{q}$ に関する列挙問題についての、一般的な定理の特殊な場合として現れる。この定理はまた、例えば、$F_{q}$ 上の与えられた次数、与えられた変数の数における非同値な形式の数を列挙する問題にも適用される。
+                &emsp;シリーズの他の論文では、固定した $n$ に対して $p\,f(n, p)$ がどのような関数であるかという、より興味深いかもしれない問題について議論する予定である。もちろん、関数 $f(n,p)$ は $n \leq 5$ の場合には既に知られている（$n \leq 4$ については Burnside<sup id="ref_2"><a href="#note_2">[2]</a></sup>、$n = 5$ については Schreier<sup id="ref_3"><a href="#note_3">[3]</a></sup>の研究を参照）。これらの場合の結果は、与えられた $n$ に対して整数 $N$ が存在し、$p$ が'$N$ を法とする固定された剰余類'を取ると $f(n, p)$ が多項式であることを示唆している。このことを証明することはできないが、第2論文において、$\Phi$-類が高々 $2$ である $p$-群（つまり、中心基本アーベル部分群を持ち、その商群も基本アーベルである $p$-群）を列挙する関数について対応する結果を証明する。この結果は、$q$ 個の元を持つ体 $F_{q}$ に関する列挙問題についての、一般的な定理の特殊な場合として現れる。この定理はまた、例えば、$F_{q}$ 上の与えられた次数、与えられた変数の数における非同値な形式の数を列挙する問題にも適用される。
             </p>
-            We shall not be able to prove this, but we shall prove a corresponding result, in the second paper, for the function which enumerates $p$-groups of $\Phi$-class at most two (that is, $p$-groups possessing a central elementary abelian subgroup with elementary abelian factor group). This emerges as a special case of a rather general theorem about enumeration problems involving the field $F_{q}$ of $q$ elements, which applies also, for instance, to the problem of enumerating the inequivalent forms of given degree, in a given number of variables, over $F_{q}$.
 
-            <h3>2. A lower bound</h3>
+            <h3>2. 下限</h3>
             <p>
-                The lower bound for $f(n,p)$ is obtained by considering $p$-groups of $\Phi$-class 2. Such a group has a central elementary abelian $\Phi$-subgroup, and we describe it as of $\Phi$-complexion (r, s) if the $\Phi$-subgroup is of index $p^{r} and order $p^{s}. We denote by $g(r,s; p)$ the number of isomorphism classes of $p$-groups of $\Phi$-complexion $(r, s)$, and by $f_2(n,p)$ the number of isomorphism classes of p-groups of $\Phi$-class 2 and order pn.
+                &emsp;$f(n,p)$ の下限は $\Phi$-類が 2 の $p$-群を考えることで得られる。このような群は中心基本アーベルな $\Phi$ 部分群を持ち、$\Phi$ 部分群の指数が $p^{r}$、位数が $p^{s}$ であるとき、その群を $\Phi$-組成 $(r, s)$ を持つものと記述する。$\Phi$-組成 $(r, s)$ を持つ $p$-群の同型類の数を $g(r, s; p)$、また、位数 $p^{n}$ の $\Phi$-類が 2 の $p$-群の同型類の数を $f_2(n,p)$ と表す。
             </p>
-            THEOREM 2.1. If s > | r ( r + l ) , then g(r,s;p) = 0; but if s < £r(r-f-l)
-            ^im> ^irs(r+l)-ra-83 ^ ^ s\ p) ^. plrs(r+l)-s{s-l)^
-            If G is a p-group whose O-subgroup is of index pr, then G can be generated
-            by r elements; so we begin by constructing the largest p-group generated
-            by r elements whose O-subgroup is central and elementary abelian. Let F
-            be a free group with free generators ax, a2>---> ar> an(* let R be the fully
-            invariant subgroup of F generated by xpi, (x, y)p, (xp, y), and {(x, y), z) for
-            all x, y, z in F. We put FjR — H. Then H is a p-group, generated by the
-            r elements ht = cijR, i = 1,..., r. Moreover O(#) is generated by commutators
-            (x, y) andpth powers xp, and so, by definition of R, is central and
-            elementary abelian. Conversely, if G is a p-group, generated by gv g2,..., gr,
-            and with O(6r) central and elementary abelian, then the identical relations
-            xp2 = (x,y)p = (xp,y) = ((x, y),z) = 1 hold in G, and so the kernel of the
-            homomorphism of F on G, in which ai maps on gi} contains R. Thus G is a
-            homomorphic image of H, G ~ H/N say, and if the generators gv..., gr
-            are irredundant, N is contained in O(#).
-            Now H is generated by hx, h2,..., hr, and so O(#) is generated by hf, hP,..., hp
-            together with the commutator group. But the commutator group is
-            generated by the commutators (hit hj), 1 < i < j < r, together with their
-            conjugates, that is, by the commutators themselves, since they are central.
-            Thus O(JBT) is generated by the |-r(r+l) elements
-            hf, l < i < r , (*<,*,), l ^ i < j ^ r .
-            These are independent generators. For by the argument above, any relation
-            between them implies the corresponding relation between the generators
-            9v 9r2»-"> 9r °f a n y #-group G with O((?) central and elementary abelian.
-            Taking gi of order p2, and g^ = 1, j =£ i, gives c^ = 0; and then taking gt
-            and gt to generate a non-abelian group of order pz, and gk = 1, k ^ i, j ,
-            gives jS^ = 0. HenceO(^f) is elementary abelian of order pR
-            t R.= ^r(r+l);
-            and if G c^ H/N is of O-complexion (r, s), N is of order pR~s. Hence s < R,
-            which is the first statement of the theorem.
-            Moreover, if s ^ R, the number of non-isomorphic groups G is not greater than the number of distinct subgroups N of order pR~8 in the elementary
-            abelian group <&(H) of order pR. By duality, this is the same as the number
-            of order p8, which is
-            (pR-l)(pR-p)...(pR-ps-i)
-            {p8—l)(ps—p)...(pB—ps-1)
-            Since this is less than pRs-s(s-i)} the right-hand inequality in the theorem
-            follows.
-            To obtain the left-hand inequality, we have to find out for what pairs of
-            subgroups Nlt N2 of <&(H) the factor groups H/Ny and H/N2 are isomorphic.
-            Suppose there is an isomorphism of H/Ny onto H/N2 carrying ^ JV^ onto
-            kiNz, i = 1,..., r. Because H is a relatively free group (a factor group of a
-            free group by a fully invariant subgroup) there is an endomorphism otoiH
-            carrying ht into ki} i = 1,..., r. Because kx,..., kr generate H modulo N2,
-            and a fortiori modulo $>(H), they generate H, and so a is an automorphism.
-            Because the mapping hiN1-^kiN2 can be extended to an isomorphism
-            between H/Nx and H/N2, we have N2 = oc(Nx). Conversely, for any automorphism
-            <x of H, Hjcx(Nx) is of course isomorphic to HjNx. Thus the isomorphism
-            classes of j9-groups of O-complexion (r, s) are in one-to-one correspondence
-            with the equivalence classes of subgroups of<&(H) of order pR-*
-            under the automorphism group of H. If a is an automorphism of H which
-            induces the identity on H/Q>(H), so that a(^) = h^, with xi in 0>{H), and
-            therefore central of order p, then a induces the identity also onO(i/). Hence
-            the number of groups in such an equivalence class is at most equal to the
-            order of the automorphism group of H/Q>(H), which is
-            (Pr-i)(pr-p)-(pr-pr-1)-
-            Thus the number of equivalence classes is at least
-            (pR—l)(pR—p)...(pR—ps-1)
-            (ps-l)(ps-p)...(ps-p8-1)(pr-l)(pr-p)...(pr-pr-iy
-            which is greater than pRs-r2-s\.
-            This concludes the proof of Theorem 2.1, but it is convenient to carry the
-            argument a stage further in case p > 2. In this case, H being of class 2
-            and its derived group being of exponent #>, the usual calculation shows that
-            (AJ1 A?... h?)v = (hi°)ai(h$)<x*... {h?)«\
-            ThusO(H) is the direct product of the group P consisting of pth powers, and
-            the derived group D. Both P and D of course admit the automorphism
-            group of H, and under this group P is operator isomorphic to H/<&(H),
-            and so, in an additive notation, to a vector space V of dimension r over the
-            field Fp of p elements, under the full linear group OLr(p). And, of course,
-            in such an additive translation, D becomes the exterior square of V (the antisymmetrized tensor product of V with itself). This gives the following
-            theorem.
-            THEOREM 2.2. Let Vbea vector space of dimension r over Fp, and V AV its
-            exterior square. Then if p > 2 the number g(r, s; p) of isomorphism classes
-            of p-groups of ^-complexion (r, s) is equal to the number of equivalence classes
-            of subspaces of codimension s in the direct sum V ©V AV under the group in
-            this space induced by the full linear group in V.
-            It is easy to deduce bounds for f2(n,p) from Theorem 2.1.
-            THEOREM 2.3. The number f^{n,p) of isomorphism classes of p-groups of
-            <&-class 2 and order pn satisfies
-            If n ^ 2 there certainly exist groups of order pn and 0 -class 2, for instance,
-            abelian groups of exponent p2. Thus the first inequality is nontrivial
-            only if n > 6. Obviously f2(n,p) ^ g(r, s; p) for any r, s such that
-            r-\-s = n. Putting r = (2n—8)/3, 5 = (n+8)/3, where 8 is chosen from
-            0, 1, 2 to make r, s integral, we find, from Theorem 2.1 tha,tf2(n,p) ^ pN,
-            where N ^nz
-            ^ if 8 = 0>
-            JV = 2 > 3 - 6 ^ 2 ) + l ( n - l ) if 8 = 1 ,
-            and N = Utf-Qn^+lin-f) if 8 = 2.
-            Since we can assume n > 6, the result follows.
+            <p>
+                &emsp;定理 2.1. $s \gt \frac{1}{2} r (r + 1)$ ならば $g(r, s; p) = 0$ だが、$s \leq \frac{1}{2} r (r + 1)$ ならば不等式
+            </p>
+            \[
+                p^{\frac{1}{2} r s (r + 1) -r^{2} - s^{2}} \leq g(r,s;p) \leq p^{\frac{1}{2} r s (r + 1) - s (s - 1)}
+            \]
+            <p>
+                が成り立つ。
+            </p>
+            <p>
+                &emsp;$G$ が $\Phi$ 部分群の指数が $p^{r}$ である $p$-群であれば、$G$ は $r$ 個の元で生成される。そこで、$\Phi$ 部分群が中心基本アーベルな $r$ 個の元で生成される最大の $p$-群を構成することから始める。$a_{1}$, $a_{2}$, ..., $a_{r}$ を自由生成元とする自由群 $F$ を取り、$F$ 内の $x^{p^{2}}$, $(x, y)^{p}$, $(x^{p}, y)$, および $((x, y), z)$ が生成する完全不変部分群 $R$ を考える。$F/R = H$ とすると、$H$ は $r$ 個の元 $h_{i} = a_{i}R$ ($i = 1, ..., r$) で生成される $p$-群となり、$\Phi(H)$ は交換子 $(x, y)$ および $x^{p}$ によって生成されるため、定義により $R$ が中心基本アーベルである。逆に、$G$が$p$-群で、生成元が$g_{1}, g_{2}, \ldots, g_{r}$であり、$\Phi(G)$が中心基本アーベルであるとします。このとき、$G$内では$x^{p^{2}} = (x, y)^{p} = (x^{p}, y) = ((x, y), z) = 1$という同値関係が成立します。したがって、$F$から$G$への準同型写像において、$a_{i}$が$g_{i}$に写るとすると、その核には$R$が含まれる。よって、$G$は$H$の準同型の像であり、$G \simeq H/N$と表すことができます。また、生成元$g_{1}, \ldots, g_{r}$が冗長でない場合、$N$は$\Phi(H)$に含まれる。
+            </p>
+            <p>
+                &emsp;次に、$H$ は $h_{1}, h_{2}, \ldots, h_{r}$ によって生成されるため、$\Phi(H)$ は $h_{1}^{p}, h_{2}^{p}, \ldots, h_{r}^{p}$ と交換子群によって生成される。しかし、交換子群は交換子 $(h_{i}, h_{j})$（$1 \leq i \lt j \leq r$）およびその共役によって生成されるが、これは中心的なため、交換子自体によって生成されることになる。したがって、$\Phi(H)$ は次の $\frac{1}{2} r (r + 1)$ 個の要素によって生成される：
+            </p>
+            \[
+                h_{i}^{p}, 1 \leq i \leq r, (h_{i}, h_{j}), 1 \leq i \lt j \leq r.
+            \]
+            <p>
+                これらは独立な生成元である。上述の議論により、これらの間の任意の関係式
+            </p>
+            \[
+                \prod (h_{i}^{p})^{\alpha_{i}} \prod (h_{i}, h_{j})^{\beta_{ij}} = 1
+            \]
+            <p>
+                は、任意の中心基本アーベル群 $\Phi(G)$ を持つ $p$-群 $G$ の生成元 $g_{1}, g_{2}, \ldots, g_{r}$ に対して、対応する関係式を意味する。$g_{i}$ で、位数を $p^{2}$ および $g_{j} = 1$ ($j \neq i$) と取ると、$\alpha_{i} = 0$ となる。また、$g_{i}$ と $g_{j}$ によって位数 $p^{3}$ の非可換群を生成し、$g_{k} = 1$ ($k \neq i, j$) とすると $\beta_{ij} = 0$ となる。したがって、$\Phi(H)$ は位数 $p^{R}$ の基本アーベル群であり、$R = \frac{1}{2} r (r + 1)$ である。また、$G \simeq H/N$ が $\Phi$-組成 $(r, s)$ を持つならば、$N$ の位数は $p^{R-s}$ である。したがって、$s \leq R$ であり、これが定理の最初の主張である。
+            </p>
+            <p>
+                &emsp;さらに、もし $s \leq R$ ならば、非同型群 $G$ の数は、位数 $p^{R}$ の基本アーベル群 $\Phi(H)$ の中で、次数 $p^{R-s}$ の異なる部分群 $N$ の数より多くはない。双対性により、これは位数 $p^{s}$ のものの数と同じであり、
+            </p>
+            \[
+                \frac{(p^{R}-1)(p^{R}-p)...(p^{R}-p^{s-1})}{(p^{s}—1)(p^{s}—p)...(p^{s}—p^{s-1})}
+            \]
+            <p>
+                これは $p^{Rs-s(s-1)}$ 未満であるため、定理の右側の不等式が得られる。
+            </p>
+            <p>
+                &emsp;左側の不等式を得るためには、$\Phi(H)$ のどの部分群 $N_{1}$、$N_{2}$ の組で、商群 $H/N_{1}$ と $H/N_{2}$ が同型である場合を考えればよい。$H/N_{1}$ から $H/N_{2}$ への同型写像が存在し、その写像が $h_{i}N_{1}$ を $k_{i}N_{2}$ に写すと仮定します（$i = 1, \dots, r$）。このとき、$H$ は比較的自由な群（完全不変部分群による自由群の商群）であるため、$h_{i}$ を $k_{i}$ ($i = 1$, ..., $r$) に写す $H$ の準同型写像 $\alpha$ が存在する。$k_{1}, \dots, k_{r}$ は $N_{2}$ を法として、さらに $\Phi(H)$ を法としても $H$ を生成するため、$H$ を生成します。したがって、$\alpha$ は自己同型です。また、写像 $h_{i}N_{1} \to k_{i}N_{2}$ は $H/N_{1}$ と $H/N_{2}$ 間の同型写像に拡張可能であるため、$N_{2} = \alpha(N_{1})$ である。逆に、$H$ の任意の自己同型写像 $\alpha$ に対して、$H/\alpha(N_{1})$ は当然ながら $H/N_{1}$ と同型である。したがって、$\Phi$-組成 $(r, s)$ を持つ $p$-群の同型類は、$H$ の自己同型群の下での $\Phi(H)$ の位数 $p^{R-s}$ の部分群の同値類と一対一に対応する。もし $\alpha$ が $H/\Phi(H)$ 上で恒等写像を誘導する $H$ の自己同型写像であり、$\alpha(h_{i}) = h_{i}x_{i}$ （ただし $x_{i} \in \Phi(H)$）となるならば、したがって位数 $p$ の中心元であるため、$\alpha$ は $\Phi(H)$ 上でも恒等写像を誘導する。したがって、そのような同値類に属する群の数は、高々 $H/\Phi(H)$ の自己同型群の位数以下であり、その位数は
+            </p>
+            \[
+                (p^{r}-1)(p^{r}-p)...(p^{r}-p^{r-1}).
+            \]
+            <p>
+                である。したがって、同値類の数は少なくとも
+            </p>
+            \[
+                \frac{(p^{R} - 1)(p^{R} - p)...(p^{R} - p^{s-1})}{(p^{s}-1)(p^{s}-p)...(p^{s}-p^{s-1})(p^{r}-1)(p^{r}-p)...(p^{r}-p^{r-1})},
+            \]
+            <p>
+                であり、これは $p^{Rs - r^{2} - s^{2}}$ より大きい。
+            </p>
+            <p>
+                &emsp;この結果により定理 2.1 の証明が完了するが、$p > 2$ の場合にはもう少し議論を進めるとより便利になる。この場合、$H$ は類が 2 の群であり、交換子群がべき指数 $p$ であるため、通常の計算から次のことがわかる：
+            </p>
+            \[
+                (h_{1}^{\alpha_{1}} h_{2}^{\alpha_{2}} ... h_{r}^{\alpha_{i}})^{p} = (h_{1}^{p})^{\alpha_{1}} (h_{2}^{p})^{\alpha_{2}} ... (h_{r}^{p})^{\alpha_{r}}.
+            \]
+            <p>
+                &emsp;したがって、$\Phi(H)$ は $p$ 乗からなる群 $P$ と交換子群 $D$ の直積である。当然ながら $P$ と $D$ はどちらも $H$ の自己同型群を認め、この群の下で $P$ は $H/\Phi(H)$ と同型の演算子である。したがって、加法表現では次元 $r$ のベクトル空間 $V$ に等しい。そして、加法的な変換では $D$ は $V$ の外積（自己対称テンソル積の反対称化）となる。この結果から次の定理が得られる。
+            </p>
+            to a vector space $V$ of dimension $r$ over the field $F_{p}$ of $p$ elements, under the full linear group $GL_{r}(p)$. And, of course, in such an additive translation, $D$ becomes the exterior square of $V$ (the antisymmetrized tensor product of $V$ with itself). This gives the following theorem.
+            THEOREM 2.2. Let $V$ be a vector space of dimension $r$ over $F_{p}$, and $V \land V$ its exterior square. Then if $p \gt 2$ the number $g(r,s;p)$ of isomorphism classes of $p$-groups of $\Phi$-complexion $(r, s)$ is equal to the number of equivalence classes of subspaces of codimension $s$ in the direct sum $V \oplus V \land V$ under the group in this space induced by the full linear group in $V$.
+            It is easy to deduce bounds for $f_{2}(n,p)$ from Theorem 2.1.
+            THEOREM 2.3. The number $f_{2}(n,p)$ of isomorphism classes of $p$-groups of $\Phi$-class 2 and order $p^{n}$ satisfies
+            \[
+                p^{\frac{2}{27} (n^{3} - 6n^{2})} \leq f_{2}(n,p) \leq (n-1) p^{\frac{2}{27} n^{3} + \frac{11}{24} n}
+            \]
+            if $n \geq 2$.
+            If $n \geq 2$ there certainly exist groups of order $p^{n}$ and $\Phi$-class 2, for instance, abelian groups of exponent $p^{2}$. Thus the first inequality is nontrivial only if $n \gt 6$. Obviously $f_{2}(n,p) \geq g(r, s; p)$ for any $r$, $s$ such that $r + s = n$. Putting $r = (2n—\delta)/3$, $s = (n+\delta)/3$, where $\delta$ is chosen from $0$, $1$, $2$ to make $r$, $s$ integral, we find, from Theorem 2.1 that $f_{2}(n,p) \geq p^{N}$, where
+            \begin{align*}
+                N &= \frac{2}{27} (n^{3} - 6n^{2})                                 if  \delta = 0,
+                N &= \frac{2}{27} (n^{3} - 6n^{2}) + \frac{2}{9} (n-\frac{7}{6})   if  \delta = 1,
+                N &= \frac{2}{27} (n^{3} - 6n^{2}) + \frac{1}{3} (n-\frac{26}{9})  if  \delta = 2.
+            \end{align*}
+            Since we can assume $n \gt 6$, the result follows.
             For the second inequality, we have
-            n - l
-            f2(n>P) = 2 g{r,n—r;p) < (n— l)pM
-            where M is the maximum of \rs{r-\-\)—s(s— 1), 5 = n—r, in the range
-            0 < r < n. A short calculation shows that the maximum occurs when
-            r = fn+8, 0 < 8 < \, and that M < ^
-            3. Upper bounds
+            \[
+                f_{2}(n,p) = \sum_{r=1}^{n-1} g(r,n-r;p) \leq (n - 1)p^{M}
+            \]
+            where $M$ is the maximum of $\frac{1}{2} r s (r + 1) - s (s - 1)$, $s = n — r$, in the range $0 \lt r \lt n$. A short calculation shows that the maximum occurs when $r = \frac{2}{3} n+ \delta$, $0 \lt \delta \lt \frac{1}{2}$, and that $M \leq \frac{2}{27} n^{3} + \frac{11}{24} n$.
+
+
+            <h3>3. 上限</h3>
             A group 0 of order pn has a chief series
             G = Go >QX >G, > ... >On = 1,
             where (3-^ is normal in 6r and of index pl. If ^ is an element of Gi _x not in
@@ -411,6 +397,12 @@ print(2 / 27)</code></div> <!-- /code-content -->
             <ol class="olAnnotation">
                 <li id="note_1"><a href="#ref_1">^</a>
                     Graham Higman「<a href="https://londmathsoc.onlinelibrary.wiley.com/doi/10.1112/plms/s3-10.1.24">Enumerating p-groups. Ⅰ: Inequalities</a>」（London Mathematical Society, Volumes3-10, Issue1, 1960）、Pages 24-30
+                </li>
+                <li id="note_2"><a href="#ref_2">^</a>
+                    W. Burnside「<a href="https://londmathsoc.onlinelibrary.wiley.com/doi/10.1112/plms/s3-10.1.24">Enumerating p-groups. Ⅰ: Inequalities</a>」（London Mathematical Society, Volumes3-10, Issue1, 1960）、Pages 24-30
+                </li>
+                <li id="note_3"><a href="#ref_3">^</a>
+                    O. Schreier「<a href="https://londmathsoc.onlinelibrary.wiley.com/doi/10.1112/plms/s3-10.1.24">Enumerating p-groups. Ⅰ: Inequalities</a>」（London Mathematical Society, Volumes3-10, Issue1, 1960）、Pages 24-30
                 </li>
             </ol>
         </div> <!-- /annotation -->

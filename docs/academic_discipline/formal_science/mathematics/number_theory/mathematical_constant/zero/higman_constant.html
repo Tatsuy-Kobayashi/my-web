@@ -3,7 +3,7 @@
 <head prefix="og: http://ogp.me/ns#">
     <meta charset="UTF-8">
     <meta name="format-detection" content="telephone=no">
-    <title>0001264489 - ラクして数理研究所</title>
+    <title>ヒグマン定数 - ラクして数理研究所</title>
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="icon" />
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="icon" />
@@ -15,14 +15,14 @@
     <link rel="canonical" href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" />
     <!-- og -->
     <meta property="og:type" content="website" /> <!-- articleとか -->
-    <meta property="og:title" content="0001264489｜ラクして数理研究所" />
+    <meta property="og:title" content="ヒグマン定数｜ラクして数理研究所" />
     <meta property="og:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" />
     <meta property="og:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" />
     <meta property="og:site_name" content="ラクして数理研究所" />
     <link rel="dns-prefetch" href="//tatsuy-kobayashi.github.io/" /> <!-- HTTPSページのDNSプリフェッチはできない -->
     <!-- twitter card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="0001264489｜ラクして数理研究所">
+    <meta name="twitter:title" content="ヒグマン定数｜ラクして数理研究所">
     <meta name="twitter:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。">
     <meta name="twitter:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html">
     <meta name="twitter:image" content="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png">
@@ -255,133 +255,136 @@ print(2 / 27)</code></div> <!-- /code-content -->
                 (h_{1}^{\alpha_{1}} h_{2}^{\alpha_{2}} ... h_{r}^{\alpha_{i}})^{p} = (h_{1}^{p})^{\alpha_{1}} (h_{2}^{p})^{\alpha_{2}} ... (h_{r}^{p})^{\alpha_{r}}.
             \]
             <p>
-                &emsp;したがって、$\Phi(H)$ は $p$ 乗からなる群 $P$ と交換子群 $D$ の直積である。当然ながら $P$ と $D$ はどちらも $H$ の自己同型群を認め、この群の下で $P$ は $H/\Phi(H)$ と同型の演算子である。したがって、加法表現では次元 $r$ のベクトル空間 $V$ に等しい。そして、加法的な変換では $D$ は $V$ の外積（自己対称テンソル積の反対称化）となる。この結果から次の定理が得られる。
+                &emsp;したがって、$\Phi(H)$ は $p$ 乗の元からなる群 $P$ と交換子群 $D$ の直積である。当然ながら $P$ と $D$ は共に $H$ の自己同型群を持ち、その作用の下で $P$ は $H/\Phi(H)$ と同型の演算子である。したがって、加法表記では$p$ 個の元を有する体 $F_{p}$ 上 $r$ 次元ベクトル空間 $V$ として表され、完全(full)線型群 $GL_{r}(p)$ の下で変換される。そして、このような加法的な変換において、$D$ は $V$ の外積（$V$ 自身との反対称化されたテンソル積）になる。これにより、次の定理が得られる。
             </p>
-            to a vector space $V$ of dimension $r$ over the field $F_{p}$ of $p$ elements, under the full linear group $GL_{r}(p)$. And, of course, in such an additive translation, $D$ becomes the exterior square of $V$ (the antisymmetrized tensor product of $V$ with itself). This gives the following theorem.
-            THEOREM 2.2. Let $V$ be a vector space of dimension $r$ over $F_{p}$, and $V \land V$ its exterior square. Then if $p \gt 2$ the number $g(r,s;p)$ of isomorphism classes of $p$-groups of $\Phi$-complexion $(r, s)$ is equal to the number of equivalence classes of subspaces of codimension $s$ in the direct sum $V \oplus V \land V$ under the group in this space induced by the full linear group in $V$.
-            It is easy to deduce bounds for $f_{2}(n,p)$ from Theorem 2.1.
-            THEOREM 2.3. The number $f_{2}(n,p)$ of isomorphism classes of $p$-groups of $\Phi$-class 2 and order $p^{n}$ satisfies
+            <p>
+                &emsp;定理 2.2. $V$ を $F_{p}$ 上 $r$ 次元ベクトル空間、$V \land V$ をその外積とします。$p \gt 2$ のとき、$\Phi$-組成 $(r, s)$ の $p$ 群の同型類の数 $g(r, s; p)$ は、$V$ 中の完全(full)線形群によって作用を受ける空間の群の下で、直和 $V \oplus V \land V$ における余次元 $s$ の部分空間の同値類の数に等しい。
+            </p>
+            <p>
+                &emsp;定理 2.1 から $f_{2}(n, p)$ の上限を導くのは容易だろう。
+            </p>
+            <p>
+                &emsp;定理 2.3. $\Phi$-類が 2 かつ位数 $p^{n}$ の $p$ 群の同型類の数 $f_{2}(n, p)$ は、以下を満たす：
+            </p>
             \[
                 p^{\frac{2}{27} (n^{3} - 6n^{2})} \leq f_{2}(n,p) \leq (n-1) p^{\frac{2}{27} n^{3} + \frac{11}{24} n}
             \]
-            if $n \geq 2$.
-            If $n \geq 2$ there certainly exist groups of order $p^{n}$ and $\Phi$-class 2, for instance, abelian groups of exponent $p^{2}$. Thus the first inequality is nontrivial only if $n \gt 6$. Obviously $f_{2}(n,p) \geq g(r, s; p)$ for any $r$, $s$ such that $r + s = n$. Putting $r = (2n—\delta)/3$, $s = (n+\delta)/3$, where $\delta$ is chosen from $0$, $1$, $2$ to make $r$, $s$ integral, we find, from Theorem 2.1 that $f_{2}(n,p) \geq p^{N}$, where
+            <p>
+                ここで $n \geq 2$。
+            </p>
+            <p>
+                &emsp;$n \geq 2$ の場合、例えばべき指数が $p^{2}$ のアーベル群など、位数 $p^{n}$ かつ $\Phi$-類が 2 の群が確実に存在します。したがって、最初の不等式は $n > 6$ のときにのみ意味を持つ。明らかに、任意の $r$、$s$ について $r + s = n$ であれば $f_{2}(n, p) \geq g(r, s; p)$ となる。$r = (2n - \delta)/3$, $s = (n + \delta)/3$ （ここで、$\delta$ は $0$, $1$, $2$ のいずれか）と置き、$r$ と $s$ を整数にすると、定理 2.1 から $f_{2}(n, p) \geq p^{N}$ が得られる。ここで、
+            </p>
             \begin{align*}
-                N &= \frac{2}{27} (n^{3} - 6n^{2})                                 if  \delta = 0,
-                N &= \frac{2}{27} (n^{3} - 6n^{2}) + \frac{2}{9} (n-\frac{7}{6})   if  \delta = 1,
-                N &= \frac{2}{27} (n^{3} - 6n^{2}) + \frac{1}{3} (n-\frac{26}{9})  if  \delta = 2.
+                N &= \frac{2}{27} (n^{3} - 6n^{2})                                      & \text{if} \; \delta = 0,\\
+                N &= \frac{2}{27} (n^{3} - 6n^{2}) + \frac{2}{9} (n-\frac{7}{6})        & \text{if} \; \delta = 1,\\
+                N &= \frac{2}{27} (n^{3} - 6n^{2}) + \frac{1}{3} (n-\frac{26}{9}) \quad & \text{if} \; \delta = 2.
             \end{align*}
-            Since we can assume $n \gt 6$, the result follows.
-            For the second inequality, we have
+            <p>
+                とする。$n > 6$ を仮定しているため、この結果が成り立つ。
+            </p>
+            <p>
+                &emsp;2 番目の不等式については、
+            </p>
             \[
                 f_{2}(n,p) = \sum_{r=1}^{n-1} g(r,n-r;p) \leq (n - 1)p^{M}
             \]
-            where $M$ is the maximum of $\frac{1}{2} r s (r + 1) - s (s - 1)$, $s = n — r$, in the range $0 \lt r \lt n$. A short calculation shows that the maximum occurs when $r = \frac{2}{3} n+ \delta$, $0 \lt \delta \lt \frac{1}{2}$, and that $M \leq \frac{2}{27} n^{3} + \frac{11}{24} n$.
-
+            <p>
+                であり、ここで $M$ は、範囲 $0 \lt r \lt n$ の中で $\frac{1}{2} r s (r + 1) - s (s - 1) \; ($s = n - r$)$ の最大値である。簡単な計算により、$r = \frac{2}{3} n + \delta$, $0 \lt \delta \lt \frac{1}{2}$ のとき最大値に達し、$M \leq \frac{2}{27} n^{3} + \frac{11}{24} n$ であることが分かる。
+            </p>
 
             <h3>3. 上限</h3>
-            A group 0 of order pn has a chief series
-            G = Go >QX >G, > ... >On = 1,
-            where (3-^ is normal in 6r and of index pl. If ^ is an element of Gi _x not in
-            i = 1,..., n, then every element of G is uniquely of the form
-            tf1^-^ (0<o< < i » - l ) ,
-            and belongs to (3^ if a,- = 0 for j < i. Since grf belongs to Gt we have
-
-            and since the commutator (gj} gj, i < j belongs to Gj we have
-            It is easy to see that the multiplication table of G is determined by the
-            numbers /?#, i < j , and yijk, i <j < k, so that/(w, p) is not greater than the
-            number of ways in which they can be chosen. That is:
-            THEOREM 3.1. f(n,p) < ^(»3-»>.
-            It seems to me surprising that an upper bound obtained so simply should
-            be as near the truth as Theorem 2.3 shows that this must be.
-            We spend the rest of this section on a slight improvement, for large n, of
-            Theorem 3.1. The existence of a chief series as above is still central to the
-            argument, but the approach is less direct.
-            THEOREM 3.2. Let Sbea Sylow p-subgroup of the full linear group GLn(Fg),
-            where Fq is afield containing q elements, and q is a power of p. If the number of
-            conjugate classes in S is written qBn\ then
-            &-en < B < £+en.
-            We may take 8 to be the group of n-bj-n matrices with elements in Fq,
-            with ones in the main diagonal and zeros above it. Then the operation of
-            subtracting a multiple of the ith row from the jth, and adding the same
-            multiple of the ^'th column to the ith, replaces any element of 8 by a conjugate
-            element, provided that i is less than j . Clearly, any element of S
-            can be transformed by such operations into one which has at most one nonzero
-            element below the main diagonal in the first column, say in the axth
-            row. Then, without disturbing the first column, we can further transform
-            it so that in the second column, below the main diagonal, there are non-zero
-            elements at most in the axth. row, and one further row, say the a2th. Continuing
-            so as far as the [n/2]th column, we see that our element can be
-            transformed into one with non-zero elements below the main diagonal in at
-            most n2/4: places if n is even, or {n2— 1 )/4 if n is odd, these places being determined
-            by the sequence ax, a2>... of distinct integers less than n— 1. Thus
-            the number of classes is less than (n— 1)! q*1*1*. But (n— 1)! is qe»ni for q > 2,
-            so the upper inequality follows.
-            To obtain the lower inequality, let J denote a square matrix with nonzero
-            elements in the subsidiary diagonalf but nowhere else, let X denote a
-            matrix with at least as many rows as columns, with non-zero elements in
-            the diagonal leading fr,om the bottom right-hand corner, and with zeros
-            below this diagonal, and let Y denote a matrix with at least as many columns
-            as rows, with non-zero elements in the diagonal leading from the top lefthand corner, and zeros below it. Then one verifies without difficulty that
-            similarly partitioned matrices of the form
-            • /
-            X I
-            J I
-            Y IA
-            are conjugate in S only if they are equal. The lower bound in the theorem
-            follows, on taking the number of rows in X to be twice the number of
-            columns, and vice versa in Y, and counting the number of disposable
-            elements.
-            It would be interesting to see the gap in Theorem 3.2 closed; it would also
-            be interesting to know whether, as a consideration of small values of n
-            suggests, for fixed n the class number is a polynomial in q.
-            THEOREM 3.3. If H is any subgroup of GLn(Fq), the number of conjugate
-            classes of p-elements1[ in H is less than q$+eJn*.
-            There is no loss of generality in supposing H to be a^-group, and, indeed,
-            to be contained in S. If we allow H to act upon itself as a permutation
-            group by conjugation, the conjugate classes are the transitive systems.
-            The usual formula for the number of such sj^stems (cf. Burnside (1), 191)
-            g i v e S o(H)c(H)= 2 o(C(h))
-            MnH
-            where o (H) denotes the order of H, c(H) the number of classes, and C(h)
-            is the centralizer of h in H. Comparing this with the corresponding formula
-            for £ gives o{H)c(H)^o(S)c(S).
-            Hence c(H) < {o{S)c(S))K Putting in o{S) = qMn~» and the bound for
-            c(S) from Theorem 3.2 gives the result.
-            THEOREM 3.4. If G is a group of order pn, the number of isomorphism classes
-            of groups containing G as a normal subgroup of index p is less than p(l+eJn3.
-            Let G1 so contain G, being generated by G and an element t. Then
-            iP = g is an element of G, andr: x -> t~xxt is an automorphism of G; g andr,
-            which are not, of course, arbitrary, determine the isomorphism class of Gv
-            Moreover, if T is replaced by the conjugate automorphism a~h-a, and at the
-            same time g by ga, the isomorphism class of Gx is unchanged. Thus the
-            number of isomorphism classes is at most the number of classes of pelements
-            in the automorphism group A of G, multiplied by pn, a factor
-            negligible in the present context. Now, if G is generated by r elements,
-            A has a normal subgroup JV, of order dividing p^n-r\ consisting of those
-            automorphisms which induce the identity on Gj^>{G) (Hall (2)). The factor group A/N is isomorphic to a group of automorphisms of the elementary
-            abelian group G/<S>(0) of order pr, that is, to a subgroup of GLr(Fp). The
-            number of classes of •p-elements in A is at most p*n-r) times that in A/N,
-            so that by Theorem 3.3 it is at most pc, where
-            C = (f+*r)r2+r(n-r)
-            Since r ^ n, this is § n2-j-r)n n2 where r\n tends to zero as n tends to infinity,
-            proving the theorem.
-            We are now in a position to obtain an upper bound for f(n, p). For convenience,
-            we collect at the same time the lower bound from Theorem 2.3.
-            THEOREM 3.5. The number f(n,p) of isomorphism classes of groups of
-            order pn satisfies f(n,p) = pAn*, where
-            The first half is a corollary of the corresponding half of Theorem 2.3.
-            For the second half, since every group of order pn has a normal subgroup of
-            order pn~x, Theorem 3.4 gives
-            f{n,p) ^p^+e"-^
-            n-l
-            and hence Anz < ]£ (|+er)r2 =
-            It is clear that any improvement in the upper bound in Theorem 3.2
-            would lead to an improvement in the upper bounds in Theorems 3.3 to 3.5.
-            However, GLn{Fq) contains abelian subgroups of order q11'^ if n is even and
-            g,(na-i)/4 if n j s 0 ( j ^ } s o that the | + c n in Theorem 3.4 cannot be improved
-            beyond £. This would give an upper bound of \-\-en in Theorem 3.5, and so
-            would not close the gap between the two sides.
+            <p>
+                &emsp;位数 $p^{n}$ の群 $G$ は、以下の形の主系列を持つ。
+            </p>
+            \[
+                G = G_{0} \gt G_{1} \gt G_{2} \gt \dots \gt G_{n} = 1,
+            \]
+            <p>
+                ここで、$G_{i}$ は $G$ において正規であり、指数 $p^{i}$ である。$i = 1, ..., n$ に対し、$G_{i-1}$ の元 $g_{i}$ は $G_{i}$ に属さないものとする。このとき、$G$ の各元は次の形で一意に表される。
+            </p>
+            \[
+                g_{1}^{\alpha_{1}} g_{2}^{\alpha_{2}} ... g_{n}^{\alpha_{n}} \quad (0 \leq \alpha_{i} \leq p - 1),
+            \]
+            <p>
+                そして $j \leq i$ に対して $\alpha_{j} = 0$ であれば $G_{i}$ に属する。さらに $g_{i}^{p}$ は $G_{i}$ に属するため、次が成り立つ。
+            </p>
+            \[
+                g_{i}^{p} = g_{i+1}^{\beta_{ii+1}} \dots g_{n}^{\beta_{in}}
+            \]
+            <p>
+                また、交換子 $(g_{j}, g_{i})$, $i \lt j$ が、$G_{j}$ に属するため、
+            </p>
+            \[
+                (g_{j}, g_{i}) = g_{j+1}^{\gamma_{ijj+1}} \dots g_{n}^{\gamma_{ijn}}.
+            \]
+            <p>
+                が成立します。このことから、$G$ の乗法表は $\beta_{ij} (i \lt j)$ および $\gamma_{ijk}, (i \lt j \lt k)$ の値の選び方によって決まるため、$f(n, p)$ の上限はこれらの選び方の数以上にはならないことが分かります。すなわち：
+            </p>
+            <p>
+                &emsp;定理 3.1.
+            </p>
+            \[
+                f(n, p) \leq p^{\frac{1}{6} (n^{3} - n)}.
+            \]
+            <p>
+                &emsp;このように簡単に得られた上限が、定理 2.3 によって近似的に正しいことが示されることは、私にとって驚くべきことのように思える。
+            </p>
+            <p>
+                &emsp;本節の残りでは、定理 3.1 の大きな $n$ に対する僅かな改善を行います。上記の主系列の存在は依然議論の中心だが、アプローチは少し異なる。
+            </p>
+            <p>
+                &emsp;定理 3.2 $S$ を完全(full)線型群 $GL_{n}(F_{q})$ ($F_{q}$ は $q$ 個の元を持ち、$q$ は $p$ のべき) の Sylow $p$-部分群とする。$S$ の共役類の数を $q^{Bn^{2}}$ とすると、このとき、
+            </p>
+            \[
+                \frac{1}{12} - \epsilon_{n} \leq B \leq \frac{1}{4} + \epsilon_{n}.
+            \]
+            <p>
+                &emsp;$S$ を、主対角線上に 1、上三角部分に 0 を持つ $F_{q}$ 上の元を持つ $n$×$n$ 行列の群と考えます。$i$ 番目の行のある定数倍を $j$ 番目の行から引き、同じ定数倍を $j$ 番目の列に加える操作を行うと、$i \lt j$ の場合、$S$ の任意の要素を共役変換によって別の要素に置き換えることができます。明らかに、このような操作によって $S$ の任意の要素は、最初の列 (例えば $a_{1}$ 行目) の主対角線以下に多くとも一つの非ゼロ要素を持つ形に変換できます。その後、この最初の列を乱さずに、次の列（2 列目）でも同様の操作を行い、主対角線以下に非ゼロ要素が存在するのは多くとも $a_{1}$ 行目とさらに一つの行（例えば $a_{2}$ 行目）のみとなるようにします。この操作を $[n/2]$ 列目まで繰り返すと、$n$ が偶数の場合であれば、主対角線以下の非ゼロ要素がある場所の最大数は $n^{2}/4$ であり、$n$ が奇数の場合であれば $(n^{2} - 1)/4$ であることが分かります。これらの場所は、$n - 1$ 未満の異なる整数から成る列 $a_{1}$, $a_{2}$, … によって決定されます。したがって、共役類の数は $(n - 1)! q^{\frac{1}{4} n^{2}}$ 未満です。しかし、$q \geq 2$ に対して$(n - 1)!$ は $q^{\epsilon_{n} n^{2}}$ なので、上の不等式が成り立ちます。
+            </p>
+            To obtain the lower inequality, let $J$ denote a square matrix with non-zero elements in the subsidiary diagonal† but nowhere else, let $X$ denote a matrix with at least as many rows as columns, with non-zero elements in the diagonal leading from the bottom right-hand corner, and with zeros below this diagonal, and let $Y$ denote a matrix with at least as many columns as rows, with non-zero elements in the diagonal leading from the top lefthand corner, and zeros below it. Then one verifies without difficulty that similarly partitioned matrices of the form
+            \begin{bmatrix}
+            I &   &   &  \\
+            X & I &   &  \\
+              & J & I &  \\
+              &   & Y & I
+            \end{bmatrix}
+            are conjugate in $S$ only if they are equal. The lower bound in the theorem follows, on taking the number of rows in $X$ to be twice the number of columns, and vice versa in $Y$, and counting the number of disposable elements.
+              It would be interesting to see the gap in Theorem 3.2 closed; it would also be interesting to know whether, as a consideration of small values of $n$ suggests, for fixed $n$ the class number is a polynomial in $q$.
+              THEOREM 3.3. If $H$ is any subgroup of $GL_{n}(F_{q})$, the number of conjugate classes of $p$-elements† in $H$ is less than $q^{(\frac{3}{8} + \epsilon_{n})n^{2}}$.
+              There is no loss of generality in supposing $H$ to be a $p$-group, and, indeed, to be contained in $S$. If we allow $H$ to act upon itself as a permutation group by conjugation, the conjugate classes are the transitive systems. The usual formula for the number of such systems (cf. Burnside (1), 191) gives
+            \[
+                o(H)c(H) = \sum_{h \in H} o(C(h))
+            \]S
+            where $o(H)$ denotes the order of $H$, $c(H)$ the number of classes, and $C(h)$ is the centralizer of $h$ in $H$. Comparing this with the corresponding formula for $S$ gives
+            \[
+                o(H)c(H) \leq o(S)c(S).
+            \]
+            Hence $c(H) \leq (o(S)c(S))^{\frac{1}{2}}. Putting in $o(S) = q^{\frac{1}{2}n(n-1)}$ and the bound for $c(S)$ from Theorem 3.2 gives the result.
+            
+              THEOREM 3.4. If $G$ is a group of order $p^{n}$, the number of isomorphism classes of groups containing $G$ as a normal subgroup of index $p$ is less than $p^{(\frac{2}{5} + \epsilon_{n})n^{2}}$.
+              Let $G_{1}$ so contain $G$, being generated by $G$ and an element $t$. Then $t^{p} = g$ is an element of $G$, and $\tau: x \to t^{-1}xt$ is an automorphism of $G$; $g$ and $\tau$, which are not, of course, arbitrary, determine the isomorphism class of $G_{1}$. Moreover, if $\tau$ is replaced by the conjugate automorphism \sigma^{-1} \tau \sigma, and at the same time $g$ by $g^{\sigma}$, the isomorphism class of $G_{1}$ is unchanged. Thus the number of isomorphism classes is at most the number of classes of $p$-elements in the automorphism group $A$ of $G$, multiplied by $p^{n}$, a factor negligible in the present context. Now, if $G$ is generated by $r$ elements, $A$ has a normal subgroup $N$, of order dividing $p^{r(n - r)}$, consisting of those automorphisms which induce the identity on $G/\Phi(G)$ (Hall (2)). The factor group $A/N$ is isomorphic to a group of automorphisms of the elementary abelian group $G/\Phi(G)$ of order $p^{r}$, that is, to a subgroup of $GL_{r}(F_{p})$. The number of classes of $p$-elements in $A$ is at most $p^{r(n - r)}$ times that in $A/N$, so that by Theorem 3.3 it is at most $p^{C}$, where
+            \begin{align*}
+                C &= (\frac{3}{8} + \epsilon_{r})r^{2} + r(n - r)\
+                  &= \frac{2}{5} n^{2} - \frac{2}{5} (n - \frac{5}{4}r)^{2} + \epsilon_{r} r^{2}\
+                  &\leq \frac{2}{5} n^{2} + \epsilon_{r} r^{2}.
+            \end{align*}
+            Since $r \leq n$, this is $\frac{2}{5} n^{2} + \eta_{n} n^{2}$ where $\eta_{n}$ tends to zero as $n$ tends to infinity, proving the theorem.
+              We are now in a position to obtain an upper bound for $f(n, p)$. For convenience, we collect at the same time the lower bound from Theorem 2.3.
+              
+              THEOREM 3.5. The number $f(n,p)$ of isomorphism classes of groups of order $p^{n}$ satisfies $f(n,p) = p^{An^{3}}$, where
+            \[
+                \frac{2}{27} - \epsilon_{n} \leq A \leq \frac{2}{15} + \epsilon_{n}.
+            \]
+              The first half is a corollary of the corresponding half of Theorem 2.3. For the second half, since every group of order p^{n} has a normal subgroup of order $p^{n - 1}$, Theorem 3.4 gives
+            \[
+                f(n,p) \leq p^{(\frac{2}{5} + \epsilon_{n})(n - 1)^{2}}f(n - 1,p),
+            \]
+            and hence
+            \[
+                A n^{3} \leq sum_{r=1}^{n-1} (\frac{2}{5} + \epsilon_{r}) r^{2} = (\frac{2}{15} + \epsilon_{n}) n^{3}.
+            \]
+              It is clear that any improvement in the upper bound in Theorem 3.2 would lead to an improvement in the upper bounds in Theorems 3.3 to 3.5. However, $GL_{n}(F_{q})$ contains abelian subgroups of order $q^{\frac{1}{4} n^{2}}$ if $n$ is even and $q^{\frac{1}{4} (n^{2} - 1)}$ if $n$ is odd, so that the $\frac{3}{8} + \epsilon_{n}$ in Theorem 3.4 cannot be improved beyond $\frac{1}{4}$. This would give an upper bound of $\frac{1}{9} + \epsilon_{n}$ in Theorem 3.5, and so would not close the gap between the two sides.
 
             REFERENCES
             1. W. BUBNSIDE, Theory of groups of finite order, 2nd ed. (Cambridge, 1911).

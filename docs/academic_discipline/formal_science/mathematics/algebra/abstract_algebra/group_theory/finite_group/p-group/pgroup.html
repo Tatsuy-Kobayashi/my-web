@@ -36,8 +36,9 @@
     <style>
         .table_finite_group_wrapper {
             display: flex;
+            padding-left: 20px;
             width: 100%;
-            max-width: 800px;
+            max-width: 600px;
         }
         .table_finite_group {
             overflow-x: auto;
@@ -508,7 +509,7 @@
                 見て分かる通り、$x$ と $f(x)$ の関係は一言では表せないようである。しかし、位数 $p^{n}$ の群の個数 $f(p^{n})$ にのみ着目すればどうであろうか？詳しくは以下に見ていくが、その前に用語について触れる。$p$-群の $p$ というのは素数の $p$ であるのだが、それ故に位数 $2^{n}$ の群は、$2$-群と表したりする。
             </p>
 
-            <h2>$f(p^{n})$ の式一覧</h2><!--
+            <h2>$f(p^{n})$ の式一覧</h2>
             \[
                 f(p) = 1
             \]
@@ -533,27 +534,31 @@
                     61 + 2p + 2\, \text{gcd}(p - 1, 3) + \text{gcd}(p - 1, 4)  & \text{for } p \geq 5
                 \end{cases}
             \]
-            <div style="width: auto; overflow-x: auto;">
-                \[
-                    f(p^{6}) =
-                    \begin{cases}
-                        267 & \text{for } p = 2 \\
-                        504 & \text{for } p = 3 \\
-                        3p^2 + 39p + 344 + 24 \text{gcd}(p - 1, 3) + 11 \text{gcd}(p - 1, 4) + 2 \text{gcd}(p - 1, 5)  & \text{for } p \geq 5
-                    \end{cases}
-                \]
+            <div style="width: 600px;">
+                <div style="width: auto; overflow-x: auto;">
+                    \[
+                        f(p^{6}) =
+                        \begin{cases}
+                            267 & \text{for } p = 2 \\
+                            504 & \text{for } p = 3 \\
+                            3p^2 + 39p + 344 + 24 \text{gcd}(p - 1, 3) + 11 \text{gcd}(p - 1, 4) + 2 \text{gcd}(p - 1, 5)  & \text{for } p \geq 5
+                        \end{cases}
+                    \]
+                </div>
             </div>
-            <div style="width: auto; overflow-x: auto;">
-                \[
-                    f(p^{7}) =
-                    \begin{cases}
-                        2328 & \text{for } p = 2 \\
-                        9310 & \text{for } p = 3 \\
-                        34297 & \text{for } p = 5 \\
-                        3p^{5} + 12p^{4} + 44p^{3} + 170p^{2} + 707p + 2455 + (4p^{2} + 44p + 291)\text{gcd}(p - 1, 3) + (p^{2} + 19p + 135)\text{gcd}(p - 1, 4) + (3p + 31)\text{gcd}(p - 1, 5) + 4 \text{gcd}(p - 1, 7) + 5 \text{gcd}(p - 1, 8) + \text{gcd}(p - 1, 9)  & \text{for } p \geq 5
-                    \end{cases}
-                \]
-            </div>-->
+            <div style="width: 600px;">
+                <div style="height: 155px; width: auto; overflow-x: auto;">
+                    \[
+                        f(p^{7}) =
+                        \begin{cases}
+                            2328 & \text{for } p = 2 \\
+                            9310 & \text{for } p = 3 \\
+                            34297 & \text{for } p = 5 \\
+                            3p^{5} + 12p^{4} + 44p^{3} + 170p^{2} + 707p + 2455 + (4p^{2} + 44p + 291)\text{gcd}(p - 1, 3) + (p^{2} + 19p + 135)\text{gcd}(p - 1, 4) + (3p + 31)\text{gcd}(p - 1, 5) + 4 \text{gcd}(p - 1, 7) + 5 \text{gcd}(p - 1, 8) + \text{gcd}(p - 1, 9)  & \text{for } p \geq 5
+                        \end{cases}
+                    \]
+                </div>
+            </div>
 
 
             <h2>$n = 1$ のとき</h2>

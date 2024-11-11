@@ -84,31 +84,28 @@ figure, blockquote {
     margin: 0;
 }
 
-.main li {
+.pulldown_list_wrapper li {
     padding-left: 10px; /* 基本のインデント */
     list-style-type: none;
 }
-.main li a {
+.pulldown_list_wrapper li a {
     text-decoration: none;
     color: #333;
     transition: color 0.3s ease;
 }
-.main li a:hover {
+.pulldown_list_wrapper li a:hover {
     color: #1a73e8;
 }
 
-.main li > details > summary {
-    padding-left: 0; /* 親要素（学問）にはインデントなし */
+.pulldown_list_wrapper li > details > summary {
+    padding-left: 0; /* 親要素にはインデントなし */
 }
-
-.main li details > li {
+.pulldown_list_wrapper li details > li {
     padding-left: 10px; /* 第一階層：10pxのインデント */
 }
-
-.main li details li details > li {
+.pulldown_list_wrapper li details li details > li {
     padding-left: 20px; /* 第二階層：さらに10pxのインデント */
 }
-
-.main li details li details li details > li {
+.pulldown_list_wrapper li details li details li details > li {
     padding-left: 30px; /* 第三階層：さらに10pxのインデント */
 }

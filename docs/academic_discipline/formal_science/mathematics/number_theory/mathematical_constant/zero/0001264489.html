@@ -136,14 +136,19 @@
 import scipy
 
 # 円周率と近似値の誤差
-result, err = scipy.integrate.quad(lambda <span class="text-field-variable">x</span>: ((x ** 4) * (1 - x) ** 4) / (1 + x ** 2), 0, 1)
-print(<span class="text-field-function">f</span>"積分 <span class="text-field-descriptive">{result}</span>")
-print(<span class="text-field-function">f</span>"22 / <span>7</span> - π <span class="text-field-descriptive">{<span class="text-field-number">22</span> / <span class="text-field-number">7</span> - np.pi}</span>")</code></pre> <!-- /code-content -->
+result, err = scipy.integrate.quad(lambda x: ((x ** 4) * (1 - x) ** 4) / (1 + x ** 2), 0, 1)
+print(f"積分 {result}")
+print(f"22 / 7 - π {22 / 7 - np.pi}")</code></pre>
                 </div> <!-- /code-main -->
                 <div class="output-wrapper">
                     <div class="outputInfo">-></div>
                     <div class="outputIfram">積分 0.0012644892673496185
 22 / 7 - π 0.0012644892673496777</div>
+                </div>
+                <div class="download-button-wrapper">
+                    <a href="path/to/yourfile.ipynb" download="0001264489.ipynb" class="download-button">
+                        Download Code
+                    </a>
                 </div>
             </div> <!-- /coding_file_wrapper -->
             <h2>解説</h2>

@@ -31,7 +31,6 @@
     display: flex;
     padding: 0 6px 4px 0;
     font-family: monospace;
-    user-select: none;
     white-space: nowrap;
     -ms-overflow-style: none; /* IE、Edgeでスクロールバーを非表示 */
     scrollbar-width: none; /* Firefoxでスクロールバーを非表示 */
@@ -56,25 +55,6 @@
     -ms-overflow-style: none; /* IE、Edgeでスクロールバーを非表示 */
     scrollbar-width: none; /* Firefoxでスクロールバーを非表示 */
 }
-.download-button-wrapper {
-    text-align: right;
-    margin-top: 10px;
-    margin-right: 10px;
-}
-.download-button {
-    display: inline-block;
-    padding: 8px 16px;
-    font-size: 14px;
-    color: #fff;
-    background-color: #007bff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-.download-button:hover {
-    background-color: #0056b3;
-}
-
 
 /* 手動 */
 .coding_file_wrapper .text-field-descriptive {

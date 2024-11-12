@@ -132,29 +132,7 @@
             <div class="coding_file_wrapper">
                 <div class="fileTitle">higman_constant.ipynb</div>
                 <div class="code-main">
-                    <div class="rowNumber">
-                        1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20
-                    </div>
-<div class="code-content"><code class="language-python">import numpy as np
-import sympy
-
-Groups_of_order_ = [0, 1, 1, 1, 2, 1, 2, 1, 5, 2, 2, 1, 5, 1, 2, 1, 14, 1, 5, 1, 5, 2, 2, 1, 15, 2, 2, 5, 4, 1, 4, 1, 51, 1, 2, 1, 14, 1, 2, 2, 14, 1, 6, 1, 4, 2, 2, 1, 52, 2, 5, 1, 5, 1, 15, 2, 13, 2, 2, 1, 13, 1, 2, 4, 267, 1, 4, 1, 5, 1, 4, 1, 50, 1, 2, 3, 4, 1, 6, 1, 52, 15, 2, 1, 15, 1, 2, 1, 12, 1, 10, 1, 4, 2, 2, 1, 231, 1, 5, 2, 16, 1, 4, 1, 14, 2, 2, 1, 45, 1, 6, 2, 43, 1, 6, 1, 5, 4, 2, 1, 47, 2, 2, 1, 4, 5, 16, 1, 2328, 2, 4, 1, 10, 1, 2, 5, 15, 1, 4, 1, 11, 1, 2, 1, 197, 1, 2, 6, 5, 1, 13, 1, 12, 2, 4, 2, 18, 1, 2, 1, 238, 1, 55, 1, 5, 2, 2, 1, 57, 2, 4, 5, 4, 1, 4, 2, 42, 1, 2, 1, 37, 1, 4, 2, 12, 1, 6, 1, 4, 13, 4, 1, 1543, 1, 2, 2, 12, 1, 10, 1, 52, 2, 2, 2, 12, 2, 2, 2, 51, 1, 12, 1, 5, 1, 2, 1, 177, 1, 2, 2, 15, 1, 6, 1, 197, 6, 2, 1, 15, 1, 4, 2, 14, 1, 16, 1, 4, 2, 4, 1, 208, 1, 5, 67, 5, 2, 4, 1, 12, 1, 15]
-
-def GO(n):
-    result = Groups_of_order_[n]
-    return result
-
-print(GO(64))
-
-def A(n, m):
-    result = (np.log(GO(sympy.prime(n) ** m)) / np.log(sympy.prime(n))) / (m ** 3)
-    return result
-
-print(<span class="text-field-function">f</span>"素数 <span class="text-field-descriptive">{sympy.prime(<span class="text-field-number">1</span>)}</span> のとき、A は <span class="text-field-descriptive">{A(<span class="text-field-number">1</span>, <span class="text-field-number">4</span>)}</span>")
-print(<span class="text-field-function">f</span>"素数 <span class="text-field-descriptive">{sympy.prime(<span class="text-field-number">2</span>)}</span> のとき、A は <span class="text-field-descriptive">{A(<span class="text-field-number">2</span>, <span class="text-field-number">2</span>)}</span>")
-print(<span class="text-field-function">f</span>"素数 <span class="text-field-descriptive">{sympy.prime(<span class="text-field-number">3</span>)}</span> のとき、A は <span class="text-field-descriptive">{A(<span class="text-field-number">3</span>, <span class="text-field-number">3</span>)}</span>")
-print(<span class="text-field-function">f</span>"素数 <span class="text-field-descriptive">{sympy.prime(<span class="text-field-number">4</span>)}</span> のとき、A は <span class="text-field-descriptive">{A(<span class="text-field-number">4</span>, <span class="text-field-number">2</span>)}</span>")
-print(2 / 27)</code></div> <!-- /code-content -->
+                    <pre class="line-numbers language-python" data-src="higman_constant.py" data-download-link><code class="match-braces rainbow-braces"></code></pre>
                 </div> <!-- /code-main -->
                 <div class="output-wrapper">
                     <div class="outputInfo">-></div>

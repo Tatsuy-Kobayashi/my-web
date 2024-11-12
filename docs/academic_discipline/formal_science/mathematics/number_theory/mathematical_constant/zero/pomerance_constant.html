@@ -138,40 +138,7 @@
             <div class="coding_file_wrapper">
                 <div class="fileTitle">pomerance_constant.ipynb</div>
                 <div class="code-main">
-                    <div class="rowNumber">
-                        1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31
-                    </div>
-<div class="code-content"><code class="language-python">def divisor(<span class="text-field-variable">num</span>):
-    total = 1
-    for i in range(2, int(num**0.5)+1):
-        if num % i == 0:
-            total += i
-            if i**2 != num:
-                total += num // i
-    return total
-
-# 一度だけ友愛数のリストを生成する
-amical_l = []
-for i in range(1, 10 ** 6 + 1):
-    amical = divisor(i)
-    if amical <= i:
-        continue
-    if divisor(amical) == i:
-        amical_l.append((i, amical))
-
-def amicable_num(<span class="text-field-variable">n</span>):
-    return amical_l[n - 1]
-
-print(len(amical_l))
-print(amicable_num(1)[0])
-
-def amicable_recpr_sum(<span class="text-field-variable">n</span>):
-    result = 0
-    for i in range(1, n + 1):
-        result += 1 / amicable_num(i)[0] + 1 / amicable_num(i)[1]
-    return result
-
-print(amicable_recpr_sum(len(amical_l)))</code></div> <!-- /code-content -->
+                    <pre class="line-numbers language-python" data-src="pomerance_constant.py" data-download-link><code class="match-braces rainbow-braces"></code></pre>
                 </div> <!-- /code-main -->
                 <div class="output-wrapper">
                     <div class="outputInfo">-></div>

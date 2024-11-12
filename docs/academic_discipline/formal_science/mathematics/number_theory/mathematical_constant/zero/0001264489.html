@@ -32,17 +32,16 @@
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/special.css" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/search.css" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/responsive_header.css" />
-    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/commentary.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/prism.css" />
     <!-- プログラミング解説 -->
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/codeHighlight.css" />
-    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/codeHighlight.scss" />
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/include.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/headerLoader.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/linkPreview.js"></script>
     <!-- プログラミング解説 -->
-    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/codeColoringRule.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/prism.js"></script>
     <script>
         // JavaScriptの厳格モード使用
         'use strict';
@@ -132,16 +131,13 @@
             <div class="coding_file_wrapper">
                 <div class="fileTitle">0001264489.ipynb</div>
                 <div class="code-main">
-                    <div class="rowNumber">
-                        1<br>2<br>3<br>4<br>5<br>6<br>7
-                    </div>
-<div class="code-content"><code class="language-python">import numpy as np
+                    <pre class="line-numbers language-python"><code class="match-braces rainbow-braces">import numpy as np
 import scipy
 
 # 円周率と近似値の誤差
 result, err = scipy.integrate.quad(lambda <span class="text-field-variable">x</span>: ((x ** 4) * (1 - x) ** 4) / (1 + x ** 2), 0, 1)
 print(<span class="text-field-function">f</span>"積分 <span class="text-field-descriptive">{result}</span>")
-print(<span class="text-field-function">f</span>"22 / <span>7</span> - π <span class="text-field-descriptive">{<span class="text-field-number">22</span> / <span class="text-field-number">7</span> - np.pi}</span>")</code></div> <!-- /code-content -->
+print(<span class="text-field-function">f</span>"22 / <span>7</span> - π <span class="text-field-descriptive">{<span class="text-field-number">22</span> / <span class="text-field-number">7</span> - np.pi}</span>")</code></pre> <!-- /code-content -->
                 </div> <!-- /code-main -->
                 <div class="output-wrapper">
                     <div class="outputInfo">-></div>

@@ -23,7 +23,7 @@
 .code-main {
     grid-area: code-main;
     display: flex;
-    background-color: #1f1f1f;
+    background-color: #272822;
     color: #ffffff;
     overflow-x: auto;
 }

@@ -124,7 +124,6 @@
         width: 83px;
         height: 125px;
         position: absolute;
-        top: 50%;
     }
     .item .content {
         position: absolute;
@@ -132,5 +131,10 @@
         left: 50px;
         width: 150px;
         text-align: left;
+    }
+    .button_slide button {
+        width: 22px;
+        height: 20px;
+        border-radius: 8px;
     }
 }

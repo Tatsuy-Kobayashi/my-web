@@ -23,33 +23,16 @@
 .code-main {
     grid-area: code-main;
     display: flex;
-    background-color: #1f1f1f;
+    background-color: #272822;
     color: #ffffff;
     overflow-x: auto;
 }
 .code-toolbar, pre {
+    display: flex;
     padding: 0 6px 4px 0;
-    max-width: 50px;
-    font-family: monospace;
-    user-select: none;
-    text-align: right;
     white-space: nowrap;
-}
-.code-content {
-    padding: 0 6px 4px 0;
-    line-height: 14.4px;
-    white-space: pre;
-    overflow-x: auto; /* テーブル全体に横スクロールを適用 */
     -ms-overflow-style: none; /* IE、Edgeでスクロールバーを非表示 */
     scrollbar-width: none; /* Firefoxでスクロールバーを非表示 */
-}
-@media (max-width: 768px) {
-    .rowNumber {
-        line-height: 15.3px;
-    }
-    .code-content {
-        line-height: 14.4px;
-    }
 }
 .output-wrapper {
     display: flex;
@@ -58,7 +41,8 @@
 .outputInfo {
     top: 0;
     padding: 0 6px 4px 0;
-    max-width: 50px;
+    width: 60px;
+    text-align: right;
     font-family: monospace;
     user-select: none;
 }
@@ -70,7 +54,6 @@
     -ms-overflow-style: none; /* IE、Edgeでスクロールバーを非表示 */
     scrollbar-width: none; /* Firefoxでスクロールバーを非表示 */
 }
-
 
 /* 手動 */
 .coding_file_wrapper .text-field-descriptive {

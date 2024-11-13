@@ -25,10 +25,12 @@
     display: flex;
     background-color: #272822;
     color: #ffffff;
+    overflow-x: auto;
 }
 .code-toolbar, pre {
     display: flex;
     padding: 0 6px 4px 0;
+    font-family: monospace;
     white-space: nowrap;
     -ms-overflow-style: none; /* IE、Edgeでスクロールバーを非表示 */
     scrollbar-width: none; /* Firefoxでスクロールバーを非表示 */
@@ -48,7 +50,7 @@
 .outputIfram {
     padding: 0 6px 4px 0;
     font-family: monospace;
-    white-space: pre;
+    /*white-space: pre;
     overflow-x: auto; /* テーブル全体に横スクロールを適用 */
     -ms-overflow-style: none; /* IE、Edgeでスクロールバーを非表示 */
     scrollbar-width: none; /* Firefoxでスクロールバーを非表示 */

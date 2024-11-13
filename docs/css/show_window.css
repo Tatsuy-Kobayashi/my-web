@@ -112,3 +112,25 @@
     background: #ababab;
     color: #fff;
 }
+@media (max-width: 768px) {
+    .show_window {
+        position: relative;
+        width: 400px;
+        height: 240px;
+        top: 30px;
+        margin: 0 auto;
+    }
+    .show_window .slide .item {
+        width: 83px;
+        height: 125px;
+        position: absolute;
+        top: 50%;
+    }
+    .item .content {
+        position: absolute;
+        top: 50%;
+        left: 50px;
+        width: 150px;
+        text-align: left;
+    }
+}

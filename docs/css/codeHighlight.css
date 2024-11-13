@@ -54,6 +54,39 @@
     -ms-overflow-style: none; /* IE、Edgeでスクロールバーを非表示 */
     scrollbar-width: none; /* Firefoxでスクロールバーを非表示 */
 }
+@media (max-width: 768px) {
+    .coding_file_wrapper {
+        width: 95%;
+        max-width: 400px;
+        border: solid 0.3px;
+        border-color: #000000;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px #dbdbdb;
+    }
+    .fileTitle {
+        grid-area: file-title;
+        padding-left: 50px;
+        border-radius: 9px 9px 0 0;
+    }
+    .code-main {
+        grid-area: code-main;
+        display: flex;
+    }
+    .code-toolbar, pre {
+        display: flex;
+        padding: 0 6px 4px 0;
+    }
+    .output-wrapper {
+        display: flex;
+    }
+    .outputInfo {
+        padding: 0 6px 4px 0;
+        width: 60px;
+    }
+    .outputIfram {
+        padding: 0 6px 4px 0;
+    }
+}
 
 /* 手動 */
 .coding_file_wrapper .text-field-descriptive {

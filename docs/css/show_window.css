@@ -188,8 +188,8 @@
         animation: animate 1s ease-in-out 0.6s 1 forwards;
     }
     .button_slide button {
-        width: 22px;
-        height: 20px;
-        border-radius: 8px;
+        padding: 0;
+        width: 30px;
+        height: 25px;
     }
 }

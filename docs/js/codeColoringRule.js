@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     try {
-        // File Highlightプラグインの実行
+        // File Highlight プラグインの初期化
         if (Prism.plugins.fileHighlight) {
             console.log("File Highlight plugin initialized.");
             Prism.plugins.fileHighlight.highlight();
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.warn("File Highlight plugin is not loaded.");
         }
 
-        // after-highlightフックに追加: ファイルハイライト後にコードを再ハイライト
+        // after-highlight フック: File Highlight後に再ハイライト
         Prism.hooks.add('after-highlight', function (env) {
             try {
                 if (env.element.matches('pre[data-src]')) {
@@ -25,13 +25,13 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // completeフックに追加: match bracesの処理を再実行
+        // complete フック: match braces 処理の再実行
         Prism.hooks.add('complete', function (env) {
             try {
                 if (env.element.parentNode.matches('pre[data-src][data-src-status="loaded"]')) {
                     console.log("Executing matchBraces for loaded data-src:", env.element);
                     if (Prism.plugins.matchBraces) {
-                        Prism.plugins.matchBraces();
+                        console.log("matchBraces plugin executed for:", env.element);
                     } else {
                         console.warn("matchBraces plugin is not loaded.");
                     }

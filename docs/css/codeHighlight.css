@@ -82,6 +82,7 @@
     }
     .output-wrapper {
         display: flex;
+        max-width: 395px;
     }
     .outputInfo {
         padding: 0 6px 4px 0;

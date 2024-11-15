@@ -25,6 +25,7 @@
     display: flex;
     background-color: #272822;
     color: #ffffff;
+    -webkit-text-size-adjust: none;
     overflow-x: auto;
 }
 .code-toolbar, pre {

@@ -1,11 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
     try {
-        // 手動でmatch-bracesプラグインを登録
+        // matchBraces プラグインがロードされているか確認し、必要なら仮登録
         if (!Prism.plugins.matchBraces) {
             console.warn("matchBraces plugin is not loaded. Attempting manual registration.");
             Prism.plugins.matchBraces = {
-                execute: function () {
-                    console.log("Manually registered match-braces plugin executed.");
+                // デバッグ用に仮登録
+                register: function () {
+                    console.log("Manually registered matchBraces plugin.");
                 }
             };
         }
@@ -18,34 +19,29 @@ document.addEventListener('DOMContentLoaded', function () {
             console.warn("File Highlight plugin is not loaded.");
         }
 
-        // after-highlight フック: File Highlight後に再ハイライト
+        // after-highlight フック: File Highlight 後に再ハイライト処理を行う
         Prism.hooks.add('after-highlight', function (env) {
-            try {
-                if (env.element.matches('pre[data-src]')) {
-                    console.log("Re-highlighting for File Highlight:", env.element);
-                    const codeElement = env.element.querySelector('code');
-                    if (codeElement) {
-                        Prism.highlightElement(codeElement);
-                        // completeフックを強制実行
-                        console.log("Applying match-braces after File Highlight:", codeElement);
-                        Prism.hooks.run('complete', { element: codeElement });
-                    } else {
-                        console.warn("No <code> element found inside:", env.element);
-                    }
+            if (env.element.matches('pre[data-src]')) {
+                console.log("Re-highlighting for File Highlight:", env.element);
+                const codeElement = env.element.querySelector('code');
+                if (codeElement) {
+                    Prism.highlightElement(codeElement);
+                    // match-braces 処理を強制的に再実行
+                    console.log("Applying match-braces after File Highlight:", codeElement);
+                    Prism.hooks.run('complete', { element: codeElement });
+                } else {
+                    console.warn("No <code> element found inside:", env.element);
                 }
-            } catch (error) {
-                console.error("Error during after-highlight hook:", error);
             }
         });
 
-        // complete フック: match-braces 処理の再実行
+        // complete フック: match-braces 処理を実行
         Prism.hooks.add('complete', function (env) {
             try {
                 if (env.element.parentNode.matches('pre[data-src][data-src-status="loaded"]')) {
                     console.log("Executing matchBraces for loaded data-src:", env.element);
                     if (Prism.plugins.matchBraces) {
-                        console.log("matchBraces plugin executed for:", env.element);
-                        Prism.plugins.matchBraces.execute();
+                        console.log("matchBraces plugin is active for:", env.element);
                     } else {
                         console.warn("matchBraces plugin is not active for:", env.element);
                     }
@@ -55,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // デバッグ用: Prismオブジェクトとプラグイン状態の確認
+        // デバッグ用: Prism オブジェクトとプラグイン状態をログ出力
         console.log("Prism object:", Prism);
         console.log("Prism.plugins:", Prism.plugins);
         if (Prism.plugins && Prism.plugins.matchBraces) {

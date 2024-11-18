@@ -109,34 +109,57 @@
 
                 <h2>概要</h2>
                 <p>
-                    &emsp;
+                    &emsp;超越数が知られるようになったのは、今となって遥か昔のことである。そも学問的正確さを欠けば、円周率 $\pi$ などは紀元前の古代ギリシアの頃から知られていた。数学的対象として正しく捉えられるようになったのは19世紀半ばである。しかし、この超越数に対して体系的に知られていることは、現在もって決して多くない。
                 </p>
 
                 <h2>リウヴィルの定理</h2>
                 <p>
-                    &emsp;超越数の理論は、1844年のリウヴィルによる有名な論文に端を発している。この論文タイトルでも説明されているように、彼は、整数係数の代数方程式を満たさない数という「非常に広い（très-étendue）」クラスを初めて構築した。しかし、この主題に関連するいくつかの個別的な問題は、この日付よりはるか以前にすでに提起されており、関連する無理数の研究は、それに先立つ少なくとも1世紀間、主要な注目の対象となっていた。
+                    &emsp;超越数の理論は、1844年のリウヴィルによる有名な論文に端を発している。この論文タイトルでも説明されているように、彼は、整数係数の代数方程式を満たさない数という「非常に広い（très-étendue）」クラスを初めて構築した。しかし、この主題に関連するいくつかの個別的な問題は、この日よりはるか以前からすでに提起されており、密接に関連する無理数の研究は、それに先立つ少なくとも1世紀前から主要な注目の対象となっていた。
                 </p>
                 <p>
-                    &emsp;実際、1744年にはオイラーがすでに $e$ の無理性を確立し、1761年にはランベルトが $\pi$ の無理性を確認していた。さらに、連分数の初期研究において、無理数を有理数で近似する際のいくつかの基本的な特徴が明らかにされていました。たとえば、任意の無理数 $\alpha$ に対して、有理数 $p/q \ (q \gt 0)$ の無限列が存在し、$|\alpha - p/q| \lt 1/q^{2}$ が成立することが知られていました。また、二次無理数の連分数は最終的に周期的であるため、ある定数 $c = c(\alpha) > 0$ が存在し、すべての有理数 $p/q \ (q \gt 0)$ に対して $|\alpha - p/q| \gt c/q^{2}$ が成立することも知られていました。
+                    &emsp;実際、1744年にはオイラーがすでに $e$ の無理性を確立し、1761年にはランベルトが $\pi$ の無理性を確認していた。さらに、連分数の初期研究において、無理数を有理数で近似する際のいくつかの基本的な特徴が 明らかになっている。たとえば、任意の無理数 $\alpha$ に対して、無限個の有理数 $p/q \ (q \gt 0)$ （全ての有理数ではない）の列が存在し、$|\alpha - p/q| \lt 1/q^{2}$ が成り立つことが知られている（イメージとしては、無限個の有理数を使って限りなく $\alpha$ に近付け、$|\alpha - p/q| \lt 1/q^{2}$ にするというニュアンスである）。さらに、二次形式無理数（二次方程式の根となるような代数的無理数のこと）の連分数は最終的に周期的であるため、ある定数 $c = c(\alpha) > 0$ が存在し、すべての有理数 $p/q \ (q \gt 0)$ に対して $|\alpha - p/q| \gt c/q^{2}$ が成立することも知られている。
                 </p>
                 <p>
-                    &emsp;Some isolated problems pertaining to the subject, however, had been formulated long before this date, and the closely related study of irrational numbers had constituted a major focus of attention for at least a century preceding.
-                    Indeed, by 1744, Euler had already established the irrationality of $e$, and, by 1761, Lambert had confirmed the irrationality of $\pi$. Moreover, the early studies of continued fractions had revealed several basic features concerning the approximation of irrational numbers by rationals. It was known, for instance, that for any irrational $\alpha$ there exists an infinite sequence of rationals $p/q (q \gt 0)$ such thatt $|\alpha - p/q| \lt 1/q^{2}$, and it was known also that the continued fraction of a quadratic irrational is ultimately periodic, whence there exists $c = c(\alpha) > 0$ such that $|\alpha - p/q| \gt c/q^{2}$ for all rationals $p/q (q \gt 0)$. Liouville observed that a result of the latter kind holds more generally, and that there exists in fact a limit to the accuracy with which any algebraic number, not itself rational, can be approximated by rationals. It was this observation that provided the first practical criterion whereby transcendental numbers could be constructed.
+                    &emsp;リウヴィルは、後者の結果がより一般的に成立し、任意の代数的無理数は、有理数による近似の精度に限界があることを観察した。この観察が、超越数を構築するための最初の実用的な基準を提供したのだった。
                 </p>
-                Theorem 1.1. For any algebraic number a with degree $n \gt 1$, there exists $c = c(\alpha) > 0$ such that $|\alpha - p/q| \gt c/q^{2}$ for all rationals $p/q (q \gt 0)$.
-                The theorem follows almost at once from the definition of an algebraic number. A real or complex number is said to be algebraic if it is a zero of a polynomial with integer coefficients; every algebraic number $\alpha$ is the zero of some such irreducible polynomial, say $P$, unique up to a constant multiple, and the degree of $\alpha$ is defined as the degree of $P$. It suffices to prove the theorem when $\alpha$ is real; in this case, for any rational $p/q (q \gt 0)$, we have by the mean value theorem:
+                <p>
+                    &emsp;<b>定理 1.1.</b> 任意の次数 $n \gt 1$ の代数的無理数 $\alpha$ に対して、ある定数 $c = c(\alpha) > 0$ が存在し、全ての有理数 $p/q \ (q \gt 0)$ に対して $|\alpha - p/q| \gt c/q^{n}$ が成立する。
+                </p>
+                <p>
+                    &emsp;この定理は、代数的数の定義からほぼ直ちに導かれるだろう。実数または複素数は、整数係数の多項式の零点である（すなわち整数係数の方程式の根である）とき、代数的数であると言われる。任意の代数的数 $\alpha$ は、このような多項式の零点であり、その多項式は定数倍を除いて一意である既約多項式 $P$ となる。$\alpha$ の次数は $P$ の次数として定義される。その定理を証明するためには、$\alpha$ が実数である場合に限って考えれば十分である。この場合、任意の有理数 $p/q (q \gt 0)$ に対して、平均値の定理より次が成り立つ：
+                </p>
                 \[
                     -P (p/q) = P(\alpha) - P(p/q) = (\alpha - p/q) P'(\xi)
                 \]
-                for some $\xi$ between $p/q$ and $\alpha$. Clearly one can assume that $|\alpha - p/q| \lt 1$, for the result would otherwise be valid trivially; then $|\xi| \lt 1 + |\alpha|$ and thus $|P'(\xi)| \lt 1/c$ for some $c = c(\alpha) > 0$; hence
+                <p>
+                    &emsp;ここで、$\xi$ は $p/q$ と $\alpha$ の間にある点。明らかに $|\alpha - p/q| \lt 1$ を仮定でき、さもなければ結果は自明に成り立つ。このとき、$|\xi| \lt 1 + |\alpha|$ より、ある $c = c(\alpha) > 0$ が存在して $|P'(\xi)| \lt 1/c$ が成り立つつ。したがって、
+                </p>
                 \[
                     |\alpha - p/q| \gt c|P(p/q)|.
                 \]
-                But, since $P$ is irreducible, we have $P(p/q) \neq 0$, and the integer $|q^{n}P(p/q)|$ is therefore at least $1$; the theorem follows. Note that one can easily give an explicit value for $c$; in fact one can take
+                <p>
+                    しかし、$P$ が既約であるから、$P(p/q) \neq 0$ であり、整数 $|q^{n}P(p/q)|$ は少なくとも1以上である。よって、示された。さらに、$c$ の明示的な値も容易に与えることができて、実際、次が成り立つ：
+                </p>
                 \[
                     c^{-1} = n^{2}(1 + |\alpha|)^{n-1}H,
                 \]
-                where $H$ denotes the height of $\alpha$, that is, the maximum of the absolute values of the coefficients of $P$.
+                <p>
+                    ここで $H$ は「$\alpha$ の高さ」を表し、これは $P$ の係数の絶対値の最大値を意味する。
+                </p>
+                <p>
+                    &emsp;超越数とは、代数的でない実数または複素数のことを指す。定理1.1に照らすと、このような数の明白な例として $\xi = \sum_{n=1}^{\infty} 10^{-n!}$ が挙げられる。これを示すために次のように定義する：
+                </p>
+                \[
+                    p_{j} = 10^{j!} \, \sum_{n=1}^{j} 10^{-n!},\quad q_{j} = 10^{j!} \quad (j=1,2,\dots),
+                \]
+                <p>
+                    このとき、$p_{j}$ と $q_{j}$ は互いに素な有理整数であり、次が成立する：
+                </p>
+                \[
+                    |\xi - p_{j}/q_{j}| = \sum_{n=j+1}^{\infty} 10^{-n!} \lt 10^{-(j+1)!} (1+10^{-1} + 10^{-2} + \cdots) = \frac{10}{9} q_{j}^{-j-1} \lt q_{j}^{-j}.
+                \]
+                多くの他の超越数もリウヴィルの定理に基づいて構成できる。実際、例えば、任意の無限小数で長いゼロのブロックが現れるものや、部分商が十分に速く増加する任意の連分数は、その例を提供する。こうした性質を持つ数、すなわち、実数 $\xi$ で次を満たすもの：provides an example. Numbers of this kind, that is real $\xi$ which possess a sequence of distinct rational approximations $p_{n}/q_{n}\, (n = 1, 2,\dots)$ such that $|\xi - p_{n}/q_{n}| \lt 1//q_{n}^{\omega_{n}}$, where $\lim \sup \omega_{n} = \infty$, have been termed Liouville numbers; and, of course, these are transcendental. But other, less obvious, applications of Liouville's idea to the construction of transcendental numbers have been described; in particular, Maillet used an extension of Theorem 1.1 concerning approximations by quadratic irrationals to establish the transcendence of a remarkable class of quasi-periodic continued fractions.
+
 
 
 

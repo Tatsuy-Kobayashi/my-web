@@ -33,10 +33,16 @@
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/search.css" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/responsive_header.css" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/commentary.css" />
+    <!-- プログラミング解説 -->
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/prism.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/codeHighlight.css" />
+
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/include.js"></script>
-    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/linkPreview.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/headerLoader.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/linkPreview.js"></script>
+    <!-- プログラミング解説 -->
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/prism.js"></script>
     <script>
         // JavaScriptの厳格モード使用
         'use strict';
@@ -107,13 +113,74 @@
                 <h1>超越数論</h1>
                 <h2>目次</h2>
 
-                <h2>概要</h2>
+                <h2>リウヴィルの定理</h2>
                 <p>
-                    &emsp;超越数が知られるようになったのは、今となって遥か昔のことである。そも学問的正確さを欠けば、円周率 $\pi$ などは紀元前の古代ギリシアの頃から知られていた。数学的対象として正しく捉えられるようになったのは19世紀半ばである。しかし、この超越数に対して体系的に知られていることは、今もって決して多くない。
+                    &emsp;超越数の理論は、1844年のリウヴィルによる有名な論文に端を発している。この論文タイトルでも説明されているように、彼は、整数係数の代数方程式を満たさない数という「非常に広い（très-étendue）」クラスを初めて構築した。しかし、この主題に関連するいくつかの個別的な問題は、この日よりはるか以前からすでに提起されており、密接に関連する無理数の研究は、それに先立つ少なくとも1世紀前から主要な注目の対象となっていた。
                 </p>
-
-                <h2><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/transcendental_number_theory/transcendental_number.html">超越数</a></h2>
-                <h2>対数一次形式</h2>
+                <p>
+                    &emsp;実際、1744年にはオイラーがすでに $e$ の無理性を確立し、1761年にはランベルトが $\pi$ の無理性を確認していた。さらに、連分数の初期研究において、無理数を有理数で近似する際のいくつかの基本的な特徴が 明らかになっている。たとえば、任意の無理数 $\alpha$ に対して、無限個の有理数 $p/q \ (q \gt 0)$ （全ての有理数ではない）の列が存在し、$|\alpha - p/q| \lt 1/q^{2}$ が成り立つことが知られている（イメージとしては、無限個の有理数を使って限りなく $\alpha$ に近付け、$|\alpha - p/q| \lt 1/q^{2}$ にするというニュアンスである）。さらに、二次形式無理数（二次方程式の根となるような代数的無理数のこと）の連分数は最終的に周期的であるため、ある定数 $c = c(\alpha) > 0$ が存在し、すべての有理数 $p/q \ (q \gt 0)$ に対して $|\alpha - p/q| \gt c/q^{2}$ が成立することも知られている。
+                </p>
+                <p>
+                    &emsp;リウヴィルは、後者の結果がより一般的に成立し、任意の代数的無理数は、有理数による近似の精度に限界があることを観察した。この観察が、超越数を構築するための最初の実用的な基準を提供したのだった。
+                </p>
+                <p>
+                    &emsp;<b>定理 1.1.</b> 任意の次数 $n \gt 1$ の代数的無理数 $\alpha$ に対して、ある定数 $c = c(\alpha) > 0$ が存在し、全ての有理数 $p/q \ (q \gt 0)$ に対して $|\alpha - p/q| \gt c/q^{n}$ が成立する。
+                </p>
+                <p>
+                    &emsp;この定理は、代数的数の定義からほぼ直ちに導かれるだろう。実数または複素数は、整数係数の多項式の零点である（すなわち整数係数の方程式の根である）とき、代数的数であると言われる。任意の代数的数 $\alpha$ は、このような多項式の零点であり、その多項式は定数倍を除いて一意である既約多項式 $P$ となる。$\alpha$ の次数は $P$ の次数として定義される。その定理を証明するためには、$\alpha$ が実数である場合に限って考えれば十分である。この場合、任意の有理数 $p/q (q \gt 0)$ に対して、平均値の定理より次が成り立つ：
+                </p>
+                \[
+                    -P (p/q) = P(\alpha) - P(p/q) = (\alpha - p/q) P'(\xi)
+                \]
+                <p>
+                    &emsp;ここで、$\xi$ は $p/q$ と $\alpha$ の間にある点。明らかに $|\alpha - p/q| \lt 1$ を仮定でき、さもなければ結果は自明に成り立つ。このとき、$|\xi| \lt 1 + |\alpha|$ より、ある $c = c(\alpha) > 0$ が存在して $|P'(\xi)| \lt 1/c$ が成り立つつ。したがって、
+                </p>
+                \[
+                    |\alpha - p/q| \gt c|P(p/q)|.
+                \]
+                <p>
+                    しかし、$P$ が既約であるから、$P(p/q) \neq 0$ であり、整数 $|q^{n}P(p/q)|$ は少なくとも1以上である。よって、示された。さらに、$c$ の明示的な値も容易に与えることができて、実際、次が成り立つ：
+                </p>
+                \[
+                    c^{-1} = n^{2}(1 + |\alpha|)^{n-1}H,
+                \]
+                <p>
+                    ここで $H$ は「$\alpha$ の高さ」を表し、これは $P$ の係数の絶対値の最大値を意味する。
+                </p>
+                <p>
+                    &emsp;超越数とは、代数的でない実数または複素数のことを指す。定理1.1に照らすと、このような数の明白な例として $\xi = \sum_{n=1}^{\infty} 10^{-n!}$ が挙げられる。これを示すために次のように定義する：
+                </p>
+                \[
+                    p_{j} = 10^{j!} \, \sum_{n=1}^{j} 10^{-n!},\quad q_{j} = 10^{j!} \quad (j=1,2,\dots),
+                \]
+                <p>
+                    このとき、$p_{j}$ と $q_{j}$ は互いに素な有理整数であり、次が成立する：
+                </p>
+                \[
+                    |\xi - p_{j}/q_{j}| = \sum_{n=j+1}^{\infty} 10^{-n!} \lt 10^{-(j+1)!} (1+10^{-1} + 10^{-2} + \cdots) = \frac{10}{9} q_{j}^{-j-1} \lt q_{j}^{-j}.
+                \]
+                <p>
+                    &emsp;Pythonのコードで表すと、
+                </p>
+                <div class="coding_file_wrapper">
+                    <div class="fileTitle">liouville_number.ipynb</div>
+                    <div class="code-main">
+                        <pre class="match-braces rainbow-braces line-numbers language-python" data-src="liouville_number.py" data-download-link></pre>
+                    </div> <!-- /code-main -->
+                    <div class="output-wrapper">
+                        <div class="outputInfo">-></div>
+                        <div class="outputIfram">decimalで計算、0.110001000000000000000001000000
+30precで計算、0.110001
+0.010001000000000000000001</div>
+                    </div>
+                </div> <!-- /coding_file_wrapper -->
+                <p>
+                    &emsp;多くの他の超越数もリウヴィルの定理に基づいて構成できる。実際、例えば、任意の無限小数で長いゼロのブロックが現れるものや、部分商が十分に速く増加する任意の連分数は、その例を提供する。こうした性質を持つ数、すなわち、実数 $\xi$ が、$|\xi - p_{n}/q_{n}| \lt 1/q_{n}^{\omega_{n}}$ を満たす異なる有理列の近似 $p_{n}/q_{n}, (n = 1, 2,\dots)$ を持ち、$\lim \sup \omega_{n} = \infty$ となるような数はリウヴィル数と呼ばれ、当然ながらこれらは超越数である。しかし、リウヴィルのアイデアを用いた超越数の構成には、より目立たない応用も存在する。特に、Maillet は定理1.1を二次無理数による近似に拡張し、準周期的連分数の特異なクラスが超越数であることを証明した。
+                </p>
+                But other, less obvious, applications of Liouville's idea to the construction of transcendental numbers have been described; in particular, Maillet used an extension of Theorem 1.1 concerning approximations by quadratic irrationals to establish the transcendence of a remarkable class of quasi-periodic continued fractions.
+                <p>
+                    &emsp;1874 年に、カントールが可算（countability）の概念を導入し、これはすぐに「ほぼすべてのalmost all」数が超越的であるという洞察につながる。カントールの仕事は、第 9 章で説明する重要なmetrical theoryの先駆けとみなされるかもしれない。
+                </p>
 
 
 

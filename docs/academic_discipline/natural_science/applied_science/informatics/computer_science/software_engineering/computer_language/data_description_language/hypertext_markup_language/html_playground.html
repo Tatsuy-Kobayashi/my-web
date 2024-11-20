@@ -224,17 +224,18 @@
             }
         }
 
-        // プレビュー更新
+        // プレビュー更新 (Blob版)
         function updatePreview() {
             const htmlContent = htmlEditor.value;
             const cssContent = `<style>${cssEditor.value}</style>`;
-            const jsContent = `<script>
-                try {
-                    ${jsEditor.value}
-                } catch (e) {
-                    console.error('Error:', e.message);
-                }
-            <\/script>`;
+            const jsContent = `
+                <script>
+                    try {
+                        ${jsEditor.value}
+                    } catch (e) {
+                        console.error('Error:', e.message);
+                    }
+                <\/script>`;
             const fullContent = `
                 <!DOCTYPE html>
                 <html lang="ja">
@@ -249,10 +250,11 @@
                 </body>
                 </html>
             `;
-            const previewDocument = previewFrame.contentDocument || previewFrame.contentWindow.document;
-            previewDocument.open();
-            previewDocument.write(fullContent);
-            previewDocument.close();
+            
+            // Blob を生成して URL に変換
+            const blob = new Blob([fullContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            previewFrame.src = url;
         }
 
         // 初期化

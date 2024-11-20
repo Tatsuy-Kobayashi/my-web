@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <title>HTML・CSS・JavaScriptエディタ - ラクして数理研究所</title>
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="apple-touch-icon" />
+    <!-- SEO -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。">
+    <meta name="keywords" content="学問,数学,数学定数,情報理論,物理学,プログラミング,ラクして数理研究所,教育">
+    <link rel="canonical" href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" />
+    <!-- og -->
+    <meta property="og:type" content="website" /> <!-- articleとか -->
+    <meta property="og:title" content="0｜ラクして数理研究所" />
+    <meta property="og:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" />
+    <meta property="og:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" />
+    <meta property="og:site_name" content="ラクして数理研究所" />
+    <link rel="dns-prefetch" href="//tatsuy-kobayashi.github.io/" /> <!-- HTTPSページのDNSプリフェッチはできない -->
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="0｜ラクして数理研究所">
+    <meta name="twitter:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。">
+    <meta name="twitter:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html">
+    <meta name="twitter:image" content="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/style.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/special.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/search.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/responsive_header.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/commentary.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/prism.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/prism-live.css" />
+
+    <style>
+        .editor_wrapper, .output_wrapper, .console_wrapper {
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+            font-family: monospace;
+        }
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ccc;
+        }
+        .console {
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid #444;
+            font-family: monospace;
+        }
+    </style>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/include.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/linkPreview.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/headerLoader.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/bliss.shy.min.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/prism.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/prism-live.js"></script>
+    <script>
+        // JavaScriptの厳格モード使用
+        'use strict';
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+      
+        /*gtag('config', 'トラッキングID');*/
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script nonce="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            TeX: { equationNumbers: { autoNumber: "AMS" } },
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ['\\[','\\]'] ],
+                processEscapes: true
+            },
+            "HTML-CSS": { mathFontHeight: false },
+            displayAlign: "left",
+            displayIndent: "2em"
+        });
+    </script>
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+</head>
+<body>
+<div id="wrapper">
+    <header></header>
+    <div class="content">
+        <div class="breadcrumb_list">
+            <span class="link-container">
+                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/">Home</a>
+                &ensp;&gt;&ensp;
+                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="学問" data-description="AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">学問</a>
+                <div class="link-preview">
+                    <img class="preview-image" src="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" alt="Preview image">
+                    <h3 class="preview-title">学問</h3>
+                    <p class="preview-description">AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう</p>
+                </div> <!-- /link-preview -->
+            </span> <!-- /link-preview -->&ensp;&gt;&ensp;
+            <span class="link-container">
+                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/formal_science.html" class="preview-link" data-title="形式科学" data-description="AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">形式科学</a>
+                <div class="link-preview">
+                    <img class="preview-image" src="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" alt="Preview image">
+                    <h3 class="preview-title">形式科学</h3>
+                    <p class="preview-description">AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう</p>
+                </div> <!-- /link-preview -->
+            </span> <!-- /link-preview -->&ensp;&gt;&ensp;
+            <span class="link-container">
+                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html" class="preview-link" data-title="数学" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">数学</a>
+                <div class="link-preview">
+                    <img class="preview-image" src="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" alt="Preview image">
+                    <h3 class="preview-title">数学</h3>
+                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
+                </div> <!-- /link-preview -->
+            </span> <!-- /link-preview -->&ensp;&gt;&ensp;
+            <span class="link-container">
+                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="整数論" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">整数論</a>
+                <div class="link-preview">
+                    <img class="preview-image" src="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" alt="Preview image">
+                    <h3 class="preview-title">整数論</h3>
+                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
+                </div> <!-- /link-preview -->
+            </span> <!-- /link-preview -->&ensp;&gt;&ensp;
+            数学定数
+        </div>
+        <div class="main">
+            <h1>HTML・CSS・JavaScriptエディタ</h1>
+            <h2>目次</h2>
+            <h2>概要</h2>
+            <p>
+                &emsp;この世で最も楽に実装できるプログラミング言語は JavaScript だろう。特に開発側ではなく、通常の PC を普段使いしている一般ユーザにとっては、非常に簡易なものである。しかし、完全に手間が無いというわけではない。まず、ファイルを作成して保存しなければならないが、ファイルの書きやすさは使っているエディタに依存する。また、ファイルを保存するためには、少なからずディレクトリ構造を意識しなければならない。さらにブラウザ上で実行するためには少なくとも HTML ファイルが必要で、開発環境（ソースコードを書くところ）と実行環境が別なのも地味に面倒くさい。そういった手間を解決したいと思いこのページを作った。
+            </p>
+            <p>
+                &emsp;ちなみに実行に HTML ファイルが必要なら、最も楽に実装できるプログラミング言語は HTML じゃあないのか？と思う人もいるかもしれない
+                。しかし、HTML はデータ記述言語であってプログラミング言語ではない。
+            </p>
+            <h2>エディタプレビュー & コンソール</h2>
+            <p>
+                &emsp;$0$は空集合のカーディナル数、ゆえに最小のカーディナル数。この性質は整数を構成するのに役に立つ。だからコンウェイは、左側も右側も空集合である $(\ |\ )$ という記号でゼロを表したのである。
+            </p>
+            <!-- HTML エディタ -->
+            <div class="editor_wrapper">
+                <h3>HTML エディタ</h3>
+                <textarea class="prism-live line-numbers language-html fill" id="html-editor" spellcheck="false"></textarea>
+            </div>
+
+            <!-- CSS エディタ -->
+            <div class="editor_wrapper">
+                <h3>CSS エディタ</h3>
+                <textarea class="prism-live line-numbers language-css fill" id="css-editor" spellcheck="false"></textarea>
+            </div>
+
+            <!-- JavaScript エディタ -->
+            <div class="editor_wrapper">
+                <h3>JavaScript エディタ</h3>
+                <textarea class="prism-live line-numbers language-javascript fill" id="js-editor" spellcheck="false"></textarea>
+            </div>
+
+            <!-- プレビュー表示 -->
+            <div class="output_wrapper">
+                <h3>リアルタイムプレビュー</h3>
+                <iframe id="preview" sandbox="allow-scripts"></iframe>
+            </div>
+
+            <!-- コンソールビュー -->
+            <div class="console_wrapper">
+                <h3>コンソール</h3>
+                <div id="console" class="console"></div>
+            </div>
+        </div> <!-- /.main -->
+        <div class="annotation">
+            ページ注釈
+            <ol class="olAnnotation">
+                <li id="note_1"><a href="#ref_1">^</a>
+                    <a href="https://www.kinokuniya.co.jp/f/dsg-01-9784150503499">異端の数ゼロ―数学・物理学が恐れるもっとも危険な概念</a>
+                    <br>
+                    サイフェ, チャールズC, Seife, 林 大, ハヤカワ文庫
+                </li>
+            </ol>
+        </div> <!-- /annotation -->
+    </div> <!-- /content -->
+    <footer></footer>
+    </div> <!-- /wrapper -->
+    <nav id="nav"></nav>
+    <script>
+        // 各テキストエリア
+        const htmlEditor = document.getElementById('html-editor');
+        const cssEditor = document.getElementById('css-editor');
+        const jsEditor = document.getElementById('js-editor');
+        const previewFrame = document.getElementById('preview');
+        const consoleView = document.getElementById('console');
+
+        // カスタムコンソールログを追加
+        function setupConsole(consoleElement) {
+            const originalLog = console.log;
+            const originalError = console.error;
+
+            console.log = function (...args) {
+                originalLog.apply(console, args);
+                logToConsole('log', args.join(' '));
+            };
+
+            console.error = function (...args) {
+                originalError.apply(console, args);
+                logToConsole('error', args.join(' '));
+            };
+
+            function logToConsole(type, message) {
+                const logElement = document.createElement('div');
+                logElement.textContent = `[${type.toUpperCase()}] ${message}`;
+                logElement.style.color = type === 'error' ? 'red' : 'white';
+                consoleElement.appendChild(logElement);
+                consoleElement.scrollTop = consoleElement.scrollHeight; // 自動スクロール
+            }
+        }
+
+        // プレビュー更新
+        function updatePreview() {
+            const htmlContent = htmlEditor.value;
+            const cssContent = `<style>${cssEditor.value}</style>`;
+            const jsContent = `<script>
+                try {
+                    ${jsEditor.value}
+                } catch (e) {
+                    console.error('Error:', e.message);
+                }
+            <\/script>`;
+            const fullContent = `
+                <!DOCTYPE html>
+                <html lang="ja">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    ${cssContent}
+                </head>
+                <body>
+                    ${htmlContent}
+                    ${jsContent}
+                </body>
+                </html>
+            `;
+            const previewDocument = previewFrame.contentDocument || previewFrame.contentWindow.document;
+            previewDocument.open();
+            previewDocument.write(fullContent);
+            previewDocument.close();
+        }
+
+        // 初期化
+        setupConsole(consoleView);
+        htmlEditor.addEventListener('input', updatePreview);
+        cssEditor.addEventListener('input', updatePreview);
+        jsEditor.addEventListener('input', updatePreview);
+    </script>
+</body>
+</html>

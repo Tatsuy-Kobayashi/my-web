@@ -46,15 +46,15 @@
             max-width: 100%; /* 最大幅を100%に制限 */
             -webkit-overflow-scrolling: touch;
         }
-        table {
+        .table_finite_group table {
             border-collapse: collapse;
             border-spacing: 0;
             width: 5%;
         }
-        .tr {
+        .table_finite_group .tr {
             width: 300px;
         }
-        th, td {
+        .table_finite_group th, .table_finite_group td {
             vertical-align: middle;
             padding: 10px;
             border: 1px solid #000;
@@ -63,13 +63,7 @@
             text-align: center;
             white-space: nowrap;
         }
-        th {
-            background: #000;
-        }
-        td {
-            background: #fff;
-        }
-        .sticky {
+        .table_finite_group .sticky {
             position: sticky;
             top: 0;
             left: 0;
@@ -77,7 +71,7 @@
             border-left: none;
             border-right: none;
         }
-        .sticky::before {
+        .table_finite_group .sticky::before {
             content: "";
             position: absolute;
             top: 0;

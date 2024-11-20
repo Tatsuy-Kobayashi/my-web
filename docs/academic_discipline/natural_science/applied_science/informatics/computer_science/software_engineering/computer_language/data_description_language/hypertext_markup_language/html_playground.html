@@ -148,12 +148,14 @@
             <p>
                 &emsp;このエディタの「HTML エディタ」は、
             </p>
-            <pre class="line-numbers language-html keep-markup match-braces rainbow-braces"><code class="">&lt!DOCTYPE html&gt
+            <pre class="line-numbers language-html keep-markup match-braces rainbow-braces"><code>&lt!DOCTYPE html&gt
 &lthtml lang="ja"&gt
 &lthead&gt
     &ltmeta charset="UTF-8">
     &ltmeta name="viewport" content="width=device-width, initial-scale=1.0">
-    ユーザCSS
+    &ltstyle>
+        ユーザCSS
+    &lt/style>
 &lt/head>
 &ltbody>
     ユーザHTML
@@ -196,6 +198,37 @@
                 <h3>コンソール</h3>
                 <div id="console" class="console"></div>
             </div>
+
+            <h2>使用例</h2>
+            HTML
+            <pre class="line-numbers language-html keep-markup match-braces rainbow-braces"><code>&ltdiv id="test-area">
+    &lth1>統合テスト</h1>
+    &ltbutton id="test-button">クリックして色を変える</button>
+&lt/div></code></pre>
+            CSS
+            <pre class="line-numbers language-css match-braces rainbow-braces"><code>#test-area {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#test-button {
+    padding: 10px 20px;
+    background-color: lightcoral;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#test-button:hover {
+    background-color: coral;
+}</code></pre>
+            JavaScript
+            <pre class="line-numbers language-javascript match-braces rainbow-braces"><code>document.getElementById('test-button').addEventListener('click', () => {
+    document.getElementById('test-area').style.backgroundColor = 'lightblue';
+    console.log('ボタンがクリックされ、背景色が変わりました！');
+});</code></pre>
+            など
+
         </div> <!-- /.main -->
         <div class="annotation">
             ページ注釈

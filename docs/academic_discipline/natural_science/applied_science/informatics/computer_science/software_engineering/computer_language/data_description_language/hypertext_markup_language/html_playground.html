@@ -282,11 +282,25 @@
             const cssContent = `<style>${cssEditor.value}</style>`;
             const jsContent = `
                 <script>
-                    try {
-                        ${jsEditor.value}
-                    } catch (e) {
-                        console.error('Error:', e.message);
-                    }
+                    (function() {
+                        const originalLog = console.log;
+                        console.log = function(...args) {
+                            originalLog.apply(console, args);
+                            window.parent.postMessage({ type: 'log', message: args.join(' ') }, '*');
+                        };
+                        
+                        const originalError = console.error;
+                        console.error = function(...args) {
+                            originalError.apply(console, args);
+                            window.parent.postMessage({ type: 'error', message: args.join(' ') }, '*');
+                        };
+                        
+                        try {
+                            ${jsEditor.value}
+                        } catch (e) {
+                            console.error('Error:', e.message);
+                        }
+                    })();
                 <\/script>`;
             const fullContent = `
                 <!DOCTYPE html>

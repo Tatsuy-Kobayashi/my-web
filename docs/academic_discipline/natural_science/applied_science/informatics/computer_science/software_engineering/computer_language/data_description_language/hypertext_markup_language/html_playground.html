@@ -306,7 +306,7 @@
             if (event.data && event.data.type) {
                 const logElement = document.createElement('div');
                 logElement.textContent = `[${event.data.type.toUpperCase()}] ${event.data.message}`;
-                logElement.style.color = event.data.type === 'error' ? 'red' : 'white';
+                logElement.style.color = event.data.type === 'error' ? 'red' : '#272822';
                 consoleView.appendChild(logElement);
                 consoleView.scrollTop = consoleView.scrollHeight; // 自動スクロール
             }

@@ -46,13 +46,15 @@
             margin-bottom: 10px;
             font-family: monospace;
         }
-        .output_wrapper span {
+        .output_wrapper span,
+        .console_wrapper span {
             font-size: 1.17em;
             font-weight: bold;
             margin-block-start: 1em;
             margin-block-end: 1em;
         }
-        .output_wrapper #reset-button {
+        .output_wrapper #reset-button,
+        .console_wrapper #clear-button {
             margin: 0 5px 0 50px;
         }
         .output_wrapper iframe {
@@ -204,7 +206,7 @@
 
             <!-- コンソールビュー -->
             <div class="console_wrapper">
-                <h3>コンソール</h3>
+                <span>コンソール</span><button id="clear-button">Clear</button>
                 <div id="console" class="console"></div>
             </div>
 

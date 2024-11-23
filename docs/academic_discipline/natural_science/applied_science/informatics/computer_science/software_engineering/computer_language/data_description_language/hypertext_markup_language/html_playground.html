@@ -53,6 +53,9 @@
             margin-block-start: 1em;
             margin-block-end: 1em;
         }
+        .console_wrapper span {
+            margin-right: 50px;
+        }
         .output_wrapper #reset-button,
         .console_wrapper #clear-button {
             margin: 0 5px 0 50px;
@@ -214,7 +217,7 @@
             HTML
             <pre class="line-numbers language-html keep-markup match-braces rainbow-braces"><code>&lt;div id="test-area"&gt;
     &lt;h1&gt;使用例&lt;/h1&gt;
-    &lt;button id="test-button"&gt;クリックして色を変える&lt;/button&gt;
+    &lt;button id="toggle-button"&gt;クリックして色を変える&lt;/button&gt;
     &lt;div&gt;
         &lt;input type="text" id="inputForm" value="Hello, world!"&gt;
         &lt;button id="input-button"&gt;入力内容を表示&lt;/button&gt;
@@ -227,7 +230,7 @@
     margin-top: 20px;
 }
 
-#test-button {
+#toggle-button {
     padding: 10px 20px;
     background-color: lightcoral;
     color: white;
@@ -235,15 +238,24 @@
     cursor: pointer;
 }
 
-#test-button:hover {
+#toggle-button:hover {
     background-color: coral;
 }</code></pre>
             JavaScript
-            <pre class="line-numbers language-javascript match-braces rainbow-braces"><code>document.getElementById('test-button').addEventListener('click', () => {
-    document.getElementById('test-area').style.backgroundColor = 'lightblue';
+            <pre class="line-numbers language-javascript match-braces rainbow-braces"><code>// トグル切り替えの処理
+document.getElementById('test-button').addEventListener('click', () => {
+    const testArea = document.getElementById('test-area');
+    const currentColor = testArea.style.backgroundColor;
+    // 背景色を lightblue と white の間で切り替え
+    if (currentColor === 'lightblue') {
+        testArea.style.backgroundColor = 'white';
+    } else {
+        testArea.style.backgroundColor = 'lightblue';
+    }
     console.log('ボタンがクリックされ、背景色が変わりました！');
     alert('ボタンがクリックされ、背景色が変わりました！');
 });
+// 入力内容を表示する処理
 document.getElementById('input-button').addEventListener('click', updateSentence);
 function updateSentence() {
     const inputSentence = document.getElementById('inputForm').value;
@@ -278,6 +290,8 @@ function updateSentence() {
 
             // Reset ボタンの機能
             const resetButton = document.getElementById('reset-button');
+            // Clear ボタンの機能
+            const clearButton = document.getElementById('clear-button');
 
             resetButton.addEventListener('click', () => {
                 // 古い iframe を削除
@@ -306,6 +320,17 @@ function updateSentence() {
 
                 // iframe 更新用の変数を再設定
                 previewFrame = newIframe;
+            });
+
+            clearButton.addEventListener('click', () => {
+                // 確認ダイアログを表示
+                const userConfirmed = confirm("コンソールをクリアしますか？");
+
+                // 「はい」を選択した場合にクリア処理を実行
+                if (userConfirmed) {
+                    consoleView.innerHTML = ''; // コンソールを白紙に
+                    console.log('コンソールがクリアされました。'); // コンソールにログを表示
+                }
             });
 
             // プレビュー更新 (Blob版)

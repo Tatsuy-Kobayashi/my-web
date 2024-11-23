@@ -146,8 +146,29 @@
             </p>
             <h2>エディタプレビュー & コンソール</h2>
             <p>
-                &emsp;$0$は空集合のカーディナル数、ゆえに最小のカーディナル数。この性質は整数を構成するのに役に立つ。だからコンウェイは、左側も右側も空集合である $(\ |\ )$ という記号でゼロを表したのである。
+                &emsp;このエディタの「HTML エディタ」は、
             </p>
+            <pre class="line-numbers language-html keep-markup match-braces rainbow-braces"><code>&lt!DOCTYPE html&gt
+&lthtml lang="ja"&gt
+&lthead&gt
+    &ltmeta charset="UTF-8">
+    &ltmeta name="viewport" content="width=device-width, initial-scale=1.0">
+    &ltstyle>
+        ユーザCSS
+    &lt/style>
+&lt/head>
+&ltbody>
+    ユーザHTML
+    &ltscript>
+        ユーザJavaScript
+    &lt/script>
+&lt/body>
+&lt/html&gt</code></pre>
+
+            <p>
+                を前提としている。
+            </p>
+
             <!-- HTML エディタ -->
             <div class="editor_wrapper">
                 <h3>HTML エディタ</h3>
@@ -177,6 +198,37 @@
                 <h3>コンソール</h3>
                 <div id="console" class="console"></div>
             </div>
+
+            <h2>使用例</h2>
+            HTML
+            <pre class="line-numbers language-html keep-markup match-braces rainbow-braces"><code>&ltdiv id="test-area">
+    &lth1>統合テスト</h1>
+    &ltbutton id="test-button">クリックして色を変える</button>
+&lt/div></code></pre>
+            CSS
+            <pre class="line-numbers language-css match-braces rainbow-braces"><code>#test-area {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#test-button {
+    padding: 10px 20px;
+    background-color: lightcoral;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#test-button:hover {
+    background-color: coral;
+}</code></pre>
+            JavaScript
+            <pre class="line-numbers language-javascript match-braces rainbow-braces"><code>document.getElementById('test-button').addEventListener('click', () => {
+    document.getElementById('test-area').style.backgroundColor = 'lightblue';
+    console.log('ボタンがクリックされ、背景色が変わりました！');
+});</code></pre>
+            など
+
         </div> <!-- /.main -->
         <div class="annotation">
             ページ注釈
@@ -224,17 +276,32 @@
             }
         }
 
-        // プレビュー更新
+        // プレビュー更新 (Blob版)
         function updatePreview() {
             const htmlContent = htmlEditor.value;
             const cssContent = `<style>${cssEditor.value}</style>`;
-            const jsContent = `<script>
-                try {
-                    ${jsEditor.value}
-                } catch (e) {
-                    console.error('Error:', e.message);
-                }
-            <\/script>`;
+            const jsContent = `
+                <script>
+                    (function() {
+                        const originalLog = console.log;
+                        console.log = function(...args) {
+                            originalLog.apply(console, args);
+                            window.parent.postMessage({ type: 'log', message: args.join(' ') }, '*');
+                        };
+                        
+                        const originalError = console.error;
+                        console.error = function(...args) {
+                            originalError.apply(console, args);
+                            window.parent.postMessage({ type: 'error', message: args.join(' ') }, '*');
+                        };
+                        
+                        try {
+                            ${jsEditor.value}
+                        } catch (e) {
+                            console.error('Error:', e.message);
+                        }
+                    })();
+                <\/script>`;
             const fullContent = `
                 <!DOCTYPE html>
                 <html lang="ja">
@@ -249,10 +316,11 @@
                 </body>
                 </html>
             `;
-            const previewDocument = previewFrame.contentDocument || previewFrame.contentWindow.document;
-            previewDocument.open();
-            previewDocument.write(fullContent);
-            previewDocument.close();
+            
+            // Blob を生成して URL に変換
+            const blob = new Blob([fullContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            previewFrame.src = url;
         }
 
         // 初期化

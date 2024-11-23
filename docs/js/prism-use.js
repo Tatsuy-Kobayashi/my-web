@@ -5,9 +5,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const jsEditor = document.getElementById('js-editor');
     let previewFrame = document.getElementById('preview');
     const consoleView = document.getElementById('console');
-
     // Reset ボタンの機能
     const resetButton = document.getElementById('reset-button');
+
+    console.log('htmlEditor:', htmlEditor);
+    console.log('cssEditor:', cssEditor);
+    console.log('jsEditor:', jsEditor);
+    console.log('resetButton:', resetButton);
+    console.log('previewFrame:', previewFrame);
+
+    if (!htmlEditor || !cssEditor || !jsEditor || !resetButton || !previewFrame) {
+        console.error('必要な要素が見つかりません。HTML構造を確認してください。');
+        return;
+    }
 
     resetButton.addEventListener('click', () => {
         // 古い iframe を削除

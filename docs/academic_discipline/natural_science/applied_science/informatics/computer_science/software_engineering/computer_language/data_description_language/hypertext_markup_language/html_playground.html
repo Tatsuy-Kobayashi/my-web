@@ -64,7 +64,9 @@
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/include.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/linkPreview.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/headerLoader.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/bliss.shy.min.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/prism.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/prism-live.js"></script>
     <script>
         // JavaScriptの厳格モード使用
         'use strict';
@@ -146,29 +148,8 @@
             </p>
             <h2>エディタプレビュー & コンソール</h2>
             <p>
-                &emsp;このエディタの「HTML エディタ」は、
+                &emsp;$0$は空集合のカーディナル数、ゆえに最小のカーディナル数。この性質は整数を構成するのに役に立つ。だからコンウェイは、左側も右側も空集合である $(\ |\ )$ という記号でゼロを表したのである。
             </p>
-            <pre class="line-numbers language-html keep-markup match-braces rainbow-braces"><code>&lt!DOCTYPE html&gt
-&lthtml lang="ja"&gt
-&lthead&gt
-    &ltmeta charset="UTF-8">
-    &ltmeta name="viewport" content="width=device-width, initial-scale=1.0">
-    &ltstyle>
-        ユーザCSS
-    &lt/style>
-&lt/head>
-&ltbody>
-    ユーザHTML
-    &ltscript>
-        ユーザJavaScript
-    &lt/script>
-&lt/body>
-&lt/html&gt</code></pre>
-
-            <p>
-                を前提としている。
-            </p>
-
             <!-- HTML エディタ -->
             <div class="editor_wrapper">
                 <h3>HTML エディタ</h3>
@@ -198,37 +179,6 @@
                 <h3>コンソール</h3>
                 <div id="console" class="console"></div>
             </div>
-
-            <h2>使用例</h2>
-            HTML
-            <pre class="line-numbers language-html keep-markup match-braces rainbow-braces"><code>&ltdiv id="test-area">
-    &lth1>統合テスト</h1>
-    &ltbutton id="test-button">クリックして色を変える</button>
-&lt/div></code></pre>
-            CSS
-            <pre class="line-numbers language-css match-braces rainbow-braces"><code>#test-area {
-    text-align: center;
-    margin-top: 20px;
-}
-
-#test-button {
-    padding: 10px 20px;
-    background-color: lightcoral;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-#test-button:hover {
-    background-color: coral;
-}</code></pre>
-            JavaScript
-            <pre class="line-numbers language-javascript match-braces rainbow-braces"><code>document.getElementById('test-button').addEventListener('click', () => {
-    document.getElementById('test-area').style.backgroundColor = 'lightblue';
-    console.log('ボタンがクリックされ、背景色が変わりました！');
-});</code></pre>
-            など
-
         </div> <!-- /.main -->
         <div class="annotation">
             ページ注釈
@@ -252,94 +202,66 @@
         const previewFrame = document.getElementById('preview');
         const consoleView = document.getElementById('console');
 
-        // プレビュー更新 (Blob版)
+        // カスタムコンソールログを追加
+        function setupConsole(consoleElement) {
+            const originalLog = console.log;
+            const originalError = console.error;
+
+            console.log = function (...args) {
+                originalLog.apply(console, args);
+                logToConsole('log', args.join(' '));
+            };
+
+            console.error = function (...args) {
+                originalError.apply(console, args);
+                logToConsole('error', args.join(' '));
+            };
+
+            function logToConsole(type, message) {
+                const logElement = document.createElement('div');
+                logElement.textContent = `[${type.toUpperCase()}] ${message}`;
+                logElement.style.color = type === 'error' ? 'red' : 'white';
+                consoleElement.appendChild(logElement);
+                consoleElement.scrollTop = consoleElement.scrollHeight; // 自動スクロール
+            }
+        }
+
+        // プレビュー更新
         function updatePreview() {
             const htmlContent = htmlEditor.value;
             const cssContent = `<style>${cssEditor.value}</style>`;
-            const jsContent = `
-                <script>
-                    (function() {
-                        // Simplified console override in iframe
-                        const originalLog = console.log;
-                        console.log = function(...args) {
-                            originalLog.apply(console, args);
-                            window.parent.postMessage({ type: 'log', message: args.join(' ') }, '*');
-                        };
-
-                        const originalError = console.error;
-                        console.error = function(...args) {
-                            originalError.apply(console, args);
-                            window.parent.postMessage({ type: 'error', message: args.join(' ') }, '*');
-                        };
-
-                        try {
-                            ${jsEditor.value}
-                        } catch (e) {
-                            console.error('Error:', e.message);
-                        }
-                    })();
-                <\/script>`;
-
-                const fullContent = `
-                    <!DOCTYPE html>
-                    <html lang="ja">
-                    <head>
-                        <meta charset="UTF-8">
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        ${cssContent}
-                    </head>
-                    <body>
-                        ${htmlContent}
-                        ${jsContent}
-                    </body>
-                    </html>
-                `;
-
-            // iframeに表示するHTMLをBlobに変換
-            const blob = new Blob([fullContent], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            previewFrame.src = url;
+            const jsContent = `<script>
+                try {
+                    ${jsEditor.value}
+                } catch (e) {
+                    console.error('Error:', e.message);
+                }
+            <\/script>`;
+            const fullContent = `
+                <!DOCTYPE html>
+                <html lang="ja">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    ${cssContent}
+                </head>
+                <body>
+                    ${htmlContent}
+                    ${jsContent}
+                </body>
+                </html>
+            `;
+            const previewDocument = previewFrame.contentDocument || previewFrame.contentWindow.document;
+            previewDocument.open();
+            previewDocument.write(fullContent);
+            previewDocument.close();
         }
 
-        // カスタムコンソールへのメッセージ受信処理
-        window.addEventListener('message', (event) => {
-            if (event.data && event.data.type) {
-                const logElement = document.createElement('div');
-                logElement.textContent = `[${event.data.type.toUpperCase()}] ${event.data.message}`;
-                logElement.style.color = event.data.type === 'error' ? 'red' : 'white';
-                consoleView.appendChild(logElement);
-                consoleView.scrollTop = consoleView.scrollHeight; // 自動スクロール
-            }
-        });
-
-        // iframeのエラー処理
-        previewFrame.onerror = function() {
-            console.error('iframeの読み込み中にエラーが発生しました。');
-            // ユーザーに表示するエラーメッセージ（例）
-            alert('プレビューの表示に失敗しました。JavaScriptコードに誤りがないか確認してください。');
-        };
-
         // 初期化
+        setupConsole(consoleView);
         htmlEditor.addEventListener('input', updatePreview);
         cssEditor.addEventListener('input', updatePreview);
         jsEditor.addEventListener('input', updatePreview);
-
-        // iframe内のconsole.logとconsole.errorをオーバーライド
-        // (updatePreview関数内で実行されるJavaScriptコードの中で実行される)
-        (function() {
-            const originalLog = console.log;
-            console.log = function(...args) {
-                originalLog.apply(console, args);
-                window.parent.postMessage({ type: 'log', message: args.join(' ') }, '*');
-            };
-
-            const originalError = console.error;
-            console.error = function(...args) {
-                originalError.apply(console, args);
-                window.parent.postMessage({ type: 'error', message: args.join(' ') }, '*');
-            };
-        })();
     </script>
-    <script src="https://live.prismjs.com/src/prism-live.js?load=markup,css,javascript"></script>
 </body>
 </html>

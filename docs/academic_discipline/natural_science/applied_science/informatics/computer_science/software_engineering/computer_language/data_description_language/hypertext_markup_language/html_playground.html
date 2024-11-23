@@ -335,8 +335,8 @@ function updateSentence() {
                         };
                         const originalError = console.error;
                         console.error = function(...args) {
-                            originalError.apply(console, args);
-                            window.parent.postMessage({ type: 'error', message: args.join(' ') }, '*');
+                            //originalError.apply(console, args);
+                            //window.parent.postMessage({ type: 'error', message: args.join(' ') }, '*');
                         };
                         // 実行中のユーザーコード
                         try {

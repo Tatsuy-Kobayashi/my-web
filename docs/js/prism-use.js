@@ -105,8 +105,9 @@ function updatePreview() {
 
     // iframeに表示するHTMLをBlobに変換
     const blob = new Blob([fullContent], { type: 'text/html' });
-    const url = URL.createObjectURL(blob);
-    previewFrame.src = blobURL;
+    const url = URL.createObjectURL(blob); // 新しいURLを生成
+    previewFrame.src = url; // 新しいURLをiframeに設定
+    blobURL = url; // blobURLを更新して後で解放
 }
 
 // カスタムコンソールへのメッセージ受信処理

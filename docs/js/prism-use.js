@@ -37,6 +37,8 @@ resetButton.addEventListener('click', () => {
     previewFrame = newIframe;
 });
 
+let blobURL = null; // 再利用するBlob URL
+
 // プレビュー更新 (Blob版)
 function updatePreview() {
     const htmlContent = htmlEditor.value;
@@ -96,10 +98,15 @@ function updatePreview() {
             </html>
         `;
 
+    // 以前のBlob URLを解放
+    if (blobURL) {
+        URL.revokeObjectURL(blobURL);
+    }
+
     // iframeに表示するHTMLをBlobに変換
     const blob = new Blob([fullContent], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
-    previewFrame.src = url;
+    previewFrame.src = blobURL;
 }
 
 // カスタムコンソールへのメッセージ受信処理

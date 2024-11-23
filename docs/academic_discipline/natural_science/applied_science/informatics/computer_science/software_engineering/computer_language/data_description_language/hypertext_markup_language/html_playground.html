@@ -46,7 +46,16 @@
             margin-bottom: 10px;
             font-family: monospace;
         }
-        iframe {
+        .output_wrapper span {
+            font-size: 1.17em;
+            font-weight: bold;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+        }
+        .output_wrapper #reset-button {
+            margin: 0 5px 0 50px;
+        }
+        .output_wrapper iframe {
             width: 100%;
             height: 300px;
             border: 1px solid #ccc;
@@ -148,22 +157,22 @@
             <p>
                 &emsp;このエディタの「HTML エディタ」は、
             </p>
-            <pre class="line-numbers language-html keep-markup match-braces rainbow-braces"><code>&lt!DOCTYPE html&gt
-&lthtml lang="ja"&gt
-&lthead&gt
-    &ltmeta charset="UTF-8">
-    &ltmeta name="viewport" content="width=device-width, initial-scale=1.0">
-    &ltstyle>
-        ユーザCSS
-    &lt/style>
-&lt/head>
-&ltbody>
-    ユーザHTML
-    &ltscript>
-        ユーザJavaScript
-    &lt/script>
-&lt/body>
-&lt/html&gt</code></pre>
+            <pre class="language-html keep-markup match-braces rainbow-braces"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+        &lt;style&gt;
+            ユーザCSS
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        ユーザHTML
+        &lt;script&gt;
+            ユーザJavaScript
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
 
             <p>
                 を前提としている。
@@ -189,8 +198,8 @@
 
             <!-- プレビュー表示 -->
             <div class="output_wrapper">
-                <h3>リアルタイムプレビュー</h3>
-                <iframe id="preview" sandbox="allow-scripts"></iframe>
+                <span>リアルタイムプレビュー</span><button id="reset-button">Reset</button>
+                <iframe id="preview" sandbox="allow-scripts allow-modals allow-forms allow-popups"></iframe>
             </div>
 
             <!-- コンソールビュー -->
@@ -201,10 +210,15 @@
 
             <h2>使用例</h2>
             HTML
-            <pre class="line-numbers language-html keep-markup match-braces rainbow-braces"><code>&ltdiv id="test-area">
-    &lth1>統合テスト</h1>
-    &ltbutton id="test-button">クリックして色を変える</button>
-&lt/div></code></pre>
+            <pre class="line-numbers language-html keep-markup match-braces rainbow-braces"><code>&lt;div id="test-area"&gt;
+    &lt;h1&gt;使用例&lt;/h1&gt;
+    &lt;button id="test-button"&gt;クリックして色を変える&lt;/button&gt;
+    &lt;div&gt;
+        &lt;input type="text" id="inputForm" value="Hello, world!"&gt;
+        &lt;button id="input-button"&gt;入力内容を表示&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div id="outputter"&gt;入力内容：&lt;span id="outputting"&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
             CSS
             <pre class="line-numbers language-css match-braces rainbow-braces"><code>#test-area {
     text-align: center;
@@ -226,7 +240,14 @@
             <pre class="line-numbers language-javascript match-braces rainbow-braces"><code>document.getElementById('test-button').addEventListener('click', () => {
     document.getElementById('test-area').style.backgroundColor = 'lightblue';
     console.log('ボタンがクリックされ、背景色が変わりました！');
-});</code></pre>
+    alert('ボタンがクリックされ、背景色が変わりました！');
+});
+document.getElementById('input-button').addEventListener('click', updateSentence);
+function updateSentence() {
+    const inputSentence = document.getElementById('inputForm').value;
+    const outputDisplay = document.getElementById('outputting');
+    outputDisplay.innerText = inputSentence;
+}</code></pre>
             など
 
         </div> <!-- /.main -->
@@ -249,8 +270,40 @@
         const htmlEditor = document.getElementById('html-editor');
         const cssEditor = document.getElementById('css-editor');
         const jsEditor = document.getElementById('js-editor');
-        const previewFrame = document.getElementById('preview');
+        let previewFrame = document.getElementById('preview');
         const consoleView = document.getElementById('console');
+
+        // Reset ボタンの機能
+        const resetButton = document.getElementById('reset-button');
+
+        resetButton.addEventListener('click', () => {
+            // 古い iframe を削除
+            const oldIframe = document.getElementById('preview');
+            oldIframe.remove();
+
+            // 新しい iframe を生成
+            const newIframe = document.createElement('iframe');
+            newIframe.id = 'preview';
+            newIframe.sandbox = 'allow-scripts';
+
+            // iframe の親要素に追加
+            const outputWrapper = document.querySelector('.output_wrapper');
+            outputWrapper.appendChild(newIframe);
+
+            // 新しい iframe にエラーハンドラを再設定
+            /*
+            newIframe.onload = () => {
+                console.log('iframe がリセットされ、正常に読み込まれました。');
+            };
+
+            newIframe.onerror = () => {
+                console.error('リセット後の iframe の読み込み中にエラーが発生しました。');
+                alert('リセット後のプレビューの表示に失敗しました。JavaScriptコードに誤りがないか確認してください。');
+            };*/
+
+            // iframe 更新用の変数を再設定
+            previewFrame = newIframe;
+        });
 
         // プレビュー更新 (Blob版)
         function updatePreview() {
@@ -329,14 +382,14 @@
         });
 
         // iframeのエラー処理
+        /*
         previewFrame.onload = () => {
             console.log('iframe が正常に読み込まれました');
         };
-
         previewFrame.onerror = () => {
             console.error('iframe の読み込み中にエラーが発生しました。');
             alert('プレビューの表示に失敗しました。JavaScriptコードに誤りがないか確認してください。');
-        };
+        };*/
 
         // 初期化
         htmlEditor.addEventListener('input', updatePreview);

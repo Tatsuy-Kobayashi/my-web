@@ -5,19 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const jsEditor = document.getElementById('js-editor');
     let previewFrame = document.getElementById('preview');
     const consoleView = document.getElementById('console');
+
     // Reset ボタンの機能
     const resetButton = document.getElementById('reset-button');
-
-    console.log('htmlEditor:', htmlEditor);
-    console.log('cssEditor:', cssEditor);
-    console.log('jsEditor:', jsEditor);
-    console.log('resetButton:', resetButton);
-    console.log('previewFrame:', previewFrame);
-
-    if (!htmlEditor || !cssEditor || !jsEditor || !resetButton || !previewFrame) {
-        console.error('必要な要素が見つかりません。HTML構造を確認してください。');
-        return;
-    }
 
     resetButton.addEventListener('click', () => {
         // 古い iframe を削除
@@ -47,8 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // iframe 更新用の変数を再設定
         previewFrame = newIframe;
     });
-
-    let blobURL = null; // 再利用するBlob URL
 
     // プレビュー更新 (Blob版)
     function updatePreview() {
@@ -109,16 +97,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 </html>
             `;
 
-        // 以前のBlob URLを解放
-        if (blobURL) {
-            URL.revokeObjectURL(blobURL);
-        }
-
         // iframeに表示するHTMLをBlobに変換
         const blob = new Blob([fullContent], { type: 'text/html' });
-        const url = URL.createObjectURL(blob); // 新しいURLを生成
-        previewFrame.src = url; // 新しいURLをiframeに設定
-        blobURL = url; // blobURLを更新して後で解放
+        const url = URL.createObjectURL(blob);
+        previewFrame.src = url;
     }
 
     // カスタムコンソールへのメッセージ受信処理

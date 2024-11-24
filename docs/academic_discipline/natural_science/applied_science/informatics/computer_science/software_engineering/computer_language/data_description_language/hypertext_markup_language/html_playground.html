@@ -354,9 +354,15 @@ function updateSentence() {
                                 message: \`Unhandled Rejection: \${event.reason}\`
                             }, '*');
                         };
+                        const target = document.getElementById('some-id');
+                        if (target) {
+                            target.addEventListener('click', () => console.log('クリックされました'));
+                        } else {
+                            console.warn('ターゲット要素が見つかりません。');
+                        }
 
                         (function() {
-                                                        const originalError = console.error;
+                            const originalError = console.error;
                             // 標準のconsole.errorが破壊されている場合は復元
                             if (typeof originalError !== 'function') {
                                 console.error = function(...args) {

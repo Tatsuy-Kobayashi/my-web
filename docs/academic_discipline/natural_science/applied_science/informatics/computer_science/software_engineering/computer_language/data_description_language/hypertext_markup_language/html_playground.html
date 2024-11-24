@@ -54,7 +54,7 @@
             margin-block-end: 1em;
         }
         .console_wrapper span {
-            margin-right: 50px;
+            margin-right: 112px;
         }
         .output_wrapper #reset-button,
         .console_wrapper #clear-button {
@@ -368,6 +368,8 @@ function updateSentence() {
                             // originalErrorの中身を確認
                             console.log('originalError の中身:', originalError);
                             console.log('originalError の型:', typeof originalError);
+                            console.log('args の中身:', args);
+                            console.log('args の型:', args.map(arg => typeof arg));
 
                             console.error = function(...args) {
                                 try {

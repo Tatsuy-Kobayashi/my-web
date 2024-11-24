@@ -356,13 +356,7 @@ function updateSentence() {
                         };
 
                         (function() {
-                            const originalLog = console.log;
-                            console.log = function(...args) {
-                                originalLog.apply(console, args);
-                                window.parent.postMessage({ type: 'log', message: args.join(' ') }, '*');
-                            };
-
-                            const originalError = console.error;
+                                                        const originalError = console.error;
                             // 標準のconsole.errorが破壊されている場合は復元
                             if (typeof originalError !== 'function') {
                                 console.error = function(...args) {
@@ -370,6 +364,10 @@ function updateSentence() {
                                 };
                                 console.log('console.errorが破壊されていたため、復元しました。');
                             }
+
+                            // originalErrorの中身を確認
+                            console.log('originalError の中身:', originalError);
+                            console.log('originalError の型:', typeof originalError);
 
                             console.error = function(...args) {
                                 try {
@@ -387,6 +385,12 @@ function updateSentence() {
                             } catch (e) {
                                 console.error('Error:', e.message);
                             }
+                            
+                            const originalLog = console.log;
+                            console.log = function(...args) {
+                                originalLog.apply(console, args);
+                                window.parent.postMessage({ type: 'log', message: args.join(' ') }, '*');
+                            };
                         })();
                     <\/script>`;
 

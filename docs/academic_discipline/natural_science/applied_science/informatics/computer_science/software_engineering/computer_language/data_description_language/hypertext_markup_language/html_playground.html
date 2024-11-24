@@ -339,68 +339,64 @@ function updateSentence() {
                 const cssContent = `<style>${cssEditor.value}</style>`;
                 const jsContent = `
                     <script>
-                        // エラーキャッチ用
-                        window.onerror = function(message, source, lineno, colno, error) {
-                            window.parent.postMessage({
-                                type: 'error',
-                                message: \`Error: \${message} at \${source} (\${lineno}:\${colno})\`
-                            }, '*');
-                        };
+                        document.addEventListener('DOMContentLoaded', () => {
+                            // エラーキャッチ用
+                            window.onerror = function(message, source, lineno, colno, error) {
+                                window.parent.postMessage({
+                                    type: 'error',
+                                    message: \`Error: \${message} at \${source} (\${lineno}:\${colno})\`
+                                }, '*');
+                            };
 
-                        // 非同期エラーキャッチ用
-                        window.onunhandledrejection = function(event) {
-                            window.parent.postMessage({
-                                type: 'error',
-                                message: \`Unhandled Rejection: \${event.reason}\`
-                            }, '*');
-                        };
-                        const target = document.getElementById('some-id');
-                        if (target) {
-                            target.addEventListener('click', () => console.log('クリックされました'));
-                        } else {
-                            console.warn('ターゲット要素が見つかりません。');
-                        }
+                            // 非同期エラーキャッチ用
+                            window.onunhandledrejection = function(event) {
+                                window.parent.postMessage({
+                                    type: 'error',
+                                    message: \`Unhandled Rejection: \${event.reason}\`
+                                }, '*');
+                            };
 
-                        (function() {
-                            const originalError = console.error;
-                            // 標準のconsole.errorが破壊されている場合は復元
-                            if (typeof originalError !== 'function') {
-                                console.error = function(...args) {
-                                    console.log('[Fallback Console.Error]', ...args);
-                                };
-                                console.log('console.errorが破壊されていたため、復元しました。');
-                            }
-
-                            // originalErrorの中身を確認
-                            console.log('originalError の中身:', originalError);
-                            console.log('originalError の型:', typeof originalError);
-
-                            console.error = function(...args) {
-                                try {
-                                    console.log('args の中身:', args);
-                                    console.log('args の型:', args.map(arg => typeof arg));
-
-                                    originalError.apply(console, args); // 元のconsole.errorを呼び出し
-                                    const message = args.map(arg => (typeof arg === 'object' ? JSON.stringify(arg) : String(arg))).join(' ');
-                                    window.parent.postMessage({ type: 'error', message }, '*');
-                                } catch (e) {
-                                    console.log('カスタムconsole.errorの処理中にエラーが発生しました:', e.message);
+                            (function() {
+                                const originalError = console.error;
+                                // 標準のconsole.errorが破壊されている場合は復元
+                                if (typeof originalError !== 'function') {
+                                    console.error = function(...args) {
+                                        console.log('[Fallback Console.Error]', ...args);
+                                    };
+                                    console.log('console.errorが破壊されていたため、復元しました。');
                                 }
-                            };
 
-                            // 実行中のユーザーコード
-                            try {
-                                ${jsEditor.value}
-                            } catch (e) {
-                                console.error('Error:', e.message);
-                            }
-                            
-                            const originalLog = console.log;
-                            console.log = function(...args) {
-                                originalLog.apply(console, args);
-                                window.parent.postMessage({ type: 'log', message: args.join(' ') }, '*');
-                            };
-                        })();
+                                // originalErrorの中身を確認
+                                console.log('originalError の中身:', originalError);
+                                console.log('originalError の型:', typeof originalError);
+
+                                console.error = function(...args) {
+                                    try {
+                                        console.log('args の中身:', args);
+                                        console.log('args の型:', args.map(arg => typeof arg));
+
+                                        originalError.apply(console, args); // 元のconsole.errorを呼び出し
+                                        const message = args.map(arg => (typeof arg === 'object' ? JSON.stringify(arg) : String(arg))).join(' ');
+                                        window.parent.postMessage({ type: 'error', message }, '*');
+                                    } catch (e) {
+                                        console.log('カスタムconsole.errorの処理中にエラーが発生しました:', e.message);
+                                    }
+                                };
+
+                                // 実行中のユーザーコード
+                                try {
+                                    ${jsEditor.value}
+                                } catch (e) {
+                                    console.error('Error:', e.message);
+                                }
+                                
+                                const originalLog = console.log;
+                                console.log = function(...args) {
+                                    originalLog.apply(console, args);
+                                    window.parent.postMessage({ type: 'log', message: args.join(' ') }, '*');
+                                };
+                            })();
+                        });
                     <\/script>`;
 
                     const fullContent = `

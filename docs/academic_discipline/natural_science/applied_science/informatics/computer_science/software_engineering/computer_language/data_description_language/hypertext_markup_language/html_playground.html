@@ -243,7 +243,7 @@
 }</code></pre>
             JavaScript
             <pre class="line-numbers language-javascript match-braces rainbow-braces"><code>// トグル切り替えの処理
-document.getElementById('test-button').addEventListener('click', () => {
+document.getElementById('toggle-button').addEventListener('click', () => {
     const testArea = document.getElementById('test-area');
     const currentColor = testArea.style.backgroundColor;
     // 背景色を lightblue と white の間で切り替え
@@ -430,6 +430,12 @@ function updateSentence() {
                 const blob = new Blob([fullContent], { type: 'text/html' });
                 const url = URL.createObjectURL(blob);
                 previewFrame.src = url;
+
+                // iframeが読み込まれた後に動的要素を確認
+                previewFrame.addEventListener('load', () => {
+                    const iframeDocument = previewFrame.contentDocument || previewFrame.contentWindow.document;
+                    attachEventHandlers(iframeDocument);
+                });
             }
 
             // カスタムコンソールへのメッセージ受信処理

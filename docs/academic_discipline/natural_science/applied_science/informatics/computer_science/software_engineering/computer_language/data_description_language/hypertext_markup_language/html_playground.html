@@ -288,6 +288,18 @@ function updateSentence() {
             let previewFrame = document.getElementById('preview');
             const consoleView = document.getElementById('console');
 
+            // テストコード
+            function attachEventHandlers(iframeDocument) {
+                const target = iframeDocument.getElementById('some-id');
+                if (target) {
+                    target.addEventListener('click', () => {
+                        console.log('クリックされました');
+                    });
+                } else {
+                    console.warn('iframe 内のターゲット要素が見つかりません。');
+                }
+            }// テストコード
+
             // Reset ボタンの機能
             const resetButton = document.getElementById('reset-button');
             // Clear ボタンの機能
@@ -324,10 +336,10 @@ function updateSentence() {
 
             clearButton.addEventListener('click', () => {
                 // 確認ダイアログを表示
-                const userConfirmed = confirm("コンソールをクリアしますか？");
+                const userConfirmedClear = confirm("コンソールをクリアしますか？");
 
                 // 「はい」を選択した場合にクリア処理を実行
-                if (userConfirmed) {
+                if (userConfirmedClear) {
                     consoleView.innerHTML = ''; // コンソールを白紙に
                     console.log('コンソールがクリアされました。'); // コンソールにログを表示
                 }
@@ -340,13 +352,6 @@ function updateSentence() {
                 const jsContent = `
                     <script>
                         document.addEventListener('DOMContentLoaded', () => {
-                            const target = document.getElementById('some-id');
-                            if (target) {
-                                target.addEventListener('click', () => console.log('クリックされました'));
-                            } else {
-                                console.warn('ターゲット要素が見つかりません。');
-                            }
-
                             // エラーキャッチ用
                             window.onerror = function(message, source, lineno, colno, error) {
                                 window.parent.postMessage({
@@ -396,7 +401,7 @@ function updateSentence() {
                                 } catch (e) {
                                     console.error('Error:', e.message);
                                 }
-                                
+
                                 const originalLog = console.log;
                                 console.log = function(...args) {
                                     originalLog.apply(console, args);
@@ -468,6 +473,9 @@ function updateSentence() {
                     window.parent.postMessage({ type: 'error', message: args.join(' ') }, '*');
                 };
             })();
+
+            // 初期プレビューの呼び出し
+            updatePreview();
         });
     </script>
     <script src="https://live.prismjs.com/src/prism-live.js?load=markup,css,javascript"></script>

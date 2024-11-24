@@ -340,6 +340,13 @@ function updateSentence() {
                 const jsContent = `
                     <script>
                         document.addEventListener('DOMContentLoaded', () => {
+                            const target = document.getElementById('some-id');
+                            if (target) {
+                                target.addEventListener('click', () => console.log('クリックされました'));
+                            } else {
+                                console.warn('ターゲット要素が見つかりません。');
+                            }
+
                             // エラーキャッチ用
                             window.onerror = function(message, source, lineno, colno, error) {
                                 window.parent.postMessage({

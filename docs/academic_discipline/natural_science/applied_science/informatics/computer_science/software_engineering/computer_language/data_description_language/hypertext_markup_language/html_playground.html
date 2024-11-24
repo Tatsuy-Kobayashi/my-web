@@ -368,11 +368,12 @@ function updateSentence() {
                             // originalErrorの中身を確認
                             console.log('originalError の中身:', originalError);
                             console.log('originalError の型:', typeof originalError);
-                            console.log('args の中身:', args);
-                            console.log('args の型:', args.map(arg => typeof arg));
 
                             console.error = function(...args) {
                                 try {
+                                    console.log('args の中身:', args);
+                                    console.log('args の型:', args.map(arg => typeof arg));
+
                                     originalError.apply(console, args); // 元のconsole.errorを呼び出し
                                     const message = args.map(arg => (typeof arg === 'object' ? JSON.stringify(arg) : String(arg))).join(' ');
                                     window.parent.postMessage({ type: 'error', message }, '*');

@@ -6,7 +6,7 @@
     grid-template-areas:
         "breadcrumb-list breadcrumb-list"
         "content-main content-annotation"
-        "output-info output-ifram";
+        "under-entry under-entry";
 }
 .breadcrumb_list {
     grid-area: breadcrumb-list;
@@ -22,6 +22,10 @@
     padding: 0 10px 0 10px;
     min-width: 200px;
 }
+.under-entry-content {
+    grid-area: under-entry;
+    padding: 0 10px 0 50px;
+}
 @media (max-width: 768px) {
     .content {
         flex-direction: column;
@@ -31,7 +35,8 @@
         grid-template-areas:
             "breadcrumb-list"
             "content-main"
-            "content-annotation";
+            "content-annotation"
+            "under-entry";
     }
     .breadcrumb_list, .main, .annotation {
         padding: 0 10px 0 50px;

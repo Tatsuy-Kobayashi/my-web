@@ -221,6 +221,7 @@
     &lt;div&gt;
         &lt;input type="text" id="inputForm" value="Hello, world!"&gt;
         &lt;button id="input-button"&gt;入力内容を表示&lt;/button&gt;
+        &lt;p&gt;入力内容は、初期値だけでなく何を入力しても下に反映させることができるので、色々試してね！&lt;/p&gt;
     &lt;/div&gt;
     &lt;div id="outputter"&gt;入力内容：&lt;span id="outputting"&gt;&lt;/span&gt;&lt;/div&gt;
 &lt;/div&gt;</code></pre>
@@ -263,16 +264,18 @@ function updateSentence() {
     outputDisplay.innerText = inputSentence;
 }</code></pre>
             など
-            <h2>仕様詳細</h2>
-            <p>
-                &emsp;更新ボタンを押すまでもなく、自動的に&lt;iframe&gt;内の「リアルタイムプレビュー」が更新される。ローカルディレクトリとブラウザを行き来する手間を省いてくれる。
-            </p>
-            <ul>
-                <li>console.warn</li>
-            </ul>
-            <p>
-                は、実装していない。
-            </p>
+            <div>
+                <h2>仕様詳細</h2>
+                <p>
+                    &emsp;更新ボタンを押すまでもなく、自動的に&lt;iframe&gt;内の「リアルタイムプレビュー」が更新される。ローカルディレクトリとブラウザを行き来する手間を省いてくれる。
+                </p>
+                <ul>
+                    <li>console.warn</li>
+                </ul>
+                <p>
+                    は、実装していない。
+                </p>
+            </div>
 
         </div> <!-- /.main -->
         <div class="annotation">

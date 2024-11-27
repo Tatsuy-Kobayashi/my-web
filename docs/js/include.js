@@ -5,19 +5,19 @@ $(document).ready(function() {
     });
 
     // ヘッダーとフッターを動的に読み込む
-    fetch('my-web/docs/header.html')
+    fetch('https://tatsuy-kobayashi.github.io/my-web/docs/header.html')
         .then(response => response.text())
         .then(data => {
             document.querySelector('header').innerHTML = data;
         });
 
-    fetch('my-web/docs/footer.html')
+    fetch('https://tatsuy-kobayashi.github.io/my-web/docs/footer.html')
         .then(response => response.text())
         .then(data => {
             document.querySelector('footer').innerHTML = data;
         });
 
-    fetch('my-web/docs/drawerNav.html')
+    fetch('https://tatsuy-kobayashi.github.io/my-web/docs/drawerNav.html')
         .then(response => response.text())
         .then(data => {
             document.querySelector('nav').innerHTML = data;

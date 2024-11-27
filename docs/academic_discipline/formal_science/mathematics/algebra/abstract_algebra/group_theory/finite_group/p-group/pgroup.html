@@ -33,17 +33,16 @@
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/search.css" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/responsive_header.css" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/commentary.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/mathContentWrapper.css" />
     <style>
         .table_finite_group_wrapper {
             display: flex;
             padding-left: 20px;
             width: 100%;
-            max-width: 800px;
         }
         .table_finite_group {
             overflow-x: auto;
             width: 100%;
-            max-width: 100%; /* 最大幅を100%に制限 */
             -webkit-overflow-scrolling: touch;
         }
         .table_finite_group table {
@@ -82,13 +81,6 @@
             border-right: 1px solid #000;
             background: #ccc;
             z-index: -1;
-        }
-        .mathjax_wrapper {
-            width: 100%;
-        }
-        .mathjax_flex {
-            width: auto;
-            overflow-x: auto;
         }
     </style>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -568,7 +560,7 @@
                 </div>
             </div>
             <div class="mathjax_wrapper">
-                <div class="mathjax_flex">
+                <div class="mathjax_flex" style="padding: 3px 0;">
                     \[
                         f(p^{7}) =
                         \begin{cases}

@@ -1,0 +1,14 @@
+.mathjax_wrapper {
+    width: 100%;
+}
+.mathjax_flex {
+    width: auto;
+    overflow-x: auto;
+}
+.tikzjax_wrapper {
+    width: 100%;
+}
+.tikzjax_flex {
+    width: auto;
+    overflow-x: auto;
+}

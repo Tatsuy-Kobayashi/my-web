@@ -4,12 +4,12 @@ $(document).ready(function() {
     const loadDrawer = $.Deferred();
 
     // header.htmlを読み込む
-    $("header").load("header.html", function() {
+    $("header").load("/my-web/docs/header.html", function() {
         loadHeader.resolve(); // headerの読み込みが完了
     });
 
     // drawerNav.htmlを読み込む
-    $('#nav').load('drawerNav.html', function() {
+    $('#nav').load('/my-web/docs/drawerNav.html', function() {
         loadDrawer.resolve(); // drawerNavの読み込みが完了
     });
 

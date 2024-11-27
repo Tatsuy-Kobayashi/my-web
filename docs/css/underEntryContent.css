@@ -7,7 +7,7 @@
 .a-wrap {
     text-decoration: none;
     display: block;
-    color: var(--cocoon-text-color);
+    color: #333;
     padding: 1.5%;
     transition: all 0.3s ease-in-out;
 }
@@ -34,7 +34,7 @@
     border-radius: 5px;
 }
 .related-entry-card-thumb  .card-thumb img {
-    aspect-ratio: var(--card-ratio);
+    aspect-ratio: 16 / 9;
     object-fit: cover;
 }
 .related-entry-card .cat-label {
@@ -49,7 +49,6 @@
     left: 0.3em;
     border: 1px solid #eee;
     font-size: 11px;
-    color: var(--cocoon-white-color);
     background-color: rgba(51, 51, 51, 0.7);
     padding: 1px 5px;
     max-width: 70%;
@@ -90,9 +89,17 @@
     flex-direction: row;
     padding-left: 5px;
 }
+.pager-post-navi a {
+    padding: 10px;
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1.2;
+    font-size: 0.8em;
+}
 .pager-post-navi a .iconfont {
     font-size: 1.8em;
-    color: var(--cocoon-thin-color);
+    color: #ddd;
     padding: 8px;
 }
 .cf .fa {
@@ -106,6 +113,7 @@
 .cf .fa-chevron-left:before {
     content: "\f053";
 }
+
 .pager-post-navi a figure {
     min-width: 120px;
     max-width: 120px;
@@ -116,7 +124,7 @@
     border-radius: 5px;
 }
 .pager-post-navi .card-thumb img {
-    aspect-ratio: var(--card-ratio);
+    aspect-ratio: 16 / 9;
     object-fit: cover;
 }
 .pager-post-navi a.prev-post .prev-post-title {

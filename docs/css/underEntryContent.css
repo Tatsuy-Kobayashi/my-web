@@ -1,7 +1,7 @@
 .related-list {
     display: flex;
     flex-direction: column;
-    row-gap: 0.8em;
+    row-gap: 14.4px;
     margin-bottom: 2em;
 }
 .a-wrap {
@@ -95,7 +95,7 @@
     display: inline-flex;
     align-items: center;
     line-height: 1.2;
-    font-size: 0.8em;
+    font-size: 14.4px;
 }
 .pager-post-navi a .iconfont {
     font-size: 1.8em;

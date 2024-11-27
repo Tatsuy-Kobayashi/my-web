@@ -2,7 +2,7 @@
     width: 100%;
     display: grid;
     grid-template-rows: auto auto auto;
-    grid-template-columns: 2fr 1fr; /* main:annotation = 2:1 */
+    grid-template-columns: auto 280px; /* main:annotation = 2:1 */
     grid-template-areas:
         "breadcrumb-list breadcrumb-list"
         "content-main content-annotation"
@@ -16,7 +16,7 @@
 .main {
     grid-area: content-main;
     padding: 0 10px 0 50px;
-    width: 100%;
+    width: calc(100% - 280px - 24px);
 }
 .annotation {
     grid-area: content-annotation;
@@ -25,11 +25,11 @@
 }
 .under-entry-content {
     grid-area: under-entry;
-    padding: 0 10px 0 50px;
+    padding: 0 50px 0 50px;
 }
 .main-scroll {
     grid-area: main-scroll;
-    padding: 0 10px 0 50px;
+    padding: 0 50px 0 50px;
 }
 @media (max-width: 768px) {
     .content {

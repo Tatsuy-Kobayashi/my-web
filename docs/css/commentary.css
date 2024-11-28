@@ -2,7 +2,7 @@
     width: 100%;
     display: grid;
     grid-template-rows: auto auto auto auto;
-    grid-template-columns: calc(100% - 280px - 24px) 280px;
+    grid-template-columns: calc(100% - 380px - 24px) 380px;
     grid-template-areas:
         "breadcrumb-list breadcrumb-list"
         "content-main content-annotation"
@@ -36,7 +36,7 @@
         flex-direction: column;
         display: grid;
         grid-template-rows: auto auto auto;
-        grid-template-columns: auto; /* 全幅使用 */
+        grid-template-columns: 100%; /* 全幅使用 */
         grid-template-areas:
             "breadcrumb-list"
             "content-main"

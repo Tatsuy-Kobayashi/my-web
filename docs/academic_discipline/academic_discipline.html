@@ -95,8 +95,8 @@
             <p>
                 &emsp;体系的知識とは、謂わば教科書だ。ユーザの求める情報だけでなくその基礎や応用、演習、周辺知識などを取りまとめ、ユーザの知識習得に重きを置いた情報媒体。つまり、レポートなどで百科事典を使うというのは、目の前の課題をどうにかやり過ごしたいだけであって、何かを習得したいという意識が欠如していると言える。そのような学生を教育者が良しとしない理由は分かるだろう。
             </p>
-            <div class="mathjax_wrapper">
-                <div class="mathjax_flex">
+            <div class="tikzjax_wrapper">
+                <div class="tikzjax_flex">
                     <script type="text/tikz">
                         \begin{tikzpicture}
                             \tikzset{block/.style={rectangle, fill=cyan!10, text width=2.5cm, text centered, rounded corners, minimum height=1.5cm}};
@@ -125,15 +125,23 @@
             <p>
                 &emsp;ですが、これ自体は何も忌避すべき事柄ではありません。なぜなら学問自体がこの抽象化あるいは具体化による変化の繰り返しで発展してきたからです。たとえば、積分。
             </p>
-            \[
-                \int_{0}^{1}{\frac{1}{x+1}}dx
-            \]
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        \int_{0}^{1}{\frac{1}{x+1}}dx
+                    \]
+                </div>
+            </div>
             <p>
                 これを本来のリーマン積分の意味合いで解釈するなら、直接無限級数
             </p>
-            \[
-                \lim_{n\rightarrow \infty}{\frac{1}{n} \sum_{k=1}^{n}{\frac{1}{\frac{k}{n}+1}}}
-            \]
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        \lim_{n\rightarrow \infty}{\frac{1}{n} \sum_{k=1}^{n}{\frac{1}{\frac{k}{n}+1}}}
+                    \]
+                </div>
+            </div>
             <p>
                 に直して計算するのだろうが、普通は特に説明もなく $\log(x+1)$ の微分の逆として計算される。数学者たちは当然、リーマン積分の定義も微分積分学の定理も知っているのだが、多くの解析学的議論において積分記号 $\int$ とは積分計算を表す抽象的な道具に過ぎないのだ。微分積分の<ruby>是非<rp>（</rp><rt>ぜひ</rt><rp>）</rp></ruby>については、解析学やより抽象的な代数学で議論されるし、抽象的な道具となった積分はより具体的な議論（幾何学）での基礎道具の一つとなる。
             </p>
@@ -552,7 +560,7 @@
                             <summary><a href="#">応用科学</a></summary>
                                 <li><details> <!-- 情報学 -->
                                     <summary><div class="link-container">
-                                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/science/mathematics/mathematics.html" class="preview-link" data-title="情報学" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="">情報学</a>
+                                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/applied_science/informatics/informatics.html" class="preview-link" data-title="情報学" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="">情報学</a>
                                         <div class="link-preview">
                                             <img class="preview-image">
                                             <h3 class="preview-title">情報学</h3>
@@ -562,7 +570,10 @@
                                         <li><a href="#">IT用語</a></li>
                                         <li><a href="#">情報理論</a></li>
                                         <li><a href="#">計算理論</a></li>
-                                </details></li> <!-- /物理学 -->
+                                        <li><a href="#">計算機科学</a></li>
+                                        <li><a href="#">計算機工学</a></li>
+                                        <li><a href="#">情報システム学</a></li>
+                                </details></li> <!-- /情報学 -->
                                 <li><a href="#">工学</a></li>
                                 <li><a href="#">農学</a></li>
                                 <li><a href="#">医学</a></li>

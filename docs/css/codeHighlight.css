@@ -23,6 +23,7 @@
 .code-main {
     grid-area: code-main;
     display: flex;
+    width: 95%;
     background-color: #272822;
     color: #ffffff;
     -webkit-text-size-adjust: none;
@@ -38,6 +39,7 @@
 .output-wrapper {
     display: flex;
     align-items: flex-start;
+    width: 95%;
 }
 .outputInfo {
     top: 0;

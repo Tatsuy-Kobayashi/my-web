@@ -68,6 +68,8 @@
 .content .description_window {
     margin: 10px 0 20px 0;
     opacity: 0;
+    background-color: rgba(30 30 30 / 20%);
+    backdrop-filter: blur(10px);
     animation: animate 1s ease-in-out 0.3s 1 forwards;
 }
 .content button {

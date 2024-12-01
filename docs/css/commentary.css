@@ -51,7 +51,7 @@
 }
 
 
-figure, blockquote {
+.main figure, .main blockquote {
     margin: 0 10px 0 50px; /* ブラウザデフォルトの隙間をリセット */
 }
 .figure-quote {

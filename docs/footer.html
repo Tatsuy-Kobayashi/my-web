@@ -54,12 +54,24 @@ footer ol, footer ul {
     width: 21px;
 }
 .icon .icon-mastodon {
-    -webkit-mask-image: url(//developer.mozilla.org/static/media/mastodon.ef3a62906d984f615f00.svg);
-    mask-image: url(//developer.mozilla.org/static/media/mastodon.ef3a62906d984f615f00.svg);
+    -webkit-mask-image: url(https://developer.mozilla.org/static/media/mastodon.ef3a62906d984f615f00.svg);
+    mask-image: url(https://developer.mozilla.org/static/media/mastodon.ef3a62906d984f615f00.svg);
+}
+.icon.icon-twitter-x {
+    -webkit-mask-image: url(https://developer.mozilla.org/static/media/twitter-x.2281a8f12c7edfe78a52.svg);
+    mask-image: url(https://developer.mozilla.org/static/media/twitter-x.2281a8f12c7edfe78a52.svg);
+}
+.icon.icon-github-mark-small {
+    -webkit-mask-image: url(https://developer.mozilla.org/static/media/github-mark-small.348586b8904b950b8ea8.svg);
+    mask-image: url(https://developer.mozilla.org/static/media/github-mark-small.348586b8904b950b8ea8.svg);
+}
+.icon.icon-feed {
+    -webkit-mask-image: url(https://developer.mozilla.org/static/media/feed.566a60406f1ae82b0738.svg);
+    mask-image: url(https://developer.mozilla.org/static/media/feed.566a60406f1ae82b0738.svg);
 }
 footer .icon {
-    --size: var(--icon-size, 1rem);
-    background-color: var(--icon-primary);
+    --size: var(1rem, 1rem);
+    background-color: #696969;
     flex-shrink: 0;
     mask-position: center;
     mask-repeat: no-repeat;
@@ -76,6 +88,52 @@ footer .icon {
     position: absolute !important;
     white-space: nowrap !important;
     width: 1px !important;
+}
+.page-footer-nav-col-1 {
+    grid-area: nav1;
+}
+.page-footer-nav-col-2 {
+    grid-area: nav2;
+}
+.page-footer-nav-col-3 {
+    grid-area: nav3;
+}
+.page-footer-nav-col-4 {
+    grid-area: nav4;
+}
+.footer-nav-heading {
+    font: 1.1rem;
+    margin: 0 0 .5rem;
+}
+.footer-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+.page-footer-moz {
+    grid-area: moz;
+}
+.page-footer-moz {
+    align-items: center;
+    border-top: 1px solid #cdcdcd;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 2rem;
+    padding-top: 1.5rem;
+}
+.footer-moz-logo-link {
+    display: flex;
+}
+.footer-moz-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.footer-moz-link, .page-footer-legal-text a {
+    text-decoration: underline;
+}
+.page-footer-legal {
+    grid-area: legal;
 }
 </style>
 <footer class="page-footer">

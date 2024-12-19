@@ -120,3 +120,9 @@
 .pulldown_list_wrapper li details li details li details > li {
     padding-left: 30px; /* 第三階層：さらに10pxのインデント */
 }
+.pulldown_list_wrapper li details li details li details li details > li {
+    padding-left: 40px; /* 第四階層：さらに10pxのインデント */
+}
+.pulldown_list_wrapper li details li details li details li details li details > li {
+    padding-left: 50px; /* 第五階層：さらに10pxのインデント */
+}

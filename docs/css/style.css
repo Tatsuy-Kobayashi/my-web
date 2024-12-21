@@ -181,6 +181,11 @@ h1:hover, h2:hover {
         white-space: pre-wrap; /* 改行も尊重 */
     }
 }
+@media (max-width: 768px) {
+    .link-preview {
+        display: none;
+    }
+}
 
 /* 固定ヘッダー */
 .sticky_header {

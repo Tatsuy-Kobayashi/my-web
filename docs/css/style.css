@@ -112,47 +112,74 @@ a:hover {
     text-decoration: underline;
 }
 
-/* リンクプレビュー */
-.link-container {
-    position: relative;
+/* ベーススタイル */
+h1, h2 {
+    font-family: 'Arial', sans-serif; /* 読みやすいフォントを選択 */
+    margin: 20px 0 10px; /* 上下の余白を調整 */
+    line-height: 1.5; /* 行間を適切に */
 }
-.link-preview {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 250px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    display: none;
-    z-index: 999;
+/* 見出しレベルに応じたスタイル */
+h1 {
+    font-size: 2.5rem; /* 最大の文字サイズ */
+    color: #2c3e50; /* 強調された色 */
+    border-bottom: 4px solid #3498db; /* 下線で視覚的な区切り */
+    padding-bottom: 10px;
+}
+h2 {
+    font-size: 2rem;
+    color: #34495e;
+    border-left: 6px solid #1abc9c; /* 左のボーダーでアクセント */
+    padding-left: 10px;
+}
+/* ホバー時のアニメーション */
+h1:hover, h2:hover {
+    transform: scale(1.02); /* わずかに拡大 */
+    transition: transform 0.2s ease;
+}
 
-    /* 最大の高さを設定して、スクロールできるようにする */
-    max-height: 200px;
-    overflow-y: auto;
-}
-.preview-link:hover + .link-preview {
-    display: block;
-}
-.preview-image {
-    width: 100%;
-    height: auto;
-}
-.preview-title {
-    font-size: 1.2em;
-    margin: 10px 0;
+@media (min-width: 768px) {
+    /* リンクプレビュー */
+    .link-container {
+        position: relative;
+    }
+    .link-preview {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 250px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        display: none;
+        z-index: 999;
 
-    /* タイトルが長すぎた場合の折り返し設定 */
-    word-wrap: break-word;
-}
-.preview-description {
-    font-size: 0.9em;
-    color: #555;
+        /* 最大の高さを設定して、スクロールできるようにする */
+        max-height: 200px;
+        overflow-y: auto;
+    }
+    .preview-link:hover + .link-preview {
+        display: block;
+    }
+    .preview-image {
+        width: 100%;
+        height: auto;
+    }
+    .preview-title {
+        font-size: 1.2em;
+        margin: 10px 0;
 
-    /* 説明文が長すぎた場合の折り返し設定 */
-    word-wrap: break-word;
-    white-space: pre-wrap; /* 改行も尊重 */
+        /* タイトルが長すぎた場合の折り返し設定 */
+        word-wrap: break-word;
+    }
+    .preview-description {
+        font-size: 0.9em;
+        color: #555;
+
+        /* 説明文が長すぎた場合の折り返し設定 */
+        word-wrap: break-word;
+        white-space: pre-wrap; /* 改行も尊重 */
+    }
 }
 
 /* 固定ヘッダー */

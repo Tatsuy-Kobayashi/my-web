@@ -62,7 +62,7 @@
             chtml: {
                 displayAlign: "left",
                 displayIndent: "2em",
-            },
+            }/*,
             options: {
                 renderActions: {
                     findScript: [10, MathJax.startup.findScript], // 数式スクリプトを探す
@@ -74,7 +74,20 @@
                     addMenu: [150],  // ContextMenuを追加
                     finalize: [200, MathJax.startup.finalizeOutput]  // 最終レンダリング処理
                 }
-            }
+            }*/
+        };
+        MathJax.startup.ready = () => {
+            MathJax.startup.extendHandler('renderActions', {
+                findScript: [10, MathJax.startup.findScript], // 数式スクリプトを探す
+                compile: [20, MathJax.inputJax["tex"].compile], // TeXをコンパイル
+                logMath: [100, (doc, math) => {
+                    console.log("MathJax rendering:", math.math); // 数式の内容をログ出力
+                }],
+                typeset: [110, MathJax.outputJax["chtml"].typeset], // 数式を組版
+                finalize: [200, MathJax.startup.finalizeOutput] // 最終レンダリング処理
+            });
+
+            MathJax.startup.defaultPageReady(); // MathJaxのページ準備を完了
         };
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>

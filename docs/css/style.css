@@ -86,6 +86,18 @@ header .header_container h2 {
         font-size: 14px;
     }
 }
+/* ===== ヘッダーにボタンを配置 ===== */
+.header {
+    padding: 16px 0;
+}
+header .header_container {
+    display: flex;
+    justify-content: space-between;
+}
+.title-block {
+    flex: 1 1 auto;
+}
+
 main {
     min-height: calc(100% - 156px);
 }

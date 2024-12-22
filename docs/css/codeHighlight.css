@@ -6,11 +6,11 @@
     box-shadow: 0 10px 20px #dbdbdb;
     display: grid;
     grid-template-rows: 20px auto auto;
-    grid-template-columns: auto auto;
+    grid-template-columns: 100%;
     grid-template-areas:
-        "file-title file-title"
-        "code-main code-main"
-        "output output";
+        "file-title"
+        "code-main"
+        "output";
 }
 .coding_file_wrapper::-webkit-scrollbar {
     display: none; /* Webkit系ブラウザでスクロールバーを非表示 */

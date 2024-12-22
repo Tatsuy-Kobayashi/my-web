@@ -9,7 +9,14 @@ document.addEventListener('DOMContentLoaded', function() {
         let isHoveringPreview = false;
 
         // 関数：プレビューを表示する
+        // 関数：プレビューを表示する
         const showPreview = () => {
+            // 768px 以下ならプレビューを無効化
+            if (window.innerWidth <= 768) {
+                preview.style.display = 'none'; // 表示しない
+                return; // 処理終了
+            }
+            // 768px を超える場合のみ表示
             preview.style.display = 'block';
         };
 
@@ -22,6 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // リンクにマウスが乗ったときの処理
         link.addEventListener('mouseover', function() {
+            if (window.innerWidth <= 768) return; // 768px 以下なら処理しない
+
             isHoveringLink = true;
 
             // プレビューの内容を取得

@@ -119,6 +119,7 @@
 }
 
 .pager-post-navi a figure {
+    margin: 0;
     min-width: 120px;
     max-width: 120px;
 }

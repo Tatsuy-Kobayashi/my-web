@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
         let isHoveringPreview = false;
 
         // 関数：プレビューを表示する
-        // 関数：プレビューを表示する
         const showPreview = () => {
             // 768px 以下ならプレビューを無効化
             if (window.innerWidth <= 768) {

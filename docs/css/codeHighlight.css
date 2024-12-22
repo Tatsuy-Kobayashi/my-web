@@ -5,11 +5,12 @@
     border-radius: 10px;
     box-shadow: 0 10px 20px #dbdbdb;
     display: grid;
-    grid-template-rows: 20px auto;
+    grid-template-rows: 20px auto auto;
     grid-template-columns: auto auto;
     grid-template-areas:
         "file-title file-title"
-        "code-main code-main";
+        "code-main code-main"
+        "output output";
 }
 .coding_file_wrapper::-webkit-scrollbar {
     display: none; /* Webkit系ブラウザでスクロールバーを非表示 */
@@ -37,9 +38,10 @@
     scrollbar-width: none; /* Firefoxでスクロールバーを非表示 */
 }
 .output-wrapper {
+    grid-area: output;
     display: flex;
     align-items: flex-start;
-    width: 95%;
+    width: 100%;
 }
 .outputInfo {
     top: 0;
@@ -60,7 +62,6 @@
 @media (max-width: 768px) {
     .coding_file_wrapper {
         width: 95%;
-        max-width: 380px;
         border: solid 0.3px;
         border-color: #000000;
         border-radius: 10px;
@@ -70,21 +71,17 @@
         grid-area: file-title;
         padding-left: 50px;
         border-radius: 9px 9px 0 0;
-        max-width: 380px;
     }
     .code-main {
         grid-area: code-main;
         display: flex;
-        max-width: 380px;
     }
     .code-toolbar, pre {
         display: flex;
         padding: 0 6px 4px 0;
-        max-width: 380px;
     }
     .output-wrapper {
         display: flex;
-        max-width: 380px;
     }
     .outputInfo {
         padding: 0 6px 4px 0;

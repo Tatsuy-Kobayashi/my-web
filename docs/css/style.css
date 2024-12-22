@@ -54,7 +54,6 @@ header .header_container {
 }
 @media (min-width: 768px) {
     header .header_container {
-        min-height: 100px;
         padding-left: 120px;
         background-size: 110px;
     }

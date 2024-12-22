@@ -185,6 +185,9 @@ h1:hover, h2:hover {
     .link-preview {
         display: none;
     }
+    .preview-link:hover + .link-preview {
+        display: none;
+    }
 }
 
 /* 固定ヘッダー */

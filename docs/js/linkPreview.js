@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const linkContainers = document.querySelectorAll('.link-container');
-  
+
     linkContainers.forEach(container => {
         const link = container.querySelector('.preview-link');
         const preview = container.querySelector('.link-preview');
@@ -23,20 +23,20 @@ document.addEventListener('DOMContentLoaded', function() {
         // リンクにマウスが乗ったときの処理
         link.addEventListener('mouseover', function() {
             isHoveringLink = true;
-            
+
             // プレビューの内容を取得
             const image = preview.querySelector('.preview-image');
             const title = preview.querySelector('.preview-title');
             const description = preview.querySelector('.preview-description');
-            
+
             image.src = link.getAttribute('data-image');
             title.textContent = link.getAttribute('data-title');
             description.textContent = link.getAttribute('data-description');
-            
+
             // プレビューボックスの位置を調整
             const bounding = preview.getBoundingClientRect();
             const drawerBounding = container.getBoundingClientRect();
-            
+
             if (bounding.bottom > window.innerHeight || bounding.bottom > drawerBounding.bottom) {
                 preview.style.top = '-100%'; // 上に表示
             } else {

@@ -17,22 +17,18 @@ body {
     color: #000;
 }
 .container {
-    max-width: 1000px;
     margin: 0 auto;
     padding: 8px;
 }
 .header_container {
-    max-width: 1000px;
     margin: 0 auto;
     padding: 8px;
 }
 @media (min-width: 768px) {
     .container {
-        max-width: 1000px;
         margin: 0 auto;
     }
     .header_container {
-        max-width: 1000px;
         margin: 0 auto;
     }
 }

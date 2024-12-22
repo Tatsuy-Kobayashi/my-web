@@ -50,20 +50,35 @@
       
         /*gtag('config', 'トラッキングID');*/
     </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script nonce="text/x-mathjax-config">
-        MathJax.Hub.Config({
-            TeX: { equationNumbers: { autoNumber: "AMS" } },
-            tex2jax: {
-                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                displayMath: [ ['$$','$$'], ['\\[','\\]'] ],
-                processEscapes: true
+    <script type="text/javascript">
+        window.MathJax = {
+            tex: {
+                equationNumbers: { autoNumber: "AMS" },
+                inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+                displayMath: [ ["$$","$$"], ["\\[","\\]"] ],
+                processEscapes: true,
+                tags: "ams",
+                maxBuffer: 10 * 1024,  // 数式バッファの設定
             },
-            "HTML-CSS": { mathFontHeight: false },
-            displayAlign: "left",
-            displayIndent: "2em"
-        });
+            chtml: {
+                displayAlign: "left",
+                displayIndent: "2em",
+            },
+            options: {
+                renderActions: {
+                    findScript: [10], // 数式スクリプトを探す
+                    compile: [20],   // TeXをコンパイル
+                    logMath: [100, (doc, math) => {
+                        console.log("MathJax rendering:", math);
+                    }],
+                    typeset: [110],  // 数式を組版
+                    addMenu: [150],  // ContextMenuを追加
+                    finalize: [200]  // 最終レンダリング処理
+                }
+            }
+        };
     </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
     <script src="https://tikzjax.com/v1/tikzjax.js"></script>
 </head>
@@ -78,6 +93,13 @@
         <div class="main">
             <h1>学問</h1>
             <h2>目次</h2>
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        f(p) = 1
+                    \]
+                </div>
+            </div>
 
             <h2>AI時代の学問のすゝめ</h2>
             <figure class="figure-quote">

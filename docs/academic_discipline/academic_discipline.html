@@ -87,11 +87,11 @@
                             output: math.typesetRoot
                         });
                     }],
-                    typeset: [110, MathJax.outputJax["chtml"].typeset],  // 数式を組版
+                    /*typeset: [110, MathJax.outputJax["chtml"].typeset],  // 数式を組版
                     finalize: [200, (doc, math) => {
                         console.log("Finalizing output for:", math.math);
                         MathJax.startup.finalizeOutput(doc, math); // 標準の最終処理
-                    }],  // 最終レンダリング処理
+                    }],  // 最終レンダリング処理*/
                     addMenu: [300],  // ContextMenuを追加
                     customHook: [400, (doc, math) => {
                         console.log("Custom hook executed for:", math.math);

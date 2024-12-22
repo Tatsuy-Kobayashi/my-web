@@ -65,8 +65,8 @@
             },
             options: {
                 renderActions: {
-                    /*findScript: [10, MathJax.startup.findScript], // 数式スクリプトを探す*/
-                    compile: [20, MathJax.inputJax["tex"].compile],   // TeXをコンパイル
+                    /*findScript: [10, MathJax.startup.findScript], // 数式スクリプトを探す
+                    compile: [20, MathJax.inputJax["tex"].compile],   // TeXをコンパイル*/
                     logMath: [30, (doc, math) => {
                         console.log("MathJax rendering:", math.math); // 数式の内容をログ出力
                     }],

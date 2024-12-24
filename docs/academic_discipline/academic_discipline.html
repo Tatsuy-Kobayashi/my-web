@@ -113,7 +113,11 @@
                                 output: math.typesetRoot
                             });
                         }],
-                        typeset: [110, MathJax.outputJax["chtml"].typeset],  // 数式を組版
+                        typeset: [110, (doc) => {
+                            MathJax.startup.promise.then(() => {
+                                MathJax.outputJax["chtml"].typeset(doc);
+                            });
+                        }], // 数式を組版
                         finalize: [200, (doc, math) => {
                             console.log("Finalizing output for:", math.math);
                             MathJax.startup.finalizeOutput(doc, math); // 標準の最終処理

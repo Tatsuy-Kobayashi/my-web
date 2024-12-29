@@ -126,3 +126,14 @@
 .pulldown_list_wrapper li details li details li details li details li details > li {
     padding-left: 50px; /* 第五階層：さらに10pxのインデント */
 }
+
+/* 目次 */
+.toc-content {
+    display: none;
+    margin-top: 1rem;
+}
+.toc-toggle-button {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+}

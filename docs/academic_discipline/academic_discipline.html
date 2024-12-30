@@ -1,4 +1,43 @@
 <!DOCTYPE html>
+<!--
+    File Information
+    ----------------------------------------------------------------------------
+    - date: 2024/12/29
+    - author: 小林 竜也
+    - file: academic_discipline.html
+    - purpose: あらゆる事物は何かしらの学問の一領域として捉えることができる
+    - compiler: Chrome, Safari(iPhone)
+    - operating system: Windows, Linux, MacOS
+    - references: ラクして数理研究所（https://tatsuy-kobayashi.github.io）
+
+    Overview
+    ----------------------------------------------------------------------------
+    本ファイルは、Webサイトのホーム画面を構築するためのHTMLコードを提供します。
+    主な役割は、トップページの基本構造とスタイルを提供することで、訪問者にサイトの
+    概要と導線を提示することです。デザインの詳細はCSSファイルに分離されています。
+
+    Content Structure
+    ----------------------------------------------------------------------------
+    - Breadcrumb list : パンくずリスト。サイトの階層構造を示し、ナビゲーションを補助。
+    - Main         : 主コンテンツエリア。お知らせ、最新記事、特集リンクなどを配置。
+    - Annotation   : ページ注釈。著作権情報、免責事項、リンク先の注意事項などを記載。
+    - Related list : 関連記事。トピックに関連する他の記事へのリンクを表示。
+
+    Developer Notes
+    ----------------------------------------------------------------------------
+    - 各セクションにはHTML5のセマンティックタグ（<header>, <nav>, <main>, <footer>
+      など）を使用し、視覚的な整合性とアクセシビリティを考慮。
+    - JSON-LDを使用して構造化データを記述し、検索エンジンに情報を提供する。
+    - JavaScriptを使用して動的にコンテンツを生成する場合、依存関係に注意。
+    - CSSおよびJavaScriptファイルは外部リンクとして設定し、保守性を高めること。
+    - 更新後は必ずブラウザでの表示確認を行い、レスポンシブデザインに対応しているか確認。
+    - 更新日の更新と変更履歴の記載を忘れずに行うこと。
+
+    Version History
+    ----------------------------------------------------------------------------
+    - 2024/09/28 : 初版作成
+    以降はGitHubを参照
+-->
 <html lang="ja">
 <head prefix="og: http://ogp.me/ns#">
     <meta charset="UTF-8">
@@ -224,6 +263,7 @@
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/include.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/linkPreview.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/headerLoader.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/commentary.js"></script>
     <script>
         // JavaScriptの厳格モード使用
         'use strict';
@@ -257,8 +297,8 @@
         <div class="main" itemscope itemtype="https://schema.org/Article">
             <h1>学問</h1>
             <div class="date-info">
-                <span><i class="fa fa-pencil"></i>&ensp;<time class="created" itemprop="datePublished" datetime="2024-09-28"><!-- ISO 8601形式 -->2024年9月28日公開</time></span>
-                <span><i class="fa fa-refresh"></i>&ensp;<time class="updated" itemprop="dateModified" datetime="2024-12-25">2024年12月25日更新</time></span>
+                <span><i class="fa fa-pencil"></i>&ensp;<time class="created" itemprop="datePublished" datetime="2024-09-28"><!-- ISO 8601形式 -->公開日: 2024年9月28日</time></span>
+                <span><i class="fa fa-refresh"></i>&ensp;<time class="updated" itemprop="dateModified" datetime="2024-12-25">更新日: 2024年12月25日</time></span>
             </div>
             <meta itemprop="author" content="ラクして数理研究所" itemscope itemtype="https://schema.org/Organization">
                 <meta itemprop="name" content="ラクして数理研究所">
@@ -272,19 +312,6 @@
                     <li><a href="#section3">関連記事</a></li>
                 </ul>
             </div>
-            <script>
-                document.querySelector('.toc-toggle-button').addEventListener('click', function() {
-                    var tocContent = document.querySelector('.toc-content');
-                    var toggleButton = document.querySelector('.toc-toggle-button');
-                    if (tocContent.style.display === 'none' || tocContent.style.display === '') {
-                        tocContent.style.display = 'block';
-                        toggleButton.textContent = '隠す';
-                    } else {
-                        tocContent.style.display = 'none';
-                        toggleButton.textContent = '表示';
-                    }
-                });
-            </script>
 
             <div itemprop="articleBody">
                 <h2 itemprop="name">AI時代の学問のすゝめ</h2>

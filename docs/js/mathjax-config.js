@@ -1,16 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
     window.MathJax = {
-        tex: {
-            tags: "ams", // 自動ナンバリングを有効化（AMSスタイル）
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            displayMath: [ ["$$","$$"], ["\\[","\\]"] ],
-            processEscapes: true,
-            maxBuffer: 10 * 1024,  // 数式バッファの設定
-        },
-        chtml: {
-            displayAlign: "left",
-            displayIndent: "2em",
-        },
         options: {
             renderActions: {
                 findScript: [10, function (doc) {

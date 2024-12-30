@@ -148,7 +148,7 @@ a:hover {
     padding-left: 10px;
 }
 /* ホバー時のアニメーション */
-.container h1:hover, .container h2:hover {
+.container h1:hover, .container h2:hover, .content h1:hover, .content h2:hover {
     transform: scale(1.02); /* わずかに拡大 */
     transition: transform 0.2s ease;
 }

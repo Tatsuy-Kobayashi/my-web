@@ -70,5 +70,5 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     // 対数スケールのグラフの描画
-    Plotly.newPlot('plotly-graph-logarithm', plotlyData, layoutLogarithm);
+    Plotly.newPlot('higman-constant-logarithm', plotlyData, layoutLogarithm);
 });

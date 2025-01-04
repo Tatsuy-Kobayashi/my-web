@@ -50,7 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const layout = {
         title: 'Groups of Order',
         xaxis: {title: 'Order'},
-        yaxis: {title: 'Value', type: 'log'},  // y軸を対数スケールに設定
+        yaxis: {title: 'Value'},  // y軸を対数スケールに設定
+        width: 900,
+        height: 300,
         showlegend: true
     };
 

@@ -50,13 +50,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const layout = {
         title: 'Groups of Order',
         xaxis: {title: 'Order'},
-        yaxis: {title: 'Value'},  // y軸を対数スケールに設定
+        yaxis: {title: 'Value', range: [-5, 400]},  // y軸の範囲を設定
         width: 900,
         height: 300,
         showlegend: true
     };
 
     // グラフの描画
-    Plotly.newPlot('plotly-graph', plotlyData, layout);
-});
+    Plotly.newPlot('higman-constant', plotlyData, layout);
 
+    // 対数スケールのグラフのレイアウト設定
+    const layoutLogarithm = {
+        title: 'Groups of Order (Logarithmic Scale)',
+        xaxis: {title: 'Order'},
+        yaxis: {title: 'Value', type: 'log'},  // y軸を対数スケールに設定
+        showlegend: true,
+        width: 900,  // 幅を900ピクセルに設定
+        height: 300  // 高さを300ピクセルに設定
+    };
+
+    // 対数スケールのグラフの描画
+    Plotly.newPlot('plotly-graph-logarithm', plotlyData, layoutLogarithm);
+});

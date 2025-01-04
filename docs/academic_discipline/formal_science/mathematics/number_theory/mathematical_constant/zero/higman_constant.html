@@ -149,7 +149,30 @@
                 </div>
             </div> <!-- /coding_file_wrapper -->
             <!-- Pythonグラフの出力イメージ -->
-            <div id="plotly-graph"></div>
+            <div id="higman-constant"></div>
+            <p>
+                &emsp;上記の見にくいグラフはいくつかの調節を行うことができる。
+            </p>
+
+            <pre class="match-braces rainbow-braces line-numbers language-python"><code># グラフの作成
+plt.figure(figsize=(15, 5)) # 消すとデフォルトのアスペクト比になる
+plt.plot(Groups_of_order_, marker='o')
+plt.title('Groups of Order')
+plt.xlabel('Order')
+plt.ylabel('Value')
+plt.xticks(range(0, len(Groups_of_order_), 10))
+plt.xlim(-1, 285)
+plt.yscale('log')  # y軸を対数スケールに設定
+plt.grid(True)
+# z = GO(2**m) のプロット
+plt.plot(X_1, Z_1, label='z = GO(2**m)', color='green')
+plt.plot(X_2, Z_2, label='z = GO(3**m)', color='red')
+plt.plot(X_3, Z_3, label='z = GO(5**m)', color='yellow')
+
+plt.legend()
+plt.show()</code></pre>
+            <!-- Pythonグラフの出力イメージ -->
+            <div id="higman-constant-logarithm"></div>
 
             <h2>解説</h2>
             <h3>1. 導入</h3>

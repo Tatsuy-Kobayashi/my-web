@@ -12,3 +12,10 @@
     width: auto;
     overflow-x: auto;
 }
+.graph_wrapper {
+    width: 100%;
+}
+.graph_flex {
+    width: auto;
+    overflow-x: auto;
+}

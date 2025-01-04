@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', function() {
         title: 'Groups of Order',
         xaxis: {title: 'Order'},
         yaxis: {title: 'Value', range: [-5, 400]},  // y軸の範囲を設定
-        width: 900,
-        height: 300,
+        width: 1000,
+        height: 450,
         showlegend: true
     };
 
@@ -65,8 +65,8 @@ document.addEventListener('DOMContentLoaded', function() {
         xaxis: {title: 'Order'},
         yaxis: {title: 'Value', type: 'log'},  // y軸を対数スケールに設定
         showlegend: true,
-        width: 900,  // 幅を900ピクセルに設定
-        height: 300  // 高さを300ピクセルに設定
+        width: 1000,  // 幅を900ピクセルに設定
+        height: 450  // 高さを300ピクセルに設定
     };
 
     // 対数スケールのグラフの描画

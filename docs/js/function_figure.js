@@ -11,72 +11,89 @@ document.addEventListener('DOMContentLoaded', function() {
         return Math.log(value) / Math.log(base);
     }
 
-    // A constant used in the formula (approximation)
-    const A = 2 / 27 - 0.03;
+    // Variables for slider
+    const slider = document.getElementById('slider-k');
+    const sliderValue = document.getElementById('slider-value');
 
-    // X and Z definitions
-    const X_1 = Array.from({length: 10}, (_, i) => Math.pow(2, i)); // 2^0 to 2^9
-    const X_2 = Array.from({length: 7}, (_, i) => Math.pow(3, i));  // 3^0 to 3^6
-    const X_3 = Array.from({length: 5}, (_, i) => Math.pow(5, i));  // 5^0 to 5^4
+    // Function to recalculate and redraw graphs
+    function updateGraphs(k) {
+        // Constant A
+        const A = 2 / 27 - k;
 
-    const Z_1 = X_1.map(x => Math.pow(2, A * Math.pow(logBase(x, 2), 3)));
-    const Z_2 = X_2.map(x => Math.pow(3, A * Math.pow(logBase(x, 3), 3)));
-    const Z_3 = X_3.map(x => Math.pow(5, A * Math.pow(logBase(x, 5), 3)));
+        // X and Z definitions
+        const X_1 = Array.from({length: 10}, (_, i) => Math.pow(2, i)); // 2^0 to 2^9
+        const X_2 = Array.from({length: 7}, (_, i) => Math.pow(3, i));  // 3^0 to 3^6
+        const X_3 = Array.from({length: 5}, (_, i) => Math.pow(5, i));  // 5^0 to 5^4
 
-    // Plotly data creation
-    const plotlyData = [
-        {
-            x: Array.from({length: Groups_of_order_.length}, (_, i) => i),
-            y: Groups_of_order_,
-            mode: 'lines+markers',
-            name: 'Groups of Order'
-        },
-        {
-            x: X_1,
-            y: Z_1,
-            mode: 'lines+markers',
-            name: 'z = 2^(Am^3)',
-            line: {color: 'green'}
-        },
-        {
-            x: X_2,
-            y: Z_2,
-            mode: 'lines+markers',
-            name: 'z = 3^(Am^3)',
-            line: {color: 'red'}
-        },
-        {
-            x: X_3,
-            y: Z_3,
-            mode: 'lines+markers',
-            name: 'z = 5^(Am^3)',
-            line: {color: 'yellow'}
-        }
-    ];
+        const Z_1 = X_1.map(x => Math.pow(2, A * Math.pow(logBase(x, 2), 3)));
+        const Z_2 = X_2.map(x => Math.pow(3, A * Math.pow(logBase(x, 3), 3)));
+        const Z_3 = X_3.map(x => Math.pow(5, A * Math.pow(logBase(x, 5), 3)));
 
-    // Plotly layout settings
-    const layout = {
-        title: 'Groups of Order',
-        xaxis: {title: 'Order'},
-        yaxis: {title: 'Value', range: [-5, 400]},  // y-axis range
-        width: 1000,
-        height: 450,
-        showlegend: true
-    };
+        // Plotly data creation
+        const plotlyData = [
+            {
+                x: Array.from({length: Groups_of_order_.length}, (_, i) => i),
+                y: Groups_of_order_,
+                mode: 'lines+markers',
+                name: 'Groups of Order'
+            },
+            {
+                x: X_1,
+                y: Z_1,
+                mode: 'lines+markers',
+                name: 'z = 2^(Am^3)',
+                line: {color: 'green'}
+            },
+            {
+                x: X_2,
+                y: Z_2,
+                mode: 'lines+markers',
+                name: 'z = 3^(Am^3)',
+                line: {color: 'red'}
+            },
+            {
+                x: X_3,
+                y: Z_3,
+                mode: 'lines+markers',
+                name: 'z = 5^(Am^3)',
+                line: {color: 'yellow'}
+            }
+        ];
 
-    // Render the graph
-    Plotly.newPlot('higman-constant', plotlyData, layout);
+        // Plotly layout settings
+        const layout = {
+            title: 'Groups of Order',
+            xaxis: {title: 'Order', range: [-1, 285]},
+            yaxis: {title: 'Value', range: [-5, 400]},  // y-axis range
+            width: 1000,
+            height: 450,
+            showlegend: true
+        };
 
-    // Logarithmic scale graph layout
-    const layoutLogarithm = {
-        title: 'Groups of Order (Logarithmic Scale)',
-        xaxis: {title: 'Order'},
-        yaxis: {title: 'Value', type: 'log'},  // Logarithmic y-axis
-        showlegend: true,
-        width: 1000,
-        height: 450
-    };
+        // Render the graph
+        Plotly.newPlot('higman-constant', plotlyData, layout);
 
-    // Render logarithmic scale graph
-    Plotly.newPlot('higman-constant-logarithm', plotlyData, layoutLogarithm);
+        // Logarithmic scale graph layout
+        const layoutLogarithm = {
+            title: 'Groups of Order (Logarithmic Scale)',
+            xaxis: {title: 'Order', range: [-1, 285]},
+            yaxis: {title: 'Value', type: 'log'},  // Logarithmic y-axis
+            showlegend: true,
+            width: 1000,
+            height: 450
+        };
+
+        // Render logarithmic scale graph
+        Plotly.newPlot('higman-constant-logarithm', plotlyData, layoutLogarithm);
+    }
+
+    // Initialize graphs
+    updateGraphs(parseFloat(slider.value));
+
+    // Update graphs on slider change
+    slider.addEventListener('input', function() {
+        const k = parseFloat(slider.value);
+        sliderValue.textContent = k.toFixed(3);
+        updateGraphs(k);
+    });
 });

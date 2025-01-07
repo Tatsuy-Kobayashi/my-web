@@ -4,18 +4,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 関数の定義
     function GO(n) {
-        return Groups_of_order_[n];
+        return Groups_of_order_[n] || 0; // Ensure no undefined values are returned
     }
 
-    // XとZの定義
-    const X_1 = Array.from({length: 9}, (_, i) => 2 ** i);
-    const X_2 = Array.from({length: 6}, (_, i) => 3 ** i);
-    const X_3 = Array.from({length: 4}, (_, i) => 5 ** i);
-    const Z_1 = X_1.map(x => GO(x));
-    const Z_2 = X_2.map(x => GO(x));
-    const Z_3 = X_3.map(x => GO(x));
+    function logBase(value, base) {
+        return Math.log(value) / Math.log(base);
+    }
 
-    // Plotlyのデータ作成
+    // A constant used in the formula (approximation)
+    const A = 2 / 27 - 0.03;
+
+    // X and Z definitions
+    const X_1 = Array.from({length: 10}, (_, i) => Math.pow(2, i)); // 2^0 to 2^9
+    const X_2 = Array.from({length: 7}, (_, i) => Math.pow(3, i));  // 3^0 to 3^6
+    const X_3 = Array.from({length: 5}, (_, i) => Math.pow(5, i));  // 5^0 to 5^4
+
+    const Z_1 = X_1.map(x => Math.pow(2, A * Math.pow(logBase(x, 2), 3)));
+    const Z_2 = X_2.map(x => Math.pow(3, A * Math.pow(logBase(x, 3), 3)));
+    const Z_3 = X_3.map(x => Math.pow(5, A * Math.pow(logBase(x, 5), 3)));
+
+    // Plotly data creation
     const plotlyData = [
         {
             x: Array.from({length: Groups_of_order_.length}, (_, i) => i),
@@ -27,48 +35,48 @@ document.addEventListener('DOMContentLoaded', function() {
             x: X_1,
             y: Z_1,
             mode: 'lines+markers',
-            name: 'z = GO(2**m)',
+            name: 'z = 2^(Am^3)',
             line: {color: 'green'}
         },
         {
             x: X_2,
             y: Z_2,
             mode: 'lines+markers',
-            name: 'z = GO(3**m)',
+            name: 'z = 3^(Am^3)',
             line: {color: 'red'}
         },
         {
             x: X_3,
             y: Z_3,
             mode: 'lines+markers',
-            name: 'z = GO(5**m)',
+            name: 'z = 5^(Am^3)',
             line: {color: 'yellow'}
         }
     ];
 
-    // Plotlyのレイアウト設定
+    // Plotly layout settings
     const layout = {
         title: 'Groups of Order',
         xaxis: {title: 'Order'},
-        yaxis: {title: 'Value', range: [-5, 400]},  // y軸の範囲を設定
+        yaxis: {title: 'Value', range: [-5, 400]},  // y-axis range
         width: 1000,
         height: 450,
         showlegend: true
     };
 
-    // グラフの描画
+    // Render the graph
     Plotly.newPlot('higman-constant', plotlyData, layout);
 
-    // 対数スケールのグラフのレイアウト設定
+    // Logarithmic scale graph layout
     const layoutLogarithm = {
         title: 'Groups of Order (Logarithmic Scale)',
         xaxis: {title: 'Order'},
-        yaxis: {title: 'Value', type: 'log'},  // y軸を対数スケールに設定
+        yaxis: {title: 'Value', type: 'log'},  // Logarithmic y-axis
         showlegend: true,
-        width: 1000,  // 幅を900ピクセルに設定
-        height: 450  // 高さを300ピクセルに設定
+        width: 1000,
+        height: 450
     };
 
-    // 対数スケールのグラフの描画
+    // Render logarithmic scale graph
     Plotly.newPlot('higman-constant-logarithm', plotlyData, layoutLogarithm);
 });

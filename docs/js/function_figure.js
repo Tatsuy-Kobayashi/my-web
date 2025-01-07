@@ -11,9 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
         return Math.log(value) / Math.log(base);
     }
 
-    // Variables for slider
-    const slider = document.getElementById('slider-k');
-    const sliderValue = document.getElementById('slider-value');
+    // Slider elements
+    const slider1 = document.getElementById('slider-k1');
+    const sliderValue1 = document.getElementById('slider-value1');
+    const slider2 = document.getElementById('slider-k2');
+    const sliderValue2 = document.getElementById('slider-value2');
 
     // Function to recalculate and redraw graphs
     function updateGraphs(k) {
@@ -88,12 +90,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Initialize graphs
-    updateGraphs(parseFloat(slider.value));
+    updateGraphs(parseFloat(slider1.value));
 
-    // Update graphs on slider change
-    slider.addEventListener('input', function() {
-        const k = parseFloat(slider.value);
-        sliderValue.textContent = k.toFixed(3);
-        updateGraphs(k);
+    // Synchronize sliders and update graphs
+    function synchronizeSliders(value) {
+        slider1.value = value;
+        slider2.value = value;
+        sliderValue1.textContent = parseFloat(value).toFixed(3);
+        sliderValue2.textContent = parseFloat(value).toFixed(3);
+        updateGraphs(parseFloat(value));
+    }
+
+    // Add event listeners for both sliders
+    slider1.addEventListener('input', function() {
+        synchronizeSliders(slider1.value);
+    });
+
+    slider2.addEventListener('input', function() {
+        synchronizeSliders(slider2.value);
     });
 });

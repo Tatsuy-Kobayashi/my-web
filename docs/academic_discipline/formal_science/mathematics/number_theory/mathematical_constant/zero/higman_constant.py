@@ -19,12 +19,12 @@ print(f"素数 {sympy.prime(2)} のとき、A は {A(2, 2)}")
 print(f"2 / 27 = {2 / 27}")
 
 # XとZの定義
-X_1 = [2**m for m in np.linspace(0, 8, 8 + 1)]
-X_2 = [3**m for m in np.linspace(0, 5, 5 + 1)]
-X_3 = [5**m for m in np.linspace(0, 3, 3 + 1)]
-Z_1 = [GO(int(x)) for x in X_1]
-Z_2 = [GO(int(x)) for x in X_2]
-Z_3 = [GO(int(x)) for x in X_3]
+X_1 = [2**m for m in np.linspace(0, 9, 9 + 1)]
+X_2 = [3**m for m in np.linspace(0, 6, 6 + 1)]
+X_3 = [5**m for m in np.linspace(0, 4, 4 + 1)]
+Z_1 = [2 ** ((2/27 - 0.03) * (np.log(x)/np.log(2)) ** 3) for x in X_1]
+Z_2 = [3 ** ((2/27 - 0.03) * (np.log(x)/np.log(3)) ** 3) for x in X_2]
+Z_3 = [5 ** ((2/27 - 0.03) * (np.log(x)/np.log(5)) ** 3) for x in X_3]
 
 # グラフの作成
 plt.figure(figsize=(15, 5)) # 消すとデフォルトのアスペクト比になる
@@ -37,9 +37,9 @@ plt.xlim(-1, 285)
 plt.ylim(0, 400)
 plt.grid(True)
 # z = GO(2**m) のプロット
-plt.plot(X_1, Z_1, label='z = GO(2**m)', color='green')
-plt.plot(X_2, Z_2, label='z = GO(3**m)', color='red')
-plt.plot(X_3, Z_3, label='z = GO(5**m)', color='yellow')
+plt.plot(X_1, Z_1, label='z = 2^(Am^3)', color='green')
+plt.plot(X_2, Z_2, label='z = 3^(Am^3)', color='red')
+plt.plot(X_3, Z_3, label='z = 5^(Am^3)', color='yellow')
 
 plt.legend()
 plt.show()

@@ -3,7 +3,7 @@
 <head prefix="og: http://ogp.me/ns#">
     <meta charset="UTF-8">
     <meta name="format-detection" content="telephone=no">
-    <title>ケプラー-ブーカム定数 - ラクして数理研究所</title>
+    <title>デュ・ボア=レイモンの2番目の定数 - ラクして数理研究所</title>
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="icon" />
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="icon" />
@@ -17,7 +17,7 @@
 {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "ケプラー-ブーカム定数", // ページのタイトル
+    "headline": "デュ・ボア=レイモンの2番目の定数", // ページのタイトル
     "description": "",
     "author": {
         "@type": "Organization",
@@ -148,14 +148,14 @@
     </script>
     <!-- og -->
     <meta property="og:type" content="website" /> <!-- articleとか -->
-    <meta property="og:title" content="ケプラー-ブーカム定数｜ラクして数理研究所" />
+    <meta property="og:title" content="デュ・ボア=レイモンの2番目の定数｜ラクして数理研究所" />
     <meta property="og:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" />
     <meta property="og:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" />
     <meta property="og:site_name" content="ラクして数理研究所" />
     <link rel="dns-prefetch" href="//tatsuy-kobayashi.github.io/" /> <!-- HTTPSページのDNSプリフェッチはできない -->
     <!-- twitter card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ケプラー-ブーカム定数｜ラクして数理研究所">
+    <meta name="twitter:title" content="デュ・ボア=レイモンの2番目の定数｜ラクして数理研究所">
     <meta name="twitter:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。">
     <meta name="twitter:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html">
     <meta name="twitter:image" content="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png">
@@ -259,38 +259,185 @@
             0
         </div>
         <div class="main">
-            <h1>ケプラー-ブーカム定数Kepler-Bouwkamp constant</h1>
+            <h1>デュ・ボア=レイモンの$m$番目の定数du Bois-Reymond $m$-th constant</h1>
             <h2>目次</h2>
 
             <div itemprop="articleBody" id="section_1">
                 <h2>概要</h2>
                 <p>
-                    &emsp;平面幾何学において、ケプラー-ブーカム定数（または多角形内接定数）は、以下のような数列の極限として得られる定数である：
-                </p>
-                <p>
-                    半径$1$の円を用意し、この円に内接する正三角形を描く。次にその三角形に内接する円を描き、さらにその円に内接する正方形を描く。その後も、円、正五角形、円、正六角形…というように繰り返していき、この過程で得られる最終的な円の半径をケプラー-ブーカム定数と呼ぶ。
-                </p>
-                <p>
-                    &emsp;この定数はヨハネス・ケプラー（Johannes Kepler）とクリストフェル・ブーカム（Christoffel Bouwkamp）にちなんで名付けられており、「多角形外接定数」の逆数に相当する。
+                    &emsp;
                 </p>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex">
                         \[
-                            \prod_{k=3}^{\infty} \cos{\left( \frac{\pi}{k} \right)} = 0.1149420448\dots
+                            C_{m} = \int_{0}^{\infty} \left| \frac{d}{dt} \left( \frac{\sin{t}}{t} \right)^{m} \right| \, dt - 1
                         \]
                     </div>
                 </div>
+                <p>
+                    &emsp;この記事では先ず$m=1$の場合について述べる。
+                </p>
+                <p>
+                    <b>定理: </b>$m=1$のとき、$C_{m}$は無限大に発散する。
+                </p>
+                <p>
+                    <b>証明: </b>$C_{m}$は少々複雑な定義をされているが、$m$が固定された場合には幾分か解析しやすくなる。$m=1$のとき、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex" style="padding: 7px 0;">
+                        \begin{equation*}
+                            \begin{aligned}
+                                C_{1} &= \int_{0}^{\infty} \left| \frac{d}{dt} \left( \frac{\sin{t}}{t} \right) \right| \, dt - 1 \\
+                                      &= \int_{0}^{\infty} \left| \frac{t \cos{(t)} - \sin{(t)}}{t^{2}} \right| \, dt - 1
+                            \end{aligned}
+                        \end{equation*}
+                    </div>
+                </div>
+                <p>
+                    今、$t = 0$付近では発散しない事を示しておく。$t = 0$近傍での$\sin(t)$, $\cos(t)$のテイラー展開は
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex" style="padding: 5px 0;">
+                        \begin{equation*}
+                            \begin{aligned}
+                                \sin{t} &= t - \frac{t^{3}}{3!} + \frac{t^{5}}{5!} - \cdots \\
+                                \cos{t} &= 1 - \frac{t^{2}}{2!} + \frac{t^{4}}{4!} - \cdots
+                            \end{aligned}
+                        \end{equation*}
+                    </div>
+                </div>
+                <p>
+                    であるため、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            \frac{t \cos{(t)} - \sin{(t)}}{t^{2}} = \frac{t (1 - \frac{t^{2}}{2!} + \frac{t^{4}}{4!} - \cdots) - (t - \frac{t^{3}}{3!} + \frac{t^{5}}{5!} - \cdots)}{t^{2}} = \frac{- \frac{t^{3}}{3} + O(t^{5})}{t^{2}} \approx - \frac{t}{3}
+                        \]
+                    </div>
+                </div>
+                <p>
+                    となる。従って、$t = 0$近傍で被積分関数は有限であるため、$t = 0$近傍で積分は有限。
+                </p>
+                <p>
+                    &emsp;具体的な積分法を見る前に被積分関数についてもう少し深堀する。
+                </p>
+                <div class="graph_wrapper">
+                    <div class="graph_flex">
+                        <!-- \frac{t \cos{(t)} - \sin{(t)}}{t^{2}}のグラフ -->
+                    </div>
+                </div>
+                <p>
+                    被積分関数のグラフからも分かる通り、この関数の値は、根で繰り返し符号を切り替える。ここで、根は閉じた式では表せないが、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            \frac{t \cos{(t)} - \sin{(t)}}{t^{2}} = 0 \iff t \cos{(t)} = \sin{(t)} \iff \tan(t) = t
+                        \]
+                    </div>
+                </div>
+                <p>
+                    と、$y = \tan(t)$と$y = t$の交点として解釈できる。
+                </p>
+                <div class="graph_wrapper">
+                    <div class="graph_flex">
+                        <!-- tan(t) とy=tのグラフ -->
+                    </div>
+                </div>
+                <p>
+                    上記グラフからも分かる通り、$y = \tan(t)$と$y = t$は、十分に大きな$t$では$\tan(t)$の漸近線付近で交わる。よって、$n$番目の根を$t_{n}$とすると、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            \tan(t_{n}) = t_{n} \iff t_{n} \lesssim \pi n \quad (n \gg 0)
+                        \]
+                    </div>
+                </div>
+                <p>
+                    &emsp;$C_{1}$の全体は簡単には積分できないが、被積分関数の各解で区間分割すれば、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            \int_{t_{n}}^{t_{n+1}} \left| \frac{t \cos{(t)} - \sin{(t)}}{t^{2}} \right| \, dt \approx \int_{\pi n}^{\pi (n+1)} \left| \frac{t \cos{(t)} - \sin{(t)}}{t^{2}} \right| \, dt
+                        \]
+                    </div>
+                </div>
+                <p>
+                    と近似できる。さらに、被積分関数について、十分に大きな$t$では$1/t$よりも$1/t^{2}$の方が早く$0$に収束するため、$1/t$の項が支配的になる。
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex" style="padding: 3px 0;">
+                        \begin{equation*}
+                            \begin{aligned}
+                                \int_{\pi n}^{\pi (n+1)} \left| \frac{t \cos{(t)} - \sin{(t)}}{t^{2}} \right| \, dt
+                                    &= \int_{\pi n}^{\pi (n+1)} \left| \frac{\cos{(t)}}{t} - \frac{\sin{(t)}}{t^{2}} \right| \, dt \\
+                                    &\approx \int_{\pi n}^{\pi (n+1)} \left| \frac{\cos{(t)}}{t} \right| \, dt
+                            \end{aligned}
+                        \end{equation*}
+                    </div>
+                </div>
+                <p>
+                    さらに、$t \approx nπ$ と近似すると、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            \int_{\pi n}^{\pi (n+1)} \left| \frac{\cos{(t)}}{t} \right| \, dt \approx \frac{1}{\pi n} \int_{\pi n}^{\pi (n+1)} | \cos{(t)} | \, dt
+                        \]
+                    </div>
+                </div>
+                <p>
+                    ここで、被積分関数はただのシヌソイド（正弦波に同じ）であるから、各積分区間で同じ積分値になる。
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex" style="padding: 3px 0;">
+                        \begin{equation*}
+                            \begin{aligned}
+                                \int_{0}^{\pi} | \cos{(t)} | \, dt &= \int_{\pi}^{2\pi} | \cos{(t)} | \, dt = \cdots = \int_{\pi n}^{\pi (n+1)} | \cos{(t)} | \, dt \\
+                                \int_{0}^{\pi} | \cos{(t)} | \, dt &= 2\int_{0}^{\frac{\pi}{2}} \cos{(t)} \, dt = 2 \\
+                                \therefore \, \frac{1}{\pi n} \int_{\pi n}^{\pi (n+1)}  &| \cos{(t)} | \, dt= \frac{1}{\pi n} \cdot 2 = \frac{2}{\pi n}
+                            \end{aligned}
+                        \end{equation*}
+                    </div>
+                </div>
+                <p>
+                    &emsp;上記までで、$[t_{n}, t_{n+1}]$のおおよその積分値が分かったので、それらの和を以て$C_{1}$が無限大に発散することを示す。
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            C_{1} \approx \sum_{n=a}^{\infty} \frac{2}{\pi n} = \frac{2}{\pi} \sum_{n=a}^{\infty} \frac{1}{n}
+                        \]
+                    </div>
+                </div>
+                <p>
+                    近似なので$a$は$0$でも構わないが、(有限の数値積分値) $+ \frac{2}{\pi} \sum_{n=a}^{\infty} \frac{1}{n}$ と考えても良い。何れにせよ（部分）調和級数は無限大に発散するので、$C_{1}$は無限大に発散する。
+                </p>
+                <p>
+                    &emsp;以下に、デュ・ボア=レイモンの$1$番目の定数の有限項の求め方を提案する。
+                </p>
                 <div class="coding_file_wrapper">
-                    <div class="fileTitle">ケプラー-ブーカム定数</div>
+                    <div class="fileTitle">デュ・ボア=レイモンの$m$番目の定数</div>
                     <div class="code-main">
-                        <pre class="match-braces rainbow-braces line-numbers language-python" data-src="kepler_bouwkamp_constant.py" data-download-link></pre>
+                        <pre class="match-braces rainbow-braces line-numbers language-python" data-src="du_bois-reymond_sequence.py" data-download-link></pre>
                     </div> <!-- /code-main -->
                     <div class="output-wrapper">
                         <div class="outputInfo">-></div>
-                        <div class="outputIfram">0.11551037836049671
-0.114942044853296200701040157469598742830795337200863516844023396518966012825353051177940772484985837</div>
+                        <div class="outputIfram">1.94478022857082
+Root 2: 4.49340945790906
+Root 3: 7.72525183693771
+Integral (n=1): 1.21723362821122
+Integral (n=2): 1.56284180994834
+Integral (n=3): 1.7825415662973
+Integral (n=100, approximation to infinity): 3.92559074916487</div>
                     </div>
                 </div> <!-- /coding_file_wrapper -->
+                <p>
+                    調和級数のように増加は遅いが、発散する。
+                </p>
                 <h2>解説</h2>
                 <p>
                     <b>証明</b>

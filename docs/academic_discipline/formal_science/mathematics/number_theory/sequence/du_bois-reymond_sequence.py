@@ -47,3 +47,18 @@ print(f"Integral (n={n_large}, approximation to infinity): {integral_value_large
 # Integral (n=100, approximation to infinity): 3.92559074916487
 # Integral (n=600, approximation to infinity): 5.06362203988756
 # Integral (n=950, approximation to infinity): 5.35597420142475845
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 被積分関数と近似関数の比較
+X = np.linspace(0.5, 100, 1000)
+Y = [abs((x * np.cos(x) - np.sin(x))/(x**2)) for x in X]
+Z = [abs((np.cos(x))/x) for x in X]
+W = [1/x for x in X]
+
+fig, ax = plt.subplots()
+ax.plot(X, Y)
+ax.plot(X, Z)
+ax.plot(X, W)
+plt.show()

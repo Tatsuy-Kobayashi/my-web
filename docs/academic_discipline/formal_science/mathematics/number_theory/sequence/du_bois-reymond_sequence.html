@@ -265,7 +265,73 @@
             <div itemprop="articleBody" id="section_1">
                 <h2>概要</h2>
                 <p>
-                    &emsp;
+                    &emsp;アーベルの定理（微分積分学の発展的な理論における定理）は、実数列の級数 $\sum_{n=0}^{\infty} a_{n}$ が収束する場合、対応するべき級数がAbel's theorem from advanced calculus implies that if the series of real numbers $\sum_{n=0}^{\infty} a_{n}$ converges, then the corresponding power series satisfies
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            \lim_{r \rightarrow 1^{-}} \sum_{n=0}^{\infty} a_{n}r^{n} = \sum_{n=0}^{\infty} a_{n}.
+                        \]
+                    </div>
+                </div>
+                <p>
+                    を満たすことを示唆する。これは、区間 $[0, 1]$ における一様収束の結果である。ここで問いを立てる：もし $\sum_{n=0}^{\infty} a_{n}$ が発散する場合にはどうなるだろうか？This is a consequence of uniform convergence on the interval $[0, 1]$. We start with a question: What happens if $\sum_{n=0}^{\infty} a_{n}$ \textit{diverges}?
+                </p>
+                <p>
+                    &emsp;部分和の列を $s_{n} = \sum_{k=0}^{n} a_{k}$ と定義し、Define the sequence of partial sums $s_{n} = \sum_{k=0}^{n} a_{k}$ and assume
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            s = \liminf_{n \rightarrow \infty} s_{n}, \quad S = \limsup_{n \rightarrow \infty} s_{n}
+                        \]
+                    </div>
+                </div>
+                <p>
+                    が共に有限であると仮定します。すなわち、この級数は有界であり、2つの有限な極限の間で振動します。この場合、are both finite. That is, the series is bounded and oscillates between two finite limits. It is natural to believe here that
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            s \le \lim_{r \rightarrow 1^{-}} \sum_{n=0}^{\infty} a_{n}r^{n} \le S
+                        \]
+                    </div>
+                </div>
+                <p>
+                    が成立するであろうと自然に考えられる。そして、これは実際に正しい。and this is indeed true.
+                </p>
+                <p>
+                    &emsp;さらに、これ以上に多くのことが成り立ちます。関数 $\phi(x)$ を、次の条件を満たす連続的に微分可能な関数（$x \gt 0$ において）とします：In fact, much more is true. Let $\phi(x)$ be a continuously differentiable function for $x \gt 0$ that satisfies the conditions
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            \lim_{x \rightarrow 0^{+}} \phi(x) = 1, \ \lim_{x \rightarrow \infty} \phi(x) = 0, \ I = \int_{0}^{\infty} \left| \frac{d}{dx} \phi(x) \right| \, dx \lt \infty
+                        \]
+                    </div>
+                </div>
+                <p>
+                    およびand
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            f(x) = \sum_{n=0}^{\infty} a_{n} \phi{(nx)} \text{ is convergent for all } x \gt 0.
+                        \]
+                    </div>
+                </div>
+                <p>
+                    このとき、次が証明できます：Then it can be proved that
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            \frac{1}{2} (S + s) - \frac{1}{2} (S - s) \cdot I \le \lim_{x \rightarrow 0^{+}} f(x) \le \frac{1}{2} (S + s) + \frac{1}{2} (S - s) \cdot I.
+                        \]
+                    </div>
+                </div>
+                <p>
+                    さらに、これは前述の内容を真に拡張しています。具体的には、$r = \phi(x) = \exp(-x)$ と置くことで理由が分かります。Moreover, this truly extends what was discussed before: Set $r = \phi(x) = \exp(-x)$ to see why.
                 </p>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex">

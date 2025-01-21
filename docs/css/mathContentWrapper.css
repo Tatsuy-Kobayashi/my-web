@@ -5,6 +5,9 @@
     width: auto;
     overflow-x: auto;
 }
+.important_formula {
+	border: 2px solid red;
+}
 .tikzjax_wrapper {
     width: 100%;
 }

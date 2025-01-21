@@ -378,16 +378,29 @@
                     </div>
                 </div>
                 <p>
-                    が成り立つ。
+                    が成り立つ。また、
                 </p>
-                <h2>$\phi(x) = \left( \frac{\sin{t}}{t} \right)^{m}$のとき</h2>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex">
                         \[
-                            C_{m} = \int_{0}^{\infty} \left| \frac{d}{dt} \left( \frac{\sin{t}}{t} \right)^{m} \right| \, dt - 1
+                            I = \int_{0}^{\infty} \left| \frac{d}{dx} e^{-x} \right| \, dx = \int_{0}^{\infty} e^{-x} \, dx = [ -e^{-x} ]_{0}^{\infty} = 1
                         \]
                     </div>
                 </div>
+                <h2>$\phi(x) = \left( \frac{\sin{t}}{t} \right)^{m}$で$m = 1$のとき</h2>
+                <p>
+                    &emsp;もう一つの重要な例として、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex important_formula">
+                        \[
+                            C_{m} = I - 1 = \int_{0}^{\infty} \left| \frac{d}{dt} \left( \frac{\sin{t}}{t} \right)^{m} \right| \, dt - 1
+                        \]
+                    </div>
+                </div>
+                <p>
+                    によって定義されるデュ・ボア=レイモンの定数がある。
+                </p>
                 <p>
                     &emsp;この記事では先ず$m=1$の場合について述べる。
                 </p>
@@ -438,7 +451,7 @@
                 </p>
                 <div class="graph_wrapper">
                     <div class="graph_flex">
-                        <div id="du_bois-reymond_sequence0" style="width: 100%; height: 600px;"></div>
+                        <div id="du_bois-reymond_sequence0"></div>
                     </div>
                 </div>
                 <p>
@@ -456,7 +469,7 @@
                 </p>
                 <div class="graph_wrapper">
                     <div class="graph_flex">
-                        <!-- tan(t) とy=tのグラフ -->
+                        <div id="du_bois-reymond_sequence1"></div>
                     </div>
                 </div>
                 <p>
@@ -551,6 +564,10 @@ Integral (n=100, approximation to infinity): 3.92559074916487</div>
                 </div> <!-- /coding_file_wrapper -->
                 <p>
                     調和級数のように増加は遅いが、発散する。
+                </p>
+                <h2>$\phi(x) = \left( \frac{\sin{t}}{t} \right)^{m}$で$m \gt 1$のとき</h2>
+                <p>
+                    &emsp;
                 </p>
             </div>
             <div itemprop="articleBody" id="section_1">

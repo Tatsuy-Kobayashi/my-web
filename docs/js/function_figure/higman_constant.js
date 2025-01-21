@@ -62,20 +62,20 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         ];
 
-        // Plotly layout settings
+        // レイアウト設定
         const layout = {
             title: 'Groups of Order',
             xaxis: {title: 'Order', range: [-1, 285]},
             yaxis: {title: 'Value', range: [-5, 400]},  // y-axis range
+            showlegend: true,
             width: 1000,
-            height: 450,
-            showlegend: true
+            height: 450
         };
 
-        // Render the graph
+        // グラフの描画
         Plotly.newPlot('higman-constant', plotlyData, layout);
 
-        // Logarithmic scale graph layout
+        // 対数スケールグラフのレイアウト
         const layoutLogarithm = {
             title: 'Groups of Order (Logarithmic Scale)',
             xaxis: {title: 'Order', range: [-1, 285]},
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
             height: 450
         };
 
-        // Render logarithmic scale graph
+        // 対数スケールグラフの描画
         Plotly.newPlot('higman-constant-logarithm', plotlyData, layoutLogarithm);
     }
 

@@ -76,7 +76,7 @@
             {
                 "@type": "ListItem",
                 "position": 8,
-                "name": "0001264489"
+                "name": "デュ・ボア=レイモンの2番目の定数"
             }
         ]
     },
@@ -189,6 +189,8 @@
       
         /*gtag('config', 'トラッキングID');*/
     </script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/function_figure/du_bois-reymond_sequence0.js"></script>
     <script type="text/javascript">
         window.MathJax = {
             tex: {
@@ -265,7 +267,7 @@
             <div itemprop="articleBody" id="section_1">
                 <h2>概要</h2>
                 <p>
-                    &emsp;アーベルの定理（微分積分学の発展的な理論における定理）は、実数列の級数 $\sum_{n=0}^{\infty} a_{n}$ が収束する場合、対応するべき級数がAbel's theorem from advanced calculus implies that if the series of real numbers $\sum_{n=0}^{\infty} a_{n}$ converges, then the corresponding power series satisfies
+                    &emsp;<a href="https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%BC%E3%83%99%E3%83%AB%E3%81%AE%E9%80%A3%E7%B6%9A%E6%80%A7%E5%AE%9A%E7%90%86">アーベルの定理</a>は、実数列の級数 $\sum_{n=0}^{\infty} a_{n}$ が収束する場合、対応する<ruby>冪<rp>（</rp><rt>べき</rt><rp>）</rp></ruby>級数が
                 </p>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex">
@@ -275,10 +277,10 @@
                     </div>
                 </div>
                 <p>
-                    を満たすことを示唆する。これは、区間 $[0, 1]$ における一様収束の結果である。ここで問いを立てる：もし $\sum_{n=0}^{\infty} a_{n}$ が発散する場合にはどうなるだろうか？This is a consequence of uniform convergence on the interval $[0, 1]$. We start with a question: What happens if $\sum_{n=0}^{\infty} a_{n}$ \textit{diverges}?
+                    を満たすことを示唆する。これは、区間 $[0, 1]$ における<sup id="ref_1"><a href="#note_1">[1]</a></sup>一様収束の結果である。一方で、もし $\sum_{n=0}^{\infty} a_{n}$ が<b>発散する</b>なら、どうなるだろうか？
                 </p>
                 <p>
-                    &emsp;部分和の列を $s_{n} = \sum_{k=0}^{n} a_{k}$ と定義し、Define the sequence of partial sums $s_{n} = \sum_{k=0}^{n} a_{k}$ and assume
+                    &emsp;部分和の列を $s_{n} = \sum_{k=0}^{n} a_{k}$ と定義し、
                 </p>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex">
@@ -288,7 +290,7 @@
                     </div>
                 </div>
                 <p>
-                    が共に有限であると仮定します。すなわち、この級数は有界であり、2つの有限な極限の間で振動します。この場合、are both finite. That is, the series is bounded and oscillates between two finite limits. It is natural to believe here that
+                    が共に有限であると仮定する。そのとき、この級数は有界であり、$2$つの有限な極限の間で振動する。ここで、
                 </p>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex">
@@ -298,10 +300,10 @@
                     </div>
                 </div>
                 <p>
-                    が成立するであろうと自然に考えられる。そして、これは実際に正しい。and this is indeed true.
+                    が成立するであろうと自然に考えられる。そして、これは実際に真である。
                 </p>
                 <p>
-                    &emsp;さらに、これ以上に多くのことが成り立ちます。関数 $\phi(x)$ を、次の条件を満たす連続的に微分可能な関数（$x \gt 0$ において）とします：In fact, much more is true. Let $\phi(x)$ be a continuously differentiable function for $x \gt 0$ that satisfies the conditions
+                    &emsp;さらに、より多くのことが成り立つ。関数 $\phi(x)$ を、次の条件を満たす（$x \gt 0$ において）連続的に微分可能な関数とする：
                 </p>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex">
@@ -311,17 +313,17 @@
                     </div>
                 </div>
                 <p>
-                    およびand
+                    および
                 </p>
                 <div class="mathjax_wrapper">
-                    <div class="mathjax_flex">
+                    <div class="mathjax_flex" title="fは全てのx > 0に対して収束する">
                         \[
                             f(x) = \sum_{n=0}^{\infty} a_{n} \phi{(nx)} \text{ is convergent for all } x \gt 0.
                         \]
                     </div>
                 </div>
                 <p>
-                    このとき、次が証明できます：Then it can be proved that
+                    このとき、次が証明できる：
                 </p>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex">
@@ -331,8 +333,54 @@
                     </div>
                 </div>
                 <p>
-                    さらに、これは前述の内容を真に拡張しています。具体的には、$r = \phi(x) = \exp(-x)$ と置くことで理由が分かります。Moreover, this truly extends what was discussed before: Set $r = \phi(x) = \exp(-x)$ to see why.
+                    さらに、これは前述の内容を真に拡張している。具体的には、$r = \phi(x) = \exp{(-x)}$ と置くことで理由が分かるだろう。
                 </p>
+                <h2>$\phi(x) = \exp{(-x)}$のとき</h2>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            f(x) = \sum_{n=0}^{\infty} a_{n} \exp{(-nx)}
+                        \]
+                    </div>
+                </div>
+                <p>
+                    ここで、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex" style="padding: 7px 0;">
+                        \[
+                            a_{n} =
+                            \begin{cases}
+                                \,0 & \text{for } n = 0 \\
+                                \frac{1}{n} & \text{for } n \gt 0
+                            \end{cases}
+                        \]
+                    </div>
+                </div>
+                <p>
+                    とする。このとき、$x \gt 0$、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            \sum_{n=1}^{\infty} \frac{z^{n}}{n} = - \log{(1 - z)} \quad |z| \le 1 \text{かつ} z \neq 1
+                        \]
+                    </div>
+                </div>
+                <p>
+                    であるから、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            f(x) = \sum_{n=1}^{\infty} \frac{e^{-nx}}{n} = - \log{(1 - e^{-x})}
+                        \]
+                    </div>
+                </div>
+                <p>
+                    が成り立つ。
+                </p>
+                <h2>$\phi(x) = \left( \frac{\sin{t}}{t} \right)^{m}$のとき</h2>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex">
                         \[
@@ -390,7 +438,7 @@
                 </p>
                 <div class="graph_wrapper">
                     <div class="graph_flex">
-                        <!-- \frac{t \cos{(t)} - \sin{(t)}}{t^{2}}のグラフ -->
+                        <div id="du_bois-reymond_sequence0" style="width: 100%; height: 600px;"></div>
                     </div>
                 </div>
                 <p>
@@ -504,73 +552,6 @@ Integral (n=100, approximation to infinity): 3.92559074916487</div>
                 <p>
                     調和級数のように増加は遅いが、発散する。
                 </p>
-                <h2>解説</h2>
-                <p>
-                    <b>証明</b>
-                </p>
-                <p>
-                    &emsp;以下に、ケプラー・ブーカム定数を定義する式を証明する。
-                </p>
-                <p>
-                    &emsp;先ず、半径$1$の円に内接する正$n$角形を考える。この正$n$角形の中心から頂点までの距離は、円の半径$1$。中心から辺の中点までの距離（つまり次の内接円の半径）を$r_{n}$とすると、直角三角形の三角比から以下の関係が成り立つ。
-                </p>
-                <div class="mathjax_wrapper">
-                    <div class="mathjax_flex">
-                        \[
-                            r_{n} = \cos{\left( \frac{\pi}{n} \right)}.
-                        \]
-                    </div>
-                </div>
-                <p>
-                    &emsp;次に、この半径$r_{n}$の円に内接する正$(n+1)$角形を考える。同様に、この正$(n+1)$角形の内接円の半径を$r_{n+1}$とすると、
-                </p>
-                <div class="mathjax_wrapper">
-                    <div class="mathjax_flex">
-                        \[
-                            r_{n+1} = r_{n} \cos{\left( \frac{\pi}{n+1} \right)}
-                        \]
-                    </div>
-                </div>
-                <p>
-                    となる。
-                </p>
-                <p>
-                    &emsp;最初の円の半径を$r_{2} = 1$（添字の$2$は、便宜上正二角形とみなしてのもの）とすると、この操作を繰り返していくことで得られる円の半径の数列は以下のようになる：
-                </p>
-                <div class="mathjax_wrapper">
-                    <div class="mathjax_flex" style="padding: 5px 0;">
-                        \begin{equation*}
-                            \begin{aligned}
-                                r_{3} &= r_{2} \cos{\left( \frac{\pi}{3} \right)} = \cos{\left( \frac{\pi}{3} \right)} \\
-                                r_{4} &= r_{3} \cos{\left( \frac{\pi}{4} \right)} = \cos{\left( \frac{\pi}{3} \right)} \cos{\left( \frac{\pi}{4} \right)} \\
-                                r_{5} &= r_{4} \cos{\left( \frac{\pi}{5} \right)} = \cos{\left( \frac{\pi}{3} \right)} \cos{\left( \frac{\pi}{4} \right)} \cos{\left( \frac{\pi}{5} \right)}
-                            \end{aligned}
-                        \end{equation*}
-                    </div>
-                </div>
-                <p>
-                    &emsp;従って、一般に$n$回操作を繰り返した後の円の半径$r_{n+1}は、
-                </p>
-                <div class="mathjax_wrapper">
-                    <div class="mathjax_flex">
-                        \[
-                            r_{n+2} = \prod_{k=3}^{n+2} \cos{\left( \frac{\pi}{k} \right)}
-                        \]
-                    </div>
-                </div>
-                <p>
-                    と書ける。ケプラー・ブーカム定数は、この操作を無限に繰り返したときの円の半径であるから、$n$の極限を取って、
-                </p>
-                <div class="mathjax_wrapper">
-                    <div class="mathjax_flex">
-                        \[
-                            \lim_{n \rightarrow \infty} r_{n+2} = \prod_{k=3}^{\infty} \cos{\left( \frac{\pi}{k} \right)}
-                        \]
-                    </div>
-                </div>
-                <p>
-                    となる。よって示された。
-                </p>
             </div>
             <div itemprop="articleBody" id="section_1">
                 <h1>ケプラー-ブーカム定数の素数類似体</h1>
@@ -591,7 +572,7 @@ Integral (n=100, approximation to infinity): 3.92559074916487</div>
             ページ注釈
             <ol class="olAnnotation">
                 <li id="note_1"><a href="#ref_1">^</a>
-                    注釈
+                    当然この区間というのは$r$の区間である。
                 </li>
             </ol>
         </div> <!-- /annotation -->

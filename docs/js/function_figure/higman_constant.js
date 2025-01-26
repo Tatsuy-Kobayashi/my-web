@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return Math.log(value) / Math.log(base);
     }
 
-    // Slider elements
+    // スライダー要素
     const slider1 = document.getElementById('slider-k1');
     const sliderValue1 = document.getElementById('slider-value1');
     const slider2 = document.getElementById('slider-k2');

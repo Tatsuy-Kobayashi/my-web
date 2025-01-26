@@ -192,6 +192,7 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/function_figure/du_bois-reymond_sequence0.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/function_figure/du_bois-reymond_sequence1.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/function_figure/du_bois-reymond_sequence2.js"></script>
     <script type="text/javascript">
         window.MathJax = {
             tex: {
@@ -333,8 +334,31 @@
                         \]
                     </div>
                 </div>
+                <!--<p>
+                    デュ・ボア=レイモンは上の上限および下限を、\textit{アドホック}な議論によって得た：
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            \frac{1}{2} (S + s) \pm \frac{1}{2} (S - s) (1 + c), \quad c \le 2 + \frac{2}{\pi} + \frac{2}{\pi^{2}}.
+                        \]
+                    </div>
+                </div>
                 <p>
-                    さらに、これは前述の内容を真に拡張している。具体的には、$r = \phi(x) = \exp{(-x)}$ と置くことで理由が分かるだろう。
+                    しかし、彼の議論は
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            c \le \frac{1}{\pi} + \frac{1}{\pi^{2}}
+                        \]
+                    </div>
+                </div>
+                <p>
+                    を証明するのに十分であったように見える。この後者の定数は実際、1854年のリーマンのハビリタティオン(教授資格)論文に現れており、このときは $\sum_{n=1}^{\infty} a_{n}$ が収束して $U = L$ となると仮定されていた。
+                </p>-->
+                <p>
+                    ここからは具体例で考えていく。
                 </p>
                 <h2>$\phi(x) = \exp{(-x)}$のとき</h2>
                 <div class="mathjax_wrapper">
@@ -402,6 +426,19 @@
                 <p>
                     によって定義されるデュ・ボア=レイモンの定数がある。
                 </p>
+                <p>
+                    &emsp;上記の積分は整数$m$のままで閉じた式や既知の関数に帰結することは困難であり、数値積分すら用意ではないが、工夫することで比較的容易に計算可能な級数を得ることはできる。
+                </p>
+                <div class="graph_wrapper">
+                    <div class="graph_flex">
+                        <div id="du_bois-reymond_sequence2"></div>
+                    </div>
+                </div>
+                <div>
+                    <label for="slider-m">Adjust m:</label>
+                    <input id="slider-m" type="range" min="1" max="10" step="1" value="1">
+                    <span id="slider-value">1</span>
+                </div>
                 <p>
                     &emsp;この記事では先ず$m=1$の場合について述べる。
                 </p>
@@ -569,21 +606,81 @@ Integral (n=100, approximation to infinity): 3.92559074916487</div>
                 <h2>$\phi(x) = \left( \frac{\sin{t}}{t} \right)^{m}$で$m \gt 1$のとき</h2>
                 <p>
                     &emsp;
+  The constants which I shall discuss in this paper have their origin in the following theorem:
+  Let $\sum_{n=1}^{\infty} a_{n}$ be an oscillating series whose upper and lower limits, $U$ and $L$, are finite. Let $\phi(t)$ be a function with a differential coefficient which is finite when $t \ge 0$, such that
+\[
+    \lim_{t \rightarrow 0^{+}} \phi(t) = 1, \ \int_{0}^{\infty} \left| \frac{d}{dt} \phi(t) \right| \, dt \lt \infty.
+\]
+Then, if the series $\sum_{n=1}^{\infty} a_{n}\phi(nt)$ converges whenever $t \lt 0$ and has the sum $S(t)$, the upper and lower limits of $S(t)$ as $t \rightarrow 0^{+}$ lie between the two numbers
+\[
+    \frac{1}{2} (U + L) \pm \frac{1}{2} (U - L) \int_{0}^{\infty} \left| \frac{d}{dt} \phi(t) \right| \, dt.
+\]
+  The history of the theorem is as follows: in Du Bois Reymond's work on trigonometrical series, the series $\sum a_{n}$ was a trigonometrical series with $a_{n} = o(l)$ and $\phi(t)$ had the special value $\left( \frac{\sin{t}}{t} \right)^{2}$. Du Bois Reymond obtained the upper and lower limits
+\[
+    \frac{1}{2} (U + L) \pm \frac{1}{2} (U - L) (1 + c),
+\]
+where
+\[
+    c \le 2 + \frac{2}{\pi} + \frac{2}{\pi^{2}},
+\]
+by an \textit{ad hoc} argument. The type of argument which he used was apparently sufficient to prove that
+\[
+    c \le \frac{1}{\pi} + \frac{1}{\pi^{2}},
+\]
+and the latter constant had, in fact, appeared in 1854 in Riemann's Habilitationsschrift, where it was assumed that $\sum a_{n}$ was convergent so that $U = L$.
+  Later, by an argument which is applicable to a general function $\phi(t)$, G. C. Young proved that, when $\phi(t) = \left( \frac{\sin{t}}{t} \right)^{2}$,
+\[
+    1 + c = \int_{0}^{\infty} \left| \frac{d}{dt} \left( \frac{\sin{t}}{t} \right)^{2} \right| \, dt \lt 1 + \frac{2}{\pi^{2}},
+\]
+and the theorem in its general form was actually given by Hobson.
+  Since Du Bois Reymond's work exhibits the importance of the numerical value of $c$, it seems appropriate to associate his name, rather than Riemann's, with such a constant, and to describe
+\[
+    \int_{0}^{\infty} \left| \frac{d}{dt} \phi(t) \right| \, dt - 1
+\]
+as Du Bois Reymond's constant associated with $\phi(t)$.
+  In recent work on trigonometrical series, derived series in which $\phi(t)$ has been given the value \left( \frac{\sin{t}}{t} \right)^{3} and \left( \frac{\sin{t}}{t} \right)^{4} have been the subject of investigation. It consequently seems worth while to examine the constants $c_{m}$ defined by the formula
+\[
+    c_{m} = \int_{0}^{\infty} \left| \frac{d}{dt} \left( \frac{\sin{t}}{t} \right)^{m} \right| \, dt - 1.
+\]
+  I shall show that $c_{2m}$ is expressible as a polynomial of degree $m$ in $e^{2}$ with rational coefficients. There seems to be no similar simple formula for $c_{2m + 1}$, and the sum total of the results of my analytical attacks on $c_{3}$ has yielded merely an integral which does not lend itself readily to numerical computation plus a series whose sum is fairly easy to compute; I have , however, found it easy to compute $c_{3}$ by elementary methods.
+  If
+\[
+    \phi(t) = \left( \frac{\sin{t}}{t} \right)^{2m},
+\]
+it is easy to see that the minima of $\phi(t)$ in the interval $(0, \infty)$ occur at $t = \pi, 2 \pi, 3 \pi, \dots$ and the maxima occur at $t = 0, w_{1}, w_{2}, w_{3}, \dots$, where $w_{n}$ is the positive solution of the equation
+\[
+    t \cos{t} - \sin{t} = 0.
+\]
+  Also
+\begin{equation*}
+    \begin{aligned}
+        \phi(n \pi) = 0 \quad (n = 1, 2, 3, \dots), \\
+        \phi(w_{n}) = \cos^{2m}{w_{n}} = \frac{1}{(1 + w_{n}^{2})^{m}} \quad (n = 1, 2, 3, \dots).
+    \end{aligned}
+\end{equation*}
+Hence
+\[
+    c_{2m} + 1 = {\phi(0) - \phi(\pi)} + |\phi(w_{1}) - \phi(w_{1})| + {\phi(w_{1}) - \phi(2 \pi)} + \dots = 1 + 2\sum_{n = 1}^{\infty} \phi(w_{n})
+\]
+so that
+\[
+    c_{2m} = 2\sum_{n = 1}^{\infty} \frac{1}{(1 + w_{n}^{2})^{m}}.
+\]
+  Now consider the integral
+\[
+    \frac{1}{2 \pi i} \int \frac{z \sin{z}}{\sin{z} - z \cos{z}} \, \frac{dz}{(1 + z^{2})^{m}},
+\]
+where the path of integration is a (large) circle with center at the origin. As the radius of the circle tends (discontinuously) to infinity in such a way as to avoid the poles of the integrand, the integral tends to zero.
+  The poles of the integrand are at the origin, where the residue is $3$, at the points $ \pm w_{n} \ (n = 1, 2, 3, \dots)$, where the residues are $(1 + w_{n}^{2})^{-m}$, and at the points $ \pm i$.
+  By putting $z = \pm i \zeta$, we see that the residues at $\pm i$ are both equal to the residue of
+\[
+    \frac{\zeta \sinh{\zeta}}{\zeta \cosh{\zeta} - \sinh{\zeta}} \, \frac{1}{(1 - \zeta^{2})^{m}}
+\]
+at $\zeta = 1$, that is, they are equal to
+\[
+    \frac{(-)^{m}}{(m - 1)!} \left[ \frac{d^{m-1}}{d \zeta^{m-1}} \left( \frac{\zeta \sinh{\zeta}}{\zeta \cosh{\zeta} - \sinh{\zeta}} \, \frac{1}{(\zeta + 1)^{m}} \right) \right].
+\]
                 </p>
-            </div>
-            <div itemprop="articleBody" id="section_1">
-                <h1>ケプラー-ブーカム定数の素数類似体</h1>
-                <h2>概要</h2>
-                <div class="coding_file_wrapper">
-                    <div class="fileTitle">ケプラー-ブーカム定数の素数類似体</div>
-                    <div class="code-main">
-                        <pre class="match-braces rainbow-braces line-numbers language-python" data-src="kepler_bouwkamp_constant_prime.py" data-download-link></pre>
-                    </div> <!-- /code-main -->
-                    <div class="output-wrapper">
-                        <div class="outputInfo">-></div>
-                        <div class="outputIfram">0.3128409428613445260450747745265980426167785848569139863661240503263815125232600341952191044748998031</div>
-                    </div>
-                </div> <!-- /coding_file_wrapper -->
             </div>
         </div> <!-- /main -->
         <div class="annotation">

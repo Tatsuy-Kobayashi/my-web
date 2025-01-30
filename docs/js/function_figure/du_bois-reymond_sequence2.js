@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const yValuesG = [];
         const xStart = -1; // x の開始点
         const xEnd = 11;   // x の終了点
-        const step = 0.1;  // 分割間隔
+        const step = 0.001;  // 分割間隔
         const yLimit = 100;
 
         for (let x = xStart; x <= xEnd; x += step) {
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 y: yValuesF2,
                 mode: 'lines',
                 type: 'scatter',
-                name: `f2(x) = (sin(x)/x)^${m}`,
+                name: `y = (sin(x)/x)^${m}`,
                 line: { color: 'blue', width: 2 }
             },
             {
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 y: yValuesG,
                 mode: 'lines',
                 type: 'scatter',
-                name: 'd/dx phi(x)',
+                name: 'y = |d/dx phi(x)|',
                 line: { color: 'red', width: 2 }
             }
         ];

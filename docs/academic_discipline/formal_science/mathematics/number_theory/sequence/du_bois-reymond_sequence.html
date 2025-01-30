@@ -429,68 +429,35 @@
                 <p>
                     &emsp;上記の積分は整数$m$のままで閉じた式や既知の関数に帰結することは困難であり、数値積分すら用意ではないが、工夫することで比較的容易に計算可能な級数を得ることはできる。
                 </p>
+                <div class="coding_file_wrapper">
+                    <div class="fileTitle">デュ・ボア=レイモンの$m$番目の定数を定義から求める</div>
+                    <div class="code-main">
+                        <pre class="match-braces rainbow-braces line-numbers language-python" data-src="du_bois-reymond_sequence1.py" data-download-link></pre>
+                    </div> <!-- /code-main -->
+                    <div class="output-wrapper">
+                        <div class="outputInfo">-></div>
+                        <div class="outputIfram">duBR(2) : 0.198403062653284
+2番目の定数の真の値 :  0.194528049465325
+duBR(3) : 0.0282088440922517
+duBR(4) : 0.00524691461742655
+4番目の定数の真の値 :  0.00524070467770388
+duBR(5) : 0.00106357834694393
+duBR(6) : 0.000223286117541299
+6番目の定数の真の値 :  0.000220674708174329</div>
+                    </div>
+                </div> <!-- /coding_file_wrapper -->
+                <p>
+                    &emsp;まず絶対値の積分の困難さは滑らかでない点にあるので、どのような原始関数に対してであっても絶対値の積分は、原始関数の根（$x$軸との交点）で分割して処理する。
+                </p>
                 <div class="graph_wrapper">
                     <div class="graph_flex">
                         <div id="du_bois-reymond_sequence2"></div>
                     </div>
                 </div>
                 <div>
-                    <label for="slider-m">Adjust m:</label>
+                    <label for="slider-m">$m$:</label>
                     <input id="slider-m" type="range" min="1" max="10" step="1" value="1">
                     <span id="slider-value">1</span>
-                </div>
-                <p>
-                    &emsp;この記事では先ず$m=1$の場合について述べる。
-                </p>
-                <p>
-                    <b>定理: </b>$m=1$のとき、$C_{m}$は無限大に発散する。
-                </p>
-                <p>
-                    <b>証明: </b>$C_{m}$は少々複雑な定義をされているが、$m$が固定された場合には幾分か解析しやすくなる。$m=1$のとき、
-                </p>
-                <div class="mathjax_wrapper">
-                    <div class="mathjax_flex" style="padding: 7px 0;">
-                        \begin{equation*}
-                            \begin{aligned}
-                                C_{1} &= \int_{0}^{\infty} \left| \frac{d}{dt} \left( \frac{\sin{t}}{t} \right) \right| \, dt - 1 \\
-                                      &= \int_{0}^{\infty} \left| \frac{t \cos{(t)} - \sin{(t)}}{t^{2}} \right| \, dt - 1
-                            \end{aligned}
-                        \end{equation*}
-                    </div>
-                </div>
-                <p>
-                    今、$t = 0$付近では発散しない事を示しておく。$t = 0$近傍での$\sin(t)$, $\cos(t)$のテイラー展開は
-                </p>
-                <div class="mathjax_wrapper">
-                    <div class="mathjax_flex" style="padding: 5px 0;">
-                        \begin{equation*}
-                            \begin{aligned}
-                                \sin{t} &= t - \frac{t^{3}}{3!} + \frac{t^{5}}{5!} - \cdots \\
-                                \cos{t} &= 1 - \frac{t^{2}}{2!} + \frac{t^{4}}{4!} - \cdots
-                            \end{aligned}
-                        \end{equation*}
-                    </div>
-                </div>
-                <p>
-                    であるため、
-                </p>
-                <div class="mathjax_wrapper">
-                    <div class="mathjax_flex">
-                        \[
-                            \frac{t \cos{(t)} - \sin{(t)}}{t^{2}} = \frac{t (1 - \frac{t^{2}}{2!} + \frac{t^{4}}{4!} - \cdots) - (t - \frac{t^{3}}{3!} + \frac{t^{5}}{5!} - \cdots)}{t^{2}} = \frac{- \frac{t^{3}}{3} + O(t^{5})}{t^{2}} \approx - \frac{t}{3}
-                        \]
-                    </div>
-                </div>
-                <p>
-                    となる。従って、$t = 0$近傍で被積分関数は有限であるため、$t = 0$近傍で積分は有限。
-                </p>
-                <p>
-                    &emsp;具体的な積分法を見る前に被積分関数についてもう少し深堀する。
-                </p>
-                <div class="graph_wrapper">
-                    <div class="graph_flex">
-                        <div id="du_bois-reymond_sequence0"></div>
-                    </div>
                 </div>
                 <p>
                     被積分関数のグラフからも分かる通り、この関数の値は、根で繰り返し符号を切り替える。ここで、根は閉じた式では表せないが、
@@ -510,6 +477,134 @@
                         <div id="du_bois-reymond_sequence1"></div>
                     </div>
                 </div>
+                <p>
+                    よって、$n$番目の根を$t_{n}$とすると、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            C_{m} = \int_{0}^{t_{1}} \left| \frac{d}{dt} \left( \frac{\sin{t}}{t} \right)^{m} \right| \, dt + \int_{t_{1}}^{t_{2}} \left| \frac{d}{dt} \left( \frac{\sin{t}}{t} \right)^{m} \right| \, dt + \int_{t_{2}}^{t_{3}} \left| \frac{d}{dt} \left( \frac{\sin{t}}{t} \right)^{m} \right| \, dt + \cdots - 1
+                        \]
+                    </div>
+                </div>
+                <p>
+                    と、級数のように書ける。しかし、一度絶対値の積分計算の一般論を忘れ、微積分学の基本定理に立ち返ってみる。微積分学の基本定理は知っての通り、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            \int_{a}^{b} \frac{d}{dx} f(x) \, dx = f(b) - f(a)
+                        \]
+                    </div>
+                </div>
+                <p>
+                    であるが、これは絶対値を含むとき、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            \int_{a}^{b} \left| \frac{d}{dx} f(x) \right| \, dx = \left| f(b) - f(a) \right|
+                        \]
+                    </div>
+                </div>
+                <p>
+                    ただし、「$f(x)$が$a$から$b$で単調増加あるいは単調減少」また左記に同値だが「$\frac{d}{dx} f(x)$の符号が$a$から$b$で一定」。として定義できる。
+                </p>
+                <p>
+                    &emsp;$C_{m}$の原始関数の絶対値の中身$\frac{d}{dt} \left( \frac{\sin{t}}{t} \right)^{m}$は、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            \frac{\sin(t)}{t} = 0 \ \lor \ \tan(t) = t
+                        \]
+                    </div>
+                </div>
+                <p>
+                    を満たす$t$による各区間で「単調増加あるいは単調減少」また左記に同値だが「$\frac{d}{dx} \left( \frac{\sin{t}}{t} \right)^{m}$の符号が一定」になる。以上より、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex" style="padding: 22px 0;">
+                        \begin{equation*}
+                            \begin{aligned}
+                                C_{m} &= \int_{0}^{\pi} \left| \frac{d}{dt} \left( \frac{\sin{t}}{t} \right)^{m} \right| \, dt + \int_{\pi}^{t_{1}} \left| \frac{d}{dt} \left( \frac{\sin{t}}{t} \right)^{m} \right| \, dt + \int_{t_{1}}^{2 \pi} \left| \frac{d}{dt} \left( \frac{\sin{t}}{t} \right)^{m} \right| \, dt + \int_{2 \pi}^{t_{2}} \left| \frac{d}{dt} \left( \frac{\sin{t}}{t} \right)^{m} \right| \, dt + \cdots - 1 \\
+                                      &= \left| \left( \frac{\sin{\pi}}{\pi} \right)^{m} - \left( \frac{\sin{0}}{0} \right)^{m} \right| + \left| \left( \frac{\sin{t_{1}}}{t_{1}} \right)^{m} - \left( \frac{\sin{\pi}}{\pi} \right)^{m} \right| + \left| \left( \frac{\sin{2 \pi}}{2 \pi} \right)^{m} - \left( \frac{\sin{t_{1}}}{t_{1}} \right)^{m} \right| + \cdots - 1 \\
+                                      &= 1 + 2\sum_{n=1}^{\infty} \left( \frac{\sin{t_{n}}}{t_{n}} \right)^{m} - 1 = 2\sum_{n=1}^{\infty} \left( \frac{\sin{t_{n}}}{t_{n}} \right)^{m}
+                            \end{aligned}
+                        \end{equation*}
+                    </div>
+                </div>
+                <p>
+                    である。ここで、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            t_{n} \cos{(t_{n})} = \sin{(t_{n})} \iff \frac{\sin{t_{n}}}{t_{n}} = \cos{(t_{n})}
+                        \]
+                    </div>
+                </div>
+                <p>
+                    より、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            C_{m} = 2\sum_{n=1}^{\infty} \left( \frac{\sin{t_{n}}}{t_{n}} \right)^{m} = 2\sum_{n=1}^{\infty} \cos^{m}{(t_{n})}.
+                        \]
+                    </div>
+                </div>
+                <p>
+                    また、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            \sin^{2}{t} + \cos^{2}{t} = 1 \iff \frac{1}{\cos^{2}{t}} = 1 + \tan^{2}{t} \iff \cos^{m}{t} = \frac{1}{\left( 1 + \tan^{2}{t} \right)^{\frac{m}{2}}}
+                        \]
+                    </div>
+                </div>
+                <p>
+                    であるから、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex important_formula">
+                        \[
+                            C_{m} = 2\sum_{n=1}^{\infty} \cos^{m}{(t_{n})} = 2\sum_{n=1}^{\infty} \frac{1}{\left( 1 + \tan^{2}{t_{n}} \right)^{\frac{m}{2}}} = 2\sum_{n=1}^{\infty} \frac{1}{\left( 1 + {t_{n}^{2}} \right)^{\frac{m}{2}}}.
+                        \]
+                    </div>
+                </div>
+                <p>
+                    &emsp;この級数は、元の積分や分割した積分の和を求めるよりは数値計算しやすい。
+                </p>
+                <p>
+                    &emsp;この記事では先ず$m=1$の場合について述べる。
+                </p>
+                <p>
+                    <b>定理: </b>$m=1$のとき、$C_{m}$は無限大に発散する。
+                </p>
+                <p>
+                    <b>証明: </b>$m=1$のとき、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex" style="padding: 19px 0;">
+                        \begin{equation*}
+                            \begin{aligned}
+                                C_{1} &= 2\sum_{n=1}^{\infty} \frac{1}{\left( 1 + {t_{n}^{2}} \right)^{\frac{1}{2}}} \\
+                                      &= 0.3456081817371207941013101 \dots + 2\sum_{n=3}^{\infty} \frac{1}{\left( 1 + {t_{n}^{2}} \right)^{\frac{1}{2}}}
+                            \end{aligned}
+                        \end{equation*}
+                    </div>
+                </div>
+                <p>
+                    &emsp;具体的な積分法を見る前に被積分関数についてもう少し深堀する。
+                </p>
+                <div class="graph_wrapper">
+                    <div class="graph_flex">
+                        <div id="du_bois-reymond_sequence0"></div>
+                    </div>
+                </div>
+                <!-- -->
                 <p>
                     上記グラフからも分かる通り、$y = \tan(t)$と$y = t$は、十分に大きな$t$では$\tan(t)$の漸近線付近で交わる。よって、$n$番目の根を$t_{n}$とすると、
                 </p>
@@ -587,17 +682,17 @@
                 <div class="coding_file_wrapper">
                     <div class="fileTitle">デュ・ボア=レイモンの$m$番目の定数</div>
                     <div class="code-main">
-                        <pre class="match-braces rainbow-braces line-numbers language-python" data-src="du_bois-reymond_sequence.py" data-download-link></pre>
+                        <pre class="match-braces rainbow-braces line-numbers language-python" data-src="du_bois-reymond_sequence2.py" data-download-link></pre>
                     </div> <!-- /code-main -->
                     <div class="output-wrapper">
                         <div class="outputInfo">-></div>
                         <div class="outputIfram">1.94478022857082
 Root 2: 4.49340945790906
 Root 3: 7.72525183693771
-Integral (n=1): 1.21723362821122
-Integral (n=2): 1.56284180994834
-Integral (n=3): 1.7825415662973
-Integral (n=100, approximation to infinity): 3.92559074916487</div>
+sum (m=1): 5.65443630387611
+sum (m=2): 0.194528049465325
+sum (m=3): 0.0282517641600679
+sum (m=4): 0.00524070467770477</div>
                     </div>
                 </div> <!-- /coding_file_wrapper -->
                 <p>

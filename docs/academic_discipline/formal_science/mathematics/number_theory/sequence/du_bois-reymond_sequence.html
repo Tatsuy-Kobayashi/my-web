@@ -451,7 +451,7 @@ duBR(6) : 0.000223286117541299
                 </p>
                 <div class="graph_wrapper">
                     <div class="graph_flex">
-                        <div id="du_bois-reymond_sequence2"></div>
+                        <div id="du_bois-reymond_sequence0"></div>
                     </div>
                 </div>
                 <div>
@@ -591,22 +591,14 @@ duBR(6) : 0.000223286117541299
                         \begin{equation*}
                             \begin{aligned}
                                 C_{1} &= 2\sum_{n=1}^{\infty} \frac{1}{\left( 1 + {t_{n}^{2}} \right)^{\frac{1}{2}}} \\
-                                      &= 0.3456081817371207941013101 \dots + 2\sum_{n=3}^{\infty} \frac{1}{\left( 1 + {t_{n}^{2}} \right)^{\frac{1}{2}}}
+                                      &= 0.3456081817371207941 \dots + 2\sum_{n=3}^{\infty} \frac{1}{\left( 1 + {t_{n}^{2}} \right)^{\frac{1}{2}}}
                             \end{aligned}
                         \end{equation*}
                     </div>
                 </div>
-                <p>
-                    &emsp;具体的な積分法を見る前に被積分関数についてもう少し深堀する。
-                </p>
-                <div class="graph_wrapper">
-                    <div class="graph_flex">
-                        <div id="du_bois-reymond_sequence0"></div>
-                    </div>
-                </div>
                 <!-- -->
                 <p>
-                    上記グラフからも分かる通り、$y = \tan(t)$と$y = t$は、十分に大きな$t$では$\tan(t)$の漸近線付近で交わる。よって、$n$番目の根を$t_{n}$とすると、
+                    上グラフからも分かる通り、$y = \tan(t)$と$y = t$は、十分に大きな$t$では$\tan(t)$の漸近線付近で交わる。よって、$n$番目の根を$t_{n}$とすると、
                 </p>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex">
@@ -616,68 +608,25 @@ duBR(6) : 0.000223286117541299
                     </div>
                 </div>
                 <p>
-                    &emsp;$C_{1}$の全体は簡単には積分できないが、被積分関数の各解で区間分割すれば、
+                    &emsp;よって、
                 </p>
                 <div class="mathjax_wrapper">
-                    <div class="mathjax_flex">
-                        \[
-                            \int_{t_{n}}^{t_{n+1}} \left| \frac{t \cos{(t)} - \sin{(t)}}{t^{2}} \right| \, dt \approx \int_{\pi n}^{\pi (n+1)} \left| \frac{t \cos{(t)} - \sin{(t)}}{t^{2}} \right| \, dt
-                        \]
-                    </div>
-                </div>
-                <p>
-                    と近似できる。さらに、被積分関数について、十分に大きな$t$では$1/t$よりも$1/t^{2}$の方が早く$0$に収束するため、$1/t$の項が支配的になる。
-                </p>
-                <div class="mathjax_wrapper">
-                    <div class="mathjax_flex" style="padding: 3px 0;">
+                    <div class="mathjax_flex" style="padding: 44px 0;">
                         \begin{equation*}
                             \begin{aligned}
-                                \int_{\pi n}^{\pi (n+1)} \left| \frac{t \cos{(t)} - \sin{(t)}}{t^{2}} \right| \, dt
-                                    &= \int_{\pi n}^{\pi (n+1)} \left| \frac{\cos{(t)}}{t} - \frac{\sin{(t)}}{t^{2}} \right| \, dt \\
-                                    &\approx \int_{\pi n}^{\pi (n+1)} \left| \frac{\cos{(t)}}{t} \right| \, dt
+                                2\sum_{n=3}^{\infty} \frac{1}{\left( 1 + {(\pi n)^{2}} \right)^{\frac{1}{2}}}
+                                    &= 2\sum_{n=3}^{\infty} \left( (\pi n)^2 \left( 1 + \frac{1}{(\pi n)^2} \right) \right)^{-\frac{1}{2}} \\
+                                    &= 2\sum_{n=3}^{\infty} \frac{1}{\pi n} \left( 1 + \frac{1}{(\pi n)^2} \right)^{-\frac{1}{2}} \\
+                                    &\approx 2\sum_{n=3}^{\infty} \frac{1}{\pi n} = \infty
                             \end{aligned}
                         \end{equation*}
                     </div>
                 </div>
                 <p>
-                    さらに、$t \approx nπ$ と近似すると、
-                </p>
-                <div class="mathjax_wrapper">
-                    <div class="mathjax_flex">
-                        \[
-                            \int_{\pi n}^{\pi (n+1)} \left| \frac{\cos{(t)}}{t} \right| \, dt \approx \frac{1}{\pi n} \int_{\pi n}^{\pi (n+1)} | \cos{(t)} | \, dt
-                        \]
-                    </div>
-                </div>
-                <p>
-                    ここで、被積分関数はただのシヌソイド（正弦波に同じ）であるから、各積分区間で同じ積分値になる。
-                </p>
-                <div class="mathjax_wrapper">
-                    <div class="mathjax_flex" style="padding: 3px 0;">
-                        \begin{equation*}
-                            \begin{aligned}
-                                \int_{0}^{\pi} | \cos{(t)} | \, dt &= \int_{\pi}^{2\pi} | \cos{(t)} | \, dt = \cdots = \int_{\pi n}^{\pi (n+1)} | \cos{(t)} | \, dt \\
-                                \int_{0}^{\pi} | \cos{(t)} | \, dt &= 2\int_{0}^{\frac{\pi}{2}} \cos{(t)} \, dt = 2 \\
-                                \therefore \, \frac{1}{\pi n} \int_{\pi n}^{\pi (n+1)}  &| \cos{(t)} | \, dt= \frac{1}{\pi n} \cdot 2 = \frac{2}{\pi n}
-                            \end{aligned}
-                        \end{equation*}
-                    </div>
-                </div>
-                <p>
-                    &emsp;上記までで、$[t_{n}, t_{n+1}]$のおおよその積分値が分かったので、それらの和を以て$C_{1}$が無限大に発散することを示す。
-                </p>
-                <div class="mathjax_wrapper">
-                    <div class="mathjax_flex">
-                        \[
-                            C_{1} \approx \sum_{n=a}^{\infty} \frac{2}{\pi n} = \frac{2}{\pi} \sum_{n=a}^{\infty} \frac{1}{n}
-                        \]
-                    </div>
-                </div>
-                <p>
-                    近似なので$a$は$0$でも構わないが、(有限の数値積分値) $+ \frac{2}{\pi} \sum_{n=a}^{\infty} \frac{1}{n}$ と考えても良い。何れにせよ（部分）調和級数は無限大に発散するので、$C_{1}$は無限大に発散する。
+                    と近似できる。調和級数は無限大に発散するので、$C_{1}$は無限大に発散する。
                 </p>
                 <p>
-                    &emsp;以下に、デュ・ボア=レイモンの$1$番目の定数の有限項の求め方を提案する。
+                    &emsp;以下に、デュ・ボア=レイモンの$m$番目の定数の求め方を提案する。
                 </p>
                 <div class="coding_file_wrapper">
                     <div class="fileTitle">デュ・ボア=レイモンの$m$番目の定数</div>
@@ -695,9 +644,6 @@ sum (m=3): 0.0282517641600679
 sum (m=4): 0.00524070467770477</div>
                     </div>
                 </div> <!-- /coding_file_wrapper -->
-                <p>
-                    調和級数のように増加は遅いが、発散する。
-                </p>
                 <h2>$\phi(x) = \left( \frac{\sin{t}}{t} \right)^{m}$で$m \gt 1$のとき</h2>
                 <p>
                     &emsp;

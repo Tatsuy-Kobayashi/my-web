@@ -245,7 +245,7 @@
                 </div> <!-- /link-preview -->
             </span> <!-- /link-preview -->&ensp;&gt;&ensp;
             <span class="link-container">
-                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="整数論" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">整数論</a>
+                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/number_theory.html" class="preview-link" data-title="整数論" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">整数論</a>
                 <div class="link-preview">
                     <img class="preview-image" src="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" alt="Preview image">
                     <h3 class="preview-title">整数論</h3>
@@ -253,14 +253,9 @@
                 </div> <!-- /link-preview -->
             </span> <!-- /link-preview -->&ensp;&gt;&ensp;
             <span class="link-container">
-                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="数学定数" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">数学定数</a>
-                <div class="link-preview">
-                    <img class="preview-image" src="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" alt="Preview image">
-                    <h3 class="preview-title">数学定数</h3>
-                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
-                </div> <!-- /link-preview -->
+                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/mathematical_constant/mathematical_constant.html" class="preview-link" data-title="数列" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">数学定数</a>
             </span> <!-- /link-preview -->&ensp;&gt;&ensp;
-            0
+            デュ・ボア=レイモンの$m$番目の定数
         </div>
         <div class="main">
             <h1>デュ・ボア=レイモンの$m$番目の定数du Bois-Reymond $m$-th constant</h1>
@@ -412,7 +407,7 @@
                         \]
                     </div>
                 </div>
-                <h2>$\phi(x) = \left( \frac{\sin{t}}{t} \right)^{m}$で$m = 1$のとき</h2>
+                <h2>$\phi(x) = \left( \frac{\sin{t}}{t} \right)^{m}$のとき</h2>
                 <p>
                     &emsp;もう一つの重要な例として、
                 </p>
@@ -521,7 +516,7 @@ duBR(6) : 0.000223286117541299
                     </div>
                 </div>
                 <p>
-                    を満たす$t$による各区間で「単調増加あるいは単調減少」また左記に同値だが「$\frac{d}{dx} \left( \frac{\sin{t}}{t} \right)^{m}$の符号が一定」になる。以上より、
+                    を満たす$t$による各区間で「$\frac{d}{dx} \left( \frac{\sin{t}}{t} \right)^{m}$の符号が一定」また左記に同値だが「$\left( \frac{\sin{t}}{t} \right)^{m}$が単調増加あるいは単調減少」になる。以上より、
                 </p>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex" style="padding: 22px 0;">
@@ -644,9 +639,132 @@ sum (m=3): 0.0282517641600679
 sum (m=4): 0.00524070467770477</div>
                     </div>
                 </div> <!-- /coding_file_wrapper -->
-                <h2>$\phi(x) = \left( \frac{\sin{t}}{t} \right)^{m}$で$m \gt 1$のとき</h2>
+                <h2>複素解析</h2>
                 <p>
-                    &emsp;
+                    &emsp;何とかして閉じた式で表すことはできないだろうか？まず、$C_{2m}$の場合について見ていこう。
+                </p>
+                <p>
+                    &emsp;次の積分を考える：
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex important_formula">
+                        \[
+                            \frac{1}{2 \pi i} \int \frac{z \sin{z}}{\sin{z} - z \cos{z}} \, \frac{dz}{(1 + z^{2})^{m}}
+                        \]
+                    </div>
+                </div>
+                <p>
+                    ここで、積分経路は原点を中心とする（大きな）円である。円の半径が被積分関数の極を避けるような形で（不連続に）無限大に向かうと、この積分は$0$に収束する。
+                </p>
+                <p>
+                    &emsp;被積分関数の極は、原点（この留数は $3$）および点 $\pm w_{n} \ (n = 1, 2, 3, \dots)$（この留数は $(1 + w_{n}^{2})^{-m}$）と、点 $\pm i$ に存在する。
+                </p>
+                <p>
+                    &emsp;$z = \pm i \zeta$ と置くことで、$\pm i$ における留数は次の式
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            \frac{\zeta \sinh{\zeta}}{\zeta \cosh{\zeta} - \sinh{\zeta}} \, \frac{1}{(1 - \zeta^{2})^{m}}
+                        \]
+                    </div>
+                </div>
+                <p>
+                    における $\zeta = 1$ の留数と等しいことがわかる。よって、これは
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            \frac{(-)^{m}}{(m - 1)!} \left[ \frac{d^{m-1}}{d \zeta^{m-1}} \left( \frac{\zeta \sinh{\zeta}}{\zeta \cosh{\zeta} - \sinh{\zeta}} \, \frac{1}{(\zeta + 1)^{m}} \right) \right]_{\zeta = 1}
+                        \]
+                    </div>
+                </div>
+                <p>
+                    に等しい。従って、コーシーの定理により、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            c_{2m} = - 3 - \frac{(-)^{m}2}{(m - 1)!} \left[ \frac{d^{m-1}}{d \zeta^{m-1}} \left( \frac{\zeta \sinh{\zeta}}{\zeta \cosh{\zeta} - \sinh{\zeta}} \, \frac{1}{(\zeta + 1)^{m}} \right) \right]_{\zeta = 1}.
+                        \]
+                    </div>
+                </div>
+                <p>
+                    &emsp;今、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex" style="padding: 10px 0;">
+                        \begin{equation*}
+                            \begin{aligned}
+                                \frac{\zeta \sinh{\zeta}}{\zeta \cosh{\zeta} - \sinh{\zeta}}
+                                    &= \frac{\zeta (e^{\zeta} - e^{-\zeta})}{(\zeta + 1) e^{-\zeta} + (\zeta - 1) e^{\zeta}} \\
+                                    &= \zeta (e^{\zeta} - e^{-\zeta}) \sum_{r=0}^{\infty} (-)^{r} \frac{(\zeta - 1)^{r}}{(\zeta + 1)^{r+1}} e^{(2r + 1) \zeta} \\
+                                    &= - \frac{\zeta}{\zeta + 1} + 2 \sum_{r=1}^{\infty} (-)^{r - 1} \frac{\zeta^{2} (\zeta - 1)^{r-1}}{(\zeta + 1)^{r+1}} e^{2 r \zeta}
+                            \end{aligned}
+                        \end{equation*}
+                    </div>
+                </div>
+                <p>
+                    であるから、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex" style="padding: 10px 0;">
+                        \begin{equation*}
+                            \begin{aligned}
+                                \frac{\zeta \sinh{\zeta}}{\zeta \cosh{\zeta} - \sinh{\zeta}} \,& \frac{1}{(\zeta + 1)^{m}}\\ =& \frac{1}{(\zeta + 1)^{m+1}} - \frac{1}{(\zeta + 1)^{m}} + 2 \sum_{r=1}^{\infty} (-)^{r - 1} (\zeta - 1)^{r-1} \left( \frac{1}{(\zeta + 1)^{m + r + 1}} - \frac{2}{(\zeta + 1)^{m + r}} + \frac{1}{(\zeta + 1)^{m +r - 1}} \right) e^{2 r \zeta}.
+                            \end{aligned}
+                        \end{equation*}
+                    </div>
+                </div>
+                <p>
+                    &emsp;従って、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex" style="padding: 19px 0;">
+                        \begin{equation*}
+                            \begin{aligned}
+                                (-)^{m-1} \left[ \frac{d^{m-1}}{d \zeta^{m-1}} \left( \frac{\zeta \sinh{\zeta}}{\zeta \cosh{\zeta} - \sinh{\zeta}} \, \frac{1}{(\zeta + 1)^{m}} \right) \right]_{\zeta = 1}
+                                    &= \frac{(2m - 1)!}{2^{2m} m!} - \frac{(2m - 2)!}{2^{2m-1} (m - 1)!} + 2 \sum_{r=1}^{m} (-)^{m - r} {}_{m-1} \mathrm{C}_{r-1} (r - 1)! \, \left[ \frac{d^{m-r}}{d \zeta^{m-r}} \left( \frac{1}{(\zeta + 1)^{m + r + 1}} - \frac{2}{(\zeta + 1)^{m + r}} + \frac{1}{(\zeta + 1)^{m +r - 1}} \right) e^{2 r \zeta} \right]_{\zeta = 1} \\
+                                    &= - \frac{(2m - 2)!}{2^{2m} m!} + 2 \sum_{r=1}^{m} \frac{(m - 1)!}{(m - r)!} \left[ \sum_{s=0}{m-r} (-)^{s} {}_{m-r} \mathrm{C}_{s} (2r)^{s} \left\{ \frac{(2m - s)!}{2^{2m-s + 1} (m + r)!} - 2 \frac{(2m - s - 1)!}{2^{2m-s} (m + r - 1)!} + \frac{(2m - s - 2)!}{2^{2m-s-1} (m + r - 2)!} \right\} e^{2 r} \right].
+                            \end{aligned}
+                        \end{equation*}
+                    </div>
+                </div>
+                <p>
+                    &emsp;これはつまり、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex important_formula">
+                        \[
+                            c_{2m} = - 3 - \frac{(2m - 2)!}{2^{2m-1} {m!} (m - 1)!} + \sum_{r=1}^{m} \sum_{s=0}^{m-r} \frac{(-)^{s} (4r)^{s} e^{2r}}{2^{2m-1} {s!} (m - r - s)!} \left\{ \frac{(2m - s)!}{(m + r)!} - 4 \frac{(2m - s - 1)!}{(m + r - 1)!} + 4 \frac{(2m - s - 2)!}{(m + r - 2)!} \right\}.
+                        \]
+                    </div>
+                </div>
+                <p>
+                    であり、これが$c_{2m}$の求めるべき式であった。この式の特に興味深い点は、有限項である点であり、整理すると$e$の有限多項式で表せることがわかる。
+                </p>
+                <p>
+                    &emsp;以下にこの計算を行うソースコードを示す。
+                </p>
+                <div class="coding_file_wrapper">
+                    <div class="fileTitle">デュ・ボア=レイモンの$2m$番目の定数</div>
+                    <div class="code-main">
+                        <pre class="match-braces rainbow-braces line-numbers language-python" data-src="du_bois-reymond_sequence3.py" data-download-link></pre>
+                    </div> <!-- /code-main -->
+                    <div class="output-wrapper">
+                        <div class="outputInfo">-></div>
+                        <div class="outputIfram">c_{2m} for m=1: -7/2 + exp(2)/2
+c_{2m} for m=2: -exp(2)/2 - 25/8 + exp(4)/8
+c_{2m} for m=3: -3*exp(4)/16 - 49/16 + 3*exp(2)/32 + exp(6)/32</div>
+                    </div>
+                </div> <!-- /coding_file_wrapper -->
+                <p>
+                    sympyは多項式を定義することもできるが、総和で項数を$m$として置いてしまうと、計算がいつまでも完了しない。summation(r * m, (r, 1, m))。$\sum_{r=1}^{m} r m$。
+                </p>
+<!--
+  Title: Du Bois-Reymond's constants
+  Author: G. N. WATSON (Birmingham)
+
   The constants which I shall discuss in this paper have their origin in the following theorem:
   Let $\sum_{n=1}^{\infty} a_{n}$ be an oscillating series whose upper and lower limits, $U$ and $L$, are finite. Let $\phi(t)$ be a function with a differential coefficient which is finite when $t \ge 0$, such that
 \[
@@ -719,9 +837,47 @@ where the path of integration is a (large) circle with center at the origin. As 
 \]
 at $\zeta = 1$, that is, they are equal to
 \[
-    \frac{(-)^{m}}{(m - 1)!} \left[ \frac{d^{m-1}}{d \zeta^{m-1}} \left( \frac{\zeta \sinh{\zeta}}{\zeta \cosh{\zeta} - \sinh{\zeta}} \, \frac{1}{(\zeta + 1)^{m}} \right) \right].
+    \frac{(-)^{m}}{(m - 1)!} \left[ \frac{d^{m-1}}{d \zeta^{m-1}} \left( \frac{\zeta \sinh{\zeta}}{\zeta \cosh{\zeta} - \sinh{\zeta}} \, \frac{1}{(\zeta + 1)^{m}} \right) \right]_{\zeta = 1}.
 \]
-                </p>
+Hence, by Cauchy's theorem,
+\[
+    c_{2m} = - 3 - \frac{(-)^{m}2}{(m - 1)!} \left[ \frac{d^{m-1}}{d \zeta^{m-1}} \left( \frac{\zeta \sinh{\zeta}}{\zeta \cosh{\zeta} - \sinh{\zeta}} \, \frac{1}{(\zeta + 1)^{m}} \right) \right]_{\zeta = 1}.
+\]
+  Now
+\begin{equation*}
+    \begin{aligned}
+        \frac{\zeta \sinh{\zeta}}{\zeta \cosh{\zeta} - \sinh{\zeta}}
+            &= \frac{\zeta (e^{\zeta} - e^{-\zeta})}{(\zeta + 1) e^{-\zeta} + (\zeta - 1) e^{\zeta}} \\
+            &= \zeta (e^{\zeta} - e^{-\zeta}) \sum_{r=0}^{\infty} (-)^{r} \frac{(\zeta - 1)^{r}}{(\zeta + 1)^{r+1}} e^{(2r + 1) \zeta} \\
+            &= - \frac{\zeta}{\zeta + 1} + 2 \sum_{r=1}^{\infty} (-)^{r - 1} \frac{\zeta^{2} (\zeta - 1)^{r-1}}{(\zeta + 1)^{r+1}} e^{2 r \zeta}
+    \end{aligned}
+\end{equation*}
+and therefore
+\[
+    \frac{\zeta \sinh{\zeta}}{\zeta \cosh{\zeta} - \sinh{\zeta}} \, \frac{1}{(\zeta + 1)^{m}} = \frac{1}{(\zeta + 1)^{m+1}} - \frac{1}{(\zeta + 1)^{m}} + 2 \sum_{r=1}^{\infty} (-)^{r - 1} (\zeta - 1)^{r-1} \left( \frac{1}{(\zeta + 1)^{m + r + 1}} - \frac{2}{(\zeta + 1)^{m + r}} + \frac{1}{(\zeta + 1)^{m +r - 1}} \right) e^{2 r \zeta}.
+\]
+  Hence
+\begin{equation*}
+    \begin{aligned}
+        (-)^{m-1} \left[ \frac{d^{m-1}}{d \zeta^{m-1}} \left( \frac{\zeta \sinh{\zeta}}{\zeta \cosh{\zeta} - \sinh{\zeta}} \, \frac{1}{(\zeta + 1)^{m}} \right) \right]_{\zeta = 1}
+            &= \frac{(2m - 1)!}{2^{2m} m!} - \frac{(2m - 2)!}{2^{2m-1} (m - 1)!} + 2 \sum_{r=1}^{m} (-)^{m - r} {}_{m-1} \mathrm{C}_{r-1} (r - 1)! \, \left[ \frac{d^{m-r}}{d \zeta^{m-r}} \left( \frac{1}{(\zeta + 1)^{m + r + 1}} - \frac{2}{(\zeta + 1)^{m + r}} + \frac{1}{(\zeta + 1)^{m +r - 1}} \right) e^{2 r \zeta} \right]_{\zeta = 1} \\
+            &= - \frac{(2m - 2)!}{2^{2m} m!} + 2 \sum_{r=1}^{m} \frac{(m - 1)!}{(m - r)!} \left[ \sum_{s=0}{m-r} (-)^{s} {}_{m-r} \mathrm{C}_{s} (2r)^{s} \left\{ \frac{(2m - s)!}{2^{2m-s + 1} (m + r)!} - 2 \frac{(2m - s - 1)!}{2^{2m-s} (m + r - 1)!} + \frac{(2m - s - 2)!}{2^{2m-s-1} (m + r - 2)!} \right\} e^{2 r} \right].
+    \end{aligned}
+\end{equation*}
+This is to say,
+\[
+    c_{2m} = - 3 - \frac{(2m - 2)!}{2^{2m-1} {m!} (m - 1)!} + \sum_{r=1}^{m} \sum_{s=0}^{m-r} \frac{(-)^{s} (4r)^{s} e^{2r}}{2^{2m-1} {s!} (m - r - s)!} \left\{ \frac{(2m - s)!}{(m + r)!} - 4 \frac{(2m - s - 1)!}{(m + r - 1)!} + 4 \frac{(2m - s - 2)!}{(m + r - 2)!} \right\},
+\]
+which is the required expression for $c_{2m}$.
+  This formula gives the following results:
+\begin{equation*}
+    \begin{aligned}
+        2 c_{2} &= e^{2} - 7, \quad c_{2} &= 0.1945280495, \\
+        8 c_{4} &= e^{4} - 4 e^{2} - 25, \quad c_{4} &= 0.0052407047, \\
+        32 c_{6} &= e^{6} - 6 e^{4} + 3 e^{2} - 98, \quad c_{6} &= 0.0002206747.
+    \end{aligned}
+\end{equation*}
+-->
             </div>
         </div> <!-- /main -->
         <div class="annotation">

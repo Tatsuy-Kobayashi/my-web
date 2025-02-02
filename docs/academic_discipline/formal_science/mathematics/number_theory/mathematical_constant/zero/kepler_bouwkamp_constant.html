@@ -241,7 +241,7 @@
                 </div> <!-- /link-preview -->
             </span> <!-- /link-preview -->&ensp;&gt;&ensp;
             <span class="link-container">
-                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="整数論" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">整数論</a>
+                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/number_theory.html" class="preview-link" data-title="整数論" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">整数論</a>
                 <div class="link-preview">
                     <img class="preview-image" src="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" alt="Preview image">
                     <h3 class="preview-title">整数論</h3>
@@ -249,14 +249,14 @@
                 </div> <!-- /link-preview -->
             </span> <!-- /link-preview -->&ensp;&gt;&ensp;
             <span class="link-container">
-                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="数学定数" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">数学定数</a>
+                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/mathematical_constant/mathematical_constant.html" class="preview-link" data-title="数学定数" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">数学定数</a>
                 <div class="link-preview">
                     <img class="preview-image" src="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" alt="Preview image">
                     <h3 class="preview-title">数学定数</h3>
                     <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
                 </div> <!-- /link-preview -->
             </span> <!-- /link-preview -->&ensp;&gt;&ensp;
-            0
+            ケプラー-ブーカム定数
         </div>
         <div class="main">
             <h1>ケプラー-ブーカム定数Kepler-Bouwkamp constant</h1>
@@ -287,8 +287,9 @@
                     </div> <!-- /code-main -->
                     <div class="output-wrapper">
                         <div class="outputInfo">-></div>
-                        <div class="outputIfram">0.11551037836049671
-0.114942044853296200701040157469598742830795337200863516844023396518966012825353051177940772484985837</div>
+                        <div class="outputIfram">npで計算したケプラー–ブーカム定数: 0.11551037836049671
+mpmathで計算したケプラー–ブーカム定数: 0.114942044853296
+0.114942044853296</div>
                     </div>
                 </div> <!-- /coding_file_wrapper -->
                 <h2>解説</h2>
@@ -298,6 +299,38 @@
                 <p>
                     &emsp;以下に、ケプラー・ブーカム定数を定義する式を証明する。
                 </p>
+                <div class="tikzjax_wrapper">
+                    <div class="tikzjax_flex" style="padding: 5px 5px;">
+                        <script type="text/tikz">
+                            \begin{tikzpicture}[scale=5]
+
+                            \def\radius{1}
+
+                            \pgfmathparse{\radius * 0.114942}
+                            \xdef\newradius{\pgfmathresult}
+                            \draw[color=purple, dashed] (0,0) circle (\newradius);
+
+                            \newcommand{\drawPolygonInCircle}[2]{
+                                \foreach \i in {1,...,#1} {
+                                    \pgfmathparse{360/#1*(\i-1)}
+                                    \coordinate (P\i) at (\pgfmathresult:#2);
+                                }
+                                \draw[color=blue] (P1) \foreach \i in {2,...,#1} { -- (P\i) } -- cycle;
+                                \pgfmathparse{#2*cos(180/#1)}
+                                \xdef\radius{\pgfmathresult}
+                                \draw[color=red] (0,0) circle (\radius);
+                            }
+
+                            \draw[color=red] (0,0) circle (\radius);
+
+                            \foreach \n in {3,4,5,6,7} {
+                                \drawPolygonInCircle{\n}{\radius}
+                            }
+
+                            \end{tikzpicture}
+                        </script>
+                    </div>
+                </div>
                 <p>
                     &emsp;先ず、半径$1$の円に内接する正$n$角形を考える。この正$n$角形の中心から頂点までの距離は、円の半径$1$。中心から辺の中点までの距離（つまり次の内接円の半径）を$r_{n}$とすると、直角三角形の三角比から以下の関係が成り立つ。
                 </p>
@@ -362,6 +395,16 @@
             <div itemprop="articleBody" id="section_1">
                 <h1>ケプラー-ブーカム定数の素数類似体</h1>
                 <h2>概要</h2>
+                <p>
+                    &emsp;もし全ての奇素数の場合について積なら、
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex important_formula">
+                        \[
+                            \prod_{k \in \{ k | k \in \mathbb{P} \land k \ge 3 \}}^{\infty} \cos{\left( \frac{\pi}{k} \right)} = 0.312832\dots
+                        \]
+                    </div>
+                </div>
                 <div class="coding_file_wrapper">
                     <div class="fileTitle">ケプラー-ブーカム定数の素数類似体</div>
                     <div class="code-main">
@@ -369,7 +412,7 @@
                     </div> <!-- /code-main -->
                     <div class="output-wrapper">
                         <div class="outputInfo">-></div>
-                        <div class="outputIfram">0.3128409428613445260450747745265980426167785848569139863661240503263815125232600341952191044748998031</div>
+                        <div class="outputIfram">0.312840942861344</div>
                     </div>
                 </div> <!-- /coding_file_wrapper -->
             </div>

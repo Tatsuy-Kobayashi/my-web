@@ -67,10 +67,35 @@
         };
     </script>
     <style>
-        .icon .icon-physics {
-            -webkit-mask-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/images/pendulum.svg);
-            mask-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/images/pendulum.svg);
-        }
+.icon {
+    display: block;
+    height: 21px;
+    width: 21px;
+}
+.icon .icon-physics {
+    -webkit-mask-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/images/pendulum.svg);
+    mask-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/images/pendulum.svg);
+}
+.icon {
+    --size: var(1rem, 1rem);
+    background-color: #696969;
+    flex-shrink: 0;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    vertical-align: middle;
+}
+.visually-hidden {
+    border: 0 !important;
+    clip: rect(1px, 1px, 1px, 1px) !important;
+    clip-path: inset(50%) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    white-space: nowrap !important;
+    width: 1px !important;
+}
     </style>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/mathjax-config.js" defer></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" defer></script>
@@ -107,7 +132,7 @@
                     <p class="preview-description">AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう</p>
                 </div> <!-- /link-preview -->
             </span> <!-- /link-preview -->&ensp;&gt;&ensp;
-            <span class="icon icon-physics"></span><i class="fa-solid fa-apple-whole"></i>&ensp;<span>物理学</span>
+            <span target="_blank" rel="me noopener noreferrer"></span><span class="icon icon-physics"></span><span class="visually-hidden"></span>&ensp;物理学</span>
         </div>
         <div class="main">
             <h1>物理学</h1>

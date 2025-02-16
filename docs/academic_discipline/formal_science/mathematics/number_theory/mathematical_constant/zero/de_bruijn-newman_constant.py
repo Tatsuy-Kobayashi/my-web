@@ -13,6 +13,11 @@ def H(λ, z):
     result = 2 * mpmath.quad(lambda u: mpmath.exp(λ * u ** 2) * Phi(u) * mpmath.cos(z * u), [0, 10 ** 4])
     return result
 
+def xi(t):
+    s = 1 / 2 + 1j * t
+    result = (s * (s - 1) / 2) * mpmath.gamma(s / 2) * (mpmath.pi ** (- s / 2)) * mpmath.zeta(s)
+    return result
+
 print(f"Phi(1/3) = {Phi(1/3)}")
 λ = 0.2
 print(f"H(λ, 1/2) = {H(λ, 1/2)}")
@@ -20,7 +25,8 @@ print(f"H(λ, 1/2 + 1j) = {H(λ, 1/2 + 1j)}")
 print(f"H(0, 0) = {H(0, 0)}")
 print(f"xi(0) = {xi(0)}")
 
-z_values = np.linspace(20, 30, 100)
+# 計算が終わらない場合は、グラフの区間を変えるz_values = np.linspace(20, 30, 100)
+z_values = np.linspace(-5, 35, 100)
 H_values = [H(λ, z) for z in z_values]
 # グラフを作成
 plt.plot(z_values, H_values)

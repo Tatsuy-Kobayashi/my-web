@@ -144,12 +144,12 @@
                 &emsp;集合の集合(要素が集合である集合)を，特に<b>集合族</b>という。
             </p>
             <p>
-                &emsp;元が$1$つである集合を，特に<b><ruby>一<rp>（</rp><rt>いち</rt><rp>）</rp></ruby>元集合</b>という。また，元が存在しない集合を<b>空集合</b>といい，記号$\varnothing$（$\emptyset$）または$\{\}$（$(\ |\ )$）で表す。集合はその要素によって完全に定まるため、空集合は1種類だけである（空集合の公理を参照）。空集合には要素がないが、他の集合（集合族）の要素である可能性はある。したがって、前者には要素がなく、後者には1つの要素があるため、 Ø ≠ {Ø} である。数学においては、検討すべき唯一の集合を、空集合だけから構築することができる[11]。
+                &emsp;元が$1$つである集合を，特に<b><ruby>一<rp>（</rp><rt>いち</rt><rp>）</rp></ruby>元集合</b>という。また，元が存在しない集合を<b>空集合</b>といい，記号$\varnothing$（$\emptyset$）または$\{\}$（$(\ |\ )$）で表す。集合はその要素によって完全に定まるため、空集合は1種類だけである（空集合の公理を参照）。空集合には要素がないが、他の集合（集合族）の要素である可能性はある。したがって、前者には要素がなく、後者には1つの要素があるため、 Ø ≠ {Ø} である。
             </p>
             <div class="example-table">
                 <table>
                     <tr>
-                        <th>ex&rpar;</th>
+                        <th style="vertical-align: top;"><p>ex&rpar;</p></th>
                         <td>
                             <p>&emsp;$1$桁の自然数の集合は</p>
                             <div class="mathjax_wrapper">
@@ -173,12 +173,33 @@
                 </table>
             </div>
             <p>
+                &emsp;Pythonには、「集合」というデータ型が用意されている。
+            </p>
+            <div class="coding_file_wrapper">
+                <div class="fileTitle">集合型</div>
+                <div class="code-main">
+                    <pre class="match-braces rainbow-braces line-numbers language-python" data-src="set_theory0.py" data-download-link></pre>
+                </div> <!-- /code-main -->
+                <div class="output-wrapper">
+                    <div class="outputInfo">-></div>
+                    <div class="outputIfram">集合型:   {1, 2, 3, 4, 5, 6, 7, 8, 9}
+内包表記: {1, 2, 3, 4, 5, 6, 7, 8, 9}
+関数:     {1, 2, 3, 4, 5, 6, 7, 8, 9}
+for文のブロックで定義: {1, 2, 3, 4, 5, 6, 7, 8, 9}
+{1, 2}
+集合族: {1, frozenset({1, 2})}</div>
+                </div>
+            </div> <!-- /coding_file_wrapper -->
+            <p>
+                通常、数学の集合には、要素に順番はなく要素に重複もない。Pythonの集合型にも要素の順番はなく要素に重複もない。
+            </p>
+            <p>
                 <b>部分集合</b><br>
                 &emsp;集合 A のすべての元が集合 B にも含まれるとき、A は B の部分集合と呼ばれ、A⊆B（または A⊂B で真部分集合を表す場合もある）と書きます。
             </p>
             <p>
                 <b>集合の大きさ</b><br>
-                &emsp;集合 A のすべての元が集合 B にも含まれるとき、A は B の部分集合と呼ばれ、A⊆B（または A⊂B で真部分集合を表す場合もある）と書きます。
+                &emsp;集合$A$の元の個数を$|A|$と記し、その値が有限であるものを有限集合、有限でないものを無限集合という。無限集合の場合は、集合の濃度を考えないとき$|A|=\infty$と表現することもあります。なお、数学では自然数全体の集合を$\mathbb{N}$，整数全体の集合を$\mathbb{Z}$，有理数全体の集合を$\mathbb{Q}$，実数全体の集合を$\mathbb{R}$，複素数全体の集合を$\mathbb{C}$と書く。ここで，自然数は$0$を含めるものとする。また，素数全体の集合を記号$\mathbb{P}$とする場合がある。
             </p>
             <h2>教育学の一覧</h2>
             <div class="pulldown_list_wrapper">

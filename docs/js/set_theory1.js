@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Venn Diagram の描画
     d3.select("#venn-diagram1").append("div").text("3つの集合のベン図");
-    const chart = venn.VennDiagram().width(500).height(500);
+    const chart = venn.VennDiagram().width(500).height(510);
     d3.select("#venn-diagram1").append("div").datum(threeSetData).call(chart);
 
     // 描画完了後に、各単一集合の円に対して外部ラベルを追加
@@ -69,7 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 ly = cy + r + offset;
             } else {
                 // Set 1, Set 2 は円の上側に配置
-                ly = cy - r - offset;
+                lx = cx + 100;
+                ly = cy - r - offset + 20;
             }
 
             svg1.append("text")

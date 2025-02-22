@@ -29,55 +29,41 @@ document.addEventListener('DOMContentLoaded', function() {
     // 排他的な数を取得し、各データに label プロパティを追加する
     let exclusiveCounts = computeExclusiveCounts(twoSetData);
     twoSetData.forEach(function(item) {
-      if(item.sets.length === 1) {
-        // 単一領域は排他的な数（例: 3 - 1 = 2）を表示
-        item.label = exclusiveCounts[item.sets[0]].toString();
-      } else {
-        // 交差領域はそのままのサイズを表示
-        item.label = item.size.toString();
-      }
+        if(item.sets.length === 1) {
+            // 単一領域は排他的な数（例: 3 - 1 = 2）を表示
+            item.label = exclusiveCounts[item.sets[0]].toString();
+        } else {
+            // 交差領域はそのままのサイズを表示
+            item.label = item.size.toString();
+        }
     });
 
     // Venn Diagram の描画
-    d3.select("#venn-diagram").append("div").text("Two-Set Venn Diagram with Counts and External Labels");
+    d3.select("#venn-diagram0").append("div").text("2つの集合のベン図");
     const chart = venn.VennDiagram().width(400).height(400);
-    d3.select("#venn-diagram").append("div").datum(twoSetData).call(chart);
+    d3.select("#venn-diagram0").append("div").datum(twoSetData).call(chart);
 
     // 描画完了後に、各単一集合の円の外側にセット名を追加
     // ※図の描画が完了するまで少し待つため、setTimeout を使用
     setTimeout(function() {
-        var svg = d3.select("#venn-diagram").select("svg");
+        var svg0 = d3.select("#venn-diagram0").select("svg");
 
         // 単一集合（円）のみ対象とする
-        svg.selectAll(".venn-area.venn-circle").each(function(d) {
+        svg0.selectAll(".venn-area.venn-circle").each(function(d) {
             // <path> 要素の getBBox() を使って位置とサイズを取得
             var bbox = d3.select(this).select("path").node().getBBox();
             var cx = bbox.x + bbox.width / 2;
             var cy = bbox.y + bbox.height / 2;
-            var r = bbox.width / 2;  // 円なので幅＝高さ
+            var r = bbox.width / 2;  // 円の場合は幅＝高さ
 
             var offset = 10; // 円とラベルの間の隙間
 
-            var lx, anchor;
-            if(d.sets[0] === "Set 1") {
-                // Set 1 の円は左側にあると想定：円の左外側に配置
-                lx = cx - r - offset;
-                anchor = "end";
-            } else if(d.sets[0] === "Set 2") {
-                // Set 2 の円は右側にあると想定：円の右外側に配置
-                lx = cx + r + offset;
-                anchor = "start";
-            } else {
-                lx = cx;
-                anchor = "middle";
-            }
-
-            // 外部ラベルを SVG に追加
-            svg.append("text")
-                .attr("x", lx)
-                .attr("y", cy)
-                .attr("text-anchor", anchor)
-                .attr("alignment-baseline", "middle")
+            // 円の下側に配置：x 座標は中央、y 座標は中心 + 半径 + オフセット
+            svg0.append("text")
+                .attr("x", cx)
+                .attr("y", cy + r + offset)
+                .attr("text-anchor", "middle")
+                .attr("alignment-baseline", "hanging")
                 .style("font-size", "16px")
                 .style("font-weight", "bold")
                 .text(d.sets[0]);

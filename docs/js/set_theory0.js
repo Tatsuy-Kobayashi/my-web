@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Venn Diagram の描画
     d3.select("#venn-diagram0").append("div").text("2つの集合のベン図");
-    const chart = venn.VennDiagram().width(400).height(400);
+    const chart = venn.VennDiagram().width(400).height(350);
     d3.select("#venn-diagram0").append("div").datum(twoSetData).call(chart);
 
     // 描画完了後に、各単一集合の円の外側にセット名を追加

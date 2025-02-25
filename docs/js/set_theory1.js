@@ -35,10 +35,18 @@ document.addEventListener('DOMContentLoaded', function() {
     let exclusiveCounts = computeExclusiveCountsMulti(threeSetData);
     threeSetData.forEach(function(item) {
         if(item.sets.length === 1) {
-            // 単一領域は排他的な数（例: Set 1 → 1）を表示
+            // 単一領域は排他的な数を表示（例: Set 1: 3 - (1+2) + 1 = 1）
             item.label = exclusiveCounts[item.sets[0]].toString();
+        } else if(item.sets.length === 2) {
+            // 2集合の交差領域は、与えられたサイズからその交差領域の上位（3集合）のサイズを引く
+            let superset = threeSetData.find(x => x.sets.length === 3 && item.sets.every(s => x.sets.includes(s)));
+            let exclusive = item.size;
+            if(superset) {
+                exclusive -= superset.size;
+            }
+            item.label = exclusive.toString();
         } else {
-            // 交差領域はそのままのサイズを表示
+            // 3集合の交差領域はそのまま表示
             item.label = item.size.toString();
         }
     });

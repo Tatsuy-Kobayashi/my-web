@@ -3,7 +3,7 @@
 <head prefix="og: http://ogp.me/ns#">
     <meta charset="UTF-8">
     <meta name="format-detection" content="telephone=no">
-    <title>教育学 - ラクして数理研究所</title>
+    <title>集合論 - ラクして数理研究所</title>
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="icon" />
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="icon" />
@@ -11,18 +11,18 @@
     <!-- SEO -->
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。">
-    <meta name="keywords" content="学問,数学,情報理論,教育学,プログラミング,ラクして数理研究所">
+    <meta name="keywords" content="学問,数学,情報理論,集合論,プログラミング,ラクして数理研究所">
     <link rel="canonical" href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" />
     <!-- og -->
     <meta property="og:type" content="website" /> <!-- articleとか -->
-    <meta property="og:title" content="教育学｜ラクして数理研究所" />
+    <meta property="og:title" content="集合論｜ラクして数理研究所" />
     <meta property="og:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" />
     <meta property="og:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" />
     <meta property="og:site_name" content="ラクして数理研究所" />
     <link rel="dns-prefetch" href="//tatsuy-kobayashi.github.io/" /> <!-- HTTPSページのDNSプリフェッチはできない -->
     <!-- twitter card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="教育学｜ラクして数理研究所">
+    <meta name="twitter:title" content="集合論｜ラクして数理研究所">
     <meta name="twitter:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。">
     <meta name="twitter:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html">
     <meta name="twitter:image" content="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png">
@@ -140,9 +140,9 @@
 
             <h2>概要</h2>
             <p>
-                &emsp;さまざまな集合論に対して共通の概念を定義する。もちろんこれらはそれぞれの集合論の公理から演繹的に導かれるものであるが、「集合論の基礎」として重要な部分をまとめておくのも良いだろう。
+                &emsp;さまざまな集合論に対して共通の概念を定義する。もちろんこれらはそれぞれの集合論の公理から演繹的に導かれるものであるが、「集合論の基礎」として重要な部分をまとめておくのも良いだろう。ここで述べることの多くは、離散的で有限な数学的対象に関するものである。
             </p>
-            <h2></h2>
+            <h2>集合の基本概念と用語</h2>
             <p>
                 <b>集合</b><br>
                 &emsp;集合は「ある条件に基づいて選ばれた対象のまとまり」を意味する。たとえば、「自然数全体の集合」や「赤い果物の集合」などがその典型としてあげられる。また、集合を構成する個々の対象を<b>元（要素）</b>と呼ぶ。
@@ -178,7 +178,7 @@
                     <tr>
                         <th style="vertical-align: top;"><p>ex2&rpar;</p></th>
                         <td>
-                            <p>&emsp;$1$桁の自然数の集合は</p>
+                            <p>&emsp;$1$桁の自然数の集合は、外延的表記によって、</p>
                             <div class="mathjax_wrapper">
                                 <div class="mathjax_flex">
                                     \[
@@ -194,7 +194,7 @@
                                     \]
                                 </div>
                             </div>
-                            <p>のように条件を示す方法でも行われる。</p>
+                            <p>のように条件を示す方法（内包的表記）でも行われる。</p>
                         </td>
                     </tr>
                     <tr>
@@ -252,8 +252,11 @@ for文のブロックで定義: {1, 2, 3, 4, 5, 6, 7, 8, 9}
                 &emsp;任意の集合$A$に対し、$A$の部分集合全体の集合を$A$の冪集合といい、$\mathcal{P}(A)$、$\mathfrak{P}(A)$、$P(A)$、${2}^{A}$などと書く。冪集合は集合族の一つである。冪集合の要素数は$2^{|A|}$となる。
             </p>
             <p>
-                <b>集合の大きさ</b><br>
-                &emsp;集合$A$の元の個数を$|A|$と記し、その値が有限であるものを有限集合、有限でないものを無限集合という。無限集合の場合は、集合の濃度を考えないとき$|A|=\infty$と表現することもある。なお、数学では自然数全体の集合を$\mathbb{N}$、整数全体の集合を$\mathbb{Z}$、有理数全体の集合を$\mathbb{Q}$、実数全体の集合を$\mathbb{R}$、複素数全体の集合を$\mathbb{C}$と書く。ただし、自然数の定義は文脈によって異なるので注意すること。また、素数全体の集合を記号$\mathbb{P}$とする場合がある。
+                <b>集合の大きさ（濃度、基数）</b><br>
+                &emsp;集合$A$の元の個数を$|A|$と記し、その値が有限であるものを有限集合、有限でないものを無限集合という。無限集合の場合は、集合の濃度を考えないとき$|A|=\infty$と表現することもある。また、基数は$\#A$や$\operatorname{Card}(A)$と表現することもある。
+            </p>
+            <p>
+                &emsp;なお、数学では自然数全体の集合を$\mathbb{N}$、整数全体の集合を$\mathbb{Z}$、有理数全体の集合を$\mathbb{Q}$、実数全体の集合を$\mathbb{R}$、複素数全体の集合を$\mathbb{C}$と書く。ただし、自然数の定義は文脈によって異なるので注意すること。また、素数全体の集合を記号$\mathbb{P}$とする場合がある。
             </p>
             <div class="example-table">
                 <table>
@@ -273,6 +276,15 @@ for文のブロックで定義: {1, 2, 3, 4, 5, 6, 7, 8, 9}
                         <th style="vertical-align: top;"><p>ex7&rpar;</p></th>
                         <td>
                             <p>&emsp;集合$A = \{ 1, 2, 5 \}$の要素数は$|A|=3$である。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="vertical-align: top;"><p>ex7&rpar;</p></th>
+                        <td>
+                            <p>
+                                &emsp;無限集合の大きさは濃度（可算濃度、連続体濃度）で表す。<br>
+                                $\# \mathbb{N} = \aleph_{0} = \beth_{0}$、$\# \mathbb{R} =\aleph = \mathfrak{c}$
+                            </p>
                         </td>
                     </tr>
                     <tr>
@@ -314,7 +326,7 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                 &emsp;2つの集合$A, B$の和集合を
             </p>
             \[
-                A \cup B = \{ x \mid x \in A \text{ or } x \in B \}
+                A \cup B = \{ x \mid x \in A \lor x \in B \}
             \]
             <p>と定義する。</p>
             <div class="tikzjax_wrapper">
@@ -343,11 +355,11 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                 </div>
             </div>
             <p>
-                <li><b>積集合（Intersection、共通部分）</b></li>
+                <li><b>積集合（Intersection、共通部分、交叉）</b></li>
                 &emsp;2つの集合$A, B$の共通部分を
             </p>
             \[
-                A \cap B = \{ x \mid x \in A \text{ and } x \in B \}
+                A \cap B = \{ x \mid x \in A \land x \in B \}
             \]
             <p>と定義する。</p>
             <div class="tikzjax_wrapper">
@@ -387,6 +399,84 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                     \end{equation*}
                 </div>
             </div>
+            <p>
+                <li><b>差集合（Difference、相対補集合）</b></li>
+                &emsp;2つの集合$A, B$の差集合を
+            </p>
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        A - B = A \setminus B = \{ x \mid x \in A \text{ and not } x \in B \} = \{ x \in A \mid \neg \, x \in B \}
+                    \]
+                </div>
+            </div>
+            <p>と定義する。</p>
+            <div class="tikzjax_wrapper">
+                <div class="tikzjax_flex" style="padding: 5px 5px;">
+                    <script type="text/tikz">
+                        \begin{tikzpicture}[scale=2]
+                            \fill[red!20] (0,0) circle[radius=1cm];
+                            \begin{scope}
+                                \draw (0,0) circle[radius=1cm];
+                                \draw[clip] (1,0) circle[radius=1cm];
+                                \fill[white!20] (0,0) circle[radius=1cm];
+                            \end{scope}
+                        \end{tikzpicture}
+                    </script>
+                </div>
+            </div>
+            <p>
+                <li><b>（絶対）補集合（complement）</b></li>
+                &emsp;特定の状況では、考えているすべての集合を、特定の普遍集合（Universal set）の部分集合と見なすことができる。真の普遍集合は標準集合論には含まれていないが、一部の非標準集合論には含まれている。
+            </p>
+            <p>
+                &emsp;普遍集合$U$と$U$の部分集合$X$が与えられたとき、$X$の補集合（$U$の部分集合）を
+            </p>
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        X^{C} =U \setminus X = \{ x \mid x \in U \text{ and not } x \in X \} = \{ x \in U \mid \neg \, x \in X \}
+                    \]
+                </div>
+            </div>
+            <p>と定義する。言い換えると、$X^{C}$（"A-complement"）は、$A$ の要素ではない $U$ のすべての要素の集合である。</p>
+            <p>
+                <li><b>対称差（Symmetric difference）</b></li>
+                &emsp;2つの集合$A, B$の対称差を
+            </p>
+            \[
+                A \ominus B = A \bigtriangleup B = \{ x \mid x \in A \veebar x \in B \}
+            \]
+            <p>と定義する。</p>
+            <div class="tikzjax_wrapper">
+                <div class="tikzjax_flex" style="padding: 5px 5px;">
+                    <script type="text/tikz">
+                        \begin{tikzpicture}[scale=2]
+                            \fill[red!20] (0,0) circle[radius=1cm];
+                            \fill[red!20] (1,0) circle[radius=1cm];
+                            \begin{scope}
+                                \draw[clip] (0,0) circle[radius=1cm];
+                                \draw[clip] (1,0) circle[radius=1cm];
+                                \fill[white!20] (0,0) circle[radius=1cm];
+                            \end{scope}
+                            \draw (0,0) circle[radius=1cm];
+                        \end{tikzpicture}
+                    </script>
+                </div>
+            </div>
+            <p>
+                &emsp;対称差には<b>交換法則</b>と<b>結合法則</b>が成り立つ。
+            </p>
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \begin{equation*}
+                        \begin{aligned}
+                            A \bigtriangleup B &= B \bigtriangleup A \\
+                            A \bigtriangleup (B \bigtriangleup C) &= (A \bigtriangleup B) \bigtriangleup C
+                        \end{aligned}
+                    \end{equation*}
+                </div>
+            </div>
             <div class="coding_file_wrapper">
                 <div class="fileTitle">集合の代数学</div>
                 <div class="code-main">
@@ -401,8 +491,22 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
 全体集合 {1, 2, 3, 4, 5, 6} に対する set1 {1, 2, 3} の補集合: {4, 5, 6}</div>
                 </div>
             </div> <!-- /coding_file_wrapper -->
+            <p>
+                <b>ベン図</b><br>
+                &emsp;集合論において、必須の概念というわけではないが、2、3の集合の関係（特に交叉）を分かりやすくする道具を紹介しておく（複数とは言わないのは、4つを超える集合の場合には、必ずしも見やすくなるわけではないからである）。
+            </p>
+            <div class="coding_file_wrapper">
+                <div class="fileTitle">ベン図</div>
+                <div class="code-main">
+                    <pre class="match-braces rainbow-braces line-numbers language-python" data-src="set_theory3.py" data-download-link></pre>
+                </div> <!-- /code-main -->
+                <div class="output-wrapper">
+                    <div class="outputInfo">-></div>
+                    <div class="outputIfram"></div>
+                </div>
+            </div> <!-- /coding_file_wrapper -->
             <div class="tikzjax_wrapper">
-                <div class="tikzjax_flex" style="padding: 5px 5px;">
+                <div class="tikzjax_flex" style="padding: 20px 0 5px 5px;">
                     <div id="venn-diagram0"></div>
                 </div>
             </div>
@@ -411,14 +515,14 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                     <div id="venn-diagram1"></div>
                 </div>
             </div>
-            <h2>教育学の一覧</h2>
+            <h2>集合論の一覧</h2>
             <div class="pulldown_list_wrapper">
-                <li><details> <!-- 学校教育 -->
+                <li><details> <!-- 素朴集合論 -->
                     <summary><div class="link-container">
-                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/physics.html" class="preview-link" data-title="学校教育" data-description="このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。" data-image="">学校教育</a>
+                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/physics.html" class="preview-link" data-title="素朴集合論" data-description="このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。" data-image="">素朴集合論</a>
                         <div class="link-preview">
                             <img class="preview-image">
-                            <h3 class="preview-title">学校教育</h3>
+                            <h3 class="preview-title">素朴集合論</h3>
                             <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
                         </div> <!-- link-preview -->
                     </div></summary>
@@ -453,17 +557,111 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                                         <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/school_education/elementary/elementary_math/previous_pra/enumerative_pra.html">数え上げの練習</a></li>
                                 </details></li><!-- /さんすう -->
                         </details></li> <!-- /幼児 -->
-                </details></li> <!-- /学校教育 -->
-                <li><details> <!-- 地理学 -->
-                    <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/socialScience/socialScience.html">地理学</a></summary>
-                        <li><a href="#">理論化学</a></li>
-                        <li><a href="#">無機化学</a></li>
-                        <li><a href="#">有機化学</a></li>
-                        <li><a href="#">応用化学</a></li>
-                </details></li> <!-- /地理学 -->
+                </details></li> <!-- /素朴集合論 -->
+                <li><details> <!-- 公理的集合論 -->
+                    <summary><div class="link-container">
+                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/physics.html" class="preview-link" data-title="公理的集合論" data-description="このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。" data-image="">公理的集合論</a>
+                        <div class="link-preview">
+                            <img class="preview-image">
+                            <h3 class="preview-title">公理的集合論</h3>
+                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                        </div> <!-- link-preview -->
+                    </div></summary>
+                        <li><details> <!-- ツェルメロ＝フレンケル集合論 -->
+                            <summary><div class="link-container">
+                                <a href="#">ツェルメロ＝フレンケル集合論</a>
+                                <div class="link-preview">
+                                    <img class="preview-image">
+                                    <h3 class="preview-title">ツェルメロ＝フレンケル集合論</h3>
+                                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                </div> <!-- link-preview -->
+                            </div></summary>
+                                <li><details> <!-- こくご -->
+                                    <summary><div class="link-container">
+                                        <a href="#">こくご</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">こくご</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                </details></li><!-- /こくご -->
+                                <li><details> <!-- さんすう -->
+                                    <summary><div class="link-container">
+                                        <a href="#">さんすう</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">さんすう</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                        <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/school_education/elementary/elementary_math/previous_pra/enumerative_pra.html">数え上げの練習</a></li>
+                                </details></li><!-- /さんすう -->
+                        </details></li> <!-- /ツェルメロ＝フレンケル集合論 -->
+                        <li><details> <!-- フォン・ノイマン＝ベルナイス＝ゲーデル集合論 -->
+                            <summary><div class="link-container">
+                                <a href="#">フォン・ノイマン＝ベルナイス＝ゲーデル集合論</a>
+                                <div class="link-preview">
+                                    <img class="preview-image">
+                                    <h3 class="preview-title">フォン・ノイマン＝ベルナイス＝ゲーデル集合論</h3>
+                                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                </div> <!-- link-preview -->
+                            </div></summary>
+                                <li><details> <!-- こくご -->
+                                    <summary><div class="link-container">
+                                        <a href="#">こくご</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">こくご</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                </details></li><!-- /こくご -->
+                                <li><details> <!-- さんすう -->
+                                    <summary><div class="link-container">
+                                        <a href="#">さんすう</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">さんすう</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                        <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/school_education/elementary/elementary_math/previous_pra/enumerative_pra.html">数え上げの練習</a></li>
+                                </details></li><!-- /さんすう -->
+                        </details></li> <!-- /フォン・ノイマン＝ベルナイス＝ゲーデル集合論 -->
+                        <li><details> <!-- モース-ケリー集合論 -->
+                            <summary><div class="link-container">
+                                <a href="#">モース-ケリー集合論</a>
+                                <div class="link-preview">
+                                    <img class="preview-image">
+                                    <h3 class="preview-title">モース-ケリー集合論</h3>
+                                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                </div> <!-- link-preview -->
+                            </div></summary>
+                                <li><details> <!-- こくご -->
+                                    <summary><div class="link-container">
+                                        <a href="#">こくご</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">こくご</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                </details></li><!-- /こくご -->
+                                <li><details> <!-- さんすう -->
+                                    <summary><div class="link-container">
+                                        <a href="#">さんすう</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">さんすう</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                        <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/school_education/elementary/elementary_math/previous_pra/enumerative_pra.html">数え上げの練習</a></li>
+                                </details></li><!-- /さんすう -->
+                        </details></li> <!-- /モース-ケリー集合論 -->
+                </details></li> <!-- /公理的集合論 -->
             </div>
-
-
 
 
 

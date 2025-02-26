@@ -33,3 +33,12 @@ universal_set = {1, 2, 3, 4, 5, 6}
 complement_set = universal_set - set1
 # 出力: 全体集合 {1, 2, 3, 4, 5, 6} に対する set1 {1, 2, 3} の補集合: {4, 5, 6}
 print(f"全体集合 {universal_set} に対する set1 {set1} の補集合: {complement_set}")
+
+import itertools
+
+set3 = {1, 2}
+set4 = {'a', 'b'}
+
+cartesian_product = set(itertools.product(set3, set4))
+# 出力: set3 と set4 の直積集合: {(1, 'a'), (1, 'b'), (2, 'a'), (2, 'b')}
+print(f"{set3} と {set4} の直積集合: {cartesian_product}")

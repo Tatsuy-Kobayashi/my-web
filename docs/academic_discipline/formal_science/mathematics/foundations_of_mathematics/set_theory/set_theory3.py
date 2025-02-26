@@ -1,3 +1,6 @@
+from matplotlib_venn import venn2, venn3
+import matplotlib.pyplot as plt
+
 # 2つの集合のベン図
 set1 = {1, 2, 3}
 set2 = {3, 4, 5}

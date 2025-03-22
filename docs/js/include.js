@@ -24,6 +24,12 @@ $(document).ready(function() {
         loadDrawer.resolve();
     });
 
+    $("#popular-section").load("https://tatsuy-kobayashi.github.io/my-web/docs/popular.html", function(response, status, xhr) {
+        if (status === "error") {
+            console.error("人気記事の読み込みに失敗:", xhr.statusText);
+        }
+    });
+
     // イベントデリゲーションを使用して、動的に読み込まれた要素にクリックイベントをバインド
     // ドキュメント全体で open_nav ボタンに対するクリックイベント（常に有効）
     $(document).on('click', '#open_nav', function() {

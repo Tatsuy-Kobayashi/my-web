@@ -71,14 +71,14 @@
         };
     </script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/mathjax-config.js" defer></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" defer></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" defer></script><!--
     <link rel="stylesheet" href="https://tikzjax.com/v1/fonts.css" media="print" onload="this.media='all'" />
-    <script type="text/javascript" src="https://tikzjax.com/v1/tikzjax.js" defer></script>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script type="text/javascript" src="https://tikzjax.com/v1/tikzjax.js" defer></script>-->
+    <script src="https://d3js.org/d3.v4.min.js" defer></script>
     <!-- https://github.com/benfred/venn.js -->
-    <script src="https://tatsuy-kobayashi.github.io/my-web/docs/js/venn/venn.js"></script>
-    <script src="https://tatsuy-kobayashi.github.io/my-web/docs/js/set_theory0.js"></script>
-    <script src="https://tatsuy-kobayashi.github.io/my-web/docs/js/set_theory1.js"></script>
+    <script src="https://tatsuy-kobayashi.github.io/my-web/docs/js/venn/venn.js" defer></script>
+    <script src="https://tatsuy-kobayashi.github.io/my-web/docs/js/set_theory0.js" defer></script>
+    <script src="https://tatsuy-kobayashi.github.io/my-web/docs/js/set_theory1.js" defer></script>
     <style>
         .venn-area path {
             fill-opacity: 0.4;
@@ -135,19 +135,35 @@
         </div>
         <div class="main">
             <h1>集合論</h1>
-            <h2>目次</h2>
+            <h2>目次[<span class="toc-toggle-button">表示</span>]</h2>
+            <div class="toc-content">
+                <ul>
+                    <li><a href="#section_1">概要</a></li>
+                    <li><a href="#section_2">集合の基本概念と用語</a></li>
+                    <ul style="padding: 0 20px;">
+                        <li><a href="#section_2_1">集合</a></li>
+                        <li><a href="#section_2_2">帰属関係</a></li>
+                        <li><a href="#section_2_3">部分集合</a></li>
+                        <li><a href="#section_2_4">冪集合</a></li>
+                        <li><a href="#section_2_5">集合の大きさ</a></li>
+                        <li><a href="#section_2_6">集合の代数学</a></li>
+                        <li><a href="#section_2_7">ベン図</a></li>
+                    </ul>
+                    <li><a href="#section_3">集合論の一覧</a></li>
+                </ul>
+            </div>
 
-            <h2>概要</h2>
+            <h2 id="section_1">概要</h2>
             <p>
                 &emsp;さまざまな集合論に対して共通の概念を定義する。もちろんこれらはそれぞれの集合論の公理から演繹的に導かれるものであるが、「集合論の基礎」として重要な部分をまとめておくのも良いだろう。ここで述べることの多くは、離散的で有限な数学的対象に関するものである。
             </p>
-            <h2>集合の基本概念と用語</h2>
+            <h2 id="section_2">集合の基本概念と用語</h2>
             <p>
-                <b>集合</b><br>
+                <b id="section_2_1">集合</b><br>
                 &emsp;集合は「ある条件に基づいて選ばれた対象のまとまり」を意味する。たとえば、「自然数全体の集合」や「赤い果物の集合」などがその典型としてあげられる。また、集合を構成する個々の対象を<b>元（要素）</b>と呼ぶ。
             </p>
             <p>
-                <b>帰属関係</b><br>
+                <b id="section_2_2">帰属関係</b><br>
                 &emsp;$x$ が集合 $A$ の要素である場合、 x は A に属している、または x は A に含まれると表現する（ただし、包含関係という場合は部分集合を表す）。これは
             </p>
             <div class="mathjax_wrapper">
@@ -240,18 +256,18 @@ for文のブロックで定義: {1, 2, 3, 4, 5, 6, 7, 8, 9}
                 通常、数学の集合には、要素に順番はなく要素に重複もない。Pythonの集合型にも要素の順番はなく要素に重複もない。ソースコード例にもあるように集合族も定義できないことはないが、単にまとまりを元としたいだけなら、タプルを元とした方が良い（例：冪<rp>（</rp><rt>べき</rt><rp>）</ruby>集合、直積集合）。
             </p>
             <p>
-                <b>部分集合</b><br>
+                <b id="section_2_3">部分集合</b><br>
                 &emsp;任意の集合$A$の元が集合$B$の元であるとき、$A$は$B$に含まれる、$B$は$A$を含むといい、$A\subseteq B$、$B\supseteq A$と書く。また、$A$を$B$の部分集合という。$A\subseteq B$かつ$B\subseteq A$であるとき、$A$と$B$は等しいといい、$A=B$と書く。また、$A=B$が成り立たないとき、$A\neq B$と書く。$B$と等しくない$B$の部分集合を真部分集合といい、$A\subset B$と書く（文章によっては、$A$と$B$が等しい場合も含む部分集合を$A\subset B$と書き、真部分集合を$A\subsetneq B$と書くこともある。しかしその場合、否定を含意しない記号$\subseteq$は活用しないのか？という当然の疑問がうまれる）。
             </p>
             <p>
                 &emsp;全ての集合は空集合を部分集合として含む：任意の集合 $A$ に対し、$\varnothing \subseteq A$である。何故なら、任意の集合 $A$ に対し、命題「${}^{\forall} x : x \in \varnothing \Rightarrow x \in A$」は常に真だからである（<a href="https://ja.wikipedia.org/wiki/%E7%A9%BA%E8%99%9A%E3%81%AA%E7%9C%9F">空虚な真</a>参照。なぜ前件が真にならないのかと言うと、空集合には要素がないからである）。特に$A = \varnothing$とすれば、$\varnothing \subseteq \varnothing$が成り立つことも分かる。また、空集合の部分集合は空集合自身のみである。
             </p>
             <p>
-                <b><ruby>冪<rp>（</rp><rt>べき</rt><rp>）</ruby>集合</b><br>
+                <b id="section_2_4"><ruby>冪<rp>（</rp><rt>べき</rt><rp>）</ruby>集合</b><br>
                 &emsp;任意の集合$A$に対し、$A$の部分集合全体の集合を$A$の冪集合といい、$\mathcal{P}(A)$、$\mathfrak{P}(A)$、$P(A)$、${2}^{A}$などと書く。冪集合は集合族の一つである。冪集合の要素数は$2^{|A|}$となる。
             </p>
             <p>
-                <b>集合の大きさ（濃度、基数）</b><br>
+                <b id="section_2_5">集合の大きさ（濃度、基数）</b><br>
                 &emsp;集合$A$の元の個数を$|A|$と記し、その値が有限であるものを有限集合、有限でないものを無限集合という。無限集合の場合は、集合の濃度を考えないとき$|A|=\infty$と表現することもある。また、基数は$\#A$や$\operatorname{Card}(A)$と表現することもある。
             </p>
             <p>
@@ -268,7 +284,15 @@ for文のブロックで定義: {1, 2, 3, 4, 5, 6, 7, 8, 9}
                     <tr>
                         <th style="vertical-align: top;"><p>ex6&rpar;</p></th>
                         <td>
-                            <p>&emsp;集合$A = \{ 1, 2, 5 \}$の冪集合は$\mathcal{P}(A) = \{ \varnothing, \{ 1 \}, \{ 2 \}, \{ 5 \}, \{ 1, 2 \}, \{ 1, 5 \}, \{ 2, 5 \}, \{ 1, 2, 5 \}  \}$である。</p>
+                            <p>&emsp;集合$A = \{ 1, 2, 5 \}$の冪集合は
+                                <div class="mathjax_wrapper">
+                                    <div class="mathjax_flex">
+                                        \[
+                                            \mathcal{P}(A) = \{ \varnothing, \{ 1 \}, \{ 2 \}, \{ 5 \}, \{ 1, 2 \}, \{ 1, 5 \}, \{ 2, 5 \}, \{ 1, 2, 5 \}  \}
+                                        \]
+                                    </div>
+                                </div>
+                                である。</p>
                         </td>
                     </tr>
                     <tr>
@@ -282,7 +306,13 @@ for文のブロックで定義: {1, 2, 3, 4, 5, 6, 7, 8, 9}
                         <td>
                             <p>
                                 &emsp;無限集合の大きさは濃度（可算濃度、連続体濃度）で表す。<br>
-                                $\# \mathbb{N} = \aleph_{0} = \beth_{0}$、$\# \mathbb{R} =\aleph = \mathfrak{c}$
+                                <div class="mathjax_wrapper">
+                                    <div class="mathjax_flex">
+                                        \[
+                                            \# \mathbb{N} = \aleph_{0} = \beth_{0}$、$\# \mathbb{R} =\aleph = \mathfrak{c}
+                                        \]
+                                    </div>
+                                </div>
                             </p>
                         </td>
                     </tr>
@@ -294,9 +324,13 @@ for文のブロックで定義: {1, 2, 3, 4, 5, 6, 7, 8, 9}
                                 <b>証明</b><br>
                                 &emsp;$|A| = n$と置く。冪集合の定義より、冪集合の各元は、要素数$0$の集合、要素数$1$の集合、要素数$2$の集合、、、要素数$n$の集合の各組合せであり、それらの集合の構成パターンは、それぞれ${}_n \mathrm{C}_{0}$、${}_n \mathrm{C}_{1}$、${}_n \mathrm{C}_{2}$、、、${}_n \mathrm{C}_{n}$となる。ここで二項定理より、
                             </p>
-                            \[
-                                \sum_{i=0}^{n} {}_n \mathrm{C}_{i} = 2^{n} = 2^{|A|}.
-                            \]
+                            <div class="mathjax_wrapper">
+                                <div class="mathjax_flex">
+                                    \[
+                                        \sum_{i=0}^{n} {}_n \mathrm{C}_{i} = 2^{n} = 2^{|A|}.
+                                    \]
+                                </div>
+                            </div>
                             <p>よって示された。</p>
                         </td>
                     </tr>
@@ -317,19 +351,45 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                 </div>
             </div> <!-- /coding_file_wrapper -->
             <p>
-                <b>集合の代数学</b><br>
+                <b id="section_2_6">集合の代数学</b><br>
                 &emsp;数の基礎──群論などでは、各数体の演算について学ぶが、集合にも演算がある。以下の演算によって、集合の直感的かつ基本的な操作が可能になる。
             </p>
             <p>
                 <li><b>和集合（Union）</b></li>
                 &emsp;2つの集合$A, B$の和集合を
             </p>
-            \[
-                A \cup B = \{ x \mid x \in A \lor x \in B \}
-            \]
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        A \cup B = \{ x \mid x \in A \lor x \in B \}
+                    \]
+                </div>
+            </div>
             <p>と定義する。</p>
             <div class="tikzjax_wrapper">
                 <div class="tikzjax_flex" style="padding: 5px 5px;">
+                    <div style="display: flex; width: 171.116pt; height: 114.211pt;">
+                        <div style="position: relative; width: 100%; height: 0pt;" class="page">
+                            <svg width="171.11646pt" height="114.21097pt" viewBox="-72 -72 171.11646 114.21097" style="position: absolute; top: 0pt; left: 0pt; overflow: visible;">
+                                <g transform="translate(-15.164520263671871,-15.164520263671871)">
+                                <g stroke-miterlimit="10" transform="scale(1,-1)">
+                                <g stroke="#000" fill="#000">
+                                <g stroke-width="0.4">
+                                <g stroke="#fcc" fill="#fcc">
+                                <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " stroke="none"></path>
+                                </g>
+                                <g stroke="#fcc" fill="#fcc">
+                                <path d=" M 56.90549 0.0 M 113.81097 0.0 C 113.81097 31.42844 88.33392 56.90549 56.90549 56.90549 C 25.47705 56.90549 0.0 31.42844 0.0 0.0 C 0.0 -31.42844 25.47705 -56.90549 56.90549 -56.90549 C 88.33392 -56.90549 113.81097 -31.42844 113.81097 0.0 Z M 56.90549 0.0  " stroke="none"></path>
+                                </g>
+                                <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " fill="none"></path>
+                                <path d=" M 56.90549 0.0 M 113.81097 0.0 C 113.81097 31.42844 88.33392 56.90549 56.90549 56.90549 C 25.47705 56.90549 0.0 31.42844 0.0 0.0 C 0.0 -31.42844 25.47705 -56.90549 56.90549 -56.90549 C 88.33392 -56.90549 113.81097 -31.42844 113.81097 0.0 Z M 56.90549 0.0  " fill="none"></path>
+                                </g>
+                                </g>
+                                </g>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
                     <script type="text/tikz">
                         \begin{tikzpicture}[scale=2]
                             \fill[red!20] (0,0) circle[radius=1cm];
@@ -357,12 +417,38 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                 <li><b>積集合（Intersection、共通部分、交叉）</b></li>
                 &emsp;2つの集合$A, B$の共通部分を
             </p>
-            \[
-                A \cap B = \{ x \mid x \in A \land x \in B \}
-            \]
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        A \cap B = \{ x \mid x \in A \land x \in B \}
+                    \]
+                </div>
+            </div>
             <p>と定義する。</p>
             <div class="tikzjax_wrapper">
                 <div class="tikzjax_flex" style="padding: 5px 5px;">
+                    <div style="display: flex; width: 171.116pt; height: 114.211pt;">
+                        <div style="position: relative; width: 100%; height: 0pt;" class="page">
+                            <svg width="171.11646pt" height="114.21097pt" viewBox="-72 -72 171.11646 114.21097" style="position: absolute; top: 0pt; left: 0pt; overflow: visible;">
+                                <g transform="translate(-15.164520263671871,-15.164520263671871)">
+                                    <g stroke-miterlimit="10" transform="scale(1,-1)">
+                                        <g stroke="#000" fill="#000">
+                                            <g stroke-width="0.4">
+                                                <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " fill="none"></path>
+                                                <clipPath id="pgfcp9clip"><path id="pgfcp9" d=" M 56.90549 0.0 M 113.81097 0.0 C 113.81097 31.42844 88.33392 56.90549 56.90549 56.90549 C 25.47705 56.90549 0.0 31.42844 0.0 0.0 C 0.0 -31.42844 25.47705 -56.90549 56.90549 -56.90549 C 88.33392 -56.90549 113.81097 -31.42844 113.81097 0.0 Z M 56.90549 0.0  "></path></clipPath>
+                                                <use xlink:href="#pgfcp9" fill="none"></use>
+                                                <g clip-path="url(#pgfcp9clip)">
+                                                    <g stroke="#fcc" fill="#fcc">
+                                                        <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " stroke="none"></path>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
                     <script type="text/tikz">
                         \begin{tikzpicture}[scale=2]
                             \draw (0,0) circle[radius=1cm];
@@ -412,6 +498,31 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
             <p>と定義する。</p>
             <div class="tikzjax_wrapper">
                 <div class="tikzjax_flex" style="padding: 5px 5px;">
+                    <div style="display: flex; width: 171.116pt; height: 114.211pt;">
+                        <div style="position: relative; width: 100%; height: 0pt;" class="page">
+                            <svg width="171.11646pt" height="114.21097pt" viewBox="-72 -72 171.11646 114.21097" style="position: absolute; top: 0pt; left: 0pt; overflow: visible;">
+                                <g transform="translate(-15.164520263671871,-15.164520263671871)">
+                                    <g stroke-miterlimit="10" transform="scale(1,-1)">
+                                        <g stroke="#000" fill="#000">
+                                            <g stroke-width="0.4">
+                                                <g stroke="#fcc" fill="#fcc">
+                                                    <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " stroke="none"></path>
+                                                </g>
+                                                <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " fill="none"></path>
+                                                <clipPath id="pgfcp9clip"><path id="pgfcp9" d=" M 56.90549 0.0 M 113.81097 0.0 C 113.81097 31.42844 88.33392 56.90549 56.90549 56.90549 C 25.47705 56.90549 0.0 31.42844 0.0 0.0 C 0.0 -31.42844 25.47705 -56.90549 56.90549 -56.90549 C 88.33392 -56.90549 113.81097 -31.42844 113.81097 0.0 Z M 56.90549 0.0  "></path></clipPath>
+                                                <use xlink:href="#pgfcp9" fill="none"></use>
+                                                <g clip-path="url(#pgfcp9clip)">
+                                                    <g stroke="#fff" fill="#fff">
+                                                        <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " stroke="none"></path>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
                     <script type="text/tikz">
                         \begin{tikzpicture}[scale=2]
                             \fill[red!20] (0,0) circle[radius=1cm];
@@ -443,12 +554,48 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                 <li><b>対称差（Symmetric difference）</b></li>
                 &emsp;2つの集合$A, B$の対称差を
             </p>
-            \[
-                A \ominus B = A \bigtriangleup B = \{ x \mid x \in A \veebar x \in B \}
-            \]
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        A \ominus B = A \bigtriangleup B = \{ x \mid x \in A \veebar x \in B \}
+                    \]
+                </div>
+            </div>
             <p>と定義する。</p>
             <div class="tikzjax_wrapper">
                 <div class="tikzjax_flex" style="padding: 5px 5px;">
+                    <div style="display: flex; width: 170.916pt; height: 114.211pt;">
+                        <div style="position: relative; width: 100%; height: 0pt;" class="page">
+                            <svg width="170.91646pt" height="114.21097pt" viewBox="-72 -72 170.91646 114.21097" style="position: absolute; top: 0pt; left: 0pt; overflow: visible;">
+                                <g transform="translate(-15.164520263671871,-15.164520263671871)">
+                                <g stroke-miterlimit="10" transform="scale(1,-1)">
+                                <g stroke="#000" fill="#000">
+                                <g stroke-width="0.4">
+                                <g stroke="#fcc" fill="#fcc">
+                                <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " stroke="none"></path>
+                                </g>
+                                <g stroke="#fcc" fill="#fcc">
+                                <path d=" M 56.90549 0.0 M 113.81097 0.0 C 113.81097 31.42844 88.33392 56.90549 56.90549 56.90549 C 25.47705 56.90549 0.0 31.42844 0.0 0.0 C 0.0 -31.42844 25.47705 -56.90549 56.90549 -56.90549 C 88.33392 -56.90549 113.81097 -31.42844 113.81097 0.0 Z M 56.90549 0.0  " stroke="none"></path>
+                                </g>
+                                <clipPath id="pgfcp9clip"> <path id="pgfcp9" d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  "></path> </clipPath>
+                                <use xlink:href="#pgfcp9" fill="none"></use>
+                                <g clip-path="url(#pgfcp9clip)">
+                                <clipPath id="pgfcp10clip"> <path id="pgfcp10" d=" M 56.90549 0.0 M 113.81097 0.0 C 113.81097 31.42844 88.33392 56.90549 56.90549 56.90549 C 25.47705 56.90549 0.0 31.42844 0.0 0.0 C 0.0 -31.42844 25.47705 -56.90549 56.90549 -56.90549 C 88.33392 -56.90549 113.81097 -31.42844 113.81097 0.0 Z M 56.90549 0.0  "></path> </clipPath>
+                                <use xlink:href="#pgfcp10" fill="none"></use>
+                                <g clip-path="url(#pgfcp10clip)">
+                                <g stroke="#fff" fill="#fff">
+                                <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " stroke="none"></path>
+                                </g>
+                                </g>
+                                </g>
+                                <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " fill="none"></path>
+                                </g>
+                                </g>
+                                </g>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
                     <script type="text/tikz">
                         \begin{tikzpicture}[scale=2]
                             \fill[red!20] (0,0) circle[radius=1cm];
@@ -492,7 +639,7 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                 </div>
             </div> <!-- /coding_file_wrapper -->
             <p>
-                <b>ベン図</b><br>
+                <b id="section_2_7">ベン図</b><br>
                 &emsp;集合論において、必須の概念というわけではないが、2、3の集合の関係（特に交叉）を分かりやすくする道具を紹介しておく（複数とは言わないのは、4つを超える集合の場合には、必ずしも見やすくなるわけではないからである）。
             </p>
             <div class="coding_file_wrapper">
@@ -525,7 +672,7 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                     <div class="outputIfram"></div>
                 </div>
             </div> <!-- /coding_file_wrapper -->
-            <h2>集合論の一覧</h2>
+            <h2 id="section_3">集合論の一覧</h2>
             <div class="pulldown_list_wrapper">
                 <li><details> <!-- 素朴集合論 -->
                     <summary><div class="link-container">

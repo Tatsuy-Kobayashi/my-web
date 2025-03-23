@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+	<meta charset="UTF-8">
+	<title>ログイン画面 - ラクして数理研究所</title>
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="apple-touch-icon" />
+    <!-- SEO -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="ラクして数理研究所は、数学や物理学が好きで将来研究したいが、まだ専門書には太刀打ちできないという人をプログラミングで支えたい機関。">
+    <meta name="keywords" content="数学,情報理論,物理学,プログラミング,ラクして数理研究所,教育,TOP">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://tatsuy-kobayashi.github.io/my-web/docs/" />
+    <script type="application/ld+json">
+    </script>
+    <!-- og -->
+    <meta property="og:type" content="website" /> <!-- articleとか -->
+    <meta property="og:title" content="ラクして数理研究所のホームページ｜ラクして数理研究所" />
+    <meta property="og:description" content="ラクして数理研究所は、数学や物理学が好きで将来研究したいが、まだ専門書には太刀打ちできないという人をプログラミングで支えたい機関。" />
+    <meta property="og:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/" />
+    <meta property="og:site_name" content="ラクして数理研究所" />
+    <link rel="dns-prefetch" href="//tatsuy-kobayashi.github.io/" /> <!-- HTTPSページのDNSプリフェッチはできない -->
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ラクして数理研究所">
+    <meta name="twitter:description" content="ラクして数理研究所は、数学や物理学が好きで将来研究したいが、まだ専門書には太刀打ちできないという人をプログラミングで支えたい機関。">
+    <meta name="twitter:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/">
+    <meta name="twitter:image" content="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/style.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/special.css" />
+    <style>
+#headline,#searchline {
+    height: 80px;
+	padding: 1rem 2em;
+    font-size: 2em;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #1aaedb;
+    border-bottom: #ead963 6px solid;
+    unicode-bidi: isolate;
+}
+.main-content {
+    margin: 10px 10px 30px 20px;
+}
+.main_login {
+	margin: 70px 0 0 100px; /*上・右・下・左の余白*/
+	display: flex;
+}
+.empty-row td {
+	height: 30px;
+}
+.main_left,.main_right {
+	flex: 1;
+}
+.input_form {
+	margin-left: 2rem;
+}
+.input-field {
+	height: 1.5em;
+}
+.input_form_left,.input_form_right {
+	text-align: right;
+}
+.blind_table {
+	vertical-align: top;
+}
+.blind_table tr {
+    height: 35px;
+}
+.common_space {
+	padding: 0 0 0 50px;
+}
+.btn {
+	height: 35px;
+	width: 150px;
+	cursor: pointer;
+}
+.login-btn-clickable {
+	margin: 35px 0 0 400px;
+}
+.logout-btn-clickable {
+	margin:2em;
+	margin-right: 2rem;
+}
+.common_table {
+	border-collapse: collapse;
+	border: solid 2px;
+	margin: 0 38px 0 38px; /*上・右・下・左の余白*/
+}
+.common_table th, .common_table td {
+	border: solid 1px black;
+}
+.common_table th{
+	background: #FFFF99;
+}
+#common_table1 th {
+	height: 51px;
+}
+.common_table td {
+	background: #FFFFFF;
+	padding: 0 20px 0 20px;
+	height: 24px;
+}
+.footer {
+	display: flex;
+	margin: 0 50px 0 20px;
+	align-items: center;
+}
+    </style>
+	<script src="js/account_controller.js"></script>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="headline">アカウント作成</div>
+        <main>
+            <div class="container">
+                <section>
+                    <div class="main-content">
+                        <p>ラクして数理研究所 アカウントを作成する</p>
+                    </div>
+                </section>
+                <div class="main_login">
+                    <table class="blind_table">
+                        <tr>
+                            <td class="input_form">姓：</td>
+                            <td>
+                                <input autofocus required="required" type="text" class="input-field form-control signup-input white-input-lg" jsname="YPqjbf" autocomplete="on" spellcheck="false" tabindex="0" aria-label="姓（省略可）" name="lastName" value="" aria-disabled="false" autocapitalize="sentences" id="lastName" data-initial-value="">
+                                <div jsname="YRMmle" class="AxOyFc snByac" aria-hidden="true">姓（省略可）</div>
+                                <!-- input タグの autofocus 属性はブール型属性で、存在するだけで有効になるため、値は不要 -->
+                            </td>
+                        </tr>
+                        <tr class="empty-row"><td></td></tr> <!-- 空白行 -->
+                        <tr>
+                            <td class="input_form">名：</td>
+                            <td>
+                                <input autocomplete="off" required class="input-field form-control signup-input white-input-lg" type="password" name="user_auth[password]" id="user_auth_password" />
+                            </td>
+                        </tr>
+                        <tr class="empty-row"><td></td></tr> <!-- 空白行 -->
+                        <tr>
+                            <td class="input_form">生年月日</td>
+                            <td>
+                                <div class="vF73ge " jscontroller="DkOUnd" jsaction="sPvj8e:FDSEXc;" jsname="FIPFyf" jsshadow=""><div class="nTjNoe"><div jscontroller="Fndnac" jsaction="keydown:C9BaXe;O22p3e:Op2ZO;AHmuwe:Jt1EX;rcuQ6b:rcuQ6b;YqO5N:Lg5SV;rURRne:rcuQ6b;EJh3N:rcuQ6b;RXQi4b:.CLIENT;TGB85e:.CLIENT" jsname="A1zabe" class="AFTWye " data-is-rendered="true"><div class="rFrNMe X3mtXb UOsO2 zKHdkd sdJrJc Tyc9J" jscontroller="pxq3x" jsaction="clickonly:KjsqPd; focus:Jt1EX; blur:fpfTEe; input:Lg5SV" jsshadow="" jsname="Ufn6O"><div class="aCsJod oJeWuf"><div class="aXBtI Wic03c"><div class="Xb9hP"><input type="tel" class="whsOnd zHQkBf" jsname="YPqjbf" autocomplete="off" spellcheck="false" tabindex="0" aria-label="年" maxlength="4" name="year" value="" aria-disabled="false" id="year" data-initial-value=""><div jsname="YRMmle" class="AxOyFc snByac" aria-hidden="true">年</div></div><div class="i9lrp mIZh1c"></div><div jsname="XmnwAc" class="OabDMe cXrdqd"></div></div></div><div class="LXRPh"><div jsname="ty6ygf" class="ovnfwe Is7Fhb"></div><div jsname="B34EJ" class="dEOOab RxsGPe" aria-atomic="true" aria-live="assertive"></div></div></div></div></div><div class="nTjNoe"><div class="k0BdDc S2ZeGc" jsname="byRamd" jscontroller="vJkisd" jsaction="rcuQ6b:rcuQ6b; focus:Jt1EX; blur:fpfTEe; change:Ya0Zlc;"><div class="kF7YQe"><div class="MA7NHb" jsname="SO6B6b"><label class="lJ5s5c" jsname="nCRCfd" for="month" id="month-label">月</label></div><div class="QmtZbb"><select class="gNnnTd" jsname="YPqjbf" id="month" aria-labelledby="month-label"><option class="XZzHec" value=""></option><option value="1" class="XZzHec">1月</option><option value="2" class="XZzHec">2月</option><option value="3" class="XZzHec">3月</option><option value="4" class="XZzHec">4月</option><option value="5" class="XZzHec">5月</option><option value="6" class="XZzHec">6月</option><option value="7" class="XZzHec">7月</option><option value="8" class="XZzHec">8月</option><option value="9" class="XZzHec">9月</option><option value="10" class="XZzHec">10月</option><option value="11" class="XZzHec">11月</option><option value="12" class="XZzHec">12月</option></select></div><div class="lUEyZd"></div><div class="rpKPOd" jsname="NowJzb"></div></div><span class="ip15ob" id="monthError" jsname="u0pjoe" aria-live="polite" aria-relevant="all"></span></div></div><div class="nTjNoe"><div jscontroller="Fndnac" jsaction="keydown:C9BaXe;O22p3e:Op2ZO;AHmuwe:Jt1EX;rcuQ6b:rcuQ6b;YqO5N:Lg5SV;rURRne:rcuQ6b;EJh3N:rcuQ6b;RXQi4b:.CLIENT;TGB85e:.CLIENT" jsname="SSBzX" class="AFTWye " data-is-rendered="true"><div class="rFrNMe X3mtXb UOsO2 zKHdkd sdJrJc Tyc9J" jscontroller="pxq3x" jsaction="clickonly:KjsqPd; focus:Jt1EX; blur:fpfTEe; input:Lg5SV" jsshadow="" jsname="Ufn6O"><div class="aCsJod oJeWuf"><div class="aXBtI Wic03c"><div class="Xb9hP"><input type="tel" class="whsOnd zHQkBf" jsname="YPqjbf" autocomplete="off" spellcheck="false" tabindex="0" aria-label="日" maxlength="2" name="day" value="" aria-disabled="false" id="day" data-initial-value=""><div jsname="YRMmle" class="AxOyFc snByac" aria-hidden="true">日</div></div><div class="i9lrp mIZh1c"></div><div jsname="XmnwAc" class="OabDMe cXrdqd"></div></div></div><div class="LXRPh"><div jsname="ty6ygf" class="ovnfwe Is7Fhb"></div><div jsname="B34EJ" class="dEOOab RxsGPe" aria-atomic="true" aria-live="assertive"></div></div></div></div></div><span jsslot="" class="GmPnhc" jsname="oW6HCf" id="dateError" aria-live="polite" aria-relevant="all"></span></div>
+                            </td>
+                        </tr>
+                        <tr class="empty-row"><td></td></tr> <!-- 空白行 -->
+                        <tr>
+                            <td class="input_form">性別：</td>
+                            <td>
+                                <div class="k0BdDc" jsname="ZU2VHd" jscontroller="vJkisd" jsaction="rcuQ6b:rcuQ6b; focus:Jt1EX; blur:fpfTEe; change:Ya0Zlc;"><div class="kF7YQe"><div class="MA7NHb" jsname="SO6B6b"><label class="lJ5s5c" jsname="nCRCfd" for="gender" id="gender-label">性別</label></div><div class="QmtZbb"><select class="gNnnTd" jsname="YPqjbf" id="gender" aria-labelledby="gender-label"><option class="XZzHec" value=""></option><option value="2" class="XZzHec">女性</option><option value="1" class="XZzHec">男性</option><option value="3" class="XZzHec">回答しない</option><option value="4" class="XZzHec">カスタム</option></select></div><div class="lUEyZd"></div><div class="rpKPOd" jsname="NowJzb"></div></div><span class="ip15ob" id="genderError" jsname="u0pjoe" aria-live="polite" aria-relevant="all"></span></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="cell">
+                    <!-- 作成ボタン -->
+                    <a href="https://tatsuy-kobayashi.github.io/my-web/docs/">
+                        <input type="submit" name="commit" value="作成" class="btn login-btn-clickable" id="submit-btn" data-disable-with="作成" />
+                    </a>
+                </div>
+                <section>
+                    <div class="main-content">
+                        <p>ラクして数理研究所の<a href="https://tatsuy-kobayashi.github.io/my-web/docs/signin.html">ログイン</a>する</p>
+                    </div>
+                </section>
+            </div><!-- /.container -->
+        </main>
+    </div>
+</body>
+</html>

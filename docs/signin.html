@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+	<meta charset="UTF-8">
+	<title>ログイン画面 - ラクして数理研究所</title>
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="apple-touch-icon" />
+    <!-- SEO -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="ラクして数理研究所は、数学や物理学が好きで将来研究したいが、まだ専門書には太刀打ちできないという人をプログラミングで支えたい機関。">
+    <meta name="keywords" content="数学,情報理論,物理学,プログラミング,ラクして数理研究所,教育,TOP">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://tatsuy-kobayashi.github.io/my-web/docs/" />
+    <script type="application/ld+json">
+    </script>
+    <!-- og -->
+    <meta property="og:type" content="website" /> <!-- articleとか -->
+    <meta property="og:title" content="ラクして数理研究所のホームページ｜ラクして数理研究所" />
+    <meta property="og:description" content="ラクして数理研究所は、数学や物理学が好きで将来研究したいが、まだ専門書には太刀打ちできないという人をプログラミングで支えたい機関。" />
+    <meta property="og:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/" />
+    <meta property="og:site_name" content="ラクして数理研究所" />
+    <link rel="dns-prefetch" href="//tatsuy-kobayashi.github.io/" /> <!-- HTTPSページのDNSプリフェッチはできない -->
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ラクして数理研究所">
+    <meta name="twitter:description" content="ラクして数理研究所は、数学や物理学が好きで将来研究したいが、まだ専門書には太刀打ちできないという人をプログラミングで支えたい機関。">
+    <meta name="twitter:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/">
+    <meta name="twitter:image" content="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/style.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/special.css" />
+    <style>
+#headline,#searchline {
+    height: 80px;
+	padding: 1rem 2em;
+    font-size: 2em;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #1aaedb;
+    border-bottom: #ead963 6px solid;
+    unicode-bidi: isolate;
+}
+.main-content {
+    margin: 10px 10px 30px 20px;
+}
+.main_login {
+	margin: 70px 0 0 100px; /*上・右・下・左の余白*/
+	display: flex;
+}
+.empty-row td {
+	height: 30px;
+}
+.main_left,.main_right {
+	flex: 1;
+}
+.input_form {
+	margin-left: 2rem;
+}
+.input-field {
+	height: 1.5em;
+}
+.input_form_left,.input_form_right {
+	text-align: right;
+}
+.blind_table {
+	vertical-align: top;
+}
+.blind_table tr {
+    height: 35px;
+}
+.common_space {
+	padding: 0 0 0 50px;
+}
+.btn {
+	height: 35px;
+	width: 150px;
+	cursor: pointer;
+}
+.login-btn-clickable {
+	margin: 35px 0 0 400px;
+}
+.logout-btn-clickable {
+	margin:2em;
+	margin-right: 2rem;
+}
+.common_table {
+	border-collapse: collapse;
+	border: solid 2px;
+	margin: 0 38px 0 38px; /*上・右・下・左の余白*/
+}
+.common_table th, .common_table td {
+	border: solid 1px black;
+}
+.common_table th{
+	background: #FFFF99;
+}
+#common_table1 th {
+	height: 51px;
+}
+.common_table td {
+	background: #FFFFFF;
+	padding: 0 20px 0 20px;
+	height: 24px;
+}
+.footer {
+	display: flex;
+	margin: 0 50px 0 20px;
+	align-items: center;
+}
+    </style>
+	<script src="js/account_controller.js"></script>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="headline">ログイン</div>
+        <main>
+            <div class="container">
+                <section>
+                    <div class="main-content">
+                        <p>お客様の ラクして数理研究所 アカウントを使用してログインする</p>
+                    </div>
+                </section>
+                <div class="main_login">
+                    <table class="blind_table">
+                        <tr>
+                            <td class="input_form">アカウント名：</td>
+                            <td>
+                                <input autofocus required="required" class="input-field form-control signup-input white-input-lg" type="text" name="user_auth[sign_in_id]" id="user_auth_sign_in_id" />
+                                <!-- input タグの autofocus 属性はブール型属性で、存在するだけで有効になるため、値は不要 -->
+                            </td>
+                        </tr>
+                        <tr class="empty-row"><td></td></tr> <!-- 空白行 -->
+                        <tr>
+                            <td class="input_form">パスワード：</td>
+                            <td>
+                                <input autocomplete="off" required class="input-field form-control signup-input white-input-lg" type="password" name="user_auth[password]" id="user_auth_password" />
+                                <span id="buttonEye" class="fa fa-eye" onmousedown="showPassword(event)" onmouseup="hidePassword(event)"></span> <!-- onclick="loginControl()" -->
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="cell">
+                    <!-- ログインボタン -->
+                    <a href="https://tatsuy-kobayashi.github.io/my-web/docs/">
+                        <input type="submit" name="commit" value="ログイン" class="btn login-btn-clickable" id="submit-btn" data-disable-with="ログイン" />
+                    </a>
+                </div>
+                <section>
+                    <div class="main-content">
+                        <p>ラクして数理研究所の<a href="https://tatsuy-kobayashi.github.io/my-web/docs/signup.html">アカウント作成</a>する</p>
+                    </div>
+                </section>
+            </div><!-- /.container -->
+        </main>
+    </div>
+</body>
+</html>

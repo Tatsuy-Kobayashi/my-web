@@ -180,36 +180,39 @@
         document.addEventListener('DOMContentLoaded', function () {
             const pcCSS = "https://tatsuy-kobayashi.github.io/my-web/docs/css/showWindow_pc.css";
             const mobileCSS = "https://tatsuy-kobayashi.github.io/my-web/docs/css/showWindow_mobile.css";
-
-            // 画面サイズの基準（例: 768px 以下をモバイル版とする）
-            const breakpoint = 768;
+            const cssId = 'dynamic-css'; // 動的に追加するCSSのID
 
             // 関数: CSSを動的にロード
             function loadCSS(linkHref) {
-                const link = document.createElement("link");
-                link.rel = "stylesheet";
-                link.href = linkHref;
-                document.head.appendChild(link);
-            }
-
-            // 初期ロード時にCSSを切り替える
-            if (window.innerWidth > breakpoint) {
-                loadCSS(pcCSS);
-            } else {
-                loadCSS(mobileCSS);
-            }
-
-            // 画面サイズ変更時にCSSを再ロード（必要に応じて）
-            window.addEventListener('resize', function () {
-                const currentCSS = document.querySelector('link[rel="stylesheet"]');
-                if (currentCSS) {
-                    currentCSS.remove();
+                let link = document.querySelector(`link#${cssId}`);
+                if (!link) {
+                    // 新しいリンク要素を作成
+                    link = document.createElement("link");
+                    link.id = cssId;
+                    link.rel = "stylesheet";
+                    document.head.appendChild(link);
                 }
-                if (window.innerWidth > breakpoint) {
+                link.href = linkHref;
+            }
+
+            // CSSを切り替える
+            function updateCSS() {
+                if (window.innerWidth > 768) {
                     loadCSS(pcCSS);
                 } else {
                     loadCSS(mobileCSS);
                 }
+            }
+
+            // 初期ロード
+            updateCSS();
+
+            // 画面サイズ変更時にCSSを再ロード（必要に応じて）
+            // リサイズイベントを最適化
+            let resizeTimeout;
+            window.addEventListener('resize', function () {
+                clearTimeout(resizeTimeout); // 以前のタイマーをクリア
+                resizeTimeout = setTimeout(updateCSS, 200); // 200ms遅延させて実行
             });
         });
     </script>

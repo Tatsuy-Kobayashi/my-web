@@ -2,7 +2,7 @@
 <html lang="ja">
 <head prefix="og: http://ogp.me/ns#">
 	<meta charset="UTF-8">
-	<title>ログイン画面 - ラクして数理研究所</title>
+	<title>アカウント作成 - ラクして数理研究所</title>
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="icon" />
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="icon" />
@@ -79,8 +79,8 @@
 	width: 150px;
 	cursor: pointer;
 }
-.login-btn-clickable {
-	margin: 35px 0 0 400px;
+.create-btn-clickable {
+    margin: 0 100px;
 }
 .logout-btn-clickable {
 	margin:2em;
@@ -105,13 +105,153 @@
 	padding: 0 20px 0 20px;
 	height: 24px;
 }
+.input-box {
+    position: relative;
+}
+.input-box input, .gender-box select {
+    width: 100%;
+    height: 40px;
+    padding: 10px 10px;
+    font-size: 16px;
+    border: 1px solid slateblue;
+    outline: none;
+    background: transparent;
+}
+.month-box select {
+    width: 80px;
+    height: 40px;
+    padding: 10px 10px;
+    font-size: 16px;
+    border: 1px solid slateblue;
+    border-bottom: 1px solid #000;
+    outline: none;
+    background: transparent;
+}
+.input-box select:hover {
+    background-color: #f0f0f0;
+}
+.input-box label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 14px;
+    color: #666;
+    pointer-events: none;
+    transition: .5s;
+}
+.input-box input:focus ~ label,
+.input-box input:valid ~ label,
+.input-box select:focus ~ label,
+.input-box select ~ label.active {
+    top: -18px;
+    left: 0;
+    font-size: 12px;
+    color: #36c;
+}
+.birthdate-box {
+    display: flex;
+    gap: 10px;
+}
+fieldset {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+}
+legend {
+    font-size: 12px;
+    padding: 0 5px;
+    color: #36c;
+}
+.cell {
+    display: flex;
+    justify-content: end;
+}
+.cell .btn {
+    height: 40px;
+    width: 150px;
+    cursor: pointer;
+    background-color: #1aaedb;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+.cell .btn:hover {
+    background-color: #148fb0;
+}
+.payment-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    color: #666;
+    border: 1px solid #36c;
+    border-radius: 5px;
+    cursor: pointer;
+    background: transparent;
+}
+.payment-button img {
+    height: 24px;
+    width: 24px;
+}
+.payment-button:hover {
+    background: #f0f0f0;
+}
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 400px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 20px;
+}
+.modal.active {
+    display: block;
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+.modal-close {
+    float: right;
+    cursor: pointer;
+}
+.modal-content {
+    margin-top: 10px;
+}
+.modal-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+.modal-backdrop.active {
+    display: block;
+}
+#signup-bottom {
+    padding: 0 0 200px 0;
+}
 .footer {
 	display: flex;
-	margin: 0 50px 0 20px;
+	margin: 0 50px 0 100px;
 	align-items: center;
 }
     </style>
-	<script src="js/account_controller.js"></script>
+	<script src="js/account_creator.js"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -128,47 +268,158 @@
                         <tr>
                             <td class="input_form">姓：</td>
                             <td>
-                                <input autofocus required="required" type="text" class="input-field form-control signup-input white-input-lg" jsname="YPqjbf" autocomplete="on" spellcheck="false" tabindex="0" aria-label="姓（省略可）" name="lastName" value="" aria-disabled="false" autocapitalize="sentences" id="lastName" data-initial-value="">
-                                <div jsname="YRMmle" class="AxOyFc snByac" aria-hidden="true">姓（省略可）</div>
-                                <!-- input タグの autofocus 属性はブール型属性で、存在するだけで有効になるため、値は不要 -->
+                                <div class="input-box lastName-box">
+                                    <input autofocus required type="text" class="input-field form-control signup-input white-input-lg" jsname="YPqjbf" autocomplete="on" spellcheck="false" tabindex="0" aria-label="姓（省略可）" name="lastName" value="" aria-disabled="false" autocapitalize="sentences" id="lastName" data-initial-value="" />
+                                    <label jsname="YRMmle" class="AxOyFc snByac" aria-hidden="true">姓（省略可）</label>
+                                    <!-- input タグの autofocus 属性はブール型属性で、存在するだけで有効になるため、値は不要 -->
+                                </div>
                             </td>
                         </tr>
                         <tr class="empty-row"><td></td></tr> <!-- 空白行 -->
                         <tr>
                             <td class="input_form">名：</td>
                             <td>
-                                <input autocomplete="off" required class="input-field form-control signup-input white-input-lg" type="password" name="user_auth[password]" id="user_auth_password" />
+                                <div class="input-box firstName-box">
+                                    <input required type="text" class="input-field form-control signup-input white-input-lg" name="firstName" value="" aria-disabled="false" autocapitalize="sentences" id="firstName" data-initial-value="" />
+                                    <label aria-hidden="true">名</label>
+                                </div>
                             </td>
                         </tr>
                         <tr class="empty-row"><td></td></tr> <!-- 空白行 -->
                         <tr>
-                            <td class="input_form">生年月日</td>
+                            <td class="input_form">生年月日：</td>
                             <td>
-                                <div class="vF73ge " jscontroller="DkOUnd" jsaction="sPvj8e:FDSEXc;" jsname="FIPFyf" jsshadow=""><div class="nTjNoe"><div jscontroller="Fndnac" jsaction="keydown:C9BaXe;O22p3e:Op2ZO;AHmuwe:Jt1EX;rcuQ6b:rcuQ6b;YqO5N:Lg5SV;rURRne:rcuQ6b;EJh3N:rcuQ6b;RXQi4b:.CLIENT;TGB85e:.CLIENT" jsname="A1zabe" class="AFTWye " data-is-rendered="true"><div class="rFrNMe X3mtXb UOsO2 zKHdkd sdJrJc Tyc9J" jscontroller="pxq3x" jsaction="clickonly:KjsqPd; focus:Jt1EX; blur:fpfTEe; input:Lg5SV" jsshadow="" jsname="Ufn6O"><div class="aCsJod oJeWuf"><div class="aXBtI Wic03c"><div class="Xb9hP"><input type="tel" class="whsOnd zHQkBf" jsname="YPqjbf" autocomplete="off" spellcheck="false" tabindex="0" aria-label="年" maxlength="4" name="year" value="" aria-disabled="false" id="year" data-initial-value=""><div jsname="YRMmle" class="AxOyFc snByac" aria-hidden="true">年</div></div><div class="i9lrp mIZh1c"></div><div jsname="XmnwAc" class="OabDMe cXrdqd"></div></div></div><div class="LXRPh"><div jsname="ty6ygf" class="ovnfwe Is7Fhb"></div><div jsname="B34EJ" class="dEOOab RxsGPe" aria-atomic="true" aria-live="assertive"></div></div></div></div></div><div class="nTjNoe"><div class="k0BdDc S2ZeGc" jsname="byRamd" jscontroller="vJkisd" jsaction="rcuQ6b:rcuQ6b; focus:Jt1EX; blur:fpfTEe; change:Ya0Zlc;"><div class="kF7YQe"><div class="MA7NHb" jsname="SO6B6b"><label class="lJ5s5c" jsname="nCRCfd" for="month" id="month-label">月</label></div><div class="QmtZbb"><select class="gNnnTd" jsname="YPqjbf" id="month" aria-labelledby="month-label"><option class="XZzHec" value=""></option><option value="1" class="XZzHec">1月</option><option value="2" class="XZzHec">2月</option><option value="3" class="XZzHec">3月</option><option value="4" class="XZzHec">4月</option><option value="5" class="XZzHec">5月</option><option value="6" class="XZzHec">6月</option><option value="7" class="XZzHec">7月</option><option value="8" class="XZzHec">8月</option><option value="9" class="XZzHec">9月</option><option value="10" class="XZzHec">10月</option><option value="11" class="XZzHec">11月</option><option value="12" class="XZzHec">12月</option></select></div><div class="lUEyZd"></div><div class="rpKPOd" jsname="NowJzb"></div></div><span class="ip15ob" id="monthError" jsname="u0pjoe" aria-live="polite" aria-relevant="all"></span></div></div><div class="nTjNoe"><div jscontroller="Fndnac" jsaction="keydown:C9BaXe;O22p3e:Op2ZO;AHmuwe:Jt1EX;rcuQ6b:rcuQ6b;YqO5N:Lg5SV;rURRne:rcuQ6b;EJh3N:rcuQ6b;RXQi4b:.CLIENT;TGB85e:.CLIENT" jsname="SSBzX" class="AFTWye " data-is-rendered="true"><div class="rFrNMe X3mtXb UOsO2 zKHdkd sdJrJc Tyc9J" jscontroller="pxq3x" jsaction="clickonly:KjsqPd; focus:Jt1EX; blur:fpfTEe; input:Lg5SV" jsshadow="" jsname="Ufn6O"><div class="aCsJod oJeWuf"><div class="aXBtI Wic03c"><div class="Xb9hP"><input type="tel" class="whsOnd zHQkBf" jsname="YPqjbf" autocomplete="off" spellcheck="false" tabindex="0" aria-label="日" maxlength="2" name="day" value="" aria-disabled="false" id="day" data-initial-value=""><div jsname="YRMmle" class="AxOyFc snByac" aria-hidden="true">日</div></div><div class="i9lrp mIZh1c"></div><div jsname="XmnwAc" class="OabDMe cXrdqd"></div></div></div><div class="LXRPh"><div jsname="ty6ygf" class="ovnfwe Is7Fhb"></div><div jsname="B34EJ" class="dEOOab RxsGPe" aria-atomic="true" aria-live="assertive"></div></div></div></div></div><span jsslot="" class="GmPnhc" jsname="oW6HCf" id="dateError" aria-live="polite" aria-relevant="all"></span></div>
+                                <div class="birthdate-box" jscontroller="DkOUnd" jsaction="sPvj8e:FDSEXc;" jsname="FIPFyf" jsshadow="">
+                                    <div class="input-box year-box">
+                                        <input required type="tel" class="input-field form-control signup-input white-input-lg" jsname="YPqjbf" autocomplete="off" spellcheck="false" tabindex="0" aria-label="年" maxlength="4" name="year" value="" aria-disabled="false" id="year" data-initial-value="">
+                                        <label aria-hidden="true">年</label>
+                                    </div>
+                                    <div class="input-box month-box">
+                                        <select class="gNnnTd" jsname="YPqjbf" id="month" aria-labelledby="month-label">
+                                            <option class="XZzHec" value=""></option><option value="1" class="XZzHec">1月</option><option value="2" class="XZzHec">2月</option><option value="3" class="XZzHec">3月</option><option value="4" class="XZzHec">4月</option><option value="5" class="XZzHec">5月</option><option value="6" class="XZzHec">6月</option><option value="7" class="XZzHec">7月</option><option value="8" class="XZzHec">8月</option><option value="9" class="XZzHec">9月</option><option value="10" class="XZzHec">10月</option><option value="11" class="XZzHec">11月</option><option value="12" class="XZzHec">12月</option>
+                                        </select>
+                                        <label class="lJ5s5c" jsname="nCRCfd" for="month" id="month-label">月</label>
+                                    </div>
+                                    <div class="input-box day-box">
+                                        <input required type="tel" class="whsOnd zHQkBf" jsname="YPqjbf" autocomplete="off" spellcheck="false" tabindex="0" aria-label="日" maxlength="2" name="day" value="" aria-disabled="false" id="day" data-initial-value="">
+                                        <label jsname="YRMmle" class="AxOyFc snByac" aria-hidden="true">日</label>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         <tr class="empty-row"><td></td></tr> <!-- 空白行 -->
                         <tr>
                             <td class="input_form">性別：</td>
                             <td>
-                                <div class="k0BdDc" jsname="ZU2VHd" jscontroller="vJkisd" jsaction="rcuQ6b:rcuQ6b; focus:Jt1EX; blur:fpfTEe; change:Ya0Zlc;"><div class="kF7YQe"><div class="MA7NHb" jsname="SO6B6b"><label class="lJ5s5c" jsname="nCRCfd" for="gender" id="gender-label">性別</label></div><div class="QmtZbb"><select class="gNnnTd" jsname="YPqjbf" id="gender" aria-labelledby="gender-label"><option class="XZzHec" value=""></option><option value="2" class="XZzHec">女性</option><option value="1" class="XZzHec">男性</option><option value="3" class="XZzHec">回答しない</option><option value="4" class="XZzHec">カスタム</option></select></div><div class="lUEyZd"></div><div class="rpKPOd" jsname="NowJzb"></div></div><span class="ip15ob" id="genderError" jsname="u0pjoe" aria-live="polite" aria-relevant="all"></span></div>
+                                <div class="input-box gender-box" jsname="ZU2VHd" jscontroller="vJkisd" jsaction="rcuQ6b:rcuQ6b; focus:Jt1EX; blur:fpfTEe; change:Ya0Zlc;">
+                                    <select class="gNnnTd" jsname="YPqjbf" id="gender" aria-labelledby="gender-label">
+                                        <option class="XZzHec" value=""></option><option value="2" class="XZzHec">女性</option><option value="1" class="XZzHec">男性</option><option value="3" class="XZzHec">回答しない</option>
+                                    </select>
+                                    <label class="lJ5s5c" jsname="nCRCfd" for="gender" id="gender-label">性別</label>
+                                </div>
                             </td>
                         </tr>
+                        <tr class="empty-row"><td></td></tr> <!-- 空白行 -->
+                        <tr>
+                            <td class="input_form">お支払い方法：</td>
+                            <td>
+                                <div id="id-539" data-ur="539" class="pc1 pc100 pc103 n539">
+                                    <fieldset>
+                                        <legend>お支払い方法</legend>
+                                        <div class="payment-button" id="paymentButton">
+                                            <span>お支払い方法を追加</span>
+                                            <img data-is-aria-hidden="false" height="24" width="24" src="https://lh3.googleusercontent.com/x48ciJOu_2ubDYygQF8iSUuFWHwPcsQ0K0vdsLQSCDjGbY9hwdU_GlS8RtmWpz98IVU3gdGG=s30-rw" alt="お支払い方法のリストを表示します">
+                                        </div>
+                                    </fieldset>
+                                    <!-- モーダル -->
+                                    <div class="modal" id="paymentModal">
+                                        <div class="modal-header">
+                                            <span>お支払い方法</span>
+                                            <span class="modal-close" id="modalClose">&times;</span>
+                                        </div>
+                                        <div class="modal-content">
+                                            <p>クレジットカードまたはオンライン決済方法を選択してください。</p>
+                                            <p>以下に情報を入力してください。</p>
+                                            <div class="input-box">
+                                                <input type="text" id="cardNumber" name="cardNumber" placeholder=" " required />
+                                                <label for="cardNumber">カード番号</label>
+                                            </div>
+                                            <div style="margin: 30px;"></div>
+                                            <div class="input-box">
+                                                <input type="text" id="expiryDate" name="expiryDate" placeholder=" " required>
+                                                <label for="expiryDate">有効期限 (MM/YY)</label>
+                                            </div>
+                                            <div style="margin: 30px;"></div>
+                                            <div class="input-box">
+                                                <input type="text" id="securityCode" name="securityCode" placeholder=" " required>
+                                                <label for="securityCode">セキュリティコード</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-backdrop" id="modalBackdrop"></div>
+                                </div>
+                            </td>
                     </table>
-                </div>
-                <div class="cell">
-                    <!-- 作成ボタン -->
-                    <a href="https://tatsuy-kobayashi.github.io/my-web/docs/">
-                        <input type="submit" name="commit" value="作成" class="btn login-btn-clickable" id="submit-btn" data-disable-with="作成" />
-                    </a>
                 </div>
                 <section>
                     <div class="main-content">
-                        <p>ラクして数理研究所の<a href="https://tatsuy-kobayashi.github.io/my-web/docs/signin.html">ログイン</a>する</p>
+                        <p>&emsp;このアプリケーションを使用することにより、ラクして数理研究所アプリ利用規約 、 無料トライアルに関する追加の利用規約に同意したことになります。</p>
+                    </div>
+                </section>
+                <div class="cell">
+                    <!-- 作成ボタン -->
+                    <a href="https://tatsuy-kobayashi.github.io/my-web/docs/">
+                        <input type="submit" name="commit" value="作成" class="btn create-btn-clickable" id="submit-btn" data-disable-with="作成" />
+                    </a>
+                </div>
+                <section>
+                    <div class="main-content" id="signup-bottom">
+                        <p>すでにアカウントがある場合</p>
+                        <p>ラクして数理研究所に<a href="https://tatsuy-kobayashi.github.io/my-web/docs/signin.html">ログイン</a>する</p>
                     </div>
                 </section>
             </div><!-- /.container -->
         </main>
+        <tr class="empty-row"><td></td></tr> <!-- 空白行 -->
     </div>
+    <script>
+        // Get all select elements
+        const selects = document.querySelectorAll('.input-box select');
+
+        // Add an event listener to each select element
+        selects.forEach((select) => {
+            select.addEventListener('change', () => {
+                // Get the label element
+                const label = select.nextElementSibling;
+
+                // If the select element has a value, add a class to the label
+                if (select.value) {
+                    label.classList.add('active');
+                } else {
+                    label.classList.remove('active');
+                }
+            });
+        });
+
+        const paymentButton = document.getElementById('paymentButton');
+        const paymentModal = document.getElementById('paymentModal');
+        const modalBackdrop = document.getElementById('modalBackdrop');
+        const modalClose = document.getElementById('modalClose');
+
+        paymentButton.addEventListener('click', () => {
+            paymentModal.classList.add('active');
+            modalBackdrop.classList.add('active');
+        });
+
+        modalClose.addEventListener('click', () => {
+            paymentModal.classList.remove('active');
+            modalBackdrop.classList.remove('active');
+        });
+
+        modalBackdrop.addEventListener('click', () => {
+            paymentModal.classList.remove('active');
+            modalBackdrop.classList.remove('active');
+        });
+    </script>
 </body>
 </html>

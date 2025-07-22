@@ -3,7 +3,7 @@
 <head prefix="og: http://ogp.me/ns#">
     <meta charset="UTF-8">
     <meta name="format-detection" content="telephone=no">
-    <title>教育学 - ラクして数理研究所</title>
+    <title>素朴集合論 - ラクして数理研究所</title>
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="icon" />
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="icon" />
@@ -15,14 +15,14 @@
     <link rel="canonical" href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" />
     <!-- og -->
     <meta property="og:type" content="website" /> <!-- articleとか -->
-    <meta property="og:title" content="教育学｜ラクして数理研究所" />
+    <meta property="og:title" content="素朴集合論｜ラクして数理研究所" />
     <meta property="og:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" />
     <meta property="og:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" />
     <meta property="og:site_name" content="ラクして数理研究所" />
     <link rel="dns-prefetch" href="//tatsuy-kobayashi.github.io/" /> <!-- HTTPSページのDNSプリフェッチはできない -->
     <!-- twitter card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="教育学｜ラクして数理研究所">
+    <meta name="twitter:title" content="素朴集合論｜ラクして数理研究所">
     <meta name="twitter:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。">
     <meta name="twitter:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html">
     <meta name="twitter:image" content="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png">
@@ -123,15 +123,55 @@
 
             <h2>素朴集合論の背景と意義</h2>
             <p>
-                &emsp;まるで「集合論の基礎」、「基礎的な集合論」であるかのような顔で鎮座しているが、もちろん「素朴」という修飾語がある時点で歴史上初めの集合論というわけではない。おそらくそのような集合論にあたるのは、高校で勉強するような集合論だろう。集合論は、数学のあらゆる分野の基礎をなす概念──すなわち「ものの集まり」を形式的に扱う学問領域だ。19世紀後半から20世紀初頭にかけ、フレーゲやラッセルらによって展開された集合論は、直感に近い「すべての性質に対応して集合が取れる」という素朴な理解（素朴包括原理）が採用されていた。しかし、この素朴素朴包括原理は、後にラッセルのパラドックスなどのいくつかの矛盾を引き起こすことが判明した。そこでいくつかの集合論がそれら矛盾を排除する形で発展させてきたが、排除してしまってはそのような命題を取り扱うことすらできない。そこで、旧ソビエト連邦の論理学者ヴラジーミル・ニコラエヴィチ・グリシン (Vladimir Nikolaevich Grishin) は、数学者や論理学者が直感的に捉える「集合」という概念自体の魅力と有効性を強調し、可能な限りその直感を反映した体系づくりを試みた。
+                &emsp;まるで「集合論の基礎」、「基礎的な集合論」であるかのような顔で鎮座しているが、もちろん「素朴」という修飾語がある時点で歴史上初めの集合論というわけではない。おそらくそのような集合論にあたるのは、高校で勉強するような集合論だろう。集合論は、数学のあらゆる分野の基礎をなす概念──すなわち「ものの集まり」を形式的に扱う学問領域だ。19世紀後半から20世紀初頭にかけ、フレーゲ（Frege）やラッセル（Russell）らによって展開された集合論は、直感に近い「すべての性質に対応して集合が取れる」という素朴な理解（素朴包括原理）が採用されていた。しかし、この素朴素朴包括原理は、後にラッセルのパラドックスなどのいくつかの矛盾を引き起こすことが判明した。そこでいくつかの集合論がそれら矛盾を排除する形で発展させてきたが、排除してしまってはそのような命題を取り扱うことすらできない。そこで、旧ソビエト連邦の論理学者ヴラジーミル・ニコラエヴィチ・グリシン (Vladimir Nikolaevich Grishin) は、数学者や論理学者が直感的に捉える「集合」という概念自体の魅力と有効性を強調し、可能な限りその直感を反映した体系づくりを試みた。
             </p>
             <p>
                 &emsp;ところで、全くの基礎分野ではないと言ったものの、それはあくまで理念であって、集合の基礎的な部分も扱うので安心してほしい。
             </p>
-            <h2></h2>
+            <h2>素朴集合論の公理系</h2>
             <p>
-                <b>集合</b><br>
-                &emsp;集合は「ある条件に基づいて選ばれた対象のまとまり」を意味する。たとえば、「自然数全体の集合」や「赤い果物の集合」などがその典型としてあげられる。また、集合を構成する個々の対象を<b>元（要素）</b>と呼び、通常は
+                <b>素朴包括原理</b><br>
+                &emsp;任意の性質 $A(x)$ についてある集合 $\{x|A(x)\}$ が存在し、任意の集合 $t$ に関して $A(t) \iff t \in \{x|A(x)\} $ が成立する。
+            </p>
+            <p>
+                <b>限定性公理</b><br>
+                &emsp;集合は明確な境界と条件を持つ
+            </p>
+            <p>
+                <b>非自己包含公理</b><br>
+                &emsp;集合は自身を要素として含まない
+            </p>
+            <p>
+                <b>集合の内包性公理</b><br>
+                &emsp;任意の述語 P(x) に対して、集合 {x | P(x)} が存在します。 (ただし、ラッセルのパラドックスを回避するために、述語 P(x) に制約が加えられることがあります。コントラクションを除外するなど。)
+            </p>
+            <p>
+                &emsp;素朴集合論は公理的集合論ではないので、構成のための公理系を網羅したりはしないが、集合論として必要となる公理には、外延性公理、対公理、和集合公理、冪集合公理、分出公理図式、無限公理、置換公理図式、基礎の公理、選択公理などがある。詳しくは、公理的集合論の項目を参照のこと。
+            </p>
+            <h2>パラドックス許容論理 (Paraconsistent Logic)</h2>
+            <p>
+                <b>ラッセルのパラドックス</b><br>
+                &emsp;$r \equiv \{x|x \notin x\}$ と定義したとき、$R \equiv r \in r$ とすると、 $R \iff \lnot R$ が帰結する。
+            </p>
+            <p>
+                &emsp;パラドックスから矛盾を導くための典型的な推論は以下のようなものであろう。<br>
+                1. $R$（仮定）<br>
+                2. $\lnot R$（1、$R \iff \lnot R$ より）<br>
+                3. $\bot$（1、2より）<br>
+                4. $\lnot R$（1 - 3より）<br>
+                5. $R$（4、$R \iff \lnot R$より）<br>
+                6. $\bot$（4、5より）<br>
+                この推論は古典的にも直観主義的にも正しい。ここで注意すべきなのは「同じ仮定は何度用いてもよい」ということが暗黙の内に了解されているという点である（例えば上の推論で仮定1は2回使われている）。この原理はコントラクションと呼ばれ、ラッセル=ヒルベルト流の公理系では公理 $(A \rightarrow (A\rightarrow C)) \rightarrow (A \rightarrow C)$ に相当し、ゲンツェン流の式計算(sequent calculuS)では推論規則
+            </p>
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        \frac{A, A, \Gamma \vdash C}{A, \Gamma \vdash C} \, (\text{Contraction})
+                    \]
+                </div>
+            </div>
+            <p>
+                に相当する（ある論理式 $C$ が仮定 $A$、$A$ およびその他の仮定群 $\Gamma$ から帰結するならば、$C$ は仮定 $A$ および $\Gamma$ からも帰結する）。そこで予想できるのは、もしもある体系においてコントラクションの使用が制限されていたならば、たとえその体系がパラドックスを含んでいたとしても矛盾は導出されないであろう、ということである。グリシンはこの予想が正しいことを示した。彼はカントール素朴集合論からコントラクションを除いた体系を提案し、実際にその無矛盾性を証明したのである(Grishin74)。
             </p>
             <h2>教育学の一覧</h2>
             <div class="pulldown_list_wrapper">

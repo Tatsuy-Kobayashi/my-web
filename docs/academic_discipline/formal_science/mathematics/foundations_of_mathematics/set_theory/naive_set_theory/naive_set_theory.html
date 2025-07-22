@@ -123,27 +123,32 @@
 
             <h2>素朴集合論の背景と意義</h2>
             <p>
-                &emsp;まるで「集合論の基礎」、「基礎的な集合論」であるかのような顔で鎮座しているが、もちろん「素朴」という修飾語がある時点で歴史上初めの集合論というわけではない。おそらくそのような集合論にあたるのは、高校で勉強するような集合論だろう。集合論は、数学のあらゆる分野の基礎をなす概念──すなわち「ものの集まり」を形式的に扱う学問領域だ。19世紀後半から20世紀初頭にかけ、フレーゲ（Frege）やラッセル（Russell）らによって展開された集合論は、直感に近い「すべての性質に対応して集合が取れる」という素朴な理解（素朴包括原理）が採用されていた。しかし、この素朴素朴包括原理は、後にラッセルのパラドックスなどのいくつかの矛盾を引き起こすことが判明した。そこでいくつかの集合論がそれら矛盾を排除する形で発展させてきたが、排除してしまってはそのような命題を取り扱うことすらできない。そこで、旧ソビエト連邦の論理学者ヴラジーミル・ニコラエヴィチ・グリシン (Vladimir Nikolaevich Grishin) は、数学者や論理学者が直感的に捉える「集合」という概念自体の魅力と有効性を強調し、可能な限りその直感を反映した体系づくりを試みた。
+                &emsp;まるで「集合論の基礎」、「基礎的な集合論」であるかのような顔で鎮座しているが、もちろん「素朴」という修飾語がある時点で歴史上初めの集合論というわけではない。おそらくそのような集合論にあたるのは、高校で勉強するような集合論だろう。集合論は、数学のあらゆる分野の基礎をなす概念──すなわち「ものの集まり」を形式的に扱う学問領域だ。19世紀後半から20世紀初頭にかけ、フレーゲ（Frege）やラッセル（Russell）らによって展開された集合論は、直感に近い「すべての性質に対応して集合が取れる」という素朴な理解（素朴包括原理）が採用されていた。しかし、この素朴素朴包括原理は、後にラッセルのパラドックスなどのいくつかの矛盾を引き起こすことが判明した。そこでいくつかの集合論がそれら矛盾を排除する形で発展させてきたが、排除してしまってはそのような命題を取り扱うことすらできない。そこで、旧ソビエト連邦の論理学者ヴラジーミル・ニコラエヴィチ・グリシン (Vladimir Nikolaevich Grishin) は、素朴包括原理を維持したまま、古典論理を修正したりパラドックスを回避できるロジック（例：パラドックス許容論理や部分構造論理）を導入することで、ラッセルのパラドックスなどの自己言及的パラドックスを封じ込めようと試みた。
             </p>
             <p>
                 &emsp;ところで、全くの基礎分野ではないと言ったものの、それはあくまで理念であって、集合の基礎的な部分も扱うので安心してほしい。
             </p>
             <h2>素朴集合論の公理系</h2>
             <p>
-                <b>素朴包括原理</b><br>
-                &emsp;任意の性質 $A(x)$ についてある集合 $\{x|A(x)\}$ が存在し、任意の集合 $t$ に関して $A(t) \iff t \in \{x|A(x)\} $ が成立する。
+                <b>素朴包括原理（Naive Comprehension）</b><br>
+                古典論理形式： $∀A ∃y ∀x [ x ∈ y \iff A(x) ]$.
             </p>
             <p>
-                <b>限定性公理</b><br>
-                &emsp;集合は明確な境界と条件を持つ
+                &emsp;任意の性質 $A(x)$ についてある集合 $\{x|A(x)\}$ が存在し、任意の集合 $t$ に関して $A(t) \iff t \in \{x|A(x)\} $ が成立する。ただし、古典一階述語論理をそのまま用いるとラッセルのパラドックスが生じるため、グリシンの提案では論理体系（推論規則）を修正したり、ある種の制限（“コントラクションを除外する”など）を付加することで矛盾を回避しようと試みている。
             </p>
             <p>
-                <b>非自己包含公理</b><br>
-                &emsp;集合は自身を要素として含まない
+                <b>限定性公理（Limitation, Restriction）</b><br>
+                &emsp;「集合は明確な境界と条件を持つ」という公理。
             </p>
             <p>
-                <b>集合の内包性公理</b><br>
-                &emsp;任意の述語 P(x) に対して、集合 {x | P(x)} が存在します。 (ただし、ラッセルのパラドックスを回避するために、述語 P(x) に制約が加えられることがあります。コントラクションを除外するなど。)
+                &emsp;素朴包括原理と併せて、集合の取り扱いに際して過度な自己言及が生じないように何らかの制限（例：ある種の階層づけ、あるいは述語に使用できる論理式の制限）を課すときに導入される。
+            </p>
+            <p>
+                <b>非自己包含公理（Regularity of Membership, No-Self-Containment）</b><br>
+                古典論理形式： $∀x [ ¬(x ∈ x) ]$.
+            </p>
+            <p>
+                &emsp;「どの集合も自分自身を要素としない」という公理。
             </p>
             <p>
                 &emsp;素朴集合論は公理的集合論ではないので、構成のための公理系を網羅したりはしないが、集合論として必要となる公理には、外延性公理、対公理、和集合公理、冪集合公理、分出公理図式、無限公理、置換公理図式、基礎の公理、選択公理などがある。詳しくは、公理的集合論の項目を参照のこと。
@@ -173,57 +178,7 @@
             <p>
                 に相当する（ある論理式 $C$ が仮定 $A$、$A$ およびその他の仮定群 $\Gamma$ から帰結するならば、$C$ は仮定 $A$ および $\Gamma$ からも帰結する）。そこで予想できるのは、もしもある体系においてコントラクションの使用が制限されていたならば、たとえその体系がパラドックスを含んでいたとしても矛盾は導出されないであろう、ということである。グリシンはこの予想が正しいことを示した。彼はカントール素朴集合論からコントラクションを除いた体系を提案し、実際にその無矛盾性を証明したのである(Grishin74)。
             </p>
-            <h2>教育学の一覧</h2>
-            <div class="pulldown_list_wrapper">
-                <li><details> <!-- 学校教育 -->
-                    <summary><div class="link-container">
-                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/physics.html" class="preview-link" data-title="学校教育" data-description="このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。" data-image="">学校教育</a>
-                        <div class="link-preview">
-                            <img class="preview-image">
-                            <h3 class="preview-title">学校教育</h3>
-                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
-                        </div> <!-- link-preview -->
-                    </div></summary>
-                        <li><details> <!-- 幼児 -->
-                            <summary><div class="link-container">
-                                <a href="#">幼児</a>
-                                <div class="link-preview">
-                                    <img class="preview-image">
-                                    <h3 class="preview-title">幼児</h3>
-                                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
-                                </div> <!-- link-preview -->
-                            </div></summary>
-                                <li><details> <!-- こくご -->
-                                    <summary><div class="link-container">
-                                        <a href="#">こくご</a>
-                                        <div class="link-preview">
-                                            <img class="preview-image">
-                                            <h3 class="preview-title">こくご</h3>
-                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
-                                        </div> <!-- link-preview -->
-                                    </div></summary>
-                                </details></li><!-- /こくご -->
-                                <li><details> <!-- さんすう -->
-                                    <summary><div class="link-container">
-                                        <a href="#">さんすう</a>
-                                        <div class="link-preview">
-                                            <img class="preview-image">
-                                            <h3 class="preview-title">さんすう</h3>
-                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
-                                        </div> <!-- link-preview -->
-                                    </div></summary>
-                                        <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/school_education/elementary/elementary_math/previous_pra/enumerative_pra.html">数え上げの練習</a></li>
-                                </details></li><!-- /さんすう -->
-                        </details></li> <!-- /幼児 -->
-                </details></li> <!-- /学校教育 -->
-                <li><details> <!-- 地理学 -->
-                    <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/socialScience/socialScience.html">地理学</a></summary>
-                        <li><a href="#">理論化学</a></li>
-                        <li><a href="#">無機化学</a></li>
-                        <li><a href="#">有機化学</a></li>
-                        <li><a href="#">応用化学</a></li>
-                </details></li> <!-- /地理学 -->
-            </div>
+
 
 
 

@@ -105,11 +105,11 @@
                 <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="学問" data-description="AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">
                     <i class="fa fa-solid fa-graduation-cap" aria-hidden="true"></i>&ensp;<span>学問</span>
                 </a>
-                <div class="link-preview">
+                <div class="link-preview"><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="link-preview-clickable">
                     <img class="preview-image" src="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" alt="Preview image">
                     <h3 class="preview-title">学問</h3>
                     <p class="preview-description">AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう</p>
-                </div> <!-- /link-preview -->
+                </a></div> <!-- /link-preview -->
             </span> <!-- /link-preview -->&ensp;&gt;&ensp;
             <span class="link-container">
                 <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/formal_science.html" class="preview-link" data-title="自然科学" data-description="AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">
@@ -149,7 +149,7 @@
             <div class="toc-content">
                 <ul>
                     <li><a href="#section_1">概要</a></li>
-                    <li><a href="#section_2">集合の基本概念と用語</a></li>
+                    <li><a href="#section_2">ZFC集合論の構成</a></li>
                     <ul style="padding: 0 20px;">
                         <li><a href="#section_2_1">集合</a></li>
                         <li><a href="#section_2_2">帰属関係</a></li>
@@ -165,7 +165,7 @@
 
             <h2 id="section_1">概要</h2>
             <p>
-                &emsp;公理的集合論の中でも最も広く用いられているのが ZFC集合論（Zermelo-Fraenkel Set Theory with the Axiom of Choice）です。本稿では、ZFC集合論の構成、公理系、直観、限界などについてまとめる。
+                &emsp;公理的集合論の中でも最も広く用いられているのが ZFC集合論（Zermelo-Fraenkel Set Theory with the Axiom of Choice）です。本稿では、ZFC集合論の構成、公理系、直観、限界などについてまとめる。また、以降に出てくる記号$\in$、$\notin$は、<a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html">集合論</a>にて扱っているため、既知とする。
             </p>
             <h2 id="section_2">ZFC集合論の構成</h2>
             <p>
@@ -175,11 +175,23 @@
                     <li>Choice（C）：選択公理。任意の集合族から1つずつ選ぶことができるという強力な仮定。</li>
                     <li>一階述語論理：論理的な推論は一階論理で行い、集合のみを変数の対象とする。</li>
                 </ol>
-                ZFCは、現在の数学の大部分が依拠する形式的基盤であり、算術・実解析・代数・位相などあらゆる分野の理論構築に使用されています。
+                ZFCは、現在の数学の大部分が依拠する形式的基盤であり、算術・実解析・代数・位相などあらゆる分野の理論構築に使用されている。
             </p>
             <p>
                 <b id="section_2_1">ZFC集合論の公理系</b><br>
-                &emsp;集合は「ある条件に基づいて選ばれた対象のまとまり」を意味する。たとえば、「自然数全体の集合」や「赤い果物の集合」などがその典型としてあげられる。また、集合を構成する個々の対象を<b>元（要素）</b>と呼ぶ。
+                &emsp;ZFCは以下のような9つの（公理スキームを含む）基本公理から成り立ちます。各公理は集合がどのように構成されるか、どのように振る舞うかを制御します。
+                <ol>
+                    <li>外延性公理（Extensionality）</li>
+                    <li>空集合の公理（Empty set）</li>
+                    <li>分出公理スキーム（Separation schema）</li>
+                    <li>対の公理（Pairing）</li>
+                    <li>和集合の公理（Union）</li>
+                    <li>冪集合の公理（Power set）</li>
+                    <li>無限公理（Infinity）</li>
+                    <li>置換公理スキーム（Replacement schema）</li>
+                    <li>正則性（基礎の）公理（Regularity / Foundation）</li>
+                    <li>選択公理（Axiom of Choice）</li>
+                </ol>
             </p>
 
             <h2 id="section_3">集合論の一覧</h2>

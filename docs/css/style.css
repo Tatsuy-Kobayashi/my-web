@@ -219,3 +219,22 @@ a:hover {
     background-color: #1aaedb; /* ヘッダーの背景色（透明防止のための指定） */
     border-bottom: #ead963 6px solid; /* 下に6pxのボーダーを追加 */
 }
+
+.website_table_wrapper {
+    display: flex;
+    padding-left: 20px;
+}
+.website_table {
+    display: flex;
+    flex-wrap: wrap;
+}
+.website_table .website_proposition_table_th {
+    padding-left: 10px;
+    width: 50px;
+}
+.website_table .website_proposition_table_th .website_proposition_table_th_bold {
+    font-weight: bold;
+}
+.website_table .website_proposition_table_td {
+    width: calc(100% - 50px);
+}

@@ -227,6 +227,7 @@ a:hover {
 .website_table {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
 }
 .website_table .website_proposition_table_th {
     padding-left: 10px;

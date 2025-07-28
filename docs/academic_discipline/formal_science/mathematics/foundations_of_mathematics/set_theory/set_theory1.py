@@ -11,7 +11,7 @@ print(f"集合 {set1} の要素数は {num_elements} 個。")
 import itertools
 
 def powerset(iterable):
-    "べき集合を生成します。"
+    "べき集合を生成"
     s = list(iterable)
     return list(itertools.chain.from_iterable(itertools.combinations(s, r) for r in range(len(s)+1)))
 

@@ -38,6 +38,8 @@
     <!-- プログラミング解説 -->
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/prism.css" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/codeHighlight.css" />
+    <!-- texgyre -->
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/font/texgyreschola-math/texgyreschola-math.css" type="text/css" charset="utf-8" />
 
     <!-- プログラミング解説 -->
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/prism.js"></script>
@@ -74,11 +76,6 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" defer></script><!--
     <link rel="stylesheet" href="https://tikzjax.com/v1/fonts.css" media="print" onload="this.media='all'" />
     <script type="text/javascript" src="https://tikzjax.com/v1/tikzjax.js" defer></script>-->
-    <script src="https://d3js.org/d3.v4.min.js" defer></script>
-    <!-- https://github.com/benfred/venn.js -->
-    <script src="https://tatsuy-kobayashi.github.io/my-web/docs/js/venn/venn.js" defer></script>
-    <script src="https://tatsuy-kobayashi.github.io/my-web/docs/js/set_theory0.js" defer></script>
-    <script src="https://tatsuy-kobayashi.github.io/my-web/docs/js/set_theory1.js" defer></script>
     <style>
         .venn-area path {
             fill-opacity: 0.4;
@@ -156,18 +153,26 @@
                     <li><a href="#section_2">ZFC集合論の構成</a></li>
                     <ul style="padding: 0 20px;">
                         <li><a href="#section_2_1">ZFC集合論の公理系</a></li>
-                        <li><a href="#section_2_2">帰属関係</a></li>
-                        <li><a href="#section_2_3">部分集合</a></li>
-                        <li><a href="#section_2_4">冪集合</a></li>
-                        <li><a href="#section_2_5">集合の大きさ</a></li>
-                        <li><a href="#section_2_6">集合の代数学</a></li>
-                        <li><a href="#section_2_7">ベン図</a></li>
+                        <ul style="padding: 0 20px;">
+                            <li><a href="#section_2_1_1">外延性公理（Extensionality）</a></li>
+                            <li><a href="#section_2_1_2">空集合の公理（Empty set）</a></li>
+                            <li><a href="#section_2_1_3">置換公理スキーム（Replacement schema）</a></li>
+                            <li><a href="#section_2_1_4">分出公理スキーム（Separation schema）</a></li>
+                            <li><a href="#section_2_1_5">対の公理（Pair）</a></li>
+                            <li><a href="#section_2_1_6">和集合の公理（Union）</a></li>
+                            <li><a href="#section_2_1_7">冪集合の公理（Power set）</a></li>
+                            <li><a href="#section_2_1_8">無限公理（Infinity）</a></li>
+                            <li><a href="#section_2_1_9">正則性公理（Axiom of regularity）</a></li>
+                            <li><a href="#section_2_1_10">選択公理（Axiom of Choice）</a></li>
+                        </ul>
                     </ul>
-                    <li><a href="#section_3">集合論の一覧</a></li>
+                    <li><a href="#section_3">いくつかの帰結</a></li>
+                    <li><a href="#section_4">集合論の一覧</a></li>
                 </ul>
             </div>
 
             <h2 id="section_1">概要</h2>
+            <p style="font-family: 'tex_gyre_schola_math', sans-serif;">abcdefghijklmnopqrstuvwxyz</p>
             <p>
                 &emsp;公理的集合論の中でも最も広く用いられているのが ZFC集合論（Zermelo-Fraenkel Set Theory with the Axiom of Choice）です。本稿では、ZFC集合論の構成、公理系、直観、限界などについてまとめる。また、以降に出てくる記号$\in$、$\notin$、$=$、$\cup$、$\varnothing$は、<a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html">集合論</a>にて扱っているため、既知とする。
             </p>
@@ -186,9 +191,11 @@
                 &emsp;ZFCは以下のような9つの（公理スキームを含む）基本公理から成り立ちます。各公理は集合がどのように構成されるか、どのように振る舞うかを制御します。
                 <ol>
                     <li>外延性公理（Extensionality）</li>
-                    <p>
-                        形式：$\forall x \, \forall y \, [ (\forall z \, (z \in x \iff z \in y)) \Rightarrow x = y ]$
-                    </p>
+                    <div class="mathjax_wrapper">
+                        <div class="mathjax_flex">
+                            形式：$\forall x \, \forall y \, [ (\forall z \, (z \in x \iff z \in y)) \Rightarrow x = y ]$
+                        </div>
+                    </div>
                     <p>
                         &emsp;どのような論理体系でも、集合の同一性を保証するための最も根本的な公理。「集合は含まれる要素によってのみ決定される」ことを主張するものである。空集合の公理、対の公理、和集合の公理、冪集合公理で存在が主張される集合はそれぞれ、外延性の公理により一意に定まる。
                     </p>
@@ -200,12 +207,246 @@
                         &emsp;空集合が存在することを保証する公理。「要素を持たない集合が存在する」ことを主張するものである。空集合は、どの要素も含まない集合であり、最も基本的な集合である。
                     </p>
                     <li>置換公理スキーム（Replacement schema）</li>
+                    <div class="mathjax_wrapper">
+                        <div class="mathjax_flex">
+                            形式：$\forall w_{1}, \ldots ,w_{n}\,\forall A\,([\forall x\in A \, \exists !y \, P(x,y,w_{1},\ldots ,w_{n},A)]\ \Rightarrow \ \exists B \, \forall y \, [y \in B \iff \exists x \in A \, P(x,y,w_{1}, \ldots ,w_{n},A)])$
+                        </div>
+                    </div>
                     <p>
-                        形式：$\forall x \, \exists y \, \forall w \, (w \in y \iff [\exists z \in x \land P(z, w)])$
+                        &emsp;「」ことをことを主張するものである。関数的対応によって「像」を取ったときに、それもまた集合となる。
                     </p>
-                    <p>
-                        &emsp;「ある述語 P(z, w) によって一意に $w$ が決定される場合、任意の集合 $x$ の元 x から $P$ によって得られる $w$ 全体の像は集合である」ことをことを主張するものである。関数的対応によって「像」を取ったときに、それもまた集合となる。
-                    </p>
+                    <div class="tikzjax_wrapper">
+                        <div class="tikzjax_flex" style="padding: 20px 0 5px 5px;">
+                            <div style="display: flex; width: 202.884pt; height: 235.623pt;">
+                                <div style="position: relative; width: 100%; height: 0pt;" class="page">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="202.88373pt" height="235.62288pt" viewBox="-72 -72 202.88373 235.62288" style="position: absolute; top: 0pt; left: 0pt; overflow: visible;">
+                                        <defs>
+                                        </defs>
+                                        <g transform="translate(-36.20407104492187,-31.482254028320305)">
+                                            <g stroke-miterlimit="10" transform="scale(1,-1)">
+                                                <g stroke="#000" fill="#000">
+                                                    <g stroke-width="0.4">
+                                                        <g stroke-width="1.0">
+                                                            <g transform="translate(-4.886,-1.40279)">
+                                                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(-32.870742797851555,-31.482254028320305)scale(-1,-1)">
+                                                                    <g fill="#000">
+                                                                        <g stroke="none">
+                                                                            <text alignment-baseline="baseline" y="-31.482254028320305" x="-32.870742797851555" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#119909;</text>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                            <g transform="translate(-4.886,-43.327)">
+                                                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(-32.870742797851555,-31.482254028320305)scale(-1,-1)">
+                                                                    <g fill="#000">
+                                                                        <g stroke="none">
+                                                                            <text alignment-baseline="baseline" y="-31.482254028320305" x="-32.870742797851555" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#8226;</text>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                            <g transform="translate(-4.886,-85.2512)">
+                                                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(-32.870742797851555,-31.482254028320305)scale(-1,-1)">
+                                                                    <g fill="#000">
+                                                                        <g stroke="none">
+                                                                            <text alignment-baseline="baseline" y="-31.482254028320305" x="-32.870742797851555" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#8226;</text>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                            <g transform="translate(-4.886,-127.17542)">
+                                                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(-32.870742797851555,-31.482254028320305)scale(-1,-1)">
+                                                                    <g fill="#000">
+                                                                        <g stroke="none">
+                                                                            <text alignment-baseline="baseline" y="-31.482254028320305" x="-32.870742797851555" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#8226;</text>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                            <g transform="translate(126.36298,-2.72223)">
+                                                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(-32.870742797851555,-31.482254028320305)scale(-1,-1)">
+                                                                    <g fill="#000">
+                                                                        <g stroke="none">
+                                                                            <text alignment-baseline="baseline" y="-31.482254028320305" x="-32.870742797851555" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#119910;</text>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                            <g transform="translate(126.36298,-47.28535)">
+                                                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(-32.870742797851555,-31.482254028320305)scale(-1,-1)">
+                                                                    <g fill="#000">
+                                                                        <g stroke="none">
+                                                                            <text alignment-baseline="baseline" y="-31.482254028320305" x="-32.870742797851555" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#8226;</text>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                            <g transform="translate(126.36298,-91.84848)">
+                                                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(-32.870742797851555,-31.482254028320305)scale(-1,-1)">
+                                                                    <g fill="#000">
+                                                                        <g stroke="none">
+                                                                            <text alignment-baseline="baseline" y="-31.482254028320305" x="-32.870742797851555" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#8226;</text>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                            <g transform="translate(126.36298,-136.4116)">
+                                                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(-32.870742797851555,-31.482254028320305)scale(-1,-1)">
+                                                                    <g fill="#000">
+                                                                        <g stroke="none">
+                                                                            <text alignment-baseline="baseline" y="-31.482254028320305" x="-32.870742797851555" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#8226;</text>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                            <g stroke="#1e5ab4">
+                                                                <g stroke="#1e5ab4">
+                                                                    <path d=" M 35.56593 -62.88632 C 35.56593 -5.90413 19.64276 40.28775 0.0 40.28775 C -19.64276 40.28775 -35.56593 -5.90413 -35.56593 -62.88632 C -35.56593 -119.86852 -19.64276 -166.0604 0.0 -166.0604 C 19.64276 -166.0604 35.56593 -119.86852 35.56593 -62.88632 Z M 0.0 -62.88632  " fill="none"></path>
+                                                                </g>
+                                                                <g transform="translate(-8.71898,-62.88632)">
+                                                                    <g stroke="none" transform="scale(-1.00375,1.00375)translate(-32.870742797851555,-31.482254028320305)scale(-1,-1)">
+                                                                        <g fill="#000"><g stroke="none"></g></g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                            <g transform="translate(-5.28494,-180.23337)">
+                                                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(-32.870742797851555,-31.482254028320305)scale(-1,-1)">
+                                                                    <g fill="#000">
+                                                                        <g stroke="none">
+                                                                            <g fill="black">
+                                                                                <text alignment-baseline="baseline" y="-31.482254028320305" x="-32.870742797851555" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="14.399993896484375">&#119860;</text>
+                                                                            </g>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                            <g stroke="#1e5ab4">
+                                                                <g stroke="#1e5ab4">
+                                                                    <path d=" M 166.3178 -66.8447 C 166.3178 -8.34346 150.39462 39.07982 130.75186 39.07982 C 111.1091 39.07982 95.18593 -8.34346 95.18593 -66.8447 C 95.18593 -125.34593 111.1091 -172.76921 130.75186 -172.76921 C 150.39462 -172.76921 166.3178 -125.34593 166.3178 -66.8447 Z M 130.75186 -66.8447  " fill="none"></path>
+                                                                </g>
+                                                                <g transform="translate(122.53,-66.8447)">
+                                                                    <g stroke="none" transform="scale(-1.00375,1.00375)translate(-32.870742797851555,-31.482254028320305)scale(-1,-1)">
+                                                                        <g fill="#000"><g stroke="none"></g></g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                            <g transform="translate(100.80511,-187.90218)">
+                                                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(-32.870742797851555,-31.482254028320305)scale(-1,-1)">
+                                                                    <g fill="#000">
+                                                                        <g stroke="none">
+                                                                            <g fill="black">
+                                                                                <text alignment-baseline="baseline" y="-31.482254028320305" x="-32.870742797851555" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="14.399993896484375">&#119861;</text>
+                                                                                <text alignment-baseline="baseline" y="-31.482254028320305" x="-17.43256527013727" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="14.399993896484375">&#61;</text>
+                                                                                <text alignment-baseline="baseline" y="-31.482254028320305" x="-2.466078219149494" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="14.399993896484375">&#119865;</text>
+                                                                                <text alignment-baseline="baseline" y="-31.482254028320305" x="8.619657047878716" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="14.399993896484375">&#91;</text>
+                                                                                <text alignment-baseline="baseline" y="-31.482254028320305" x="14.536281364358725" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="14.399993896484375">&#119860;</text>
+                                                                                <text alignment-baseline="baseline" y="-31.482254028320305" x="23.106181974580974" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="14.399993896484375">&#93;</text>
+                                                                            </g>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                            <g stroke="#1e5ab4" fill="#1e5ab4">
+                                                                <path d=" M 8.71898 0.0 L 117.30998 0.0  " fill="none"></path>
+                                                                <g transform="translate(117.30998,0.0)">
+                                                                    <path d=" M 5.22002 0.0 C 3.67331 0.29 1.16 1.16 -0.58 2.175 L -0.58 -2.175 C 1.16 -1.16 3.67331 -0.29 5.22002 0.0  " stroke="none"></path>
+                                                                </g>
+                                                            </g>
+                                                            <g stroke="#1e5ab4" fill="#1e5ab4">
+                                                                <path d=" M 8.71898 -42.09982 L 117.31126 -44.29199  " fill="none"></path>
+                                                                <g transform="matrix(0.99976,-0.02017,0.02017,0.99976,117.31125,-44.29198)">
+                                                                    <path d=" M 5.22002 0.0 C 3.67331 0.29 1.16 1.16 -0.58 2.175 L -0.58 -2.175 C 1.16 -1.16 3.67331 -0.29 5.22002 0.0  " stroke="none"></path>
+                                                                </g>
+                                                            </g>
+                                                            <g stroke="#1e5ab4" fill="#1e5ab4">
+                                                                <path d=" M 8.71898 -84.19977 L 117.31453 -88.58412  " fill="none"></path>
+                                                                <g transform="matrix(0.99913,-0.04031,0.04031,0.99913,117.31451,-88.58412)">
+                                                                    <path d=" M 5.22002 0.0 C 3.67331 0.29 1.16 1.16 -0.58 2.175 L -0.58 -2.175 C 1.16 -1.16 3.67331 -0.29 5.22002 0.0  " stroke="none"></path>
+                                                                </g>
+                                                            </g>
+                                                            <g stroke="#1e5ab4" fill="#1e5ab4">
+                                                                <path d=" M 8.71898 -126.29959 L 117.31987 -132.87634  " fill="none"></path>
+                                                                <g transform="matrix(0.99811,-0.06044,0.06044,0.99811,117.31987,-132.87634)">
+                                                                    <path d=" M 5.22002 0.0 C 3.67331 0.29 1.16 1.16 -0.58 2.175 L -0.58 -2.175 C 1.16 -1.16 3.67331 -0.29 5.22002 0.0  " stroke="none"></path>
+                                                                </g>
+                                                                <g transform="matrix(0.99811,-0.06044,0.06044,0.99811,40.68924,-150.32211)">
+                                                                    <g stroke="none" transform="scale(-1.00375,1.00375)translate(-32.870742797851555,-31.482254028320305)scale(-1,-1)">
+                                                                        <g fill="#1e5ab4">
+                                                                            <g stroke="none">
+                                                                                <g fill="black">
+                                                                                    <text alignment-baseline="baseline" y="-31.482254028320305" x="-32.870742797851555" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#119865;</text>
+                                                                                    <text alignment-baseline="baseline" y="-31.482254028320305" x="-22.273563385009762" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#58;</text>
+                                                                                    <text alignment-baseline="baseline" y="-31.482254028320305" x="-16.71806716918945" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#119860;</text>
+                                                                                    <text alignment-baseline="baseline" y="-31.482254028320305" x="-7.440338134765623" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#10230;</text>
+                                                                                    <text alignment-baseline="baseline" y="-31.482254028320305" x="7.037400436401365" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#119861;</text>
+                                                                                </g>
+                                                                            </g>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </div>
+                            </div>
+                            <script type="text/tikz">
+                                \begin{tikzpicture}[line width=1pt,>=latex,node distance=10mm]
+                                    \definecolor{myblue}{RGB}{30,90,180}
+                                    \sffamily
+
+                                    \node (a1) {$x$};
+                                    \node[below=of a1] (a2) {$\dot$};
+                                    \node[below=of a2] (a3) {$\dot$};
+                                    \node[below=of a3] (a4) {$\dot$};
+
+                                    \node[right=4cm of a1] (b1) {$y$};
+                                    \node[below=of b1] (b2) {$\dot$};
+                                    \node[below=of b2] (b3) {$\dot$};
+                                    \node[below=of b3] (b4) {$\dot$};
+
+                                    \node[shape=ellipse,draw=myblue,minimum height=5cm,minimum width=2.5cm,fit={(a1) (a4)},label=below:{\color{myblue}\Large\bfseries $A$}] (setA) {};
+                                    \node[shape=ellipse,draw=myblue,minimum height=5cm,minimum width=2.5cm,fit={(b1) (b4)},label=below:{\color{myblue}\Large\bfseries $B=F[A]$},inner sep=0pt] (setB) {};
+
+                                    \draw[->,myblue] (a1) -- (b1);
+                                    \draw[->,myblue] (a2) -- (b2);
+                                    \draw[->,myblue] (a3) -- (b3);
+                                    \draw[->,myblue] (a4) -- (b4) node[midway,below=4mm,sloped] {\color{myblue}$F:A \to B$};
+                                \end{tikzpicture}
+                            </script>
+                        </div>
+                    </div>
+                    <div class="tikzjax_wrapper"> <!-- 写像 -->
+                        <div class="tikzjax_flex" style="padding: 20px 0 5px 5px;">
+                            <script type="text/tikz">
+                                \begin{tikzpicture}[line width=1pt,>=latex]
+                                    \definecolor{myblue}{RGB}{30,90,180}
+                                    \sffamily
+                                    \node (a1) {$\cdot$};
+                                    \node[below=of a1] (a2) {$\cdot$};
+                                    \node[below=of a2] (a3) {$\cdot$};
+                                    \node[below=of a3] (a4) {$\cdot x$};
+
+                                    \node[right=4cm of a1] (aux1) {};
+                                    \node[below= 0.5cm of aux1] (b1) {$\cdot$};
+                                    \node[below=of b1] (b2) {$\cdot$};
+                                    \node[below=of b2] (b3) {$\cdot F(x)$};
+                                    \node[right=4cm of a4] (aux2) {};
+
+                                    \node[shape=ellipse,draw=myblue,minimum size=3cm,fit={(a1) (a4)},label=below:{\color{myblue}\Large\bfseries $A$}] (setA) {};
+                                    \node[shape=ellipse,draw=myblue,minimum size=3cm,fit={(aux1) (aux2)},label=below:{\color{myblue}\Large\bfseries $B=F[A]$}] (setB) {};
+
+                                    \draw[->,myblue] (a1) -- (b1.170);
+                                    \draw[->,myblue] (a2) -- (b1.190);
+                                    \draw[->,myblue] (a3) -- (b2.175);
+                                    \draw[->,myblue] (a4.20) -- (b2.190);
+                                \end{tikzpicture}
+                            </script>
+                        </div>
+                    </div>
                     <li>分出公理スキーム（Separation schema）</li>
                     <div class="mathjax_wrapper">
                         <div class="mathjax_flex">
@@ -219,9 +460,11 @@
                         &emsp;分出公理は置換公理と空集合の公理から導かれる。
                     </p>
                     <li>対の公理（Pairing）</li>
-                    <p>
-                        形式：$\forall x \, \forall y \, \exists z \, \forall w \, (w \in z \iff (w = x \lor w = y))$
-                    </p>
+                    <div class="mathjax_wrapper">
+                        <div class="mathjax_flex">
+                            形式：$\forall x \, \forall y \, \exists z \, \forall w \, (w \in z \iff (w = x \lor w = y))$
+                        </div>
+                    </div>
                     <p>
                         &emsp;「任意の二つの元 $x$, $y$ に対し、$x$ と$y$ のみを要素とする集合 $z$ が存在する」ことを主張するものである。あるいは、より弱い主張である
                     </p>
@@ -249,16 +492,30 @@
                         &emsp;そもそも、対の公理はZF公理系の他の公理と独立ではない。すなわち、置換公理および「濃度が2以上の集合の存在」から、任意のx,yに対する対 $\{x, y\}$ の存在を導ける（濃度が2以上の集合の存在については、無限公理、あるいは空集合の公理と冪集合の公理の組み合わせから導くことができる）。 そのため対の公理は、公理系を記述する際に省略されることもある。
                     </p>
                     <li>和集合の公理（Union）</li>
+                    <div class="mathjax_wrapper">
+                        <div class="mathjax_flex">
+                            形式：$\forall x \, \exists y \, \forall z \, [ z \in y \iff \exists w \, (z \in w ∧ w \in x) ]$
+                        </div>
+                    </div>
                     <p>
-                        形式：$\forall x \, \exists y \, \forall z \, [ z \in y \iff \exists w \, (z \in w ∧ w \in x) ]$
+                        &emsp;「任意の集合族 $x$ に対し、そのすべての要素を集めた合併集合が存在する」ことを主張するものである。すなわち、集合族 $x$ の和集合 $y$ が存在することを保証する。公理により存在を保証される集合 $y$ は、外延性の公理より一意に定まり、
                     </p>
+                    <div class="mathjax_wrapper">
+                        <div class="mathjax_flex">
+                            \[
+                                \bigcup x = \{ w \, \cup \, ... \, \cup \, w \mid w \in x \}
+                            \]
+                        </div>
+                    </div>
                     <p>
-                        &emsp;「任意の集合族 $x$ に対し、そのすべての要素を集めた合併集合が存在する」ことを主張するものである。すなわち、集合族 $x$ の和集合 $y$ が存在することを保証する。公理により存在を保証される集合 $y$ は、外延性の公理より一意に定まり、$\bigcup x = \{ w \, \cup \, ... \, \cup \, w \mid w \in x \}$ と記される。
+                        と記される。
                     </p>
                     <li>冪集合の公理（Power set）</li>
-                    <p>
-                        形式：$\forall A \, \exists \mathcal{P} \, \forall B \, [ B \in \mathcal{P} \iff \forall C \, (C \in B \Rightarrow C \in A) ]$
-                    </p>
+                    <div class="mathjax_wrapper">
+                        <div class="mathjax_flex">
+                            形式：$\forall A \, \exists \mathcal{P} \, \forall B \, [ B \in \mathcal{P} \iff \forall C \, (C \in B \Rightarrow C \in A) ]$
+                        </div>
+                    </div>
                     <p>
                         &emsp;「ある集合 $A$ が与えられたとき、その部分集合全体を要素とする冪集合 $\mathcal{P}$ が存在する」ことを主張するものである。部分集合関係は公理的に定義されるため、形式言語において部分集合は用いられない。外延性公理により、上記の集合は一意であり、このことはすべての集合に冪集合が存在することを意味する。
                     </p>
@@ -281,12 +538,134 @@
                     <p>
                         である。「集合𝐈で、𝐈は空集合を要素にもち、任意の𝐈の要素$x$に対して、$x$自身と$x$の各要素を要素とする𝐈の要素$y$が存在するような集合𝐈が存在する」ことを主張するものである。無限集合の存在を少なくともひとつ保証する。
                     </p>
-                    <li>正則性（基礎の）公理（Regularity / Foundation）</li>
+                    <li>正則性公理 [基礎の公理]（axiom of regularity [axiom of foundation]）</li>
+                    <div class="mathjax_wrapper">
+                        <div class="mathjax_flex">
+                            形式：$\forall x \, (x \neq \varnothing \Rightarrow \exists y \in x, \, \forall z \in x \, (z \notin y))$
+                        </div>
+                    </div>
+                    <p>
+                        &emsp;「空でない集合は必ず自分自身と交わらない要素を持つ」ことを主張するものである。これは以下の主張と同値である。
+                    </p>
+                    <div class="mathjax_wrapper">
+                        <div class="mathjax_flex">
+                            \[
+                                \forall x \neq \varnothing (\exists y \in x; \, y \cap x = \varnothing)
+                            \]
+                        </div>
+                    </div>
+                    <p>
+                        &emsp;上記の命題は、「どんな非空集合にも、その集合と交わりを持たない要素が少なくともひとつある」ことを主張するものである。正則性公理は、無限降下や自己包含などの集合の循環的な定義を排除し、集合の階層構造を確立するために重要である。
+                    </p>
                     <li>選択公理（Axiom of Choice）</li>
+                    <div class="mathjax_wrapper">
+                        <div class="mathjax_flex">
+                            形式：$\forall a \, [(\forall x\in a \ \exists w\ [w \in x]) \Rightarrow ([\forall x,\ y\in a\ \forall z\in x\ (z\in y \Rightarrow x = y)] \Rightarrow \exists c\ \forall x\in a [\exists y\in (c\cap x)\ \forall z\in (c\cap x) [ z=y ] ])]$
+                        </div>
+                    </div>
+                    <div class="mathjax_wrapper">
+                        <div class="mathjax_flex">
+                            換言：$\forall a \, [(\forall x\in a\ [x \neq \varnothing]) \Rightarrow ([\forall x,\ y\in a\ (x \neq y \Rightarrow x \cap y = \varnothing)] \Rightarrow \exists c \, \forall x\in a\ \exists! y\in c\ [y\in x])]$
+                        </div>
+                    </div>
+                    <p>
+                        &emsp;「(非空で)互いに素な集合 $x$（や $y$）からなる族 $a$ について、“$a$ の各集合からちょうど1つずつ元を選び出した集合” $c$ が存在する」ことを主張するものである。ここで、$\exists!$ は一意存在量化子で、$\exists! y\in c\ [y\in x]$ は「c の元で、x の要素となるような y がちょうど1つだけ存在する」という意味になる。選択公理においては、選択関数を用いた、
+                    </p>
+                    <div class="mathjax_wrapper">
+                        <div class="mathjax_flex">
+                            \[
+                                \forall X\left[\varnothing \notin X\implies \exists f\colon X\rightarrow \bigcup _{A\in X}A\quad \forall A\in X\left[f(A)\in A\right]\right]
+                            \]
+                        </div>
+                    </div>
+                    <p>
+                        という定義がよく用いられるが、これは関数という概念を導入する必要があるため、純粋に数学基礎論の概念のみを扱う場合には、選択関数を使わない定義が好まれる。上記の命題は、「集合の族から代表元を「一斉に」選び出す関数が存在する」ことを主張するものである。
+                    </p>
                 </ol>
             </p>
 
-            <h2 id="section_3">集合論の一覧</h2>
+            <h2 id="section_3">いくつかの帰結</h2>
+            <p>
+                &emsp;上記の公理から導かれるいくつかの重要な帰結をまとめる。
+            </p>
+            <div class="website_table_wrapper">
+                <div class="website_table">
+                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">命題 1.1</p></div>
+                    <div class="website_proposition_table_td">
+                        <p>&emsp;
+                            「1. 外延性公理」で、
+                        </p>
+                        <div class="mathjax_wrapper">
+                            <div class="mathjax_flex">
+                                \[
+                                    \forall x \, \forall y \, [ (\forall z \, (z \in x \iff z \in y)) \Rightarrow x = y ]
+                                \]
+                            </div>
+                        </div>
+                        <p>
+                            と述べたが、この逆も等号の代入原理により成り立つので、実際は
+                        </p>
+                        <div class="mathjax_wrapper">
+                            <div class="mathjax_flex">
+                                \[
+                                    \forall x \, \forall y \, [ (\forall z \, (z \in x \iff z \in y)) \iff x = y ]
+                                \]
+                            </div>
+                        </div>
+                        <p>
+                            が成り立つことになる。空集合の公理、対の公理、和集合の公理、冪集合公理で存在が主張される集合はそれぞれ、外延性の公理により一意に定まる。
+                        </p>
+                    </div>
+                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">命題 3.1</p></div>
+                    <div class="website_proposition_table_td">
+                        <p>&emsp;置換公理スキームは、</p>
+                        <div class="mathjax_wrapper">
+                            <div class="mathjax_flex">
+                                \[
+                                    \forall A \, \exists B \, \forall y \, (y \in B \iff [\exists x \in A \land P(x, y)])
+                                \]
+                            </div>
+                        </div>
+                        <p>と書ける。これは、「ある述語 $P(x, y)$ によって一意に $y$ が決定される場合、任意の集合 $A$ の元 $x$ から $P$ によって得られる $y$ 全体の像は集合である」ことをことを主張するものである。</p>
+                    </div>
+                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">証明 3.1</p></div>
+                    <div class="website_proposition_table_td">
+                        <p>&emsp;上記、ZFC集合論の公理系では、置換公理スキームを</p>
+                        <div class="mathjax_wrapper">
+                            <div class="mathjax_flex">
+                                \[
+                                    \forall w_{1}, \ldots ,w_{n}\,\forall A\,([\forall x\in A \, \exists !y \, P(x,y,w_{1},\ldots ,w_{n},A)]\ \Rightarrow \ \exists B \, \forall y \, [y \in B \iff \exists x \in A \, P(x,y,w_{1}, \ldots ,w_{n},A)])
+                                \]
+                            </div>
+                        </div>
+                        <p>と定義したが、</p>
+                        <div class="mathjax_wrapper">
+                            <div class="mathjax_flex">
+                                \[
+                                    S = \{x \mid 1 \leq x \leq 9, x \in \mathbb{N}\}
+                                \]
+                            </div>
+                        </div>
+                        <p>のように条件を示す方法（内包的表記）でも行われる。</p>
+                    </div>
+                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex3&rpar;</p></div>
+                    <div class="website_proposition_table_td">
+                        <p>&emsp;元が$x$のみである集合$\{ x\}$は一元集合であり、$x$とは異なる数学的対象として考える。</p>
+                    </div>
+                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex4&rpar;</p></div>
+                    <div class="website_proposition_table_td">
+                        <p>
+                            <ul>
+                                <li>&emsp;素数全体の集合を$\mathbb{P}$とする。</li>
+                                <li>$2$は素数であるから、$2$は集合$P$に属する。ゆえに、$2\in P$が成り立つ。</li>
+                                <li>$6$は素数でないから、$6$は集合$P$に属さない。ゆえに、$6\not\in P$が成り立つ。</li>
+                            </ul>
+                        </p>
+                    </div>
+                </div> <!-- /example_table -->
+            </div>
+
+            <h2 id="section_4">集合論の一覧</h2>
             <div class="pulldown_list_wrapper">
                 <li><details> <!-- 素朴集合論 -->
                     <summary><div class="link-container">

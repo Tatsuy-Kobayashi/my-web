@@ -231,11 +231,11 @@ a:hover {
 }
 .website_table .website_proposition_table_th {
     padding-left: 10px;
-    width: 50px;
+    width: 89px;
 }
 .website_table .website_proposition_table_th .website_proposition_table_th_bold {
     font-weight: bold;
 }
 .website_table .website_proposition_table_td {
-    width: calc(100% - 50px);
+    width: calc(100% - 89px);
 }

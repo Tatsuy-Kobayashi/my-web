@@ -213,7 +213,7 @@
                         </div>
                     </div>
                     <p>
-                        &emsp;「」ことをことを主張するものである。関数的対応によって「像」を取ったときに、それもまた集合となる。
+                        &emsp;「任意のパラメータ列 $w_{1}, \ldots ,w_{n}$ と任意の集合 $A$ に対して、もし $\forall x \in A \, \exists !y \, P(x,y,w_{1}, \ldots ,w_{n},A)$ ならば、$\exists B \, \forall y \, [y \in B \iff \exists x \in A \, P(x,y,w_{1}, \ldots ,w_{n},A)]$」ことを主張するものである。関数的対応によって「像」を取ったときに、それもまた集合となる。
                     </p>
                     <div class="tikzjax_wrapper">
                         <div class="tikzjax_flex" style="padding: 20px 0 5px 5px;">
@@ -536,7 +536,7 @@
                         </div>
                     </div>
                     <p>
-                        である。「集合𝐈で、𝐈は空集合を要素にもち、任意の𝐈の要素$x$に対して、$x$自身と$x$の各要素を要素とする𝐈の要素$y$が存在するような集合𝐈が存在する」ことを主張するものである。無限集合の存在を少なくともひとつ保証する。
+                        である。「ある集合 $\mathrm{I}$ が存在して、$\mathrm{I}$ は空集合をを含み、かつ任意の $\mathrm{I}$ の要素 $x$ に対して $x$ 自身と $x$ の各要素を要素とする $\mathrm{I}$ の要素 $y$ が存在する」ことを主張するものである。無限集合の存在を少なくともひとつ保証する。
                     </p>
                     <li>正則性公理 [基礎の公理]（axiom of regularity [axiom of foundation]）</li>
                     <div class="mathjax_wrapper">
@@ -618,7 +618,9 @@
                     </div>
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">命題 3.1</p></div>
                     <div class="website_proposition_table_td">
-                        <p>&emsp;置換公理スキームは、</p>
+                        <p>
+                            &emsp;置換公理スキームは、<b>一価性が成り立つ述語 $P$ に限り、</b>
+                        </p>
                         <div class="mathjax_wrapper">
                             <div class="mathjax_flex">
                                 \[
@@ -626,11 +628,15 @@
                                 \]
                             </div>
                         </div>
-                        <p>と書ける。これは、「ある述語 $P(x, y)$ によって一意に $y$ が決定される場合、任意の集合 $A$ の元 $x$ から $P$ によって得られる $y$ 全体の像は集合である」ことをことを主張するものである。</p>
+                        <p>
+                            と書ける（メタ的な導入規則・スキーム）。これは、「一価性が成り立つ述語 $P$ に限り、ある述語 $P(x, y)$ によって一意に $y$ が決定される場合、任意の集合 $A$ の元 $x$ から $P$ によって得られる $y$ 全体の像は集合である」ことをことを主張するものである。
+                        </p>
                     </div>
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">証明 3.1</p></div>
                     <div class="website_proposition_table_td">
-                        <p>&emsp;上記、ZFC集合論の公理系では、置換公理スキームを</p>
+                        <p>
+                            &emsp;上記、ZFC集合論の公理系では、置換公理スキームを
+                        </p>
                         <div class="mathjax_wrapper">
                             <div class="mathjax_flex">
                                 \[
@@ -638,31 +644,188 @@
                                 \]
                             </div>
                         </div>
-                        <p>と定義したが、</p>
+                        <p>
+                            と定義した。全称除去（UI）で任意の特定のパラメータ列 $\bar{w}$ と集合 $A$ に対するインスタンスを得る：
+                        </p>
                         <div class="mathjax_wrapper">
                             <div class="mathjax_flex">
                                 \[
-                                    S = \{x \mid 1 \leq x \leq 9, x \in \mathbb{N}\}
+                                    ([\forall x\in A\exists!y\,P(\bar{w})]\Rightarrow \exists B\forall y\,[y\in B\iff\exists x\in A\,P(\bar{w})]).
                                 \]
                             </div>
                         </div>
-                        <p>のように条件を示す方法（内包的表記）でも行われる。</p>
-                    </div>
-                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex3&rpar;</p></div>
-                    <div class="website_proposition_table_td">
-                        <p>&emsp;元が$x$のみである集合$\{ x\}$は一元集合であり、$x$とは異なる数学的対象として考える。</p>
-                    </div>
-                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex4&rpar;</p></div>
-                    <div class="website_proposition_table_td">
                         <p>
-                            <ul>
-                                <li>&emsp;素数全体の集合を$\mathbb{P}$とする。</li>
-                                <li>$2$は素数であるから、$2$は集合$P$に属する。ゆえに、$2\in P$が成り立つ。</li>
-                                <li>$6$は素数でないから、$6$は集合$P$に属さない。ゆえに、$6\not\in P$が成り立つ。</li>
-                            </ul>
+                            この式は形式的に「一価性が成り立てば結論が成り立つ」という含意を与えている。従って、<b>一価性</b> $\forall x \in A \, \exists !y \, P(\bar{w})$ <b>を仮定</b>すれば、モードス・ポーネンス（MP）により直接
+                        </p>
+                        <div class="mathjax_wrapper">
+                            <div class="mathjax_flex">
+                                \[
+                                    \exists B \, \forall y \, [y \in B \iff \exists x \in A \, P(\bar{w})]
+                                \]
+                            </div>
+                        </div>
+                        <p>
+                            が導かれる。
+                        </p>
+                        <p>
+                            &emsp;逆についても証明する。
+                        </p>
+                        <p>
+                            &emsp;任意のパラメータ列 $\bar{w}$ と任意の集合 $A$ を固定する。目標は
+                        </p>
+                        <div class="mathjax_wrapper">
+                            <div class="mathjax_flex">
+                                \[
+                                    [\forall x \in A \, \exists !y \, P(\bar{w})] \Rightarrow \exists B \, \forall y \, [y \in B \iff \exists x \in A \, P(\bar{w})]
+                                \]
+                            </div>
+                        </div>
+                        <p>
+                            仮定 $H$：$\forall x \in A \, \exists !y \, P(\bar{w})$ を置く。
+                        </p>
+                        <p>
+                            仮定（メタ的な R₁）により、この $H$ から（理論内で）
+                        </p>
+                        <div class="mathjax_wrapper">
+                            <div class="mathjax_flex">
+                                \[
+                                    \exists B \, \forall y \, [y \in B \iff \exists x \in A \, P(\bar{w})]
+                                \]
+                            </div>
+                        </div>
+                        <p>
+                            を導けるとする（ここがメタ的なルールの適用）。
+                        </p>
+                        <p>
+                            すると仮定 $H$ から結論が導けるので，<b>帰結定理</b>（仮定導入）により
+                        </p>
+                        <div class="mathjax_wrapper">
+                            <div class="mathjax_flex">
+                                \[
+                                    H \Rightarrow \exists B \, \forall y \, [y \in B \iff \exists x \in A \, P(\bar{w})]
+                                \]
+                            </div>
+                        </div>
+                        <p>
+                            が理論の定理となる。
+                        </p>
+                        <p>
+                            $\bar{w}$ と $A$ は任意に固定していたので、<b>全称導入</b>（UG）により外側に $\forall w_{1}, \ldots ,w_{n}\,\forall A$ を付けて
+                        </p>
+                        <div class="mathjax_wrapper">
+                            <div class="mathjax_flex">
+                                \[
+                                    \forall w_{1}, \ldots ,w_{n}\,\forall A\,([\forall x\in A \, \exists !y \, P(x,y,w_{1},\ldots ,w_{n},A)]\ \Rightarrow \ \exists B \, \forall y \, [y \in B \iff \exists x \in A \, P(x,y,w_{1}, \ldots ,w_{n},A)])
+                                \]
+                            </div>
+                        </div>
+                        <p>
+                            を得る。これが示したかったものである。
                         </p>
                     </div>
-                </div> <!-- /example_table -->
+                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">命題 7.1</p></div>
+                    <div class="website_proposition_table_td">
+                        <p>
+                            &emsp;和集合公理、冪集合公理、分出公理を用いて、デカルト積
+                        </p>
+                        <div class="mathjax_wrapper">
+                            <div class="mathjax_flex">
+                                \[
+                                    A \times B = \{ z \in \mathcal{P}(\mathcal{P}(A \cup B)) \mid \exists x \in A \, \exists y \in B \, [z = \{\{x\}, \{x, y\}\}] \}
+                                \]
+                            </div>
+                        </div>
+                        <p>
+                            が集合であることを示せる。
+                        </p>
+                    </div>
+                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">証明 7.1</p></div>
+                    <div class="website_proposition_table_td">
+                        <p>
+                            <b>前提：</b><br>
+                            &emsp;Kuratowskiの順序対を次のように定義する：
+                        </p>
+                        <div class="mathjax_wrapper">
+                            <div class="mathjax_flex">
+                                \[
+                                    \langle x, y\rangle := \{\{x\}, \{x, y\}\}
+                                \]
+                            </div>
+                        </div>
+                        <p>
+                            この集合の2つの要素 $\{x\}$ と $\{x, y\}$ は対公理で与えられるため、通常のZFC 体系ではこれらの集合の存在を前提とする。
+                        </p>
+                        <p>
+                            <b>ステップ 1：</b><br>
+                            &emsp;仮に $x \in A$ かつ $y \in B$ とすると、
+                        </p>
+                        <li>$\{x\} \subseteq A \cup B$（なぜなら $x \in A \subseteq A \cup B$）</li>
+                        <li>$\{x, y\} \subseteq A \cup B$（なぜなら $x \in A \subseteq A \cup B$ および $y \in B \subseteq A \cup B$）</li>
+                        <p>
+                            である。したがって $\{x\}$ と $\{x, y\}$ はどちらも $\mathcal{P}(A \cup B)$（$= \{\varnothing, \{x\}, \{y\}, \{x, y\}\}$）の元である。従って集合 $\{\{x\}, \{x, y\}\}$ は「$\mathcal{P}(A \cup B)$ の部分集合（＝元）」であるから
+                        </p>
+                        <div class="mathjax_wrapper">
+                            <div class="mathjax_flex">
+                                \[
+                                    \langle x, y\rangle = \{\{x\}, \{x, y\}\} \in \mathcal{P}(\mathcal{P}(A \cup B)).
+                                \]
+                            </div>
+                        </div>
+                        <p>
+                            要点：<b>二重の冪集合</b> $\mathcal{P}(\mathcal{P}(A \cup B))$ は、すべてのKuratowski順序対 $\langle x, y\rangle$ を含む「上界（スーパーセット）」になっている。
+                        </p>
+                        <p>
+                            <b>ステップ 2：</b><br>
+                            &emsp;まず「$z$ が順序対 $\langle x, y\rangle$ である」という述語を形式化する：
+                        </p>
+                        <div class="mathjax_wrapper">
+                            <div class="mathjax_flex">
+                                \[
+                                    \mathrm{Pair}(z, x, y) :\equiv z = \{\{x\}, \{x, y\}\}.
+                                \]
+                            </div>
+                        </div>
+                        <p>
+                            この述語を量化して
+                        </p>
+                        <div class="mathjax_wrapper">
+                            <div class="mathjax_flex">
+                                \[
+                                    \exists x \in A \, \exists y \in B \, \mathrm{Pair}(z, x, y)
+                                \]
+                            </div>
+                        </div>
+                        <p>
+                            という条件を作る。
+                        </p>
+                        <p>
+                            分出公理を $\varphi(z)$ に $\exists x \in A \, \exists y \in B \, \mathrm{Pair}(z, x, y)$ を代入して $\mathcal{P}(\mathcal{P}(A \cup B))$ に適用すると、
+                        </p>
+                        <div class="mathjax_wrapper">
+                            <div class="mathjax_flex">
+                                \[
+                                    \exists X \, \forall z (z \in X \iff [ z \in \mathcal{P}(\mathcal{P}(A \cup B)) \land \exists x \in A \, \exists y \in B \, \mathrm{Pair}(z, x, y) ] )
+                                \]
+                            </div>
+                        </div>
+                        <p>
+                            を得る。この $X$ が $x \in A, \, y \in B$ のデカルト積 $A \times B$ である。
+                        </p>
+                    </div>
+                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">命題 8.1</p></div>
+                    <div class="website_proposition_table_td">
+                        <p>
+                            &emsp;無限公理より、標準的な von Neumann の定義による $\omega$（自然数全体の集合 $\mathbb{N}$ と同じ濃度の基数）の存在を厳密に構成できる。
+                        </p>
+                    </div>
+                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">証明 8.1</p></div>
+                    <div class="website_proposition_table_td">
+                        <p>
+                            <b>ステップ 1：</b><br>
+                            &emsp;無限公理より存在する $I$ を一つ固定する（存在を取り出す）。無限公理の第一部分は「ある $o \in I$ が存在して、その $o$ は空集合である」というものである。したがって空集合 $\varnothing$ が $I$ に含まれることが示される（必要なら空集合を別途公理で与えることも可）。
+                        </p>
+                    </div>
+                </div> <!-- /website_table -->
             </div>
 
             <h2 id="section_4">集合論の一覧</h2>

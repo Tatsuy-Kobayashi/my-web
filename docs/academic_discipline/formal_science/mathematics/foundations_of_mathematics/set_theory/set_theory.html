@@ -612,6 +612,26 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                     \end{equation*}
                 </div>
             </div>
+            <p>
+                <li><b>直積 [デカルト積]（Direct product [Cartesian product]）</b></li>
+                &emsp;解析幾何学で周知のように、<ruby>Descartes<rp>（</rp><rt>デカルト</rt><rp>）</rp></ruby>座標を用いれば、平面上の一点は二つの実数 $x,y$ の対 $(x,y)$ として表わされる。二点 $(x,y)$, $(x', y')$ が一致するために必要にして十分な条件は $x = x', y = y'$ である。このような数の組を順序対（ordered pair）と呼ぶ。
+            </p>
+            <p>
+                &emsp;ここで上記の順序対を用いて2つの集合$A, B$の直積を
+            </p>
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        A \times B = \{ (x, y) \mid x \in A \land x \in B \}
+                    \]
+                </div>
+            </div>
+            <p>
+                と定義できる。直積のZFC公理系からの導出は、<a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/zermelo_fraenkel_choice_set_theory.html">ツェルメロ＝フレンケル集合論</a>の命題 7.1を参照されたい。
+            </p>
+            <p>
+                &emsp;再び解析幾何学の観点で述べると、$x$ を $A \times B$ の元 $(x,y) = z$ の 'A座標' または 'Aへの<b>射影</b>' (projection onto A) といい $\mathrm{pr}_{A}(z)$ で表せる。同様に $y$ を $(x,y) = z$ の 'B座標' または 'Bへの射影' といい $\mathrm{pr}_{B}(z)$ で表せる。
+            </p>
             <div class="coding_file_wrapper">
                 <div class="fileTitle">集合の代数学</div>
                 <div class="code-main">
@@ -858,6 +878,9 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
             <ol class="olAnnotation">
                 <li id="note_1"><a href="#ref_1">^</a>
                     Vladimir Nikolaevich Grishin, Consistency of a fragment of Quine's NF system. Soviet mathematics—Doklady, 10 (1969) pp. 1387-1390
+                </li>
+                <li id="note_2"><a href="#ref_2">^</a>
+                    彌永昌吉, 小平邦彦, 現代数学概説 I. 岩波書店, 1961/07/31.
                 </li>
             </ol>
         </div> <!-- /annotation -->

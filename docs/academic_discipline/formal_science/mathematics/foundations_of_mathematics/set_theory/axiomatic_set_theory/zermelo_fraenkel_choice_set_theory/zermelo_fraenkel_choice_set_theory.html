@@ -167,14 +167,14 @@
                         </ul>
                     </ul>
                     <li><a href="#section_3">いくつかの帰結</a></li>
-                    <li><a href="#section_4">集合論の一覧</a></li>
+                    <li><a href="#section_4">ZFC集合論から導出される概念の一覧</a></li>
                 </ul>
             </div>
 
             <h2 id="section_1">概要</h2>
             <p style="font-family: 'tex_gyre_schola_math', sans-serif;">abcdefghijklmnopqrstuvwxyz</p>
             <p>
-                &emsp;公理的集合論の中でも最も広く用いられているのが ZFC集合論（Zermelo-Fraenkel Set Theory with the Axiom of Choice）です。本稿では、ZFC集合論の構成、公理系、直観、限界などについてまとめる。また、以降に出てくる記号$\in$、$\notin$、$=$、$\cup$、$\varnothing$は、<a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html">集合論</a>にて扱っているため、既知とする。
+                &emsp;公理的集合論の中でも最も広く用いられているのが ZFC集合論（Zermelo-Fraenkel Set Theory with the Axiom of Choice）である。集合論の古典的な結果の多くは、素朴集合論的立場からも十分に理解可能だが、現代的な研究成果の正確な記述や理解には、公理系の明確化が必要不可欠である。ZFC集合論は、要素関係を表す2 変数の述語記号 $\in$ のみを持つ言語 $\mathscr{L}_{ZF}$ 上の 1 階の述語論理の論理式（群）、公理1-10として定式化される。$\in$、論理記号と $=$ 以外の記号は、形式的にはすべて補助記号にすぎない。また、以降に出てくる記号$\in$、$\notin$、$=$、$\cup$、$\varnothing$は、<a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html">集合論</a>にて扱っているため、既知とする。
             </p>
             <h2 id="section_2">ZFC集合論の構成</h2>
             <p>
@@ -190,7 +190,7 @@
                 <b id="section_2_1">ZFC集合論の公理系</b><br>
                 &emsp;ZFCは以下のような9つの（公理スキームを含む）基本公理から成り立ちます。各公理は集合がどのように構成されるか、どのように振る舞うかを制御します。
                 <ol>
-                    <li>外延性公理（Extensionality）</li>
+                    <li>外延性公理（Axiom of Extensionality）</li>
                     <div class="mathjax_wrapper">
                         <div class="mathjax_flex">
                             形式：$\forall x \, \forall y \, [ (\forall z \, (z \in x \iff z \in y)) \Rightarrow x = y ]$
@@ -199,21 +199,21 @@
                     <p>
                         &emsp;どのような論理体系でも、集合の同一性を保証するための最も根本的な公理。「集合は含まれる要素によってのみ決定される」ことを主張するものである。空集合の公理、対の公理、和集合の公理、冪集合公理で存在が主張される集合はそれぞれ、外延性の公理により一意に定まる。
                     </p>
-                    <li>空集合の公理（Empty set）</li>
+                    <li>空集合の公理（Axiom of Empty set）</li>
                     <p>
                         形式：$\exists x \, \forall y \, (y \notin x)$
                     </p>
                     <p>
                         &emsp;空集合が存在することを保証する公理。「要素を持たない集合が存在する」ことを主張するものである。空集合は、どの要素も含まない集合であり、最も基本的な集合である。
                     </p>
-                    <li>置換公理スキーム（Replacement schema）</li>
+                    <li>置換公理スキーム（Axiom schema of Replacement）</li>
                     <div class="mathjax_wrapper">
                         <div class="mathjax_flex">
                             形式：$\forall w_{1}, \ldots ,w_{n}\,\forall A\,([\forall x\in A \, \exists !y \, P(x,y,w_{1},\ldots ,w_{n},A)]\ \Rightarrow \ \exists B \, \forall y \, [y \in B \iff \exists x \in A \, P(x,y,w_{1}, \ldots ,w_{n},A)])$
                         </div>
                     </div>
                     <p>
-                        &emsp;「任意のパラメータ列 $w_{1}, \ldots ,w_{n}$ と任意の集合 $A$ に対して、もし $\forall x \in A \, \exists !y \, P(x,y,w_{1}, \ldots ,w_{n},A)$ ならば、$\exists B \, \forall y \, [y \in B \iff \exists x \in A \, P(x,y,w_{1}, \ldots ,w_{n},A)]$」ことを主張するものである。関数的対応によって「像」を取ったときに、それもまた集合となる。
+                        &emsp;「任意のパラメータ列 $w_{1}, \ldots ,w_{n}$ と任意の集合 $A$ に対して、もし $\forall x \in A \, \exists !y \, P(x,y,w_{1}, \ldots ,w_{n},A)$ ならば、ある集合 $B$ が存在して任意の $y$ に対して、$[y \in B \iff \exists x \in A \, P(x,y,w_{1}, \ldots ,w_{n},A)]$」ことを主張するものである。関数的対応によって「像」を取ったときに、それもまた集合となる。
                     </p>
                     <div class="tikzjax_wrapper">
                         <div class="tikzjax_flex" style="padding: 20px 0 5px 5px;">
@@ -447,7 +447,7 @@
                             </script>
                         </div>
                     </div>
-                    <li>分出公理スキーム（Separation schema）</li>
+                    <li>分出公理スキーム（Axiom schema of Separation）</li>
                     <div class="mathjax_wrapper">
                         <div class="mathjax_flex">
                             形式：$\forall w_{1},...,w_{n} \, \forall x \, \exists y \, \forall z \, (z \in y \iff [z \in x \land P(z, w_{1},...,w_{n}, x)])$
@@ -459,7 +459,7 @@
                     <p>
                         &emsp;分出公理は置換公理と空集合の公理から導かれる。
                     </p>
-                    <li>対の公理（Pairing）</li>
+                    <li>対の公理（Axiom of Pairing）</li>
                     <div class="mathjax_wrapper">
                         <div class="mathjax_flex">
                             形式：$\forall x \, \forall y \, \exists z \, \forall w \, (w \in z \iff (w = x \lor w = y))$
@@ -491,7 +491,7 @@
                     <p>
                         &emsp;そもそも、対の公理はZF公理系の他の公理と独立ではない。すなわち、置換公理および「濃度が2以上の集合の存在」から、任意のx,yに対する対 $\{x, y\}$ の存在を導ける（濃度が2以上の集合の存在については、無限公理、あるいは空集合の公理と冪集合の公理の組み合わせから導くことができる）。 そのため対の公理は、公理系を記述する際に省略されることもある。
                     </p>
-                    <li>和集合の公理（Union）</li>
+                    <li>和集合の公理（Axiom of Union）</li>
                     <div class="mathjax_wrapper">
                         <div class="mathjax_flex">
                             形式：$\forall x \, \exists y \, \forall z \, [ z \in y \iff \exists w \, (z \in w ∧ w \in x) ]$
@@ -510,7 +510,7 @@
                     <p>
                         と記される。
                     </p>
-                    <li>冪集合の公理（Power set）</li>
+                    <li>冪集合の公理（Axiom of Power set）</li>
                     <div class="mathjax_wrapper">
                         <div class="mathjax_flex">
                             形式：$\forall A \, \exists \mathcal{P} \, \forall B \, [ B \in \mathcal{P} \iff \forall C \, (C \in B \Rightarrow C \in A) ]$
@@ -519,7 +519,7 @@
                     <p>
                         &emsp;「ある集合 $A$ が与えられたとき、その部分集合全体を要素とする冪集合 $\mathcal{P}$ が存在する」ことを主張するものである。部分集合関係は公理的に定義されるため、形式言語において部分集合は用いられない。外延性公理により、上記の集合は一意であり、このことはすべての集合に冪集合が存在することを意味する。
                     </p>
-                    <li>無限公理（Infinity）</li>
+                    <li>無限公理（Axiom of Infinity）</li>
                     <div class="mathjax_wrapper">
                         <div class="mathjax_flex">
                             形式：$\exists \, \mathrm {I} \ (\exists o\ [o\in \mathrm {I} \ \land \lnot \, \exists n\ (n\in o)]\ \land \ \forall x\ [x\in \mathrm {I} \Rightarrow \exists y\ \langle y\in \mathrm {I} \ \land \ \forall a\ [a\in y\Leftrightarrow (a\in x\ \lor \ a=x)]\rangle])$
@@ -538,7 +538,7 @@
                     <p>
                         である。「ある集合 $\mathrm{I}$ が存在して、$\mathrm{I}$ は空集合をを含み、かつ任意の $\mathrm{I}$ の要素 $x$ に対して $x$ 自身と $x$ の各要素を要素とする $\mathrm{I}$ の要素 $y$ が存在する」ことを主張するものである。無限集合の存在を少なくともひとつ保証する。
                     </p>
-                    <li>正則性公理 [基礎の公理]（axiom of regularity [axiom of foundation]）</li>
+                    <li>正則性公理 [基礎の公理]（Axiom of Regularity [Axiom of Foundation]）</li>
                     <div class="mathjax_wrapper">
                         <div class="mathjax_flex">
                             形式：$\forall x \, (x \neq \varnothing \Rightarrow \exists y \in x, \, \forall z \in x \, (z \notin y))$
@@ -759,8 +759,10 @@
                             <b>ステップ 1：</b><br>
                             &emsp;仮に $x \in A$ かつ $y \in B$ とすると、
                         </p>
-                        <li>$\{x\} \subseteq A \cup B$（なぜなら $x \in A \subseteq A \cup B$）</li>
-                        <li>$\{x, y\} \subseteq A \cup B$（なぜなら $x \in A \subseteq A \cup B$ および $y \in B \subseteq A \cup B$）</li>
+                        <div style="padding: 0 0 0 40px;">
+                            <li>$\{x\} \subseteq A \cup B$（なぜなら $x \in A \subseteq A \cup B$）</li>
+                            <li>$\{x, y\} \subseteq A \cup B$（なぜなら $x \in A \subseteq A \cup B$ および $y \in B \subseteq A \cup B$）</li>
+                        </div>
                         <p>
                             である。したがって $\{x\}$ と $\{x, y\}$ はどちらも $\mathcal{P}(A \cup B)$（$= \{\varnothing, \{x\}, \{y\}, \{x, y\}\}$）の元である。従って集合 $\{\{x\}, \{x, y\}\}$ は「$\mathcal{P}(A \cup B)$ の部分集合（＝元）」であるから
                         </p>
@@ -818,33 +820,132 @@
                             &emsp;無限公理より、標準的な von Neumann の定義による $\omega$（自然数全体の集合 $\mathbb{N}$ と同じ濃度の基数）の存在を厳密に構成できる。
                         </p>
                     </div>
-                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">証明 8.1</p></div>
+                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">構成 8.1</p></div>
                     <div class="website_proposition_table_td">
                         <p>
                             <b>ステップ 1：</b><br>
-                            &emsp;無限公理より存在する $I$ を一つ固定する（存在を取り出す）。無限公理の第一部分は「ある $o \in I$ が存在して、その $o$ は空集合である」というものである。したがって空集合 $\varnothing$ が $I$ に含まれることが示される（必要なら空集合を別途公理で与えることも可）。
+                            &emsp;無限公理より存在する $I$ を一つ固定する（存在を取り出す）。無限公理の第一部分は「ある $o \in I$ が存在して、その $o$ は空集合である」というものである。したがって空集合 $\varnothing$ が $I$ に含まれることが示される（空集合を用いない無限公理もあるため、必要なら空集合を別途公理で与えることも可）。第二部分は「任意の $x \in I$ に対して後続 $S(x) := x \cup \{x\}$ が存在して $S(x) \in I$」。このような $I$ を「インダクティブ集合（inductive set）」と呼ぶ。
                         </p>
+                        <p>
+                            <b>ステップ 2：</b><br>
+                            &emsp;直感的に我々が欲しいのは「すべてのインダクティブ集合に共通する元全体」、すなわち最小のインダクティブ集合である。これを構成する。
+                        </p>
+                        <ol>
+                            <li>
+                                まず $I$ の冪集合 $\mathcal{P}(I)$ を作る（冪集合公理を適用）。<br>
+                                $\mathcal{P}(I)$ は $I$ のすべての部分集合を含む。
+                            </li>
+                            <li>
+                                $\mathcal{P}(I)$ の中から「インダクティブである部分集合」だけを切り出すために；述語
+                                <div class="mathjax_wrapper">
+                                    <div class="mathjax_flex">
+                                        \[
+                                            \Phi(X) \equiv (\varnothing \in X \land \forall x \in X \, [S(x) \in X])
+                                        \]
+                                    </div>
+                                </div>
+                                を考える。（$\Phi(X)$ は「$X$ はインダクティブである」という意味）。分出公理スキームを使って
+                                <div class="mathjax_wrapper">
+                                    <div class="mathjax_flex">
+                                        \[
+                                            J := \{ X \in \mathcal{P}(I) \mid \Phi(X) \}
+                                        \]
+                                    </div>
+                                </div>
+                                を定義・構成する。ここで $J$ は「$I$ のインダクティブな部分集合全体の集合」である。
+                            </li>
+                            <li>
+                                最小のインダクティブ集合 $\omega$ を $J$ の共通部分（intersection）として定義する：
+                                <div class="mathjax_wrapper">
+                                    <div class="mathjax_flex">
+                                        \[
+                                            \omega := \bigcap J = \{ y \in I \mid \forall X \in J \, (y \in X) \}
+                                        \]
+                                    </div>
+                                </div>
+                                この集合は次の操作で存在を得られる。右辺は $I$ の部分集合として分出公理スキームによって切り出せる集合である（条件 $\forall X \in J \, (y \in X)$ はパラメータ $J$ を含む式になっているが，分出公理は任意の式を許すためこの切り出しは正当）。したがって $\omega$ は集合として存在する。
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">証明 8.1</p></div>
+                    <div class="website_proposition_table_td">
+                        <p>
+                            &emsp;$\omega$ がインダクティブであり最小であることの証明をする。
+                        </p>
+                        <p>
+                            <b>ステップ 1：</b>$\omega$ はインダクティブである<br>
+                            &emsp;空集合が $\omega$ に含まれ（無限公理の仮定）、かつ任意の $X \in J$ はインダクティブなので $\varnothing \in X$。よって $\varnothing$ は $J$ のすべての元に含まれるから、$\varnothing \in \omega$（定義より）。
+                        </p>
+                        <p>
+                            &emsp;閉包性（後続を取っても $\omega$ に残る）：任意の $x \in \omega$ を取ると、$x \in X$ が任意の $X \in J$ に対して成り立つ。しかし各 $X \in J$ はインダクティブなので $S(x) \in X$ である。従って $S(x)$ は $J$ のすべての元に含まれるので、$S(x) \in \omega$。したがって $\omega$ はインダクティブである。
+                        </p>
+                        <p>
+                            <b>ステップ 2：</b>$\omega$ は最小のインダクティブ集合である<br>
+                            &emsp;任意のインダクティブ集合 $X \subseteq I$（すなわち $X \in J$）を取れば、定義から $\omega \subseteq X$（$\omega$ は $J$ の共通部分）となる。すなわち $\omega$ は $I$ 内の任意のインダクティブ集合に含まれるので最小。
+                        </p>
+                    </div>
+                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">命題 8.2</p></div>
+                    <div class="website_proposition_table_td">
+                        <p>
+                            &emsp;無限公理より、標準的な von Neumann の定義による自然数の構成ができる。ただし、この方法では、空集合をゼロとする。
+                        </p>
+                    </div>
+                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">証明 8.2</p></div>
+                    <div class="website_proposition_table_td">
+                        <ol>
+                            <li>$0 := \varnothing$</li>
+                            <p>ここで、ある $n$ に対して、その後続を $S(n) = n \cup \{n\}$ と定義する。</p>
+                            <li>個々の自然数は元集合として</li>
+                            <div class="mathjax_wrapper">
+                                <div class="mathjax_flex">
+                                    \[
+                                        1 = S(0) = 0 \cup \{0\} = \varnothing \cup \{\varnothing\} = \{\varnothing\} = \{0\}
+                                    \]
+                                </div>
+                            </div>
+                            <div class="mathjax_wrapper">
+                                <div class="mathjax_flex">
+                                    \[
+                                        2 = S(1) = 1 \cup \{1\} = \{\varnothing\} \cup \{\{\varnothing\}\} = \{\varnothing, \{\varnothing\}\} = \{0, 1\}
+                                    \]
+                                </div>
+                            </div>
+                            <div class="mathjax_wrapper">
+                                <div class="mathjax_flex">
+                                    \[
+                                        3 = S(2) = 2 \cup \{2\} = \{\varnothing, \{\varnothing\}\} \cup \{\{\varnothing, \{\varnothing\}\}\} = \{\varnothing, \{\varnothing\}, \{\varnothing, \{\varnothing\}\}\} = \{0, 1, 2\}
+                                    \]
+                                </div>
+                            </div>
+                            <p>と帰納的に得られる。</p>
+                        </ol>
+                        <p><b>性質：</b></p>
+                        <div style="padding: 0 0 0 40px;">
+                            <li>すべての元 $n \in \omega$ はいわゆる<b>有限順序数（finite von Neumann ordinal）</b>であり、任意の $n$ に対して $n = \{ 0, 1, \ldots , n-1 \}$ が成立する（この事実は外延性と帰納的な定義から証明できる）。</li>
+                            <li>後続写像 $S$ は、$\omega$ 上で単射である（もし $S(x) = S(y)$ ならば $x = y$）。証明は外延性公理で行える。</li>
+                            <li>さらに $0 \notin S[\omega]$（つまり $0$ はいかなる後続形でもない）。従って $S$ は全体に対する全射ではなく、$\omega$ の真部分集合 $S[\omega]$ に写す単射を与える。これにより、$\omega$ は無限集合である（典型的には「存在する集合 $A$ に単射 $f: \, A \to A$ があって像が真部分集合である」ことは無限性の一つの定式化である）。</li>
+                        </div>
                     </div>
                 </div> <!-- /website_table -->
             </div>
 
-            <h2 id="section_4">集合論の一覧</h2>
+            <h2 id="section_4">ZFC集合論から導出される概念の一覧</h2>
             <div class="pulldown_list_wrapper">
-                <li><details> <!-- 素朴集合論 -->
+                <li><details> <!-- ツェルメロ＝フレンケル集合論 -->
                     <summary><div class="link-container">
-                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/naive_set_theory/naive_set_theory.html" class="preview-link" data-title="素朴集合論" data-description="このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。" data-image="">素朴集合論</a>
+                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/zermelo_fraenkel_choice_set_theory.html" class="preview-link" data-title="ツェルメロ＝フレンケル集合論" data-description="このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。" data-image="">ツェルメロ＝フレンケル集合論</a>
                         <div class="link-preview">
                             <img class="preview-image">
-                            <h3 class="preview-title">素朴集合論</h3>
+                            <h3 class="preview-title">ツェルメロ＝フレンケル集合論</h3>
                             <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
                         </div> <!-- link-preview -->
                     </div></summary>
-                        <li><details> <!-- 幼児 -->
+                        <li><details> <!-- 対応と写像 -->
                             <summary><div class="link-container">
-                                <a href="#">幼児</a>
+                                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/mapping.html">対応と写像</a>
                                 <div class="link-preview">
                                     <img class="preview-image">
-                                    <h3 class="preview-title">幼児</h3>
+                                    <h3 class="preview-title">対応と写像</h3>
                                     <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
                                 </div> <!-- link-preview -->
                             </div></summary>
@@ -869,8 +970,49 @@
                                     </div></summary>
                                         <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/school_education/elementary/elementary_math/previous_pra/enumerative_pra.html">数え上げの練習</a></li>
                                 </details></li><!-- /さんすう -->
-                        </details></li> <!-- /幼児 -->
-                </details></li> <!-- /素朴集合論 -->
+                        </details></li> <!-- /対応と写像 -->
+                        <li><details> <!-- 添字付けられた族 -->
+                            <summary><div class="link-container">
+                                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/family_of_sets.html">添字付けられた族</a>
+                                <div class="link-preview">
+                                    <img class="preview-image">
+                                    <h3 class="preview-title">添字付けられた族</h3>
+                                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                </div> <!-- link-preview -->
+                            </div></summary>
+                        </details></li> <!-- /添字付けられた族 -->
+                        <li><details> <!-- 選択公理 -->
+                            <summary><div class="link-container">
+                                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/axiom_of_choice.html">選択公理</a>
+                                <div class="link-preview">
+                                    <img class="preview-image">
+                                    <h3 class="preview-title">選択公理</h3>
+                                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                </div> <!-- link-preview -->
+                            </div></summary>
+                                <li><details> <!-- こくご -->
+                                    <summary><div class="link-container">
+                                        <a href="#">こくご</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">こくご</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                </details></li><!-- /こくご -->
+                                <li><details> <!-- さんすう -->
+                                    <summary><div class="link-container">
+                                        <a href="#">さんすう</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">さんすう</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                        <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/school_education/elementary/elementary_math/previous_pra/enumerative_pra.html">数え上げの練習</a></li>
+                                </details></li><!-- /さんすう -->
+                        </details></li> <!-- /選択公理 -->
+                </details></li> <!-- /ツェルメロ＝フレンケル集合論 -->
                 <li><details> <!-- 公理的集合論 -->
                     <summary><div class="link-container">
                         <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/physics.html" class="preview-link" data-title="公理的集合論" data-description="このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。" data-image="">公理的集合論</a>
@@ -983,7 +1125,17 @@
             ページ注釈
             <ol class="olAnnotation">
                 <li id="note_1"><a href="#ref_1">^</a>
-                    Vladimir Nikolaevich Grishin, Consistency of a fragment of Quine's NF system. Soviet mathematics—Doklady, 10 (1969) pp. 1387-1390
+                    置換公理や分出公理は、1 つの論理式でなく $\mathscr{L}_{ZF}$ の各論理式 $P$ に対し公理での形の論理式を考え、それらを全部集めたものである。このような類型による無限個の公理の指定を、公理図式（axiom scheme）と呼ぶ。
+                </li>
+                <li id="note_2"><a href="#ref_2">^</a>
+                    インスタンス（instance）は元々英語で「実例」を意味する言葉である。Pythonで言うと、スキームがクラス・オブジェクトならインスタンスがインスタンス・オブジェクトに相当する。<br>
+                    公理図式に具体的な論理式 $P$ を代入すると、具体的な公理が1つ得られる。この「具体的に得られた公理」をその<b>公理図式のインスタンス（instance）</b>と呼ぶ。
+                </li>
+                <li id="note_3"><a href="#ref_3">^</a>
+                    「Kuratowskiの順序対」と言っているが、初学者はより一般化された順序対でもあるのか？など考えなくて良い。現代数学の一般的な順序対が、Kuratowskiの順序対である。
+                </li>
+                <li id="note_4"><a href="#ref_4">^</a>
+                    $S[\cdot]$ は $S$ による像を表す記法だが詳しくは「写像」の項で述べる。
                 </li>
             </ol>
         </div> <!-- /annotation -->

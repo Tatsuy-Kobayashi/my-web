@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <title>写像 - ラクして数理研究所</title>
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="apple-touch-icon" />
+    <!-- SEO -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。">
+    <meta name="keywords" content="学問,数学,情報理論,集合論,プログラミング,ラクして数理研究所">
+    <link rel="canonical" href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" />
+    <!-- og -->
+    <meta property="og:type" content="website" /> <!-- articleとか -->
+    <meta property="og:title" content="写像｜ラクして数理研究所" />
+    <meta property="og:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" />
+    <meta property="og:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" />
+    <meta property="og:site_name" content="ラクして数理研究所" />
+    <link rel="dns-prefetch" href="//tatsuy-kobayashi.github.io/" /> <!-- HTTPSページのDNSプリフェッチはできない -->
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="写像｜ラクして数理研究所">
+    <meta name="twitter:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。">
+    <meta name="twitter:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html">
+    <meta name="twitter:image" content="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/style.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/special.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/search.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/responsive_header.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/commentary.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/mathContentWrapper.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/underEntryContent.css" />
+    <!-- プログラミング解説 -->
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/prism.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/codeHighlight.css" />
+    <!-- texgyre -->
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/font/texgyreschola-math/texgyreschola-math.css" type="text/css" charset="utf-8" />
+
+    <!-- プログラミング解説 -->
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/prism.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/jquery.min.js" defer></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/include.js" defer></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/linkPreview.js" defer></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/commentary.js" defer></script>
+    <script>
+        // JavaScriptの厳格モード使用
+        'use strict';
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+      
+        /*gtag('config', 'トラッキングID');*/
+    </script>
+    <script type="text/javascript">
+        window.MathJax = {
+            tex: {
+                tags: "ams", // 自動ナンバリングを有効化（AMSスタイル）
+                inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+                displayMath: [ ["$$","$$"], ["\\[","\\]"] ],
+                processEscapes: true,
+                maxBuffer: 10 * 1024,  // 数式バッファの設定
+            },
+            chtml: {
+                displayAlign: "left",
+                displayIndent: "2em",
+            }
+        };
+    </script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/mathjax-config.js" defer></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" defer></script><!--
+    <link rel="stylesheet" href="https://tikzjax.com/v1/fonts.css" media="print" onload="this.media='all'" />
+    <script type="text/javascript" src="https://tikzjax.com/v1/tikzjax.js" defer></script>-->
+    <style>
+        .venn-area path {
+            fill-opacity: 0.4;
+            stroke: #000;
+            stroke-width: 1px;
+        }
+        .venn-area text {
+            font-size: 16px;
+            fill: #000;
+        }
+    </style>
+</head>
+<body>
+<div id="wrapper">
+    <header></header>
+    <div class="content">
+        <div class="breadcrumb_list">
+            <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/">
+                    <i class="fa fa-home fa-fw" aria-hidden="true"></i>&ensp;<span>Home</span>
+                </a>
+            </span>&ensp;&gt;&ensp;
+            <span class="link-container">
+                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="学問" data-description="AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">
+                    <i class="fa fa-solid fa-graduation-cap" aria-hidden="true"></i>&ensp;<span>学問</span>
+                </a>
+                <div class="link-preview">
+                    <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="link-preview-clickable">
+                        <img class="preview-image" src="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" alt="Preview image">
+                        <h3 class="preview-title">学問</h3>
+                        <p class="preview-description">AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう</p>
+                    </a>
+                </div> <!-- /link-preview -->
+            </span> <!-- /link-preview -->&ensp;&gt;&ensp;
+            <span class="link-container">
+                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/formal_science.html" class="preview-link" data-title="形式科学" data-description="AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">
+                    <i class="fa fa-solid fa-shapes" aria-hidden="true"></i>&ensp;<span>形式科学</span>
+                </a>
+                <div class="link-preview">
+                    <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/formal_science.html" class="link-preview-clickable">
+                        <img class="preview-image" src="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" alt="Preview image">
+                        <h3 class="preview-title">形式科学</h3>
+                        <p class="preview-description">AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう</p>
+                    </a>
+                </div> <!-- /link-preview -->
+            </span> <!-- /link-preview -->&ensp;&gt;&ensp;
+            <span class="link-container">
+                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html" target="_blank" rel="me noopener noreferrer" class="physics-link">
+                    <span class="icon icon-physics">&ensp;数学</span>
+                </a>
+            </span> <!-- /link-container -->&ensp;&gt;&ensp;
+            <span class="link-container">
+                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/physics.html" target="_blank" rel="me noopener noreferrer" class="physics-link">
+                    <span class="icon icon-physics">&ensp;数学基礎論</span>
+                </a>
+            </span> <!-- /link-container -->&ensp;&gt;&ensp;
+            <span class="link-container">
+                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html" target="_blank" rel="me noopener noreferrer" class="physics-link">
+                    <span class="icon icon-physics">&ensp;集合論</span>
+                </a>
+            </span> <!-- /link-container -->&ensp;&gt;&ensp;
+            <span class="link-container">
+                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/axiomatic_set_theory.html" target="_blank" rel="me noopener noreferrer" class="physics-link">
+                    <span class="icon icon-physics">&ensp;公理的集合論</span>
+                </a>
+            </span> <!-- /link-container -->&ensp;&gt;&ensp;
+            <span class="link-container">
+                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/zermelo_fraenkel_choice_set_theory.html" target="_blank" rel="me noopener noreferrer" class="physics-link">
+                    <span class="icon icon-physics">&ensp;ツェルメロ＝フレンケル集合論</span>
+                </a>
+            </span> <!-- /link-container -->&ensp;&gt;&ensp;
+            写像
+        </div>
+        <div class="main">
+            <h1>写像</h1>
+            <h2>目次[<span class="toc-toggle-button">表示</span>]</h2>
+            <div class="toc-content">
+                <ul>
+                    <li><a href="#section_1">概要</a></li>
+                    <li><a href="#section_2">ZFC集合論の構成</a></li>
+                    <ul style="padding: 0 20px;">
+                        <li><a href="#section_2_1">ZFC集合論の公理系</a></li>
+                        <ul style="padding: 0 20px;">
+                            <li><a href="#section_2_1_1">外延性公理（Extensionality）</a></li>
+                            <li><a href="#section_2_1_2">空集合の公理（Empty set）</a></li>
+                        </ul>
+                    </ul>
+                    <li><a href="#section_3">いくつかの帰結</a></li>
+                    <li><a href="#section_4">ZFC集合論から導出される概念の一覧</a></li>
+                </ul>
+            </div>
+
+            <h2 id="section_1">概要</h2>
+            <p>
+                &emsp;（概要を記入）
+            </p>
+            <h2 id="section_2">$n$項関係</h2>
+            <p>
+                &emsp;$\langle x, y\rangle$ を順序対とすると、2つの集合 $X, Y$ の直積は、
+            </p>
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        X \times Y = \{ \langle x, y\rangle \mid x \in X \land y \in Y \}
+                    \]
+                </div>
+            </div>
+            <p>
+                と表される。集合 $X_{1}, X_{2}, \ldots, X_{n}$ に対して、$R \subseteq X_{1} \times X_{2} \times \cdots \times X_{n}$ である集合 $R$ を $X_{1}, X_{2}, \ldots, X_{n}$ 上の $n$ 項関係（$n$-ary relation）と呼ぶ。$X_{1} = X_{2} = \cdots = X_{n} = X$ のとき、$X$ 上の $n$ 項関係と呼ぶ。
+            </p>
+            <p>
+                &emsp;$R$ を $X,Y$ 上の二項関係（binary relation）としたとき、$\langle x, y\rangle \in R$ を $x \, R \> y$ と表す。
+            </p>
+            <p>
+                &emsp;次をみたす集合 $X$ 上の二項関係 $R$ を $X$ 上の（狭義）全順序と呼ぶ。
+            </p>
+            <div style="padding: 0 0 0 40px;">
+                <li>$(\forall x \in X) \lnot \, x \, R \> x$.（非反射律）</li>
+                <li>$(\forall x_{1}, x_{2}, x_{3} \in X) \, (x_{1} \, R \> x_{2} \land x_{2} \, R \> x_{3}) \implies x_{1} \, R \> x_{3}$.（推移律）</li>
+                <li>$(\forall x_{1}, x_{2} \in X) \, x_{1} \, R \> x_{2} \lor x_{1} = x_{2} \lor x_{2} \, R \> x_{1}$.（三分律）</li>
+            </div>
+            <p>
+                $R$ が $X$ 上の全順序であるとき、$\langle X, R \rangle$ を全順序集合（totally ordered set）と呼ぶ。
+            </p>
+
+            <h2 id="section_3">写像</h2>
+            <p>
+                &emsp;$f$ が集合 $X, Y$ 上の二項関係で、
+            </p>
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        \forall x \in X, \exists ! \, y \in Y, \langle x, y\rangle \in f
+                    \]
+                </div>
+            </div>
+            <p>
+                であるとき、$f$ を $X$ から $Y$ への写像（mapping）または関数（function）といい、$f: X \to Y$ と表す。上記の論理式は「$x \in X$ に対して、$\langle x, y\rangle \in f$ を満たすただ一つの $y$ が存在する」という意味である。
+            </p>
+            <p>
+                &emsp;$X$ を $f$ の始域（または定義域）と呼び、$\mathrm{dom}(f)$ で表す。一方、$f$ の終域（または値域）を
+            </p>
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        \mathrm{rng}(f) := \{ f(x) \mid x \in X \} = \{ y \in Y \mid \exists x \in X, \langle x, y\rangle \in f \}
+                    \]
+                </div>
+            </div>
+            <p>
+                と定義する。
+            </p>
+            <p>
+                &emsp;写像 $f: X \to Y$ と $X' \subseteq X$ に対し、
+            </p>
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        f[X'] := \{ f(x) \mid x \in X' \}
+                    \]
+                </div>
+            </div>
+            <p>
+                とし、$f[X']$ を $X'$ の $f$ による像（image）と呼ぶ。$f(x)$ が多くの場合、元や<ruby>数<rp>（</rp><rt>すう</rt><rp>）</rp></ruby>相当であるのに対して、$f[X']$ は集合であることに注意されたい。
+            </p>
+            <p>
+                &emsp;写像 $f$ が $\forall x_{1}, x_{2} \in X$ に対して、
+            </p>
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        f(x_{1}) = f(x_{2}) \implies x_{1} = x_{2}
+                    \]
+                </div>
+            </div>
+            <p>
+                を満たすとき、$f$ を単射（injective）または1対1（one-to-one）であるといい、
+            </p>
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        X \precsim Y \stackrel{\mathrm{def}}{\Leftrightarrow} X \text{ から } Y \text{ への単射が存在する.}
+                    \]
+                </div>
+            </div>
+            <p>
+                とする。一方、
+            </p>
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        f[X] = Y
+                    \]
+                </div>
+            </div>
+            <p>
+                を満たすとき、$f$ を全射（surjective）または上への写像（onto）であるという。さらに、$f$ が単射かつ全射であるとき、$f$ を全単射（bijective）または双射（one-to-one correspondence）であるといい、
+            </p>
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        X \sim Y \stackrel{\mathrm{def}}{\Leftrightarrow} X \text{ から } Y \text{ への全単射が存在する.}
+                    \]
+                </div>
+            </div>
+            <p>
+                とする。$X \sim Y$ であるとき、$X$ と $Y$ は<b>対等</b>であるという。
+            </p>
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        X \precnsim Y \stackrel{\mathrm{def}}{\Leftrightarrow} X \precsim Y \land X \nsim Y
+                    \]
+                </div>
+            </div>
+
+            <h2 id="section_4">写像の一覧</h2>
+            <div class="pulldown_list_wrapper">
+                <li><details> <!-- 写像 -->
+                    <summary><div class="link-container">
+                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/zermelo_fraenkel_choice_set_theory.html" class="preview-link" data-title="写像" data-description="このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。" data-image="">写像</a>
+                        <div class="link-preview">
+                            <img class="preview-image">
+                            <h3 class="preview-title">写像</h3>
+                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                        </div> <!-- link-preview -->
+                    </div></summary>
+                        <li><details> <!-- 対応と写像 -->
+                            <summary><div class="link-container">
+                                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/mapping.html">対応と写像</a>
+                                <div class="link-preview">
+                                    <img class="preview-image">
+                                    <h3 class="preview-title">対応と写像</h3>
+                                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                </div> <!-- link-preview -->
+                            </div></summary>
+                                <li><details> <!-- こくご -->
+                                    <summary><div class="link-container">
+                                        <a href="#">こくご</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">こくご</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                </details></li><!-- /こくご -->
+                                <li><details> <!-- さんすう -->
+                                    <summary><div class="link-container">
+                                        <a href="#">さんすう</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">さんすう</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                        <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/school_education/elementary/elementary_math/previous_pra/enumerative_pra.html">数え上げの練習</a></li>
+                                </details></li><!-- /さんすう -->
+                        </details></li> <!-- /対応と写像 -->
+                        <li><details> <!-- 添字付けられた族 -->
+                            <summary><div class="link-container">
+                                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/family_of_sets.html">添字付けられた族</a>
+                                <div class="link-preview">
+                                    <img class="preview-image">
+                                    <h3 class="preview-title">添字付けられた族</h3>
+                                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                </div> <!-- link-preview -->
+                            </div></summary>
+                        </details></li> <!-- /添字付けられた族 -->
+                        <li><details> <!-- 選択公理 -->
+                            <summary><div class="link-container">
+                                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/axiom_of_choice.html">選択公理</a>
+                                <div class="link-preview">
+                                    <img class="preview-image">
+                                    <h3 class="preview-title">選択公理</h3>
+                                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                </div> <!-- link-preview -->
+                            </div></summary>
+                                <li><details> <!-- こくご -->
+                                    <summary><div class="link-container">
+                                        <a href="#">こくご</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">こくご</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                </details></li><!-- /こくご -->
+                                <li><details> <!-- さんすう -->
+                                    <summary><div class="link-container">
+                                        <a href="#">さんすう</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">さんすう</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                        <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/school_education/elementary/elementary_math/previous_pra/enumerative_pra.html">数え上げの練習</a></li>
+                                </details></li><!-- /さんすう -->
+                        </details></li> <!-- /選択公理 -->
+                </details></li> <!-- /写像 -->
+                <li><details> <!-- 公理的集合論 -->
+                    <summary><div class="link-container">
+                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/physics.html" class="preview-link" data-title="公理的集合論" data-description="このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。" data-image="">公理的集合論</a>
+                        <div class="link-preview">
+                            <img class="preview-image">
+                            <h3 class="preview-title">公理的集合論</h3>
+                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                        </div> <!-- link-preview -->
+                    </div></summary>
+                        <li><details> <!-- 写像 -->
+                            <summary><div class="link-container">
+                                <a href="#">写像</a>
+                                <div class="link-preview">
+                                    <img class="preview-image">
+                                    <h3 class="preview-title">写像</h3>
+                                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                </div> <!-- link-preview -->
+                            </div></summary>
+                                <li><details> <!-- こくご -->
+                                    <summary><div class="link-container">
+                                        <a href="#">こくご</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">こくご</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                </details></li><!-- /こくご -->
+                                <li><details> <!-- さんすう -->
+                                    <summary><div class="link-container">
+                                        <a href="#">さんすう</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">さんすう</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                        <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/school_education/elementary/elementary_math/previous_pra/enumerative_pra.html">数え上げの練習</a></li>
+                                </details></li><!-- /さんすう -->
+                        </details></li> <!-- /写像 -->
+                        <li><details> <!-- フォン・ノイマン＝ベルナイス＝ゲーデル集合論 -->
+                            <summary><div class="link-container">
+                                <a href="#">フォン・ノイマン＝ベルナイス＝ゲーデル集合論</a>
+                                <div class="link-preview">
+                                    <img class="preview-image">
+                                    <h3 class="preview-title">フォン・ノイマン＝ベルナイス＝ゲーデル集合論</h3>
+                                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                </div> <!-- link-preview -->
+                            </div></summary>
+                                <li><details> <!-- こくご -->
+                                    <summary><div class="link-container">
+                                        <a href="#">こくご</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">こくご</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                </details></li><!-- /こくご -->
+                                <li><details> <!-- さんすう -->
+                                    <summary><div class="link-container">
+                                        <a href="#">さんすう</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">さんすう</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                        <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/school_education/elementary/elementary_math/previous_pra/enumerative_pra.html">数え上げの練習</a></li>
+                                </details></li><!-- /さんすう -->
+                        </details></li> <!-- /フォン・ノイマン＝ベルナイス＝ゲーデル集合論 -->
+                        <li><details> <!-- モース-ケリー集合論 -->
+                            <summary><div class="link-container">
+                                <a href="#">モース-ケリー集合論</a>
+                                <div class="link-preview">
+                                    <img class="preview-image">
+                                    <h3 class="preview-title">モース-ケリー集合論</h3>
+                                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                </div> <!-- link-preview -->
+                            </div></summary>
+                                <li><details> <!-- こくご -->
+                                    <summary><div class="link-container">
+                                        <a href="#">こくご</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">こくご</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                </details></li><!-- /こくご -->
+                                <li><details> <!-- さんすう -->
+                                    <summary><div class="link-container">
+                                        <a href="#">さんすう</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">さんすう</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                        <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/school_education/elementary/elementary_math/previous_pra/enumerative_pra.html">数え上げの練習</a></li>
+                                </details></li><!-- /さんすう -->
+                        </details></li> <!-- /モース-ケリー集合論 -->
+                </details></li> <!-- /公理的集合論 -->
+            </div>
+
+
+
+        </div> <!-- /.main -->
+        <div class="annotation">
+            ページ注釈
+            <ol class="olAnnotation">
+                <li id="note_1"><a href="#ref_1">^</a>
+                    問題ないと思うが、念のため。<br>
+                    「$x \in X$ に対して、$\langle x, y\rangle \in f$ を満たすただ一つの $y$ が存在する」というのは、$x_{1} \in X$ に対してただ一つの $y_{1}$ が存在し、$x_{2}$ に対してただ一つの $y_{2}$ が存在し、$\cdots$、という意味であり。<br>
+                    決して、全ての $x \in X$ に対して、ただ一つの $y$ が存在する、という意味ではない。
+                </li>
+            </ol>
+        </div> <!-- /annotation -->
+    </div> <!-- /content -->
+    <footer></footer>
+    </div> <!-- /wrapper -->
+    <nav id="nav"></nav>
+</body>
+</html>

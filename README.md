@@ -6,9 +6,9 @@ My-web
 Tatsuya Kobayashi
 
 # Overview
-巡回管理用
+~~巡回管理用~~
 
-~~質問事項があれば、[Issue](https://github.com/Tatsuy-Kobayashi/my-web/issues) にてお願い致します。答えられる範囲で回答します。~~<br>
+質問事項があれば、[Issue](https://github.com/Tatsuy-Kobayashi/my-web/issues) にてお願い致します。答えられる範囲で回答します。<br>
 
 ## icon
 <div>
@@ -18,7 +18,7 @@ Tatsuya Kobayashi
 ## 項目 [Contents]
 
 - 数学 [Mathematics]
-    - [集合論 [set theory]](https://github.com/Tatsuy-Kobayashi/my-web/blob/14d71d33733c99aaa8d5f316cdde03e9d88f0890/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html)（ブランチのハッシュ化はソースコードを選んで「y」。URLをを確認）<br>
+    - [集合論 [set theory]](https://github.com/Tatsuy-Kobayashi/my-web/blob/14d71d33733c99aaa8d5f316cdde03e9d88f0890/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html)（ブランチのハッシュ化はソースコードを選んで「y」。URLを確認）<br>
       [集合論 - ラクして数理研究所](https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html)
     - [フーリエ解析 [Fourier analysis]]()
     - [関数解析 [functional analysis]]()
@@ -82,7 +82,7 @@ comments: true
 
 > homepage : [Home](https://tatsuy-kobayashi.github.io/my-web/docs/)
 >> Twitter モーメント：https://twitter.com/
->> 
+>> YouTube モーメント：
 
 $\pi(x)$
 

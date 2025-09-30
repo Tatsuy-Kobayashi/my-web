@@ -54,7 +54,7 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-      
+
         /*gtag('config', 'トラッキングID');*/
     </script>
     <script type="text/javascript">
@@ -208,7 +208,7 @@
             <div class="mathjax_wrapper">
                 <div class="mathjax_flex">
                     \[
-                        \forall x \in X, \exists ! \, y \in Y, \langle x, y\rangle \in f
+                        \forall x \in X, \exists! \, y \in Y, \langle x, y\rangle \in f
                     \]
                 </div>
             </div>
@@ -287,12 +287,262 @@
             <div class="mathjax_wrapper">
                 <div class="mathjax_flex">
                     \[
-                        X \precnsim Y \stackrel{\mathrm{def}}{\Leftrightarrow} X \precsim Y \land X \nsim Y
+                        X \precnsim Y \stackrel{\mathrm{def}}{\Leftrightarrow} X \precsim Y \land X \nsim Y.
                     \]
                 </div>
             </div>
+            <div class="website_table_wrapper">
+                <div class="website_table">
+                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">命題 1.1</p></div>
+                    <div class="website_proposition_table_td">
+                        <p>
+                            <b>カントールの定理</b>
+                        </p>
+                        <p>
+                            &emsp;すべての集合 $X$ に対して、
+                        </p>
+                        <div class="mathjax_wrapper">
+                            <div class="mathjax_flex">
+                                \[
+                                    X \precnsim \mathcal{P}(X).
+                                \]
+                            </div>
+                        </div>
+                    </div>
+                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">命題 1.2</p></div>
+                    <div class="website_proposition_table_td">
+                        <p>
+                            <b>ベルンシュタイン・シュレーダーの定理</b>
+                        </p>
+                        <p>
+                            &emsp;すべての集合 $X, Y$ に対して、
+                        </p>
+                        <div class="mathjax_wrapper">
+                            <div class="mathjax_flex">
+                                \[
+                                    X \precsim Y \land Y \precsim X \implies X \sim Y.
+                                \]
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- /website_table -->
+            </div>
+            <h2 id="section_4">対応</h2>
+            <p>
+                &emsp;この考え方を拡張して、集合 $M$ から $N$ への対応（correspondence）を次のように定義する。
+            </p>
+            <div class="tikzjax_wrapper">
+                <div class="tikzjax_flex" style="padding: 20px 0 5px 5px;">
+                    <div style="display: flex; width: 373.673pt; height: 257.001pt;">
+                        <div style="position: relative; width: 100%; height: 155.9519348144531pt;" class="page">
+                            <svg width="373.67293pt" height="257.00111pt" viewBox="-72 -72 373.67293 257.00111" style="position: absolute; top: 0pt; left: 0pt; overflow: visible;">
+<g transform="translate(-40.62998962402343,155.9519348144531)">
+<g stroke-miterlimit="10" transform="scale(1,-1)"><g stroke="#000" fill="#000">
+ <g stroke-width="0.4">
+ <g stroke-width="1.2">
+ <g stroke="#f00" fill="#f00">
+ <path d=" M 0.0 0.0 L 341.43292 0.0  " fill="none"></path>
+ </g>
+ </g>
+ <g stroke-width="1.2">
+ <g stroke="#00f" fill="#00f">
+ <path d=" M 0.0 0.0 L 0.0 227.62195  " fill="none"></path>
+ </g>
+ </g>
+ <g stroke-width="1.2">
+ <path d=" M 341.43292 0.0 L 341.43292 227.62195 L 0.0 227.62195  " fill="none"></path>
+ </g>
+ <g stroke="#f00" fill="#f00">
+ <g stroke="#f00" fill="#f00">
+ </g>
+ <g transform="translate(165.32063,-25.4462)">
+ <g stroke="none" transform="scale(-1.00375,1.00375)translate(-37.29666137695312,155.9519348144531)scale(-1,-1)"><g fill="#f00">
+ <g stroke="none"> <text alignment-baseline="baseline" y="155.9519348144531" x="-37.29666137695312" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#119872;</text>
+</g> </g>
+ </g></g>
+ </g>
+ <g stroke="#00f" fill="#00f">
+ <g stroke="#00f" fill="#00f">
+ </g>
+ <g transform="translate(-28.30704,110.39432)">
+ <g stroke="none" transform="scale(-1.00375,1.00375)translate(-37.29666137695312,155.9519348144531)scale(-1,-1)"><g fill="#00f">
+ <g stroke="none"> <text alignment-baseline="baseline" y="155.9519348144531" x="-37.29666137695312" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#119873;</text>
+</g> </g>
+ </g></g>
+ </g>
+ <clipPath id="pgfcp9"><path d=" M 0.0 0.0 M 0.0 0.0 L 0.0 227.62195 L 341.43292 227.62195 L 341.43292 0.0 Z M 341.43292 227.62195  "></path> </clipPath>
+ <g clip-path="url(#pgfcp9)">
+ <g stroke-width="1.0">
+ <path d=" M 190.63329 128.03734 M 293.78142 176.13643 C 280.49905 204.62036 223.5516 206.17613 166.58374 179.6114 C 109.61588 153.04668 74.20279 108.42218 87.48515 79.93825 C 100.76752 51.45432 157.71497 49.89854 214.68283 76.46327 C 271.6507 103.028 307.06378 147.6525 293.78142 176.13643 Z M 190.63329 128.03734  " fill="none"></path>
+ <g transform="translate(190.63329,128.03734)">
+ <g stroke="none" transform="scale(-1.00375,1.00375)translate(-37.29666137695312,155.9519348144531)scale(-1,-1)"><g fill="#000">
+ <g stroke="none"> </g> </g>
+ </g></g>
+ </g>
+ dvisvgm:rawset 3dvisvgm:rawdef  <pattern id="pgfpat3" patternUnits="userSpaceOnUse" width="3.0" height="3.0" patternTransform="matrix(1.0 0.0 0.0 1.0 0.0 0.0)"></pattern> <symbol id="pgfsym3"> <g stroke-width="0.4">
+ <path d=" M 0.0 0.0 L 3.1 3.1  " fill="none"></path>
+ </g>
+  </symbol> <pattern id="pgfupat10" xlink:href="#pgfpat3"> <g stroke="#8c8c8c" fill="#8c8c8c"> <use xlink:href="#pgfsym3"></use> </g> </pattern> dvisvgm:rawput 3<g fill="url(#pgfupat10)">
+ <path d=" M 190.63329 128.03734 M 293.78142 176.13643 C 280.49905 204.62036 223.5516 206.17613 166.58374 179.6114 C 109.61588 153.04668 74.20279 108.42218 87.48515 79.93825 C 100.76752 51.45432 157.71497 49.89854 214.68283 76.46327 C 271.6507 103.028 307.06378 147.6525 293.78142 176.13643 Z M 190.63329 128.03734  " stroke="none"></path>
+ </g>
+ </g>
+ <g transform="translate(168.20793,114.66205)">
+ <g stroke="none" transform="scale(-1.00375,1.00375)translate(-37.29666137695312,155.9519348144531)scale(-1,-1)"><g fill="#000">
+ <g stroke="none"> <text alignment-baseline="baseline" y="155.9519348144531" x="-37.29666137695312" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#119866;</text>
+</g> </g>
+ </g></g>
+ <g transform="translate(186.35481,-10.36629)">
+ <g stroke="none" transform="scale(-1.00375,1.00375)translate(-37.29666137695312,155.9519348144531)scale(-1,-1)"><g fill="#000">
+ <g stroke="none"> <text alignment-baseline="baseline" y="155.9519348144531" x="-37.29666137695312" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#119863;</text>
+</g> </g>
+ </g></g>
+ <g stroke-width="0.8">
+ <path d=" M 84.78905 0.0 C 73.40813 -2.84544 170.71603 -11.38135 182.09738 -8.5359  " fill="none"></path>
+ </g>
+ <g stroke-width="0.8">
+ <path d=" M 199.1692 -8.5359 C 210.55055 -11.38135 307.85844 -2.84544 296.47752 0.0  " fill="none"></path>
+ </g>
+ <g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+ <path d=" M 84.78905 0.0 L 84.78905 85.35823  " fill="none"></path>
+ </g>
+ <g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+ <path d=" M 296.47752 0.0 L 296.47752 162.18054  " fill="none"></path>
+ </g>
+ <g stroke-width="0.8">
+ <path d=" M 0.0 57.18985 C -2.84544 45.80893 -11.38135 107.83528 -8.5359 119.21663  " fill="none"></path>
+ </g>
+ <g stroke-width="0.8">
+ <path d=" M -8.5359 136.28844 C -11.38135 147.66978 -2.84544 209.69656 0.0 198.31564  " fill="none"></path>
+ </g>
+ <g transform="translate(-11.58852,124.33588)">
+ <g stroke="none" transform="scale(-1.00375,1.00375)translate(-37.29666137695312,155.9519348144531)scale(-1,-1)"><g fill="#000">
+ <g stroke="none"> <text alignment-baseline="baseline" y="155.9519348144531" x="-37.29666137695312" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#119881;</text>
+</g> </g>
+ </g></g>
+ <g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+ <path d=" M 0.0 57.18985 L 128.03734 57.18985  " fill="none"></path>
+ </g>
+ <g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+ <path d=" M 0.0 198.31564 L 239.00287 198.31564  " fill="none"></path>
+ </g>
+ <clipPath id="pgfcp11"><path d=" M 200.59192 0.0 M 200.59192 0.0 L 200.59192 227.62195 L 214.8183 227.62195 L 214.8183 0.0 Z M 214.8183 227.62195  "></path> </clipPath>
+ <g clip-path="url(#pgfcp11)">
+ <g stroke="#fff" fill="#fff">
+ <g stroke-opacity="0.0">
+ <g fill-opacity="0.0">
+ <path d=" M 0.0 0.0 M 0.0 0.0 L 0.0 227.62195 L 341.43292 227.62195 L 341.43292 0.0 Z M 341.43292 227.62195  " stroke="none"></path>
+ </g>
+ </g>
+ </g>
+  <pattern id="pgfupat12" xlink:href="#pgfpat3"> <g stroke="#666" fill="#666"> <use xlink:href="#pgfsym3"></use> </g> </pattern> dvisvgm:rawput 3<g fill="url(#pgfupat12)">
+ <path d=" M 190.63329 128.03734 M 293.78142 176.13643 C 280.49905 204.62036 223.5516 206.17613 166.58374 179.6114 C 109.61588 153.04668 74.20279 108.42218 87.48515 79.93825 C 100.76752 51.45432 157.71497 49.89854 214.68283 76.46327 C 271.6507 103.028 307.06378 147.6525 293.78142 176.13643 Z M 190.63329 128.03734  " stroke="none"></path>
+ </g>
+ </g>
+ <g stroke-dasharray="10.0,5.0" stroke-dashoffset="10.0">
+ <g stroke-dasharray="10.0,5.0" stroke-dashoffset="10.0">
+ <path d=" M 0.0 194.33228 L 207.70511 194.33228  " fill="none"></path>
+ </g>
+ </g>
+ <g stroke-dasharray="10.0,5.0" stroke-dashoffset="10.0">
+ <g stroke-dasharray="10.0,5.0" stroke-dashoffset="10.0">
+ <path d=" M 0.0 73.69249 L 207.70511 73.69249  " fill="none"></path>
+ </g>
+ </g>
+ <g transform="translate(218.35127,131.2278)">
+ <g stroke="none" transform="scale(-1.00375,1.00375)translate(-37.29666137695312,155.9519348144531)scale(-1,-1)"><g fill="#000">
+ <g stroke="none"> <text alignment-baseline="baseline" y="155.9519348144531" x="-37.29666137695312" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#119866;</text>
+<text alignment-baseline="baseline" y="155.9519348144531" x="-29.434169769287102" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">(</text>
+<text alignment-baseline="baseline" y="155.9519348144531" x="-25.534567105102532" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#119909;</text>
+<text alignment-baseline="baseline" y="155.9519348144531" x="-19.829982757568356" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">)</text>
+</g> </g>
+ </g></g>
+ <g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+ <path d=" M 207.70511 0.0 L 207.70511 194.33228  " fill="none"></path>
+ </g>
+ <g transform="translate(210.53793,6.38785)">
+ <g stroke="none" transform="scale(-1.00375,1.00375)translate(-37.29666137695312,155.9519348144531)scale(-1,-1)"><g fill="#000">
+ <g stroke="none"> <text alignment-baseline="baseline" y="155.9519348144531" x="-37.29666137695312" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#119909;</text>
+</g> </g>
+ </g></g>
+ <path d=" M 207.70511 0.0 M 209.4122 0.0 C 209.4122 0.94281 208.64792 1.70709 207.70511 1.70709 C 206.7623 1.70709 205.99802 0.94281 205.99802 0.0 C 205.99802 -0.94281 206.7623 -1.70709 207.70511 -1.70709 C 208.64792 -1.70709 209.4122 -0.94281 209.4122 0.0 Z M 207.70511 0.0  " stroke="none"></path>
+ </g>
+ </g>
+ </g></g>
+                            </svg>
+                        </div>
+                    </div>
+                    <!-- 対応 -->
+                    <script type="text/tikz">
+                        \begin{tikzpicture}[scale=1]
+                            \def\W{12}
+                            \def\H{8}
+                            \def\ellipseCx{6.7}
+                            \def\ellipseCy{4.5}
+                            \def\ellipseRx{4.0}
+                            \def\ellipseRy{2.0}
+                            \def\ellipseAngle{25}
 
-            <h2 id="section_4">写像の一覧</h2>
+                            \draw[very thick, red] (0,0) -- (\W,0);
+                            \draw[very thick, blue] (0,0) -- (0,\H);
+                            \draw[very thick] (\W,0) -- (\W,\H) -- (0,\H);
+                            \node[red,below] at (\W/2,-0.53) {$M$};
+                            \node[blue,left] at (-0.55,\H/2) {$N$};
+
+                            % G
+                            \begin{scope}
+                                \clip (0,0) rectangle (\W,\H);
+                                \draw[line width=1pt] (\ellipseCx,\ellipseCy) node{} ellipse [x radius=\ellipseRx, y radius=\ellipseRy, rotate=\ellipseAngle];
+                                \fill[pattern=north east lines, pattern color=black!45] (\ellipseCx,\ellipseCy) ellipse[x radius=\ellipseRx, y radius=\ellipseRy, rotate=\ellipseAngle];
+                            \end{scope}
+                            \node at (\ellipseCx - 0.65,\ellipseCy - 0.35) {$G$};
+
+                            % D
+                            \def\Dleft{2.98}
+                            \def\Dright{10.42}
+                            \def\gap{0.3}
+                            \node[below] at ({(\Dleft+\Dright)/2}, 0) {$D$};
+                            \draw[thick] (\Dleft,0) .. controls +(-0.4,-0.1) and +(-\gap-0.1,-0.1) .. ({(\Dleft+\Dright)/2 - \gap},-0.3);
+                            \draw[thick] ({(\Dleft+\Dright)/2 + \gap},-0.3) .. controls +(\gap+0.1,-0.1) and +(0.4,-0.1) .. (\Dright,0);
+                            \draw[dashed] (\Dleft,0) -- (\Dleft,3);
+                            \draw[dashed] (\Dright,0) -- (\Dright,5.7);
+
+                            % V
+                            \def\Vbot{2.01}
+                            \def\Vtop{6.97}
+                            \draw[thick] (0,\Vbot) .. controls +(-0.1,-0.4) and +(-0.1,-\gap-0.1) .. (-0.3,{(\Vbot+\Vtop)/2 - \gap});
+                            \draw[thick] (-0.3,{(\Vbot+\Vtop)/2 + \gap}) .. controls +(-0.1,\gap+0.1) and +(-0.1,0.4) .. (0,\Vtop);
+                            \node[left] at (0, {(\Vbot+\Vtop)/2}) {$V$};
+                            \draw[dashed] (0,\Vbot) -- (4.5,\Vbot);
+                            \draw[dashed] (0,\Vtop) -- (8.4,\Vtop);
+
+                            % G(x)
+                            \def\xslice{7.3}
+                            \def\gxslicehi{6.83}
+                            \def\gxslicelo{2.59}
+                            \begin{scope}
+                                \clip (\xslice-0.25,0) rectangle (\xslice+0.25,\H);
+                                \fill[white, opacity=0.0] (0,0) rectangle (\W,\H);
+                                \fill[pattern=north east lines, pattern color=black!60] (\ellipseCx,\ellipseCy) ellipse [x radius=\ellipseRx, y radius=\ellipseRy, rotate=\ellipseAngle];
+                            \end{scope}
+                            \draw[dash pattern=on 10pt off 5pt,dash phase=10pt] (0,\gxslicehi) -- (\xslice,\gxslicehi);
+                            \draw[dash pattern=on 10pt off 5pt,dash phase=10pt] (0,\gxslicelo) -- (\xslice,\gxslicelo);
+                            \node[right] at (\xslice+0.25,{\ellipseCy+0.2}) {$G(x)$};
+
+                            % x
+                            \draw[dashed] (\xslice,0) -- (\xslice,\gxslicehi);
+                            \node[below] at (\xslice + 0.2,0.5) {$x$};
+                            \fill (\xslice,0) circle (0.06);
+                        \end{tikzpicture}
+                    </script>
+                </div>
+            </div>
+            <p>
+                &emsp;直積 $M \times N$ の任意の部分集合を $G$ とする。$G$ の元 $(x, y)$ の $M$ への射影 $x$ の集合を $\mathrm{pr}_{M}(G)$ または $D$ で表し、$(x, y)$ の $N$ への射影 $y$ の集合を $\mathrm{pr}_{N}(G)$ または $V$ で表す。もちろん $D \subseteq M, V \subseteq N$ である。$x$ を $M$ の元とするとき、$(x, y) \in G$ となるような $y$ の集合を $G(x)$ で表し、$M \supset A$ であるとき、$(x,y) \in G$ なる $x \in A$ が存在するような $y$ の集合を $G[A]$ で表す。$G(x) \neq \varnothing$ となるのは $x \in D$ となるときに限り、また $G(x), G[A]$ はいつでも $\subset V$ である。
+            </p>
+            <p>
+                &emsp;$(G,M,N)$ なる組が与えられたとき、$M$ から $N$ への一つの<b>対応</b>が与えられたといい、対応を一つの文字、たとえば $\Gamma$ で表すことにする。$M$ を対応 $\Gamma$ の<b>始集合</b>、$N$ を $\Gamma$ の<b>終集合</b>、$G$ を $\Gamma$ のグラフ（graph）という。上の $G(x), G[A]$ はそれぞれ $\Gamma(x), \Gamma[A]$ とも書く。$G(x) = \Gamma(x)$ の元を $\Gamma$ によって $x$ に対応する<b>値</b>という。また $G[A] = \Gamma[A]$ を $A$ の $\Gamma$ による<b>像</b>という。
+            </p>
+            <h2 id="section_5">写像の一覧</h2>
             <div class="pulldown_list_wrapper">
                 <li><details> <!-- 写像 -->
                     <summary><div class="link-container">
@@ -491,6 +741,9 @@
                     問題ないと思うが、念のため。<br>
                     「$x \in X$ に対して、$\langle x, y\rangle \in f$ を満たすただ一つの $y$ が存在する」というのは、$x_{1} \in X$ に対してただ一つの $y_{1}$ が存在し、$x_{2}$ に対してただ一つの $y_{2}$ が存在し、$\cdots$、という意味であり。<br>
                     決して、全ての $x \in X$ に対して、ただ一つの $y$ が存在する、という意味ではない。
+                </li>
+                <li id="note_2"><a href="#ref_2">^</a>
+                    対応においても写像同様、定義域や値域を考えることができるが、割愛する。
                 </li>
             </ol>
         </div> <!-- /annotation -->

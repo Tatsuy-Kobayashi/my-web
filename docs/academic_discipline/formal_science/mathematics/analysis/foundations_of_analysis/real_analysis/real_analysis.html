@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <title>実解析学 - ラクして数理研究所</title>
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="apple-touch-icon" />
+    <!-- SEO -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。">
+    <meta name="keywords" content="学問,数学,情報理論,解析学,プログラミング,ラクして数理研究所,教育">
+    <link rel="canonical" href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" />
+    <!-- og -->
+    <meta property="og:type" content="website" /> <!-- articleとか -->
+    <meta property="og:title" content="実解析学｜ラクして数理研究所" />
+    <meta property="og:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" />
+    <meta property="og:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" />
+    <meta property="og:site_name" content="ラクして数理研究所" />
+    <link rel="dns-prefetch" href="//tatsuy-kobayashi.github.io/" /> <!-- HTTPSページのDNSプリフェッチはできない -->
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="実解析学｜ラクして数理研究所">
+    <meta name="twitter:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。">
+    <meta name="twitter:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html">
+    <meta name="twitter:image" content="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/style.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/special.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/search.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/responsive_header.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/commentary.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/mathContentWrapper.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/underEntryContent.css" />
+    <!-- プログラミング解説 -->
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/prism.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/codeHighlight.css" />
+    <!-- texgyre -->
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/font/texgyreschola-math/texgyreschola-math.css" type="text/css" charset="utf-8" />
+
+    <!-- プログラミング解説 -->
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/prism.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/jquery.min.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/include.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/linkPreview.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/commentary.js"></script>
+    <script>
+        // JavaScriptの厳格モード使用
+        'use strict';
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+      
+        /*gtag('config', 'トラッキングID');*/
+    </script>
+    <script type="text/javascript">
+        window.MathJax = {
+            tex: {
+                tags: "ams", // 自動ナンバリングを有効化（AMSスタイル）
+                inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+                displayMath: [ ["$$","$$"], ["\\[","\\]"] ],
+                processEscapes: true,
+                maxBuffer: 10 * 1024,  // 数式バッファの設定
+            },
+            chtml: {
+                displayAlign: "left",
+                displayIndent: "2em",
+            }
+        };
+    </script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/mathjax-config.js" defer></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" defer></script><!--
+    <link rel="stylesheet" href="https://tikzjax.com/v1/fonts.css" media="print" onload="this.media='all'" />
+    <script type="text/javascript" src="https://tikzjax.com/v1/tikzjax.js" defer></script>-->
+</head>
+<body>
+<div id="wrapper">
+    <header></header>
+    <div class="content">
+        <div class="breadcrumb_list">
+            <span class="link-container">
+                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/">Home</a>
+                &ensp;&gt;&ensp;
+                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="学問" data-description="AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">学問</a>
+                <div class="link-preview">
+                    <img class="preview-image" src="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" alt="Preview image">
+                    <h3 class="preview-title">学問</h3>
+                    <p class="preview-description">AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう</p>
+                </div> <!-- /link-preview -->
+            </span> <!-- /link-preview -->&ensp;&gt;&ensp;
+            <span class="link-container">
+                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/formal_science.html" class="preview-link" data-title="形式科学" data-description="AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">形式科学</a>
+                <div class="link-preview">
+                    <img class="preview-image" src="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" alt="Preview image">
+                    <h3 class="preview-title">形式科学</h3>
+                    <p class="preview-description">AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう</p>
+                </div> <!-- /link-preview -->
+            </span> <!-- /link-preview -->&ensp;&gt;&ensp;
+            <span class="link-container">
+                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html" class="preview-link" data-title="数学" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">数学</a>
+                <div class="link-preview">
+                    <img class="preview-image" src="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" alt="Preview image">
+                    <h3 class="preview-title">数学</h3>
+                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
+                </div> <!-- /link-preview -->
+            </span> <!-- /link-preview -->&ensp;&gt;&ensp;
+            <span class="link-container">
+                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/analysis.html" class="preview-link" data-title="数学" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">解析学</a>
+                <div class="link-preview">
+                    <img class="preview-image" src="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" alt="Preview image">
+                    <h3 class="preview-title">解析学</h3>
+                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
+                </div> <!-- /link-preview -->
+            </span> <!-- /link-preview -->&ensp;&gt;&ensp;
+            実解析学
+        </div>
+        <div class="main">
+            <h1>実解析学</h1>
+            <h2>目次[<span class="toc-toggle-button">表示</span>]</h2>
+            <div class="toc-content">
+                <ul>
+                    <li><a href="#section_1">概要</a></li>
+                    <li><a href="#section_2">数の集合・上限・下限</a></li>
+                    <li><a href="#section_3">実解析学の各分野の一覧</a></li>
+                </ul>
+            </div>
+
+            <h2 id="section_1">概要</h2>
+            <p>
+                &emsp;当サイトの多くのページで言えることだが、細かく各分野ごとに記事を分けている以上、厳密に取り扱う範囲を検討しなければならない。特に普通の教科書ならある程度取り扱う範囲はブレていても前提知識の準備だとか、取り扱った内容の応用だとか言って<ruby>誤魔化<rp>（</rp><rt>ごまか</rt><rp>）</rp></ruby>せるのだが。このページでは、実数の（抽象）代数的性質などについて細かく扱わない。それに関しては<a href="#">実数論</a>のページであらかじめ抑えておいてほしい。
+            </p>
+            <h2 id="section_2">数の集合・上限・下限</h2>
+            <p>
+                &emsp;集合論に基づいた一般の「集合」については<a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html">集合論</a>で述べている。ここでは、ある<b>条件</b>を満たす<ruby>数<rp>（</rp><rt>すう</rt><rp>）</rp></ruby>の全ての集まりを集合とする。
+            </p>
+            <div class="website_table_wrapper">
+                <div class="website_table">
+                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex1&rpar;</p></div>
+                    <div class="website_proposition_table_td">
+                        <p>
+                            &emsp;全ての有理数の集合 $\mathbb{Q}$ を考えられる。条件は有理数であることである。
+                        </p>
+                    </div>
+                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex2&rpar;</p></div>
+                    <div class="website_proposition_table_td">
+                        <p>
+                            &emsp;$a, b$ が定数で $a \lt b$ とするとき、$a \le x \le b$ であるすべての $x$ の集合。この集合を<b>閉区間</b> $\left[a, b\right]$ という。
+                        </p>
+                    </div>
+                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex3&rpar;</p></div>
+                    <div class="website_proposition_table_td">
+                        <p>
+                            &emsp;$a, b$ が定数で $a \lt b$ とするとき、$a \lt x \lt b$ であるすべての $x$ の集合。この集合を<b>開区間</b> $(a, b)$ という。
+                        </p>
+                    </div>
+                </div> <!-- /example_table -->
+            </div> <!-- /website_table_wrapper -->
+            <p>
+                &emsp;集合 $S$ に属する数がすべて一つの数 $M$ よりも大［あるいは小］でないときには、$S$ は<b>上方</b> [あるいは<b>下方</b>] <b>に有界</b>であるといい、$M$ をその一つの<b>上界</b> [あるいは<b>下界</b>] という。上方にも下方にも有界ならば、単に<b>有界</b>という。
+            </p>
+            <p>
+                &emsp;なお、集合 $S$ に対して固定の定数 $M$ が決定するわけではない。すなわち一つの上界よりも大なる数はやはり上界であり。また一つの下界よりも小なる数は下界である。故に集合の限界としては、なるべく小なる上界、および、なるべく大なる下界に興味がある。集合 $S$ に最大数があるならば、それは、もちろん上界の中で最小なるものであり、また $S$ に最小数があれば、それは下界の中で最大なるものである。さて次に証明するように、$S$ が有界ならば、最大または最小の数がないときにも、最小の上界および最大の下界が存在する。それらを $S$ の<b>上限</b>または<b>下限</b>という。故に上限・下限は必ずしも $S$ に属する数ではない。すなわち、$S$ に最大数がないときには、上限は $S$ に属しない。下限も同様である。
+            </p>
+            <p>
+                &emsp;整理すると、集合 $S$ の上限 $a$ とは次の条件 1.、2. に適合する数である。
+            </p>
+            <ol>
+                <li>$S$ に属する<b>すべての</b>数 $x$ に対して、$x \le a$。</li>
+                <li>$a' \lt a$ とすれば、$a' \lt x$ となる<b>任意の</b>数 $x$ が $S$ に属する。</li>
+            </ol>
+            <p>
+                &emsp;上記 1. は $a$ が $S$ の上界であること、2. は $a$ よりも小なる上界のないことを意味する。故に<b>上限すなわち最小上界</b>である。
+            </p>
+            <p>
+                &emsp;下限に関しては不等号の向きを反対にすればよい。
+            </p>
+            <div class="website_table_wrapper">
+                <div class="website_table">
+                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex4&rpar;</p></div>
+                    <div class="website_proposition_table_td">
+                        <p>
+                            &emsp;下図は、集合に最小の数がない場合の下限の例。集合
+                        </p>
+                        <div class="mathjax_wrapper">
+                            <div class="mathjax_flex">
+                                \[
+                                    \{ (x,y) \in \mathbb{R}^{2} \, | \, y = |x| + 1, \, x \in \mathbb{R} \setminus \{ 0 \} \}
+                                \]
+                            </div>
+                        </div>
+                        <p>
+                            の下限は $y = 1$ であるが、$(0, 1)$ はこの集合に属さない。
+                        </p>
+                    </div>
+                </div> <!-- /example_table -->
+            </div> <!-- /website_table_wrapper -->
+            <div class="tikzjax_wrapper">
+                <div class="tikzjax_flex" style="padding: 20px 0 5px 5px;">
+                    <div style="display: flex; width: 429.399pt; height: 241.338pt;">
+                        <div style="position: relative; width: 100%; height: 140.21510314941403pt;" class="page">
+                            <svg width="429.39914pt" height="241.33783pt" viewBox="-72 -72 429.39914 241.33783" style="position: absolute; top: 0pt; left: 0pt; overflow: visible;">
+                                <g transform="translate(127.29917907714841,140.21510314941403)">
+                                <g stroke-miterlimit="10" transform="scale(1,-1)"><g stroke="#000" fill="#000">
+                                <g stroke-width="0.4">
+                                <g stroke="#808080" fill="#808080">
+                                <g stroke-width="0.2">
+                                <path d=" M -199.16919 -28.45273 M -199.16919 0.0 L 199.16919 0.0 M -199.16919 56.90549 L 199.16919 56.90549 M -199.16919 113.81097 L 199.16919 113.81097 M -199.16919 170.71646 L 199.16919 170.71646 M -170.71646 -28.45273 L -170.71646 199.16919 M -113.81097 -28.45273 L -113.81097 199.16919 M -56.90549 -28.45273 L -56.90549 199.16919 M 0.0 -28.45273 L 0.0 199.16919 M 56.90549 -28.45273 L 56.90549 199.16919 M 113.81097 -28.45273 L 113.81097 199.16919 M 170.71646 -28.45273 L 170.71646 199.16919 M 199.16919 199.16919  " fill="none"></path>
+                                </g>
+                                </g>
+                                <g stroke-width="0.8">
+                                <path d=" M -199.16919 0.0 L 198.3692 0.0  " fill="none"></path>
+                                <g transform="translate(198.7692,0.0)">
+                                <g stroke-dasharray="none" stroke-dashoffset="0.0">
+                                <g stroke-linecap="round">
+                                <g stroke-linejoin="round">
+                                <path d=" M -2.56 3.12257 C -2.0923 1.24901 -1.05006 0.3643 0.0 0.0 C -1.05006 -0.3643 -2.0923 -1.24901 -2.56 -3.12257  " fill="none"></path>
+                                </g>
+                                </g>
+                                </g>
+                                </g>
+                                <g transform="translate(202.90216,-2.15277)">
+                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#000">
+                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#119909;</text>
+                                </g> </g>
+                                </g></g>
+                                </g>
+                                <g stroke-width="0.8">
+                                <path d=" M 0.0 -28.45273 L 0.0 198.3692  " fill="none"></path>
+                                <g transform="matrix(0.0,1.0,-1.0,0.0,0.0,198.7692)">
+                                <g stroke-dasharray="none" stroke-dashoffset="0.0">
+                                <g stroke-linecap="round">
+                                <g stroke-linejoin="round">
+                                <path d=" M -2.56 3.12257 C -2.0923 1.24901 -1.05006 0.3643 0.0 0.0 C -1.05006 -0.3643 -2.0923 -1.24901 -2.56 -3.12257  " fill="none"></path>
+                                </g>
+                                </g>
+                                </g>
+                                </g>
+                                <g transform="translate(-2.6308,204.84659)">
+                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#000">
+                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#119910;</text>
+                                </g> </g>
+                                </g></g>
+                                </g>
+                                <path d=" M -170.71646 3.9838 L -170.71646 -3.9838  " fill="none"></path>
+                                <g transform="translate(-176.62614,-13.31676)">
+                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#000">
+                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">−</text>
+                                <text alignment-baseline="baseline" y="140.21510314941403" x="137.82690429687497" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">3</text>
+                                </g> </g>
+                                </g></g>
+                                <path d=" M -113.81097 3.9838 L -113.81097 -3.9838  " fill="none"></path>
+                                <g transform="translate(-119.72066,-13.31676)">
+                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#000">
+                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">−</text>
+                                <text alignment-baseline="baseline" y="140.21510314941403" x="137.82690429687497" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">2</text>
+                                </g> </g>
+                                </g></g>
+                                <path d=" M -56.90549 3.9838 L -56.90549 -3.9838  " fill="none"></path>
+                                <g transform="translate(-62.81517,-13.31676)">
+                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#000">
+                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">−</text>
+                                <text alignment-baseline="baseline" y="140.21510314941403" x="137.82690429687497" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">1</text>
+                                </g> </g>
+                                </g></g>
+                                <path d=" M 56.90549 3.9838 L 56.90549 -3.9838  " fill="none"></path>
+                                <g transform="translate(54.593,-13.31676)">
+                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#000">
+                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">1</text>
+                                </g> </g>
+                                </g></g>
+                                <path d=" M 113.81097 3.9838 L 113.81097 -3.9838  " fill="none"></path>
+                                <g transform="translate(111.49849,-13.31676)">
+                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#000">
+                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">2</text>
+                                </g> </g>
+                                </g></g>
+                                <path d=" M 170.71646 3.9838 L 170.71646 -3.9838  " fill="none"></path>
+                                <g transform="translate(168.40398,-13.31676)">
+                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#000">
+                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">3</text>
+                                </g> </g>
+                                </g></g>
+                                <path d=" M 3.9838 56.90549 L -3.9838 56.90549  " fill="none"></path>
+                                <g transform="translate(-12.14174,54.0055)">
+                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#000">
+                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">1</text>
+                                </g> </g>
+                                </g></g>
+                                <path d=" M 3.9838 113.81097 L -3.9838 113.81097  " fill="none"></path>
+                                <g transform="translate(-12.14174,110.91098)">
+                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#000">
+                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">2</text>
+                                </g> </g>
+                                </g></g>
+                                <path d=" M 3.9838 170.71646 L -3.9838 170.71646  " fill="none"></path>
+                                <g transform="translate(-12.14174,167.81647)">
+                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#000">
+                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">3</text>
+                                </g> </g>
+                                </g></g>
+                                <g stroke-width="0.8">
+                                <g stroke="#00f" fill="#00f">
+                                <path d=" M -142.2637 199.16919 C -142.2637 199.16919 -133.6984 190.60388 -130.40869 187.31418 C -127.11899 184.02448 -121.84335 178.74884 -118.55365 175.45914 C -115.26395 172.16943 -109.98834 166.89383 -106.69864 163.60413 C -103.40894 160.31442 -98.13333 155.03882 -94.84363 151.74911 C -91.55392 148.45941 -86.27829 143.18378 -82.98859 139.89407 C -79.69888 136.60437 -74.42328 131.32877 -71.13358 128.03906 C -67.84387 124.74936 -62.56827 119.47375 -59.27856 116.18405 C -55.98886 112.89435 -50.71326 107.61874 -47.42355 104.32904 C -44.13385 101.03934 -38.85822 95.7637 -35.56851 92.474 C -32.27881 89.1843 -27.0032 83.90869 -23.7135 80.61899 C -20.4238 77.32928 -15.1482 72.05368 -11.85849 68.76398 C -8.56879 65.47427 -3.29315 56.90988 -0.00345 56.90894 C 3.28625 56.90799 8.56183 65.46826 11.85153 68.75702 C 15.14124 72.04578 20.41684 77.32233 23.70654 80.61203 C 26.99625 83.90173 32.27188 89.17737 35.56158 92.46707 C 38.85129 95.75677 44.12689 101.03238 47.4166 104.32208 C 50.7063 107.61179 55.9819 112.88739 59.2716 116.1771 C 62.56131 119.4668 67.83694 124.74243 71.12665 128.03214 C 74.41635 131.32184 79.69196 136.59744 82.98166 139.88715 C 86.27136 143.17685 91.54697 148.45245 94.83667 151.74216 C 98.12637 155.03186 103.40198 160.30746 106.69168 163.59717 C 109.98138 166.88687 115.25702 172.1625 118.54672 175.45221 C 121.83643 178.74191 127.11203 184.01752 130.40173 187.30722 C 133.69144 190.59692 142.25674 199.16223 142.25674 199.16223  " fill="none"></path>
+                                <g transform="translate(145.98972,196.66223)">
+                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#00f">
+                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#119910;</text>
+                                <text alignment-baseline="baseline" y="140.21510314941403" x="138.671817779541" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">=</text>
+                                <text alignment-baseline="baseline" y="140.21510314941403" x="149.22733306884763" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">|</text>
+                                <text alignment-baseline="baseline" y="140.21510314941403" x="152.00511932373044" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#119909;</text>
+                                <text alignment-baseline="baseline" y="140.21510314941403" x="157.72040367126462" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">|</text>
+                                <text alignment-baseline="baseline" y="140.21510314941403" x="162.72035789489743" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">+</text>
+                                <text alignment-baseline="baseline" y="140.21510314941403" x="172.72033119201657" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">1</text>
+                                </g> </g>
+                                </g></g>
+                                </g>
+                                </g>
+                                <g stroke="#f00" fill="#f00">
+                                <g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+                                <g stroke-width="0.8">
+                                <path d=" M -199.16919 56.90549 L 199.16919 56.90549  " fill="none"></path>
+                                <g transform="translate(202.90216,54.65549)">
+                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#f00">
+                                <g stroke="none"> <g fill="black"><text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#119910;</text>
+                                <text alignment-baseline="baseline" y="140.21510314941403" x="138.671817779541" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">=</text>
+                                <text alignment-baseline="baseline" y="140.21510314941403" x="149.22733306884763" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">1</text>
+                                </g></g> </g>
+                                </g></g>
+                                </g>
+                                </g>
+                                </g>
+                                <g fill="#fff">
+                                <g stroke="#000">
+                                <g stroke-width="0.8">
+                                <path d=" M 0.0 56.90549 M 3.0 56.90549 C 3.0 58.56236 1.65688 59.90549 0.0 59.90549 C -1.65688 59.90549 -3.0 58.56236 -3.0 56.90549 C -3.0 55.24861 -1.65688 53.90549 0.0 53.90549 C 1.65688 53.90549 3.0 55.24861 3.0 56.90549 Z M 0.0 56.90549  "></path>
+                                </g>
+                                </g>
+                                </g>
+                                </g>
+                                </g>
+                                </g></g>
+                            </svg>
+                        </div>
+                    </div>
+                    <script type="text/tikz">
+                        \begin{tikzpicture}[scale=2]
+                            \draw[help lines,step=1] (-3.5,-0.5) grid (3.5,3.5);
+
+                            \draw[->,thick] (-3.5,0) -- (3.5,0) node[right] {$x$};
+                            \draw[->,thick] (0,-0.5) -- (0,3.5) node[above] {$y$};
+
+                            \foreach \x in {-3,-2,-1,1,2,3}
+                                \draw (\x,0.07) -- (\x,-0.07) node[below] {\small $\x$};
+                            \foreach \y in {1,2,3}
+                                \draw (0.07,\y) -- (-0.07,\y) node[left] {\small $\y$};
+
+                            \draw[domain=-2.5:2.5,smooth,thick,blue] plot (\x,{abs(\x)+1}) node[right] {$y = |x| + 1$};
+                            \draw[red,dashed,thick] (-3.5,1) -- (3.5,1) node[right] {\textcolor{red}{$y = 1$}};
+
+                            \filldraw[fill=white,draw=black,thick] (0,1) circle (1.5pt);
+                        \end{tikzpicture}
+                    </script>
+                </div>
+            </div>
+            <p>
+                &emsp;以上、上限・下限の意味を述べたが、次にその存在の証明をする。
+            </p>
+            <div class="website_table_wrapper">
+                <div class="website_table">
+                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">定理1:</p></div>
+                    <div class="website_proposition_table_td">
+                        <p>
+                            <b>Weierstrass の定理</b>
+                        </p>
+                        <p>
+                            &emsp;数の集合 $S$ が上方 [あるいは下方] に有界ならば $S$ の上限 [または下限] が存在する。
+                        </p>
+                    </div>
+                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">証明1:</p></div>
+                    <div class="website_proposition_table_td">
+                        <p>
+                            &emsp;まず $S$ は下方に有界であると仮定して、下限の存在を証明する。
+                        </p>
+                        <p>
+                            &emsp;$S$ の一つの下界を $a$ とすれば、$a$ よりも小なる数はやはり $S$ の下界である。よって $S$ の下界でありうる数の全部を $A$ 組とし、その他の数の全部を $B$ 組とすれば、一つの切断が生ずる。実際、$B$ 組に属する数は $S$ の下界でありえない数だから、それは、どんな下界よりも大でなければならない。従って $A$ 組に属する数よりも大である。
+                        </p>
+                        <p>
+                            &emsp;この切断によって確定される数を $s$ とする。然らば $s$ は $A$ に属して $A$ の最大数であるか、あるいは $s$ は $B$ に属して $B$ の最小数であるか、いずれか一つである（定理1）。
+                        </p>
+                        <p>
+                            &emsp;さて、$s$ は $B$ に属するであろうか。
+                        </p>
+                        <p>
+                            &emsp;かりに $s$ が $B$ に属するとすれば、$s$ は $S$ の下界でありえないのだから、$s$ よりも小で、しかも $S$ に属する数がある。その一つを $x$ とする。すなわち $x \lt s$。
+                        </p>
+                        <p>
+                            &emsp;$x$ と $s$ との中間にある一つの数を $b$ とする。すなわち $x \lt b \lt s$。
+                        </p>
+                        <p>
+                            &emsp;然らば $b$ は $S$ に属する数 $x$ よりも大であるから、$S$ の下界ではない。すなわち $B$ に属する。しかも、その $b$ が $x$ よりも小であるから、これは矛盾である。
+                        </p>
+                        <p>
+                            &emsp;故に $s$ は $B$ の最小数ではありえない。
+                        </p>
+                        <p>
+                            &emsp;故に $s$ は $A$ の最大数、すなわち $S$ の最大下界、すなわち $S$ の下限である。
+                        </p>
+                        <p>
+                            &emsp;$S$ が上方に有界なるとき、上限の存在することも、同じように証明される。
+                        </p>
+                    </div>
+                </div> <!-- /example_table -->
+            </div> <!-- /website_table_wrapper -->
+
+
+            <h2 id="section_3">実解析学の各分野の一覧</h2>
+            <div class="pulldown_list_wrapper">
+                <li><details> <!-- 数列 -->
+                    <summary><div class="link-container">
+                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/foundations_of_analysis.html" class="preview-link" data-title="数列" data-description="" data-image="">数列</a>
+                        <div class="link-preview">
+                            <img class="preview-image">
+                            <h3 class="preview-title">数列</h3>
+                            <p class="preview-description">AI時代にこそ数学は重要になる。数学の一覧から様々な記事を見てみよう</p>
+                        </div> <!-- link-preview -->
+                    </div></summary>
+                        <li><details> <!-- 実解析学 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/real_analysis/real_analysis.html">実解析学</a></summary>
+                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/ocelotl.html">数列</a></li>
+                                <li><a href="#">級数</a></li>
+                                <li><a href="#">収束と発散</a></li>
+                                <li><a href="#">テイラー展開</a></li>
+                                <li><a href="#">冪級数</a></li>
+                                <li><a href="#">関数の極限・連続性</a></li>
+                        </details></li> <!-- /実解析学 -->
+                        <li><details> <!-- 複素解析学 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/complex_analysis/complex_analysis.html">複素解析学</a></summary>
+                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/ocelotl.html">複素数体</a></li>
+                                <li><a href="#">複素関数論</a></li>
+                                <li><a href="#">リーマン面（位相的拡張）</a></li>
+                        </details></li> <!-- /複素解析学 -->
+                        <li><details> <!-- 関数論 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/theory_of_functions/theory_of_functions.html">関数論</a></summary>
+                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/ocelotl.html">連続関数・可微分関数の一般論</a></li>
+                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/theory_of_functions/elementary_functions/elementary_functions.html">初等関数</a></li>
+                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/theory_of_functions/special_functions/special_functions.html">特殊関数</a></li>
+                        </details></li> <!-- /関数論 -->
+                </details></li> <!-- /数列 -->
+                <li><details> <!-- 級数 -->
+                    <summary><div class="link-container">
+                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="級数" data-description="" data-image="">級数</a>
+                        <div class="link-preview">
+                            <img class="preview-image">
+                            <h3 class="preview-title">級数</h3>
+                            <p class="preview-description">AI時代にこそ数学は重要になる。数学の一覧から様々な記事を見てみよう</p>
+                        </div> <!-- link-preview -->
+                    </div></summary>
+                        <li><details> <!-- 微分法 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">微分法</a></summary>
+                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/ocelotl.html">導関数</a></li>
+                                <li><a href="#">平均値定理</a></li>
+                                <li><a href="#">テイラーの定理</a></li>
+                        </details></li> <!-- /微分法 -->
+                        <li><details> <!-- 測度論 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">測度論</a></summary>
+                                <li><a href="#">#</a></li>
+                                <li><a href="#">#</a></li>
+                                <li><a href="#">#</a></li>
+                        </details></li> <!-- /測度論 -->
+                        <li><details> <!-- 積分法 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">積分法</a></summary>
+                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/ocelotl.html">原始関数</a></li>
+                                <li><a href="#">リーマン積分</a></li>
+                                <li><a href="#">ルベーグ積分</a></li>
+                        </details></li> <!-- /積分法 -->
+                        <li><details> <!-- 変分法 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">変分法</a></summary>
+                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/ocelotl.html">オイラー–ラグランジュ方程式</a></li>
+                                <li><a href="#" data-description="作用素原理、ハミルトン原理など">変分原理</a></li>
+                        </details></li> <!-- /変分法 -->
+                </details></li> <!-- /級数 -->
+                <li><details> <!-- 収束と発散 -->
+                    <summary><div class="link-container">
+                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="収束と発散" data-description="" data-image="">収束と発散</a>
+                        <div class="link-preview">
+                            <img class="preview-image">
+                            <h3 class="preview-title">収束と発散</h3>
+                            <p class="preview-description">AI時代にこそ数学は重要になる。数学の一覧から様々な記事を見てみよう</p>
+                        </div> <!-- link-preview -->
+                    </div></summary>
+                        <li><details> <!-- ベクトル解析 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">ベクトル解析</a></summary>
+                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/ocelotl.html">勾配・発散・回転</a></li>
+                                <li><a href="#">グリーンの定理・ストークスの定理</a></li>
+                                <li><a href="#">曲率</a></li>
+                        </details></li> <!-- /ベクトル解析 -->
+                        <li><details> <!-- テンソル解析 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">テンソル解析</a></summary>
+                                <li><a href="#">#</a></li>
+                                <li><a href="#">#</a></li>
+                                <li><a href="#">#</a></li>
+                        </details></li> <!-- /テンソル解析 -->
+                </details></li> <!-- /収束と発散 -->
+                <li><details> <!-- テイラー展開 -->
+                    <summary><div class="link-container">
+                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="テイラー展開" data-description="" data-image="">テイラー展開</a>
+                        <div class="link-preview">
+                            <img class="preview-image">
+                            <h3 class="preview-title">テイラー展開</h3>
+                            <p class="preview-description">AI時代にこそ数学は重要になる。数学の一覧から様々な記事を見てみよう</p>
+                        </div> <!-- link-preview -->
+                    </div></summary>
+                        <li><details> <!-- ベクトル解析 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">ベクトル解析</a></summary>
+                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/ocelotl.html">勾配・発散・回転</a></li>
+                                <li><a href="#">グリーンの定理・ストークスの定理</a></li>
+                                <li><a href="#">曲率</a></li>
+                        </details></li> <!-- /ベクトル解析 -->
+                        <li><details> <!-- テンソル解析 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">テンソル解析</a></summary>
+                                <li><a href="#">#</a></li>
+                                <li><a href="#">#</a></li>
+                                <li><a href="#">#</a></li>
+                        </details></li> <!-- /テンソル解析 -->
+                </details></li> <!-- /テイラー展開 -->
+                <li><details> <!-- 冪級数 -->
+                    <summary><div class="link-container">
+                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="冪級数" data-description="" data-image="">冪級数</a>
+                        <div class="link-preview">
+                            <img class="preview-image">
+                            <h3 class="preview-title">冪級数</h3>
+                            <p class="preview-description">AI時代にこそ数学は重要になる。数学の一覧から様々な記事を見てみよう</p>
+                        </div> <!-- link-preview -->
+                    </div></summary>
+                        <li><details> <!-- ベクトル解析 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">ベクトル解析</a></summary>
+                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/ocelotl.html">勾配・発散・回転</a></li>
+                                <li><a href="#">グリーンの定理・ストークスの定理</a></li>
+                                <li><a href="#">曲率</a></li>
+                        </details></li> <!-- /ベクトル解析 -->
+                        <li><details> <!-- テンソル解析 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">テンソル解析</a></summary>
+                                <li><a href="#">#</a></li>
+                                <li><a href="#">#</a></li>
+                                <li><a href="#">#</a></li>
+                        </details></li> <!-- /テンソル解析 -->
+                </details></li> <!-- /冪級数 -->
+                <li><details> <!-- 実数論 -->
+                    <summary><div class="link-container">
+                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="実数論" data-description="" data-image="">実数論</a>
+                        <div class="link-preview">
+                            <img class="preview-image">
+                            <h3 class="preview-title">実数論</h3>
+                            <p class="preview-description">AI時代にこそ数学は重要になる。数学の一覧から様々な記事を見てみよう</p>
+                        </div> <!-- link-preview -->
+                    </div></summary>
+                        <li><details> <!-- 有理数と無理数 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">有理数と無理数</a></summary>
+                                <li><details> <!-- 超越数論 -->
+                                    <summary><div class="link-container">
+                                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html" class="preview-link" data-title="超越数論" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="">超越数論</a>
+                                        <div class="link-preview">
+                                            <img class="preview-image">
+                                            <h3 class="preview-title">超越数論</h3>
+                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
+                                        </div> <!-- link-preview -->
+                                    </div></summary>
+                                        <li><details> <!-- アーベル群上のPontryagin双対性 -->
+                                            <summary><div class="link-container">
+                                                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html" class="preview-link" data-title="アーベル群上のPontryagin双対性" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="">アーベル群上のPontryagin双対性</a>
+                                                <div class="link-preview">
+                                                    <img class="preview-image">
+                                                    <h3 class="preview-title">アーベル群上のPontryagin双対性</h3>
+                                                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
+                                                </div> <!-- link-preview -->
+                                            </div></summary>
+                                                <li><a href="#">#</a></li>
+                                        </details></li><!-- /アーベル群上のPontryagin双対性 -->
+                                        <li><a href="#">コンパクト群上のピーター–ウェイル理論</a></li>
+                                        <li><a href="#">非可換群とユニタリ表現</a></li>
+                                </details></li> <!-- /超越数論 -->
+                        </details></li> <!-- /有理数と無理数 -->
+                        <li><details> <!-- デデキント切断 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">デデキント切断</a></summary>
+                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/ocelotl.html">トポロジカル・ベクトル空間</a></li>
+                        </details></li> <!-- /デデキント切断 -->
+                        <li><details> <!-- 完備性（連続体の性質） -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">完備性（連続体の性質）</a></summary>
+                                <li><a href="#">有界線形作用素</a></li>
+                                <li><a href="#">作用素論</a></li>
+                        </details></li> <!-- /完備性（連続体の性質） -->
+                        <li><details> <!-- コーシー列による体論的構成 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">コーシー列による体論的構成</a></summary>
+                                <li><a href="#">#</a></li>
+                                <li><a href="#">#</a></li>
+                        </details></li> <!-- /コーシー列による体論的構成 -->
+                </details></li> <!-- /実数論 -->
+                <li><details> <!-- 関数の極限・連続性 -->
+                    <summary><div class="link-container">
+                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="関数の極限・連続性" data-description="" data-image="">関数の極限・連続性</a>
+                        <div class="link-preview">
+                            <img class="preview-image">
+                            <h3 class="preview-title">関数の極限・連続性</h3>
+                            <p class="preview-description">AI時代にこそ数学は重要になる。数学の一覧から様々な記事を見てみよう</p>
+                        </div> <!-- link-preview -->
+                    </div></summary>
+                        <li><details> <!-- 代数的・構造的関数方程式 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">代数的・構造的関数方程式</a></summary>
+                                <li><a href="#">#</a></li>
+                                <li><a href="#">#</a></li>
+                                <li><a href="#">#</a></li>
+                        </details></li> <!-- /代数的・構造的関数方程式 -->
+                        <li><details> <!-- 解析的条件付関数方程式 -->
+                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">解析的条件付関数方程式</a></summary>
+                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/ocelotl.html">指数・対数型方程式</a></li>
+                                <li><a href="#">特殊関数の再帰定義</a></li>
+                                <li><a href="#">可微分・解析性仮定下の一般論</a></li>
+                                <li><a href="#">複素解析的関数方程式</a></li>
+                        </details></li> <!-- /解析的条件付関数方程式 -->
+                </details></li> <!-- /関数の極限・連続性 -->
+            </div> <!-- /pulldown_list_wrapper -->
+        </div> <!-- /.main -->
+        <div class="annotation">
+            ページ注釈
+            <ol class="olAnnotation">
+                <li id="note_1"><a href="#ref_1">^</a>
+                    オセロトル語<br>
+                    <ocelotl>
+                        PQTWXYacehimpqtxy
+                    </ocelotl>
+                </li>
+            </ol>
+        </div> <!-- /annotation -->
+    </div> <!-- /content -->
+    <footer></footer>
+    </div> <!-- /wrapper -->
+    <nav id="nav"></nav>
+</body>
+</html>

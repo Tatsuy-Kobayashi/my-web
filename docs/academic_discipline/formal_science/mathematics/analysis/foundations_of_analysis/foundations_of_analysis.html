@@ -3,7 +3,7 @@
 <head prefix="og: http://ogp.me/ns#">
     <meta charset="UTF-8">
     <meta name="format-detection" content="telephone=no">
-    <title>実解析学 - ラクして数理研究所</title>
+    <title>解析学基礎 - ラクして数理研究所</title>
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="icon" />
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="icon" />
@@ -15,14 +15,14 @@
     <link rel="canonical" href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" />
     <!-- og -->
     <meta property="og:type" content="website" /> <!-- articleとか -->
-    <meta property="og:title" content="実解析学｜ラクして数理研究所" />
+    <meta property="og:title" content="解析学基礎｜ラクして数理研究所" />
     <meta property="og:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" />
     <meta property="og:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" />
     <meta property="og:site_name" content="ラクして数理研究所" />
     <link rel="dns-prefetch" href="//tatsuy-kobayashi.github.io/" /> <!-- HTTPSページのDNSプリフェッチはできない -->
     <!-- twitter card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="実解析学｜ラクして数理研究所">
+    <meta name="twitter:title" content="解析学基礎｜ラクして数理研究所">
     <meta name="twitter:description" content="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。">
     <meta name="twitter:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html">
     <meta name="twitter:image" content="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png">
@@ -116,307 +116,133 @@
                     <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
                 </div> <!-- /link-preview -->
             </span> <!-- /link-preview -->&ensp;&gt;&ensp;
-            実解析学
+            解析学基礎
         </div>
         <div class="main">
-            <h1>実解析学</h1>
+            <h1>解析学基礎</h1>
             <h2>目次[<span class="toc-toggle-button">表示</span>]</h2>
             <div class="toc-content">
                 <ul>
                     <li><a href="#section_1">概要</a></li>
-                    <li><a href="#section_2">数の集合・上限・下限</a></li>
-                    <li><a href="#section_3">実解析学の各分野の一覧</a></li>
+                    <li><a href="#section_2">共通点：極限・連続・微分・積分の枠組み</a></li>
+                    <li><a href="#section_3">相違点：微分可能性の厳しさとその帰結</a></li>
+                    <li><a href="#section_4">相違点：幾何学的背景の違い</a></li>
+                    <li><a href="#section_5">相違点：積分と解析的構造</a></li>
+                    <li><a href="#section_6">解析学基礎の各分野の一覧</a></li>
                 </ul>
             </div>
 
             <h2 id="section_1">概要</h2>
             <p>
-                &emsp;当サイトの多くのページで言えることだが、細かく各分野ごとに記事を分けている以上、厳密に取り扱う範囲を検討しなければならない。特に普通の教科書ならある程度取り扱う範囲はブレていても前提知識の準備だとか、取り扱った内容の応用だとか言って<ruby>誤魔化<rp>（</rp><rt>ごまか</rt><rp>）</rp></ruby>せるのだが。このページでは、実数の（抽象）代数的性質などについて細かく扱わない。それに関しては<a href="#">実数論</a>のページであらかじめ抑えておいてほしい。
-            </p>
-            <h2 id="section_2">数の集合・上限・下限</h2>
-            <p>
-                &emsp;集合論に基づいた一般の「集合」については<a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html">集合論</a>で述べている。ここでは、ある<b>条件</b>を満たす<ruby>数<rp>（</rp><rt>すう</rt><rp>）</rp></ruby>の全ての集まりを集合とする。
-            </p>
-            <div class="website_table_wrapper">
-                <div class="website_table">
-                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex1&rpar;</p></div>
-                    <div class="website_proposition_table_td">
-                        <p>
-                            &emsp;全ての有理数の集合 $\mathbb{Q}$ を考えられる。条件は有理数であることである。
-                        </p>
-                    </div>
-                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex2&rpar;</p></div>
-                    <div class="website_proposition_table_td">
-                        <p>
-                            &emsp;$a, b$ が定数で $a \lt b$ とするとき、$a \le x \le b$ であるすべての $x$ の集合。この集合を<b>閉区間</b> $\left[a, b\right]$ という。
-                        </p>
-                    </div>
-                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex3&rpar;</p></div>
-                    <div class="website_proposition_table_td">
-                        <p>
-                            &emsp;$a, b$ が定数で $a \lt b$ とするとき、$a \lt x \lt b$ であるすべての $x$ の集合。この集合を<b>開区間</b> $(a, b)$ という。
-                        </p>
-                    </div>
-                </div> <!-- /example_table -->
-            </div> <!-- /website_table_wrapper -->
-            <p>
-                &emsp;集合 $S$ に属する数がすべて一つの数 $M$ よりも大［あるいは小］でないときには、$S$ は<b>上方</b> [あるいは<b>下方</b>] <b>に有界</b>であるといい、$M$ をその一つの<b>上界</b> [あるいは<b>下界</b>] という。上方にも下方にも有界ならば、単に<b>有界</b>という。
+                &emsp;解析学（analysis）は、関数を「極限」という概念を通して厳密に扱う数学の分野である。
             </p>
             <p>
-                &emsp;なお、集合 $S$ に対して固定の定数 $M$ が決定するわけではない。すなわち一つの上界よりも大なる数はやはり上界であり。また一つの下界よりも小なる数は下界である。故に集合の限界としては、なるべく小なる上界、および、なるべく大なる下界に興味がある。集合 $S$ に最大数があるならば、それは、もちろん上界の中で最小なるものであり、また $S$ に最小数があれば、それは下界の中で最大なるものである。さて次に証明するように、$S$ が有界ならば、最大または最小の数がないときにも、最小の上界および最大の下界が存在する。それらを $S$ の<b>上限</b>または<b>下限</b>という。故に上限・下限は必ずしも $S$ に属する数ではない。すなわち、$S$ に最大数がないときには、上限は $S$ に属しない。下限も同様である。
+                &emsp;その中でも<b>実解析（real analysis）</b>は実数領域の、<b>複素解析（complex analysis）</b>は複素数領域の解析学である。両者は多くの概念を共有しているが、その背後にある構造が異なるため、性質や結果には本質的な違いが現れる。そのため、初学者は自分の教科書が今 実解析を扱っているのか複素解析を扱っているのかを明確に区別し、それぞれの性質や定理を使い分けることが肝要である。もちろん多くの解析学の教科書では、そのような誤謬の生まれないよう細心の注意を払っているが、それ以外の分野では特に注意が必要である。
             </p>
             <p>
-                &emsp;整理すると、集合 $S$ の上限 $a$ とは次の条件 1.、2. に適合する数である。
+                &emsp;本章では、実解析と複素解析の間にある<b>共通点</b>と<b>相違点</b>を整理し、それぞれの特徴を簡単にさらうことを目的とする。
             </p>
-            <ol>
-                <li>$S$ に属する<b>すべての</b>数 $x$ に対して、$x \le a$。</li>
-                <li>$a' \lt a$ とすれば、$a' \lt x$ となる<b>任意の</b>数 $x$ が $S$ に属する。</li>
-            </ol>
+            <h2 id="section_2">共通点：極限・連続・微分・積分の枠組み</h2>
+            <p><b>(1) 極限の概念</b></p>
             <p>
-                &emsp;上記 1. は $a$ が $S$ の上界であること、2. は $a$ よりも小なる上界のないことを意味する。故に<b>上限すなわち最小上界</b>である。
+                &emsp;どちらの解析学においても最も基本的な概念は「極限」である。たとえば、実関数 $f(x)$ に対して、
             </p>
-            <p>
-                &emsp;下限に関しては不等号の向きを反対にすればよい。
-            </p>
-            <div class="website_table_wrapper">
-                <div class="website_table">
-                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex4&rpar;</p></div>
-                    <div class="website_proposition_table_td">
-                        <p>
-                            &emsp;下図は、集合に最小の数がない場合の下限の例。集合
-                        </p>
-                        <div class="mathjax_wrapper">
-                            <div class="mathjax_flex">
-                                \[
-                                    \{ (x,y) \in \mathbb{R}^{2} \, | \, y = |x| + 1, \, x \in \mathbb{R} \setminus \{ 0 \} \}
-                                \]
-                            </div>
-                        </div>
-                        <p>
-                            の下限は $y = 1$ であるが、$(0, 1)$ はこの集合に属さない。
-                        </p>
-                    </div>
-                </div> <!-- /example_table -->
-            </div> <!-- /website_table_wrapper -->
-            <div class="tikzjax_wrapper">
-                <div class="tikzjax_flex" style="padding: 20px 0 5px 5px;">
-                    <div style="display: flex; width: 429.399pt; height: 241.338pt;">
-                        <div style="position: relative; width: 100%; height: 140.21510314941403pt;" class="page">
-                            <svg width="429.39914pt" height="241.33783pt" viewBox="-72 -72 429.39914 241.33783" style="position: absolute; top: 0pt; left: 0pt; overflow: visible;">
-                                <g transform="translate(127.29917907714841,140.21510314941403)">
-                                <g stroke-miterlimit="10" transform="scale(1,-1)"><g stroke="#000" fill="#000">
-                                <g stroke-width="0.4">
-                                <g stroke="#808080" fill="#808080">
-                                <g stroke-width="0.2">
-                                <path d=" M -199.16919 -28.45273 M -199.16919 0.0 L 199.16919 0.0 M -199.16919 56.90549 L 199.16919 56.90549 M -199.16919 113.81097 L 199.16919 113.81097 M -199.16919 170.71646 L 199.16919 170.71646 M -170.71646 -28.45273 L -170.71646 199.16919 M -113.81097 -28.45273 L -113.81097 199.16919 M -56.90549 -28.45273 L -56.90549 199.16919 M 0.0 -28.45273 L 0.0 199.16919 M 56.90549 -28.45273 L 56.90549 199.16919 M 113.81097 -28.45273 L 113.81097 199.16919 M 170.71646 -28.45273 L 170.71646 199.16919 M 199.16919 199.16919  " fill="none"></path>
-                                </g>
-                                </g>
-                                <g stroke-width="0.8">
-                                <path d=" M -199.16919 0.0 L 198.3692 0.0  " fill="none"></path>
-                                <g transform="translate(198.7692,0.0)">
-                                <g stroke-dasharray="none" stroke-dashoffset="0.0">
-                                <g stroke-linecap="round">
-                                <g stroke-linejoin="round">
-                                <path d=" M -2.56 3.12257 C -2.0923 1.24901 -1.05006 0.3643 0.0 0.0 C -1.05006 -0.3643 -2.0923 -1.24901 -2.56 -3.12257  " fill="none"></path>
-                                </g>
-                                </g>
-                                </g>
-                                </g>
-                                <g transform="translate(202.90216,-2.15277)">
-                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#000">
-                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#119909;</text>
-                                </g> </g>
-                                </g></g>
-                                </g>
-                                <g stroke-width="0.8">
-                                <path d=" M 0.0 -28.45273 L 0.0 198.3692  " fill="none"></path>
-                                <g transform="matrix(0.0,1.0,-1.0,0.0,0.0,198.7692)">
-                                <g stroke-dasharray="none" stroke-dashoffset="0.0">
-                                <g stroke-linecap="round">
-                                <g stroke-linejoin="round">
-                                <path d=" M -2.56 3.12257 C -2.0923 1.24901 -1.05006 0.3643 0.0 0.0 C -1.05006 -0.3643 -2.0923 -1.24901 -2.56 -3.12257  " fill="none"></path>
-                                </g>
-                                </g>
-                                </g>
-                                </g>
-                                <g transform="translate(-2.6308,204.84659)">
-                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#000">
-                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#119910;</text>
-                                </g> </g>
-                                </g></g>
-                                </g>
-                                <path d=" M -170.71646 3.9838 L -170.71646 -3.9838  " fill="none"></path>
-                                <g transform="translate(-176.62614,-13.31676)">
-                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#000">
-                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">−</text>
-                                <text alignment-baseline="baseline" y="140.21510314941403" x="137.82690429687497" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">3</text>
-                                </g> </g>
-                                </g></g>
-                                <path d=" M -113.81097 3.9838 L -113.81097 -3.9838  " fill="none"></path>
-                                <g transform="translate(-119.72066,-13.31676)">
-                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#000">
-                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">−</text>
-                                <text alignment-baseline="baseline" y="140.21510314941403" x="137.82690429687497" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">2</text>
-                                </g> </g>
-                                </g></g>
-                                <path d=" M -56.90549 3.9838 L -56.90549 -3.9838  " fill="none"></path>
-                                <g transform="translate(-62.81517,-13.31676)">
-                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#000">
-                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">−</text>
-                                <text alignment-baseline="baseline" y="140.21510314941403" x="137.82690429687497" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">1</text>
-                                </g> </g>
-                                </g></g>
-                                <path d=" M 56.90549 3.9838 L 56.90549 -3.9838  " fill="none"></path>
-                                <g transform="translate(54.593,-13.31676)">
-                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#000">
-                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">1</text>
-                                </g> </g>
-                                </g></g>
-                                <path d=" M 113.81097 3.9838 L 113.81097 -3.9838  " fill="none"></path>
-                                <g transform="translate(111.49849,-13.31676)">
-                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#000">
-                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">2</text>
-                                </g> </g>
-                                </g></g>
-                                <path d=" M 170.71646 3.9838 L 170.71646 -3.9838  " fill="none"></path>
-                                <g transform="translate(168.40398,-13.31676)">
-                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#000">
-                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">3</text>
-                                </g> </g>
-                                </g></g>
-                                <path d=" M 3.9838 56.90549 L -3.9838 56.90549  " fill="none"></path>
-                                <g transform="translate(-12.14174,54.0055)">
-                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#000">
-                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">1</text>
-                                </g> </g>
-                                </g></g>
-                                <path d=" M 3.9838 113.81097 L -3.9838 113.81097  " fill="none"></path>
-                                <g transform="translate(-12.14174,110.91098)">
-                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#000">
-                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">2</text>
-                                </g> </g>
-                                </g></g>
-                                <path d=" M 3.9838 170.71646 L -3.9838 170.71646  " fill="none"></path>
-                                <g transform="translate(-12.14174,167.81647)">
-                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#000">
-                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9">3</text>
-                                </g> </g>
-                                </g></g>
-                                <g stroke-width="0.8">
-                                <g stroke="#00f" fill="#00f">
-                                <path d=" M -142.2637 199.16919 C -142.2637 199.16919 -133.6984 190.60388 -130.40869 187.31418 C -127.11899 184.02448 -121.84335 178.74884 -118.55365 175.45914 C -115.26395 172.16943 -109.98834 166.89383 -106.69864 163.60413 C -103.40894 160.31442 -98.13333 155.03882 -94.84363 151.74911 C -91.55392 148.45941 -86.27829 143.18378 -82.98859 139.89407 C -79.69888 136.60437 -74.42328 131.32877 -71.13358 128.03906 C -67.84387 124.74936 -62.56827 119.47375 -59.27856 116.18405 C -55.98886 112.89435 -50.71326 107.61874 -47.42355 104.32904 C -44.13385 101.03934 -38.85822 95.7637 -35.56851 92.474 C -32.27881 89.1843 -27.0032 83.90869 -23.7135 80.61899 C -20.4238 77.32928 -15.1482 72.05368 -11.85849 68.76398 C -8.56879 65.47427 -3.29315 56.90988 -0.00345 56.90894 C 3.28625 56.90799 8.56183 65.46826 11.85153 68.75702 C 15.14124 72.04578 20.41684 77.32233 23.70654 80.61203 C 26.99625 83.90173 32.27188 89.17737 35.56158 92.46707 C 38.85129 95.75677 44.12689 101.03238 47.4166 104.32208 C 50.7063 107.61179 55.9819 112.88739 59.2716 116.1771 C 62.56131 119.4668 67.83694 124.74243 71.12665 128.03214 C 74.41635 131.32184 79.69196 136.59744 82.98166 139.88715 C 86.27136 143.17685 91.54697 148.45245 94.83667 151.74216 C 98.12637 155.03186 103.40198 160.30746 106.69168 163.59717 C 109.98138 166.88687 115.25702 172.1625 118.54672 175.45221 C 121.83643 178.74191 127.11203 184.01752 130.40173 187.30722 C 133.69144 190.59692 142.25674 199.16223 142.25674 199.16223  " fill="none"></path>
-                                <g transform="translate(145.98972,196.66223)">
-                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#00f">
-                                <g stroke="none"> <text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#119910;</text>
-                                <text alignment-baseline="baseline" y="140.21510314941403" x="138.671817779541" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">=</text>
-                                <text alignment-baseline="baseline" y="140.21510314941403" x="149.22733306884763" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">|</text>
-                                <text alignment-baseline="baseline" y="140.21510314941403" x="152.00511932373044" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#119909;</text>
-                                <text alignment-baseline="baseline" y="140.21510314941403" x="157.72040367126462" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">|</text>
-                                <text alignment-baseline="baseline" y="140.21510314941403" x="162.72035789489743" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">+</text>
-                                <text alignment-baseline="baseline" y="140.21510314941403" x="172.72033119201657" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">1</text>
-                                </g> </g>
-                                </g></g>
-                                </g>
-                                </g>
-                                <g stroke="#f00" fill="#f00">
-                                <g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
-                                <g stroke-width="0.8">
-                                <path d=" M -199.16919 56.90549 L 199.16919 56.90549  " fill="none"></path>
-                                <g transform="translate(202.90216,54.65549)">
-                                <g stroke="none" transform="scale(-1.00375,1.00375)translate(130.63250732421872,140.21510314941403)scale(-1,-1)"><g fill="#f00">
-                                <g stroke="none"> <g fill="black"><text alignment-baseline="baseline" y="140.21510314941403" x="130.63250732421872" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">&#119910;</text>
-                                <text alignment-baseline="baseline" y="140.21510314941403" x="138.671817779541" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">=</text>
-                                <text alignment-baseline="baseline" y="140.21510314941403" x="149.22733306884763" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10">1</text>
-                                </g></g> </g>
-                                </g></g>
-                                </g>
-                                </g>
-                                </g>
-                                <g fill="#fff">
-                                <g stroke="#000">
-                                <g stroke-width="0.8">
-                                <path d=" M 0.0 56.90549 M 3.0 56.90549 C 3.0 58.56236 1.65688 59.90549 0.0 59.90549 C -1.65688 59.90549 -3.0 58.56236 -3.0 56.90549 C -3.0 55.24861 -1.65688 53.90549 0.0 53.90549 C 1.65688 53.90549 3.0 55.24861 3.0 56.90549 Z M 0.0 56.90549  "></path>
-                                </g>
-                                </g>
-                                </g>
-                                </g>
-                                </g>
-                                </g></g>
-                            </svg>
-                        </div>
-                    </div>
-                    <script type="text/tikz">
-                        \begin{tikzpicture}[scale=2]
-                            \draw[help lines,step=1] (-3.5,-0.5) grid (3.5,3.5);
-
-                            \draw[->,thick] (-3.5,0) -- (3.5,0) node[right] {$x$};
-                            \draw[->,thick] (0,-0.5) -- (0,3.5) node[above] {$y$};
-
-                            \foreach \x in {-3,-2,-1,1,2,3}
-                                \draw (\x,0.07) -- (\x,-0.07) node[below] {\small $\x$};
-                            \foreach \y in {1,2,3}
-                                \draw (0.07,\y) -- (-0.07,\y) node[left] {\small $\y$};
-
-                            \draw[domain=-2.5:2.5,smooth,thick,blue] plot (\x,{abs(\x)+1}) node[right] {$y = |x| + 1$};
-                            \draw[red,dashed,thick] (-3.5,1) -- (3.5,1) node[right] {\textcolor{red}{$y = 1$}};
-
-                            \filldraw[fill=white,draw=black,thick] (0,1) circle (1.5pt);
-                        \end{tikzpicture}
-                    </script>
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        \lim_{x \to a} f(x) = L
+                    \]
                 </div>
             </div>
             <p>
-                &emsp;以上、上限・下限の意味を述べたが、次にその存在の証明をする。
+                が存在するとは、$x$ が $a$ に限りなく近づくとき、$f(x)$ が ある値$L$ に限りなく近づくことを意味する。この定義は複素関数 $f(z)$ に対しても同様に（$\lim_{z \to z_{0}} f(z)$）適用される。ただし、複素平面では $z$ が<b>多方向から</b> $z_{0}$ に近づくため、極限が存在するためにはすべての方向から同じ値に近づく必要がある。
             </p>
-            <div class="website_table_wrapper">
-                <div class="website_table">
-                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">定理1:</p></div>
-                    <div class="website_proposition_table_td">
-                        <p>
-                            <b>Weierstrass の定理</b>
-                        </p>
-                        <p>
-                            &emsp;数の集合 $S$ が上方 [あるいは下方] に有界ならば $S$ の上限 [または下限] が存在する。
-                        </p>
-                    </div>
-                    <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">証明1:</p></div>
-                    <div class="website_proposition_table_td">
-                        <p>
-                            &emsp;まず $S$ は下方に有界であると仮定して、下限の存在を証明する。
-                        </p>
-                        <p>
-                            &emsp;$S$ の一つの下界を $a$ とすれば、$a$ よりも小なる数はやはり $S$ の下界である。よって $S$ の下界でありうる数の全部を $A$ 組とし、その他の数の全部を $B$ 組とすれば、一つの切断が生ずる。実際、$B$ 組に属する数は $S$ の下界でありえない数だから、それは、どんな下界よりも大でなければならない。従って $A$ 組に属する数よりも大である。
-                        </p>
-                        <p>
-                            &emsp;この切断によって確定される数を $s$ とする。然らば $s$ は $A$ に属して $A$ の最大数であるか、あるいは $s$ は $B$ に属して $B$ の最小数であるか、いずれか一つである（定理1）。
-                        </p>
-                        <p>
-                            &emsp;さて、$s$ は $B$ に属するであろうか。
-                        </p>
-                        <p>
-                            &emsp;かりに $s$ が $B$ に属するとすれば、$s$ は $S$ の下界でありえないのだから、$s$ よりも小で、しかも $S$ に属する数がある。その一つを $x$ とする。すなわち $x \lt s$。
-                        </p>
-                        <p>
-                            &emsp;$x$ と $s$ との中間にある一つの数を $b$ とする。すなわち $x \lt b \lt s$。
-                        </p>
-                        <p>
-                            &emsp;然らば $b$ は $S$ に属する数 $x$ よりも大であるから、$S$ の下界ではない。すなわち $B$ に属する。しかも、その $b$ が $x$ よりも小であるから、これは矛盾である。
-                        </p>
-                        <p>
-                            &emsp;故に $s$ は $B$ の最小数ではありえない。
-                        </p>
-                        <p>
-                            &emsp;故に $s$ は $A$ の最大数、すなわち $S$ の最大下界、すなわち $S$ の下限である。
-                        </p>
-                        <p>
-                            &emsp;$S$ が上方に有界なるとき、上限の存在することも、同じように証明される。
-                        </p>
-                    </div>
-                </div> <!-- /example_table -->
-            </div> <!-- /website_table_wrapper -->
+            <p>
+                &emsp;この点が、後に述べるように実解析と複素解析の「差」を生む重要なポイントとなる。
+            </p>
+            <p><b>(2) 連続性・微分可能性・積分可能性</b></p>
+            <p>
+                &emsp;どちらの解析学でも「連続」「微分」「積分」は極限によって定義される。定義の形式は似ているが、複素解析では微分可能性の条件に非常に強い制約を課す点が特徴である。
+            </p>
+            <h2 id="section_3">相違点：微分可能性の厳しさとその帰結</h2>
+            <p><b>(1) 実解析における微分可能性</b></p>
+            <p>
+                &emsp;実関数 $f : \mathbb{R} \to \mathbb{R}$ が点 $x_{0}$ で微分可能であるとは、
+            </p>
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        f'(x_{0}) = \lim_{x \to x_{0}} \frac{f(x) - f(x_{0})}{x - x_{0}}
+                    \]
+                </div>
+            </div>
+            <p>
+                が存在することを意味する。多くの関数は連続でも微分可能ではなく、また微分可能でも導関数が連続とは限らない。
+            </p>
+            <p><b>(2) 複素解析における微分可能性（正則性）</b></p>
+            <p>
+                &emsp;一方、複素関数 $f : \mathbb{C} \to \mathbb{C}$ が点 $z_{0}$ で微分可能であるとは、
+            </p>
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        f'(z_{0}) = \lim_{z \to z_{0}} \frac{f(z) - f(z_{0})}{z - z_{0}}
+                    \]
+                </div>
+            </div>
+            <p>
+                が存在することを意味する。このとき、$z$ は複素平面上で任意の方向から $z_{0}$ に近づくため、極限が方向に依らず一定でなければならない。これを満たす関数は非常に特別な性質をもち、<b>正則関数（holomorphic function）</b>と呼ばれる。正則関数は無限回微分可能であり、さらに局所的にべき級数展開が可能（解析的）である。これは実解析の関数とは対照的で、たとえば、実解析では $|x|$ のように連続かつ区分的に微分可能でも、全域では微分不可能な関数が多く存在する。
+            </p>
+
+            <h2 id="section_4">相違点：幾何学的背景の違い</h2>
+            <p><b>(1) 実数直線と複素平面</b></p>
+            <p>
+                &emsp;実解析の場である実数直線 $\mathbb{R}$ は一次元だが、複素平面 $\mathbb{C}$ は二次元である。したがって、複素解析では「方向」という概念が重要になる。微分可能であるためには、任意の方向からの変化率が一致する必要があり、それが<b>Cauchy-Riemann の方程式</b>
+            </p>
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        \frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}, \quad \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}
+                    \]
+                </div>
+            </div>
+            <p>
+                （ただし $f(z) = u(x,y) + iv(x,y)$）として現れる。
+            </p>
+            <p><b>(2) 力学的なイメージ</b></p>
+            <p>
+                &emsp;実関数では変化は1方向的であり、増加・減少を考える。複素関数では、回転・伸縮といった二次元的な変形として理解でき、正則関数は局所的に角度を保つ（等角写像）という性質を持つ。
+            </p>
+            <h2 id="section_5">相違点：積分と解析的構造</h2>
+            <p>
+                &emsp;実解析では、積分は主に「面積の極限」として扱われ、積分と微分の関係は基本定理
+            </p>
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        \frac{d}{dx} \int_{a}^{x} f(t) \, dt = f(x)
+                    \]
+                </div>
+            </div>
+            <p>
+                で結びつけられる。
+            </p>
+            <p>
+                &emsp;一方、複素解析では、積分の概念がさらに強力な形で現れる。正則関数 $f(z)$ に対して、閉曲線 $C$ 上の積分が
+            </p>
+            <div class="mathjax_wrapper">
+                <div class="mathjax_flex">
+                    \[
+                        \oint_{C} f(z) \, dz = 0
+                    \]
+                </div>
+            </div>
+            <p>
+                （Cauchyの積分定理）となることは、実解析には見られない驚くべき性質である。この性質から、Cauchyの積分公式や留数定理など、複素解析特有の強力な結果が導かれる。
+            </p>
 
 
-            <h2 id="section_3">実解析学の各分野の一覧</h2>
+            <h2 id="section_6">解析学基礎の各分野の一覧</h2>
             <div class="pulldown_list_wrapper">
                 <li><details> <!-- 数列 -->
                     <summary><div class="link-container">

@@ -38,6 +38,8 @@
     <!-- プログラミング解説 -->
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/prism.css" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/codeHighlight.css" />
+    <!-- texgyre -->
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/font/texgyreschola-math/texgyreschola-math.css" type="text/css" charset="utf-8" />
 
     <!-- プログラミング解説 -->
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/prism.js"></script>
@@ -128,161 +130,500 @@
             <div class="toc-content">
                 <ul>
                     <li><a href="#section_1">概要</a></li>
+                    <li><a href="#section_2">公理化の意義とその展開</a></li>
+                    <li><a href="#section_3">公理的集合論の一覧</a></li>
                 </ul>
             </div>
 
             <h2 id="section_1">概要</h2>
             <p>
-                &emsp;素朴集合論では、「ある性質を満たすもの全体の集合」といった直観的な理解に基づき集合を定義していた。しかし、この自由な集合の構成方法は、様々な矛盾を引き起こす可能性がある。こうした問題を回避するために、集合の存在と構成を明確な「公理系」に基づいて定める「公理的集合論」が生まれた。
+                &emsp;19世紀末から20世紀初頭にかけて、数学は急速に抽象化と形式化の道を進み始めた。その中で、「集合」という概念があらゆる数学的対象を統一的に扱う基盤として登場する。しかし、<a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/naive_set_theory/naive_set_theory.html">素朴集合論</a>（naive set theory）の段階では、「性質で定まるもの全体の集まり」を自由に考えてよいとされていたため、<b>ラッセルのパラドックス</b><sup id="ref_1"><a href="#note_1">[1]</a></sup>をはじめとする自己言及的な矛盾が露呈した。
+            </p>
+            <p>
+                &emsp;この危機に対処するため、集合の構成を厳密に制限し、矛盾の生じないようにした体系的な理論が「公理的集合論」である。ここでは、「集合とは何か」を定義するのではなく、「集合がどのようにふるまうか」を<b>公理の集合</b>として定める。つまり、集合論は対象を直接説明するのではなく、集合に関する論理的な法則を定めることによって数学の基礎を築く。
+            </p>
+            <p>
+                &emsp;今日の数学のほとんどは、<a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/zermelo_fraenkel_choice_set_theory.html">ツェルメロ＝フレンケル集合論</a>（以降ZF）または選択公理を加えたZFCを前提として記述されている。これにより、「数」「関数」「空間」「順序」などあらゆる概念を集合の上に構築することが可能になった。一方で、ZFCはあくまで数学の「標準的」基礎であり、それ自体にも限界や拡張の余地がある。たとえば、クラスを明示的に扱う理論や、圏論的な基礎づけなどが、その後の展開として現れている。
+            </p>
+
+            <h2 id="section_2">公理化の意義とその展開</h2>
+            <p>
+                &emsp;公理的集合論の目的は、単に矛盾を避けることではない。どちらかと言うと、<b>数学のあらゆる対象を一つの統一的な言語で扱うこと</b>にある。
+            </p>
+            <p>
+                &emsp;たとえば、自然数、実数、<a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/mapping.html">写像</a>、ベクトル空間、位相空間などは、すべて集合として構成される<sup id="ref_2"><a href="#note_2">[2]</a></sup>。これにより、数学の定理を「集合と論理」に還元して考えることができるようになった。
+            </p>
+            <p>
+                &emsp;しかし同時に、ゲーデルの<b>不完全性定理</b>やコーエンの<b>強制法</b>（forcing）によって、集合論の公理体系自体にも「決定できない命題」が存在することが明らかになった。たとえば、<b>連続体仮説</b>の真偽はZFCでは決められない。この発見は、数学の基礎が絶対的ではなく、選択された公理系に依存することを示している。
+            </p>
+            <p>
+                &emsp;このように公理的集合論は、単なる技術的基盤にとどまらず、<b>数学そのものの限界と構造を探る理論的探求</b>でもある。
+            </p>
+            <p>
+                &emsp;公理的集合論にはいくつかの主要な体系が存在し、それぞれが素朴集合論の矛盾を回避しつつ、数学の基礎を異なる形で提供している。以下に、主な体系を挙げる。
+            </p>
+            <div class="tikzjax_wrapper">
+                <div class="tikzjax_flex" style="padding: 20px 0 5px 5px;">
+                    <figure>
+                        <div style="display: flex; width: 325.363pt; height: 175.309pt;">
+                            <div style="position: relative; width: 100%; height: 0pt;" class="page">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="325.36319pt" height="175.30927pt" viewBox="-72 -72 325.36319 175.30927" style="position: absolute; top: 0pt; left: 0pt; overflow: visible;">
+                                    <defs>
+                                    </defs>
+                                    <g stroke-miterlimit="10" transform="translate(-28.94163513183593,41.694473266601555) scale(1,-1)">
+                                        <g stroke="#000" fill="#000">
+                                            <g stroke-width="0.4">
+                                                <g fill="#e6e6ff">
+                                                    <g fill="#e6e6ff">
+                                                        <path d=" M 30.19257 7.2897 L -30.19257 7.2897 C -32.40173 7.2897 -34.19257 5.49887 -34.19257 3.2897 L -34.19257 -3.2897 C -34.19257 -5.49887 -32.40173 -7.2897 -30.19257 -7.2897 L 30.19257 -7.2897 C 32.40173 -7.2897 34.19257 -5.49887 34.19257 -3.2897 L 34.19257 3.2897 C 34.19257 5.49887 32.40173 7.2897 30.19257 7.2897 Z M -34.19257 -7.2897  "/>
+                                                    </g>
+                                                    <g transform="translate(-31.3473,-2.5)">
+                                                        <g stroke="#000" fill="#000">
+                                                            <g stroke="none" transform="scale(-1,1) translate(-28.94163513183593,41.694473266601555) scale(-1,-1)">
+                                                                <g fill="#000"><g stroke="none">
+                                                                    <text alignment-baseline="baseline" y="41.694473266601555" x="-28.94163513183593" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9.5" fill="black">Extensionality</text>
+                                                                </g></g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                                <g fill="#e6e6ff">
+                                                    <g fill="#e6e6ff">
+                                                        <path d=" M 97.31511 7.23413 L 52.81892 7.23413 C 50.60976 7.23413 48.81892 5.4433 48.81892 3.23413 L 48.81892 -3.23413 C 48.81892 -5.4433 50.60976 -7.23413 52.81892 -7.23413 L 97.31511 -7.23413 C 99.52428 -7.23413 101.31511 -5.4433 101.31511 -3.23413 L 101.31511 3.23413 C 101.31511 5.4433 99.52428 7.23413 97.31511 7.23413 Z M 48.81892 -7.23413  "/>
+                                                    </g>
+                                                    <g transform="translate(51.66418,-2.44444)">
+                                                        <g stroke="#000" fill="#000">
+                                                            <g stroke="none" transform="scale(-1,1) translate(-28.94163513183593,41.694473266601555) scale(-1,-1)">
+                                                                <g fill="#000"><g stroke="none">
+                                                                    <text alignment-baseline="baseline" y="41.694473266601555" x="-28.94163513183593" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9.5" fill="black">Empty</text>
+                                                                    <text alignment-baseline="baseline" y="41.694473266601555" x="3.97511863708496" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9.5" fill="black">Set</text>
+                                                                </g></g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                                <g fill="#e6e6ff">
+                                                    <g fill="#e6e6ff">
+                                                        <path d=" M 149.18762 7.23413 L 119.94147 7.23413 C 117.7323 7.23413 115.94147 5.4433 115.94147 3.23413 L 115.94147 -3.23413 C 115.94147 -5.4433 117.7323 -7.23413 119.94147 -7.23413 L 149.18762 -7.23413 C 151.39679 -7.23413 153.18762 -5.4433 153.18762 -3.23413 L 153.18762 3.23413 C 153.18762 5.4433 151.39679 7.23413 149.18762 7.23413 Z M 115.94147 -7.23413  "/>
+                                                    </g>
+                                                    <g transform="translate(118.78673,-2.44444)">
+                                                        <g stroke="#000" fill="#000">
+                                                            <g stroke="none" transform="scale(-1,1) translate(-28.94163513183593,41.694473266601555) scale(-1,-1)">
+                                                                <g fill="#000"><g stroke="none">
+                                                                    <text alignment-baseline="baseline" y="41.694473266601555" x="-28.94163513183593" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9.5" fill="black">Pairing</text>
+                                                                </g></g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                                <g fill="#e6e6ff">
+                                                    <g fill="#e6e6ff">
+                                                        <path d=" M 12.03973 -16.22551 L -12.03973 -16.22551 C -14.2489 -16.22551 -16.03973 -18.01634 -16.03973 -20.22551 L -16.03973 -24.74934 C -16.03973 -26.95851 -14.2489 -28.74934 -12.03973 -28.74934 L 12.03973 -28.74934 C 14.2489 -28.74934 16.03973 -26.95851 16.03973 -24.74934 L 16.03973 -20.22551 C 16.03973 -18.01634 14.2489 -16.22551 12.03973 -16.22551 Z M -16.03973 -28.74934  "/>
+                                                    </g>
+                                                    <g transform="translate(-13.19447,-25.90408)">
+                                                        <g stroke="#000" fill="#000">
+                                                            <g stroke="none" transform="scale(-1,1) translate(-28.94163513183593,41.694473266601555) scale(-1,-1)">
+                                                                <g fill="#000"><g stroke="none">
+                                                                    <text alignment-baseline="baseline" y="41.694473266601555" x="-28.94163513183593" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9.5" fill="black">Union</text>
+                                                                </g></g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                                <g fill="#e6e6ff">
+                                                    <g fill="#e6e6ff">
+                                                        <path d=" M 76.13441 -16.22551 L 34.66609 -16.22551 C 32.45692 -16.22551 30.66609 -18.01634 30.66609 -20.22551 L 30.66609 -24.74934 C 30.66609 -26.95851 32.45692 -28.74934 34.66609 -28.74934 L 76.13441 -28.74934 C 78.34358 -28.74934 80.13441 -26.95851 80.13441 -24.74934 L 80.13441 -20.22551 C 80.13441 -18.01634 78.34358 -16.22551 76.13441 -16.22551 Z M 30.66609 -28.74934  "/>
+                                                    </g>
+                                                    <g transform="translate(33.51135,-25.90408)">
+                                                        <g stroke="#000" fill="#000">
+                                                            <g stroke="none" transform="scale(-1,1) translate(-28.94163513183593,41.694473266601555) scale(-1,-1)">
+                                                                <g fill="#000"><g stroke="none">
+                                                                    <text alignment-baseline="baseline" y="41.694473266601555" x="-28.94163513183593" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9.5" fill="black">Power</text>
+                                                                    <text alignment-baseline="baseline" y="41.694473266601555" x="0.9473075866699217" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9.5" fill="black">Set</text>
+                                                                </g></g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                                <g fill="#e6e6ff">
+                                                    <g fill="#e6e6ff">
+                                                        <path d=" M 128.39581 -15.19772 L 98.76077 -15.19772 C 96.5516 -15.19772 94.76077 -16.98856 94.76077 -19.19772 L 94.76077 -25.77713 C 94.76077 -27.9863 96.5516 -29.77713 98.76077 -29.77713 L 128.39581 -29.77713 C 130.60498 -29.77713 132.39581 -27.9863 132.39581 -25.77713 L 132.39581 -19.19772 C 132.39581 -16.98856 130.60498 -15.19772 128.39581 -15.19772 Z M 94.76077 -29.77713  "/>
+                                                    </g>
+                                                    <g transform="translate(97.60603,-24.98743)">
+                                                        <g stroke="#000" fill="#000">
+                                                            <g stroke="none" transform="scale(-1,1) translate(-28.94163513183593,41.694473266601555) scale(-1,-1)">
+                                                                <g fill="#000"><g stroke="none">
+                                                                    <text alignment-baseline="baseline" y="41.694473266601555" x="-28.94163513183593" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9.5" fill="black">Infinity</text>
+                                                                </g></g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                                <g fill="#e6e6ff">
+                                                    <g fill="#e6e6ff">
+                                                        <path d=" M 22.19254 -37.68515 L -22.19254 -37.68515 C -24.4017 -37.68515 -26.19254 -39.47598 -26.19254 -41.68515 L -26.19254 -48.15341 C -26.19254 -50.36258 -24.4017 -52.15341 -22.19254 -52.15341 L 22.19254 -52.15341 C 24.4017 -52.15341 26.19254 -50.36258 26.19254 -48.15341 L 26.19254 -41.68515 C 26.19254 -39.47598 24.4017 -37.68515 22.19254 -37.68515 Z M -26.19254 -52.15341  "/>
+                                                    </g>
+                                                    <g transform="translate(-23.34727,-47.36372)">
+                                                        <g stroke="#000" fill="#000">
+                                                            <g stroke="none" transform="scale(-1,1) translate(-28.94163513183593,41.694473266601555) scale(-1,-1)">
+                                                                <g fill="#000"><g stroke="none">
+                                                                    <text alignment-baseline="baseline" y="41.694473266601555" x="-28.94163513183593" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9.5" fill="black">Separation</text>
+                                                                </g></g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                                <g fill="#e6e6ff">
+                                                    <g fill="#e6e6ff">
+                                                        <path d=" M 98.4817 -37.62958 L 44.8189 -37.62958 C 42.60973 -37.62958 40.8189 -39.42041 40.8189 -41.62958 L 40.8189 -48.20898 C 40.8189 -50.41815 42.60973 -52.20898 44.8189 -52.20898 L 98.4817 -52.20898 C 100.69087 -52.20898 102.4817 -50.41815 102.4817 -48.20898 L 102.4817 -41.62958 C 102.4817 -39.42041 100.69087 -37.62958 98.4817 -37.62958 Z M 40.8189 -52.20898  "/>
+                                                    </g>
+                                                    <g transform="translate(43.66415,-47.41928)">
+                                                        <g stroke="#000" fill="#000">
+                                                            <g stroke="none" transform="scale(-1,1) translate(-28.94163513183593,41.694473266601555) scale(-1,-1)">
+                                                                <g fill="#000"><g stroke="none">
+                                                                    <text alignment-baseline="baseline" y="41.694473266601555" x="-28.94163513183593" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9.5" fill="black">Replacement</text>
+                                                                </g></g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                                <g fill="#e6e6ff">
+                                                    <g fill="#e6e6ff">
+                                                        <path d=" M 168.38205 -38.6018 L 121.10806 -38.6018 C 118.8989 -38.6018 117.10806 -40.39264 117.10806 -42.6018 L 117.10806 -47.23676 C 117.10806 -49.44592 118.8989 -51.23676 121.10806 -51.23676 L 168.38205 -51.23676 C 170.59122 -51.23676 172.38205 -49.44592 172.38205 -47.23676 L 172.38205 -42.6018 C 172.38205 -40.39264 170.59122 -38.6018 168.38205 -38.6018 Z M 117.10806 -51.23676  "/>
+                                                    </g>
+                                                    <g transform="translate(119.95332,-48.3915)">
+                                                        <g stroke="#000" fill="#000">
+                                                            <g stroke="none" transform="scale(-1,1) translate(-28.94163513183593,41.694473266601555) scale(-1,-1)">
+                                                                <g fill="#000"><g stroke="none">
+                                                                    <text alignment-baseline="baseline" y="41.694473266601555" x="-28.94163513183593" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9.5" fill="black">Foundation</text>
+                                                                </g></g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                                <g stroke-width="0.8">
+                                                    <g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+                                                        <g stroke-width="0.8">
+                                                            <g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+                                                                <path d=" M -42.92838 -60.9448 h 224.04623 v 76.9703 h -224.04623 Z  " fill="none"/>
+                                                            </g>
+                                                        </g>
+                                                        <g transform="translate(-34.39256,-22.45964)">
+                                                            <g stroke="#000" fill="#000">
+                                                                <g stroke="none" transform="scale(-1,1) translate(-28.94163513183593,41.694473266601555) scale(-1,-1)">
+                                                                    <g fill="#000"><g stroke="none"></g></g>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                                <g transform="translate(24.14815,21.90291)">
+                                                    <g stroke="#000" fill="#000">
+                                                        <g stroke="none" transform="scale(-1,1) translate(-28.94163513183593,41.694473266601555) scale(-1,-1)">
+                                                            <g fill="#000"><g stroke="none">
+                                                                <text alignment-baseline="baseline" y="41.694473266601555" x="-28.94163513183593" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9.5" fill="black">Axiomatic</text>
+                                                                <text alignment-baseline="baseline" y="41.694473266601555" x="16.891845703124996" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="9.5" fill="black">System</text>
+                                                            </g></g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                                <g fill="#e6ffe6">
+                                                    <g fill="#e6ffe6">
+                                                        <path d=" M 106.0834 52.19135 C 106.0834 59.2627 89.52327 64.995 69.09474 64.995 C 48.66621 64.995 32.10608 59.2627 32.10608 52.19135 C 32.10608 45.12 48.66621 39.3877 69.09474 39.3877 C 89.52327 39.3877 106.0834 45.12 106.0834 52.19135 Z M 69.09474 52.19135  "/>
+                                                    </g>
+                                                    <g transform="translate(62.77528,48.77469)">
+                                                        <g stroke="#000" fill="#000">
+                                                            <g stroke="none" transform="scale(-1,1) translate(-28.94163513183593,41.694473266601555) scale(-1,-1)">
+                                                                <g fill="#000"><g stroke="none">
+                                                                    <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/zermelo_fraenkel_choice_set_theory.html"><text alignment-baseline="baseline" y="41.694473266601555" x="-28.94163513183593" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10" fill="black">ZF</text></a>
+                                                                </g></g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                                <g fill="#e6ffe6">
+                                                    <g fill="#e6ffe6">
+                                                        <path d=" M 106.0834 100.96083 C 106.0834 108.03218 89.52327 113.76448 69.09474 113.76448 C 48.66621 113.76448 32.10608 108.03218 32.10608 100.96083 C 32.10608 93.88948 48.66621 88.15718 69.09474 88.15718 C 89.52327 88.15718 106.0834 93.88948 106.0834 100.96083 Z M 69.09474 100.96083  "/>
+                                                    </g>
+                                                    <g transform="translate(59.30307,97.54417)">
+                                                        <g stroke="#000" fill="#000">
+                                                            <g stroke="none" transform="scale(-1,1) translate(-28.94163513183593,41.694473266601555) scale(-1,-1)">
+                                                                <g fill="#000"><g stroke="none">
+                                                                    <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/zermelo_fraenkel_choice_set_theory.html"><text alignment-baseline="baseline" y="41.694473266601555" x="-28.94163513183593" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10" fill="black">ZFC</text></a>
+                                                                </g></g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                                <g fill="#e6ffe6">
+                                                    <g fill="#e6ffe6">
+                                                        <path d=" M 225.98512 52.19135 C 225.98512 59.2627 209.42499 64.995 188.99646 64.995 C 168.56793 64.995 152.0078 59.2627 152.0078 52.19135 C 152.0078 45.12 168.56793 39.3877 188.99646 39.3877 C 209.42499 39.3877 225.98512 45.12 225.98512 52.19135 Z M 188.99646 52.19135  "/>
+                                                    </g>
+                                                    <g transform="translate(177.78116,48.77469)">
+                                                        <g stroke="#000" fill="#000">
+                                                            <g stroke="none" transform="scale(-1,1) translate(-28.94163513183593,41.694473266601555) scale(-1,-1)">
+                                                                <g fill="#000"><g stroke="none">
+                                                                    <text alignment-baseline="baseline" y="41.694473266601555" x="-28.94163513183593" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10" fill="black">NBG</text>
+                                                                </g></g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                                <g fill="#e6ffe6">
+                                                    <g fill="#e6ffe6">
+                                                        <path d=" M 225.98512 100.96083 C 225.98512 108.03218 209.42499 113.76448 188.99646 113.76448 C 168.56793 113.76448 152.0078 108.03218 152.0078 100.96083 C 152.0078 93.88948 168.56793 88.15718 188.99646 88.15718 C 209.42499 88.15718 225.98512 93.88948 225.98512 100.96083 Z M 188.99646 100.96083  "/>
+                                                    </g>
+                                                    <g transform="translate(180.52422,97.54417)">
+                                                        <g stroke="#000" fill="#000">
+                                                            <g stroke="none" transform="scale(-1,1) translate(-28.94163513183593,41.694473266601555) scale(-1,-1)">
+                                                                <g fill="#000"><g stroke="none">
+                                                                    <text alignment-baseline="baseline" y="41.694473266601555" x="-28.94163513183593" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10" fill="black">MK</text>
+                                                                </g></g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                                <g stroke-width="0.8">
+                                                    <path d=" M 69.09474 16.4255 L 69.09474 32.98769  " fill="none"/>
+                                                    <g transform="matrix(0.0,1.0,-1.0,0.0,69.09474,32.98769)">
+                                                        <g stroke-dasharray="none" stroke-dashoffset="0.0">
+                                                            <g stroke-linejoin="miter">
+                                                                <path d=" M 4.55077 0.0 C 3.99191 0.1386 1.53535 0.92393 0.0 1.77858 L 0.0 -1.77858 C 1.53535 -0.92393 3.99191 -0.1386 4.55077 0.0 Z  "/>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                                <g stroke-width="0.8">
+                                                    <path d=" M 69.09474 65.19499 L 69.09474 81.75717  " fill="none"/>
+                                                    <g transform="matrix(0.0,1.0,-1.0,0.0,69.09474,81.75717)">
+                                                        <g stroke-dasharray="none" stroke-dashoffset="0.0">
+                                                            <g stroke-linejoin="miter">
+                                                                <path d=" M 4.55077 0.0 C 3.99191 0.1386 1.53535 0.92393 0.0 1.77858 L 0.0 -1.77858 C 1.53535 -0.92393 3.99191 -0.1386 4.55077 0.0 Z  "/>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                    <g transform="translate(28.13948,73.52052)">
+                                                        <g stroke="#000" fill="#000">
+                                                            <g stroke="none" transform="scale(-1,1) translate(-28.94163513183593,41.694473266601555) scale(-1,-1)">
+                                                                <g fill="#000"><g stroke="none">
+                                                                    <text alignment-baseline="baseline" y="41.694473266601555" x="-28.94163513183593" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10" fill="black">+Choice</text>
+                                                                </g></g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                                <g stroke-width="0.8">
+                                                    <path d=" M 106.2834 52.19135 L 145.60779 52.19135  " fill="none"/>
+                                                    <g transform="translate(145.60779,52.19135)">
+                                                        <g stroke-dasharray="none" stroke-dashoffset="0.0">
+                                                            <g stroke-linejoin="miter">
+                                                                <path d=" M 4.55077 0.0 C 3.99191 0.1386 1.53535 0.92393 0.0 1.77858 L 0.0 -1.77858 C 1.53535 -0.92393 3.99191 -0.1386 4.55077 0.0 Z  "/>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                    <g transform="translate(95.64276,37.24603)">
+                                                        <g stroke="#000" fill="#000">
+                                                            <g stroke="none" transform="scale(-1,1) translate(-28.94163513183593,41.694473266601555) scale(-1,-1)">
+                                                                <g fill="#000"><g stroke="none">
+                                                                    <text alignment-baseline="baseline" y="41.694473266601555" x="-28.94163513183593" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10" fill="black">+Class</text>
+                                                                    <text alignment-baseline="baseline" y="41.694473266601555" x="5.058454513549804" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10" fill="black">Compr.</text>
+                                                                </g></g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                                <g stroke-width="0.8">
+                                                    <path d=" M 188.99646 65.19499 L 188.99646 81.75717  " fill="none"/>
+                                                    <g transform="matrix(0.0,1.0,-1.0,0.0,188.99646,81.75717)">
+                                                        <g stroke-dasharray="none" stroke-dashoffset="0.0">
+                                                            <g stroke-linejoin="miter">
+                                                                <path d=" M 4.55077 0.0 C 3.99191 0.1386 1.53535 0.92393 0.0 1.77858 L 0.0 -1.77858 C 1.53535 -0.92393 3.99191 -0.1386 4.55077 0.0 Z  "/>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                    <g transform="translate(192.72943,73.52052)">
+                                                        <g stroke="#000" fill="#000">
+                                                            <g stroke="none" transform="scale(-1,1) translate(-28.94163513183593,41.694473266601555) scale(-1,-1)">
+                                                                <g fill="#000"><g stroke="none">
+                                                                    <text alignment-baseline="baseline" y="41.694473266601555" x="-28.94163513183593" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10" fill="black">+Limitation</text>
+                                                                    <text alignment-baseline="baseline" y="41.694473266601555" x="28.419651031494134" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10" fill="black">of</text>
+                                                                    <text alignment-baseline="baseline" y="41.694473266601555" x="39.8085708618164" style="font-family: 'tex_gyre_schola_math', sans-serif;" font-size="10" fill="black">Size</text>
+                                                                </g></g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <script type="text/tikz">
+% UTF-8 Unicode 全対応にする
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usetikzlibrary{fit,calc,positioning,arrows.meta,shapes.geometric}
+
+\begin{document}
+    \begin{tikzpicture}[
+        box/.style={rectangle,draw,rounded corners,align=center,inner sep=1mm},
+        ext/.style={box,fill=blue!10},
+        sys/.style={ellipse,draw,fill=green!10,minimum width=2.6cm,minimum height=0.9cm},
+        arr/.style={-{Latex},thick}
+    ]
+
+        % 個別公理ノード
+        \begin{scope}[node distance=3mm and 5mm]
+            % --- 3×3 の配置 ---
+            \node[ext] (Ext) {Extensionality};
+            \node[ext, right=of Ext] (Empty) {Empty Set};
+            \node[ext, right=of Empty] (Pair) {Pairing};
+
+            \node[ext, below=of Ext] (Union) {Union};
+            \node[ext, right=of Union] (Power) {Power Set};
+            \node[ext, right=of Power] (Inf) {Infinity};
+
+            \node[ext, below=of Union] (Sep) {Separation};
+            \node[ext, right=of Sep] (Rep) {Replacement};
+            \node[ext, right=of Rep] (Fund) {Foundation};
+        \end{scope}
+
+        % 公理系を囲むボックス
+        \node[
+            draw, thick, dashed, inner sep=3mm,
+            fit=(Ext) (Empty) (Pair) (Union) (Power) (Inf) (Sep) (Rep) (Fund),
+            label={[xshift=-2.5mm]above:Axiomatic System}
+        ] (ZFbox) {};
+
+        % 上位理論ノード
+        \begin{scope}[node distance=8mm and 16mm]
+            \node[sys, above=of ZFbox] (ZF) {ZF};
+            \node[sys, above=of ZF] (ZFC) {ZFC};
+            \node[sys, right=of ZF] (NBG) {NBG};
+            \node[sys, above=of NBG] (MK) {MK};
+        \end{scope}
+
+        % 矢印
+        \draw[arr] (ZFbox.north) -- (ZF.south);
+        \draw[arr] (ZF) -- node[midway,left]{+Choice} (ZFC);
+        \draw[arr] (ZF) -- node[midway,below,yshift=-1.5mm]{+Class Compr.} (NBG);
+        \draw[arr] (NBG) -- node[midway,right]{+Limitation of Size} (MK);
+
+    \end{tikzpicture}
+\end{document}
+                        </script>
+                        <figcaption>&emsp;これら公理的集合論の体系は相互に拡張関係や代替関係を持っており、上に示す図式でその位置づけを視覚的にまとめた。</figcaption>
+                    </figure>
+                </div>
+            </div>
+            <p>
+                &emsp;フォン・ノイマン＝ベルナイス＝ゲーデル集合論（NBG）は、ZFを拡張し、「集合」と「クラス」を区別して扱う理論。ZFとほぼ同程度の表現力を持ちながら、メタ的議論を内部で行えるという利点がある。NBGでは、全ての集合を含む「全クラス」が定義可能であるため、集合論そのものを理論内部で記述しやすい。
+            </p>
+            <p>
+                &emsp;モース＝ケリー集合論（MK）は、NBGをさらに拡張し、クラスに関する内包公理<sup id="ref_3"><a href="#note_3">[3]</a></sup>（Comprehension Axiom）をより自由に認めた理論。NBGよりも強力で、特に大きな階層構造を扱う研究（大きな基数やクラス階層など）に適している。
             </p>
 
 
-            <h2 id="section_3">集合論の一覧</h2>
+
+
+            <h2 id="section_3">公理的集合論の一覧</h2>
             <div class="pulldown_list_wrapper">
-                <li><details> <!-- 素朴集合論 -->
+                <li><details> <!-- ツェルメロ＝フレンケル集合論 -->
                     <summary><div class="link-container">
-                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/naive_set_theory/naive_set_theory.html" class="preview-link" data-title="素朴集合論" data-description="このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。" data-image="">素朴集合論</a>
+                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/zermelo_fraenkel_choice_set_theory.html" class="preview-link" data-title="ツェルメロ＝フレンケル集合論" data-description="" data-image="">ツェルメロ＝フレンケル集合論</a>
+                        <div class="link-preview">
+                            <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/zermelo_fraenkel_choice_set_theory.html" class="link-preview-clickable">
+                                <img class="preview-image" src="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" alt="Preview image">
+                                <h3 class="preview-title">ツェルメロ＝フレンケル集合論</h3>
+                                <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                            </a>
+                        </div> <!-- link-preview -->
+                    </div></summary>
+                        <li><details> <!-- 対応と写像 -->
+                            <summary><div class="link-container">
+                                <a href="#">対応と写像</a>
+                                <div class="link-preview">
+                                    <img class="preview-image">
+                                    <h3 class="preview-title">対応と写像</h3>
+                                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                </div> <!-- link-preview -->
+                            </div></summary>
+                        </details></li><!-- /対応と写像 -->
+                        <li><details> <!-- 添字付けられた族 -->
+                            <summary><div class="link-container">
+                                <a href="#">添字付けられた族</a>
+                                <div class="link-preview">
+                                    <img class="preview-image">
+                                    <h3 class="preview-title">添字付けられた族</h3>
+                                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                </div> <!-- link-preview -->
+                            </div></summary>
+                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/school_education/elementary/elementary_math/previous_pra/enumerative_pra.html">数え上げの練習</a></li>
+                        </details></li><!-- /添字付けられた族 -->
+                </details></li> <!-- /ツェルメロ＝フレンケル集合論 -->
+                <li><details> <!-- フォン・ノイマン＝ベルナイス＝ゲーデル集合論 -->
+                    <summary><div class="link-container">
+                        <a href="#">フォン・ノイマン＝ベルナイス＝ゲーデル集合論</a>
                         <div class="link-preview">
                             <img class="preview-image">
-                            <h3 class="preview-title">素朴集合論</h3>
+                            <h3 class="preview-title">フォン・ノイマン＝ベルナイス＝ゲーデル集合論</h3>
                             <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
                         </div> <!-- link-preview -->
                     </div></summary>
-                        <li><details> <!-- 幼児 -->
+                        <li><details> <!-- こくご -->
                             <summary><div class="link-container">
-                                <a href="#">幼児</a>
+                                <a href="#">こくご</a>
                                 <div class="link-preview">
                                     <img class="preview-image">
-                                    <h3 class="preview-title">幼児</h3>
+                                    <h3 class="preview-title">こくご</h3>
                                     <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
                                 </div> <!-- link-preview -->
                             </div></summary>
-                                <li><details> <!-- こくご -->
-                                    <summary><div class="link-container">
-                                        <a href="#">こくご</a>
-                                        <div class="link-preview">
-                                            <img class="preview-image">
-                                            <h3 class="preview-title">こくご</h3>
-                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
-                                        </div> <!-- link-preview -->
-                                    </div></summary>
-                                </details></li><!-- /こくご -->
-                                <li><details> <!-- さんすう -->
-                                    <summary><div class="link-container">
-                                        <a href="#">さんすう</a>
-                                        <div class="link-preview">
-                                            <img class="preview-image">
-                                            <h3 class="preview-title">さんすう</h3>
-                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
-                                        </div> <!-- link-preview -->
-                                    </div></summary>
-                                        <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/school_education/elementary/elementary_math/previous_pra/enumerative_pra.html">数え上げの練習</a></li>
-                                </details></li><!-- /さんすう -->
-                        </details></li> <!-- /幼児 -->
-                </details></li> <!-- /素朴集合論 -->
-                <li><details> <!-- 公理的集合論 -->
+                        </details></li><!-- /こくご -->
+                        <li><details> <!-- さんすう -->
+                            <summary><div class="link-container">
+                                <a href="#">さんすう</a>
+                                <div class="link-preview">
+                                    <img class="preview-image">
+                                    <h3 class="preview-title">さんすう</h3>
+                                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
+                                </div> <!-- link-preview -->
+                            </div></summary>
+                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/school_education/elementary/elementary_math/previous_pra/enumerative_pra.html">数え上げの練習</a></li>
+                        </details></li><!-- /さんすう -->
+                </details></li> <!-- /フォン・ノイマン＝ベルナイス＝ゲーデル集合論 -->
+                <li><details> <!-- モース-ケリー集合論 -->
                     <summary><div class="link-container">
-                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/physics.html" class="preview-link" data-title="公理的集合論" data-description="このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。" data-image="">公理的集合論</a>
+                        <a href="#">モース-ケリー集合論</a>
                         <div class="link-preview">
                             <img class="preview-image">
-                            <h3 class="preview-title">公理的集合論</h3>
+                            <h3 class="preview-title">モース-ケリー集合論</h3>
                             <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
                         </div> <!-- link-preview -->
                     </div></summary>
-                        <li><details> <!-- ツェルメロ＝フレンケル集合論 -->
+                        <li><details> <!-- こくご -->
                             <summary><div class="link-container">
-                                <a href="#">ツェルメロ＝フレンケル集合論</a>
+                                <a href="#">こくご</a>
                                 <div class="link-preview">
                                     <img class="preview-image">
-                                    <h3 class="preview-title">ツェルメロ＝フレンケル集合論</h3>
+                                    <h3 class="preview-title">こくご</h3>
                                     <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
                                 </div> <!-- link-preview -->
                             </div></summary>
-                                <li><details> <!-- こくご -->
-                                    <summary><div class="link-container">
-                                        <a href="#">こくご</a>
-                                        <div class="link-preview">
-                                            <img class="preview-image">
-                                            <h3 class="preview-title">こくご</h3>
-                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
-                                        </div> <!-- link-preview -->
-                                    </div></summary>
-                                </details></li><!-- /こくご -->
-                                <li><details> <!-- さんすう -->
-                                    <summary><div class="link-container">
-                                        <a href="#">さんすう</a>
-                                        <div class="link-preview">
-                                            <img class="preview-image">
-                                            <h3 class="preview-title">さんすう</h3>
-                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
-                                        </div> <!-- link-preview -->
-                                    </div></summary>
-                                        <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/school_education/elementary/elementary_math/previous_pra/enumerative_pra.html">数え上げの練習</a></li>
-                                </details></li><!-- /さんすう -->
-                        </details></li> <!-- /ツェルメロ＝フレンケル集合論 -->
-                        <li><details> <!-- フォン・ノイマン＝ベルナイス＝ゲーデル集合論 -->
+                        </details></li><!-- /こくご -->
+                        <li><details> <!-- さんすう -->
                             <summary><div class="link-container">
-                                <a href="#">フォン・ノイマン＝ベルナイス＝ゲーデル集合論</a>
+                                <a href="#">さんすう</a>
                                 <div class="link-preview">
                                     <img class="preview-image">
-                                    <h3 class="preview-title">フォン・ノイマン＝ベルナイス＝ゲーデル集合論</h3>
+                                    <h3 class="preview-title">さんすう</h3>
                                     <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
                                 </div> <!-- link-preview -->
                             </div></summary>
-                                <li><details> <!-- こくご -->
-                                    <summary><div class="link-container">
-                                        <a href="#">こくご</a>
-                                        <div class="link-preview">
-                                            <img class="preview-image">
-                                            <h3 class="preview-title">こくご</h3>
-                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
-                                        </div> <!-- link-preview -->
-                                    </div></summary>
-                                </details></li><!-- /こくご -->
-                                <li><details> <!-- さんすう -->
-                                    <summary><div class="link-container">
-                                        <a href="#">さんすう</a>
-                                        <div class="link-preview">
-                                            <img class="preview-image">
-                                            <h3 class="preview-title">さんすう</h3>
-                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
-                                        </div> <!-- link-preview -->
-                                    </div></summary>
-                                        <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/school_education/elementary/elementary_math/previous_pra/enumerative_pra.html">数え上げの練習</a></li>
-                                </details></li><!-- /さんすう -->
-                        </details></li> <!-- /フォン・ノイマン＝ベルナイス＝ゲーデル集合論 -->
-                        <li><details> <!-- モース-ケリー集合論 -->
-                            <summary><div class="link-container">
-                                <a href="#">モース-ケリー集合論</a>
-                                <div class="link-preview">
-                                    <img class="preview-image">
-                                    <h3 class="preview-title">モース-ケリー集合論</h3>
-                                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
-                                </div> <!-- link-preview -->
-                            </div></summary>
-                                <li><details> <!-- こくご -->
-                                    <summary><div class="link-container">
-                                        <a href="#">こくご</a>
-                                        <div class="link-preview">
-                                            <img class="preview-image">
-                                            <h3 class="preview-title">こくご</h3>
-                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
-                                        </div> <!-- link-preview -->
-                                    </div></summary>
-                                </details></li><!-- /こくご -->
-                                <li><details> <!-- さんすう -->
-                                    <summary><div class="link-container">
-                                        <a href="#">さんすう</a>
-                                        <div class="link-preview">
-                                            <img class="preview-image">
-                                            <h3 class="preview-title">さんすう</h3>
-                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って物理学の各分野を解説していく。</p>
-                                        </div> <!-- link-preview -->
-                                    </div></summary>
-                                        <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/school_education/elementary/elementary_math/previous_pra/enumerative_pra.html">数え上げの練習</a></li>
-                                </details></li><!-- /さんすう -->
-                        </details></li> <!-- /モース-ケリー集合論 -->
-                </details></li> <!-- /公理的集合論 -->
+                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/school_education/elementary/elementary_math/previous_pra/enumerative_pra.html">数え上げの練習</a></li>
+                        </details></li><!-- /さんすう -->
+                </details></li> <!-- /モース-ケリー集合論 -->
             </div>
 
 
@@ -292,7 +633,13 @@
             ページ注釈
             <ol class="olAnnotation">
                 <li id="note_1"><a href="#ref_1">^</a>
-                    Vladimir Nikolaevich Grishin, Consistency of a fragment of Quine's NF system. Soviet mathematics—Doklady, 10 (1969) pp. 1387-1390
+                    ラッセルのパラドックスについては、<a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/naive_set_theory/naive_set_theory.html#section_4">素朴集合論のパラドックス許容論理</a>を参照。
+                </li>
+                <li id="note_2"><a href="#ref_2">^</a>
+                    von Neumann の定義による自然数の集合論的構成については、<a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/zermelo_fraenkel_choice_set_theory.html">ツェルメロ＝フレンケル集合論</a>の命題 8.2を参照。
+                </li>
+                <li id="note_3"><a href="#ref_3">^</a>
+                    素朴集合論で言うところの「素朴包括原理」、ZFCで言うところの「分出公理スキーム」に相当する。
                 </li>
             </ol>
         </div> <!-- /annotation -->

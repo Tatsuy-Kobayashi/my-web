@@ -199,204 +199,769 @@
     border: 1px solid #ccc;
     background: #fff;
 }
+
+.dimmed {
+    opacity: 0.45;
+    transition: opacity 0.18s ease;
+}
+
+/* ボタンを見た目だけ無効化したい場合（押せない雰囲気） */
+.btn-dim {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* optional: 見た目で「有効」状態を強調 */
+.controls .active {
+    outline: 2px solid rgba(0,120,212,0.12);
+    border-radius: 6px;
+    padding: 4px;
+}
+
+/* ノード情報パネル */
+.node-info-panel {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    max-width: 320px;
+    max-height: 260px;
+    background: #ffffff;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    padding: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    z-index: 9999;
+}
+
+.node-info-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+.node-info-body {
+    overflow-y: auto;
+    max-height: 180px;
+    line-height: 1.4;
+    font-size: 14px;
+}
+
+/* 初期状態は非表示 */
+.site-categorical-diagram .hidden {
+    display: none;
+}
 </style>
                         <h2>サイト圏図式（動的グラフ）</h2>
-                        <div class="controls">
-                            <label>最小深さ:</label>
-                            <select id="minDepth">
-                                <option value="0" selected>0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
+                        <div class="site-categorical-diagram">
+                            <div class="controls">
+                                <label>最小深さ:</label>
+                                <input type="number" step="1" min="0" inputmode="numeric" id="minDepth" value="0" style="width:80px;">
 
-                            <label>最大深さ:</label>
-                            <select id="maxDepth">
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2" selected>2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
+                                <label>最大深さ:</label>
+                                <input type="number" inputmode="numeric" id="maxDepth" value="2" style="width:80px;">
 
-                            <button id="updateBtn">更新</button>
+                                <button id="updateBtn">更新</button>
+                                <br><br>
 
-                            <br><br>
+                                <label>学問ID検索:</label>
+                                <input type="number" id="idSearchInput" placeholder="例: 30" style="width:80px;">
+                                <button id="idSearchBtn">ID検索</button>
 
-                            <label><input type="radio" name="clickMode" value="select" checked> ノードフォーカス</label>
-                            <label><input type="radio" name="clickMode" value="link"> URLリンク遷移</label>
+                                <br><br>
 
+                                <label><input type="radio" name="clickMode" value="select" checked> ノードフォーカス</label>
+                                <label><input type="radio" name="clickMode" value="link"> URLリンク遷移</label>
+
+                            </div>
+
+                            <div id="network"></div>
+                            <!-- ノード説明パネル -->
+                            <div id="nodeInfoPanel" class="node-info-panel hidden">
+                                <div id="nodeInfoTitle" class="node-info-title"></div>
+                                <div id="nodeInfoBody" class="node-info-body"></div>
+                            </div>
                         </div>
-
-                        <div id="network"></div>
                         <script>
-//----------------------------------------------------
-// ノード定義
-//----------------------------------------------------
-// id: ノードID
-// label: ラベル
-// url: ノードクリック時に開くURL
-// level: 深さ（1が起点、2がその周辺…）
-console.log("[INIT] Loading nodesData...");
-const nodesData = [
-    { id: 0, label: "学問", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html", level: 0 },
+// 状態遷移重視・エラーフラグ管理ありの完全版スクリプト
+document.addEventListener('DOMContentLoaded', function () {
 
-    { id: 1, label: "人文科学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/humanities.html", level: 1 },
-    { id: 2, label: "社会科学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/social_science.html", level: 1 },
-    { id: 3, label: "形式科学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/formal_science.html", level: 1 },
-    { id: 4, label: "自然科学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/natural_science.html", level: 1 },
-    { id: 5, label: "応用科学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html", level: 1 },
-    { id: 6, label: "学際領域", url: "https://tatsuy-kobayashi.github.io/my-web/docs/", level: 1 },
-
-    { id: 10, label: "芸術学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/art.html", level: 2 },
-    { id: 11, label: "宗教学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/", level: 2 },
-    { id: 30, label: "数学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html", level: 2 },
-    { id: 31, label: "統計学", url: "/math/index.html", level: 2 },
-    { id: 40, label: "物理学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html", level: 2 },
-
-    { id: 300, label: "数学用語", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematical_terms/mathematical_terms.html", level: 3 },
-    { id: 301, label: "数学基礎論", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html", level: 3 },
-    { id: 302, label: "数論", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/number_theory.html", level: 3 },
-    { id: 303, label: "代数学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebra.html", level: 3 },
-    { id: 304, label: "解析学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/analysis.html", level: 3 },
-
-    { id: 3040, label: "実解析学・複素解析学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/foundations_of_analysis.html", level: 4 }
-];
-
-//----------------------------------------------------
-// エッジ定義（リンク構造）
-// from → to の方向性を持つ
-//----------------------------------------------------
-console.log("[INIT] Loading edgesData...");
-const edgesData = [
-    { from: 0, to: 1 },
-    { from: 0, to: 2 },
-    { from: 0, to: 3 },
-    { from: 0, to: 4 },
-    { from: 0, to: 5 },
-    { from: 0, to: 6 },
-
-    { from: 1, to: 10 },
-    { from: 1, to: 11 },
-    { from: 3, to: 30 },
-    { from: 3, to: 31 },
-    { from: 4, to: 40 },
-
-    { from: 30, to: 300 },
-    { from: 30, to: 301 },
-    { from: 30, to: 302 },
-    { from: 30, to: 303 },
-    { from: 30, to: 304 },
-
-    { from: 304, to: 3040 }
-];
-
-let network = null; // vis-network インスタンス
-
-//------------------------------------------------------------
-// グラフ更新処理（min-depth / max-depth を利用）
-//------------------------------------------------------------
-function updateGraph() {
-    const minDepth = Number(document.getElementById("minDepth").value);
-    const maxDepth = Number(document.getElementById("maxDepth").value);
-
-    console.log("[updateGraph] minDepth=", minDepth, ", maxDepth=", maxDepth);
-
-    const filteredNodes = nodesData.filter(n =>
-        n.level >= minDepth && n.level <= maxDepth
-    );
-
-    const validIds = new Set(filteredNodes.map(n => n.id));
-
-    const filteredEdges = edgesData.filter(e =>
-        validIds.has(e.from) && validIds.has(e.to)
-    );
-
-    console.log("[updateGraph] filtered nodes:", filteredNodes);
-    console.log("[updateGraph] filtered edges:", filteredEdges);
-
-    drawNetwork(filteredNodes, filteredEdges);
-}
-
-function drawNetwork(nodeList, edgeList) {
-    console.log("[drawNetwork] Drawing network...");
-
-    const nodes = new vis.DataSet(nodeList);
-    const edges = new vis.DataSet(edgeList);
-
-    const container = document.getElementById("network");
-
-    const options = {
-        layout: {
-            hierarchical: false
-        },
-        physics: {
-            enabled: true,
-            solver: "forceAtlas2Based",
-            forceAtlas2Based: {
-                gravitationalConstant: -50,  // 反発力を弱める（デフォルト -200）
-                springLength: 60,            // エッジの自然長を短くする（重要）
-                springConstant: 0.2         // バネの硬さ、強すぎると暴れる
-            },
-            stabilization: {
-                enabled: true,
-                iterations: 200              // 少なすぎると変な形で止まりやすい
-            }
-        },
-        interaction: {
-            hover: true,
-            zoomView: true
-        },
-        edges: {
-            arrows: "to",
-            smooth: {
-                enabled: false               // 変な曲がりをなくすため
-            }
-        }
+    // ------------------------
+    // 状態定義
+    // ------------------------
+    const STATE = {
+        DOM_LOADING: 'DOM_LOADING',
+        DATA_INITIALIZATION: 'DATA_INITIALIZATION',
+        NETWORK_INITIALIZATION: 'NETWORK_INITIALIZATION',
+        HASH_BOOTSTRAP: 'HASH_BOOTSTRAP',
+        BOOTSTRAP_SEARCH: 'BOOTSTRAP_SEARCH',
+        IDLE: 'IDLE',
+        SEARCHING: 'SEARCHING',
+        ERROR: 'ERROR'
     };
 
-    network = new vis.Network(container, { nodes, edges }, options);
+    let currentState = STATE.DOM_LOADING;
 
-    setupClickEvents(nodes);
-}
+    // ------------------------
+    // エラーフラグ
+    // ------------------------
+    const errorFlags = {
+        missingDom: false,
+        visNotAvailable: false,
+        invalidData: false,
+        networkInitFailed: false
+    };
 
-//------------------------------------------------------------
-// クリックイベント処理
-//------------------------------------------------------------
-function setupClickEvents(nodes) {
-    console.log("[setupClickEvents] Setting click event handler...");
+    // ------------------------
+    // データ（ノード）
+    // ------------------------
+    // id: ノードID
+    // label: ラベル
+    // url: ノードクリック時に開くURL
+    // level: 深さ（現在は学問のみが明示的に持つ）
+    // paths: ルートからのパス情報（複数可、多親対応）
+    // ------------------------
+    console.log('[INIT] Loading nodesData...');
+    const nodesData = [
+        { id: 0, label: "学問", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html", paths: ["0"], level: 0 },
 
-    network.on("click", function (params) {
-        if (!params.nodes.length) return;
+        { id: 1, label: "人文科学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/humanities.html", paths: ["0:1"] },
+        { id: 2, label: "社会科学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/social_science.html", paths: ["0:2"] },
+        { id: 3, label: "形式科学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/formal_science.html", paths: ["0:3"] },
+        { id: 4, label: "自然科学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/natural_science.html", paths: ["0:4"] },
+        { id: 5, label: "応用科学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html", paths: ["0:5"] },
+        { id: 6, label: "学際領域", url: "https://tatsuy-kobayashi.github.io/my-web/docs/#", paths: ["0:6"] },
 
-        const nodeId = params.nodes[0];
-        const node = nodes.get(nodeId);
+        { id: 10, label: "芸術学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/art.html", paths: ["0:1:10"] },
+        { id: 11, label: "宗教学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/#", paths: ["0:1:11"] },
+        { id: 30, label: "数学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html", paths: ["0:3:30"], description: "数学とは、数量および空間図形の性質について研究する学問。" },
+        { id: 31, label: "統計学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/statistics/statistics.html", paths: ["0:3:31"] },
+        { id: 40, label: "物理学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/physics.html", paths: ["0:4:40"] },
+        { id: 41, label: "化学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/chemistry/chemistry.html", paths: ["0:4:41"] },
+        { id: 42, label: "生物学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/biology/biology.html", paths: ["0:4:42"] },
+        { id: 43, label: "地学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/#", paths: ["0:4:43"] },
+        { id: 50, label: "情報学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/informatics.html", paths: ["0:5:50"] },
 
-        const mode = document.querySelector("input[name='clickMode']:checked").value;
-        console.log("[click] mode=", mode, ", node=", node);
+        { id: 300, label: "数学用語", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematical_terms/mathematical_terms.html", paths: ["0:3:30:300"] },
+        { id: 301, label: "数学基礎論", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html", paths: ["0:3:30:301"] },
+        { id: 302, label: "数論", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/number_theory.html", paths: ["0:3:30:302"] },
+        { id: 303, label: "代数学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebra.html", paths: ["0:3:30:303"] },
+        { id: 304, label: "解析学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/analysis.html", paths: ["0:3:30:304"] },
 
-        if (mode === "select") {
-            // ノード選択
-            console.log("[click] Selecting node:", node.label);
-            alert("選択: " + node.label);
-        } else {
-            // URL リンク
-            console.log("[click] Opening URL:", node.url);
-            window.open(node.url, "_blank");
+        //{ id: 3010, label: "数理論理学", url: "#", paths: ["0:3:30:301:3010"] },
+        { id: 3011, label: "集合論", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html", paths: ["0:3:30:301:3011"] },
+        // 多親（代数・解析の両方の子）
+        { id: 3030, label: "代数解析学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebraic_analysis/algebraic_analysis.html", paths: ["0:3:30:303:3030", "0:3:30:304:3030"]
+        },
+        { id: 3040, label: "解析学基礎", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/foundations_of_analysis.html", paths: ["0:3:30:304:3040"] }
+    ];
+
+    // ------------------------
+    // データ（エッジ）
+    // ------------------------
+    // from → to の方向性を持つ
+    // ------------------------
+    /*console.log('[INIT] Loading edgesData...');
+    const edgesData = [
+        { from: 0, to: 1 },
+        { from: 0, to: 2 },
+        { from: 0, to: 3 },
+        { from: 0, to: 4 },
+        { from: 0, to: 5 },
+        { from: 0, to: 6 },
+
+        { from: 1, to: 10 },
+        { from: 1, to: 11 },
+        { from: 3, to: 30 },
+        { from: 3, to: 31 },
+        { from: 4, to: 40 },
+
+        { from: 30, to: 300 },
+        { from: 30, to: 301 },
+        { from: 30, to: 302 },
+        { from: 30, to: 303 },
+        { from: 30, to: 304 },
+
+        { from: 304, to: 3040 }
+    ];*/
+
+    // グローバル: データが持つ最大の depth（level）
+    let maxAvailableLevel = 0;
+    function ensureLevelsFromPaths(nodes) {
+        maxAvailableLevel = 0;
+        for (const n of nodes) {
+            if (!n.paths || n.paths.length === 0) continue;
+            const depths = n.paths.map(p => p.split(":").length - 1);
+            n.level = Math.min(...depths);       // ルートが level 0 として整合
+            if (typeof n.level === 'number' && Number.isFinite(n.level)) {
+                maxAvailableLevel = Math.max(maxAvailableLevel, n.level);
+            }
         }
+        return maxAvailableLevel;
+    }
+
+    function buildEdgesFromPaths(filteredNodes) {
+        const visible = new Set(filteredNodes.map(n => n.id));
+        const edges = [];
+        const dedup = new Set();
+
+        for (const n of filteredNodes) {
+            const paths = n.paths || [];
+            for (const pathStr of paths) {
+                const parts = pathStr.split(":").map(Number);
+
+                // 末尾が自身のIDで終わっているか（データ健全性チェック）
+                if (parts[parts.length - 1] !== n.id) continue;
+
+                for (let i = 0; i < parts.length - 1; i++) {
+                    const from = parts[i];
+                    const to   = parts[i + 1];
+                    // 可視ノード同士のみエッジを張る
+                    if (!visible.has(from) || !visible.has(to)) continue;
+
+                    const key = `${from}->${to}`;
+                    if (!dedup.has(key)) {
+                        dedup.add(key);
+                        edges.push({ from, to });
+                    }
+                }
+            }
+        }
+        return edges;
+    }
+
+    // ------------------------
+    // DOM要素参照（安全に取得）
+    // ------------------------
+    function $id(id) {
+        const el = document.getElementById(id);
+        if (!el) console.warn(`[WARN] DOM element not found: #${id}`);
+        return el;
+    }
+
+    const dom = {
+        networkContainer: $id('network'),
+        minDepth: $id('minDepth'),
+        maxDepth: $id('maxDepth'),
+        updateBtn: $id('updateBtn'),
+        idSearchInput: $id('idSearchInput'),
+        idSearchBtn: $id('idSearchBtn'),
+        clickModeRadios: document.getElementsByName('clickMode')
+    };
+
+    // DOM 要素が揃っているか簡易チェック
+    if (!dom.networkContainer || !dom.minDepth || !dom.maxDepth || !dom.updateBtn || !dom.idSearchInput || !dom.idSearchBtn) {
+        console.error('[ERROR] 必要な DOM 要素が見つかりません。処理を中止します。');
+        errorFlags.missingDom = true;
+        currentState = STATE.ERROR;
+        return;
+    }
+
+    // ------------------------
+    // vis-network 管理（初回生成は1度だけ）
+    // ------------------------
+    let network = null; // vis-network インスタンス
+    let networkInitialized = false;
+
+    function initNetworkIfNeeded() {
+        if (networkInitialized) return true;
+        if (typeof vis === 'undefined' || !vis.Network) {
+            console.error('[ERROR] vis-network が読み込まれていません。');
+            errorFlags.visNotAvailable = true;
+            currentState = STATE.ERROR;
+            return false;
+        }
+
+        try {
+            const nodes = new vis.DataSet([]); // 空で初期化
+            const edges = new vis.DataSet([]);
+            const data = { nodes, edges };
+            const options = {
+                layout: { hierarchical: false },
+                physics: {
+                    enabled: true,
+                    solver: "forceAtlas2Based",
+                    forceAtlas2Based: {
+                        gravitationalConstant: -40,  // 反発力を弱める（デフォルト -200）
+                        springLength: 60,            // エッジの自然長を短くする（重要）
+                        springConstant: 0.2          // バネの硬さ、強すぎると暴れる
+                    },
+                    stabilization: {
+                        enabled: true,
+                        iterations: 200              // 少なすぎると変な形で止まりやすい
+                    }
+                },
+                interaction: { hover: true, zoomView: true },
+                edges: {
+                    arrows: "to",
+                    smooth: {
+                        enabled: false               // 変な曲がりをなくすため
+                    }
+                }
+            };
+
+            network = new vis.Network(dom.networkContainer, data, options);
+            networkInitialized = true;
+            console.log('[NETWORK] vis.Network 初期化完了');
+            return true;
+        } catch (e) {
+            console.error('[ERROR] network 初期化に失敗しました:', e);
+            errorFlags.networkInitFailed = true;
+            currentState = STATE.ERROR;
+            return false;
+        }
+    }
+
+    // ------------------------
+    // network のデータ更新（初回は setData が使える想定）
+    // ------------------------
+    function setNetworkData(nodeList, edgeList) {
+        if (!initNetworkIfNeeded()) return;
+        try {
+            const nodes = new vis.DataSet(nodeList);
+            const edges = new vis.DataSet(edgeList);
+            network.setData({ nodes, edges });
+            console.log('[NETWORK] setData 実行: nodes=', nodeList.length, 'edges=', edgeList.length);
+        } catch (e) {
+            console.error('[ERROR] setNetworkData 失敗:', e);
+        }
+    }
+
+    // ------------------------
+    // STATE 1: DATA_INITIALIZATION
+    // （ここでは簡単なバリデーションを行う）
+    // ------------------------
+    function validateData() {
+        currentState = STATE.DATA_INITIALIZATION;
+        console.log('[STATE] DATA_INITIALIZATION');
+
+        // ノード id 重複チェック
+        const ids = new Set();
+        for (const n of nodesData) {
+            if (ids.has(n.id)) {
+                console.error('[ERROR] nodesData に重複 id が存在します:', n.id);
+                errorFlags.invalidData = true;
+            }
+            ids.add(n.id);
+        }
+
+        // エッジの参照チェックpaths の整合チェック: 各 path の各要素が存在するか、および path の末尾が自身の id であるか
+        for (const n of nodesData) {
+            if (!n.paths) continue;
+            for (const p of n.paths) {
+                const parts = p.split(':').map(Number);
+                if (parts[parts.length - 1] !== n.id) {
+                    console.error('[ERROR] paths の末尾が node.id と一致しません:', n.id, p);
+                    errorFlags.invalidData = true;
+                    continue;
+                }
+                for (const pid of parts) {
+                    if (!ids.has(pid)) {
+                        console.error('[ERROR] paths が存在しないノードを参照しています:', p, 'missing:', pid);
+                        errorFlags.invalidData = true;
+                    }
+                }
+            }
+        }
+
+        if (errorFlags.invalidData) {
+            currentState = STATE.ERROR;
+            return false;
+        }
+
+        // ensure levels are present/consistent かつ最大深さを計算
+        const computedMax = ensureLevelsFromPaths(nodesData);
+        maxAvailableLevel = (typeof computedMax === 'number' && Number.isFinite(computedMax)) ? computedMax : 0;
+        console.log('[DATA] computed maxAvailableLevel =', maxAvailableLevel);
+
+        return true;
+    }
+
+    // ------------------------
+    // STATE 2: NETWORK_INITIALIZATION
+    // ------------------------
+    function initializeNetwork() {
+        currentState = STATE.NETWORK_INITIALIZATION;
+        console.log('[STATE] NETWORK_INITIALIZATION');
+
+        const ok = initNetworkIfNeeded();
+        if (!ok) return false;
+
+        // 初回描画：デフォルト（min/max）による描画をしないで空で開始することも選べる
+        // 今は初期値を用いて描画
+        performDepthSearch(); // 正しい深さを使用
+        return true;
+    }
+
+    // ------------------------
+    // HASH_BOOTSTRAP / BOOTSTRAP_SEARCH
+    // ------------------------
+    function bootstrapFromHash() {
+        currentState = STATE.HASH_BOOTSTRAP;
+        console.log('[STATE] HASH_BOOTSTRAP');
+
+        const raw = window.location.hash || '';
+        if (!raw) {
+            console.log('[HASH] fragment が存在しません');
+            return false;
+        }
+
+        let idFromHash = null;
+
+        // パターン: #id_30
+        if (/^#id_\d+$/.test(raw)) {
+            idFromHash = Number(raw.replace('#id_', ''));
+        } else {
+            console.log('[HASH] 未対応のハッシュ形式:', raw);
+            return false;
+        }
+
+        if (!Number.isFinite(idFromHash)) {
+            console.warn('[HASH] 数値抽出に失敗:', raw);
+            return false;
+        }
+
+        console.log('[HASH] ID from fragment:', idFromHash);
+
+        // ここで入力フォームへ値を自動セット（追加）
+        const idInput = document.getElementById('idSearchInput');
+        if (idInput) {
+            idInput.value = idFromHash;
+            console.log('input successed');
+        } else {
+            console.warn('input failed');
+        }
+
+        // BOOTSTRAP_SEARCH 実行（成功時は true）
+        return performIdSearch(idFromHash, { fromHash: true });
+    }
+
+    // ------------------------
+    // SEARCH 処理（共通）
+    // ------------------------
+    // - performDepthSearch() : min/max から
+    // ------------------------
+    function performDepthSearch() {
+        currentState = STATE.SEARCHING;
+        console.log('[SEARCH] performDepthSearch start');
+
+        // 深さ検証
+        let min = Number(dom.minDepth.value);
+        let max = Number(dom.maxDepth.value);
+        if (!Number.isFinite(min) || !Number.isFinite(max)) {
+            alert('数値を入力してください');
+            currentState = STATE.IDLE;
+            return;
+        }
+        // 整数かつ非負か確認
+        if (!Number.isInteger(min) || !Number.isInteger(max) || min < 0 || max < 0) {
+            alert('0 以上の整数で入力してください');
+            currentState = STATE.IDLE;
+            return;
+        }
+        // min/max の整合
+        if (min > max) {
+            alert('最小深さは最大深さ以下にしてください');
+            currentState = STATE.IDLE;
+            return;
+        }
+        // データが持つ最大深さを超えていないか確認
+        if (max > maxAvailableLevel) {
+            alert(`指定した最大深さ [${max}] はデータの最大深さ [${maxAvailableLevel}] を超えています。表示可能な最大深さに合わせます。`);
+            max = maxAvailableLevel;
+            dom.maxDepth.value = String(max);
+            if (min > max) {
+                // min が超過してしまう場合は min を clamp
+                min = Math.max(0, max);
+                dom.minDepth.value = String(min);
+            }
+        }
+
+        // filter nodes and edges
+        const filteredNodes = nodesData.filter(n => (typeof n.level === 'number') && n.level >= min && n.level <= max);
+        const filteredEdges = buildEdgesFromPaths(filteredNodes);
+
+        // 描画
+        setNetworkData(filteredNodes, filteredEdges);
+
+        // 見た目ロック（深さ検索が適用されている状態を示す）
+        applyVisualLock('depth');
+
+        currentState = STATE.IDLE;
+        console.log('[SEARCH] performDepthSearch done');
+    }
+
+    // ------------------------
+    // performIdSearch:
+    // 引数：
+    // - performIdSearch(id) : id 指定から
+    // - id: 数値
+    // - options: { fromHash: boolean } -- ハッシュ起動かどうかのフラグ
+    // 戻り値：true if success, false if not
+    // ------------------------
+    function performIdSearch(id, options = {}) {
+        currentState = STATE.SEARCHING;
+        console.log('[SEARCH] performIdSearch start, id=', id, 'options=', options);
+
+        if (!Number.isFinite(id)) {
+            alert('ID が不正です');
+            currentState = STATE.IDLE;
+            return false;
+        }
+
+        const target = nodesData.find(n => n.id === id);
+        if (!target) {
+            alert('指定したIDのノードが存在しません: ' + id);
+            currentState = STATE.IDLE;
+            return false;
+        }
+
+        const level = target.level;
+        const min = Math.max(0, level - 1);
+        let max = level + 1;
+        // データの最大深さを超えている場合は clamp
+        if (max > maxAvailableLevel) { max = maxAvailableLevel }
+
+        // 深さを更新（UI に反映）
+        dom.minDepth.value = String(min);
+        dom.maxDepth.value = String(max);
+
+        // node/edge フィルタ
+        const filteredNodes = nodesData.filter(n => (typeof n.level === 'number') && n.level >= min && n.level <= max);
+        const filteredEdges = buildEdgesFromPaths(filteredNodes);
+
+        // 描画
+        setNetworkData(filteredNodes, filteredEdges);
+
+        // 見た目ロック（ID検索が適用されている状態を示す）
+        applyVisualLock('id');
+
+        currentState = STATE.IDLE;
+        console.log('[SEARCH] performIdSearch done');
+        return true;
+    }
+
+    // ------------------------
+    // 見た目ロック（disabled は使わず、.dimmed のみで示す）
+    // ------------------------
+    let currentLock = null; // null | 'id' | 'depth'
+
+    function applyVisualLock(mode) {
+        // mode: 'id' or 'depth'
+        currentLock = mode;
+        console.log('[UI] applyVisualLock:', mode);
+
+        // 要素群
+        const depthControls = [dom.minDepth, dom.maxDepth, dom.updateBtn];
+        const idControls = [dom.idSearchInput, dom.idSearchBtn];
+
+        // remove all first
+        [...depthControls, ...idControls].forEach(el => el.classList.remove('dimmed'));
+
+        if (mode === 'id') {
+            depthControls.forEach(el => el.classList.add('dimmed'));
+        } else if (mode === 'depth') {
+            idControls.forEach(el => el.classList.add('dimmed'));
+        }
+    }
+
+    function clearVisualLock() {
+        if (!currentLock) return;
+        console.log('[UI] clearVisualLock from', currentLock);
+        currentLock = null;
+        const depthControls = [dom.minDepth, dom.maxDepth, dom.updateBtn];
+        const idControls = [dom.idSearchInput, dom.idSearchBtn];
+        [...depthControls, ...idControls].forEach(el => el.classList.remove('dimmed'));
+    }
+
+    // 再フォーカス時の解除（ユーザがどれかに focus したら見た目を戻す）
+    [dom.idSearchInput, dom.minDepth, dom.maxDepth].forEach(el => {
+        el.addEventListener('focus', () => {
+            if (currentLock) clearVisualLock();
+        });
     });
-}
 
-//------------------------------------------------------------
-// 初期起動
-//------------------------------------------------------------
-window.addEventListener("load", () => {
-    console.log("[INIT] Page loaded. Drawing initial graph...");
-    updateGraph();
-});
 
-document.getElementById("updateBtn").addEventListener("click", updateGraph);
+    // ------------------------
+    // ノード説明パネル
+    // ------------------------
+    function showNodeInfo(node) {
+        const panel = document.getElementById('nodeInfoPanel');
+        const title = document.getElementById('nodeInfoTitle');
+        const body = document.getElementById('nodeInfoBody');
+
+        title.textContent = node.label;
+
+        // ノード説明：node.description が無いなら空文字
+        const desc = node.description || "説明はありません。";
+        body.textContent = desc;
+
+        panel.classList.remove('hidden');
+    }
+
+    function hideNodeInfo() {
+        const panel = document.getElementById('nodeInfoPanel');
+        panel.classList.add('hidden');
+    }
+
+    // ノードクリック判定用タイムスタンプ（短時間の document.click を無視する）
+    let __lastNodeClickAt = 0;
+
+    document.addEventListener('click', function (e) {
+        const panel = document.getElementById('nodeInfoPanel');
+
+        // 既にパネルが hidden なら無視
+        if (!panel || panel.classList.contains('hidden')) return;
+
+        // パネルをクリックした場合 → 閉じない
+        if (panel.contains(e.target)) return;
+
+        // ノードクリック直後の document click は無視（vis の click と document click が同時発火するため）
+        if (__lastNodeClickAt && (Date.now() - __lastNodeClickAt) < 150) {
+            return;
+        }
+        // その他の場所をクリック → 閉じる
+        hideNodeInfo();
+    });
+
+    // ------------------------
+    // クリック／イベントハンドラの初期登録（STATE.IDLE で動く）
+    // ------------------------
+    function registerUiHandlers() {
+        // 深さ検索ボタン
+        dom.updateBtn.addEventListener('click', () => {
+            console.log('[UI] depth search clicked');
+            // 実行時は id input をクリア（仕様）
+            dom.idSearchInput.value = '';
+            performDepthSearch();
+        });
+
+        // ID 検索ボタン
+        dom.idSearchBtn.addEventListener('click', () => {
+            console.log('[UI] id search clicked');
+            const id = Number(dom.idSearchInput.value);
+            performIdSearch(id);
+        });
+
+        // network の click イベント（node クリック）
+        // 注意: network 初期化後にセットされる（initNetworkIfNeeded で）
+        function getClickMode() {
+            const radios = document.getElementsByName('clickMode');
+            for (const r of radios) {
+                if (r.checked) return r.value;
+            }
+            return 'select';
+        }
+
+        // attach click handler after network exists
+        // we keep a single handler: if network is not ready, we ignore clicks
+        dom.networkContainer.addEventListener('click', (ev) => {
+            // do nothing special here; actual node clicks handled by vis event registered below
+        });
+
+        // register vis 'click' when network ready
+        if (initNetworkIfNeeded()) {
+            network.on('click', function (params) {
+                try {
+                    // ノードが選択されているか判定
+                    if (!params.nodes || !params.nodes.length) {
+                        // ノード以外（背景・エッジ等）をクリックした場合はパネルを閉じる
+                        console.log('[NETWORK] background/edge clicked - hiding panel');
+                        hideNodeInfo();
+                        return;
+                    }
+
+                    const nodeId = params.nodes[0];
+                    const node = (network.body && network.body.data && network.body.data.nodes) ? network.body.data.nodes.get(nodeId) : null;
+                    if (!node) {
+                        console.warn('[NETWORK] node not found in internal dataset:', nodeId);
+                        return;
+                    }
+                    const mode = getClickMode();
+                    console.log('[NETWORK] node clicked', nodeId, node, 'mode=', mode);
+
+                    // ノードクリック時刻を記録（document.click 側の誤閉じ防止）
+                    __lastNodeClickAt = Date.now();
+
+                    if (mode === 'select') {
+                        // パネル表示
+                        try {
+                            console.log("[click] Selecting node:", node.label);
+                            showNodeInfo(node);
+                        } catch (e) {
+                            console.warn('[NETWORK] select failed:', e);
+                        }
+                    } else {
+                        // open url (new tab)
+                        if (node.url) {
+                            window.open(node.url, '_blank');
+                        } else {
+                            console.warn('[NETWORK] node has no URL:', node);
+                        }
+                    }
+                } catch (e) {
+                    console.error('[NETWORK] click handler error:', e);
+                }
+            });
+        }
+    }
+
+    // ------------------------
+    // 初期化フロー（状態遷移順）
+    // ------------------------
+    (function mainFlow() {
+        try {
+            console.log('[MAIN] start state machine');
+            // STATE 1: data validation
+            if (!validateData()) {
+                console.error('[MAIN] data validation failed - abort');
+                return;
+            }
+
+            // STATE 2: network init
+            if (!initializeNetwork()) {
+                console.error('[MAIN] network initialization failed - abort');
+                return;
+            }
+
+            // register UI handlers after network ready
+            registerUiHandlers();
+
+            // STATE 3: hash bootstrap (if any)
+            const hashHandled = bootstrapFromHash();
+            if (hashHandled) {
+                // BOOTSTRAP_SEARCH did internal drawing
+                console.log('[MAIN] bootstrap handled, entering IDLE');
+                currentState = STATE.IDLE;
+                return;
+            }
+
+            // otherwise draw default graph according to selects
+            currentState = STATE.IDLE;
+            console.log('[MAIN] entering IDLE state');
+            // initial draw (respect current min/max selects)
+            performDepthSearch();
+        } catch (e) {
+            console.error('[MAIN] unexpected error:', e);
+            currentState = STATE.ERROR;
+        }
+    })();
+
+    // ------------------------
+    // 公開（デバッグ用）
+    // ------------------------
+    window.__SiteGraph = {
+        STATE,
+        getCurrentState: () => currentState,
+        getErrorFlags: () => ({ ...errorFlags }),
+        reinitNetwork: () => { networkInitialized = false; return initNetworkIfNeeded(); },
+        performDepthSearch,
+        performIdSearch,
+        clearVisualLock
+    };
+}); // DOMContentLoaded end
                         </script>
 
                         <h2>サイトマップ</h2>

@@ -289,8 +289,9 @@
                             </div>
                         </div>
                         <script>
-// 状態遷移重視・エラーフラグ管理ありの完全版スクリプト
+
 document.addEventListener('DOMContentLoaded', function () {
+    'use strict'; // 状態遷移重視・エラーフラグ管理ありの完全版スクリプト
 
     // ------------------------
     // 状態定義
@@ -305,9 +306,6 @@ document.addEventListener('DOMContentLoaded', function () {
         SEARCHING: 'SEARCHING',
         ERROR: 'ERROR'
     };
-
-    let currentState = STATE.DOM_LOADING;
-
     // ------------------------
     // エラーフラグ
     // ------------------------
@@ -318,6 +316,8 @@ document.addEventListener('DOMContentLoaded', function () {
         networkInitFailed: false
     };
 
+    let currentState = STATE.DOM_LOADING; // 「DOM読み込み中」で初期化
+
     // ------------------------
     // データ（ノード）
     // ------------------------
@@ -326,40 +326,47 @@ document.addEventListener('DOMContentLoaded', function () {
     // url: ノードクリック時に開くURL
     // level: 深さ（現在は学問のみが明示的に持つ）
     // paths: ルートからのパス情報（複数可、多親対応）
+    // released: 公開フラグ（0: 未公開、1: 公開）
+    // description: ノード説明文
     // ------------------------
     console.log('[INIT] Loading nodesData...');
     const nodesData = [
-        { id: 0, label: "学問", labelEn: "Academic Disciplines", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html", paths: ["0"], level: 0 },
+        { id: 0, label: "学問", labelEn: "Academic Disciplines", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html", paths: ["0"], level: 0, released: 1, description: "あらゆる事物は何かしらの学問の一領域として捉えることができる" },
 
-        { id: 1, label: "人文科学", labelEn: "Humanities", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/humanities.html", paths: ["0:1"] },
-        { id: 2, label: "社会科学", labelEn: "Social Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/social_science.html", paths: ["0:2"] },
-        { id: 3, label: "形式科学", labelEn: "Formal Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/formal_science.html", paths: ["0:3"] },
-        { id: 4, label: "自然科学", labelEn: "Natural Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/natural_science.html", paths: ["0:4"] },
+        { id: 1, label: "人文科学", labelEn: "Humanities", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/humanities.html", paths: ["0:1"], released: 1 },
+        { id: 2, label: "社会科学", labelEn: "Social Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/social_science.html", paths: ["0:2"], released: 0 },
+        { id: 3, label: "形式科学", labelEn: "Formal Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/formal_science.html", paths: ["0:3"], released: 1 },
+        { id: 4, label: "自然科学", labelEn: "Natural Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/natural_science.html", paths: ["0:4"], released: 1 },
         { id: 5, label: "応用科学", labelEn: "Applied Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html", paths: ["0:5"] },
-        { id: 6, label: "学際領域", labelEn: "Interdisciplinary Fields", url: "https://tatsuy-kobayashi.github.io/my-web/docs/#", paths: ["0:6"] },
+        { id: 6, label: "学際領域", labelEn: "Interdisciplinary Fields", url: "https://tatsuy-kobayashi.github.io/my-web/docs/#", paths: ["0:6"], released: 0 },
 
-        { id: 10, label: "芸術学", labelEn: "Art Studies", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/art.html", paths: ["0:1:10"] },
+        { id: 10, label: "芸術学", labelEn: "Art Studies", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/art.html", paths: ["0:1:10"], released: 0 },
         { id: 11, label: "宗教学", labelEn: "Religious Studies", url: "https://tatsuy-kobayashi.github.io/my-web/docs/#", paths: ["0:1:11"] },
-        { id: 30, label: "数学", labelEn: "Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html", paths: ["0:3:30"], description: "数学とは、数量および空間図形の性質について研究する学問。" },
-        { id: 31, label: "統計学", labelEn: "Statistics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/statistics/statistics.html", paths: ["0:3:31"] },
-        { id: 40, label: "物理学", labelEn: "Physics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/physics.html", paths: ["0:4:40"] },
-        { id: 41, label: "化学", labelEn: "Chemistry", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/chemistry/chemistry.html", paths: ["0:4:41"] },
-        { id: 42, label: "生物学", labelEn: "Biology", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/biology/biology.html", paths: ["0:4:42"] },
-        { id: 43, label: "地学", labelEn: "Earth Science", url: "https://tatsuy-kobayashi.github.io/my-web/docs/#", paths: ["0:4:43"] },
-        { id: 50, label: "情報学", labelEn: "Informatics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/informatics.html", paths: ["0:5:50"] },
+        { id: 30, label: "数学", labelEn: "Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html", paths: ["0:3:30"], released: 1, description: "数学とは、数量および空間図形の性質について研究する学問。" },
+        { id: 31, label: "統計学", labelEn: "Statistics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/statistics/statistics.html", paths: ["0:3:31"], released: 0 },
+        { id: 40, label: "物理学", labelEn: "Physics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/physics.html", paths: ["0:4:40"], released: 1 },
+        { id: 41, label: "化学", labelEn: "Chemistry", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/chemistry/chemistry.html", paths: ["0:4:41"], released: 0 },
+        { id: 42, label: "生物学", labelEn: "Biology", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/biology/biology.html", paths: ["0:4:42"], released: 0 },
+        { id: 43, label: "地学", labelEn: "Earth Science", url: "https://tatsuy-kobayashi.github.io/my-web/docs/#", paths: ["0:4:43"], released: 0 },
+        { id: 50, label: "情報学", labelEn: "Informatics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/informatics.html", paths: ["0:5:50"], released: 1 },
 
-        { id: 300, label: "数学用語", labelEn: "Mathematical Terms", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematical_terms/mathematical_terms.html", paths: ["0:3:30:300"] },
-        { id: 301, label: "数学基礎論", labelEn: "Foundations of Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html", paths: ["0:3:30:301"] },
+        { id: 300, label: "数学用語", labelEn: "Mathematical Terms", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematical_terms/mathematical_terms.html", paths: ["0:3:30:300"], released: 0 },
+        { id: 301, label: "数学基礎論", labelEn: "Foundations of Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html", paths: ["0:3:30:301"], released: 0 },
         { id: 302, label: "数論", labelEn: "Number Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/number_theory.html", paths: ["0:3:30:302"] },
         { id: 303, label: "代数学", labelEn: "Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebra.html", paths: ["0:3:30:303"] },
         { id: 304, label: "解析学", labelEn: "Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/analysis.html", paths: ["0:3:30:304"] },
 
         //{ id: 3010, label: "数理論理学", url: "#", paths: ["0:3:30:301:3010"] },
-        { id: 3011, label: "集合論", labelEn: "Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html", paths: ["0:3:30:301:3011"] },
+        { id: 3011, label: "集合論", labelEn: "Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html", paths: ["0:3:30:301:3011"], released: 1, description: "集合の基本概念から応用まで解説。集合の定義、演算（和・積・差集合）、部分集合、冪集合などをPythonのコード例とベン図で分かりやすく学べる。数学の基礎を支える集合論の入門として最適。" },
+        { id: 3020, label: "数学定数", labelEn: "Mathematical Constants", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/mathematical_constant/mathematical_constant.html", paths: ["0:3:30:302:3020"], released: 1 },
         // 多親（代数・解析の両方の子）
-        { id: 3030, label: "代数解析学", labelEn: "Algebraic Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebraic_analysis/algebraic_analysis.html", paths: ["0:3:30:303:3030", "0:3:30:304:3030"]
-        },
-        { id: 3040, label: "解析学基礎", labelEn: "Foundations of Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/foundations_of_analysis.html", paths: ["0:3:30:304:3040"] }
+        { id: 3030, label: "代数解析学", labelEn: "Algebraic Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebraic_analysis/algebraic_analysis.html", paths: ["0:3:30:303:3030", "0:3:30:304:3030"], released: 0 },
+        { id: 3040, label: "解析学基礎", labelEn: "Foundations of Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/foundations_of_analysis.html", paths: ["0:3:30:304:3040"], released: 1 },
+
+        { id: 30110, label: "素朴集合論", labelEn: "Naive Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/naive_set_theory/naive_set_theory.html", paths: ["0:3:30:301:3011:30110"], released: 1, description: "素朴集合論の基礎から応用まで解説。素朴包括原理やパラドックス許容論理を中心に、Pythonによる実装例を交えながら、ラッセルのパラドックスや論理体系の修正についても学べる数学基礎論の入門記事。" },
+        { id: 30111, label: "公理的集合論", labelEn: "Axiomatic Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/axiomatic_set_theory.html", paths: ["0:3:30:301:3011:30111"], released: 1, description: "公理的集合論の基礎から発展まで解説。ZF集合論、NBG集合論、MK集合論など主要な体系を比較しながら、各公理の意味や相互関係、数学基礎論における役割を学べる。図解とともに体系的に理解できる入門記事。" },
+
+        { id: 301110, label: "ツェルメロ＝フレンケル集合論", labelEn: "Zermelo-Fraenkel Set Theory with the Axiom of Choice", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/zermelo_fraenkel_choice_set_theory.html", paths: ["0:3:30:301:3011:30111:301110"], released: 0 }
     ];
 
     // ------------------------
@@ -393,7 +400,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // グローバル: データが持つ最大の depth（level）
     let maxAvailableLevel = 0;
-    function ensureLevelsFromPaths(nodes) {
+    // ------------------------
+    // 関数名   : vof_ensureLevelsFromPaths(nodes)
+    // 名称     : paths から各ノードの level を計算
+    // 内容     : nodes に含まれる paths を元に、各ノードの level を計算する
+    // 引数     : nodes - ノード配列
+    // 戻り値   : None
+    // ------------------------
+    function vof_ensureLevelsFromPaths(nodes) {
         maxAvailableLevel = 0;
         for (const n of nodes) {
             if (!n.paths || n.paths.length === 0) continue;
@@ -406,6 +420,13 @@ document.addEventListener('DOMContentLoaded', function () {
         return maxAvailableLevel;
     }
 
+    // ------------------------
+    // 関数名   : buildEdgesFromPaths(filteredNodes)
+    // 名称     : paths からエッジ情報を生成する処理
+    // 内容     : filteredNodes に含まれる paths を元に、エッジ情報を生成する
+    // 引数     : filteredNodes - ユーザ操作で選択されたノード配列
+    // 戻り値   : edges - 生成されたエッジ配列
+    // ------------------------
     function buildEdgesFromPaths(filteredNodes) {
         const visible = new Set(filteredNodes.map(n => n.id));
         const edges = [];
@@ -467,9 +488,16 @@ document.addEventListener('DOMContentLoaded', function () {
     // vis-network 管理（初回生成は1度だけ）
     // ------------------------
     let network = null; // vis-network インスタンス
-    let networkInitialized = false;
+    let networkInitialized = false; // 初期化済みフラグを失敗で初期化
 
-    function initNetworkIfNeeded() {
+    // ------------------------
+    // 関数名   : u1f_initNetworkIfNeeded()
+    // 名称     : network 初期化処理
+    // 内容     : network が未初期化なら初期化を行う
+    // 引数     : void
+    // 戻り値   : boolean - 初期化成功なら true、失敗または既にエラー状態なら false
+    // ------------------------
+    function u1f_initNetworkIfNeeded() {
         if (networkInitialized) return true;
         if (typeof vis === 'undefined' || !vis.Network) {
             console.error('[ERROR] vis-network が読み込まれていません。');
@@ -519,17 +547,22 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ------------------------
-    // network のデータ更新（初回は setData が使える想定）
+    // 関数名   : vof_setNetworkData(nodeList, edgeList)
+    // 名称     : network のデータ更新
+    // 内容     : network に nodeList と edgeList をセットする（初回は setData が使える想定）
+    // 引数     : nodeList - ノードリスト配列
+    //            edgeList - エッジリスト配列
+    // 戻り値   : void
     // ------------------------
-    function setNetworkData(nodeList, edgeList) {
-        if (!initNetworkIfNeeded()) return;
+    function vof_setNetworkData(nodeList, edgeList) {
+        if (!u1f_initNetworkIfNeeded()) return;
         try {
             const nodes = new vis.DataSet(nodeList);
             const edges = new vis.DataSet(edgeList);
             network.setData({ nodes, edges });
             console.log('[NETWORK] setData 実行: nodes=', nodeList.length, 'edges=', edgeList.length);
         } catch (e) {
-            console.error('[ERROR] setNetworkData 失敗:', e);
+            console.error('[ERROR] vof_setNetworkData 失敗:', e);
         }
     }
 
@@ -576,7 +609,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // ensure levels are present/consistent かつ最大深さを計算
-        const computedMax = ensureLevelsFromPaths(nodesData);
+        const computedMax = vof_ensureLevelsFromPaths(nodesData);
         maxAvailableLevel = (typeof computedMax === 'number' && Number.isFinite(computedMax)) ? computedMax : 0;
         console.log('[DATA] computed maxAvailableLevel =', maxAvailableLevel);
 
@@ -590,7 +623,7 @@ document.addEventListener('DOMContentLoaded', function () {
         currentState = STATE.NETWORK_INITIALIZATION;
         console.log('[STATE] NETWORK_INITIALIZATION');
 
-        const ok = initNetworkIfNeeded();
+        const ok = u1f_initNetworkIfNeeded();
         if (!ok) return false;
 
         // 初回描画：デフォルト（min/max）による描画をしないで空で開始することも選べる
@@ -639,7 +672,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // BOOTSTRAP_SEARCH 実行（成功時は true）
-        return performIdSearch(idFromHash, { fromHash: true });
+        return u1f_performIdSearch(idFromHash, { fromHash: true });
     }
 
     // ------------------------
@@ -688,26 +721,26 @@ document.addEventListener('DOMContentLoaded', function () {
         const filteredEdges = buildEdgesFromPaths(filteredNodes);
 
         // 描画
-        setNetworkData(filteredNodes, filteredEdges);
+        vof_setNetworkData(filteredNodes, filteredEdges);
 
         // 見た目ロック（深さ検索が適用されている状態を示す）
-        applyVisualLock('depth');
+        vof_applyVisualLock('depth');
 
         currentState = STATE.IDLE;
         console.log('[SEARCH] performDepthSearch done');
     }
 
     // ------------------------
-    // performIdSearch:
+    // u1f_performIdSearch(id, options = {})
     // 引数：
-    // - performIdSearch(id) : id 指定から
+    // - u1f_performIdSearch(id) : id 指定から
     // - id: 数値
     // - options: { fromHash: boolean } -- ハッシュ起動かどうかのフラグ
     // 戻り値：true if success, false if not
     // ------------------------
-    function performIdSearch(id, options = {}) {
+    function u1f_performIdSearch(id, options = {}) {
         currentState = STATE.SEARCHING;
-        console.log('[SEARCH] performIdSearch start, id=', id, 'options=', options);
+        console.log('[SEARCH] u1f_performIdSearch start, id=', id, 'options=', options);
 
         if (!Number.isFinite(id)) {
             alert('ID が不正です');
@@ -737,13 +770,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const filteredEdges = buildEdgesFromPaths(filteredNodes);
 
         // 描画
-        setNetworkData(filteredNodes, filteredEdges);
+        vof_setNetworkData(filteredNodes, filteredEdges);
 
         // 見た目ロック（ID検索が適用されている状態を示す）
-        applyVisualLock('id');
+        vof_applyVisualLock('id');
 
         currentState = STATE.IDLE;
-        console.log('[SEARCH] performIdSearch done');
+        console.log('[SEARCH] u1f_performIdSearch done');
         return true;
     }
 
@@ -752,10 +785,17 @@ document.addEventListener('DOMContentLoaded', function () {
     // ------------------------
     let currentLock = null; // null | 'id' | 'depth'
 
-    function applyVisualLock(mode) {
+    // ------------------------
+    // 関数名   : vof_applyVisualLock(mode)
+    // 名称     : 見た目ロック適用
+    // 内容     : 指定されたモードに応じて、関連する UI 要素を dimmed にする
+    // 引数     : mode: 'id' or 'depth'
+    // 戻り値   : void
+    // ------------------------
+    function vof_applyVisualLock(mode) {
         // mode: 'id' or 'depth'
         currentLock = mode;
-        console.log('[UI] applyVisualLock:', mode);
+        console.log('[UI] vof_applyVisualLock:', mode);
 
         // 要素群
         const depthControls = [dom.minDepth, dom.maxDepth, dom.updateBtn];
@@ -771,9 +811,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function clearVisualLock() {
+    // ------------------------
+    // 関数名   : vof_clearVisualLock()
+    // 名称     : 見た目ロック解除処理
+    // 内容     : 現在の見た目ロックを解除する
+    // 引数     : void
+    // 戻り値   : void
+    // ------------------------
+    function vof_clearVisualLock() {
         if (!currentLock) return;
-        console.log('[UI] clearVisualLock from', currentLock);
+        console.log('[UI] vof_clearVisualLock from', currentLock);
         currentLock = null;
         const depthControls = [dom.minDepth, dom.maxDepth, dom.updateBtn];
         const idControls = [dom.idSearchInput, dom.idSearchBtn];
@@ -783,7 +830,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // 再フォーカス時の解除（ユーザがどれかに focus したら見た目を戻す）
     [dom.idSearchInput, dom.minDepth, dom.maxDepth].forEach(el => {
         el.addEventListener('focus', () => {
-            if (currentLock) clearVisualLock();
+            if (currentLock) vof_clearVisualLock();
         });
     });
 
@@ -861,11 +908,11 @@ document.addEventListener('DOMContentLoaded', function () {
         dom.idSearchBtn.addEventListener('click', () => {
             console.log('[UI] id search clicked');
             const id = Number(dom.idSearchInput.value);
-            performIdSearch(id);
+            u1f_performIdSearch(id);
         });
 
         // network の click イベント（node クリック）
-        // 注意: network 初期化後にセットされる（initNetworkIfNeeded で）
+        // 注意: network 初期化後にセットされる（u1f_initNetworkIfNeeded で）
         function getClickMode() {
             const radios = document.getElementsByName('clickMode');
             for (const r of radios) {
@@ -881,7 +928,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         // register vis 'click' when network ready
-        if (initNetworkIfNeeded()) {
+        if (u1f_initNetworkIfNeeded()) {
             network.on('click', function (params) {
                 try {
                     // ノードが選択されているか判定
@@ -913,7 +960,15 @@ document.addEventListener('DOMContentLoaded', function () {
                             console.warn('[NETWORK] select failed:', e);
                         }
                     } else {
-                        // open url (new tab)
+                        // link モード: released フラグを確認 (存在しなければ 0 扱い)
+                        const releasedFlag = Number(node.released) === 1 ? 1 : 0;
+                        if (releasedFlag !== 1) {
+                            // 公開されていないのでリンク遷移は行わない。説明パネルで案内する。
+                            console.log('[NETWORK] node is not released, blocking link open:', nodeId);
+                            showNodeInfo(node);
+                            return;
+                        }
+                        // 公開済みなら新しいタブで開く
                         if (node.url) {
                             window.open(node.url, '_blank');
                         } else {
@@ -975,10 +1030,10 @@ document.addEventListener('DOMContentLoaded', function () {
         STATE,
         getCurrentState: () => currentState,
         getErrorFlags: () => ({ ...errorFlags }),
-        reinitNetwork: () => { networkInitialized = false; return initNetworkIfNeeded(); },
+        reinitNetwork: () => { networkInitialized = false; return u1f_initNetworkIfNeeded(); },
         performDepthSearch,
-        performIdSearch,
-        clearVisualLock
+        u1f_performIdSearch,
+        vof_clearVisualLock
     };
 }); // DOMContentLoaded end
                         </script>

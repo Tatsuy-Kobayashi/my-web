@@ -189,11 +189,11 @@
                         </ul>
 
 <style>
-.controls {
+.site-categorical-diagram .controls {
     margin-bottom: 15px;
 }
 
-#network {
+.site-categorical-diagram #network {
     width: 80%;
     height: 400px;
     border: 1px solid #ccc;
@@ -256,27 +256,51 @@
 .site-categorical-diagram .hidden {
     display: none;
 }
+#labelSearchSuggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+}
 </style>
                         <h2>サイト圏図式（動的グラフ）</h2>
                         <div class="site-categorical-diagram">
                             <div class="controls">
-                                <label>最小深さ:</label>
+                                <label for="minDepth">最小深さ:</label>
                                 <input type="number" step="1" min="0" inputmode="numeric" id="minDepth" value="0" style="width:80px;">
 
-                                <label>最大深さ:</label>
+                                <label for="maxDepth">最大深さ:</label>
                                 <input type="number" inputmode="numeric" id="maxDepth" value="2" style="width:80px;">
 
                                 <button id="updateBtn">更新</button>
                                 <br><br>
 
-                                <label>学問ID検索:</label>
-                                <input type="number" id="idSearchInput" placeholder="例: 30" style="width:80px;">
-                                <button id="idSearchBtn">ID検索</button>
+                                <label for="labelSearchInput">学問検索:</label>
+                                <div style="position: relative; display: inline-block; width: 200px;">
+                                    <input type="text" id="labelSearchInput" placeholder="例: 数学" style="width:100%; box-sizing: border-box;">
+                                    <ul id="labelSearchSuggestions"></ul>
+                                </div>
+                                <button id="labelSearchBtn">検索</button>
 
                                 <br><br>
 
-                                <label><input type="radio" name="clickMode" value="select" checked> ノードフォーカス</label>
-                                <label><input type="radio" name="clickMode" value="link"> URLリンク遷移</label>
+                                クリック時の動作:
+                                <label>
+                                    <input type="radio" name="clickMode" value="select" checked> 説明パネル表示
+                                </label>
+                                <label>
+                                    <input type="radio" name="clickMode" value="link"> URLリンク遷移
+                                </label>
 
                             </div>
 
@@ -331,7 +355,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // ------------------------
     console.log('[INIT] Loading nodesData...');
     const nodesData = [
-        { id: 0, label: "学問", labelEn: "Academic Disciplines", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html", paths: ["0"], level: 0, released: 1, description: "あらゆる事物は何かしらの学問の一領域として捉えることができる" },
+        { id: 0, label: "学問", labelEn: "Academic Disciplines", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html", paths: ["0"], level: 0, released: 1, datePublished: 2024-9-28, dateModified: 2024-12-25, description: "あらゆる事物は何かしらの学問の一領域として捉えることができる" },
 
         { id: 1, label: "人文科学", labelEn: "Humanities", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/humanities.html", paths: ["0:1"], released: 1 },
         { id: 2, label: "社会科学", labelEn: "Social Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/social_science.html", paths: ["0:2"], released: 0 },
@@ -342,7 +366,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         { id: 10, label: "芸術学", labelEn: "Art Studies", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/art.html", paths: ["0:1:10"], released: 0 },
         { id: 11, label: "宗教学", labelEn: "Religious Studies", url: "https://tatsuy-kobayashi.github.io/my-web/docs/#", paths: ["0:1:11"] },
-        { id: 30, label: "数学", labelEn: "Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html", paths: ["0:3:30"], released: 1, description: "数学とは、数量および空間図形の性質について研究する学問。" },
+        { id: 30, label: "数学", labelEn: "Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html", paths: ["0:3:30"], released: 1, datePublished: 2024-9-30, dateModified: 2025-1-4, description: "数学とは、数量および空間図形の性質について研究する学問。" },
         { id: 31, label: "統計学", labelEn: "Statistics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/statistics/statistics.html", paths: ["0:3:31"], released: 0 },
         { id: 40, label: "物理学", labelEn: "Physics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/physics.html", paths: ["0:4:40"], released: 1 },
         { id: 41, label: "化学", labelEn: "Chemistry", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/chemistry/chemistry.html", paths: ["0:4:41"], released: 0 },
@@ -471,13 +495,14 @@ document.addEventListener('DOMContentLoaded', function () {
         minDepth: $id('minDepth'),
         maxDepth: $id('maxDepth'),
         updateBtn: $id('updateBtn'),
-        idSearchInput: $id('idSearchInput'),
-        idSearchBtn: $id('idSearchBtn'),
+        labelSearchInput: $id('labelSearchInput'),
+        labelSearchBtn: $id('labelSearchBtn'),
+        labelSearchSuggestions: $id('labelSearchSuggestions'),
         clickModeRadios: document.getElementsByName('clickMode')
     };
 
     // DOM 要素が揃っているか簡易チェック
-    if (!dom.networkContainer || !dom.minDepth || !dom.maxDepth || !dom.updateBtn || !dom.idSearchInput || !dom.idSearchBtn) {
+    if (!dom.networkContainer || !dom.minDepth || !dom.maxDepth || !dom.updateBtn || !dom.labelSearchInput || !dom.labelSearchBtn) {
         console.error('[ERROR] 必要な DOM 要素が見つかりません。処理を中止します。');
         errorFlags.missingDom = true;
         currentState = STATE.ERROR;
@@ -662,11 +687,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
         console.log('[HASH] ID from fragment:', idFromHash);
 
-        // ここで入力フォームへ値を自動セット（追加）
-        const idInput = document.getElementById('idSearchInput');
-        if (idInput) {
-            idInput.value = idFromHash;
-            console.log('input successed');
+        // ここで入力フォームへ値を自動セット（ID に対応する label を取得して表示）
+        const labelInput = document.getElementById('labelSearchInput');
+        if (labelInput) {
+            const targetNode = nodesData.find(n => n.id === idFromHash);
+            if (targetNode) {
+                labelInput.value = targetNode.label;  // ID ではなく label を代入
+                console.log('input successed:', targetNode.label);
+            } else {
+                console.warn('Node not found for id:', idFromHash);
+            }
         } else {
             console.warn('input failed');
         }
@@ -728,6 +758,64 @@ document.addEventListener('DOMContentLoaded', function () {
 
         currentState = STATE.IDLE;
         console.log('[SEARCH] performDepthSearch done');
+    }
+
+    // label から id を検索
+    // 複数マッチした場合は最初のものを返す
+    function u1f_findNodeByLabel(label) {
+        if (!label || label.trim() === '') {
+            // 無記入の場合は id: 0 (学問)
+            return nodesData.find(n => n.id === 0);
+        }
+        const trimmed = label.trim().toLowerCase();
+        return nodesData.find(n => n.label.toLowerCase().includes(trimmed));
+    }
+
+    // label にマッチする候補を返す
+    function u1f_suggestNodesByLabel(label) {
+        if (!label || label.trim() === '') {
+            return [];
+        }
+        const trimmed = label.trim().toLowerCase();
+        return nodesData.filter(n => n.label.toLowerCase().includes(trimmed)).slice(0, 10); // 最大10件
+    }
+
+    // 新規関数：label での検索実行
+    function u1f_performLabelSearch(label, options = {}) {
+        currentState = STATE.SEARCHING;
+        console.log('[SEARCH] u1f_performLabelSearch start, label=', label, 'options=', options);
+
+        const target = u1f_findNodeByLabel(label);
+        if (!target) {
+            alert('指定した学問「' + label + '」が見つかりません');
+            currentState = STATE.IDLE;
+            return false;
+        }
+
+        const id = target.id;
+        const level = target.level;
+        const min = Math.max(0, level - 1);
+        let max = level + 1;
+        // データの最大深さを超えている場合は clamp
+        if (max > maxAvailableLevel) { max = maxAvailableLevel }
+
+        // 深さを更新（UI に反映）
+        dom.minDepth.value = String(min);
+        dom.maxDepth.value = String(max);
+
+        // node/edge フィルタ
+        const filteredNodes = nodesData.filter(n => (typeof n.level === 'number') && n.level >= min && n.level <= max);
+        const filteredEdges = buildEdgesFromPaths(filteredNodes);
+
+        // 描画
+        vof_setNetworkData(filteredNodes, filteredEdges);
+
+        // 見た目ロック（label検索が適用されている状態を示す）
+        vof_applyVisualLock('id');
+
+        currentState = STATE.IDLE;
+        console.log('[SEARCH] u1f_performLabelSearch done');
+        return true;
     }
 
     // ------------------------
@@ -797,17 +885,21 @@ document.addEventListener('DOMContentLoaded', function () {
         currentLock = mode;
         console.log('[UI] vof_applyVisualLock:', mode);
 
-        // 要素群
-        const depthControls = [dom.minDepth, dom.maxDepth, dom.updateBtn];
-        const idControls = [dom.idSearchInput, dom.idSearchBtn];
+        // 要素群（存在チェックしてから扱う）
+        const depthControls = [dom.minDepth, dom.maxDepth, dom.updateBtn].filter(Boolean);
+        const labelControls = [dom.labelSearchInput, dom.labelSearchBtn, dom.labelSearchSuggestions].filter(Boolean);
 
-        // remove all first
-        [...depthControls, ...idControls].forEach(el => el.classList.remove('dimmed'));
+        // いったん全要素から dimmed を除去
+        [...depthControls, ...labelControls].forEach(el => {
+            if (el && el.classList) el.classList.remove('dimmed');
+        });
 
         if (mode === 'id') {
-            depthControls.forEach(el => el.classList.add('dimmed'));
+            // ラベル（id）検索モードでは深さ操作を弱める
+            depthControls.forEach(el => { if (el && el.classList) el.classList.add('dimmed'); });
         } else if (mode === 'depth') {
-            idControls.forEach(el => el.classList.add('dimmed'));
+            // 深さモードではラベル操作を弱める
+            labelControls.forEach(el => { if (el && el.classList) el.classList.add('dimmed'); });
         }
     }
 
@@ -822,18 +914,21 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!currentLock) return;
         console.log('[UI] vof_clearVisualLock from', currentLock);
         currentLock = null;
-        const depthControls = [dom.minDepth, dom.maxDepth, dom.updateBtn];
-        const idControls = [dom.idSearchInput, dom.idSearchBtn];
-        [...depthControls, ...idControls].forEach(el => el.classList.remove('dimmed'));
+
+        const depthControls = [dom.minDepth, dom.maxDepth, dom.updateBtn].filter(Boolean);
+        const labelControls = [dom.labelSearchInput, dom.labelSearchBtn, dom.labelSearchSuggestions].filter(Boolean);
+
+        [...depthControls, ...labelControls].forEach(el => {
+            if (el && el.classList) el.classList.remove('dimmed');
+        });
     }
 
     // 再フォーカス時の解除（ユーザがどれかに focus したら見た目を戻す）
-    [dom.idSearchInput, dom.minDepth, dom.maxDepth].forEach(el => {
+    [dom.labelSearchInput, dom.minDepth, dom.maxDepth].forEach(el => {
         el.addEventListener('focus', () => {
             if (currentLock) vof_clearVisualLock();
         });
     });
-
 
     // ------------------------
     // ノード説明パネル
@@ -900,15 +995,68 @@ document.addEventListener('DOMContentLoaded', function () {
         dom.updateBtn.addEventListener('click', () => {
             console.log('[UI] depth search clicked');
             // 実行時は id input をクリア（仕様）
-            dom.idSearchInput.value = '';
+            dom.labelSearchInput.value = '';
+            dom.labelSearchSuggestions.style.display = 'none';
             performDepthSearch();
         });
 
-        // ID 検索ボタン
-        dom.idSearchBtn.addEventListener('click', () => {
-            console.log('[UI] id search clicked');
-            const id = Number(dom.idSearchInput.value);
-            u1f_performIdSearch(id);
+        // label 検索ボタン
+        dom.labelSearchBtn.addEventListener('click', () => {
+            console.log('[UI] label search clicked');
+            const label = String(dom.labelSearchInput.value);
+            u1f_performLabelSearch(label);
+        });
+
+        // label input でのリアルタイム候補表示
+        dom.labelSearchInput.addEventListener('input', () => {
+            const label = dom.labelSearchInput.value;
+            const suggestions = u1f_suggestNodesByLabel(label);
+
+            if (suggestions.length === 0) {
+                dom.labelSearchSuggestions.style.display = 'none';
+                return;
+            }
+
+            // サジェスト一覧をクリア
+            dom.labelSearchSuggestions.innerHTML = '';
+            console.log('[UI] label search suggestions are cleared');
+
+            // 候補を追加
+            for (const node of suggestions) {
+                const li = document.createElement('li');
+                li.style.cssText = 'padding: 8px 12px; cursor: pointer; border-bottom: 1px solid #eee;';
+                li.textContent = node.label;
+                li.addEventListener('mouseover', () => {
+                    li.style.backgroundColor = '#f0f0f0';
+                });
+                li.addEventListener('mouseout', () => {
+                    li.style.backgroundColor = '';
+                });
+                li.addEventListener('click', () => {
+                    dom.labelSearchInput.value = node.label;
+                    dom.labelSearchSuggestions.style.display = 'none';
+                    u1f_performLabelSearch(node.label);
+                });
+                dom.labelSearchSuggestions.appendChild(li);
+            }
+
+            dom.labelSearchSuggestions.style.display = 'block';
+        });
+
+        // Enter キーで検索
+        dom.labelSearchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const label = dom.labelSearchInput.value;
+                dom.labelSearchSuggestions.style.display = 'none';
+                u1f_performLabelSearch(label);
+            }
+        });
+
+        // 外クリックで候補を非表示
+        document.addEventListener('click', (e) => {
+            if (!dom.labelSearchInput.contains(e.target) && !dom.labelSearchSuggestions.contains(e.target)) {
+                dom.labelSearchSuggestions.style.display = 'none';
+            }
         });
 
         // network の click イベント（node クリック）
@@ -1032,6 +1180,7 @@ document.addEventListener('DOMContentLoaded', function () {
         getErrorFlags: () => ({ ...errorFlags }),
         reinitNetwork: () => { networkInitialized = false; return u1f_initNetworkIfNeeded(); },
         performDepthSearch,
+        u1f_performLabelSearch,
         u1f_performIdSearch,
         vof_clearVisualLock
     };

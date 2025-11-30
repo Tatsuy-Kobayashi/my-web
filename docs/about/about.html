@@ -299,8 +299,18 @@
                                     <input type="radio" name="clickMode" value="select" checked> 説明パネル表示
                                 </label>
                                 <label>
+                                    <input type="radio" name="clickMode" value="nodeFocus"> ノードフォーカス
+                                </label>
+                                <!-- 追加：ノードフォーカス 用 上方/下方 深さ入力 -->
+                                <span style="margin-left:8px;">上方
+                                    <input type="number" id="focusUp" min="0" value="1" style="width:56px; display:inline-block; margin:0 6px;">
+                                まで・下方
+                                    <input type="number" id="focusDown" min="0" value="1" style="width:56px; display:inline-block; margin:0 6px;">
+                                までのノードを表示</span>
+                                <label>
                                     <input type="radio" name="clickMode" value="link"> URLリンク遷移
                                 </label>
+                                カラー指定:
 
                             </div>
 
@@ -481,6 +491,75 @@ document.addEventListener('DOMContentLoaded', function () {
         return edges;
     }
 
+    // build parent/child maps from nodesData.paths
+    let __parentsMap = null;   // childId -> Set(parentIds)
+    let __childrenMap = null;  // parentId -> Set(childIds)
+    function buildParentChildMaps() {
+        __parentsMap = new Map();
+        __childrenMap = new Map();
+        const ids = new Set(nodesData.map(n => n.id));
+        for (const n of nodesData) {
+            const paths = n.paths || [];
+            for (const p of paths) {
+                const parts = p.split(':').map(Number);
+                for (let i = 0; i < parts.length - 1; i++) {
+                    const parent = parts[i];
+                    const child  = parts[i + 1];
+                    if (!ids.has(parent) || !ids.has(child)) continue;
+                    if (!__childrenMap.has(parent)) __childrenMap.set(parent, new Set());
+                    __childrenMap.get(parent).add(child);
+                    if (!__parentsMap.has(child)) __parentsMap.set(child, new Set());
+                    __parentsMap.get(child).add(parent);
+                }
+            }
+        }
+    }
+
+    // compute focus set: include nodeId, ancestors up levels, descendants down levels
+    function computeFocusSet(nodeId, upDepth = 1, downDepth = 1) {
+        if (!__parentsMap || !__childrenMap) buildParentChildMaps();
+        const result = new Set();
+        result.add(nodeId);
+
+        // ancestors (up)
+        let current = new Set([nodeId]);
+        for (let d = 0; d < upDepth; d++) {
+            const next = new Set();
+            for (const id of current) {
+                const parents = __parentsMap.get(id);
+                if (!parents) continue;
+                for (const p of parents) {
+                    if (!result.has(p)) {
+                        result.add(p);
+                        next.add(p);
+                    }
+                }
+            }
+            if (next.size === 0) break;
+            current = next;
+        }
+
+        // descendants (down)
+        current = new Set([nodeId]);
+        for (let d = 0; d < downDepth; d++) {
+            const next = new Set();
+            for (const id of current) {
+                const children = __childrenMap.get(id);
+                if (!children) continue;
+                for (const c of children) {
+                    if (!result.has(c)) {
+                        result.add(c);
+                        next.add(c);
+                    }
+                }
+            }
+            if (next.size === 0) break;
+            current = next;
+        }
+
+        return result;
+    }
+
     // ------------------------
     // DOM要素参照（安全に取得）
     // ------------------------
@@ -498,6 +577,8 @@ document.addEventListener('DOMContentLoaded', function () {
         labelSearchInput: $id('labelSearchInput'),
         labelSearchBtn: $id('labelSearchBtn'),
         labelSearchSuggestions: $id('labelSearchSuggestions'),
+        focusUp: $id('focusUp'),
+        focusDown: $id('focusDown'),
         clickModeRadios: document.getElementsByName('clickMode')
     };
 
@@ -868,6 +949,29 @@ document.addEventListener('DOMContentLoaded', function () {
         return true;
     }
 
+    // perform node-focus display
+    function u1f_performNodeFocus(nodeId, up = 1, down = 1) {
+        currentState = STATE.SEARCHING;
+        console.log('[SEARCH] u1f_performNodeFocus start, id=', nodeId, 'up=', up, 'down=', down);
+
+        const target = nodesData.find(n => n.id === nodeId);
+        if (!target) {
+            alert('指定したノードが見つかりません: ' + nodeId);
+            currentState = STATE.IDLE;
+            return false;
+        }
+
+        const focusSet = computeFocusSet(nodeId, Math.max(0, Math.floor(Number(up) || 0)), Math.max(0, Math.floor(Number(down) || 0)));
+        const filteredNodes = nodesData.filter(n => focusSet.has(n.id));
+        const filteredEdges = buildEdgesFromPaths(filteredNodes);
+
+        vof_setNetworkData(filteredNodes, filteredEdges);
+        vof_applyVisualLock('id'); // reuse id-lock (visual effect)
+        currentState = STATE.IDLE;
+        console.log('[SEARCH] u1f_performNodeFocus done, nodes=', filteredNodes.length);
+        return true;
+    }
+
     // ------------------------
     // 見た目ロック（disabled は使わず、.dimmed のみで示す）
     // ------------------------
@@ -1107,6 +1211,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         } catch (e) {
                             console.warn('[NETWORK] select failed:', e);
                         }
+                    } else if (mode === 'nodeFocus') {
+                        // ノードフォーカスモード：上方/下方の入力値を取得して表示
+                        const up = dom.focusUp ? Number(dom.focusUp.value) : 1;
+                        const down = dom.focusDown ? Number(dom.focusDown.value) : 1;
+                        u1f_performNodeFocus(node.id, up, down);
                     } else {
                         // link モード: released フラグを確認 (存在しなければ 0 扱い)
                         const releasedFlag = Number(node.released) === 1 ? 1 : 0;

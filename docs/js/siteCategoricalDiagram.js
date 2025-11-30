@@ -1,0 +1,1086 @@
+document.addEventListener('DOMContentLoaded', function () {
+    'use strict'; // 状態遷移重視・エラーフラグ管理ありの完全版スクリプト
+
+    // ------------------------
+    // 状態定義
+    // ------------------------
+    const STATE = {
+        DOM_LOADING: 'DOM_LOADING',
+        DATA_INITIALIZATION: 'DATA_INITIALIZATION',
+        NETWORK_INITIALIZATION: 'NETWORK_INITIALIZATION',
+        HASH_BOOTSTRAP: 'HASH_BOOTSTRAP',
+        BOOTSTRAP_SEARCH: 'BOOTSTRAP_SEARCH',
+        IDLE: 'IDLE',
+        SEARCHING: 'SEARCHING',
+        ERROR: 'ERROR'
+    };
+    // ------------------------
+    // エラーフラグ
+    // ------------------------
+    const errorFlags = {
+        missingDom: false,
+        visNotAvailable: false,
+        invalidData: false,
+        networkInitFailed: false
+    };
+
+    let currentState = STATE.DOM_LOADING; // 「DOM読み込み中」で初期化
+
+    // ------------------------
+    // データ（ノード）
+    // ------------------------
+    // id: ノードID
+    // label: ラベル
+    // url: ノードクリック時に開くURL
+    // level: 深さ（現在は学問のみが明示的に持つ）
+    // paths: ルートからのパス情報（複数可、多親対応）
+    // released: 公開フラグ（0: 未公開、1: 公開）
+    // description: ノード説明文
+    // ------------------------
+    console.log('[INIT] Loading nodesData...');
+    const nodesData = [
+        { id: 0, label: "学問", labelEn: "Academic Disciplines", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html", paths: ["0"], level: 0, released: 1, datePublished: 2024-9-28, dateModified: 2024-12-25, description: "あらゆる事物は何かしらの学問の一領域として捉えることができる" },
+
+        { id: 1, label: "人文科学", labelEn: "Humanities", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/humanities.html", paths: ["0:1"], released: 1 },
+        { id: 2, label: "社会科学", labelEn: "Social Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/social_science.html", paths: ["0:2"], released: 0 },
+        { id: 3, label: "形式科学", labelEn: "Formal Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/formal_science.html", paths: ["0:3"], released: 1 },
+        { id: 4, label: "自然科学", labelEn: "Natural Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/natural_science.html", paths: ["0:4"], released: 1 },
+        { id: 5, label: "応用科学", labelEn: "Applied Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html", paths: ["0:5"] },
+        { id: 6, label: "学際領域", labelEn: "Interdisciplinary Fields", url: "https://tatsuy-kobayashi.github.io/my-web/docs/#", paths: ["0:6"], released: 0 },
+
+        { id: 10, label: "芸術学", labelEn: "Art Studies", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/art.html", paths: ["0:1:10"], released: 0 },
+        { id: 11, label: "宗教学", labelEn: "Religious Studies", url: "https://tatsuy-kobayashi.github.io/my-web/docs/#", paths: ["0:1:11"] },
+        { id: 30, label: "数学", labelEn: "Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html", paths: ["0:3:30"], released: 1, datePublished: 2024-9-30, dateModified: 2025-1-4, description: "数学とは、数量および空間図形の性質について研究する学問。" },
+        { id: 31, label: "統計学", labelEn: "Statistics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/statistics/statistics.html", paths: ["0:3:31"], released: 0 },
+        { id: 40, label: "物理学", labelEn: "Physics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/physics.html", paths: ["0:4:40"], released: 1 },
+        { id: 41, label: "化学", labelEn: "Chemistry", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/chemistry/chemistry.html", paths: ["0:4:41"], released: 0 },
+        { id: 42, label: "生物学", labelEn: "Biology", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/biology/biology.html", paths: ["0:4:42"], released: 0 },
+        { id: 43, label: "地学", labelEn: "Earth Science", url: "https://tatsuy-kobayashi.github.io/my-web/docs/#", paths: ["0:4:43"], released: 0 },
+        { id: 50, label: "情報学", labelEn: "Informatics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/informatics.html", paths: ["0:5:50"], released: 1 },
+
+        { id: 300, label: "数学用語", labelEn: "Mathematical Terms", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematical_terms/mathematical_terms.html", paths: ["0:3:30:300"], released: 0 },
+        { id: 301, label: "数学基礎論", labelEn: "Foundations of Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html", paths: ["0:3:30:301"], released: 0 },
+        { id: 302, label: "数論", labelEn: "Number Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/number_theory.html", paths: ["0:3:30:302"] },
+        { id: 303, label: "代数学", labelEn: "Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebra.html", paths: ["0:3:30:303"] },
+        { id: 304, label: "解析学", labelEn: "Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/analysis.html", paths: ["0:3:30:304"] },
+
+        { id: 3010, label: "数理論理学", labelEn: "Foundations of Mathematics", url: "#", paths: ["0:3:30:301:3010"], released: 0 },
+        { id: 3011, label: "集合論", labelEn: "Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html", paths: ["0:3:30:301:3011"], released: 1, description: "集合の基本概念から応用まで解説。集合の定義、演算（和・積・差集合）、部分集合、冪集合などをPythonのコード例とベン図で分かりやすく学べる。数学の基礎を支える集合論の入門として最適。" },
+        { id: 3020, label: "数学定数", labelEn: "Mathematical Constants", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/mathematical_constant/mathematical_constant.html", paths: ["0:3:30:302:3020"], released: 1 },
+        // 多親（代数・解析の両方の子）
+        { id: 3030, label: "代数解析学", labelEn: "Algebraic Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebraic_analysis/algebraic_analysis.html", paths: ["0:3:30:303:3030", "0:3:30:304:3030"], released: 0 },
+        { id: 3040, label: "解析学基礎", labelEn: "Foundations of Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/foundations_of_analysis.html", paths: ["0:3:30:304:3040"], released: 1 },
+
+        { id: 30110, label: "素朴集合論", labelEn: "Naive Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/naive_set_theory/naive_set_theory.html", paths: ["0:3:30:301:3011:30110"], released: 1, description: "素朴集合論の基礎から応用まで解説。素朴包括原理やパラドックス許容論理を中心に、Pythonによる実装例を交えながら、ラッセルのパラドックスや論理体系の修正についても学べる数学基礎論の入門記事。" },
+        { id: 30111, label: "公理的集合論", labelEn: "Axiomatic Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/axiomatic_set_theory.html", paths: ["0:3:30:301:3011:30111"], released: 1, description: "公理的集合論の基礎から発展まで解説。ZF集合論、NBG集合論、MK集合論など主要な体系を比較しながら、各公理の意味や相互関係、数学基礎論における役割を学べる。図解とともに体系的に理解できる入門記事。" },
+
+        { id: 301110, label: "ツェルメロ＝フレンケル集合論", labelEn: "Zermelo-Fraenkel Set Theory with the Axiom of Choice", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/zermelo_fraenkel_choice_set_theory.html", paths: ["0:3:30:301:3011:30111:301110"], released: 0 }
+    ];
+
+    // ------------------------
+    // データ（エッジ）
+    // ------------------------
+    // from → to の方向性を持つ
+    // ------------------------
+    /*console.log('[INIT] Loading edgesData...');
+    const edgesData = [
+        { from: 0, to: 1 },
+        { from: 0, to: 2 },
+        { from: 0, to: 3 },
+        { from: 0, to: 4 },
+        { from: 0, to: 5 },
+        { from: 0, to: 6 },
+
+        { from: 1, to: 10 },
+        { from: 1, to: 11 },
+        { from: 3, to: 30 },
+        { from: 3, to: 31 },
+        { from: 4, to: 40 },
+
+        { from: 30, to: 300 },
+        { from: 30, to: 301 },
+        { from: 30, to: 302 },
+        { from: 30, to: 303 },
+        { from: 30, to: 304 },
+
+        { from: 304, to: 3040 }
+    ];*/
+
+    // グローバル: データが持つ最大の depth（level）
+    let maxAvailableLevel = 0;
+    // ------------------------
+    // 関数名   : vof_ensureLevelsFromPaths(nodes)
+    // 名称     : paths から各ノードの level を計算
+    // 内容     : nodes に含まれる paths を元に、各ノードの level を計算する
+    // 引数     : nodes - ノード配列
+    // 戻り値   : None
+    // ------------------------
+    function vof_ensureLevelsFromPaths(nodes) {
+        maxAvailableLevel = 0;
+        for (const n of nodes) {
+            if (!n.paths || n.paths.length === 0) continue;
+            const depths = n.paths.map(p => p.split(":").length - 1);
+            n.level = Math.min(...depths);       // ルートが level 0 として整合
+            if (typeof n.level === 'number' && Number.isFinite(n.level)) {
+                maxAvailableLevel = Math.max(maxAvailableLevel, n.level);
+            }
+        }
+        return maxAvailableLevel;
+    }
+
+    // ------------------------
+    // 関数名   : buildEdgesFromPaths(filteredNodes)
+    // 名称     : paths からエッジ情報を生成する処理
+    // 内容     : filteredNodes に含まれる paths を元に、エッジ情報を生成する
+    // 引数     : filteredNodes - ユーザ操作で選択されたノード配列
+    // 戻り値   : edges - 生成されたエッジ配列
+    // ------------------------
+    function buildEdgesFromPaths(filteredNodes) {
+        const visible = new Set(filteredNodes.map(n => n.id));
+        const edges = [];
+        const dedup = new Set();
+
+        for (const n of filteredNodes) {
+            const paths = n.paths || [];
+            for (const pathStr of paths) {
+                const parts = pathStr.split(":").map(Number);
+
+                // 末尾が自身のIDで終わっているか（データ健全性チェック）
+                if (parts[parts.length - 1] !== n.id) continue;
+
+                for (let i = 0; i < parts.length - 1; i++) {
+                    const from = parts[i];
+                    const to   = parts[i + 1];
+                    // 可視ノード同士のみエッジを張る
+                    if (!visible.has(from) || !visible.has(to)) continue;
+
+                    const key = `${from}->${to}`;
+                    if (!dedup.has(key)) {
+                        dedup.add(key);
+                        edges.push({ from, to });
+                    }
+                }
+            }
+        }
+        return edges;
+    }
+
+    // build parent/child maps from nodesData.paths
+    let __parentsMap = null;   // childId -> Set(parentIds)
+    let __childrenMap = null;  // parentId -> Set(childIds)
+    function buildParentChildMaps() {
+        __parentsMap = new Map();
+        __childrenMap = new Map();
+        const ids = new Set(nodesData.map(n => n.id));
+        for (const n of nodesData) {
+            const paths = n.paths || [];
+            for (const p of paths) {
+                const parts = p.split(':').map(Number);
+                for (let i = 0; i < parts.length - 1; i++) {
+                    const parent = parts[i];
+                    const child  = parts[i + 1];
+                    if (!ids.has(parent) || !ids.has(child)) continue;
+                    if (!__childrenMap.has(parent)) __childrenMap.set(parent, new Set());
+                    __childrenMap.get(parent).add(child);
+                    if (!__parentsMap.has(child)) __parentsMap.set(child, new Set());
+                    __parentsMap.get(child).add(parent);
+                }
+            }
+        }
+    }
+
+    // compute focus set: include nodeId, ancestors up levels, descendants down levels
+    function computeFocusSet(nodeId, upDepth = 1, downDepth = 1) {
+        if (!__parentsMap || !__childrenMap) buildParentChildMaps();
+        const result = new Set();
+        result.add(nodeId);
+
+        // ancestors (up)
+        let current = new Set([nodeId]);
+        for (let d = 0; d < upDepth; d++) {
+            const next = new Set();
+            for (const id of current) {
+                const parents = __parentsMap.get(id);
+                if (!parents) continue;
+                for (const p of parents) {
+                    if (!result.has(p)) {
+                        result.add(p);
+                        next.add(p);
+                    }
+                }
+            }
+            if (next.size === 0) break;
+            current = next;
+        }
+
+        // descendants (down)
+        current = new Set([nodeId]);
+        for (let d = 0; d < downDepth; d++) {
+            const next = new Set();
+            for (const id of current) {
+                const children = __childrenMap.get(id);
+                if (!children) continue;
+                for (const c of children) {
+                    if (!result.has(c)) {
+                        result.add(c);
+                        next.add(c);
+                    }
+                }
+            }
+            if (next.size === 0) break;
+            current = next;
+        }
+
+        return result;
+    }
+
+    // ------------------------
+    // DOM要素参照（安全に取得）
+    // ------------------------
+    function $id(id) {
+        const el = document.getElementById(id);
+        if (!el) console.warn(`[WARN] DOM element not found: #${id}`);
+        return el;
+    }
+
+    const dom = {
+        networkContainer: $id('network'),
+        minDepth: $id('minDepth'),
+        maxDepth: $id('maxDepth'),
+        updateBtn: $id('updateBtn'),
+        labelSearchInput: $id('labelSearchInput'),
+        labelSearchBtn: $id('labelSearchBtn'),
+        labelSearchSuggestions: $id('labelSearchSuggestions'),
+        focusUp: $id('focusUp'),
+        focusDown: $id('focusDown'),
+        clickModeRadios: document.getElementsByName('clickMode'),
+        colorModeRadios: document.getElementsByName('colorMode')
+    };
+
+    // DOM 要素が揃っているか簡易チェック
+    if (!dom.networkContainer || !dom.minDepth || !dom.maxDepth || !dom.updateBtn || !dom.labelSearchInput || !dom.labelSearchBtn) {
+        console.error('[ERROR] 必要な DOM 要素が見つかりません。処理を中止します。');
+        errorFlags.missingDom = true;
+        currentState = STATE.ERROR;
+        return;
+    }
+
+    // ------------------------
+    // vis-network 管理（初回生成は1度だけ）
+    // ------------------------
+    let network = null; // vis-network インスタンス
+    let networkInitialized = false; // 初期化済みフラグを失敗で初期化
+
+    // ------------------------
+    // 関数名   : u1f_initNetworkIfNeeded()
+    // 名称     : network 初期化処理
+    // 内容     : network が未初期化なら初期化を行う
+    // 引数     : void
+    // 戻り値   : boolean - 初期化成功なら true、失敗または既にエラー状態なら false
+    // ------------------------
+    function u1f_initNetworkIfNeeded() {
+        if (networkInitialized) return true;
+        if (typeof vis === 'undefined' || !vis.Network) {
+            console.error('[ERROR] vis-network が読み込まれていません。');
+            errorFlags.visNotAvailable = true;
+            currentState = STATE.ERROR;
+            return false;
+        }
+
+        try {
+            const nodes = new vis.DataSet([]); // 空で初期化
+            const edges = new vis.DataSet([]);
+            const data = { nodes, edges };
+            const options = {
+                layout: { hierarchical: false },
+                physics: {
+                    enabled: true,
+                    solver: "forceAtlas2Based",
+                    forceAtlas2Based: {
+                        gravitationalConstant: -40,  // 反発力を弱める（デフォルト -200）
+                        springLength: 60,            // エッジの自然長を短くする（重要）
+                        springConstant: 0.2          // バネの硬さ、強すぎると暴れる
+                    },
+                    stabilization: {
+                        enabled: true,
+                        iterations: 200              // 少なすぎると変な形で止まりやすい
+                    }
+                },
+                interaction: { hover: true, zoomView: true },
+                edges: {
+                    arrows: "to",
+                    smooth: {
+                        enabled: false               // 変な曲がりをなくすため
+                    }
+                }
+            };
+
+            network = new vis.Network(dom.networkContainer, data, options);
+            networkInitialized = true;
+            console.log('[NETWORK] vis.Network 初期化完了');
+            return true;
+        } catch (e) {
+            console.error('[ERROR] network 初期化に失敗しました:', e);
+            errorFlags.networkInitFailed = true;
+            currentState = STATE.ERROR;
+            return false;
+        }
+    }
+
+    // ------------------------
+    // 関数名   : vof_setNetworkData(nodeList, edgeList)
+    // 名称     : network のデータ更新
+    // 内容     : network に nodeList と edgeList をセットする（初回は setData が使える想定）
+    // 引数     : nodeList - ノードリスト配列
+    //            edgeList - エッジリスト配列
+    // 戻り値   : void
+    // ------------------------
+    function vof_setNetworkData(nodeList, edgeList) {
+        console.log('[NETWORK] Updating network data...');
+        if (!u1f_initNetworkIfNeeded()) return;
+        try {
+            // helper: clamp and hex
+            const clamp = v => Math.max(0, Math.min(255, Math.round(v)));
+            const toHex = v => ('0' + clamp(v).toString(16)).slice(-2);
+
+            // get selected color mode ('default-color' or 'rainbow')
+            const colorModeEl = document.querySelector('input[name="colorMode"]:checked');
+            const colorMode = colorModeEl ? colorModeEl.value : 'default-color';
+
+            // determine category from a path: return integer 1..6 or null
+            const detectCategoryFromNode = (n) => {
+                const paths = n.paths || [];
+                if (!paths.length) return null;
+                for (const p of paths) {
+                    const parts = p.split(':').map(Number);
+                    if (parts.length >= 2 && parts[0] === 0) {
+                        return parts[1]; // 1..6 expected
+                    }
+                }
+                return null;
+            };
+
+            // compute rainbow color according to spec
+            const computeRainbowHex = (n) => {
+                const l = (typeof n.level === 'number' && Number.isFinite(n.level)) ? n.level : 0;
+                const cat = detectCategoryFromNode(n);
+                // root
+                if (n.id === 0 || l === 0) {
+                    return `#${toHex(255)}${toHex(255)}${toHex(255)}`; // white
+                }
+                const level = l; // level >=1 for children
+                const inRange = (level >= 1 && level <= 8);
+
+                let r = 255, g = 255, b = 255;
+                switch (cat) {
+                    case 1: // 人文科学
+                        if (inRange) { r = 255; g = 256 - 32 * level; b = 256 - 32 * level; }
+                        else { r = 255; g = 0; b = 0; }
+                        break;
+                    case 2: // 社会科学
+                        if (inRange) { r = 255; g = 255; b = 256 - 32 * level; }
+                        else { r = 255; g = 255; b = 0; }
+                        break;
+                    case 3: // 形式科学
+                        if (inRange) { r = 256 - 32 * level; g = 255; b = 256 - 32 * level; }
+                        else { r = 0; g = 255; b = 0; }
+                        break;
+                    case 4: // 自然科学
+                        if (inRange) { r = 256 - 32 * level; g = 255; b = 255; }
+                        else { r = 0; g = 255; b = 255; }
+                        break;
+                    case 5: // 応用科学
+                        if (inRange) { r = 256 - 32 * level; g = 256 - 32 * level; b = 255; }
+                        else { r = 0; g = 0; b = 255; }
+                        break;
+                    case 6: // 学際領域
+                        if (inRange) { r = 255; g = 256 - 32 * level; b = 255; }
+                        else { r = 255; g = 0; b = 255; }
+                        break;
+                    default:
+                        // unknown category: fallback to grey-ish by level
+                        if (inRange) { const v = 256 - 16 * level; r = v; g = v; b = v; }
+                        else { r = 200; g = 200; b = 200; }
+                }
+                // clamp and form hex
+                return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+            };
+
+            // border darker
+            const darkenHex = (hex, amount = 30) => {
+                // hex #rrggbb
+                const r = parseInt(hex.slice(1,3),16);
+                const g = parseInt(hex.slice(3,5),16);
+                const b = parseInt(hex.slice(5,7),16);
+                return `#${toHex(r - amount)}${toHex(g - amount)}${toHex(b - amount)}`;
+            };
+
+            // Map nodeList to nodes for vis, applying color mode
+            const mappedNodes = nodeList.map(n => {
+                const nodeCopy = Object.assign({}, n); // shallow copy
+                if (colorMode === 'rainbow') {
+                    const bg = computeRainbowHex(n);
+                    const border = darkenHex(bg, 30);
+                    nodeCopy.color = { background: bg, border: border, highlight: { background: bg, border: border } };
+                } else {
+                    // colorMode === 'default-color': keep neutral appearance, but ensure color object exists for consistency
+                    nodeCopy.color = nodeCopy.color || { background: '#97C2FC', border: '#2B7CE9', highlight: { background: '#D2E5FF', border: '#2B7CE9' } };
+                }
+                return nodeCopy;
+            });
+
+            const nodes = new vis.DataSet(mappedNodes);
+            const edges = new vis.DataSet(edgeList);
+            network.setData({ nodes, edges });
+            console.log('[NETWORK] setData 実行: nodes=', nodeList.length, 'edges=', edgeList.length);
+        } catch (e) {
+            console.error('[ERROR] vof_setNetworkData 失敗:', e);
+        }
+    }
+
+    // ------------------------
+    // STATE 1: DATA_INITIALIZATION
+    // （ここでは簡単なバリデーションを行う）
+    // ------------------------
+    function validateData() {
+        currentState = STATE.DATA_INITIALIZATION;
+        console.log('[STATE] DATA_INITIALIZATION');
+
+        // ノード id 重複チェック
+        const ids = new Set();
+        for (const n of nodesData) {
+            if (ids.has(n.id)) {
+                console.error('[ERROR] nodesData に重複 id が存在します:', n.id);
+                errorFlags.invalidData = true;
+            }
+            ids.add(n.id);
+        }
+
+        // エッジの参照チェックpaths の整合チェック: 各 path の各要素が存在するか、および path の末尾が自身の id であるか
+        for (const n of nodesData) {
+            if (!n.paths) continue;
+            for (const p of n.paths) {
+                const parts = p.split(':').map(Number);
+                if (parts[parts.length - 1] !== n.id) {
+                    console.error('[ERROR] paths の末尾が node.id と一致しません:', n.id, p);
+                    errorFlags.invalidData = true;
+                    continue;
+                }
+                for (const pid of parts) {
+                    if (!ids.has(pid)) {
+                        console.error('[ERROR] paths が存在しないノードを参照しています:', p, 'missing:', pid);
+                        errorFlags.invalidData = true;
+                    }
+                }
+            }
+        }
+
+        if (errorFlags.invalidData) {
+            currentState = STATE.ERROR;
+            return false;
+        }
+
+        // ensure levels are present/consistent かつ最大深さを計算
+        const computedMax = vof_ensureLevelsFromPaths(nodesData);
+        maxAvailableLevel = (typeof computedMax === 'number' && Number.isFinite(computedMax)) ? computedMax : 0;
+        console.log('[DATA] computed maxAvailableLevel =', maxAvailableLevel);
+
+        return true;
+    }
+
+    // ------------------------
+    // STATE 2: NETWORK_INITIALIZATION
+    // ------------------------
+    function initializeNetwork() {
+        currentState = STATE.NETWORK_INITIALIZATION;
+        console.log('[STATE] NETWORK_INITIALIZATION');
+
+        const ok = u1f_initNetworkIfNeeded();
+        if (!ok) return false;
+
+        // 初回描画：デフォルト（min/max）による描画をしないで空で開始することも選べる
+        // 今は初期値を用いて描画
+        performDepthSearch(); // 正しい深さを使用
+        return true;
+    }
+
+    // ------------------------
+    // HASH_BOOTSTRAP / BOOTSTRAP_SEARCH
+    // ------------------------
+    function bootstrapFromHash() {
+        currentState = STATE.HASH_BOOTSTRAP;
+        console.log('[STATE] HASH_BOOTSTRAP');
+
+        const raw = window.location.hash || '';
+        if (!raw) {
+            console.log('[HASH] fragment が存在しません');
+            return false;
+        }
+
+        let idFromHash = null;
+
+        // パターン: #id_30
+        if (/^#id_\d+$/.test(raw)) {
+            idFromHash = Number(raw.replace('#id_', ''));
+        } else {
+            console.log('[HASH] 未対応のハッシュ形式:', raw);
+            return false;
+        }
+
+        if (!Number.isFinite(idFromHash)) {
+            console.warn('[HASH] 数値抽出に失敗:', raw);
+            return false;
+        }
+
+        console.log('[HASH] ID from fragment:', idFromHash);
+
+        // ここで入力フォームへ値を自動セット（ID に対応する label を取得して表示）
+        const labelInput = document.getElementById('labelSearchInput');
+        if (labelInput) {
+            const targetNode = nodesData.find(n => n.id === idFromHash);
+            if (targetNode) {
+                labelInput.value = targetNode.label;  // ID ではなく label を代入
+                console.log('input successed:', targetNode.label);
+            } else {
+                console.warn('Node not found for id:', idFromHash);
+            }
+        } else {
+            console.warn('input failed');
+        }
+
+        // BOOTSTRAP_SEARCH 実行（成功時は true）
+        return u1f_performIdSearch(idFromHash, { fromHash: true });
+    }
+
+    // ------------------------
+    // SEARCH 処理（共通）
+    // ------------------------
+    // - performDepthSearch() : min/max から
+    // ------------------------
+    function performDepthSearch() {
+        currentState = STATE.SEARCHING;
+        console.log('[SEARCH] performDepthSearch start');
+
+        // 深さ検証
+        let min = Number(dom.minDepth.value);
+        let max = Number(dom.maxDepth.value);
+        if (!Number.isFinite(min) || !Number.isFinite(max)) {
+            alert('数値を入力してください');
+            currentState = STATE.IDLE;
+            return;
+        }
+        // 整数かつ非負か確認
+        if (!Number.isInteger(min) || !Number.isInteger(max) || min < 0 || max < 0) {
+            alert('0 以上の整数で入力してください');
+            currentState = STATE.IDLE;
+            return;
+        }
+        // min/max の整合
+        if (min > max) {
+            alert('最小深さは最大深さ以下にしてください');
+            currentState = STATE.IDLE;
+            return;
+        }
+        // データが持つ最大深さを超えていないか確認
+        if (max > maxAvailableLevel) {
+            alert(`指定した最大深さ [${max}] はデータの最大深さ [${maxAvailableLevel}] を超えています。表示可能な最大深さに合わせます。`);
+            max = maxAvailableLevel;
+            dom.maxDepth.value = String(max);
+            if (min > max) {
+                // min が超過してしまう場合は min を clamp
+                min = Math.max(0, max);
+                dom.minDepth.value = String(min);
+            }
+        }
+
+        // filter nodes and edges
+        const filteredNodes = nodesData.filter(n => (typeof n.level === 'number') && n.level >= min && n.level <= max);
+        const filteredEdges = buildEdgesFromPaths(filteredNodes);
+
+        // 描画
+        vof_setNetworkData(filteredNodes, filteredEdges);
+
+        // 見た目ロック（深さ検索が適用されている状態を示す）
+        vof_applyVisualLock('depth');
+
+        currentState = STATE.IDLE;
+        console.log('[SEARCH] performDepthSearch done');
+    }
+
+    // label から id を検索
+    // 複数マッチした場合は最初のものを返す
+    function u1f_findNodeByLabel(label) {
+        if (!label || label.trim() === '') {
+            // 無記入の場合は id: 0 (学問)
+            return nodesData.find(n => n.id === 0);
+        }
+        const trimmed = label.trim().toLowerCase();
+        return nodesData.find(n => n.label.toLowerCase().includes(trimmed));
+    }
+
+    // label にマッチする候補を返す
+    function u1f_suggestNodesByLabel(label) {
+        if (!label || label.trim() === '') {
+            return [];
+        }
+        const trimmed = label.trim().toLowerCase();
+        return nodesData.filter(n => n.label.toLowerCase().includes(trimmed)).slice(0, 10); // 最大10件
+    }
+
+    // 新規関数：label での検索実行
+    function u1f_performLabelSearch(label, options = {}) {
+        currentState = STATE.SEARCHING;
+        console.log('[SEARCH] u1f_performLabelSearch start, label=', label, 'options=', options);
+
+        const target = u1f_findNodeByLabel(label);
+        if (!target) {
+            alert('指定した学問「' + label + '」が見つかりません');
+            currentState = STATE.IDLE;
+            return false;
+        }
+
+        const id = target.id;
+        const level = target.level;
+        const min = Math.max(0, level - 1);
+        let max = level + 1;
+        // データの最大深さを超えている場合は clamp
+        if (max > maxAvailableLevel) { max = maxAvailableLevel }
+
+        // 深さを更新（UI に反映）
+        dom.minDepth.value = String(min);
+        dom.maxDepth.value = String(max);
+
+        // node/edge フィルタ
+        const filteredNodes = nodesData.filter(n => (typeof n.level === 'number') && n.level >= min && n.level <= max);
+        const filteredEdges = buildEdgesFromPaths(filteredNodes);
+
+        // 描画
+        vof_setNetworkData(filteredNodes, filteredEdges);
+
+        // 見た目ロック（label検索が適用されている状態を示す）
+        vof_applyVisualLock('id');
+
+        currentState = STATE.IDLE;
+        console.log('[SEARCH] u1f_performLabelSearch done');
+        return true;
+    }
+
+    // ------------------------
+    // u1f_performIdSearch(id, options = {})
+    // 引数：
+    // - u1f_performIdSearch(id) : id 指定から
+    // - id: 数値
+    // - options: { fromHash: boolean } -- ハッシュ起動かどうかのフラグ
+    // 戻り値：true if success, false if not
+    // ------------------------
+    function u1f_performIdSearch(id, options = {}) {
+        currentState = STATE.SEARCHING;
+        console.log('[SEARCH] u1f_performIdSearch start, id=', id, 'options=', options);
+
+        if (!Number.isFinite(id)) {
+            alert('ID が不正です');
+            currentState = STATE.IDLE;
+            return false;
+        }
+
+        const target = nodesData.find(n => n.id === id);
+        if (!target) {
+            alert('指定したIDのノードが存在しません: ' + id);
+            currentState = STATE.IDLE;
+            return false;
+        }
+
+        const level = target.level;
+        const min = Math.max(0, level - 1);
+        let max = level + 1;
+        // データの最大深さを超えている場合は clamp
+        if (max > maxAvailableLevel) { max = maxAvailableLevel }
+
+        // 深さを更新（UI に反映）
+        dom.minDepth.value = String(min);
+        dom.maxDepth.value = String(max);
+
+        // node/edge フィルタ
+        const filteredNodes = nodesData.filter(n => (typeof n.level === 'number') && n.level >= min && n.level <= max);
+        const filteredEdges = buildEdgesFromPaths(filteredNodes);
+
+        // 描画
+        vof_setNetworkData(filteredNodes, filteredEdges);
+
+        // 見た目ロック（ID検索が適用されている状態を示す）
+        vof_applyVisualLock('id');
+
+        currentState = STATE.IDLE;
+        console.log('[SEARCH] u1f_performIdSearch done');
+        return true;
+    }
+
+    // perform node-focus display
+    function u1f_performNodeFocus(nodeId, up = 1, down = 1) {
+        currentState = STATE.SEARCHING;
+        console.log('[SEARCH] u1f_performNodeFocus start, id=', nodeId, 'up=', up, 'down=', down);
+
+        const target = nodesData.find(n => n.id === nodeId);
+        if (!target) {
+            alert('指定したノードが見つかりません: ' + nodeId);
+            currentState = STATE.IDLE;
+            return false;
+        }
+
+        const focusSet = computeFocusSet(nodeId, Math.max(0, Math.floor(Number(up) || 0)), Math.max(0, Math.floor(Number(down) || 0)));
+        const filteredNodes = nodesData.filter(n => focusSet.has(n.id));
+        const filteredEdges = buildEdgesFromPaths(filteredNodes);
+
+        vof_setNetworkData(filteredNodes, filteredEdges);
+        vof_applyVisualLock('id'); // reuse id-lock (visual effect)
+        currentState = STATE.IDLE;
+        console.log('[SEARCH] u1f_performNodeFocus done, nodes=', filteredNodes.length);
+        return true;
+    }
+
+    // ------------------------
+    // 見た目ロック（disabled は使わず、.dimmed のみで示す）
+    // ------------------------
+    let currentLock = null; // null | 'id' | 'depth'
+
+    // ------------------------
+    // 関数名   : vof_applyVisualLock(searchMode)
+    // 名称     : 見た目ロック適用
+    // 内容     : 指定されたモードに応じて、関連する UI 要素を dimmed にする
+    // 引数     : searchMode: 'id' or 'depth'
+    // 戻り値   : void
+    // ------------------------
+    function vof_applyVisualLock(searchMode) {
+        // searchMode: 'id' or 'depth'
+        currentLock = searchMode;
+        console.log('[UI] vof_applyVisualLock:', searchMode);
+
+        // 要素群（存在チェックしてから扱う）
+        const depthControls = [dom.minDepth, dom.maxDepth, dom.updateBtn].filter(Boolean);
+        const labelControls = [dom.labelSearchInput, dom.labelSearchBtn, dom.labelSearchSuggestions].filter(Boolean);
+
+        // いったん全要素から dimmed を除去
+        [...depthControls, ...labelControls].forEach(el => {
+            if (el && el.classList) el.classList.remove('dimmed');
+        });
+
+        if (searchMode === 'id') {
+            // ラベル（id）検索モードでは深さ操作を弱める
+            depthControls.forEach(el => { if (el && el.classList) el.classList.add('dimmed'); });
+        } else if (searchMode === 'depth') {
+            // 深さモードではラベル操作を弱める
+            labelControls.forEach(el => { if (el && el.classList) el.classList.add('dimmed'); });
+        }
+    }
+
+    // ------------------------
+    // 関数名   : vof_clearVisualLock()
+    // 名称     : 見た目ロック解除処理
+    // 内容     : 現在の見た目ロックを解除する
+    // 引数     : void
+    // 戻り値   : void
+    // ------------------------
+    function vof_clearVisualLock() {
+        if (!currentLock) return;
+        console.log('[UI] vof_clearVisualLock from', currentLock);
+        currentLock = null;
+
+        const depthControls = [dom.minDepth, dom.maxDepth, dom.updateBtn].filter(Boolean);
+        const labelControls = [dom.labelSearchInput, dom.labelSearchBtn, dom.labelSearchSuggestions].filter(Boolean);
+
+        [...depthControls, ...labelControls].forEach(el => {
+            if (el && el.classList) el.classList.remove('dimmed');
+        });
+    }
+
+    // 再フォーカス時の解除（ユーザがどれかに focus したら見た目を戻す）
+    [dom.labelSearchInput, dom.minDepth, dom.maxDepth].forEach(el => {
+        el.addEventListener('focus', () => {
+            if (currentLock) vof_clearVisualLock();
+        });
+    });
+
+    // 再レンダリング（現在表示中のノード/エッジを再取得して色を再適用）
+    function refreshNetworkColors() {
+        if (!network || !network.body || !network.body.data) return;
+        try {
+            const currentNodes = network.body.data.nodes.get(); // 表示中のノード配列
+            const currentEdges = network.body.data.edges.get(); // 表示中のエッジ配列
+            // vof_setNetworkData は色付けロジックを参照して再描画するのでこれを呼ぶ
+            vof_setNetworkData(currentNodes, currentEdges);
+            console.log('[UI] refreshNetworkColors executed, nodes=', currentNodes.length, 'edges=', currentEdges.length);
+        } catch (e) {
+            console.warn('[UI] refreshNetworkColors failed:', e);
+        }
+    }
+
+    // ------------------------
+    // ノード説明パネル
+    // ------------------------
+    function showNodeInfo(node) {
+        const panel = document.getElementById('nodeInfoPanel');
+        const title = document.getElementById('nodeInfoTitle');
+        const titleEn = document.getElementById('nodeInfoTitleEn');
+        const body = document.getElementById('nodeInfoBody');
+
+        title.textContent = node.label;
+        titleEn.textContent = node.labelEn || '';
+
+        // ノード説明：node.description が無いなら空文字
+        const desc = node.description || "説明はありません。";
+        body.textContent = desc;
+
+        panel.classList.remove('hidden');
+    }
+
+    function hideNodeInfo() {
+        const panel = document.getElementById('nodeInfoPanel');
+        panel.classList.add('hidden');
+    }
+
+    // ノードクリック判定用タイムスタンプ（短時間の document.click を無視する）
+    let __lastNodeClickAt = 0;
+    // タッチによる操作タイムスタンプ（スマホ用）
+    let __lastTouchAt = 0;
+
+    // スマホのタッチは click に遅延でフォールバックが来るため
+    // network 上での touchstart を記録して、直後の document.click による誤閉じを防ぐ
+    if (dom && dom.networkContainer) {
+        dom.networkContainer.addEventListener('touchstart', function (ev) {
+            __lastTouchAt = Date.now();
+        }, { passive: true });
+    }
+
+    document.addEventListener('click', function (e) {
+        const panel = document.getElementById('nodeInfoPanel');
+
+        // 既にパネルが hidden なら無視
+        if (!panel || panel.classList.contains('hidden')) return;
+
+        // パネルをクリックした場合 → 閉じない
+        if (panel.contains(e.target)) return;
+
+        // ノードクリック直後の document click は無視（vis の click と document click が同時発火するため）
+        // タッチ操作の場合は遅延が大きめなので余裕を持たせる
+        const now = Date.now();
+        if ((__lastNodeClickAt && (now - __lastNodeClickAt) < 500) ||
+            (__lastTouchAt && (now - __lastTouchAt) < 700)) {
+            return;
+        }
+        // その他の場所をクリック → 閉じる
+        hideNodeInfo();
+    });
+
+    // ------------------------
+    // クリック／イベントハンドラの初期登録（STATE.IDLE で動く）
+    // ------------------------
+    function registerUiHandlers() {
+        // 深さ検索ボタン
+        dom.updateBtn.addEventListener('click', () => {
+            console.log('[UI] depth search clicked');
+            // 実行時は id input をクリア（仕様）
+            dom.labelSearchInput.value = '';
+            dom.labelSearchSuggestions.style.display = 'none';
+            performDepthSearch();
+        });
+
+        // label 検索ボタン
+        dom.labelSearchBtn.addEventListener('click', () => {
+            console.log('[UI] label search clicked');
+            const label = String(dom.labelSearchInput.value);
+            u1f_performLabelSearch(label);
+        });
+
+        // label input でのリアルタイム候補表示
+        dom.labelSearchInput.addEventListener('input', () => {
+            const label = dom.labelSearchInput.value;
+            const suggestions = u1f_suggestNodesByLabel(label);
+
+            if (suggestions.length === 0) {
+                dom.labelSearchSuggestions.style.display = 'none';
+                return;
+            }
+
+            // サジェスト一覧をクリア
+            dom.labelSearchSuggestions.innerHTML = '';
+            console.log('[UI] label search suggestions are cleared');
+
+            // 候補を追加
+            for (const node of suggestions) {
+                const li = document.createElement('li');
+                li.style.cssText = 'padding: 8px 12px; cursor: pointer; border-bottom: 1px solid #eee;';
+                li.textContent = node.label;
+                li.addEventListener('mouseover', () => {
+                    li.style.backgroundColor = '#f0f0f0';
+                });
+                li.addEventListener('mouseout', () => {
+                    li.style.backgroundColor = '';
+                });
+                li.addEventListener('click', () => {
+                    dom.labelSearchInput.value = node.label;
+                    dom.labelSearchSuggestions.style.display = 'none';
+                    u1f_performLabelSearch(node.label);
+                });
+                dom.labelSearchSuggestions.appendChild(li);
+            }
+
+            dom.labelSearchSuggestions.style.display = 'block';
+        });
+
+        // Enter キーで検索
+        dom.labelSearchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const label = dom.labelSearchInput.value;
+                dom.labelSearchSuggestions.style.display = 'none';
+                u1f_performLabelSearch(label);
+            }
+        });
+
+        // 外クリックで候補を非表示（学問検索）
+        document.addEventListener('click', (e) => {
+            if (!dom.labelSearchInput.contains(e.target) && !dom.labelSearchSuggestions.contains(e.target)) {
+                dom.labelSearchSuggestions.style.display = 'none';
+            }
+        });
+
+        // network をクリック時の動作
+        // network の click イベント（node クリック）
+        // 注意: network 初期化後にセットされる（u1f_initNetworkIfNeeded で）
+        function getClickMode() {
+            const radios = document.getElementsByName('clickMode');
+            for (const r of radios) {
+                if (r.checked) return r.value;
+            }
+            return 'select';
+        }
+
+        // we keep a single handler: if network is not ready, we ignore clicks
+        dom.networkContainer.addEventListener('click', (ev) => {
+            // do nothing special here; actual node clicks handled by vis event registered below
+        });
+        // register vis 'click' when network ready
+        if (u1f_initNetworkIfNeeded()) {
+            network.on('click', function (params) {
+                try {
+                    // ノードが選択されているか判定
+                    if (!params.nodes || !params.nodes.length) {
+                        // ノード以外（背景・エッジ等）をクリックした場合はパネルを閉じる
+                        console.log('[NETWORK] background/edge clicked - hiding panel');
+                        hideNodeInfo();
+                        return;
+                    }
+
+                    const nodeId = params.nodes[0];
+                    const node = (network.body && network.body.data && network.body.data.nodes) ? network.body.data.nodes.get(nodeId) : null;
+                    if (!node) {
+                        console.warn('[NETWORK] node not found in internal dataset:', nodeId);
+                        return;
+                    }
+                    const clickMode = getClickMode();
+                    console.log('[NETWORK] node clicked', nodeId, node, 'clickMode=', clickMode);
+
+                    // ノードクリック時刻を記録（document.click 側の誤閉じ防止）
+                    __lastNodeClickAt = Date.now();
+
+                    if (clickMode === 'select') {
+                        // パネル表示
+                        try {
+                            console.log("[click] Selecting node:", node.label);
+                            showNodeInfo(node);
+                        } catch (e) {
+                            console.warn('[NETWORK] select failed:', e);
+                        }
+                    } else if (clickMode === 'nodeFocus') {
+                        // ノードフォーカスモード：上方/下方の入力値を取得して表示
+                        const up = dom.focusUp ? Number(dom.focusUp.value) : 1;
+                        const down = dom.focusDown ? Number(dom.focusDown.value) : 1;
+                        u1f_performNodeFocus(node.id, up, down);
+                    } else {
+                        // link モード: released フラグを確認 (存在しなければ 0 扱い)
+                        const releasedFlag = Number(node.released) === 1 ? 1 : 0;
+                        if (releasedFlag !== 1) {
+                            // 公開されていないのでリンク遷移は行わない。説明パネルで案内する。
+                            console.log('[NETWORK] node is not released, blocking link open:', nodeId);
+                            showNodeInfo(node);
+                            return;
+                        }
+                        // 公開済みなら新しいタブで開く
+                        if (node.url) {
+                            window.open(node.url, '_blank');
+                        } else {
+                            console.warn('[NETWORK] node has no URL:', node);
+                        }
+                    }
+                } catch (e) {
+                    console.error('[NETWORK] click handler error:', e);
+                }
+            });
+        }
+
+        // カラーモードラジオの変更を検知して再描画（レインボー適用）
+        if (dom.colorModeRadios && dom.colorModeRadios.length) {
+            for (const r of dom.colorModeRadios) {
+                r.addEventListener('change', () => {
+                    console.log('[UI] colorMode changed ->', document.querySelector('input[name="colorMode"]:checked').value);
+                    // 現在表示しているノード/エッジを再取得して色を再適用
+                    refreshNetworkColors();
+                });
+            }
+        }
+    }
+
+    // ------------------------
+    // 初期化フロー（状態遷移順）
+    // ------------------------
+    (function mainFlow() {
+        try {
+            console.log('[MAIN] start state machine');
+            // STATE 1: data validation
+            if (!validateData()) {
+                console.error('[MAIN] data validation failed - abort');
+                return;
+            }
+
+            // STATE 2: network init
+            if (!initializeNetwork()) {
+                console.error('[MAIN] network initialization failed - abort');
+                return;
+            }
+
+            // register UI handlers after network ready
+            registerUiHandlers();
+
+            // STATE 3: hash bootstrap (if any)
+            const hashHandled = bootstrapFromHash();
+            if (hashHandled) {
+                // BOOTSTRAP_SEARCH did internal drawing
+                console.log('[MAIN] bootstrap handled, entering IDLE');
+                currentState = STATE.IDLE;
+                return;
+            }
+
+            // otherwise draw default graph according to selects
+            currentState = STATE.IDLE;
+            console.log('[MAIN] entering IDLE state');
+            // initial draw (respect current min/max selects)
+            performDepthSearch();
+        } catch (e) {
+            console.error('[MAIN] unexpected error:', e);
+            currentState = STATE.ERROR;
+        }
+    })();
+
+    // ------------------------
+    // 公開（デバッグ用）
+    // ------------------------
+    window.__SiteGraph = {
+        STATE,
+        getCurrentState: () => currentState,
+        getErrorFlags: () => ({ ...errorFlags }),
+        reinitNetwork: () => { networkInitialized = false; return u1f_initNetworkIfNeeded(); },
+        performDepthSearch,
+        u1f_performLabelSearch,
+        u1f_performIdSearch,
+        vof_clearVisualLock
+    };
+}); // DOMContentLoaded end

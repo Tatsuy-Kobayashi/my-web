@@ -423,8 +423,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     const border = darkenHex(bg, 30);
                     nodeCopy.color = { background: bg, border: border, highlight: { background: bg, border: border } };
                 } else {
-                    // colorMode === 'default-color': keep neutral appearance, but ensure color object exists for consistency
-                    nodeCopy.color = nodeCopy.color || { background: '#97C2FC', border: '#2B7CE9', highlight: { background: '#D2E5FF', border: '#2B7CE9' } };
+                    // colorMode === 'default-color': 共通のデフォルトカラーを明示的に適用（古い色を上書き）
+                    nodeCopy.color = { background: '#97C2FC', border: '#2B7CE9', highlight: { background: '#D2E5FF', border: '#2B7CE9' } };
                 }
                 return nodeCopy;
             });

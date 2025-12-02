@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // 名称     : paths から各ノードの level を計算
     // 内容     : nodes に含まれる paths を元に、各ノードの level を計算する
     // 引数     : nodes - ノード配列
-    // 戻り値   : None
+    // 戻り値   : maxAvailableLevel (int)
     // ------------------------
     function vof_ensureLevelsFromPaths(nodes) {
         maxAvailableLevel = 0;
@@ -168,6 +168,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // build parent/child maps from nodesData.paths
     let __parentsMap = null;   // childId -> Set(parentIds)
     let __childrenMap = null;  // parentId -> Set(childIds)
+
+    // ------------------------
+    // 関数名   : buildParentChildMaps(void)
+    // 名称     : paths から親/子関係マップを生成する処理
+    // 内容     : nodesData に含まれる paths を元に、親/子関係マップを生成する
+    // 引数     : void
+    // 戻り値   : None
+    // ------------------------
     function buildParentChildMaps() {
         __parentsMap = new Map();
         __childrenMap = new Map();
@@ -190,6 +198,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // compute focus set: include nodeId, ancestors up levels, descendants down levels
+    // ------------------------
+    // 関数名   : computeFocusSet(nodeId, upDepth = 1, downDepth = 1)
+    // 名称     : ノードを中心に、親/子関係を元に focus set を計算する処理
+    // 内容     : nodeId を中心に、upDepth 階層分の ancestors と downDepth 階層分の descendants を含む Set を計算する
+    // 引数     : nodeId - ノードID
+    //            upDepth - 上方向に探索する階層数(0以上の整数)
+    //            downDepth - 下方向に探索する階層数(0以上の整数)
+    // 戻り値   : Set - focus set
+    // ------------------------
     function computeFocusSet(nodeId, upDepth = 1, downDepth = 1) {
         if (!__parentsMap || !__childrenMap) buildParentChildMaps();
         const result = new Set();

@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const nodesData = [
         { id: 0, label: "学問", labelEn: "Academic Disciplines", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html", paths: ["0"], level: 0, released: 1, datePublished: 2024-9-28, dateModified: 2024-12-25, description: "あらゆる事物は何かしらの学問の一領域として捉えることができる" },
 
+        // 深さ1
         { id: 1, label: "人文科学", labelEn: "Humanities", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/humanities.html", paths: ["0:1"], released: 1 },
         { id: 2, label: "社会科学", labelEn: "Social Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/social_science.html", paths: ["0:2"], released: 0 },
         { id: 3, label: "形式科学", labelEn: "Formal Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/formal_science.html", paths: ["0:3"], released: 1 },
@@ -48,6 +49,8 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: 5, label: "応用科学", labelEn: "Applied Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html", paths: ["0:5"] },
         { id: 6, label: "学際領域", labelEn: "Interdisciplinary Fields", url: "https://tatsuy-kobayashi.github.io/my-web/docs/#", paths: ["0:6"], released: 0 },
 
+        // 深さ2
+        // 人文科学1
         { id: 10, label: "哲学", labelEn: "Philosophy", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/philosophy/philosophy.html", paths: ["0:1:10"], released: 0 },
         { id: 11, label: "芸術学", labelEn: "Art Studies", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/art_study/art_study.html", paths: ["0:1:11"], released: 0 },
         /*{ id: 11, label: "宗教学", labelEn: "Religious Studies", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/religious_study/religious_study.html", paths: ["0:1:11"] },*/
@@ -55,35 +58,165 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: 13, label: "心理学", labelEn: "Psychology", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/psychology/psychology.html", paths: ["0:1:13"] },
         { id: 14, label: "人類学", labelEn: "Anthropology", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/anthropology/anthropology.html", paths: ["0:1:14"] },
         { id: 15, label: "考古学", labelEn: "Archaeology", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/archaeology/archaeology.html", paths: ["0:1:15"] },
+        // 社会科学2
         { id: 20, label: "社会学", labelEn: "Sociology", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/sociology/sociology.html", paths: ["0:2:20"], released: 0 },
+        { id: 21, label: "地理学", labelEn: "Geography", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/geography/geography.html", paths: ["0:2:21"], released: 0 },
+        { id: 22, label: "歴史学", labelEn: "Historical Science", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/historical_science/historical_science.html", paths: ["0:2:22"], released: 0 },
+        { id: 23, label: "政治学", labelEn: "Political Science", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/political_science/political_science.html", paths: ["0:2:23"], released: 0 },
+        { id: 24, label: "経済学", labelEn: "Economics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/economics/economics.html", paths: ["0:2:24"], released: 0 },
+        { id: 25, label: "教育学", labelEn: "Pedagogy", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/pedagogy.html", paths: ["0:2:25"], released: 0 },
+        // 形式科学3
         { id: 30, label: "数学", labelEn: "Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html", paths: ["0:3:30"], released: 1, datePublished: 2024-9-30, dateModified: 2025-1-4, description: "数学とは、数量および空間図形の性質について研究する学問。" },
         { id: 31, label: "統計学", labelEn: "Statistics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/statistics/statistics.html", paths: ["0:3:31"], released: 0 },
+        // 自然科学4
         { id: 40, label: "物理学", labelEn: "Physics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/physics.html", paths: ["0:4:40"], released: 1 },
         { id: 41, label: "化学", labelEn: "Chemistry", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/chemistry/chemistry.html", paths: ["0:4:41"], released: 0 },
         { id: 42, label: "生物学", labelEn: "Biology", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/biology/biology.html", paths: ["0:4:42"], released: 0 },
         { id: 43, label: "地学", labelEn: "Earth Science", url: "https://tatsuy-kobayashi.github.io/my-web/docs/#", paths: ["0:4:43"], released: 0 },
+        // 応用科学5
         { id: 50, label: "情報学", labelEn: "Informatics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/informatics.html", paths: ["0:5:50"], released: 1 },
+        { id: 51, label: "工学", labelEn: "Engineering", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/engineering/engineering.html", paths: ["0:5:51"], released: 0 },
+        { id: 52, label: "農学", labelEn: "Agricultural Science", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/agricultural_science/agricultural_science.html", paths: ["0:5:52"], released: 0 },
+        { id: 53, label: "医学", labelEn: "Medical Science", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/medical_science/medical_science.html", paths: ["0:5:53"], released: 0 },
 
+        // 深さ3
+        // 数学30
         { id: 300, label: "数学用語", labelEn: "Mathematical Terms", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematical_terms/mathematical_terms.html", paths: ["0:3:30:300"], released: 0 },
         { id: 301, label: "数学基礎論", labelEn: "Foundations of Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html", paths: ["0:3:30:301"], released: 0 },
         { id: 302, label: "数論", labelEn: "Number Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/number_theory.html", paths: ["0:3:30:302"] },
         { id: 303, label: "代数学", labelEn: "Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebra.html", paths: ["0:3:30:303"] },
         { id: 304, label: "解析学", labelEn: "Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/analysis.html", paths: ["0:3:30:304"] },
+        { id: 305, label: "幾何学", labelEn: "Geometry", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/geometry/geometry.html", paths: ["0:3:30:305"] },
+        { id: 306, label: "離散数学", labelEn: "Discrete Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/discrete_mathematics/discrete_mathematics.html", paths: ["0:3:30:306"] },
+        { id: 307, label: "確率論", labelEn: "Probability Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/probability_theory/probability_theory.html", paths: ["0:3:30:307"] },
+        // 物理学40
         { id: 400, label: "物理用語", labelEn: "Physical Terms", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/physical_terms/physical_terms.html", paths: ["0:4:40:400"], released: 0 },
         { id: 401, label: "古典物理学", labelEn: "Classical Physics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/classical_physics/classical_physics.html", paths: ["0:4:40:401"], released: 0 },
         { id: 402, label: "量子物理学", labelEn: "Quantum Physics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/quantum_physics/quantum_physics.html", paths: ["0:4:40:402"], released: 0 },
+        { id: 403, label: "超ひも理論", labelEn: "Superstring Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/superstring_theory/superstring_theory.html", paths: ["0:4:40:403"], released: 0 },
+        // 情報学50
+        { id: 500, label: "IT用語", labelEn: "it_terms", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/it_terms/it_terms.html", paths: ["0:5:50:500"], released: 1 },
+        { id: 501, label: "情報理論", labelEn: "Information Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/information_theory/information_theory.html", paths: ["0:5:50:501"], released: 0 },
+        { id: 502, label: "計算理論", labelEn: "Theory of Computation", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/theory_of_computation.html", paths: ["0:5:50:502"], released: 0 },
+        { id: 503, label: "計算機科学", labelEn: "Computer Science", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/computer_science/computer_science.html", paths: ["0:5:50:503"], released: 0 },
+        { id: 504, label: "計算機工学", labelEn: "Computer Engineering", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/computer_engineering/computer_engineering.html", paths: ["0:5:50:504"], released: 0 },
+        { id: 505, label: "情報システム", labelEn: "Information System", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/information_system/information_system.html", paths: ["0:5:50:505"], released: 0 },
 
-        { id: 3010, label: "数理論理学", labelEn: "Foundations of Mathematics", url: "#", paths: ["0:3:30:301:3010"], released: 0 },
+        // 深さ4
+        // 数学基礎論301
+        { id: 3010, label: "数理論理学", labelEn: "Mathematical Logic", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/mathematical_logic.html", paths: ["0:3:30:301:3010"], released: 0 },
         { id: 3011, label: "集合論", labelEn: "Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html", paths: ["0:3:30:301:3011"], released: 1, description: "集合の基本概念から応用まで解説。集合の定義、演算（和・積・差集合）、部分集合、冪集合などをPythonのコード例とベン図で分かりやすく学べる。数学の基礎を支える集合論の入門として最適。" },
+        // 数論302
         { id: 3020, label: "数学定数", labelEn: "Mathematical Constants", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/mathematical_constant/mathematical_constant.html", paths: ["0:3:30:302:3020"], released: 1 },
+        // 代数学303
+        { id: 3030, label: "抽象代数学", labelEn: "Abstract Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/abstract_algebra.html", paths: ["0:3:30:303:3030"] },
+        { id: 3031, label: "普遍代数学", labelEn: "Universal Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/universal_algebra/universal_algebra.html", paths: ["0:3:30:303:3031"] },
         // 多親（代数・解析の両方の子）
-        { id: 3030, label: "代数解析学", labelEn: "Algebraic Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebraic_analysis/algebraic_analysis.html", paths: ["0:3:30:303:3030", "0:3:30:304:3030"], released: 0 },
+        /*{ id: 3030, label: "代数解析学", labelEn: "Algebraic Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebraic_analysis/algebraic_analysis.html", paths: ["0:3:30:303:3030", "0:3:30:304:3030"], released: 0 },*/
+        // 解析学304
         { id: 3040, label: "解析学基礎", labelEn: "Foundations of Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/foundations_of_analysis.html", paths: ["0:3:30:304:3040"], released: 1 },
+        // 物理学401
+        { id: 4010, label: "ニュートン力学", labelEn: "Newtonian Mechanics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/classical_physics/newtonian_mechanics/newtonian_mechanics.html", paths: ["0:4:40:401:4010"], released: 0 },
+        { id: 4011, label: "統計力学", labelEn: "Statistical Mechanics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/classical_physics/statistical_mechanics/statistical_mechanics.html", paths: ["0:4:40:401:4011"], released: 0 },
+        { id: 4012, label: "連続体の物理学", labelEn: "Physics of Continuum", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/classical_physics/physics_of_continuum/physics_of_continuum.html", paths: ["0:4:40:401:4012"], released: 0 },
+        // 情報理論501
+        { id: 5010, label: "符号理論", labelEn: "Coding Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/information_theory/coding_theory/coding_theory.html", paths: ["0:5:50:501:5010"], released: 0 },
+        { id: 5011, label: "暗号理論", labelEn: "Cryptography", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/information_theory/cryptography/cryptography.html", paths: ["0:5:50:501:5011"], released: 0 },
+        { id: 5012, label: "型理論", labelEn: "Type Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/information_theory/type_theory/type_theory.html", paths: ["0:5:50:501:5012"], released: 0 },
+        { id: 5013, label: "信号処理", labelEn: "Signal Processing", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/information_theory/signal_processing/signal_processing.html", paths: ["0:5:50:501:5013"], released: 0 },
+        // 計算理論502
+        { id: 5020, label: "システム科学", labelEn: "Systems Science", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/systems_science/systems_science.html", paths: ["0:5:50:502:5020"], released: 0 },
+        { id: 5021, label: "プログラム構造", labelEn: "Structure of Programs", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/structure_of_programs/structure_of_programs.html", paths: ["0:5:50:502:5021"], released: 0 },
+        { id: 5022, label: "スキーマ", labelEn: "Schema", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/schema/schema.html", paths: ["0:5:50:502:5022"], released: 0 },
+        { id: 5023, label: "計算モデル", labelEn: "Model of Computation", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/model_of_computation/model_of_computation.html", paths: ["0:5:50:502:5023"], released: 0 },
+        { id: 5024, label: "アルゴリズム", labelEn: "Algorithm", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/algorithm/algorithm.html", paths: ["0:5:50:502:5024"], released: 0 },
+        { id: 5025, label: "計算可能性理論", labelEn: "Computability Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/computability_theory/computability_theory.html", paths: ["0:5:50:502:5025"], released: 0 },
+        { id: 5026, label: "計算複雑性理論", labelEn: "Computational Complexity Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/computational_complexity_theory/computational_complexity_theory.html", paths: ["0:5:50:502:5026"], released: 0 },
+        { id: 5027, label: "コンピュータ言語", labelEn: "Computer Language", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/computer_language/computer_language.html", paths: ["0:5:50:502:5027"], released: 0 },
+        { id: 5028, label: "プログラム意味論", labelEn: "Program Semantics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/program_semantics/program_semantics.html", paths: ["0:5:50:502:5028"], released: 0 },
+        { id: 5029, label: "データサイエンス", labelEn: "Data Science", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/data_science/data_science.html", paths: ["0:5:50:502:5029"], released: 0 },
+        // 計算機科学503
+        { id: 5030, label: "ハードウェア・エンジニアリング", labelEn: "Hardware Engineering", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/computer_science/hardware_engineering/hardware_engineering.html", paths: ["0:5:50:503:5030"], released: 0 },
+        { id: 5031, label: "ソフトウェア・エンジニアリング", labelEn: "Software Engineering", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/computer_science/software_engineering/software_engineering.html", paths: ["0:5:50:503:5031"], released: 0 },
+        { id: 5032, label: "コンピュータ・セキュリティ", labelEn: "Computer Security", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/computer_science/computer_security/computer_security.html", paths: ["0:5:50:503:5032"], released: 0 },
+        // 情報システム505
+        { id: 5050, label: "コンピュータ・システム", labelEn: "Computer System", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/information_system/computer_system/computer_system.html", paths: ["0:5:50:505:5050"], released: 0 },
+        { id: 5051, label: "組込みシステム", labelEn: "Embedded System", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/information_system/embedded_system/embedded_system.html", paths: ["0:5:50:505:5051"], released: 0 },
 
+        // 深さ5
+        // 集合論3011
         { id: 30110, label: "素朴集合論", labelEn: "Naive Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/naive_set_theory/naive_set_theory.html", paths: ["0:3:30:301:3011:30110"], released: 1, description: "素朴集合論の基礎から応用まで解説。素朴包括原理やパラドックス許容論理を中心に、Pythonによる実装例を交えながら、ラッセルのパラドックスや論理体系の修正についても学べる数学基礎論の入門記事。" },
         { id: 30111, label: "公理的集合論", labelEn: "Axiomatic Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/axiomatic_set_theory.html", paths: ["0:3:30:301:3011:30111"], released: 1, description: "公理的集合論の基礎から発展まで解説。ZF集合論、NBG集合論、MK集合論など主要な体系を比較しながら、各公理の意味や相互関係、数学基礎論における役割を学べる。図解とともに体系的に理解できる入門記事。" },
+        // 抽象代数学3030
+        { id: 30300, label: "代数系一般論", labelEn: "Algebraic Structures", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/algebraic_structures.html", paths: ["0:3:30:303:3030:30300"] },
+        { id: 30301, label: "表現論・ホモロジー代数", labelEn: "Representation and Homological Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/representation_homological/representation_homological.html", paths: ["0:3:30:303:3030:30301", "0:3:30:303:3030:30300:303001:30301"] },
+        // 普遍代数学3031
+        { id: 30310, label: "代数的構造の一般理論", labelEn: "General Theory of Algebraic Structures", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/general_structure_theory/general_structure_theory.html", paths: ["0:3:30:303:3031:30310"] },
+        { id: 30311, label: "代数的理論（Lawvere理論）", labelEn: "Lawvere Theories", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/lawvere_theory/lawvere_theory.html", paths: ["0:3:30:303:3031:30311"] },
+        { id: 30312, label: "モデル理論・論理代数", labelEn: "Model Theory and Algebraic Logic", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/model_theory/model_theory.html", paths: ["0:3:30:303:3031:30312"] },
+        { id: 30313, label: "圏論的代数学", labelEn: "Categorical Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/categorical_algebra/categorical_algebra.html", paths: ["0:3:30:303:3031:30313"] },
+        // プログラム構造5021
+        { id: 50210, label: "データ表現", labelEn: "Data Representation", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/structure_of_programs/data_representation/data_representation.html", paths: ["0:5:50:502:5021:50210"], released: 0 },
+        { id: 50211, label: "型システム", labelEn: "Type System", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/structure_of_programs/type_system/type_system.html", paths: ["0:5:50:502:5021:50211"], released: 0 },
+        { id: 50212, label: "オブジェクト構造", labelEn: "Object Structure", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/structure_of_programs/object_structure/object_structure.html", paths: ["0:5:50:502:5021:50212"], released: 0 },
+        { id: 50213, label: "計算構造", labelEn: "Computation Structure", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/structure_of_programs/computation_structure/computation_structure.html", paths: ["0:5:50:502:5021:50213"], released: 0 },
+        // 計算モデル5023
+        { id: 50230, label: "オートマトン理論", labelEn: "Automaton Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/model_of_computation/automaton_theory/automaton_theory.html", paths: ["0:5:50:502:5023:50230"], released: 0 },
 
-        { id: 301110, label: "ツェルメロ＝フレンケル集合論", labelEn: "Zermelo-Fraenkel Set Theory with the Axiom of Choice", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/zermelo_fraenkel_choice_set_theory.html", paths: ["0:3:30:301:3011:30111:301110"], released: 0 }
+        // 深さ6
+        // 公理的集合論30111
+        { id: 301110, label: "ツェルメロ＝フレンケル集合論", labelEn: "Zermelo-Fraenkel Set Theory with the Axiom of Choice", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/zermelo_fraenkel_choice_set_theory.html", paths: ["0:3:30:301:3011:30111:301110"], released: 0 },
+        // 代数系一般論30300
+        { id: 303000, label: "原始的な代数的構造", labelEn: "Primitive Algebraic Structures", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/primitive_structures/primitive_structures.html", paths: ["0:3:30:303:3030:30300:303000"] },
+        { id: 303001, label: "群論", labelEn: "Group Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/group_theory/group_theory.html", paths: ["0:3:30:303:3030:30300:303001"] },
+        { id: 303002, label: "環論", labelEn: "Ring Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/ring_theory/ring_theory.html", paths: ["0:3:30:303:3030:30300:303002"] },
+        { id: 303003, label: "体論", labelEn: "Field Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/field_theory/field_theory.html", paths: ["0:3:30:303:3030:30300:303003"] },
+        { id: 303004, label: "その他の構造", labelEn: "Other Algebraic Structures", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/other_structures/other_structures.html", paths: ["0:3:30:303:3030:30300:303004"] },
+        { id: 303100, label: "代数・準同型・同値関係・商構造", labelEn: "Algebras, Homomorphisms, Congruence Relations, and Quotients", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebras_homomorphisms/algebras_homomorphisms.html", paths: ["0:3:30:303:3031:30310:303100"] },
+        { id: 303101, label: "代数的性質", labelEn: "Algebraic Properties", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebraic_properties/algebraic_properties.html", paths: ["0:3:30:303:3031:30310:303101"] },
+        { id: 303130, label: "圏論", labelEn: "Category Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/category_theory/category_theory.html", paths: ["0:3:30:303:3031:30313:303130"] },
+        { id: 303131, label: "基礎：関手・自然変換・極限・余極限", labelEn: "Functors, Natural Transformations, Limits and Colimits", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/functors_limits/functors_limits.html", paths: ["0:3:30:303:3031:30313:303131"] },
+        { id: 303132, label: "構造：モナド・アジュンクション・エンリッチド圏", labelEn: "Monads, Adjunctions, and Enriched Categories", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/monads_adjunctions/monads_adjunctions.html", paths: ["0:3:30:303:3031:30313:303132"] },
+        { id: 303133, label: "トポス論", labelEn: "Topos Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/topos_theory/topos_theory.html", paths: ["0:3:30:303:3031:30313:303133"] },
+        { id: 303134, label: "高次圏論・圏的ホモトピー論", labelEn: "Higher Category Theory and Homotopical Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/higher_category_theory/higher_category_theory.html", paths: ["0:3:30:303:3031:30313:303134"] },
+
+        // 深さ7
+        // 原始的な代数的構造303000
+        { id: 3030000, label: "マグマ", labelEn: "Magma", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/primitive_structures/magma/magma.html", paths: ["0:3:30:303:3030:30300:303000:3030000"] },
+        { id: 3030001, label: "半群", labelEn: "Semigroup", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/primitive_structures/semigroup/semigroup.html", paths: ["0:3:30:303:3030:30300:303000:3030001"] },
+        { id: 3030002, label: "モノイド", labelEn: "Monoid", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/primitive_structures/monoid/monoid.html", paths: ["0:3:30:303:3030:30300:303000:3030002"] },
+        // 群論303001
+        { id: 3030010, label: "群作用・対称群", labelEn: "Group Actions and Symmetric Groups", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/group_theory/group_actions/group_actions.html", paths: ["0:3:30:303:3030:30300:303001:3030010"] },
+        //{ id: 3030011, label: "表現論", labelEn: "Representation Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/group_theory/representation_theory/representation_theory.html", paths: ["0:3:30:303:3030:30300:303001:3030011"] },
+        { id: 3030012, label: "ホモロジー代数への接続", labelEn: "Connection to Homological Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/group_theory/homological_connection/homological_connection.html", paths: ["0:3:30:303:3030:30300:303001:3030012"] },
+        // 環論303002
+        { id: 3030020, label: "可換環論", labelEn: "Commutative Ring Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/ring_theory/commutative_ring/commutative_ring.html", paths: ["0:3:30:303:3030:30300:303002:3030020"] },
+        { id: 3030021, label: "非可換環論", labelEn: "Noncommutative Ring Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/ring_theory/noncommutative_ring/noncommutative_ring.html", paths: ["0:3:30:303:3030:30300:303002:3030021"] },
+        { id: 3030030, label: "ガロア理論", labelEn: "Galois Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/galois_theory/galois_theory.html", paths: ["0:3:30:303:3030:30300:303003:3030030"] },
+        { id: 3030031, label: "代数方程式論", labelEn: "Theory of Algebraic Equations", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebraic_equations/algebraic_equations.html", paths: ["0:3:30:303:3030:30300:303003:3030031"] },
+
+        // 深さ8
+        { id: 30300200, label: "加群論", labelEn: "Module Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/ring_theory/commutative_ring/module_theory/module_theory.html", paths: ["0:3:30:303:3030:30300:303002:3030020:30300200"] },
+        { id: 30300202, label: "代数幾何学", labelEn: "Algebraic Geometry", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/ring_theory/commutative_ring/algebraic_geometry/algebraic_geometry.html", paths: ["0:3:30:303:3030:30300:303002:3030020:30300202"] },
+        { id: 30300210, label: "多元環論", labelEn: "Algebras over a Ring", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebras_over_ring/algebras_over_ring.html", paths: ["0:3:30:303:3030:30300:303002:3030021:30300210"] },
+        { id: 30300211, label: "ワイル代数", labelEn: "Weyl Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/weyl_algebra/weyl_algebra.html", paths: ["0:3:30:303:3030:30300:303002:3030021:30300211"] },
+        { id: 30300310, label: "解の可解性・代数的閉包・構造理論", labelEn: "Solvability and Algebraic Closure", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebraic_solvability/algebraic_solvability.html", paths: ["0:3:30:303:3030:30300:303003:3030031:30300310"] },
+
+        // 深さ9
+        { id: 303002000, label: "ホモロジー代数", labelEn: "Homological Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/homological_algebra/homological_algebra.html", paths: ["0:3:30:303:3030:30300:303002:3030020:30300200:303002000"] },
+        { id: 303002001, label: "導来関手・Ext, Tor", labelEn: "Derived Functors (Ext, Tor)", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/derived_functors/derived_functors.html", paths: ["0:3:30:303:3030:30300:303002:3030020:30300200:303002001"] },
+        { id: 303002020, label: "代数多様体・スキーム・層理論", labelEn: "Algebraic Varieties, Schemes, and Sheaf Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/schemes_sheaves/schemes_sheaves.html", paths: ["0:3:30:303:3030:30300:303002:3030020:30300202:303002020"] },
+        { id: 303002021, label: "層コホモロジー", labelEn: "Sheaf Cohomology", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/sheaf_cohomology/sheaf_cohomology.html", paths: ["0:3:30:303:3030:30300:303002:3030020:30300202:303002021"] },
+        { id: 303002100, label: "テンソル代数", labelEn: "Tensor Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/tensor_algebra/tensor_algebra.html", paths: ["0:3:30:303:3030:30300:303002:3030021:30300210:303002100"] },
+        { id: 303002101, label: "リー代数", labelEn: "Lie Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/lie_algebra/lie_algebra.html", paths: ["0:3:30:303:3030:30300:303002:3030021:30300210:303002101"] },
+
+        // 深さ10
+        { id: 3030020000, label: "代数的トポロジー", labelEn: "Algebraic Topology", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/homological_algebra/homological_algebra.html", paths: ["0:3:30:303:3030:30300:303002:3030020:30300200:303002000:3030020000"] },
+        { id: 3030021000, label: "線型代数学", labelEn: "Linear Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/linear_algebra/linear_algebra.html", paths: ["0:3:30:303:3030:30300:303002:3030021:30300210:303002100:3030021000"] },
+        { id: 3030021001, label: "外積代数", labelEn: "Exterior Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/exterior_algebra/exterior_algebra.html", paths: ["0:3:30:303:3030:30300:303002:3030021:30300210:303002100:3030021001"] },
+        { id: 3030021002, label: "対称代数", labelEn: "Symmetric Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/symmetric_algebra/symmetric_algebra.html", paths: ["0:3:30:303:3030:30300:303002:3030021:30300210:303002100:3030021002"] },
+        { id: 3030021003, label: "クリフォード代数", labelEn: "Clifford Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/clifford_algebra/clifford_algebra.html", paths: ["0:3:30:303:3030:30300:303002:3030021:30300210:303002100:3030021003"] },
+        { id: 3030021010, label: "カッツ・ムーディー代数", labelEn: "Kac–Moody Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/kac_moody/kac_moody.html", paths: ["0:3:30:303:3030:30300:303002:3030021:30300210:303002101:3030021010"] }
     ];
 
     // ------------------------
@@ -324,7 +457,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     solver: "forceAtlas2Based",
                     forceAtlas2Based: {
                         gravitationalConstant: -40,  // 反発力を弱める（デフォルト -200）
-                        springLength: 60,            // エッジの自然長を短くする（重要）
+                        springLength: 65,            // エッジの自然長を短くする（重要）
                         springConstant: 0.2          // バネの硬さ、強すぎると暴れる
                     },
                     stabilization: {
@@ -782,20 +915,27 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('[UI] vof_applyVisualLock:', searchMode);
 
         // 要素群（存在チェックしてから扱う）
-        const depthControls = [dom.minDepth, dom.maxDepth, dom.updateBtn].filter(Boolean);
-        const labelControls = [dom.labelSearchInput, dom.labelSearchBtn, dom.labelSearchSuggestions].filter(Boolean);
+        const depthInputControls = [dom.minDepth, dom.maxDepth].filter(Boolean);
+        const depthBtnControls = [dom.updateBtn].filter(Boolean);
+        const labelInputControls = [dom.labelSearchInput, dom.labelSearchSuggestions].filter(Boolean);
+        const labelBtnControls = [dom.labelSearchBtn].filter(Boolean);
 
         // いったん全要素から dimmed を除去
-        [...depthControls, ...labelControls].forEach(el => {
-            if (el && el.classList) el.classList.remove('dimmed');
+        [...depthInputControls, ...depthBtnControls, ...labelInputControls, ...labelBtnControls].forEach(el => {
+            if (el && el.classList) {
+                el.classList.remove('dimmed');
+                el.classList.remove('btn-dim');
+            }
         });
 
         if (searchMode === 'id') {
             // ラベル（id）検索モードでは深さ操作を弱める
-            depthControls.forEach(el => { if (el && el.classList) el.classList.add('dimmed'); });
+            depthInputControls.forEach(el => { if (el && el.classList) el.classList.add('dimmed'); });
+            depthBtnControls.forEach(el => { if (el && el.classList) el.classList.add('btn-dim'); });
         } else if (searchMode === 'depth') {
             // 深さモードではラベル操作を弱める
-            labelControls.forEach(el => { if (el && el.classList) el.classList.add('dimmed'); });
+            labelInputControls.forEach(el => { if (el && el.classList) el.classList.add('dimmed'); });
+            labelBtnControls.forEach(el => { if (el && el.classList) el.classList.add('btn-dim'); });
         }
     }
 
@@ -815,7 +955,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const labelControls = [dom.labelSearchInput, dom.labelSearchBtn, dom.labelSearchSuggestions].filter(Boolean);
 
         [...depthControls, ...labelControls].forEach(el => {
-            if (el && el.classList) el.classList.remove('dimmed');
+            if (el && el.classList) {
+                el.classList.remove('dimmed');
+                el.classList.remove('btn-dim');
+            }
         });
     }
 

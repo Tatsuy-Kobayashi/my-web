@@ -483,9 +483,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 // 副経路: 曲線（物理要請を尊重しつつ、空いている空間を通す）
                 edgeOptions.smooth = {
                     enabled: true,
-                    type: "dynamic",
+                    type: "dynamic",   // 動的に曲がり具合を調整
                     roundness: 0.4
                 };
+                // 物理的な長さを主経路の数倍に設定して「緩く」する
+                // これにより、主経路の構造（反発力と張力）が優先され、副経路はそこからあぶれた距離をつなぐ形になる
+                edgeOptions.length = 300; // default (65) の約4〜5倍
                 // 副経路であることを視覚的に区別（例: 破線、少し薄い色など）
                 edgeOptions.dashes = true;
                 edgeOptions.color = { opacity: 0.6, inherit: 'from' };

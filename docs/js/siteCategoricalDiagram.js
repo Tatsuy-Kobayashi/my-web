@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: 30410, label: "微分法", labelEn: "Differential Calculus", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/calculus/differential_calculus/differential_calculus.html", mainPath: ["0:3:30:304:3041:30410"], released: 1 },
         { id: 30411, label: "測度論", labelEn: "Measure Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/calculus/measure_theory/measure_theory.html", mainPath: ["0:3:30:304:3041:30411"], released: 0 },
         { id: 30412, label: "積分法", labelEn: "Integral Calculus", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/calculus/integral_calculus/integral_calculus.html", mainPath: ["0:3:30:304:3041:30412"], released: 0 },
-        { id: 30413, label: "変分法", labelEn: "Calculus of Variations", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/calculus_of_variations/calculus_of_variations.html", paths: ["0:3:30:304:3041:30413"], released: 1 },
+        { id: 30413, label: "変分法", labelEn: "Calculus of Variations", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/calculus_of_variations/calculus_of_variations.html", mainPath: ["0:3:30:304:3041:30413"], released: 1 },
         //{ id: 30414, label: "調和解析", labelEn: "Harmonic Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/calculus/harmonic_analysis/harmonic_analysis.html", paths: ["0:3:30:304:3041:30414"], released: 1 },
         // 代数解析学3042
         { id: 30420, label: "テンソル解析", labelEn: "Tensor Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/algebraic_analysis/tensor_analysis/tensor_analysis.html", mainPath: ["0:3:30:304:3042:30420"], released: 0 },
@@ -239,8 +239,8 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: 304120, label: "リーマン積分", labelEn: "Riemann Integral", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/calculus/integral_calculus/riemann_integral/riemann_integral.html", mainPath: ["0:3:30:304:3041:30412:304120"], released: 1 },
         { id: 304121, label: "ルベーグ積分", labelEn: "Lebesgue Integral", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/calculus/integral_calculus/lebesgue_integral/lebesgue_integral.html", mainPath: ["0:3:30:304:3041:30412:304121"], released: 1 },
         // 変分法30413
-        { id: 304130, label: "オイラー–ラグランジュ方程式", labelEn: "Euler–Lagrange Equation", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/calculus_of_variations/euler_lagrange_equation/euler_lagrange_equation.html", paths: ["0:3:30:304:3041:30413:304130"], released: 1 },
-        { id: 304131, label: "変分原理", labelEn: "Variational Principles", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/calculus_of_variations/variational_principles/variational_principles.html", paths: ["0:3:30:304:3041:30413:304131"], released: 1 },
+        { id: 304130, label: "オイラー–ラグランジュ方程式", labelEn: "Euler–Lagrange Equation", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/calculus_of_variations/euler_lagrange_equation/euler_lagrange_equation.html", mainPath: ["0:3:30:304:3041:30413:304130"], released: 1 },
+        { id: 304131, label: "変分原理", labelEn: "Variational Principles", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/calculus_of_variations/variational_principles/variational_principles.html", mainPath: ["0:3:30:304:3041:30413:304131"], released: 1 },
         // 関数空間論30430
         { id: 304300, label: "トポロジカル・ベクトル空間", labelEn: "Topological Vector Space", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/function_space_theory/topological_vector_space/topological_vector_space.html", mainPath: ["0:3:30:304:3043:30430:304300"], released: 0 },
         // 作用素論30431
@@ -302,7 +302,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: 3040042, label: "完備性（連続体の性質）", labelEn: "Completeness of the Continuum", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/theory_of_real_numbers/construction_of_real_numbers/completeness_of_the_continuum/completeness_of_the_continuum.html", mainPath: ["0:3:30:304:3040:30400:304004:3040042"], released: 1 },
         { id: 3040043, label: "コーシー列による体論的構成", labelEn: "Cauchy Sequence Construction of Fields", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/theory_of_real_numbers/construction_of_real_numbers/cauchy_sequence_construction/cauchy_sequence_construction.html", mainPath: ["0:3:30:304:3040:30400:304004:3040043"], released: 1 },
         // ルベーグ積分304121
-        { id: 3041210, label: "収束定理（優収束定理、ファトウの補題）", labelEn: "Convergence Theorems", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/calculus/integral_calculus/lebesgue_integral/convergence_theorems/convergence_theorems.html", paths: ["0:3:30:304:3041:30412:304121:3041210"], released: 1 },
+        { id: 3041210, label: "収束定理（優収束定理、ファトウの補題）", labelEn: "Convergence Theorems", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/calculus/integral_calculus/lebesgue_integral/convergence_theorems/convergence_theorems.html", mainPath: ["0:3:30:304:3041:30412:304121:3041210"], released: 1 },
         // トポロジカル・ベクトル空間304300
         { id: 3043000, label: "$L^{p}$空間", labelEn: "$L^{p}$ Space", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/function_space_theory/topological_vector_space/L_p_space/L_p_space.html", mainPath: ["0:3:30:304:3043:30430:304300:3043000"], released: 0 },
         { id: 3043001, label: "半ノルム空間", labelEn: "Half-Norm Space", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/function_space_theory/topological_vector_space/half-norm_space/half-norm_space.html", mainPath: ["0:3:30:304:3043:30430:304300:3043001"], released: 0 },
@@ -399,15 +399,20 @@ document.addEventListener('DOMContentLoaded', function () {
     // ------------------------
     // 関数名   : vof_ensureLevelsFromPaths(nodes)
     // 名称     : paths から各ノードの level を計算
-    // 内容     : nodes に含まれる paths を元に、各ノードの level を計算する
+    // 内容     : nodes に含まれる mainPath を元に、各ノードの階層（level）を計算する。ノードの階層は、グラフの構造を決定づけるため、原則として mainPath に基づいて計算する
     // 引数     : nodes - ノード配列
     // 戻り値   : maxAvailableLevel (int)
     // ------------------------
     function vof_ensureLevelsFromPaths(nodes) {
         maxAvailableLevel = 0;
+
         for (const n of nodes) {
-            if (!n.paths || n.paths.length === 0) continue;
-            const depths = n.paths.map(p => p.split(":").length - 1);
+            // mainPath が存在しない場合は validateData で弾かれるため、ここでは安全に参照可能
+            // 階層決定は mainPath を基準とする
+            const paths = n.mainPath;
+
+            if (!paths || paths.length === 0) continue;
+            const depths = paths.map(p => p.split(":").length - 1);
             n.level = Math.min(...depths);       // ルートが level 0 として整合
             if (typeof n.level === 'number' && Number.isFinite(n.level)) {
                 maxAvailableLevel = Math.max(maxAvailableLevel, n.level);
@@ -418,38 +423,77 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ------------------------
     // 関数名   : buildEdgesFromPaths(filteredNodes)
-    // 名称     : paths からエッジ情報を生成する処理
-    // 内容     : filteredNodes に含まれる paths を元に、エッジ情報を生成する
+    // 名称     : path からエッジ情報を生成する処理
+    // 内容     : filteredNodes に含まれる path を元に、エッジ情報を生成する
     // 引数     : filteredNodes - ユーザ操作で選択されたノード配列
     // 戻り値   : edges - 生成されたエッジ配列
     // ------------------------
     function buildEdgesFromPaths(filteredNodes) {
         const visible = new Set(filteredNodes.map(n => n.id));
         const edges = [];
-        const dedup = new Set();
+        // 重複エッジ防止用（from->to をキーにする）
+        // ただし、同じ from->to でも main と aux が競合する場合、main を優先する仕様とする
+        const dedup = new Map(); // Key: "from->to", Value: "main" | "aux"
 
-        for (const n of filteredNodes) {
-            const paths = n.paths || [];
-            for (const pathStr of paths) {
+        // 内部関数: パスからエッジを抽出して一時マップに登録
+        const processPaths = (node, pathList, type) => {
+            if (!pathList) return;
+            for (const pathStr of pathList) {
                 const parts = pathStr.split(":").map(Number);
-
-                // 末尾が自身のIDで終わっているか（データ健全性チェック）
-                if (parts[parts.length - 1] !== n.id) continue;
+                // 末尾が自身のIDチェック
+                if (parts[parts.length - 1] !== node.id) continue;
 
                 for (let i = 0; i < parts.length - 1; i++) {
                     const from = parts[i];
-                    const to   = parts[i + 1];
-                    // 可視ノード同士のみエッジを張る
+                    const to = parts[i + 1];
+
+                    // 可視ノード同士のみ
                     if (!visible.has(from) || !visible.has(to)) continue;
 
                     const key = `${from}->${to}`;
-                    if (!dedup.has(key)) {
-                        dedup.add(key);
-                        edges.push({ from, to });
+                    const currentType = dedup.get(key);
+
+                    // まだ登録されていない、または既存が aux で今回が main の場合は上書き（main優先）
+                    if (!currentType || (currentType === 'aux' && type === 'main')) {
+                        dedup.set(key, type);
                     }
                 }
             }
+        };
+
+        for (const n of filteredNodes) {
+            // 1. auxPath (副経路) を先に処理
+            processPaths(n, n.auxPath, 'aux');
+            // 2. mainPath (主経路) を後に処理（重複時は main として判定させるため）
+            processPaths(n, n.mainPath, 'main');
         }
+
+        // マップから最終的なエッジ配列を生成
+        dedup.forEach((type, key) => {
+            const [from, to] = key.split('->').map(Number);
+
+            let edgeOptions = { from, to };
+
+            if (type === 'main') {
+                // 主経路: 直線（物理演算の骨格となる）
+                edgeOptions.smooth = { enabled: false };
+                // 必要であれば色や幅を強調
+                // edgeOptions.width = 2;
+            } else {
+                // 副経路: 曲線（物理要請を尊重しつつ、空いている空間を通す）
+                edgeOptions.smooth = {
+                    enabled: true,
+                    type: "dynamic",
+                    roundness: 0.4
+                };
+                // 副経路であることを視覚的に区別（例: 破線、少し薄い色など）
+                edgeOptions.dashes = true;
+                edgeOptions.color = { opacity: 0.6, inherit: 'from' };
+            }
+
+            edges.push(edgeOptions);
+        });
+
         return edges;
     }
 
@@ -468,9 +512,13 @@ document.addEventListener('DOMContentLoaded', function () {
         __parentsMap = new Map();
         __childrenMap = new Map();
         const ids = new Set(nodesData.map(n => n.id));
+
         for (const n of nodesData) {
-            const paths = n.paths || [];
-            for (const p of paths) {
+            // mainPath と auxPath を結合
+            const allPaths = [...(n.mainPath || [])];
+            if (n.auxPath) allPaths.push(...n.auxPath);
+
+            for (const p of allPaths) {
                 const parts = p.split(':').map(Number);
                 for (let i = 0; i < parts.length - 1; i++) {
                     const parent = parts[i];
@@ -652,20 +700,26 @@ document.addEventListener('DOMContentLoaded', function () {
             const colorModeEl = document.querySelector('input[name="colorMode"]:checked');
             const colorMode = colorModeEl ? colorModeEl.value : 'default-color';
 
-            // determine category from a path: return integer 1..6 or null
+            // 内部関数: determine category from a path: return integer 1..6 or null
             const detectCategoryFromNode = (n) => {
-                const paths = n.paths || [];
-                if (!paths.length) return null;
+                // カテゴリ判定は mainPath のみを使用する（auxPathによる汚染を防ぐ）
+                const paths = n.mainPath;
+                // mainPath は validateData で必須チェック済みだが、念のためガード
+                if (!paths || !paths.length) return null;
+                // 最初の mainPath を正とする
                 for (const p of paths) {
                     const parts = p.split(':').map(Number);
+
+                    // 配列の要素数が2以上（ルートと大カテゴリを含む）であり、かつ先頭（ルート）が確実に '0' であることを確認（データの整合性チェック）
                     if (parts.length >= 2 && parts[0] === 0) {
+                        // 「そのノードがどの『大カテゴリ（分野）』に属しているか」を知るために2番目の要素（インデックス1）を返す
                         return parts[1]; // 1..6 expected
                     }
                 }
                 return null;
             };
 
-            // compute rainbow color according to spec
+            // 内部関数: compute rainbow color according to spec
             const computeRainbowHex = (n) => {
                 const l = (typeof n.level === 'number' && Number.isFinite(n.level)) ? n.level : 0;
                 const cat = detectCategoryFromNode(n);
@@ -761,19 +815,36 @@ document.addEventListener('DOMContentLoaded', function () {
             ids.add(n.id);
         }
 
-        // エッジの参照チェックpaths の整合チェック: 各 path の各要素が存在するか、および path の末尾が自身の id であるか
+        // エッジの参照チェックpath の整合チェック: 各 mainPath の各要素が存在するか、および path の末尾が自身の id であるか
         for (const n of nodesData) {
-            if (!n.paths) continue;
-            for (const p of n.paths) {
+            // 【変更点】mainPath は必須。存在しない、または空の場合は即エラー
+            if (!n.mainPath || n.mainPath.length === 0) {
+                console.error('[ERROR] 必須データ mainPath が欠落、または空です:', n.id);
+                errorFlags.invalidData = true;
+                continue;
+            }
+
+            // 検証対象のパスを収集（mainPath + auxPath）
+            // auxPath は任意なので存在する場合のみ結合
+            const pathsToCheck = [...n.mainPath];
+            if (n.auxPath && Array.isArray(n.auxPath)) {
+                pathsToCheck.push(...n.auxPath);
+            }
+
+            for (const p of pathsToCheck) {
                 const parts = p.split(':').map(Number);
+
+                // 末尾チェック
                 if (parts[parts.length - 1] !== n.id) {
-                    console.error('[ERROR] paths の末尾が node.id と一致しません:', n.id, p);
+                    console.error('[ERROR] path の末尾が id と一致しません:', n.id, p);
                     errorFlags.invalidData = true;
                     continue;
                 }
+
+                // 参照ID存在チェック
                 for (const pid of parts) {
                     if (!ids.has(pid)) {
-                        console.error('[ERROR] paths が存在しないノードを参照しています:', p, 'missing:', pid);
+                        console.error('[ERROR] path が存在しないノードを参照しています:', p, 'missing:', pid);
                         errorFlags.invalidData = true;
                     }
                 }
@@ -785,7 +856,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return false;
         }
 
-        // ensure levels are present/consistent かつ最大深さを計算
+        // ensure levels are present/consistent かつ最大深さを計算（mainPath 優先で計算）
         const computedMax = vof_ensureLevelsFromPaths(nodesData);
         maxAvailableLevel = (typeof computedMax === 'number' && Number.isFinite(computedMax)) ? computedMax : 0;
         console.log('[DATA] computed maxAvailableLevel =', maxAvailableLevel);

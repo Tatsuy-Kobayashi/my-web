@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         // 深さ1
         { id: 1, label: "人文科学", labelEn: "Humanities", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/humanities.html", mainPath: ["0:1"], released: 1 },
         { id: 2, label: "社会科学", labelEn: "Social Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/social_science.html", mainPath: ["0:2"], released: 0 },
-        { id: 3, label: "形式科学", labelEn: "Formal Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/formal_science.html", mainPath: ["0:3"], released: 1 },
+        { id: 3, label: "形式科学", labelEn: "Formal Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/formal_science.html", mainPath: ["0:3"], released: 1, iconClass: "fa-shapes" },
         { id: 4, label: "自然科学", labelEn: "Natural Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/natural_science.html", mainPath: ["0:4"], released: 1 },
         { id: 5, label: "応用科学", labelEn: "Applied Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html", mainPath: ["0:5"] },
         { id: 6, label: "学際領域", labelEn: "Interdisciplinary Fields", url: "https://tatsuy-kobayashi.github.io/my-web/docs/#", mainPath: ["0:6"], released: 0 },
@@ -38,8 +38,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         { id: 24, label: "経済学", labelEn: "Economics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/economics/economics.html", mainPath: ["0:2:24"], released: 0 },
         { id: 25, label: "教育学", labelEn: "Pedagogy", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/pedagogy.html", mainPath: ["0:2:25"], released: 0 },
         // 形式科学3
-        { id: 30, label: "数学", labelEn: "Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html", mainPath: ["0:3:30"], released: 1, datePublished: "2024-09-30", dateModified: "2025-01-04", description: "数学とは、数量および空間図形の性質について研究する学問。" },
-        { id: 31, label: "統計学", labelEn: "Statistics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/statistics/statistics.html", mainPath: ["0:3:31"], released: 0 },
+        { id: 30, label: "数学", labelEn: "Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html", mainPath: ["0:3:30"], released: 1, datePublished: "2024-09-30", dateModified: "2025-01-04", description: "数学とは、数量および空間図形の性質について研究する学問。", keywords: ["学問", "数学", "情報理論", "物理学", "プログラミング", "教育"], iconClass: "fa-folder fa-fw", thumbnailUrl: ["https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-120x68.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-160x90.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-320x180.png"] },
+        { id: 31, label: "統計学", labelEn: "Statistics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/statistics/statistics.html", mainPath: ["0:3:31"], released: 0, description: "統計学とは、確率論を基盤にして、集団全体の性質を一部の標本を調べることによって推定するための処理・分析方法について研究する学問。", thumbnailUrl: ["https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-120x68.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-160x90.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-320x180.png"] },
         // 自然科学4
         { id: 40, label: "物理学", labelEn: "Physics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/physics.html", mainPath: ["0:4:40"], released: 1 },
         { id: 41, label: "化学", labelEn: "Chemistry", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/chemistry/chemistry.html", mainPath: ["0:4:41"], released: 0 },
@@ -53,8 +53,8 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         // 深さ3
         // 数学30
-        { id: 300, label: "数学用語", labelEn: "Mathematical Terms", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematical_terms/mathematical_terms.html", mainPath: ["0:3:30:300"], released: 0 },
-        { id: 301, label: "数学基礎論", labelEn: "Foundations of Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html", mainPath: ["0:3:30:301"], released: 0 },
+        { id: 300, label: "数学用語", labelEn: "Mathematical Terms", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematical_terms/mathematical_terms.html", mainPath: ["0:3:30:300"], released: 0, keywords: ["学問", "数学", "情報理論", "物理学", "プログラミング", "教育"] },
+        { id: 301, label: "数学基礎論", labelEn: "Foundations of Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html", mainPath: ["0:3:30:301"], released: 0, keywords: ["学問", "数学", "情報理論", "物理学", "プログラミング", "教育"], iconClass: "fa-folder fa-fw", thumbnailUrl: ["https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-120x68.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-160x90.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-320x180.png"] },
         { id: 302, label: "数論", labelEn: "Number Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/number_theory.html", mainPath: ["0:3:30:302"] },
         { id: 303, label: "代数学", labelEn: "Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebra.html", mainPath: ["0:3:30:303"] },
         { id: 304, label: "解析学", labelEn: "Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/analysis.html", mainPath: ["0:3:30:304"] },
@@ -361,11 +361,13 @@ document.addEventListener('DOMContentLoaded', async function () {
         renderDateInfo(currentNode);
         // C. 下層記事一覧生成
         renderChildList(siteData, currentNode);
-        // D. 関連記事リンク生成
+        // D. タグ一覧生成
+        renderTagList(currentNode);
+        // E. 関連記事リンク生成
         renderRelatedLinks(siteData, currentNode);
-        // E. 前後記事リンク生成
+        // F. 前後記事リンク生成
         renderPager(siteData, currentNode);
-        // F. 人気記事（これだけは別途 Views API等が必要ですが、枠組みだけ用意）
+        // G. 人気記事（これだけは別途 Views API等が必要ですが、枠組みだけ用意）
         renderPopularSection();
     } catch (error) {
         console.error('Error initializing page components:', error);
@@ -378,7 +380,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         const container = document.getElementById('breadcrumb-list');
         if (!container) return;
 
-        let html = `<a href="https://tatsuy-kobayashi.github.io/my-web/docs/"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&ensp;<span>Home</span></a>`;
+        let html = `<a href="https://tatsuy-kobayashi.github.io/my-web/docs/"><i class="fa fa-home fa-fw" aria-hidden="true" style="margin-right:5px;"></i><span>Home</span></a>`;
 
         // まず mainPath があればそれを使う（siteData の id パス）
         let pathIds = [];
@@ -395,21 +397,22 @@ document.addEventListener('DOMContentLoaded', async function () {
                 if (index >= pathIds.length - 1) return; // 最後はスキップ
                 const pathNode = allData.find(n => n.id === id);
                 if (pathNode) {
-                    html += `&ensp;&gt;&ensp;`;
+                    html += `<span class="sp" style="margin-right:5px; margin-left:5px;"><span class="fa fa-angle-right" aria-hidden="true"></span></span>`;
                     html += `<span class="link-container">`;
 
                     // iタグ（iconClass がある場合のみ）
+                    let icon = '';
                     if (pathNode.iconClass) {
-                        html += `<i class="fa fa-solid ${pathNode.iconClass}"></i>&ensp;`;
+                        icon += `<i class="fa fa-solid ${pathNode.iconClass}" style="margin-right:5px;"></i>`;
                     } else if (pathNode.iconUrl)
                     {   // 代わりに iconUrl がある場合
-                        html += `<span class="icon ${pathNode.iconClass}"></span>&ensp;`;
+                        icon += `<span class="icon ${pathNode.iconClass}" style="margin-right:5px;"></span>`;
                     }
 
                     // aタグ: preview-link 属性
                     const desc = pathNode.description || '説明はありません。';
                     const img = pathNode.imageUrl || '';
-                    html += `<a href="${pathNode.url}" class="preview-link" data-title="${pathNode.label}" data-description="${desc}" data-image="${img}">${pathNode.label}</a>`;
+                    html += `<a href="${pathNode.url}" class="preview-link" data-title="${pathNode.label}" data-description="${desc}" data-image="${img}">` + icon + `${pathNode.label}</a>`;
 
                     // link-preview div
                     html += `<div class="link-preview">`;
@@ -428,7 +431,15 @@ document.addEventListener('DOMContentLoaded', async function () {
                 }
             });
             // 現在の記事（リンクなし）
-            html += `&ensp;&gt;&ensp;<span>${current.label || current.title || ''}</span>`;
+            html += `<span class="sp" style="margin-right:5px; margin-left:5px;"><span class="fa fa-angle-right" aria-hidden="true"></span></span>`;
+            // iタグ（iconClass がある場合のみ）
+            if (current.iconClass) {
+                html += `<i class="fa fa-solid ${current.iconClass}" style="margin-right:5px;"></i>`;
+            } else if (current.iconUrl)
+            {   // 代わりに iconUrl がある場合
+                html += `<span class="icon ${current.iconClass}" style="margin-right:5px;"></span>`;
+            }
+            html += `<span>${current.label || ''}</span>`;
             container.innerHTML = html;
             return;
         }
@@ -499,7 +510,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 allData = [];
             }
         }
-        console.log(`siteData length: ${allData.length}`);
+
         // mainPath を使って現在ノードの下位（descendant）を階層的に表示する実装
         const getFirstPath = (node) => {
             if (!node) return '';
@@ -578,10 +589,13 @@ document.addEventListener('DOMContentLoaded', async function () {
                     return dps.some(mp => typeof mp === 'string' && mp.startsWith(childPath + ':'));
                 });
                 out += '<li>';
-                if (hasDesc) {
+                // 深い子を持つ場合または現在ノードの直下の子（parentPath === currentPath）の場合は
+                // <details><summary> でラップする。ただし内部リストは存在する場合のみ追加する。
+                if (hasDesc || parentPath === currentPath) {
                     out += '<details>';
                     out += `<summary>${makePreviewHtml(child)}</summary>`;
-                    out += buildList(childPath);
+                    const inner = buildList(childPath);
+                    if (inner) out += inner;
                     out += '</details>';
                 } else {
                     out += makePreviewHtml(child);
@@ -596,6 +610,32 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     /**
+     * タグリスト生成
+     */
+    function renderTagList(currentNode) {
+        const container = document.getElementById('article-page-topic');
+        if (!container) return;
+        container.innerHTML = '<dt>関連タグ</dt>';
+
+        const keywords = Array.isArray(currentNode && currentNode.keywords) ? currentNode.keywords : [];
+        if (keywords.length === 0) return;
+
+        const dd = document.createElement('dd');
+        let html = '';
+
+        keywords.forEach((kw, idx) => {
+            const tagUrl = `https://tatsuy-kobayashi.github.io/my-web/docs/tags/${encodeURIComponent(kw)}`;
+            html += `<span class="topic-label" data-index="${idx}">`;
+            html += `<a href="${tagUrl}"><span class="topic-label-text"># ${String(kw)}</span></a>`;
+            html += `</span>`;
+            if (idx < keywords.length - 1) html += ' ';
+        });
+
+        dd.innerHTML = html;
+        container.appendChild(dd);
+    }
+
+    /**
      * 関連記事リンク
      * mainPath に基づいて同じ親を持つ兄弟ノードから関連リンクを生成
      */
@@ -603,8 +643,77 @@ document.addEventListener('DOMContentLoaded', async function () {
         const container = document.getElementById('related-entries');
         if (!container) return;
 
-        let html = '<h1 class="related-entry-heading">関連記事</h1>';
+        // siteData を配列に統一
+        if (!Array.isArray(siteData)) {
+            try {
+                siteData = Object.values(siteData);
+            } catch (e) {
+                siteData = [];
+            }
+        }
 
+        // 現在のノードがタグを持つか確認
+        const currentKeywords = Array.isArray(currentNode && currentNode.keywords) ? currentNode.keywords : [];
+        if (currentKeywords.length === 0) {
+            container.innerHTML = '';
+            return;
+        }
+
+        // 同じタグを持つ記事をプール（ただし currentNode 自身は除外）
+        const relatedPool = siteData.filter(item => {
+            // 自身は除外
+            if (item.id === currentNode.id) return false;
+
+            // タグがない場合は除外
+            const itemKeywords = Array.isArray(item.keywords) ? item.keywords : [];
+            if (itemKeywords.length === 0) return false;
+
+            // 一つでも同じタグがあるか確認
+            return itemKeywords.some(kw => currentKeywords.includes(kw));
+        });
+
+        // 関連記事がない場合は何も表示しない
+        if (relatedPool.length === 0) {
+            container.innerHTML = '';
+            return;
+        }
+
+        // ランダムに最大6件をシャッフル
+        const shuffled = relatedPool.sort(() => Math.random() - 0.5).slice(0, 6);
+
+        let html = `<h1 class="related-entry-heading">関連記事</h1>`;
+        html += `<div class="related-list">`;
+
+        shuffled.forEach(related => {
+            const thumbUrl = Array.isArray(related.thumbnailUrl) && related.thumbnailUrl[1]
+                ? related.thumbnailUrl[1] : '';
+
+            // タグリストを表示（最初のタグのみ使用）
+            const tagLabel = Array.isArray(related.keywords) && related.keywords.length > 0
+                ? related.keywords[0]
+                : '';
+            const relatedDesc = related.description || '';
+
+            html += `<a href="${related.url}" class="related-entry-card-wrap a-wrap border-element cf" title="${related.label}" data-nodal="">`;
+            html += `<article class="related-entry-card e-card cf post type-post status-publish format-standard has-post-thumbnail hentry category-css-post">`;
+            html += `<figure class="related-entry-card-thumb card-thumb e-card-thumb">`;
+            if (thumbUrl) {
+                html += `<img width="160" height="90" src="${thumbUrl}" class="related-entry-card-thumb-image card-thumb-image wp-post-image lazyautosizes lazyloaded" alt="" decoding="async" data-sizes="auto" data-eio-rwidth="160" data-eio-rheight="90" sizes="160px">`;
+            } else {
+                html += `<img width="160" height="90" src="" class="related-entry-card-thumb-image card-thumb-image wp-post-image" alt="" decoding="async" style="display:none;">`;
+            }
+            if (tagLabel) {
+                html += `<span class="cat-label cat-label-81">${tagLabel}</span>`;
+            }
+            html += `</figure> <!-- /.related-entry-thumb -->`;
+            html += `<div class="related-entry-card-content card-content e-card-content">`;
+            html += `<h3 class="related-entry-card-title card-title e-card-title">${related.label}${relatedDesc ? `：${relatedDesc}` : ''}</h3>`;
+            html += `</div> <!-- /.related-entry-card-content -->`;
+            html += `</article> <!-- /.related-entry-card -->`;
+            html += `</a> <!-- /.related-entry-card-wrap -->`;
+        });
+
+        html += `</div> <!-- /related-list -->`;
         container.innerHTML = html;
     }
 
@@ -662,15 +771,39 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
 
         const currentIndex = siblings.findIndex(item => item.url === current.url);
+        if (currentIndex === -1) {
+            console.warn('Current node not found among siblings.');
+            container.innerHTML = '';
+            return;
+        }
         const prev = siblings[currentIndex - 1];
         const next = siblings[currentIndex + 1];
 
+        // サムネイル等の存在チェック用ヘルパ
+        const thumbHtml = (node) => {
+            if (!node) return '';
+            if (Array.isArray(node.thumbnailUrl) && node.thumbnailUrl.length > 0 && node.thumbnailUrl[0]) {
+                const src = node.thumbnailUrl[0];
+                return `<figure class="${node === prev ? 'prev-post-thumb' : 'next-post-thumb'} card-thumb"><img width="120" height="68" src="${src}" class="attachment-thumb120 size-thumb120 wp-post-image lazyautosizes ls-is-cached lazyloaded" alt="" decoding="async"></figure>`;
+            }
+            return ''; // サムネイルが無ければ空
+        };
+
         let html = '';
         if (prev) {
-            html += `<a href="${prev.url}" class="prev">« ${prev.label}</a>`;
+            const prevThumb = thumbHtml(prev);
+            const prevDesc = prev.description || '';
+            html += `<a href="${prev.url}" class="prev-post a-wrap border-element cf" data-nodal=""><div class="fa fa-chevron-left iconfont" aria-hidden="true"></div>${prevThumb}<div class="prev-post-title">${prev.label}${prevDesc ? `：${prevDesc}` : ''}</div></a>`;
+        } else {
+            html += `<span class="prev-post-placeholder">前の記事はありません</span>`;
         }
+
         if (next) {
-            html += `<a href="${next.url}" class="next">${next.label} »</a>`;
+            const nextThumb = thumbHtml(next);
+            const nextDesc = next.description || '';
+            html += `<a href="${next.url}" class="next-post a-wrap cf" data-nodal=""><div class="fa fa-chevron-right iconfont" aria-hidden="true"></div>${nextThumb}<div class="next-post-title">${next.label}${nextDesc ? `：${nextDesc}` : ''}</div></a>`;
+        } else {
+            html += `<span class="next-post-placeholder">次の記事はありません</span>`;
         }
 
         container.innerHTML = html;

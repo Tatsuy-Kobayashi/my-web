@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         // 深さ3
         // 数学30
-        { id: 300, label: "数学用語", labelEn: "Mathematical Terms", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematical_terms/mathematical_terms.html", mainPath: ["0:3:30:300"], released: 0, keywords: ["学問", "数学", "情報理論", "物理学", "プログラミング", "教育"] },
+        { id: 300, label: "数学用語", labelEn: "Mathematical Terms", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematical_terms/mathematical_terms.html", mainPath: ["0:3:30:300"], released: 0, keywords: ["数学", "情報理論", "物理学", "プログラミング", "教育"] },
         { id: 301, label: "数学基礎論", labelEn: "Foundations of Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html", mainPath: ["0:3:30:301"], released: 0, keywords: ["学問", "数学", "情報理論", "物理学", "プログラミング", "教育"], iconClass: "fa-folder fa-fw", thumbnailUrl: ["https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-120x68.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-160x90.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-320x180.png"] },
         { id: 302, label: "数論", labelEn: "Number Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/number_theory.html", mainPath: ["0:3:30:302"] },
         { id: 303, label: "代数学", labelEn: "Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebra.html", mainPath: ["0:3:30:303"] },
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         { id: 3010, label: "数理論理学", labelEn: "Mathematical Logic", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/mathematical_logic.html", mainPath: ["0:3:30:301:3010"], released: 0 },
         { id: 3011, label: "集合論", labelEn: "Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html", mainPath: ["0:3:30:301:3011"], released: 1, description: "集合の基本概念から応用まで解説。集合の定義、演算（和・積・差集合）、部分集合、冪集合などをPythonのコード例とベン図で分かりやすく学べる。数学の基礎を支える集合論の入門として最適。" },
         // 数論302
-        { id: 3020, label: "数学定数", labelEn: "Mathematical Constants", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/mathematical_constant/mathematical_constant.html", mainPath: ["0:3:30:302:3020"], released: 1 },
+        { id: 3020, label: "数学定数", labelEn: "Mathematical Constants", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/mathematical_constant/mathematical_constant.html", mainPath: ["0:3:30:302:3020"], released: 1, keywords: ["一覧"] },
         // 代数学303
         { id: 3030, label: "抽象代数学", labelEn: "Abstract Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/abstract_algebra.html", mainPath: ["0:3:30:303:3030"] },
         { id: 3031, label: "普遍代数学", labelEn: "Universal Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/universal_algebra/universal_algebra.html", mainPath: ["0:3:30:303:3031"] },
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         // 深さ5
         // 集合論3011
-        { id: 30110, label: "素朴集合論", labelEn: "Naive Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/naive_set_theory/naive_set_theory.html", mainPath: ["0:3:30:301:3011:30110"], released: 1, description: "素朴集合論の基礎から応用まで解説。素朴包括原理やパラドックス許容論理を中心に、Pythonによる実装例を交えながら、ラッセルのパラドックスや論理体系の修正についても学べる数学基礎論の入門記事。" },
+        { id: 30110, label: "素朴集合論", labelEn: "Naive Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/naive_set_theory/naive_set_theory.html", mainPath: ["0:3:30:301:3011:30110"], released: 1, description: "素朴集合論の基礎から応用まで解説。素朴包括原理やパラドックス許容論理を中心に、Pythonによる実装例を交えながら、ラッセルのパラドックスや論理体系の修正についても学べる数学基礎論の入門記事。", keywords: ["プログラミング", "Python"] },
         { id: 30111, label: "公理的集合論", labelEn: "Axiomatic Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/axiomatic_set_theory.html", mainPath: ["0:3:30:301:3011:30111"], released: 1, description: "公理的集合論の基礎から発展まで解説。ZF集合論、NBG集合論、MK集合論など主要な体系を比較しながら、各公理の意味や相互関係、数学基礎論における役割を学べる。図解とともに体系的に理解できる入門記事。" },
         // 抽象代数学3030
         { id: 30300, label: "代数系一般論", labelEn: "Algebraic Structures", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/algebraic_structures.html", mainPath: ["0:3:30:303:3030:30300"] },
@@ -337,6 +337,15 @@ document.addEventListener('DOMContentLoaded', async function () {
         { id: 3030021010, label: "カッツ・ムーディー代数", labelEn: "Kac–Moody Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/kac_moody/kac_moody.html", mainPath: ["0:3:30:303:3030:30300:303002:3030021:30300210:303002101:3030021010"] }
     ];
 
+    // 本来はここで fetch('/api/stats/popular') 等を行う
+    // const ranking = await fetch('/api/popular').then(r => r.json());
+    // container.innerHTML = 'Loading popular articles...';
+
+    const ranking = [
+        { id: 30, label: "数学",  url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html", totalViews: 90210, weeklyViews: 420, monthlyViews: 1800 },
+        { id: 40, label: "物理学", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/physics.html", totalViews: 80123, weeklyViews: 380, monthlyViews: 1600 }
+    ];
+
     // 2. 現在の記事ノードを特定
     try {
         // URLの末尾（例: mathematics.html）やフルパスで照合
@@ -368,7 +377,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         // F. 前後記事リンク生成
         renderPager(siteData, currentNode);
         // G. 人気記事（これだけは別途 Views API等が必要ですが、枠組みだけ用意）
-        renderPopularSection();
+        renderPopularSection(siteData, ranking);
+        // H. カテゴリー一覧生成
+        renderCategoryList(siteData);
     } catch (error) {
         console.error('Error initializing page components:', error);
     }
@@ -451,13 +462,13 @@ document.addEventListener('DOMContentLoaded', async function () {
     /**
      * 公開日/編集日
      */
-    function renderDateInfo(entry) {
+    function renderDateInfo(current) {
         const container = document.getElementById('date-info');
         if (!container) return;
 
         // ISO文字列を想定 (例: "2020-02-15T09:40:52Z")
-        const rawPub = entry.datePublished || null;
-        const rawRev = entry.dateModified || null;
+        const rawPub = current.datePublished || null;
+        const rawRev = current.dateModified || null;
 
         const toStringSafe = (v) => {
             if (v == null) return '';
@@ -612,12 +623,12 @@ document.addEventListener('DOMContentLoaded', async function () {
     /**
      * タグリスト生成
      */
-    function renderTagList(currentNode) {
+    function renderTagList(current) {
         const container = document.getElementById('article-page-topic');
         if (!container) return;
         container.innerHTML = '<dt>関連タグ</dt>';
 
-        const keywords = Array.isArray(currentNode && currentNode.keywords) ? currentNode.keywords : [];
+        const keywords = Array.isArray(current && current.keywords) ? current.keywords : [];
         if (keywords.length === 0) return;
 
         const dd = document.createElement('dd');
@@ -639,30 +650,30 @@ document.addEventListener('DOMContentLoaded', async function () {
      * 関連記事リンク
      * mainPath に基づいて同じ親を持つ兄弟ノードから関連リンクを生成
      */
-    function renderRelatedLinks(siteData, currentNode) {
+    function renderRelatedLinks(allData, current) {
         const container = document.getElementById('related-entries');
         if (!container) return;
 
-        // siteData を配列に統一
-        if (!Array.isArray(siteData)) {
+        // allData を配列に統一
+        if (!Array.isArray(allData)) {
             try {
-                siteData = Object.values(siteData);
+                allData = Object.values(allData);
             } catch (e) {
-                siteData = [];
+                allData = [];
             }
         }
 
         // 現在のノードがタグを持つか確認
-        const currentKeywords = Array.isArray(currentNode && currentNode.keywords) ? currentNode.keywords : [];
+        const currentKeywords = Array.isArray(current && current.keywords) ? current.keywords : [];
         if (currentKeywords.length === 0) {
             container.innerHTML = '';
             return;
         }
 
-        // 同じタグを持つ記事をプール（ただし currentNode 自身は除外）
-        const relatedPool = siteData.filter(item => {
+        // 同じタグを持つ記事をプール（ただし current 自身は除外）
+        const relatedPool = allData.filter(item => {
             // 自身は除外
-            if (item.id === currentNode.id) return false;
+            if (item.id === current.id) return false;
 
             // タグがない場合は除外
             const itemKeywords = Array.isArray(item.keywords) ? item.keywords : [];
@@ -811,14 +822,121 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     /**
      * 人気記事セクション
-     * talktoAI.md [4] にある通り、ここは閲覧数APIと結合する必要があります。
-     * ここではコンテナの準備のみ行います。
+     * ここは閲覧数APIと結合する必要があります。
+     * 記事の人気順ソートなどはサーバー側で行う想定です。
      */
-    function renderPopularSection() {
-        const container = document.getElementById('popular-section');
+    function renderPopularSection(allData, ranking) {
+        const container = document.getElementById('popular_entries');
         if (!container) return;
 
-        // 本来はここで fetch('/api/stats/popular') 等を行う
-        // container.innerHTML = 'Loading popular articles...';
+        // allData を配列に統一
+        if (!Array.isArray(allData)) {
+            try {
+                allData = Object.values(allData);
+            } catch (e) {
+                allData = [];
+            }
+        }
+        // ranking を配列に統一
+        if (!Array.isArray(ranking)) {
+            try {
+                ranking = Object.values(ranking);
+            } catch (e) {
+                ranking = [];
+            }
+        }
+
+        const findNode = (id) => allData.find(n => n && n.id === id);
+
+        // サムネイル等の存在チェック用ヘルパ
+        const thumbHtml = (node) => {
+            if (!node) return '';
+            if (Array.isArray(node.thumbnailUrl) && node.thumbnailUrl.length > 0 && node.thumbnailUrl[0]) {
+                const src = node.thumbnailUrl[0];
+                return `<figure class="popular-entry-card-thumb widget-entry-card-thumb card-thumb"><img width="120" height="68" src="${src}" class="attachment-thumb120 size-thumb120 wp-post-image lazyautosizes ls-is-cached lazyloaded" alt="" decoding="async"></figure> <!-- /.popular-entry-card-thumb -->`;
+            }
+            return ''; // サムネイルが無ければ空
+        };
+
+        // simple escape helper
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (s) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[s]));
+        }
+
+        let html = `<div class="popular-entry-cards widget-entry-cards no-icon cf border-partition ranking-visible">`;
+
+        ranking.forEach(item => {
+            // DOM へ追加
+            const node = findNode(item.id) || {}; // allData 側の完全情報を優先
+            const rankingThumb = thumbHtml(node);
+
+            html += `<a href="${item.url}" class="popular-entry-card-link widget-entry-card-link a-wrap no-1" title="${escapeHtml(item.label||'')}" data-nodal="">`;
+            html += `<div class="post-${item.id} popular-entry-card widget-entry-card e-card cf post type-post status-publish format-standard has-post-thumbnail hentry category-python-post">`;
+            html += `${rankingThumb}`;
+            html += `<div class="popular-entry-card-content widget-entry-card-content card-content">`;
+            html += `<div class="popular-entry-card-title widget-entry-card-title card-title">${escapeHtml(item.label||node.label||'')}</div>`;
+            html += `<div class="popular-entry-card-date widget-entry-card-date display-none">`;
+            html += `<span class="popular-entry-card-post-date widget-entry-card-post-date post-date">${escapeHtml(node.datePublished||'')}</span>`;
+            html += `<span class="popular-entry-card-update-date widget-entry-card-update-date post-update">${escapeHtml(node.dateModified||'')}</span>`;
+            html += `</div>`;
+
+            html += `</div> <!-- /.popular-entry-content -->`;
+            html += `</div> <!-- /.popular-entry-card -->`;
+            html += `</a> <!-- /.popular-entry-card-link -->`;
+        });
+
+        html += `</div>`;
+        container.innerHTML = html;
+    }
+
+    /**
+     * カテゴリー一覧生成
+     */
+    function renderCategoryList(allData) {
+        const container = document.getElementById('categories');
+        if (!container) return;
+
+        // allData を配列に統一
+        if (!Array.isArray(allData)) {
+            try {
+                allData = Object.values(allData);
+            } catch (e) {
+                allData = [];
+            }
+        }
+        // キーワードをプール（重複除去）
+        const pool = new Set();
+        allData.forEach(item => {
+            if (!item) return;
+            const kws = Array.isArray(item.keywords) ? item.keywords : [];
+            kws.forEach(k => {
+                if (k == null) return;
+                const s = String(k).trim();
+                if (s) pool.add(s);
+            });
+        });
+
+        const tags = Array.from(pool);
+        if (tags.length === 0) {
+            container.innerHTML = '';
+            return;
+        }
+
+        // 文字コード順（UTF-16 code unit）で辞書順ソート
+        tags.sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+
+        // HTML 生成
+        let html = '<ul>';
+        const escapeHtml = (str) => String(str).replace(/[&<>"]+/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]||ch));
+        tags.forEach((tag, idx) => {
+            const tagId = idx;
+            const url = `https://tatsuy-kobayashi.github.io/my-web/docs/tags/${encodeURIComponent(tag)}`;
+            html += `<li class="cat-item cat-item-${tagId}">`;
+            html += `<a href="${url}" data-nodal=""><span class="list-item-caption">${escapeHtml(tag)}</span></a>`;
+            html += `</li>`;
+        });
+        html += '</ul>';
+
+        container.innerHTML = html;
     }
 });

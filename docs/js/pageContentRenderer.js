@@ -571,21 +571,25 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         // preview-link 構造に合わせた HTML を作るヘルパ
         const makePreviewHtml = (node) => {
-            const desc = node.description || '説明はありません。';
-            const img = node.imageUrl || '';
-            let s = `<div class="link-container">`;
-            if (node.iconClass) s += `<i class="fa fa-solid ${node.iconClass}"></i>&ensp;`;
-            s += `<a href="${node.url}" class="preview-link" data-title="${(node.label||'').replace(/\"/g,'&quot;')}" data-description="${(desc||'').replace(/\"/g,'&quot;')}" data-image="${img}">${node.label}</a>`;
-            s += `<div class="link-preview">`;
-            s += `<a href="${node.url}" class="link-preview-clickable">`;
-            if (img) s += `<img class="preview-image" src="${img}" alt="Preview image">`;
-            else s += `<img class="preview-image" src="" alt="Preview image" style="display:none;">`;
-            s += `<h3 class="preview-title">${node.label}</h3>`;
-            s += `<p class="preview-description">${desc}</p>`;
-            s += `</a>`;
-            s += `</div>`;
-            s += `</div>`;
-            return s;
+            if (Number(node.released) === 1) {
+                const desc = node.description || '説明はありません。';
+                const img = node.imageUrl || '';
+                let s = `<div class="link-container">`;
+                if (node.iconClass) s += `<i class="fa fa-solid ${node.iconClass}"></i>&ensp;`;
+                s += `<a href="${node.url}" class="preview-link" data-title="${(node.label||'').replace(/\"/g,'&quot;')}" data-description="${(desc||'').replace(/\"/g,'&quot;')}" data-image="${img}">${node.label}</a>`;
+                s += `<div class="link-preview">`;
+                s += `<a href="${node.url}" class="link-preview-clickable">`;
+                if (img) s += `<img class="preview-image" src="${img}" alt="Preview image">`;
+                else s += `<img class="preview-image" src="" alt="Preview image" style="display:none;">`;
+                s += `<h3 class="preview-title">${node.label}</h3>`;
+                s += `<p class="preview-description">${desc}</p>`;
+                s += `</a>`;
+                s += `</div>`;
+                s += `</div>`;
+                return s;
+            } else {
+                return `${node.label}`;
+            }
         };
 
         // 再帰的にリストを構築
@@ -626,13 +630,17 @@ document.addEventListener('DOMContentLoaded', async function () {
     function renderTagList(current) {
         const container = document.getElementById('article-page-topic');
         if (!container) return;
-        container.innerHTML = '<dt>関連タグ</dt>';
 
         const keywords = Array.isArray(current && current.keywords) ? current.keywords : [];
-        if (keywords.length === 0) return;
+        if (keywords.length === 0) {
+            container.innerHTML = '';
+            return;
+        }
 
-        const dd = document.createElement('dd');
         let html = '';
+        html += '<dl>';
+        html += '<dt>関連タグ</dt>';
+        html += '<dd>';
 
         keywords.forEach((kw, idx) => {
             const tagUrl = `https://tatsuy-kobayashi.github.io/my-web/docs/tags/${encodeURIComponent(kw)}`;
@@ -642,8 +650,10 @@ document.addEventListener('DOMContentLoaded', async function () {
             if (idx < keywords.length - 1) html += ' ';
         });
 
-        dd.innerHTML = html;
-        container.appendChild(dd);
+        html += '</dd>';
+        html += '</dl>';
+
+        container.innerHTML = html;
     }
 
     /**
@@ -674,7 +684,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         const relatedPool = allData.filter(item => {
             // 自身は除外
             if (item.id === current.id) return false;
-
+            // リリースされていない記事は除外
+            if (Number(item.released) !== 1) return false;
             // タグがない場合は除外
             const itemKeywords = Array.isArray(item.keywords) ? item.keywords : [];
             if (itemKeywords.length === 0) return false;
@@ -801,7 +812,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         };
 
         let html = '';
-        if (prev) {
+        if (prev && Number(prev.released) === 1) {
             const prevThumb = thumbHtml(prev);
             const prevDesc = prev.description || '';
             html += `<a href="${prev.url}" class="prev-post a-wrap border-element cf" data-nodal=""><div class="fa fa-chevron-left iconfont" aria-hidden="true"></div>${prevThumb}<div class="prev-post-title">${prev.label}${prevDesc ? `：${prevDesc}` : ''}</div></a>`;
@@ -809,7 +820,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             html += `<span class="prev-post-placeholder">前の記事はありません</span>`;
         }
 
-        if (next) {
+        if (next && Number(next.released) === 1) {
             const nextThumb = thumbHtml(next);
             const nextDesc = next.description || '';
             html += `<a href="${next.url}" class="next-post a-wrap cf" data-nodal=""><div class="fa fa-chevron-right iconfont" aria-hidden="true"></div>${nextThumb}<div class="next-post-title">${next.label}${nextDesc ? `：${nextDesc}` : ''}</div></a>`;

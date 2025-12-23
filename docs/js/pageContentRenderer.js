@@ -647,7 +647,6 @@ document.addEventListener('DOMContentLoaded', async function () {
             html += `<span class="topic-label" data-index="${idx}">`;
             html += `<a href="${tagUrl}"><span class="topic-label-text"># ${String(kw)}</span></a>`;
             html += `</span>`;
-            if (idx < keywords.length - 1) html += ' ';
         });
 
         html += '</dd>';

@@ -207,8 +207,63 @@
 #article-page-topic dl dd .topic-label a:hover {
     text-decoration: none;
 }
+.article-page-stats {
+    display: flex;
+    align-items: center;     /* 縦方向のズレ防止 */
+    justify-content: center; /* 中央寄せ（不要なら削除） */
+    gap: 50px;               /* ボタン間の余白 */
+}
 .bubble, .donut, .bubble_effect {
     box-sizing: border-box;
+}
+.fa-comment {
+    font-size: 60px;
+}
+.fa-star {
+    padding: 6px 0 0 0; /* 星の絵文字が75x66なため上に余白を追加 */
+    font-size: 60px;
+    color: #ccc;
+    display: inline-block;
+}
+.article-page-stats__icon {
+    width: 60px;
+    height: 60px;
+    margin: 20px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* ← 横中央揃え */
+    -webkit-tap-highlight-color: transparent;
+}
+.fav {
+    position: relative;
+    cursor: pointer;
+    &.active {
+        .fa-star {
+            transform-origin: center center;
+            animation: star 1s ease-in-out forwards;
+        }
+    }
+}
+@keyframes star {
+    0% {
+        transform: scale(1, 1);
+    }
+    40% {
+        transform: scale(1, 1);
+    }
+    60% {
+        transform: scale(0, 0);
+    }
+    75% {
+        transform: scale(0, 0);
+    }
+    100% {
+        background: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        transform: scale(1, 1);
+    }
 }
 .fa-heart {
     font-size: 60px;
@@ -283,14 +338,9 @@
         }
     }
 }
-
 .like {
-    width: 60px;
-    height: 60px;
-    margin: 20px 5px;
     position: relative;
     cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
     &.active {
         .fa-heart {
             transform-origin: center center;
@@ -574,23 +624,29 @@
         opacity: 0;
     }
 }
-#like_counter {
-    width: 60px;
-    padding: auto;
-    justify-content: center;
-    align-items: center;
+.fa-share-from-square {
+    font-size: 60px;
+}
+.fa-download {
+    font-size: 60px;
 }
             </style>
             <div id="article-page-topic"></div>
             <div class="article-page-stats">
                 <div class="article-page-stats__item">
-                    <div class="article-page-stats__icon"> <!--<svg class="symbol-icon"><use xlink:href="#icon-reply"></use></svg>-->  <span>15</span></div>
+                    <div class="comment article-page-stats__icon">
+                        <i class="fa-regular fa-comment"></i>
+                        <span>15</span>
+                    </div>
                 </div>
                 <div class="article-page-stats__item">
-                    <div class="article-page-stats__icon"><!--<svg class="symbol-icon"><use xlink:href="#icon-fav"></use></svg>--> <span>1</span></div>
+                    <div class="fav article-page-stats__icon">
+                        <i class="fa-solid fa-star"></i>
+                        <span>1</span>
+                    </div>
                 </div>
                 <div class="article-page-stats__item">
-                    <div class="like article-page-stats__icon"> <!--<svg class="symbol-icon like__icon"><use xlink:href="#icon-like"></use></svg>-->
+                    <div class="like article-page-stats__icon">
                         <i class="fa-solid fa-heart"></i>
                         <span class="donut"></span>
                         <div class="bubble">
@@ -603,22 +659,26 @@
                             <span class="bubble_effect"></span>
                             <span class="bubble_effect"></span>
                         </div>
-                        <span id="like_counter">8</span> <!---->
+                        <span id="like_counter">8</span>
                     </div>
                 </div>
                 <div class="article-page-stats__item">
                     <div class="action share">
-                        <!--<div role="button" class="action__button"><input readonly="readonly" class="share__url"> <div class="article-page-stats__icon"><svg class="symbol-icon"><use xlink:href="#icon-hyl_ic_navbar_share_def_20"></use></svg> <span>0</span></div></div>-->
+                        <i class="fa-solid fa-share-from-square"></i>
                     </div>
                 </div>
                 <div class="article-page-stats__item">
                     <div class="action download">
-                        <!--<div role="button" class="action__button"><input readonly="readonly" class="share__url"> <div class="article-page-stats__icon"><svg class="symbol-icon"><use xlink:href="#icon-hyl_ic_navbar_share_def_20"></use></svg> <span>0</span></div></div>-->
+                        <i class="fa fa-solid fa-download"></i>
                     </div>
                 </div>
             </div>
             <script>
                 $(document).ready(function() {
+                    $('.fav').on('click', function() {
+                        $(this).toggleClass('active');
+                        // ここでいいね数の更新などの処理を追加可能
+                    });
                     $('.like').on('click', function() {
                         $(this).toggleClass('active');
                         // ここでいいね数の更新などの処理を追加可能

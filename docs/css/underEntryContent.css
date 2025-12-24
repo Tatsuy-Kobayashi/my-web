@@ -1,3 +1,7 @@
+/*
+    ファイル名: underEntryContent.css
+    内容      : <div class="under-entry-content"></div>内のスタイル
+*/
 .related-list {
     display: flex;
     flex-direction: column;

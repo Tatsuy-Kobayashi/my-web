@@ -1,0 +1,47 @@
+/*
+    ファイル名: iconStyle.css
+    内容      : アイコンのスタイル
+*/
+a .icon-physics {
+	text-align:center;
+	text-decoration:none;
+}
+a .icon-physics:before {
+    content:"";
+	width:21px;
+	height:21px;
+	display:inline-block;
+	vertical-align:middle;
+    background-color: #ed8a29;
+    -webkit-mask-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/images/pendulum.svg);
+    mask-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/images/pendulum.svg);
+    -webkit-mask-position:center center;
+	mask-position:center center;
+	-webkit-mask-repeat:no-repeat;
+	mask-repeat:no-repeat;
+	-webkit-mask-size:contain;
+	mask-size:contain;
+}
+.icon-physics:after {
+    content:"";
+	width:21px;
+	height:21px;
+	display:inline-block;
+	vertical-align:middle;
+    background-color: #000000;
+    -webkit-mask-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/images/pendulum.svg);
+    mask-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/images/pendulum.svg);
+    -webkit-mask-position:center center;
+	mask-position:center center;
+	-webkit-mask-repeat:no-repeat;
+	mask-repeat:no-repeat;
+	-webkit-mask-size:contain;
+	mask-size:contain;
+}
+a .physics-link:hover {
+    background-color: #ffffff;
+    color: #ffb974;
+}
+a .icon-physics:hover:before {
+    background-color: #ffb974;
+}

@@ -27,7 +27,7 @@
     <meta name="twitter:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html">
     <meta name="twitter:image" content="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" media="print" onload="this.media='all'" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/style.css" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/special.css" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/search.css" />
@@ -36,10 +36,11 @@
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/mathContentWrapper.css" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/underEntryContent.css" />
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/include.js"></script>
-    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/linkPreview.js"></script>
-    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/commentary.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/include.js" defer></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/linkPreview.js" defer></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/commentary.js" defer></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/pageContentRenderer.js"></script>
     <script>
         // JavaScriptの厳格モード使用
         'use strict';
@@ -66,45 +67,24 @@
         };
     </script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/mathjax-config.js" defer></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" defer></script>
-    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
-    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" defer></script><!--
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css" media="print" onload="this.media='all'" />
+    <script type="text/javascript" src="https://tikzjax.com/v1/tikzjax.js" defer></script> -->
 </head>
 <body>
 <div id="wrapper">
     <header></header>
     <div class="content">
-        <div class="breadcrumb_list">
-            <span class="link-container">
-                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/">Home</a>
-                &ensp;&gt;&ensp;
-                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="学問" data-description="AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">学問</a>
-                <div class="link-preview">
-                    <img class="preview-image" src="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" alt="Preview image">
-                    <h3 class="preview-title">学問</h3>
-                    <p class="preview-description">AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう</p>
-                </div> <!-- /link-preview -->
-            </span> <!-- /link-preview -->&ensp;&gt;&ensp;
-            <span class="link-container">
-                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/formal_science.html" class="preview-link" data-title="形式科学" data-description="AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">形式科学</a>
-                <div class="link-preview">
-                    <img class="preview-image" src="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" alt="Preview image">
-                    <h3 class="preview-title">形式科学</h3>
-                    <p class="preview-description">AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう</p>
-                </div> <!-- /link-preview -->
-            </span> <!-- /link-preview -->&ensp;&gt;&ensp;
-            <span class="link-container">
-                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html" class="preview-link" data-title="数学" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">数学</a>
-                <div class="link-preview">
-                    <img class="preview-image" src="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" alt="Preview image">
-                    <h3 class="preview-title">数学</h3>
-                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
-                </div> <!-- /link-preview -->
-            </span> <!-- /link-preview -->&ensp;&gt;&ensp;
-            解析学
-        </div>
+        <div aria-label="Breadcrumb" class="breadcrumb_list">
+            <div id="breadcrumb-list"></div>
+        </div> <!-- /breadcrumb_list -->
         <div class="main">
             <h1>解析学</h1>
+            <div id="date-info" class="date"></div>
+            <meta itemprop="author" content="ラクして数理研究所" itemscope itemtype="https://schema.org/Organization">
+                <meta itemprop="name" content="ラクして数理研究所">
+            </meta>
+
             <h2>目次</h2>
 
             <h2>AI</h2>
@@ -118,346 +98,17 @@
                 &emsp;#。
             </p>
 
-            <h2>解析学の各分野の一覧</h2>
-            <div class="pulldown_list_wrapper">
-                <li><details> <!-- 実解析学・複素解析学 -->
-                    <summary><div class="link-container">
-                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/foundations_of_analysis.html" class="preview-link" data-title="実解析学・複素解析学" data-description="" data-image="">実解析学・複素解析学</a>
-                        <div class="link-preview">
-                            <img class="preview-image">
-                            <h3 class="preview-title">実解析学・複素解析学</h3>
-                            <p class="preview-description">AI時代にこそ数学は重要になる。数学の一覧から様々な記事を見てみよう</p>
-                        </div> <!-- link-preview -->
-                    </div></summary>
-                        <li><details> <!-- 実解析学 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/real_analysis/real_analysis.html">実解析学</a></summary>
-                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/ocelotl.html">数列</a></li>
-                                <li><a href="#">級数</a></li>
-                                <li><a href="#">収束と発散</a></li>
-                                <li><a href="#">テイラー展開</a></li>
-                                <li><a href="#">冪級数</a></li>
-                                <li><details> <!-- 実数論 -->
-                                    <summary><div class="link-container">
-                                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html" class="preview-link" data-title="実数論" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="">実数論</a>
-                                        <div class="link-preview">
-                                            <img class="preview-image">
-                                            <h3 class="preview-title">実数論</h3>
-                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
-                                        </div> <!-- link-preview -->
-                                    </div></summary>
-                                        <li><details> <!-- 有理数と無理数 -->
-                                            <summary><div class="link-container">
-                                                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html" class="preview-link" data-title="有理数と無理数" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="">有理数と無理数</a>
-                                                <div class="link-preview">
-                                                    <img class="preview-image">
-                                                    <h3 class="preview-title">有理数と無理数</h3>
-                                                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
-                                                </div> <!-- link-preview -->
-                                            </div></summary>
-                                                <li><a href="#">超越数論</a></li>
-                                        </details></li><!-- /有理数と無理数 -->
-                                        <li><a href="#">デデキント切断</a></li>
-                                        <li><a href="#">完備性（連続体の性質）</a></li>
-                                        <li><a href="#">コーシー列による体論的構成</a></li>
-                                </details></li> <!-- /実数論 -->
-                                <li><a href="#">関数の極限・連続性</a></li>
-                        </details></li> <!-- /実解析学 -->
-                        <li><details> <!-- 複素解析学 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/complex_analysis/complex_analysis.html">複素解析学</a></summary>
-                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/ocelotl.html">複素数体</a></li>
-                                <li><a href="#">複素関数論</a></li>
-                                <li><a href="#">リーマン面（位相的拡張）</a></li>
-                        </details></li> <!-- /複素解析学 -->
-                        <li><details> <!-- 関数論 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/theory_of_functions/theory_of_functions.html">関数論</a></summary>
-                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/ocelotl.html">連続関数・可微分関数の一般論</a></li>
-                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/theory_of_functions/elementary_functions/elementary_functions.html">初等関数</a></li>
-                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/theory_of_functions/special_functions/special_functions.html">特殊関数</a></li>
-                        </details></li> <!-- /関数論 -->
-                </details></li> <!-- /実解析学・複素解析学 -->
-                <li><details> <!-- 微積分学 -->
-                    <summary><div class="link-container">
-                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="微積分学" data-description="" data-image="">微積分学</a>
-                        <div class="link-preview">
-                            <img class="preview-image">
-                            <h3 class="preview-title">微積分学</h3>
-                            <p class="preview-description">AI時代にこそ数学は重要になる。数学の一覧から様々な記事を見てみよう</p>
-                        </div> <!-- link-preview -->
-                    </div></summary>
-                        <li><details> <!-- 微分法 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">微分法</a></summary>
-                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/ocelotl.html">導関数</a></li>
-                                <li><a href="#">平均値定理</a></li>
-                                <li><a href="#">テイラーの定理</a></li>
-                        </details></li> <!-- /微分法 -->
-                        <li><details> <!-- 測度論 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">測度論</a></summary>
-                                <li><a href="#">#</a></li>
-                                <li><a href="#">#</a></li>
-                                <li><a href="#">#</a></li>
-                        </details></li> <!-- /測度論 -->
-                        <li><details> <!-- 積分法 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">積分法</a></summary>
-                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/ocelotl.html">原始関数</a></li>
-                                <li><a href="#">リーマン積分</a></li>
-                                <li><a href="#">ルベーグ積分</a></li>
-                        </details></li> <!-- /積分法 -->
-                        <li><details> <!-- 変分法 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">変分法</a></summary>
-                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/ocelotl.html">オイラー–ラグランジュ方程式</a></li>
-                                <li><a href="#" data-description="作用素原理、ハミルトン原理など">変分原理</a></li>
-                        </details></li> <!-- /変分法 -->
-                </details></li> <!-- /微積分学 -->
-                <li><details> <!-- 代数解析学 -->
-                    <summary><div class="link-container">
-                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="代数解析学" data-description="" data-image="">代数解析学</a>
-                        <div class="link-preview">
-                            <img class="preview-image">
-                            <h3 class="preview-title">代数解析学</h3>
-                            <p class="preview-description">AI時代にこそ数学は重要になる。数学の一覧から様々な記事を見てみよう</p>
-                        </div> <!-- link-preview -->
-                    </div></summary>
-                        <li><details> <!-- ベクトル解析 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">ベクトル解析</a></summary>
-                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/ocelotl.html">勾配・発散・回転</a></li>
-                                <li><a href="#">グリーンの定理・ストークスの定理</a></li>
-                                <li><a href="#">曲率</a></li>
-                        </details></li> <!-- /ベクトル解析 -->
-                        <li><details> <!-- テンソル解析 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">テンソル解析</a></summary>
-                                <li><a href="#">#</a></li>
-                                <li><a href="#">#</a></li>
-                                <li><a href="#">#</a></li>
-                        </details></li> <!-- /テンソル解析 -->
-                </details></li> <!-- /代数解析学 -->
-                <li><details> <!-- 関数解析学 -->
-                    <summary><div class="link-container">
-                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="関数解析学" data-description="" data-image="">関数解析学</a>
-                        <div class="link-preview">
-                            <img class="preview-image">
-                            <h3 class="preview-title">関数解析学</h3>
-                            <p class="preview-description">AI時代にこそ数学は重要になる。数学の一覧から様々な記事を見てみよう</p>
-                        </div> <!-- link-preview -->
-                    </div></summary>
-                        <li><details> <!-- 関数空間論 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">関数空間論</a></summary>
-                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/ocelotl.html">トポロジカル・ベクトル空間</a></li>
-                        </details></li> <!-- /関数空間論 -->
-                        <li><details> <!-- 作用素論 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">作用素論</a></summary>
-                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/ocelotl.html">有界線形作用素</a></li>
-                                <li><a href="#">スペクトル理論</a></li>
-                        </details></li> <!-- /作用素論 -->
-                        <li><details> <!-- 演算子環 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">演算子環</a></summary>
-                                <li><a href="#">#</a></li>
-                                <li><a href="#">#</a></li>
-                        </details></li> <!-- /演算子環 -->
-                        <li><details> <!-- 超関数論と分布論 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">超関数論と分布論</a></summary>
-                                <li><a href="#">#</a></li>
-                                <li><a href="#">#</a></li>
-                        </details></li> <!-- /超関数論と分布論 -->
-                        <li><details> <!-- 調和解析 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">調和解析</a></summary>
-                                <li><details> <!-- 群上の調和解析（抽象調和解析） -->
-                                    <summary><div class="link-container">
-                                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html" class="preview-link" data-title="群上の調和解析（抽象調和解析）" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="">群上の調和解析（抽象調和解析）</a>
-                                        <div class="link-preview">
-                                            <img class="preview-image">
-                                            <h3 class="preview-title">群上の調和解析（抽象調和解析）</h3>
-                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
-                                        </div> <!-- link-preview -->
-                                    </div></summary>
-                                        <li><details> <!-- アーベル群上のPontryagin双対性 -->
-                                            <summary><div class="link-container">
-                                                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html" class="preview-link" data-title="アーベル群上のPontryagin双対性" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="">アーベル群上のPontryagin双対性</a>
-                                                <div class="link-preview">
-                                                    <img class="preview-image">
-                                                    <h3 class="preview-title">アーベル群上のPontryagin双対性</h3>
-                                                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
-                                                </div> <!-- link-preview -->
-                                            </div></summary>
-                                                <li><a href="#">#</a></li>
-                                        </details></li><!-- /アーベル群上のPontryagin双対性 -->
-                                        <li><a href="#">コンパクト群上のピーター–ウェイル理論</a></li>
-                                        <li><a href="#">非可換群とユニタリ表現</a></li>
-                                </details></li> <!-- /群上の調和解析（抽象調和解析） -->
-                                <li><details> <!-- 実変数調和解析（Calderón–Zygmund理論） -->
-                                    <summary><div class="link-container">
-                                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html" class="preview-link" data-title="実変数調和解析（Calderón–Zygmund理論）" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="">実変数調和解析（Calderón–Zygmund理論）</a>
-                                        <div class="link-preview">
-                                            <img class="preview-image">
-                                            <h3 class="preview-title">実変数調和解析（Calderón–Zygmund理論）</h3>
-                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
-                                        </div> <!-- link-preview -->
-                                    </div></summary>
-                                        <li><details> <!-- 特異積分作用素 -->
-                                            <summary><div class="link-container">
-                                                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html" class="preview-link" data-title="特異積分作用素" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="">特異積分作用素</a>
-                                                <div class="link-preview">
-                                                    <img class="preview-image">
-                                                    <h3 class="preview-title">特異積分作用素</h3>
-                                                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
-                                                </div> <!-- link-preview -->
-                                            </div></summary>
-                                                <li><a href="#">#</a></li>
-                                        </details></li><!-- /特異積分作用素 -->
-                                        <li><a href="#">Hardy空間 $H^p$</a></li>
-                                        <li><a href="#">BMO空間</a></li>
-                                        <li><a href="#">Maximal関数とLittlewood–Paley理論</a></li>
-                                </details></li> <!-- /実変数調和解析（Calderón–Zygmund理論） -->
-                                <li><details> <!-- 変換解析（関数解析的な定式化） -->
-                                    <summary><div class="link-container">
-                                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html" class="preview-link" data-title="変換解析（関数解析的な定式化）" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="">変換解析（関数解析的な定式化）</a>
-                                        <div class="link-preview">
-                                            <img class="preview-image">
-                                            <h3 class="preview-title">変換解析（関数解析的な定式化）</h3>
-                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
-                                        </div> <!-- link-preview -->
-                                    </div></summary>
-                                        <li><details> <!-- フーリエ変換の厳密理論（$L^2$上のユニタリ作用素） -->
-                                            <summary><div class="link-container">
-                                                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html" class="preview-link" data-title="フーリエ変換の厳密理論（$L^2$上のユニタリ作用素）" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="">フーリエ変換の厳密理論（$L^2$上のユニタリ作用素）</a>
-                                                <div class="link-preview">
-                                                    <img class="preview-image">
-                                                    <h3 class="preview-title">フーリエ変換の厳密理論（$L^2$上のユニタリ作用素）</h3>
-                                                    <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
-                                                </div> <!-- link-preview -->
-                                            </div></summary>
-                                                <li><a href="#">#</a></li>
-                                        </details></li><!-- /フーリエ変換の厳密理論（$L^2$上のユニタリ作用素） -->
-                                        <li><a href="#">ラプラス変換の複素解析的展開</a></li>
-                                        <li><a href="#">スペクトル解析との統合</a></li>
-                                </details></li> <!-- /変換解析（関数解析的な定式化） -->
-                                <li><details> <!-- 幾何学的調和解析 -->
-                                    <summary><div class="link-container">
-                                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html" class="preview-link" data-title="幾何学的調和解析" data-description="このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。" data-image="">幾何学的調和解析</a>
-                                        <div class="link-preview">
-                                            <img class="preview-image">
-                                            <h3 class="preview-title">幾何学的調和解析</h3>
-                                            <p class="preview-description">このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。</p>
-                                        </div> <!-- link-preview -->
-                                    </div></summary>
-                                        <li><a href="#">多様体上のフーリエ解析（球面、対称空間）</a></li>
-                                        <li><a href="#">ラプラシアン固有値問題とスペクトル分解</a></li>
-                                </details></li> <!-- /幾何学的調和解析 -->
-                        </details></li> <!-- /調和解析 -->
-                </details></li> <!-- /関数解析学 -->
-                <li><details> <!-- 関数方程式論 -->
-                    <summary><div class="link-container">
-                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="関数方程式論" data-description="" data-image="">関数方程式論</a>
-                        <div class="link-preview">
-                            <img class="preview-image">
-                            <h3 class="preview-title">関数方程式論</h3>
-                            <p class="preview-description">AI時代にこそ数学は重要になる。数学の一覧から様々な記事を見てみよう</p>
-                        </div> <!-- link-preview -->
-                    </div></summary>
-                        <li><details> <!-- 代数的・構造的関数方程式 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">代数的・構造的関数方程式</a></summary>
-                                <li><a href="#">#</a></li>
-                                <li><a href="#">#</a></li>
-                                <li><a href="#">#</a></li>
-                        </details></li> <!-- /代数的・構造的関数方程式 -->
-                        <li><details> <!-- 解析的条件付関数方程式 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">解析的条件付関数方程式</a></summary>
-                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/ocelotl.html">指数・対数型方程式</a></li>
-                                <li><a href="#">特殊関数の再帰定義</a></li>
-                                <li><a href="#">可微分・解析性仮定下の一般論</a></li>
-                                <li><a href="#">複素解析的関数方程式</a></li>
-                        </details></li> <!-- /解析的条件付関数方程式 -->
-                        <li><details> <!-- 離散時間系：差分・漸化式 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">離散時間系：差分・漸化式</a></summary>
-                                <li><a href="#">線形差分方程式</a></li>
-                                <li><a href="#">非線形漸化式・ロジスティック写像</a></li>
-                                <li><a href="#">q-差分方程式</a></li>
-                                <li><a href="#">時間スケール解析（Time-Scale Calculus）</a></li>
-                        </details></li> <!-- /離散時間系：差分・漸化式 -->
-                        <li><details> <!-- 連続時間系：微分・積分方程式 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">連続時間系：微分・積分方程式</a></summary>
-                                <li><a href="#">関数微分方程式（Functional Differential Eq.）</a></li>
-                                <li><a href="#">常微分方程式（ODE）</a></li>
-                                <li><a href="#">偏微分方程式（PDE）</a></li>
-                                <li><a href="#">積分方程式</a></li>
-                                <li><a href="#">フラクショナル（分数階）方程式</a></li>
-                        </details></li> <!-- /連続時間系：微分・積分方程式 -->
-                        <li><details> <!-- 関数解析的・作用素論的アプローチ -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">関数解析的・作用素論的アプローチ</a></summary>
-                                <li><a href="#">バナッハ・ヒルベルト空間上の作用素方程式</a></li>
-                                <li><a href="#">スペクトル理論</a></li>
-                                <li><a href="#">分布・超関数論による拡張</a></li>
-                        </details></li> <!-- /関数解析的・作用素論的アプローチ -->
-                        <li><details> <!-- 力学系（カオス・分岐理論） -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">力学系（カオス・分岐理論）</a></summary>
-                                <li><a href="#">不変測度・正則写像の方程式</a></li>
-                                <li><a href="#">リャプノフ関数方程式</a></li>
-                                <li><a href="#">フラクタル生成・自己相似方程式</a></li>
-                        </details></li> <!-- /力学系（カオス・分岐理論） -->
-                </details></li> <!-- /関数方程式論 -->
-                <li><details> <!-- 数値解析学 -->
-                    <summary><div class="link-container">
-                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="数値解析学" data-description="" data-image="">数値解析学</a>
-                        <div class="link-preview">
-                            <img class="preview-image">
-                            <h3 class="preview-title">数値解析学</h3>
-                            <p class="preview-description">AI時代にこそ数学は重要になる。数学の一覧から様々な記事を見てみよう</p>
-                        </div> <!-- link-preview -->
-                    </div></summary>
-                        <li><details> <!-- 近似理論 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">近似理論</a></summary>
-                                <li><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/ocelotl.html">ベルンシュタインの定理</a></li>
-                        </details></li> <!-- /近似理論 -->
-                        <li><details> <!-- 数値微分・数値積分 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">数値微分・数値積分</a></summary>
-                                <li><a href="#">#</a></li>
-                                <li><a href="#">#</a></li>
-                                <li><a href="#">#</a></li>
-                        </details></li> <!-- /数値微分・数値積分 -->
-                        <li><details> <!-- 数値線形代数 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">数値線形代数</a></summary>
-                                <li><a href="#">#</a></li>
-                                <li><a href="#">#</a></li>
-                                <li><a href="#">#</a></li>
-                        </details></li> <!-- /数値線形代数 -->
-                        <li><details> <!-- 常微分方程式の数値解法 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">常微分方程式の数値解法</a></summary>
-                                <li><a href="#">#</a></li>
-                                <li><a href="#">#</a></li>
-                                <li><a href="#">#</a></li>
-                        </details></li> <!-- /常微分方程式の数値解法 -->
-                        <li><details> <!-- 誤差解析と安定性解析 -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">誤差解析と安定性解析</a></summary>
-                                <li><a href="#">#</a></li>
-                                <li><a href="#">#</a></li>
-                                <li><a href="#">#</a></li>
-                        </details></li> <!-- /誤差解析と安定性解析 -->
-                </details></li> <!-- /数値解析学 -->
-                <li><details> <!-- 超準解析学 -->
-                    <summary><div class="link-container">
-                        <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="超準解析学" data-description="" data-image="">超準解析学</a>
-                        <div class="link-preview">
-                            <img class="preview-image">
-                            <h3 class="preview-title">超準解析学</h3>
-                            <p class="preview-description">AI時代にこそ数学は重要になる。数学の一覧から様々な記事を見てみよう</p>
-                        </div> <!-- link-preview -->
-                    </div></summary>
-                        <li><details> <!-- # -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">#</a></summary>
-                                <li><a href="#">#</a></li>
-                                <li><a href="#">#</a></li>
-                                <li><a href="#">#</a></li>
-                        </details></li> <!-- /# -->
-                        <li><details> <!-- # -->
-                            <summary><a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities.html">#</a></summary>
-                                <li><a href="#">#</a></li>
-                                <li><a href="#">#</a></li>
-                                <li><a href="#">#</a></li>
-                        </details></li> <!-- /# -->
-                </details></li> <!-- /超準解析学 -->
-            </div>
+
+
+            <section class="pulldown_list_wrapper" id="section_2" itemscope itemtype="https://schema.org/ItemList">
+                <h2>解析学の各分野の一覧</h2>
+                <meta itemprop="itemListOrder" content="Unordered">
+                <div class="pulldown_list_wrapper" id="child-pages-list"></div>
+            </section> <!-- /.pulldown_list_wrapper -->
+
 <!--
 解析学
-├── 実解析学・複素解析学
+├── 解析学基礎
 │   ├── 実数論（実解析の前提）
 │   │   ├── 数列
 │   │   ├── 級数
@@ -513,7 +164,7 @@
 │   │   └── スペクトル理論
 │   ├── 演算子環（C*-環、W*-環）
 │   ├── 超関数論と分布論（シュワルツ分布）
-│   └── 調和解析（実解析・群論的調和解析）
+│   └── 調和解析
 │       ├── 群上の調和解析（抽象調和解析）
 │       │   ├── アーベル群上のPontryagin双対性
 │       │   ├── コンパクト群上のピーター–ウェイル理論
@@ -524,8 +175,9 @@
 │       │   ├── BMO空間
 │       │   └── Maximal関数とLittlewood–Paley理論
 │       ├── 変換解析（関数解析的な定式化）
-│       │   ├── フーリエ変換の厳密理論（$L^2$上のユニタリ作用素）
+│       │   ├── フーリエ解析（フーリエ変換の厳密理論、$L^2$上のユニタリ作用素）
 │       │   ├── ラプラス変換の複素解析的展開
+│       │   ├── ウェーブレット解析
 │       │   └── スペクトル解析との統合
 │       └── 幾何学的調和解析
 │           ├── 多様体上のフーリエ解析（球面、対称空間）
@@ -590,14 +242,14 @@
 │       │   安定性解析のための不変関数
 │       └── フラクタル生成・自己相似方程式
 │           IFS（Iterated Function System）の自己準同型式
-└── 数値解析
-    ├── 近似理論
-    │   └── ベルンシュタインの定理
-    ├── 数値微分・数値積分
-    ├── 数値線形代数
-    ├── 常微分方程式の数値解法
-    └── 誤差解析と安定性解析
-
+├── 数値解析
+│   ├── 近似理論
+│   │   └── ベルンシュタインの定理
+│   ├── 数値微分・数値積分
+│   ├── 数値線形代数
+│   ├── 常微分方程式の数値解法
+│   └── 誤差解析と安定性解析
+│
 └── 非標準解析（超準解析）
 -->
 
@@ -609,14 +261,69 @@
             ページ注釈
             <ol class="olAnnotation">
                 <li id="note_1"><a href="#ref_1">^</a>
-                    オセロトル語<br>
-                    <ocelotl>
-                        PQTWXYacehimpqtxy
-                    </ocelotl>
+                    注釈
                 </li>
             </ol>
         </div> <!-- /annotation -->
+        <div class="under-entry-content">
+            <div id="article-page-topic"></div>
+            <div class="article-page-stats">
+                <div class="article-page-stats__item">
+                    <div class="comment article-page-stats__icon">
+                        <i class="fa-regular fa-comment"></i>
+                        <span id="comment_counter" class="article-page-stats__counter"></span>
+                    </div>
+                </div>
+                <div class="article-page-stats__item">
+                    <div class="fav article-page-stats__icon">
+                        <i class="fa-solid fa-star"></i>
+                        <span id="fav_counter" class="article-page-stats__counter"></span>
+                    </div>
+                </div>
+                <div class="article-page-stats__item">
+                    <div class="like article-page-stats__icon">
+                        <i class="fa-solid fa-heart"></i>
+                        <span class="donut"></span>
+                        <div class="bubble">
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                        </div>
+                        <span id="like_counter" class="article-page-stats__counter"></span>
+                    </div>
+                </div>
+                <div class="article-page-stats__item">
+                    <div class="action share">
+                        <i class="fa-solid fa-share-from-square"></i>
+                    </div>
+                </div>
+                <div class="article-page-stats__item">
+                    <div class="action download">
+                        <i class="fa fa-solid fa-download"></i>
+                    </div>
+                </div>
+            </div>
+            <aside id="related-entries" class="related-entries rect-entry-card"></aside>
+            <div id="pager-post-navi" class="pager-post-navi post-navi-default cf"></div><!-- /.pager-post-navi -->
+        </div><!-- /under-entry-content -->
     </div> <!-- /content -->
+    <section class="container" id="popular-section">
+        <section id="popular-section_container">
+            <div class="main-content">
+                <div id="main-scroll" class="main-scroll">
+                    <h1>人気記事</h1>
+                    <aside id="popular_entries" class="widget widget-main-scroll widget_popular_entries"></aside>
+                    <h1 class="widget-main-scroll-title main-widget-label widget-title">カテゴリー</h1>
+                    <aside id="categories" class="widget widget-main-scroll widget_categories"></aside>
+                </div>
+            </div>
+        </section>
+    </section>
     <footer></footer>
     </div> <!-- /wrapper -->
     <nav id="nav"></nav>

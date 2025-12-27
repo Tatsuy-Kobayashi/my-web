@@ -40,6 +40,7 @@
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/include.js" defer></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/linkPreview.js" defer></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/commentary.js" defer></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/pageContentRenderer.js"></script>
     <script>
         // JavaScriptの厳格モード使用
         'use strict';
@@ -74,15 +75,26 @@
 <div id="wrapper">
     <header></header>
     <div class="content">
-        <div class="breadcrumb_list">
-            <a href="https://tatsuy-kobayashi.github.io/my-web/docs/"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&ensp;Home</a>
-            &ensp;&gt;&ensp;<i class="fa fa-solid fa-graduation-cap"></i>&ensp;学問
-        </div>
+        <div aria-label="Breadcrumb" class="breadcrumb_list">
+            <div id="breadcrumb-list"></div>
+        </div> <!-- /breadcrumb_list -->
         <div class="main">
             <h1>通信</h1>
+            <div id="date-info" class="date"></div>
+            <meta itemprop="author" content="ラクして数理研究所" itemscope itemtype="https://schema.org/Organization">
+                <meta itemprop="name" content="ラクして数理研究所">
+            </meta>
+
             <h2>目次</h2>
 
             <h2>概要</h2>
+
+
+            <section class="pulldown_list_wrapper" id="section_2" itemscope itemtype="https://schema.org/ItemList">
+                <h2>通信の各分野の一覧</h2>
+                <meta itemprop="itemListOrder" content="Unordered">
+                <div class="pulldown_list_wrapper" id="child-pages-list"></div>
+            </section> <!-- /.pulldown_list_wrapper -->
 
         </div> <!-- /.main -->
         <div class="annotation">
@@ -94,166 +106,64 @@
             </ol>
         </div> <!-- /annotation -->
         <div class="under-entry-content">
-            <aside id="related-entries" class="related-entries rect-entry-card">
-                <h1 class="related-entry-heading">関連記事</h1>
-                <div class="related-list">
-                    <a href="https://prograshi.com/design/css/variables-in-sass/" class="related-entry-card-wrap a-wrap border-element cf" title="【SASS】変数の使い方を実例で解説｜map-getとは何か？プロパティ名や処理の一部で変数を呼び出す方法（.scss, #{ }, オブジェクト形式キー,値で定義する方法）" data-nodal="">
-                        <article class="post-7467 related-entry-card e-card cf post type-post status-publish format-standard has-post-thumbnail hentry category-css-post">
-                            <figure class="related-entry-card-thumb card-thumb e-card-thumb">
-                                <img width="160" height="90" src="https://prograshi.com/wp-content/uploads/2021/10/image-8-160x90.png" class="related-entry-card-thumb-image card-thumb-image wp-post-image lazyautosizes lazyloaded" alt="" decoding="async" data-src="https://prograshi.com/wp-content/uploads/2021/10/image-8-160x90.png" data-srcset="https://prograshi.com/wp-content/uploads/2021/10/image-8-160x90.png 160w, https://prograshi.com/wp-content/uploads/2021/10/image-8-120x68.png 120w, https://prograshi.com/wp-content/uploads/2021/10/image-8-320x180.png 320w" data-sizes="auto" data-eio-rwidth="160" data-eio-rheight="90" sizes="160px" srcset="https://prograshi.com/wp-content/uploads/2021/10/image-8-160x90.png 160w, https://prograshi.com/wp-content/uploads/2021/10/image-8-120x68.png 120w, https://prograshi.com/wp-content/uploads/2021/10/image-8-320x180.png 320w">
-                                <noscript>
-                                    <img width="160" height="90" src="https://prograshi.com/wp-content/uploads/2021/10/image-8-160x90.png" class="related-entry-card-thumb-image card-thumb-image wp-post-image" alt="" decoding="async" srcset="https://prograshi.com/wp-content/uploads/2021/10/image-8-160x90.png 160w, https://prograshi.com/wp-content/uploads/2021/10/image-8-120x68.png 120w, https://prograshi.com/wp-content/uploads/2021/10/image-8-320x180.png 320w" sizes="(max-width: 160px) 100vw, 160px" data-eio="l" />
-                                </noscript>
-                                <span class="cat-label cat-label-81">CSS・SCSS</span>
-                            </figure><!-- /.related-entry-thumb -->
-                            <div class="related-entry-card-content card-content e-card-content">
-                                <h3 class="related-entry-card-title card-title e-card-title">
-                                    【SASS】変数の使い方を実例で解説｜map-getとは何か？プロパティ名や処理の一部で変数を呼び出す方法（.scss, #{ }, オブジェクト形式キー,値で定義する方法）
-                                </h3>
-                            </div><!-- /.related-entry-card-content -->
-                        </article><!-- /.related-entry-card -->
-                    </a><!-- /.related-entry-card-wrap -->
-                    <a href="https://prograshi.com/design/css/hover/" class="related-entry-card-wrap a-wrap border-element cf" title="【CSS】カーソルを載せたときにスタイルを変更する方法を実例で解説｜:hover（ホバー）とは何か？使い方と注意点（初心者向け、わかりやすい）" data-nodal="">
-                        <article class="post-7361 related-entry-card e-card cf post type-post status-publish format-standard has-post-thumbnail hentry category-css-post">
-                            <figure class="related-entry-card-thumb card-thumb e-card-thumb">
-                                <img width="160" height="90" src="https://prograshi.com/wp-content/uploads/2021/10/image-17-160x90.png" class="related-entry-card-thumb-image card-thumb-image wp-post-image lazyautosizes lazyloaded" alt="" decoding="async" data-src="https://prograshi.com/wp-content/uploads/2021/10/image-17-160x90.png" data-srcset="https://prograshi.com/wp-content/uploads/2021/10/image-17-160x90.png 160w, https://prograshi.com/wp-content/uploads/2021/10/image-17-120x68.png 120w, https://prograshi.com/wp-content/uploads/2021/10/image-17-320x180.png 320w" data-sizes="auto" data-eio-rwidth="160" data-eio-rheight="90" sizes="160px" srcset="https://prograshi.com/wp-content/uploads/2021/10/image-17-160x90.png 160w, https://prograshi.com/wp-content/uploads/2021/10/image-17-120x68.png 120w, https://prograshi.com/wp-content/uploads/2021/10/image-17-320x180.png 320w">
-                                <noscript>
-                                    <img width="160" height="90" src="https://prograshi.com/wp-content/uploads/2021/10/image-17-160x90.png" class="related-entry-card-thumb-image card-thumb-image wp-post-image" alt="" decoding="async" srcset="https://prograshi.com/wp-content/uploads/2021/10/image-17-160x90.png 160w, https://prograshi.com/wp-content/uploads/2021/10/image-17-120x68.png 120w, https://prograshi.com/wp-content/uploads/2021/10/image-17-320x180.png 320w" sizes="(max-width: 160px) 100vw, 160px" data-eio="l" />
-                                </noscript>
-                                <span class="cat-label cat-label-81">CSS・SCSS</span>
-                            </figure><!-- /.related-entry-thumb -->
-                            <div class="related-entry-card-content card-content e-card-content">
-                                <h3 class="related-entry-card-title card-title e-card-title">
-                                    【CSS】カーソルを載せたときにスタイルを変更する方法を実例で解説｜:hover（ホバー）とは何か？使い方と注意点（初心者向け、わかりやすい）
-                                </h3>
-                            </div><!-- /.related-entry-card-content -->
-                        </article><!-- /.related-entry-card -->
-                    </a><!-- /.related-entry-card-wrap -->
-                </div><!-- /related-list -->
-            </aside>
-            <div id="pager-post-navi" class="pager-post-navi post-navi-default cf">
-                <a href="https://prograshi.com/design/css/%e3%80%90css%e3%80%91transform%e3%81%a8%e3%81%af%e4%bd%95%e3%81%8b%ef%bc%9ftranslate-translatex-translatey-scale-skew-matrix-prespective/" title="【CSS】transformとは何か？使い方を実例で解説translate, translateX, translateY, scale, skew" class="prev-post a-wrap border-element cf" data-nodal="">
-                    <div class="fa fa-chevron-left iconfont" aria-hidden="true"></div>
-                    <figure class="prev-post-thumb card-thumb"><img width="120" height="68" src="https://prograshi.com/wp-content/uploads/2021/10/image-17-120x68.png" class="attachment-thumb120 size-thumb120 wp-post-image lazyautosizes ls-is-cached lazyloaded" alt="" decoding="async" data-src="https://prograshi.com/wp-content/uploads/2021/10/image-17-120x68.png" data-srcset="https://prograshi.com/wp-content/uploads/2021/10/image-17-120x68.png 120w, https://prograshi.com/wp-content/uploads/2021/10/image-17-160x90.png 160w, https://prograshi.com/wp-content/uploads/2021/10/image-17-320x180.png 320w" data-sizes="auto" data-eio-rwidth="120" data-eio-rheight="68" sizes="120px" srcset="https://prograshi.com/wp-content/uploads/2021/10/image-17-120x68.png 120w, https://prograshi.com/wp-content/uploads/2021/10/image-17-160x90.png 160w, https://prograshi.com/wp-content/uploads/2021/10/image-17-320x180.png 320w">
-                        <noscript>
-                            <img width="120" height="68" src="https://prograshi.com/wp-content/uploads/2021/10/image-17-120x68.png" class="attachment-thumb120 size-thumb120 wp-post-image" alt="" decoding="async" srcset="https://prograshi.com/wp-content/uploads/2021/10/image-17-120x68.png 120w, https://prograshi.com/wp-content/uploads/2021/10/image-17-160x90.png 160w, https://prograshi.com/wp-content/uploads/2021/10/image-17-320x180.png 320w" sizes="(max-width: 120px) 100vw, 120px" data-eio="l" />
-                        </noscript>
-                    </figure>
-                    <div class="prev-post-title">【CSS】transformとは何か？使い方を実例で解説translate, translateX, translateY, scale, skew</div>
-                </a>
-                <a href="https://prograshi.com/design/css/root-var-custom-property/" title="【CSS】:rootやvarとは何か？好きな変数名でカスタムのプロパテを作成する方法を実例で解説（プロパティ名の2本線, 初心者, わかりやすい）" class="next-post a-wrap cf" data-nodal="">
-                    <div class="fa fa-chevron-right iconfont" aria-hidden="true"></div>
-                    <figure class="next-post-thumb card-thumb">
-                        <img width="120" height="68" src="https://prograshi.com/wp-content/uploads/2021/10/image-17-120x68.png" class="attachment-thumb120 size-thumb120 wp-post-image lazyautosizes ls-is-cached lazyloaded" alt="" decoding="async" data-src="https://prograshi.com/wp-content/uploads/2021/10/image-17-120x68.png" data-srcset="https://prograshi.com/wp-content/uploads/2021/10/image-17-120x68.png 120w, https://prograshi.com/wp-content/uploads/2021/10/image-17-160x90.png 160w, https://prograshi.com/wp-content/uploads/2021/10/image-17-320x180.png 320w" data-sizes="auto" data-eio-rwidth="120" data-eio-rheight="68" sizes="120px" srcset="https://prograshi.com/wp-content/uploads/2021/10/image-17-120x68.png 120w, https://prograshi.com/wp-content/uploads/2021/10/image-17-160x90.png 160w, https://prograshi.com/wp-content/uploads/2021/10/image-17-320x180.png 320w">
-                        <noscript>
-                            <img width="120" height="68" src="https://prograshi.com/wp-content/uploads/2021/10/image-17-120x68.png" class="attachment-thumb120 size-thumb120 wp-post-image" alt="" decoding="async" srcset="https://prograshi.com/wp-content/uploads/2021/10/image-17-120x68.png 120w, https://prograshi.com/wp-content/uploads/2021/10/image-17-160x90.png 160w, https://prograshi.com/wp-content/uploads/2021/10/image-17-320x180.png 320w" sizes="(max-width: 120px) 100vw, 120px" data-eio="l" />
-                        </noscript>
-                    </figure>
-                    <div class="next-post-title">
-                        【CSS】:rootやvarとは何か？好きな変数名でカスタムのプロパテを作成する方法を実例で解説（プロパティ名の2本線, 初心者, わかりやすい）
+            <div id="article-page-topic"></div>
+            <div class="article-page-stats">
+                <div class="article-page-stats__item">
+                    <div class="comment article-page-stats__icon">
+                        <i class="fa-regular fa-comment"></i>
+                        <span id="comment_counter" class="article-page-stats__counter"></span>
                     </div>
-                </a>
-            </div><!-- /.pager-post-navi -->
-        </div><!-- /under-entry-content -->
-        <div id="main-scroll" class="main-scroll">
-            <aside id="popular_entries-4" class="widget widget-main-scroll widget_popular_entries">
-                <div class="popular-entry-cards widget-entry-cards no-icon cf border-partition ranking-visible">
-                    <a href="https://prograshi.com/language/python/typeerror-nonetype/" class="popular-entry-card-link widget-entry-card-link a-wrap no-1" title="【Python】TypeError: 'NoneType'のエラー原因と対処法まとめ（初心者向け・実例でわかりやすく解説）" data-nodal="">
-                        <div class="post-5060 popular-entry-card widget-entry-card e-card cf post type-post status-publish format-standard has-post-thumbnail hentry category-python-post">
-                            <figure class="popular-entry-card-thumb widget-entry-card-thumb card-thumb">
-                                <img width="120" height="68" src="https://prograshi.com/wp-content/uploads/2021/10/image-20-120x68.png" class="attachment-thumb120 size-thumb120 wp-post-image lazyautosizes ls-is-cached lazyloaded" alt="" decoding="async" data-src="https://prograshi.com/wp-content/uploads/2021/10/image-20-120x68.png" data-srcset="https://prograshi.com/wp-content/uploads/2021/10/image-20-120x68.png 120w, https://prograshi.com/wp-content/uploads/2021/10/image-20-160x90.png 160w, https://prograshi.com/wp-content/uploads/2021/10/image-20-320x180.png 320w" data-sizes="auto" data-eio-rwidth="120" data-eio-rheight="68" sizes="120px" srcset="https://prograshi.com/wp-content/uploads/2021/10/image-20-120x68.png 120w, https://prograshi.com/wp-content/uploads/2021/10/image-20-160x90.png 160w, https://prograshi.com/wp-content/uploads/2021/10/image-20-320x180.png 320w">
-                                <noscript><img width="120" height="68" src="https://prograshi.com/wp-content/uploads/2021/10/image-20-120x68.png" class="attachment-thumb120 size-thumb120 wp-post-image" alt="" decoding="async" srcset="https://prograshi.com/wp-content/uploads/2021/10/image-20-120x68.png 120w, https://prograshi.com/wp-content/uploads/2021/10/image-20-160x90.png 160w, https://prograshi.com/wp-content/uploads/2021/10/image-20-320x180.png 320w" sizes="(max-width: 120px) 100vw, 120px" data-eio="l" /></noscript>
-                            </figure><!-- /.popular-entry-card-thumb -->
-                            <div class="popular-entry-card-content widget-entry-card-content card-content">
-                                <div class="popular-entry-card-title widget-entry-card-title card-title">【Python】TypeError: 'NoneType'のエラー原因と対処法まとめ（初心者向け・実例でわかりやすく解説）</div>
-                                <div class="popular-entry-card-date widget-entry-card-date display-none">
-                                    <span class="popular-entry-card-post-date widget-entry-card-post-date post-date">2024/2/27</span>
-                                    <span class="popular-entry-card-update-date widget-entry-card-update-date post-update">2024/2/27</span>
-                                </div>
-                            </div><!-- /.popular-entry-content -->
-                        </div><!-- /.popular-entry-card -->
-                    </a><!-- /.popular-entry-card-link -->
-                    <a href="https://prograshi.com/pc/windows-system-font/" class="popular-entry-card-link widget-entry-card-link a-wrap no-2" title="【Windows】システムフォントを変更する方法" data-nodal="">
-                        <div class="post-439 popular-entry-card widget-entry-card e-card cf post type-post status-publish format-standard has-post-thumbnail hentry category-pc-post tag-windows-post">
-                            <figure class="popular-entry-card-thumb widget-entry-card-thumb card-thumb">
-                                <img width="120" height="68" src="https://prograshi.com/wp-content/uploads/2021/04/font-705667_1920-120x68.jpg" class="attachment-thumb120 size-thumb120 wp-post-image lazyautosizes ls-is-cached lazyloaded" alt="" decoding="async" data-src="https://prograshi.com/wp-content/uploads/2021/04/font-705667_1920-120x68.jpg" data-srcset="https://prograshi.com/wp-content/uploads/2021/04/font-705667_1920-120x68.jpg 120w, https://prograshi.com/wp-content/uploads/2021/04/font-705667_1920-160x90.jpg 160w, https://prograshi.com/wp-content/uploads/2021/04/font-705667_1920-320x180.jpg 320w" data-sizes="auto" data-eio-rwidth="120" data-eio-rheight="68" sizes="120px" srcset="https://prograshi.com/wp-content/uploads/2021/04/font-705667_1920-120x68.jpg 120w, https://prograshi.com/wp-content/uploads/2021/04/font-705667_1920-160x90.jpg 160w, https://prograshi.com/wp-content/uploads/2021/04/font-705667_1920-320x180.jpg 320w">
-                                <noscript><img width="120" height="68" src="https://prograshi.com/wp-content/uploads/2021/04/font-705667_1920-120x68.jpg" class="attachment-thumb120 size-thumb120 wp-post-image" alt="" decoding="async" srcset="https://prograshi.com/wp-content/uploads/2021/04/font-705667_1920-120x68.jpg 120w, https://prograshi.com/wp-content/uploads/2021/04/font-705667_1920-160x90.jpg 160w, https://prograshi.com/wp-content/uploads/2021/04/font-705667_1920-320x180.jpg 320w" sizes="(max-width: 120px) 100vw, 120px" data-eio="l" /></noscript>
-                            </figure><!-- /.popular-entry-card-thumb -->
-                            <div class="popular-entry-card-content widget-entry-card-content card-content">
-                                <div class="popular-entry-card-title widget-entry-card-title card-title">【Windows】システムフォントを変更する方法</div>
-                                <div class="popular-entry-card-date widget-entry-card-date display-none">
-                                    <span class="popular-entry-card-post-date widget-entry-card-post-date post-date">2023/4/1</span>
-                                    <span class="popular-entry-card-update-date widget-entry-card-update-date post-update">2023/11/3</span>
-                                </div>
-                            </div><!-- /.popular-entry-content -->
-                        </div><!-- /.popular-entry-card -->
-                    </a><!-- /.popular-entry-card-link -->
-                    <a href="https://prograshi.com/design/css/media-query/" class="popular-entry-card-link widget-entry-card-link a-wrap no-3" title="【CSS】メディアクエリ(@media)とは何か？使い方を実例で解説｜.cssファイルやlinkタグでの画面幅以上・以下の指定（初心者向け、わかりやすい）" data-nodal="">
-                        <div class="post-7435 popular-entry-card widget-entry-card e-card cf post type-post status-publish format-standard has-post-thumbnail hentry category-css-post">
-                            <figure class="popular-entry-card-thumb widget-entry-card-thumb card-thumb">
-                                <img width="120" height="68" src="https://prograshi.com/wp-content/uploads/2021/10/image-17-120x68.png" class="attachment-thumb120 size-thumb120 wp-post-image lazyautosizes ls-is-cached lazyloaded" alt="" decoding="async" data-src="https://prograshi.com/wp-content/uploads/2021/10/image-17-120x68.png" data-srcset="https://prograshi.com/wp-content/uploads/2021/10/image-17-120x68.png 120w, https://prograshi.com/wp-content/uploads/2021/10/image-17-160x90.png 160w, https://prograshi.com/wp-content/uploads/2021/10/image-17-320x180.png 320w" data-sizes="auto" data-eio-rwidth="120" data-eio-rheight="68" sizes="120px" srcset="https://prograshi.com/wp-content/uploads/2021/10/image-17-120x68.png 120w, https://prograshi.com/wp-content/uploads/2021/10/image-17-160x90.png 160w, https://prograshi.com/wp-content/uploads/2021/10/image-17-320x180.png 320w">
-                                <noscript><img width="120" height="68" src="https://prograshi.com/wp-content/uploads/2021/10/image-17-120x68.png" class="attachment-thumb120 size-thumb120 wp-post-image" alt="" decoding="async" srcset="https://prograshi.com/wp-content/uploads/2021/10/image-17-120x68.png 120w, https://prograshi.com/wp-content/uploads/2021/10/image-17-160x90.png 160w, https://prograshi.com/wp-content/uploads/2021/10/image-17-320x180.png 320w" sizes="(max-width: 120px) 100vw, 120px" data-eio="l" /></noscript>
-                            </figure><!-- /.popular-entry-card-thumb -->
-                            <div class="popular-entry-card-content widget-entry-card-content card-content">
-                                <div class="popular-entry-card-title widget-entry-card-title card-title">【CSS】メディアクエリ(@media)とは何か？使い方を実例で解説｜.cssファイルやlinkタグでの画面幅以上・以下の指定（初心者向け、わかりやすい）</div>
-                                <div class="popular-entry-card-date widget-entry-card-date display-none">
-                                    <span class="popular-entry-card-post-date widget-entry-card-post-date post-date">2023/6/20</span>
-                                    <span class="popular-entry-card-update-date widget-entry-card-update-date post-update">2023/10/1</span>
-                                </div>
-                            </div><!-- /.popular-entry-content -->
-                        </div><!-- /.popular-entry-card -->
-                    </a><!-- /.popular-entry-card-link -->
                 </div>
-            </aside>
-            <aside id="categories-6" class="widget widget-main-scroll widget_categories">
-                <h1 class="widget-main-scroll-title main-widget-label widget-title">カテゴリー</h1>
-                <ul>
-                    <li class="cat-item cat-item-79">
-                        <a href="https://prograshi.com/category/pc/" data-nodal=""><span class="list-item-caption">PC</span></a>
-                    </li>
-                    <li class="cat-item cat-item-153">
-                        <a href="https://prograshi.com/category/language/html/" data-nodal=""><span class="list-item-caption">HTML</span></a>
-                    </li>
-                    <li class="cat-item cat-item-80">
-                        <a href="https://prograshi.com/category/design/" data-nodal=""><span class="list-item-caption">Design</span></a>
-                    </li>
-                    <li class="cat-item cat-item-174">
-                        <a href="https://prograshi.com/category/general/afiliate/" data-nodal=""><span class="list-item-caption">Affiliate</span></a>
-                    </li>
-                    <li class="cat-item cat-item-81">
-                        <a href="https://prograshi.com/category/design/css/" data-nodal=""><span class="list-item-caption">CSS・SCSS</span></a>
-                    </li>
-                    <li class="cat-item cat-item-194">
-                        <a href="https://prograshi.com/category/language/ruby/" data-nodal=""><span class="list-item-caption">ruby</span></a>
-                    </li>
-                    <li class="cat-item cat-item-82">
-                        <a href="https://prograshi.com/category/framework/rails/" data-nodal=""><span class="list-item-caption">Rails</span></a>
-                    </li>
-                    <li class="cat-item cat-item-197">
-                        <a href="https://prograshi.com/category/general/spreadsheet/" data-nodal=""><span class="list-item-caption">SpreadSheet</span></a>
-                    </li>
-                    <li class="cat-item cat-item-84">
-                        <a href="https://prograshi.com/category/design/affinity/" data-nodal=""><span class="list-item-caption">Affinity</span></a>
-                    </li>
-                    <li class="cat-item cat-item-199">
-                        <a href="https://prograshi.com/category/appsheet/" data-nodal=""><span class="list-item-caption">AppSheet</span></a>
-                    </li>
-                    <li class="cat-item cat-item-85">
-                        <a href="https://prograshi.com/category/platform/database/" data-nodal=""><span class="list-item-caption">Database</span></a>
-                    </li>
-                    <li class="cat-item cat-item-142">
-                        <a href="https://prograshi.com/category/general/command/" data-nodal=""><span class="list-item-caption">Command</span></a>
-                    </li>
-                    <li class="cat-item cat-item-78">
-                        <a href="https://prograshi.com/category/framework/laravel/" data-nodal=""><span class="list-item-caption">Laravel</span></a>
-                    </li>
-                    <li class="cat-item cat-item-148">
-                        <a href="https://prograshi.com/category/framework/nodejs/" data-nodal=""><span class="list-item-caption">Node-js</span></a>
-                    </li>
-                </ul>
-            </aside>
-        </div>
+                <div class="article-page-stats__item">
+                    <div class="fav article-page-stats__icon">
+                        <i class="fa-solid fa-star"></i>
+                        <span id="fav_counter" class="article-page-stats__counter"></span>
+                    </div>
+                </div>
+                <div class="article-page-stats__item">
+                    <div class="like article-page-stats__icon">
+                        <i class="fa-solid fa-heart"></i>
+                        <span class="donut"></span>
+                        <div class="bubble">
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                        </div>
+                        <span id="like_counter" class="article-page-stats__counter"></span>
+                    </div>
+                </div>
+                <div class="article-page-stats__item">
+                    <div class="action share">
+                        <i class="fa-solid fa-share-from-square"></i>
+                    </div>
+                </div>
+                <div class="article-page-stats__item">
+                    <div class="action download">
+                        <i class="fa fa-solid fa-download"></i>
+                    </div>
+                </div>
+            </div>
+            <aside id="related-entries" class="related-entries rect-entry-card"></aside>
+            <div id="pager-post-navi" class="pager-post-navi post-navi-default cf"></div><!-- /.pager-post-navi -->
+        </div><!-- /under-entry-content -->
     </div> <!-- /content -->
+    <section class="container" id="popular-section">
+        <section id="popular-section_container">
+            <div class="main-content">
+                <div id="main-scroll" class="main-scroll">
+                    <h1>人気記事</h1>
+                    <aside id="popular_entries" class="widget widget-main-scroll widget_popular_entries"></aside>
+                    <h1 class="widget-main-scroll-title main-widget-label widget-title">カテゴリー</h1>
+                    <aside id="categories" class="widget widget-main-scroll widget_categories"></aside>
+                </div>
+            </div>
+        </section>
+    </section>
     <footer></footer>
     </div> <!-- /wrapper -->
     <nav id="nav"></nav>

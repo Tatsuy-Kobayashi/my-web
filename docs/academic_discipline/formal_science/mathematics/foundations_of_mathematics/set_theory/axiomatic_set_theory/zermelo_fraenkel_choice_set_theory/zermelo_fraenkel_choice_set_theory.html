@@ -47,6 +47,7 @@
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/include.js" defer></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/linkPreview.js" defer></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/commentary.js" defer></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/pageContentRenderer.js"></script>
     <script>
         // JavaScriptの厳格モード使用
         'use strict';
@@ -81,60 +82,16 @@
 <div id="wrapper">
     <header></header>
     <div class="content">
-        <div class="breadcrumb_list">
-            <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/">
-                    <i class="fa fa-home fa-fw" aria-hidden="true"></i>&ensp;<span>Home</span>
-                </a>
-            </span>&ensp;&gt;&ensp;
-            <span class="link-container">
-                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="学問" data-description="AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">
-                    <i class="fa fa-solid fa-graduation-cap" aria-hidden="true"></i>&ensp;<span>学問</span>
-                </a>
-                <div class="link-preview">
-                    <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="link-preview-clickable">
-                        <img class="preview-image" src="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" alt="Preview image">
-                        <h3 class="preview-title">学問</h3>
-                        <p class="preview-description">AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう</p>
-                    </a>
-                </div> <!-- /link-preview -->
-            </span> <!-- /link-preview -->&ensp;&gt;&ensp;
-            <span class="link-container">
-                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/formal_science.html" class="preview-link" data-title="形式科学" data-description="AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう" data-image="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png">
-                    <i class="fa fa-solid fa-shapes" aria-hidden="true"></i>&ensp;<span>形式科学</span>
-                </a>
-                <div class="link-preview">
-                    <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/formal_science.html" class="link-preview-clickable">
-                        <img class="preview-image" src="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" alt="Preview image">
-                        <h3 class="preview-title">形式科学</h3>
-                        <p class="preview-description">AI時代にこそ学問は重要になる。学問の一覧から様々な記事を見てみよう</p>
-                    </a>
-                </div> <!-- /link-preview -->
-            </span> <!-- /link-preview -->&ensp;&gt;&ensp;
-            <span class="link-container">
-                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html">
-                    <span class="icon icon-physics">&ensp;数学</span>
-                </a>
-            </span> <!-- /link-container -->&ensp;&gt;&ensp;
-            <span class="link-container">
-                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/physics.html">
-                    <span class="icon icon-physics">&ensp;数学基礎論</span>
-                </a>
-            </span> <!-- /link-container -->&ensp;&gt;&ensp;
-            <span class="link-container">
-                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html">
-                    <span class="icon icon-physics">&ensp;集合論</span>
-                </a>
-            </span> <!-- /link-container -->&ensp;&gt;&ensp;
-            <span class="link-container">
-                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/axiomatic_set_theory.html">
-                    <span class="icon icon-physics">&ensp;公理的集合論</span>
-                </a>
-            </span> <!-- /link-container -->&ensp;&gt;&ensp;
-            ツェルメロ＝フレンケル集合論
-        </div>
+        <div aria-label="Breadcrumb" class="breadcrumb_list">
+            <div id="breadcrumb-list"></div>
+        </div> <!-- /breadcrumb_list -->
         <div class="main">
             <h1>ツェルメロ＝フレンケル集合論</h1>
+            <div id="date-info" class="date"></div>
+            <meta itemprop="author" content="ラクして数理研究所" itemscope itemtype="https://schema.org/Organization">
+                <meta itemprop="name" content="ラクして数理研究所">
+            </meta>
+
             <h2>目次[<span class="toc-toggle-button">表示</span>]</h2>
             <div class="toc-content">
                 <ul>
@@ -1127,7 +1084,65 @@
                 </li>
             </ol>
         </div> <!-- /annotation -->
+        <div class="under-entry-content">
+            <div id="article-page-topic"></div>
+            <div class="article-page-stats">
+                <div class="article-page-stats__item">
+                    <div class="comment article-page-stats__icon">
+                        <i class="fa-regular fa-comment"></i>
+                        <span id="comment_counter" class="article-page-stats__counter"></span>
+                    </div>
+                </div>
+                <div class="article-page-stats__item">
+                    <div class="fav article-page-stats__icon">
+                        <i class="fa-solid fa-star"></i>
+                        <span id="fav_counter" class="article-page-stats__counter"></span>
+                    </div>
+                </div>
+                <div class="article-page-stats__item">
+                    <div class="like article-page-stats__icon">
+                        <i class="fa-solid fa-heart"></i>
+                        <span class="donut"></span>
+                        <div class="bubble">
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                        </div>
+                        <span id="like_counter" class="article-page-stats__counter"></span>
+                    </div>
+                </div>
+                <div class="article-page-stats__item">
+                    <div class="action share">
+                        <i class="fa-solid fa-share-from-square"></i>
+                    </div>
+                </div>
+                <div class="article-page-stats__item">
+                    <div class="action download">
+                        <i class="fa fa-solid fa-download"></i>
+                    </div>
+                </div>
+            </div>
+            <aside id="related-entries" class="related-entries rect-entry-card"></aside>
+            <div id="pager-post-navi" class="pager-post-navi post-navi-default cf"></div><!-- /.pager-post-navi -->
+        </div><!-- /under-entry-content -->
     </div> <!-- /content -->
+    <section class="container" id="popular-section">
+        <section id="popular-section_container">
+            <div class="main-content">
+                <div id="main-scroll" class="main-scroll">
+                    <h1>人気記事</h1>
+                    <aside id="popular_entries" class="widget widget-main-scroll widget_popular_entries"></aside>
+                    <h1 class="widget-main-scroll-title main-widget-label widget-title">カテゴリー</h1>
+                    <aside id="categories" class="widget widget-main-scroll widget_categories"></aside>
+                </div>
+            </div>
+        </section>
+    </section>
     <footer></footer>
     </div> <!-- /wrapper -->
     <nav id="nav"></nav>

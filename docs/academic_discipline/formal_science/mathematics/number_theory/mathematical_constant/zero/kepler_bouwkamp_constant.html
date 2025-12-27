@@ -172,12 +172,13 @@
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/prism.css" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/codeHighlight.css" />
 
+    <!-- プログラミング解説 -->
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/prism.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/include.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/linkPreview.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/commentary.js"></script>
-    <!-- プログラミング解説 -->
-    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/prism.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/pageContentRenderer.js"></script>
     <script>
         // JavaScriptの厳格モード使用
         'use strict';
@@ -259,6 +260,11 @@
         </div>
         <div class="main">
             <h1>ケプラー-ブーカム定数Kepler-Bouwkamp constant</h1>
+            <div id="date-info" class="date"></div>
+            <meta itemprop="author" content="ラクして数理研究所" itemscope itemtype="https://schema.org/Organization">
+                <meta itemprop="name" content="ラクして数理研究所">
+            </meta>
+
             <h2>目次</h2>
 
             <div itemprop="articleBody" id="section_1">
@@ -475,7 +481,65 @@ mpmathで計算したケプラー–ブーカム定数: 0.114942044853296
                 </li>
             </ol>
         </div> <!-- /annotation -->
+        <div class="under-entry-content">
+            <div id="article-page-topic"></div>
+            <div class="article-page-stats">
+                <div class="article-page-stats__item">
+                    <div class="comment article-page-stats__icon">
+                        <i class="fa-regular fa-comment"></i>
+                        <span id="comment_counter" class="article-page-stats__counter"></span>
+                    </div>
+                </div>
+                <div class="article-page-stats__item">
+                    <div class="fav article-page-stats__icon">
+                        <i class="fa-solid fa-star"></i>
+                        <span id="fav_counter" class="article-page-stats__counter"></span>
+                    </div>
+                </div>
+                <div class="article-page-stats__item">
+                    <div class="like article-page-stats__icon">
+                        <i class="fa-solid fa-heart"></i>
+                        <span class="donut"></span>
+                        <div class="bubble">
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                        </div>
+                        <span id="like_counter" class="article-page-stats__counter"></span>
+                    </div>
+                </div>
+                <div class="article-page-stats__item">
+                    <div class="action share">
+                        <i class="fa-solid fa-share-from-square"></i>
+                    </div>
+                </div>
+                <div class="article-page-stats__item">
+                    <div class="action download">
+                        <i class="fa fa-solid fa-download"></i>
+                    </div>
+                </div>
+            </div>
+            <aside id="related-entries" class="related-entries rect-entry-card"></aside>
+            <div id="pager-post-navi" class="pager-post-navi post-navi-default cf"></div><!-- /.pager-post-navi -->
+        </div><!-- /under-entry-content -->
     </div> <!-- /content -->
+    <section class="container" id="popular-section">
+        <section id="popular-section_container">
+            <div class="main-content">
+                <div id="main-scroll" class="main-scroll">
+                    <h1>人気記事</h1>
+                    <aside id="popular_entries" class="widget widget-main-scroll widget_popular_entries"></aside>
+                    <h1 class="widget-main-scroll-title main-widget-label widget-title">カテゴリー</h1>
+                    <aside id="categories" class="widget widget-main-scroll widget_categories"></aside>
+                </div>
+            </div>
+        </section>
+    </section>
     <footer></footer>
     </div> <!-- /wrapper -->
     <nav id="nav"></nav>

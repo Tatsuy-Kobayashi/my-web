@@ -67,7 +67,7 @@
 }
 
 /* プルダウン・リスト */
-.main details {
+.main .details_pulldownList {
     padding: 10px;
     margin: 5px 0;
     border: 1px solid #ddd;
@@ -76,54 +76,54 @@
     font-family: 'Arial', sans-serif;
     transition: background-color 0.3s ease;
 }
-.main summary {
+.main .summary_pulldownList {
     cursor: pointer;
     font-weight: bold;
     display: flex;
     padding: 5px;
     transition: background-color 0.3s ease;
 }
-.main details[open] {
+.main .details_pulldownList[open] {
     background-color: #e6f7ff;
 }
-.main details > ul {
+.main .details_pulldownList > .ul_pulldownList {
     padding-left: 20px;
 }
-.main ul {
+.main .ul_pulldownList {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.pulldown_list_wrapper li {
+.pulldown_list_wrapper .li_pulldownList {
     padding-left: 10px; /* 基本のインデント */
     list-style-type: none;
 }
-.pulldown_list_wrapper li a {
+.pulldown_list_wrapper .li_pulldownList a {
     text-decoration: none;
     color: #333;
     transition: color 0.3s ease;
 }
-.pulldown_list_wrapper li a:hover {
+.pulldown_list_wrapper .li_pulldownList a:hover {
     color: #1a73e8;
 }
 
-.pulldown_list_wrapper li > details > summary {
+.pulldown_list_wrapper .li_pulldownList > .details_pulldownList > .summary_pulldownList {
     padding-left: 0; /* 親要素にはインデントなし */
 }
-.pulldown_list_wrapper li details > li {
+.pulldown_list_wrapper .li_pulldownList .details_pulldownList > .li_pulldownList {
     padding-left: 10px; /* 第一階層：10pxのインデント */
 }
-.pulldown_list_wrapper li details li details > li {
+.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList > .li_pulldownList {
     padding-left: 20px; /* 第二階層：さらに10pxのインデント */
 }
-.pulldown_list_wrapper li details li details li details > li {
+.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList > .li_pulldownList {
     padding-left: 30px; /* 第三階層：さらに10pxのインデント */
 }
-.pulldown_list_wrapper li details li details li details li details > li {
+.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList > .li_pulldownList {
     padding-left: 40px; /* 第四階層：さらに10pxのインデント */
 }
-.pulldown_list_wrapper li details li details li details li details li details > li {
+.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList > .li_pulldownList {
     padding-left: 50px; /* 第五階層：さらに10pxのインデント */
 }
 

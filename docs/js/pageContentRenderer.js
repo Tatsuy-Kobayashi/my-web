@@ -19,7 +19,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     // labelEn: 英語ラベル
     // url: ノードクリック時に開くURL
     // level: 深さ（現在は学問のみが明示的に持つ）
-    // mainPath: ルートからのパス情報（複数可、多親対応）
+    // mainPath: ルートからのパス情報（多親対応）
+    // auxPath: 補助パス情報（複数可、多親対応）
     // released: 公開フラグ（0: 未公開、1: 公開）
     // isPaid: 有料フラグ（0: 無料、1: 有料）
     // datePublished: 公開日
@@ -30,7 +31,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // imageUrl: プレビュー画像のURL
     // thumbnailUrl: サムネイル画像のURL配列（複数解像度対応）
     // ------------------------
-    console.log('[INIT] Loading nodesData...');
+    console.log('[INIT] Loading siteData...');
     const siteData = [
         { id: 0, label: "学問", labelEn: "Academic Disciplines", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html", level: 0, mainPath: ["0"], released: 1, isPaid: 0, datePublished: "2024-09-28", dateModified: "2024-12-25", description: "あらゆる事物は何かしらの学問の一領域として捉えることができる", iconClass: "fa-graduation-cap", imageUrl: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" },
 
@@ -75,8 +76,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         // 深さ3
         // 数学30
         { id: 300, label: "数学用語", labelEn: "Mathematical Terms", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematical_terms/mathematical_terms.html", mainPath: ["0:3:30:300"], released: 0, isPaid: 0, keywords: ["一覧"], iconClass: "fa-folder fa-fw" },
-        { id: 301, label: "数学基礎論", labelEn: "Foundations of Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html", mainPath: ["0:3:30:301"], released: 0, iconClass: "fa-folder fa-fw", thumbnailUrl: ["https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-120x68.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-160x90.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-320x180.png"] },
-        { id: 302, label: "数論", labelEn: "Number Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/number_theory.html", mainPath: ["0:3:30:302"], iconClass: "fa-folder fa-fw" },
+        { id: 301, label: "数学基礎論", labelEn: "Foundations of Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html", mainPath: ["0:3:30:301"], released: 1, isPaid: 1, datePublished: "2025-12-28", dateModified: "2025-12-28", description: "数学そのものを研究対象とする「数学基礎論」の世界。構文論と意味論の対比、モデル理論、証明論、そして現代の逆数学や証明支援系への展開を概観し、Pythonによる有限モデルの検証シミュレーションを通じて、論理式の真偽がいかに判定されるかを学びます。", keywords: ["ゲーデル", "Python", "ヒルベルト・プログラム"], iconClass: "fa-folder fa-fw", thumbnailUrl: ["https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-120x68.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-160x90.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-320x180.png"] },
+        { id: 302, label: "数論", labelEn: "Number Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/number_theory.html", mainPath: ["0:3:30:302"], released: 1, isPaid: 0, iconClass: "fa-folder fa-fw" },
         { id: 303, label: "代数学", labelEn: "Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebra.html", mainPath: ["0:3:30:303"], iconClass: "fa-folder fa-fw" },
         { id: 304, label: "解析学", labelEn: "Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/analysis.html", mainPath: ["0:3:30:304"], iconClass: "fa-folder fa-fw" },
         { id: 305, label: "幾何学", labelEn: "Geometry", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/geometry/geometry.html", mainPath: ["0:3:30:305"], iconClass: "fa-folder fa-fw" },
@@ -154,7 +155,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         { id: 30312, label: "モデル理論・論理代数", labelEn: "Model Theory and Algebraic Logic", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/model_theory/model_theory.html", mainPath: ["0:3:30:303:3031:30312"] },
         { id: 30313, label: "圏論的代数学", labelEn: "Categorical Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/categorical_algebra/categorical_algebra.html", mainPath: ["0:3:30:303:3031:30313"] },
         // 解析学基礎3040
-        { id: 30400, label: "実数論", labelEn: "Theory of Real Numbers", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/theory_of_real_numbers/theory_of_real_numbers.html", mainPath: ["0:3:30:304:3040:30400"], released: 0 },
+        { id: 30400, label: "実解析", labelEn: "Theory of Real Numbers", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/real_analysis/real_analysis.html", mainPath: ["0:3:30:304:3040:30400"], released: 1 },
         { id: 30401, label: "複素解析", labelEn: "Complex Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/complex_analysis/complex_analysis.html", mainPath: ["0:3:30:304:3040:30401"], released: 0 },
         { id: 30402, label: "関数論", labelEn: "Function Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/function_theory/function_theory.html", mainPath: ["0:3:30:304:3040:30402"], released: 1 },
         // 微分積分学3041
@@ -194,7 +195,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         // 深さ6
         // 公理的集合論30111
-        { id: 301110, label: "ツェルメロ＝フレンケル集合論", labelEn: "Zermelo-Fraenkel Set Theory with the Axiom of Choice", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/zermelo_fraenkel_choice_set_theory.html", mainPath: ["0:3:30:301:3011:30111:301110"], released: 0 },
+        { id: 301110, label: "ツェルメロ＝フレンケル集合論", labelEn: "Zermelo-Fraenkel Set Theory with the Axiom of Choice", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/zermelo_fraenkel_choice_set_theory.html", mainPath: ["0:3:30:301:3011:30111:301110"], released: 1, isPaid: 1 },
         // 代数系一般論30300
         { id: 303000, label: "原始的な代数的構造", labelEn: "Primitive Algebraic Structures", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/primitive_structures/primitive_structures.html", mainPath: ["0:3:30:303:3030:30300:303000"] },
         { id: 303001, label: "群論", labelEn: "Group Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/group_theory/group_theory.html", mainPath: ["0:3:30:303:3030:30300:303001"] },
@@ -309,9 +310,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         // 実変数調和解析（Calderón–Zygmund理論）304341
         { id: 3043410, label: "特異積分作用素", labelEn: "Singular Integral Operator", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/harmonic_analysis/singular_integral_operator/singular_integral_operator.html", mainPath: ["0:3:30:304:3043:30434:304341:3043410"], released: 0 },
         { id: 3043411, label: "Hardy空間 $H^p$", labelEn: "Hardy Space $H^p$", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/harmonic_analysis/hardy_space/hardy_space.html", mainPath: ["0:3:30:304:3043:30434:304341:3043411"], released: 0 },
-        { id: 3043412, label: "Hardy空間 $H^p$", labelEn: "Hardy Space $H^p$", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/harmonic_analysis/hardy_space/hardy_space.html", mainPath: ["0:3:30:304:3043:30434:304341:3043412"], released: 0 },
-        { id: 3043413, label: "BMO空間", labelEn: "BMO Space (Bounded Mean Oscillation Space)", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/harmonic_analysis/bmo_space/bmo_space.html", mainPath: ["0:3:30:304:3043:30434:304341:3043413"], released: 0 },
-        { id: 3043414, label: "Maximal関数とLittlewood–Paley理論", labelEn: "Maximal Functions and Littlewood–Paley Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/harmonic_analysis/littlewood-paley_theory/littlewood-paley_theory.html", mainPath: ["0:3:30:304:3043:30434:304341:3043414"], released: 0 },
+        { id: 3043412, label: "BMO空間", labelEn: "BMO Space (Bounded Mean Oscillation Space)", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/harmonic_analysis/bmo_space/bmo_space.html", mainPath: ["0:3:30:304:3043:30434:304341:3043412"], released: 0 },
+        { id: 3043413, label: "Maximal関数とLittlewood–Paley理論", labelEn: "Maximal Functions and Littlewood–Paley Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/harmonic_analysis/littlewood-paley_theory/littlewood-paley_theory.html", mainPath: ["0:3:30:304:3043:30434:304341:3043413"], released: 0 },
         // 変換解析304342
         { id: 3043420, label: "フーリエ解析", labelEn: "Fourier Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/harmonic_analysis/transformation_analysis/fourier_analysis/fourier_analysis.html", mainPath: ["0:3:30:304:3043:30434:304342:3043420"], released: 0, description: "フーリエ変換の厳密理論、$L^2$上のユニタリ作用素" },
         { id: 3043421, label: "ラプラス解析", labelEn: "Laplace Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/harmonic_analysis/transformation_analysis/laplace_analysis/laplace_analysis.html", mainPath: ["0:3:30:304:3043:30434:304342:3043421"], released: 0 },
@@ -599,7 +599,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                 const desc = node.description || '説明はありません。';
                 const img = node.imageUrl || '';
                 let s = `<div class="link-container">`;
-                if (node.iconClass) s += `<i class="fa fa-solid ${node.iconClass}"></i>&ensp;`;
                 s += `<a href="${node.url}" class="preview-link" data-title="${(node.label||'').replace(/\"/g,'&quot;')}" data-description="${(desc||'').replace(/\"/g,'&quot;')}" data-image="${img}">${node.label}</a>`;
                 s += `<div class="link-preview">`;
                 s += `<a href="${node.url}" class="link-preview-clickable">`;
@@ -620,19 +619,19 @@ document.addEventListener('DOMContentLoaded', async function () {
         const buildList = (parentPath) => {
             const children = immediateChildrenOf(parentPath);
             if (!children || children.length === 0) return '';
-            let out = '<ul>';
+            let out = '<ul class="ul_pulldownList">';
             children.forEach(child => {
                 const childPath = getFirstPath(child);
                 const hasDesc = descendants.some(d => {
                     const dps = Array.isArray(d.mainPath) ? d.mainPath : [d.mainPath];
                     return dps.some(mp => typeof mp === 'string' && mp.startsWith(childPath + ':'));
                 });
-                out += '<li>';
+                out += '<li class="li_pulldownList">';
                 // 深い子を持つ場合または現在ノードの直下の子（parentPath === currentPath）の場合は
                 // <details><summary> でラップする。ただし内部リストは存在する場合のみ追加する。
                 if (hasDesc || parentPath === currentPath) {
-                    out += '<details>';
-                    out += `<summary>${makePreviewHtml(child)}</summary>`;
+                    out += '<details class="details_pulldownList">';
+                    out += `<summary class="summary_pulldownList">${makePreviewHtml(child)}</summary>`;
                     const inner = buildList(childPath);
                     if (inner) out += inner;
                     out += '</details>';
@@ -641,7 +640,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 }
                 out += '</li>';
             });
-            out += '</ul>';
+            out += '</ul> <!-- /.ul_pulldownList -->';
             return out;
         };
 

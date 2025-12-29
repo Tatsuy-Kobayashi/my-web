@@ -34,7 +34,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // labelEn: 英語ラベル
     // url: ノードクリック時に開くURL
     // level: 深さ（現在は学問のみが明示的に持つ）
-    // mainPath: ルートからのパス情報（複数可、多親対応）
+    // mainPath: ルートからのパス情報（多親対応）
+    // auxPath: 補助パス情報（複数可、多親対応）
     // released: 公開フラグ（0: 未公開、1: 公開）
     // isPaid: 有料フラグ（0: 無料、1: 有料）
     // datePublished: 公開日
@@ -90,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // 深さ3
         // 数学30
         { id: 300, label: "数学用語", labelEn: "Mathematical Terms", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematical_terms/mathematical_terms.html", mainPath: ["0:3:30:300"], released: 0, isPaid: 0, keywords: ["一覧"], iconClass: "fa-folder fa-fw" },
-        { id: 301, label: "数学基礎論", labelEn: "Foundations of Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html", mainPath: ["0:3:30:301"], released: 0, iconClass: "fa-folder fa-fw", thumbnailUrl: ["https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-120x68.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-160x90.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-320x180.png"] },
+        { id: 301, label: "数学基礎論", labelEn: "Foundations of Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html", mainPath: ["0:3:30:301"], released: 1, isPaid: 1, datePublished: "2025-12-28", dateModified: "2025-12-28", description: "数学そのものを研究対象とする「数学基礎論」の世界。構文論と意味論の対比、モデル理論、証明論、そして現代の逆数学や証明支援系への展開を概観し、Pythonによる有限モデルの検証シミュレーションを通じて、論理式の真偽がいかに判定されるかを学びます。", keywords: ["ゲーデル", "Python", "ヒルベルト・プログラム"], iconClass: "fa-folder fa-fw", thumbnailUrl: ["https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-120x68.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-160x90.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-320x180.png"] },
         { id: 302, label: "数論", labelEn: "Number Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/number_theory.html", mainPath: ["0:3:30:302"], iconClass: "fa-folder fa-fw" },
         { id: 303, label: "代数学", labelEn: "Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebra.html", mainPath: ["0:3:30:303"], iconClass: "fa-folder fa-fw" },
         { id: 304, label: "解析学", labelEn: "Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/analysis.html", mainPath: ["0:3:30:304"], iconClass: "fa-folder fa-fw" },
@@ -169,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: 30312, label: "モデル理論・論理代数", labelEn: "Model Theory and Algebraic Logic", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/model_theory/model_theory.html", mainPath: ["0:3:30:303:3031:30312"] },
         { id: 30313, label: "圏論的代数学", labelEn: "Categorical Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/categorical_algebra/categorical_algebra.html", mainPath: ["0:3:30:303:3031:30313"] },
         // 解析学基礎3040
-        { id: 30400, label: "実数論", labelEn: "Theory of Real Numbers", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/theory_of_real_numbers/theory_of_real_numbers.html", mainPath: ["0:3:30:304:3040:30400"], released: 0 },
+        { id: 30400, label: "実解析", labelEn: "Theory of Real Numbers", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/real_analysis/real_analysis.html", mainPath: ["0:3:30:304:3040:30400"], released: 1 },
         { id: 30401, label: "複素解析", labelEn: "Complex Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/complex_analysis/complex_analysis.html", mainPath: ["0:3:30:304:3040:30401"], released: 0 },
         { id: 30402, label: "関数論", labelEn: "Function Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/function_theory/function_theory.html", mainPath: ["0:3:30:304:3040:30402"], released: 1 },
         // 微分積分学3041
@@ -209,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // 深さ6
         // 公理的集合論30111
-        { id: 301110, label: "ツェルメロ＝フレンケル集合論", labelEn: "Zermelo-Fraenkel Set Theory with the Axiom of Choice", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/zermelo_fraenkel_choice_set_theory.html", mainPath: ["0:3:30:301:3011:30111:301110"], released: 0 },
+        { id: 301110, label: "ツェルメロ＝フレンケル集合論", labelEn: "Zermelo-Fraenkel Set Theory with the Axiom of Choice", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/zermelo_fraenkel_choice_set_theory.html", mainPath: ["0:3:30:301:3011:30111:301110"], released: 1, isPaid: 1 },
         // 代数系一般論30300
         { id: 303000, label: "原始的な代数的構造", labelEn: "Primitive Algebraic Structures", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/primitive_structures/primitive_structures.html", mainPath: ["0:3:30:303:3030:30300:303000"] },
         { id: 303001, label: "群論", labelEn: "Group Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/group_theory/group_theory.html", mainPath: ["0:3:30:303:3030:30300:303001"] },
@@ -324,9 +325,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // 実変数調和解析（Calderón–Zygmund理論）304341
         { id: 3043410, label: "特異積分作用素", labelEn: "Singular Integral Operator", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/harmonic_analysis/singular_integral_operator/singular_integral_operator.html", mainPath: ["0:3:30:304:3043:30434:304341:3043410"], released: 0 },
         { id: 3043411, label: "Hardy空間 $H^p$", labelEn: "Hardy Space $H^p$", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/harmonic_analysis/hardy_space/hardy_space.html", mainPath: ["0:3:30:304:3043:30434:304341:3043411"], released: 0 },
-        { id: 3043412, label: "Hardy空間 $H^p$", labelEn: "Hardy Space $H^p$", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/harmonic_analysis/hardy_space/hardy_space.html", mainPath: ["0:3:30:304:3043:30434:304341:3043412"], released: 0 },
-        { id: 3043413, label: "BMO空間", labelEn: "BMO Space (Bounded Mean Oscillation Space)", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/harmonic_analysis/bmo_space/bmo_space.html", mainPath: ["0:3:30:304:3043:30434:304341:3043413"], released: 0 },
-        { id: 3043414, label: "Maximal関数とLittlewood–Paley理論", labelEn: "Maximal Functions and Littlewood–Paley Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/harmonic_analysis/littlewood-paley_theory/littlewood-paley_theory.html", mainPath: ["0:3:30:304:3043:30434:304341:3043414"], released: 0 },
+        { id: 3043412, label: "BMO空間", labelEn: "BMO Space (Bounded Mean Oscillation Space)", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/harmonic_analysis/bmo_space/bmo_space.html", mainPath: ["0:3:30:304:3043:30434:304341:3043412"], released: 0 },
+        { id: 3043413, label: "Maximal関数とLittlewood–Paley理論", labelEn: "Maximal Functions and Littlewood–Paley Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/harmonic_analysis/littlewood-paley_theory/littlewood-paley_theory.html", mainPath: ["0:3:30:304:3043:30434:304341:3043413"], released: 0 },
         // 変換解析304342
         { id: 3043420, label: "フーリエ解析", labelEn: "Fourier Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/harmonic_analysis/transformation_analysis/fourier_analysis/fourier_analysis.html", mainPath: ["0:3:30:304:3043:30434:304342:3043420"], released: 0, description: "フーリエ変換の厳密理論、$L^2$上のユニタリ作用素" },
         { id: 3043421, label: "ラプラス解析", labelEn: "Laplace Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/harmonic_analysis/transformation_analysis/laplace_analysis/laplace_analysis.html", mainPath: ["0:3:30:304:3043:30434:304342:3043421"], released: 0 },

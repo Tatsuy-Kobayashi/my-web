@@ -314,295 +314,297 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                 <b id="section_2_6">集合の代数学</b><br>
                 &emsp;数の基礎──群論などでは、各数体の演算について学ぶが、集合にも演算がある。以下の演算によって、集合の直感的かつ基本的な操作が可能になる。
             </p>
-            <p>
-                <li><b>和集合（Union）</b></li>
-                &emsp;2つの集合$A, B$の和集合を
-            </p>
-            <div class="mathjax_wrapper">
-                <div class="mathjax_flex">
-                    \[
-                        A \cup B = \{ x \mid x \in A \lor x \in B \}
-                    \]
-                </div>
-            </div>
-            <p>と定義する。</p>
-            <div class="tikzjax_wrapper">
-                <div class="tikzjax_flex" style="padding: 5px 5px;">
-                    <div style="display: flex; width: 171.116pt; height: 114.211pt;">
-                        <div style="position: relative; width: 100%; height: 0pt;" class="page">
-                            <svg width="171.11646pt" height="114.21097pt" viewBox="-72 -72 171.11646 114.21097" style="position: absolute; top: 0pt; left: 0pt; overflow: visible;">
-                                <g transform="translate(-15.164520263671871,-15.164520263671871)">
-                                <g stroke-miterlimit="10" transform="scale(1,-1)">
-                                <g stroke="#000" fill="#000">
-                                <g stroke-width="0.4">
-                                <g stroke="#fcc" fill="#fcc">
-                                <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " stroke="none"></path>
-                                </g>
-                                <g stroke="#fcc" fill="#fcc">
-                                <path d=" M 56.90549 0.0 M 113.81097 0.0 C 113.81097 31.42844 88.33392 56.90549 56.90549 56.90549 C 25.47705 56.90549 0.0 31.42844 0.0 0.0 C 0.0 -31.42844 25.47705 -56.90549 56.90549 -56.90549 C 88.33392 -56.90549 113.81097 -31.42844 113.81097 0.0 Z M 56.90549 0.0  " stroke="none"></path>
-                                </g>
-                                <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " fill="none"></path>
-                                <path d=" M 56.90549 0.0 M 113.81097 0.0 C 113.81097 31.42844 88.33392 56.90549 56.90549 56.90549 C 25.47705 56.90549 0.0 31.42844 0.0 0.0 C 0.0 -31.42844 25.47705 -56.90549 56.90549 -56.90549 C 88.33392 -56.90549 113.81097 -31.42844 113.81097 0.0 Z M 56.90549 0.0  " fill="none"></path>
-                                </g>
-                                </g>
-                                </g>
-                                </g>
-                            </svg>
-                        </div>
+            <ul>
+                <p>
+                    <li><b>和集合（Union）</b></li>
+                    &emsp;2つの集合$A, B$の和集合を
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            A \cup B = \{ x \mid x \in A \lor x \in B \}
+                        \]
                     </div>
-                    <script type="text/tikz">
-                        \begin{tikzpicture}[scale=2]
-                            \fill[red!20] (0,0) circle[radius=1cm];
-                            \fill[red!20] (1,0) circle[radius=1cm];
-                            \draw (0,0) circle[radius=1cm];
-                            \draw (1,0) circle[radius=1cm];
-                        \end{tikzpicture}
-                    </script>
                 </div>
-            </div>
-            <p>
-                &emsp;和集合には<b>交換法則</b>と<b>結合法則</b>が成り立つ。
-            </p>
-            <div class="mathjax_wrapper">
-                <div class="mathjax_flex">
-                    \begin{equation*}
-                        \begin{aligned}
-                            A \cup B &= B \cup A \\
-                            A \cup (B \cup C) &= (A \cup B) \cup C
-                        \end{aligned}
-                    \end{equation*}
-                </div>
-            </div>
-            <p>
-                <li><b>積集合（Intersection、共通部分、交叉）</b></li>
-                &emsp;2つの集合$A, B$の共通部分を
-            </p>
-            <div class="mathjax_wrapper">
-                <div class="mathjax_flex">
-                    \[
-                        A \cap B = \{ x \mid x \in A \land x \in B \}
-                    \]
-                </div>
-            </div>
-            <p>と定義する。</p>
-            <div class="tikzjax_wrapper">
-                <div class="tikzjax_flex" style="padding: 5px 5px;">
-                    <div style="display: flex; width: 171.116pt; height: 114.211pt;">
-                        <div style="position: relative; width: 100%; height: 0pt;" class="page">
-                            <svg width="171.11646pt" height="114.21097pt" viewBox="-72 -72 171.11646 114.21097" style="position: absolute; top: 0pt; left: 0pt; overflow: visible;">
-                                <g transform="translate(-15.164520263671871,-15.164520263671871)">
+                <p>と定義する。</p>
+                <div class="tikzjax_wrapper">
+                    <div class="tikzjax_flex" style="padding: 5px 5px;">
+                        <div style="display: flex; width: 171.116pt; height: 114.211pt;">
+                            <div style="position: relative; width: 100%; height: 0pt;" class="page">
+                                <svg width="171.11646pt" height="114.21097pt" viewBox="-72 -72 171.11646 114.21097" style="position: absolute; top: 0pt; left: 0pt; overflow: visible;">
+                                    <g transform="translate(-15.164520263671871,-15.164520263671871)">
                                     <g stroke-miterlimit="10" transform="scale(1,-1)">
-                                        <g stroke="#000" fill="#000">
-                                            <g stroke-width="0.4">
-                                                <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " fill="none"></path>
-                                                <clipPath id="pgfcp9clip"><path id="pgfcp9" d=" M 56.90549 0.0 M 113.81097 0.0 C 113.81097 31.42844 88.33392 56.90549 56.90549 56.90549 C 25.47705 56.90549 0.0 31.42844 0.0 0.0 C 0.0 -31.42844 25.47705 -56.90549 56.90549 -56.90549 C 88.33392 -56.90549 113.81097 -31.42844 113.81097 0.0 Z M 56.90549 0.0  "></path></clipPath>
-                                                <use xlink:href="#pgfcp9" fill="none"></use>
-                                                <g clip-path="url(#pgfcp9clip)">
+                                    <g stroke="#000" fill="#000">
+                                    <g stroke-width="0.4">
+                                    <g stroke="#fcc" fill="#fcc">
+                                    <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " stroke="none"></path>
+                                    </g>
+                                    <g stroke="#fcc" fill="#fcc">
+                                    <path d=" M 56.90549 0.0 M 113.81097 0.0 C 113.81097 31.42844 88.33392 56.90549 56.90549 56.90549 C 25.47705 56.90549 0.0 31.42844 0.0 0.0 C 0.0 -31.42844 25.47705 -56.90549 56.90549 -56.90549 C 88.33392 -56.90549 113.81097 -31.42844 113.81097 0.0 Z M 56.90549 0.0  " stroke="none"></path>
+                                    </g>
+                                    <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " fill="none"></path>
+                                    <path d=" M 56.90549 0.0 M 113.81097 0.0 C 113.81097 31.42844 88.33392 56.90549 56.90549 56.90549 C 25.47705 56.90549 0.0 31.42844 0.0 0.0 C 0.0 -31.42844 25.47705 -56.90549 56.90549 -56.90549 C 88.33392 -56.90549 113.81097 -31.42844 113.81097 0.0 Z M 56.90549 0.0  " fill="none"></path>
+                                    </g>
+                                    </g>
+                                    </g>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <script type="text/tikz">
+                            \begin{tikzpicture}[scale=2]
+                                \fill[red!20] (0,0) circle[radius=1cm];
+                                \fill[red!20] (1,0) circle[radius=1cm];
+                                \draw (0,0) circle[radius=1cm];
+                                \draw (1,0) circle[radius=1cm];
+                            \end{tikzpicture}
+                        </script>
+                    </div>
+                </div>
+                <p>
+                    &emsp;和集合には<b>交換法則</b>と<b>結合法則</b>が成り立つ。
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \begin{equation*}
+                            \begin{aligned}
+                                A \cup B &= B \cup A \\
+                                A \cup (B \cup C) &= (A \cup B) \cup C
+                            \end{aligned}
+                        \end{equation*}
+                    </div>
+                </div>
+                <p>
+                    <li><b>積集合（Intersection、共通部分、交叉）</b></li>
+                    &emsp;2つの集合$A, B$の共通部分を
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            A \cap B = \{ x \mid x \in A \land x \in B \}
+                        \]
+                    </div>
+                </div>
+                <p>と定義する。</p>
+                <div class="tikzjax_wrapper">
+                    <div class="tikzjax_flex" style="padding: 5px 5px;">
+                        <div style="display: flex; width: 171.116pt; height: 114.211pt;">
+                            <div style="position: relative; width: 100%; height: 0pt;" class="page">
+                                <svg width="171.11646pt" height="114.21097pt" viewBox="-72 -72 171.11646 114.21097" style="position: absolute; top: 0pt; left: 0pt; overflow: visible;">
+                                    <g transform="translate(-15.164520263671871,-15.164520263671871)">
+                                        <g stroke-miterlimit="10" transform="scale(1,-1)">
+                                            <g stroke="#000" fill="#000">
+                                                <g stroke-width="0.4">
+                                                    <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " fill="none"></path>
+                                                    <clipPath id="pgfcp9clip"><path id="pgfcp9" d=" M 56.90549 0.0 M 113.81097 0.0 C 113.81097 31.42844 88.33392 56.90549 56.90549 56.90549 C 25.47705 56.90549 0.0 31.42844 0.0 0.0 C 0.0 -31.42844 25.47705 -56.90549 56.90549 -56.90549 C 88.33392 -56.90549 113.81097 -31.42844 113.81097 0.0 Z M 56.90549 0.0  "></path></clipPath>
+                                                    <use xlink:href="#pgfcp9" fill="none"></use>
+                                                    <g clip-path="url(#pgfcp9clip)">
+                                                        <g stroke="#fcc" fill="#fcc">
+                                                            <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " stroke="none"></path>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <script type="text/tikz">
+                            \begin{tikzpicture}[scale=2]
+                                \draw (0,0) circle[radius=1cm];
+                                \draw[clip] (1,0) circle[radius=1cm];
+                                \fill[red!20] (0,0) circle[radius=1cm];
+                            \end{tikzpicture}
+                        </script>
+                    </div>
+                </div>
+                <p>
+                    &emsp;積集合には<b>交換法則</b>と<b>結合法則</b>が成り立つ。
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \begin{equation*}
+                            \begin{aligned}
+                                A \cap B &= B \cap A \\
+                                A \cap (B \cap C) &= (A \cap B) \cap C
+                            \end{aligned}
+                        \end{equation*}
+                    </div>
+                </div>
+                <p>
+                    &emsp;集合$A, B, C$に対し，次の<b>分配法則（分配律）</b>が成り立つ。
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \begin{equation*}
+                            \begin{aligned}
+                                A \cup (B \cap C) &= (A \cup B) \cap (A \cup C) \\
+                                A \cap (B \cup C) &= (A \cap B) \cup (A \cap C)
+                            \end{aligned}
+                        \end{equation*}
+                    </div>
+                </div>
+                <p>
+                    <li><b>差集合（Difference、相対補集合）</b></li>
+                    &emsp;2つの集合$A, B$の差集合を
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            A - B = A \setminus B = \{ x \mid x \in A \text{ and not } x \in B \} = \{ x \in A \mid \neg \, x \in B \}
+                        \]
+                    </div>
+                </div>
+                <p>と定義する。</p>
+                <div class="tikzjax_wrapper">
+                    <div class="tikzjax_flex" style="padding: 5px 5px;">
+                        <div style="display: flex; width: 171.116pt; height: 114.211pt;">
+                            <div style="position: relative; width: 100%; height: 0pt;" class="page">
+                                <svg width="171.11646pt" height="114.21097pt" viewBox="-72 -72 171.11646 114.21097" style="position: absolute; top: 0pt; left: 0pt; overflow: visible;">
+                                    <g transform="translate(-15.164520263671871,-15.164520263671871)">
+                                        <g stroke-miterlimit="10" transform="scale(1,-1)">
+                                            <g stroke="#000" fill="#000">
+                                                <g stroke-width="0.4">
                                                     <g stroke="#fcc" fill="#fcc">
                                                         <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " stroke="none"></path>
                                                     </g>
-                                                </g>
-                                            </g>
-                                        </g>
-                                    </g>
-                                </g>
-                            </svg>
-                        </div>
-                    </div>
-                    <script type="text/tikz">
-                        \begin{tikzpicture}[scale=2]
-                            \draw (0,0) circle[radius=1cm];
-                            \draw[clip] (1,0) circle[radius=1cm];
-                            \fill[red!20] (0,0) circle[radius=1cm];
-                        \end{tikzpicture}
-                    </script>
-                </div>
-            </div>
-            <p>
-                &emsp;積集合には<b>交換法則</b>と<b>結合法則</b>が成り立つ。
-            </p>
-            <div class="mathjax_wrapper">
-                <div class="mathjax_flex">
-                    \begin{equation*}
-                        \begin{aligned}
-                            A \cap B &= B \cap A \\
-                            A \cap (B \cap C) &= (A \cap B) \cap C
-                        \end{aligned}
-                    \end{equation*}
-                </div>
-            </div>
-            <p>
-                &emsp;集合$A, B, C$に対し，次の<b>分配法則（分配律）</b>が成り立つ。
-            </p>
-            <div class="mathjax_wrapper">
-                <div class="mathjax_flex">
-                    \begin{equation*}
-                        \begin{aligned}
-                            A \cup (B \cap C) &= (A \cup B) \cap (A \cup C) \\
-                            A \cap (B \cup C) &= (A \cap B) \cup (A \cap C)
-                        \end{aligned}
-                    \end{equation*}
-                </div>
-            </div>
-            <p>
-                <li><b>差集合（Difference、相対補集合）</b></li>
-                &emsp;2つの集合$A, B$の差集合を
-            </p>
-            <div class="mathjax_wrapper">
-                <div class="mathjax_flex">
-                    \[
-                        A - B = A \setminus B = \{ x \mid x \in A \text{ and not } x \in B \} = \{ x \in A \mid \neg \, x \in B \}
-                    \]
-                </div>
-            </div>
-            <p>と定義する。</p>
-            <div class="tikzjax_wrapper">
-                <div class="tikzjax_flex" style="padding: 5px 5px;">
-                    <div style="display: flex; width: 171.116pt; height: 114.211pt;">
-                        <div style="position: relative; width: 100%; height: 0pt;" class="page">
-                            <svg width="171.11646pt" height="114.21097pt" viewBox="-72 -72 171.11646 114.21097" style="position: absolute; top: 0pt; left: 0pt; overflow: visible;">
-                                <g transform="translate(-15.164520263671871,-15.164520263671871)">
-                                    <g stroke-miterlimit="10" transform="scale(1,-1)">
-                                        <g stroke="#000" fill="#000">
-                                            <g stroke-width="0.4">
-                                                <g stroke="#fcc" fill="#fcc">
-                                                    <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " stroke="none"></path>
-                                                </g>
-                                                <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " fill="none"></path>
-                                                <clipPath id="pgfcp9clip"><path id="pgfcp9" d=" M 56.90549 0.0 M 113.81097 0.0 C 113.81097 31.42844 88.33392 56.90549 56.90549 56.90549 C 25.47705 56.90549 0.0 31.42844 0.0 0.0 C 0.0 -31.42844 25.47705 -56.90549 56.90549 -56.90549 C 88.33392 -56.90549 113.81097 -31.42844 113.81097 0.0 Z M 56.90549 0.0  "></path></clipPath>
-                                                <use xlink:href="#pgfcp9" fill="none"></use>
-                                                <g clip-path="url(#pgfcp9clip)">
-                                                    <g stroke="#fff" fill="#fff">
-                                                        <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " stroke="none"></path>
+                                                    <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " fill="none"></path>
+                                                    <clipPath id="pgfcp9clip"><path id="pgfcp9" d=" M 56.90549 0.0 M 113.81097 0.0 C 113.81097 31.42844 88.33392 56.90549 56.90549 56.90549 C 25.47705 56.90549 0.0 31.42844 0.0 0.0 C 0.0 -31.42844 25.47705 -56.90549 56.90549 -56.90549 C 88.33392 -56.90549 113.81097 -31.42844 113.81097 0.0 Z M 56.90549 0.0  "></path></clipPath>
+                                                    <use xlink:href="#pgfcp9" fill="none"></use>
+                                                    <g clip-path="url(#pgfcp9clip)">
+                                                        <g stroke="#fff" fill="#fff">
+                                                            <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " stroke="none"></path>
+                                                        </g>
                                                     </g>
                                                 </g>
                                             </g>
                                         </g>
                                     </g>
-                                </g>
-                            </svg>
+                                </svg>
+                            </div>
                         </div>
+                        <script type="text/tikz">
+                            \begin{tikzpicture}[scale=2]
+                                \fill[red!20] (0,0) circle[radius=1cm];
+                                \begin{scope}
+                                    \draw (0,0) circle[radius=1cm];
+                                    \draw[clip] (1,0) circle[radius=1cm];
+                                    \fill[white!20] (0,0) circle[radius=1cm];
+                                \end{scope}
+                            \end{tikzpicture}
+                        </script>
                     </div>
-                    <script type="text/tikz">
-                        \begin{tikzpicture}[scale=2]
-                            \fill[red!20] (0,0) circle[radius=1cm];
-                            \begin{scope}
+                </div>
+                <p>
+                    <li><b>（絶対）補集合（complement）</b></li>
+                    &emsp;特定の状況では、考えているすべての集合を、特定の普遍集合（Universal set）の部分集合と見なすことができる。真の普遍集合は標準集合論には含まれていないが、一部の非標準集合論には含まれている。
+                </p>
+                <p>
+                    &emsp;普遍集合$U$と$U$の部分集合$X$が与えられたとき、$X$の補集合（$U$の部分集合）を
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            X^{C} =U \setminus X = \{ x \mid x \in U \text{ and not } x \in X \} = \{ x \in U \mid \neg \, x \in X \}
+                        \]
+                    </div>
+                </div>
+                <p>と定義する。言い換えると、$X^{C}$（"A-complement"）は、$A$ の要素ではない $U$ のすべての要素の集合である。</p>
+                <p>
+                    <li><b>対称差（Symmetric difference）</b></li>
+                    &emsp;2つの集合$A, B$の対称差を
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            A \ominus B = A \bigtriangleup B = \{ x \mid x \in A \veebar x \in B \}
+                        \]
+                    </div>
+                </div>
+                <p>と定義する。</p>
+                <div class="tikzjax_wrapper">
+                    <div class="tikzjax_flex" style="padding: 5px 5px;">
+                        <div style="display: flex; width: 170.916pt; height: 114.211pt;">
+                            <div style="position: relative; width: 100%; height: 0pt;" class="page">
+                                <svg width="170.91646pt" height="114.21097pt" viewBox="-72 -72 170.91646 114.21097" style="position: absolute; top: 0pt; left: 0pt; overflow: visible;">
+                                    <g transform="translate(-15.164520263671871,-15.164520263671871)">
+                                    <g stroke-miterlimit="10" transform="scale(1,-1)">
+                                    <g stroke="#000" fill="#000">
+                                    <g stroke-width="0.4">
+                                    <g stroke="#fcc" fill="#fcc">
+                                    <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " stroke="none"></path>
+                                    </g>
+                                    <g stroke="#fcc" fill="#fcc">
+                                    <path d=" M 56.90549 0.0 M 113.81097 0.0 C 113.81097 31.42844 88.33392 56.90549 56.90549 56.90549 C 25.47705 56.90549 0.0 31.42844 0.0 0.0 C 0.0 -31.42844 25.47705 -56.90549 56.90549 -56.90549 C 88.33392 -56.90549 113.81097 -31.42844 113.81097 0.0 Z M 56.90549 0.0  " stroke="none"></path>
+                                    </g>
+                                    <clipPath id="pgfcp9clip"> <path id="pgfcp9" d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  "></path> </clipPath>
+                                    <use xlink:href="#pgfcp9" fill="none"></use>
+                                    <g clip-path="url(#pgfcp9clip)">
+                                    <clipPath id="pgfcp10clip"> <path id="pgfcp10" d=" M 56.90549 0.0 M 113.81097 0.0 C 113.81097 31.42844 88.33392 56.90549 56.90549 56.90549 C 25.47705 56.90549 0.0 31.42844 0.0 0.0 C 0.0 -31.42844 25.47705 -56.90549 56.90549 -56.90549 C 88.33392 -56.90549 113.81097 -31.42844 113.81097 0.0 Z M 56.90549 0.0  "></path> </clipPath>
+                                    <use xlink:href="#pgfcp10" fill="none"></use>
+                                    <g clip-path="url(#pgfcp10clip)">
+                                    <g stroke="#fff" fill="#fff">
+                                    <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " stroke="none"></path>
+                                    </g>
+                                    </g>
+                                    </g>
+                                    <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " fill="none"></path>
+                                    </g>
+                                    </g>
+                                    </g>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <script type="text/tikz">
+                            \begin{tikzpicture}[scale=2]
+                                \fill[red!20] (0,0) circle[radius=1cm];
+                                \fill[red!20] (1,0) circle[radius=1cm];
+                                \begin{scope}
+                                    \draw[clip] (0,0) circle[radius=1cm];
+                                    \draw[clip] (1,0) circle[radius=1cm];
+                                    \fill[white!20] (0,0) circle[radius=1cm];
+                                \end{scope}
                                 \draw (0,0) circle[radius=1cm];
-                                \draw[clip] (1,0) circle[radius=1cm];
-                                \fill[white!20] (0,0) circle[radius=1cm];
-                            \end{scope}
-                        \end{tikzpicture}
-                    </script>
-                </div>
-            </div>
-            <p>
-                <li><b>（絶対）補集合（complement）</b></li>
-                &emsp;特定の状況では、考えているすべての集合を、特定の普遍集合（Universal set）の部分集合と見なすことができる。真の普遍集合は標準集合論には含まれていないが、一部の非標準集合論には含まれている。
-            </p>
-            <p>
-                &emsp;普遍集合$U$と$U$の部分集合$X$が与えられたとき、$X$の補集合（$U$の部分集合）を
-            </p>
-            <div class="mathjax_wrapper">
-                <div class="mathjax_flex">
-                    \[
-                        X^{C} =U \setminus X = \{ x \mid x \in U \text{ and not } x \in X \} = \{ x \in U \mid \neg \, x \in X \}
-                    \]
-                </div>
-            </div>
-            <p>と定義する。言い換えると、$X^{C}$（"A-complement"）は、$A$ の要素ではない $U$ のすべての要素の集合である。</p>
-            <p>
-                <li><b>対称差（Symmetric difference）</b></li>
-                &emsp;2つの集合$A, B$の対称差を
-            </p>
-            <div class="mathjax_wrapper">
-                <div class="mathjax_flex">
-                    \[
-                        A \ominus B = A \bigtriangleup B = \{ x \mid x \in A \veebar x \in B \}
-                    \]
-                </div>
-            </div>
-            <p>と定義する。</p>
-            <div class="tikzjax_wrapper">
-                <div class="tikzjax_flex" style="padding: 5px 5px;">
-                    <div style="display: flex; width: 170.916pt; height: 114.211pt;">
-                        <div style="position: relative; width: 100%; height: 0pt;" class="page">
-                            <svg width="170.91646pt" height="114.21097pt" viewBox="-72 -72 170.91646 114.21097" style="position: absolute; top: 0pt; left: 0pt; overflow: visible;">
-                                <g transform="translate(-15.164520263671871,-15.164520263671871)">
-                                <g stroke-miterlimit="10" transform="scale(1,-1)">
-                                <g stroke="#000" fill="#000">
-                                <g stroke-width="0.4">
-                                <g stroke="#fcc" fill="#fcc">
-                                <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " stroke="none"></path>
-                                </g>
-                                <g stroke="#fcc" fill="#fcc">
-                                <path d=" M 56.90549 0.0 M 113.81097 0.0 C 113.81097 31.42844 88.33392 56.90549 56.90549 56.90549 C 25.47705 56.90549 0.0 31.42844 0.0 0.0 C 0.0 -31.42844 25.47705 -56.90549 56.90549 -56.90549 C 88.33392 -56.90549 113.81097 -31.42844 113.81097 0.0 Z M 56.90549 0.0  " stroke="none"></path>
-                                </g>
-                                <clipPath id="pgfcp9clip"> <path id="pgfcp9" d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  "></path> </clipPath>
-                                <use xlink:href="#pgfcp9" fill="none"></use>
-                                <g clip-path="url(#pgfcp9clip)">
-                                <clipPath id="pgfcp10clip"> <path id="pgfcp10" d=" M 56.90549 0.0 M 113.81097 0.0 C 113.81097 31.42844 88.33392 56.90549 56.90549 56.90549 C 25.47705 56.90549 0.0 31.42844 0.0 0.0 C 0.0 -31.42844 25.47705 -56.90549 56.90549 -56.90549 C 88.33392 -56.90549 113.81097 -31.42844 113.81097 0.0 Z M 56.90549 0.0  "></path> </clipPath>
-                                <use xlink:href="#pgfcp10" fill="none"></use>
-                                <g clip-path="url(#pgfcp10clip)">
-                                <g stroke="#fff" fill="#fff">
-                                <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " stroke="none"></path>
-                                </g>
-                                </g>
-                                </g>
-                                <path d=" M 0.0 0.0 M 56.90549 0.0 C 56.90549 31.42844 31.42844 56.90549 0.0 56.90549 C -31.42844 56.90549 -56.90549 31.42844 -56.90549 0.0 C -56.90549 -31.42844 -31.42844 -56.90549 0.0 -56.90549 C 31.42844 -56.90549 56.90549 -31.42844 56.90549 0.0 Z M 0.0 0.0  " fill="none"></path>
-                                </g>
-                                </g>
-                                </g>
-                                </g>
-                            </svg>
-                        </div>
+                            \end{tikzpicture}
+                        </script>
                     </div>
-                    <script type="text/tikz">
-                        \begin{tikzpicture}[scale=2]
-                            \fill[red!20] (0,0) circle[radius=1cm];
-                            \fill[red!20] (1,0) circle[radius=1cm];
-                            \begin{scope}
-                                \draw[clip] (0,0) circle[radius=1cm];
-                                \draw[clip] (1,0) circle[radius=1cm];
-                                \fill[white!20] (0,0) circle[radius=1cm];
-                            \end{scope}
-                            \draw (0,0) circle[radius=1cm];
-                        \end{tikzpicture}
-                    </script>
                 </div>
-            </div>
-            <p>
-                &emsp;対称差には<b>交換法則</b>と<b>結合法則</b>が成り立つ。
-            </p>
-            <div class="mathjax_wrapper">
-                <div class="mathjax_flex">
-                    \begin{equation*}
-                        \begin{aligned}
-                            A \bigtriangleup B &= B \bigtriangleup A \\
-                            A \bigtriangleup (B \bigtriangleup C) &= (A \bigtriangleup B) \bigtriangleup C
-                        \end{aligned}
-                    \end{equation*}
+                <p>
+                    &emsp;対称差には<b>交換法則</b>と<b>結合法則</b>が成り立つ。
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \begin{equation*}
+                            \begin{aligned}
+                                A \bigtriangleup B &= B \bigtriangleup A \\
+                                A \bigtriangleup (B \bigtriangleup C) &= (A \bigtriangleup B) \bigtriangleup C
+                            \end{aligned}
+                        \end{equation*}
+                    </div>
                 </div>
-            </div>
-            <p>
-                <li><b>直積 [デカルト積]（Direct product [Cartesian product]）</b></li>
-                &emsp;解析幾何学で周知のように、<ruby>Descartes<rp>（</rp><rt>デカルト</rt><rp>）</rp></ruby>座標を用いれば、平面上の一点は二つの実数 $x,y$ の対 $(x,y)$ として表わされる。二点 $(x,y)$, $(x', y')$ が一致するために必要にして十分な条件は $x = x', y = y'$ である。このような数の組を順序対（ordered pair）と呼ぶ。
-            </p>
-            <p>
-                &emsp;ここで上記の順序対を用いて2つの集合$A, B$の直積を
-            </p>
-            <div class="mathjax_wrapper">
-                <div class="mathjax_flex">
-                    \[
-                        A \times B = \{ (x, y) \mid x \in A \land y \in B \}
-                    \]
+                <p>
+                    <li><b>直積 [デカルト積]（Direct product [Cartesian product]）</b></li>
+                    &emsp;解析幾何学で周知のように、<ruby>Descartes<rp>（</rp><rt>デカルト</rt><rp>）</rp></ruby>座標を用いれば、平面上の一点は二つの実数 $x,y$ の対 $(x,y)$ として表わされる。二点 $(x,y)$, $(x', y')$ が一致するために必要にして十分な条件は $x = x', y = y'$ である。このような数の組を順序対（ordered pair）と呼ぶ。
+                </p>
+                <p>
+                    &emsp;ここで上記の順序対を用いて2つの集合$A, B$の直積を
+                </p>
+                <div class="mathjax_wrapper">
+                    <div class="mathjax_flex">
+                        \[
+                            A \times B = \{ (x, y) \mid x \in A \land y \in B \}
+                        \]
+                    </div>
                 </div>
-            </div>
-            <p>
-                と定義できる。直積のZFC公理系からの導出は、<a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/zermelo_fraenkel_choice_set_theory.html">ツェルメロ＝フレンケル集合論</a>の命題 7.1を参照されたい。
-            </p>
-            <p>
-                &emsp;再び解析幾何学の観点で述べると、$x$ を $A \times B$ の元 $(x,y) = z$ の 'A座標' または 'Aへの<b>射影</b>' (projection onto A) といい $\mathrm{pr}_{A}(z)$ で表せる。同様に $y$ を $(x,y) = z$ の 'B座標' または 'Bへの射影' といい $\mathrm{pr}_{B}(z)$ で表せる。
-            </p>
+                <p>
+                    と定義できる。直積のZFC公理系からの導出は、<a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/zermelo_fraenkel_choice_set_theory.html">ツェルメロ＝フレンケル集合論</a>の命題 7.1を参照されたい。
+                </p>
+                <p>
+                    &emsp;再び解析幾何学の観点で述べると、$x$ を $A \times B$ の元 $(x,y) = z$ の 'A座標' または 'Aへの<b>射影</b>' (projection onto A) といい $\mathrm{pr}_{A}(z)$ で表せる。同様に $y$ を $(x,y) = z$ の 'B座標' または 'Bへの射影' といい $\mathrm{pr}_{B}(z)$ で表せる。
+                </p>
+            </ul>
             <div class="coding_file_wrapper">
                 <div class="fileTitle">集合の代数学</div>
                 <div class="code-main">

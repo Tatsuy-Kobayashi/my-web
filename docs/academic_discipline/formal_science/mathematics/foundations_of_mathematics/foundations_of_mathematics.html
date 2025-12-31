@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <title>数学基礎論 - ラクして数理研究所</title>
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="apple-touch-icon" />
+    <!-- SEO -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="実解析と複素解析の共通点と相違点を解説。極限・連続・微分・積分の基本的枠組みから、微分可能性の条件、幾何学的背景の違いまで、解析学の土台となる概念を体系的に学べる。">
+    <meta name="keywords" content="ゲーデル, Python, ヒルベルト・プログラム">
+    <link rel="canonical" href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html" />
+    <!-- og -->
+    <meta property="og:type" content="website" /> <!-- articleとか -->
+    <meta property="og:title" content="数学基礎論｜ラクして数理研究所" />
+    <meta property="og:description" content="実解析と複素解析の共通点と相違点を解説。極限・連続・微分・積分の基本的枠組みから、微分可能性の条件、幾何学的背景の違いまで、解析学の土台となる概念を体系的に学べる。" />
+    <meta property="og:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html" />
+    <meta property="og:site_name" content="ラクして数理研究所" />
+    <link rel="dns-prefetch" href="//tatsuy-kobayashi.github.io/" /> <!-- HTTPSページのDNSプリフェッチはできない -->
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="数学基礎論｜ラクして数理研究所">
+    <meta name="twitter:description" content="実解析と複素解析の共通点と相違点を解説。極限・連続・微分・積分の基本的枠組みから、微分可能性の条件、幾何学的背景の違いまで、解析学の土台となる概念を体系的に学べる。">
+    <meta name="twitter:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html">
+    <meta name="twitter:image" content="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/style.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/special.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/search.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/responsive_header.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/commentary.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/mathContentWrapper.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/underEntryContent.css" />
+    <!-- プログラミング解説 -->
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/prism.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/codeHighlight.css" />
+    <!-- texgyre -->
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/font/texgyreschola-math/texgyreschola-math.css" type="text/css" charset="utf-8" />
+
+    <!-- プログラミング解説 -->
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/prism.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/include.js" defer></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/linkPreview.js" defer></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/commentary.js" defer></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/pageContentRenderer.js"></script>
+    <script>
+        // JavaScriptの厳格モード使用
+        'use strict';
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+      
+        /*gtag('config', 'トラッキングID');*/
+    </script>
+    <script type="text/javascript">
+        window.MathJax = {
+            tex: {
+                tags: "ams", // 自動ナンバリングを有効化（AMSスタイル）
+                inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+                displayMath: [ ["$$","$$"], ["\\[","\\]"] ],
+                processEscapes: true,
+                maxBuffer: 10 * 1024,  // 数式バッファの設定
+            },
+            chtml: {
+                displayAlign: "left",
+                displayIndent: "2em",
+            }
+        };
+    </script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/mathjax-config.js" defer></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" defer></script>
+    <link rel="stylesheet" href="https://unpkg.com/mermaid/dist/mermaid.min.css">
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad:true,
+            flowchart: {
+                useMaxWidth: false     // レスポンシブ SVG の無効化
+            }
+        });
+    </script><!--
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css" media="print" onload="this.media='all'" />
+    <script type="text/javascript" src="https://tikzjax.com/v1/tikzjax.js" defer></script> -->
+</head>
+<body>
+<div id="wrapper">
+    <header></header>
+    <div class="content">
+        <div aria-label="Breadcrumb" class="breadcrumb_list">
+            <div id="breadcrumb-list"></div>
+        </div> <!-- /breadcrumb_list -->
+        <div class="main">
+            <h1>数学基礎論</h1>
+            <div id="date-info" class="date"></div>
+            <meta itemprop="author" content="ラクして数理研究所" itemscope itemtype="https://schema.org/Organization">
+                <meta itemprop="name" content="ラクして数理研究所">
+            </meta>
+
+            <h2>目次[<span class="toc-toggle-button">表示</span>]</h2>
+            <div class="toc-content">
+                <ul>
+                    <li><a href="#section_1">概要：数学を「数学」する</a></li>
+                    <li><a href="#section_2">構文論と意味論：形式と内容の分離</a></li>
+                    <li><a href="#section_3">モデル理論：構造と真理の関係</a></li>
+                    <li><a href="#section_4">証明論と現代の展開：逆数学</a></li>
+                    <li><a href="#section_5">集合論：数学の標準的な基盤</a></li>
+                    <li><a href="#section_6">型理論：計算と論理の融合</a></li>
+                    <li><a href="#section_7">数学基礎論の各分野の一覧</a></li>
+                </ul>
+            </div>
+
+            <h2 id="section_1">概要：数学を「数学」する</h2>
+            <p>
+                &emsp;数学基礎論（Foundations of Mathematics）は、数学的な推論や証明、そして数学的構造そのものを数学的な手法を用いて研究する分野である。一般に、数学は数や図形についての真理を探究するが、論理学は「真理とは何か」「証明とは何か」というメタな問いを対象とする。
+            </p>
+            <p>
+                &emsp;19世紀末から20世紀初頭にかけて、カントール（Cantor）による集合論の創始やパラドックスの発見を契機に、数学を厳密な基礎の上に再構築しようとする機運が高まりました。ヒルベルト（Hilbert）は、数学の無矛盾性を有限の立場から確立しようとする「ヒルベルト・プログラム」を提唱し、これが現代の証明論の源流となった。また、タルスキ（Tarski）らによる意味論の形式化はモデル理論へと発展し、ゲーデル（Gödel）の不完全性定理やチャーチ（Church）、チューリング（Turing）による計算可能性の研究と相まって、現代数学の深淵な構造を明らかにしてきた。
+            </p>
+            <h2 id="section_2">構文論と意味論：形式と内容の分離</h2>
+            <p>
+                &emsp;数学基礎論において最も基本的かつ重要な視点は、<b>構文論</b>と<b>意味論</b>の区別である。
+            </p>
+            <ul>
+                <li>
+                    <b>構文論（Syntax）</b>: 記号の操作や並び方に注目する立場。ここでは「証明」や「形式的推論」が扱われる。例えば、「$A$ から $B$ が証明可能である（$A \vdash B$<!-- A⊢B -->）」という概念は、記号変形の規則のみに基づいて定義される。
+                </li>
+                <li>
+                    <b>意味論（Semantics）</b>: 記号に数学的な対象（実体）を対応させ、その「真偽（truth）」を問う立場。ここでは「モデル（model）」や「充足（satisfaction）」が扱われる。例えば、「モデル $M$ において論理式 $\varphi$ が真である（$M \vDash \varphi$<!-- M⊨φ -->）」という概念は、記号の解釈に基づいて定義される。
+                </li>
+            </ul>
+            <div class="tikzjax_wrapper">
+                <div class="tikzjax_flex" style="padding: 20px 0 5px 5px;">
+                    <figure>
+                        <div class="mermaid">
+graph LR
+    subgraph Syntax ["構文論 Syntax"]
+        direction TB
+        F["論理式<br>Formula"] -- "推論<br>規則" --> P[証明<br>Proof]
+        P -- 導出 --> T[定理<br>Theorem]
+        style F fill:#f9f,stroke:#333,stroke-width:2px
+        style T fill:#f9f,stroke:#333,stroke-width:2px
+    end
+
+    subgraph Semantics ["意味論 Semantics"]
+        direction TB
+        S["構造<br>Structure"] -- 解釈 --> V["真偽<br>Truth Value"]
+        V -- 充足 --> M["モデル<br>Model"]
+        style S fill:#ccf,stroke:#333,stroke-width:2px
+        style M fill:#ccf,stroke:#333,stroke-width:2px
+    end
+
+    T == 健全性 Soundness ==> M
+    M -. 完全性 Completeness .-> T
+
+    style Syntax fill:#fffaf0,stroke:#d3d3d3
+    style Semantics fill:#f0f8ff,stroke:#d3d3d3
+                        </div>
+                        <figcaption>&emsp;この図は、構文論と意味論の二つの世界の関係を示したもの</figcaption>
+                    </figure>
+                </div>
+            </div>
+            <p>
+                &emsp;<b>ゲーデルの完全性定理（Gödel's Completeness Theorem）</b>は、一階述語論理において、これら二つの側面が一致すること（$\vdash A \iff \vDash A$ 証明可能ならば真であり、真ならば証明可能である）を示した重要な定理である。
+            </p>
+            <h2 id="section_3">モデル理論：構造と真理の関係</h2>
+            <p>
+                &emsp;モデル理論（Model Theory）は、形式言語の文（sentence）と、それを満たす（あるいは棄却する）構造（structure）との関係を研究する分野である。
+            </p>
+            <ul>
+                <li>
+                    <b>構造（Structure）</b>: 構造 $\mathcal{A}$ とは、空でない集合 $A$（台集合、universe）と、その上の定数、関数、関係の集まりからなる。例えば、自然数全体 $\mathbb{N}$ に、通常の $0$、後者関数 $s$（$+1$ すること）、加法 $+$、乗法 $\cdot$<!-- ⋅ --> を備えたものは構造 $(\mathbb{N},0,s,+,\cdot)$ である。言語 $L$ の文 $\sigma$ が構造 $\mathcal{A}$ で真であることを $\mathcal{A} \vDash \sigma$ と書く。$\mathcal{A}$ が文の集合 $T$ のすべてを真にするとき、$\mathcal{A}$ は $T$ のモデルであるという。
+                </li>
+                <li>
+                    <b>コンパクト性定理（Compactness Theorem）</b>: モデル理論における強力なツールの一つがコンパクト性定理である。これは、「文の集合 $S$ の任意の有限部分集合がモデルを持つならば、集合 $S$ 全体もモデルを持つ」という定理である。この定理は、<b>超準解析（Non-standard Analysis）</b>のような新しい数学的枠組みの構築にも応用されている。実数の理論に「あらゆる正の実数より小さいが $0$ ではない定数 $c$」の存在を主張する文を無限に追加しても、その有限部分集合は矛盾しないため、コンパクト性定理により無限小を含む「超実数体」のモデルが存在することが示される。
+                </li>
+                <li>
+                    <b>量化記号消去（Quantifier Elimination）</b>: ある理論 $T$ において、任意の論理式が、それと同値な「量化記号（$∀,∃$）を含まない論理式」を持つとき、その理論は量化記号消去が可能であるという。 例えば、複素数体（代数的閉体）の理論 ACF や、実閉体の理論 RCF は量化記号消去を持つことが知られている。これは、代数的な方程式や不等式の系が解を持つかどうかという問題が、係数に関する条件だけで判定できることを意味し（例：判別式）、数式処理アルゴリズムの基礎ともなっている。
+                </li>
+            </ul>
+            <p>
+                <b>モデル検査のシミュレーション</b>:<br>
+                &emsp;ここでは、モデル理論の基本的な考え方である「構造における論理式の真偽判定（モデル検査）」をPythonでシミュレートする。有限の台集合 $D = \{ 0,1,2 \}$ 上で、二項関係 $R$（例えば $x \lt y$）を解釈し、第一階述語論理の文 $\forall x \, \exists y \, R(x,y)$ がその構造で真となるかを判定する。
+            </p>
+            <div class="coding_file_wrapper">
+                <div class="fileTitle">モデル検査のシミュレーション</div>
+                <div class="code-main">
+                    <pre class="match-braces rainbow-braces line-numbers language-python" style="-webkit-text-size-adjust: none;"><code>import itertools
+
+class Structure:
+    def __init__(self, domain, relations):
+        """
+        domain: 台集合 (リストや集合)
+        relations: 述語記号をキー、実際の関係(タプルの集合)を値とする辞書
+        """
+        self.domain = domain
+        self.relations = relations
+
+    def evaluate(self, formula, assignment):
+        """
+        論理式と変数割り当てを受け取り、真偽を返す
+        formula: 簡易的な構文木 (辞書形式)
+        assignment: 変数名からdomainの要素へのマッピング
+        """
+        op = formula.get('op')
+
+        # 原子論理式 R(x, y) の場合
+        if op == 'relation':
+            rel_name = formula['name']
+            args = [assignment[v] for v in formula['vars']]
+            # 構造内の関係に含まれているか判定
+            return tuple(args) in self.relations[rel_name]
+
+        # 論理積 (AND)
+        elif op == 'and':
+            return self.evaluate(formula['left'], assignment) and \
+                    self.evaluate(formula['right'], assignment)
+
+        # 否定 (NOT)
+        elif op == 'not':
+            return not self.evaluate(formula['sub'], assignment)
+
+        # 存在量化 ∃x P
+        elif op == 'exists':
+            var = formula['var']
+            # ドメイン内のどれか一つでも真ならTrue
+            for element in self.domain:
+                new_assignment = assignment.copy()
+                new_assignment[var] = element
+                if self.evaluate(formula['sub'], new_assignment):
+                    return True
+            return False
+
+        # 全称量化 ∀x P
+        elif op == 'forall':
+            var = formula['var']
+            # ドメイン内のすべてで真ならTrue
+            for element in self.domain:
+                new_assignment = assignment.copy()
+                new_assignment[var] = element
+                if not self.evaluate(formula['sub'], new_assignment):
+                    return False
+            return True
+
+        else:
+            raise ValueError(f"Unknown operator: {op}")
+
+# 構造 M = (D, R)
+structure_M = Structure(domain, {'R': relation_R})
+
+# 2. 論理式の定義
+# φ1: ∀x ∃y R(x, y) ("すべてのxに対して、x < y となる y が存在する")
+# この構造では、x=2 のとき yが存在しないため False になるはず。
+formula_1 = {
+    'op': 'forall', 'var': 'x',
+    'sub': {
+        'op': 'exists', 'var': 'y',
+        'sub': {'op': 'relation', 'name': 'R', 'vars': ['x', 'y']}
+    }
+}
+
+# φ2: ∃x ∀y (¬R(y, x)) ("すべてのyについて y < x ではないような x が存在する" つまり最小元がある)
+# x=0 のとき、どんな y に対しても y < 0 は成り立たないので(関係に入っていない)、True になるはず。
+formula_2 = {
+    'op': 'exists', 'var': 'x',
+    'sub': {
+        'op': 'forall', 'var': 'y',
+        'sub': {
+            'op': 'not',
+            'sub': {'op': 'relation', 'name': 'R', 'vars': ['y', 'x']}
+        }
+    }
+}
+
+# 3. 評価実行
+print(f"Domain: {domain}")
+print(f"Relation R (x < y): {relation_R}")
+print("-" * 30)
+
+result1 = structure_M.evaluate(formula_1, {})
+print(f"Formula 1 (∀x ∃y R(x, y)): {result1}")
+# 解説: x=2のとき、R(2, y)となるyはドメイン内に存在しないため、False.
+
+result2 = structure_M.evaluate(formula_2, {})
+print(f"Formula 2 (∃x ∀y ¬R(y, x)): {result2}")
+# 解説: x=0を選べば、任意のyに対して (y, 0) はrelation_Rに含まれないため ¬R(y,0) は真。よって全体もTrue.</code></pre>
+                </div> <!-- /code-main -->
+                <div class="output-wrapper">
+                    <div class="outputInfo">-></div>
+                    <div class="outputIfram">Formula (∀x ∃y R(x, y)): {result}</div>
+                </div>
+            </div> <!-- /coding_file_wrapper -->
+            <p>
+                &emsp;このコードは、数学的な「構造」と「真理」の定義をプログラムとして実装したものである。モデル理論における「充足（satisfaction）」関係 $\mathcal{A} \vDash \sigma$ は、このように構造内の要素を走査する手続きとして解釈できる。実際のモデル理論では無限集合を扱うため、このように単純な全探索はできないが、概念の理解には役立つ。
+            </p>
+            <h2 id="section_4">証明論と現代の展開：逆数学</h2>
+            <p>
+                &emsp;証明論（Proof Theory）は、数学的証明を形式的な記号操作の列として捉え、その構造を数学的に分析する。
+            </p>
+            <ul>
+                <li>
+                    <b>ヒルベルト・プログラム</b>: ヒルベルトは当初、数学全体を形式化し、その無矛盾性を「有限の立場（finitary standpoint）」から証明することを目指した。しかし、ゲーデルの不完全性定理は、算術を含む十分強力な形式体系においては、その体系が無矛盾であれば、体系内で証明も反証もできない命題（決定不能命題）が存在すること、さらには体系自身の無矛盾性を体系内で証明できないことを示した。 これはヒルベルトの当初の計画の修正を迫るものであったが、ゲンツェン（Gentzen）らによる順序数を用いた無矛盾性証明など、証明論はその後も深い発展を遂げている。
+                </li>
+            </ul>
+            <p>
+                &emsp;しかし、これは証明論の終わりを意味するものではない。現代では、特定の数学的定理を証明するために「どの公理が必要不可欠か」を分析する<b>逆数学（Reverse Mathematics）</b>というプログラムが活発に研究されている。逆数学では、定理から公理を導く（逆向きの推論を行う）ことで、その定理の論理的な強さを測定する。これにより、数学の体系における「公理の強さ」の階層構造が明らかになってきている。
+            </p>
+            <ul>
+                <li>
+                    <b>計算可能性</b>: 論理式が「証明可能であるか」という問いは、「アルゴリズムによって判定可能か」という計算の問題と密接に関わる。チャーチやチューリングは、述語論理の妥当性がアルゴリズムで決定できないこと（決定不能性）を示した。計算機科学における形式検証や自動定理証明は、こうした論理学の成果を工学的に応用したものである。
+                </li>
+            </ul>
+            <h2 id="section_5">集合論：数学の標準的な基盤</h2>
+            <p>
+                &emsp;集合論は、現代数学の諸概念（数、関数、空間など）を定義するための共通言語として機能している。特に、ツェルメロ＝フレンケル集合論（Zermelo-Fraenkel set theory, ZF）と選択公理（Axiom of Choice, AC）を組み合わせた<b>ZFC公理系</b>は、数学の標準的な基盤として広く受け入れられている。
+            </p>
+            <ul>
+                <li>
+                    <b>ZFC公理系と独立性</b>: 現代数学の事実上の標準的な基盤となっているのが、ZFC公理系である。ZFCは非常に強力な体系であり、通常の数学のほとんどすべてをその中で展開できる。しかし、ZFCだけでは決定できない命題（ZFCから証明も反証もできない命題）が存在することも知られており、その最も有名な例が<b>連続体仮説</b>（自然数の濃度と実数の濃度の間に、中間の濃度は存在しないという仮説）である。ポール・コーエン（Paul Cohen）が開発した<b>強制法（Forcing）</b>という手法により、連続体仮説がZFCから独立していること（ZFCと矛盾しない形で、連続体仮説が成り立つ世界も成り立たない世界も作れること）が証明された。
+                </li>
+                <li>
+                    <b>巨大基数と無限の階層</b>: ZFCを超えるさらに強力な公理として、<b>巨大基数（Large Cardinals）</b>の存在公理が研究されている。到達不能基数、可測基数、超コンパクト基数など、ZFCでは存在を証明できないほど「巨大」な無限集合の存在を仮定することで、数学的真理のさらなる深層を探求することが可能になる。これらの巨大基数は、単に大きいだけでなく、集合論の宇宙（Universe）の構造に強い「整列性」や「決定性」をもたらすことが知られているのだ。
+                </li>
+            </ul>
+            <h2 id="section_6">型理論：計算と論理の融合</h2>
+            <p>
+                &emsp;集合論が「すべての数学的対象は集合である」という立場をとるのに対し、<b>型理論（Type Theory）</b>は、対象をその性質（型）によって分類し、階層化して扱うアプローチである。ラッセル（Russell）がパラドックスを回避するために導入した階型理論に端を発し、チャーチ（Church）のラムダ計算などを経て発展した。
+            </p>
+            <ul>
+                <li>
+                    <b>カリー＝ハワード同型対応（Curry-Howard Isomorphism）</b>: 型理論における最も美しい発見の一つが、カリー＝ハワード同型対応だ。これは、「論理」と「計算」という一見異なる二つの世界が、構造的に全く同じものであるという対応関係。
+                </li>
+                <div class="tikzjax_wrapper">
+                    <div class="tikzjax_flex" style="padding: 20px 0 5px 5px;">
+                        <figure>
+                            <div class="mermaid">
+graph LR
+    subgraph Logic [論理 Logic]
+        A[命題 Proposition]
+        B[証明 Proof]
+        C[含意 A -> B]
+    end
+
+    subgraph Computation [計算 Computation]
+        X[型 Type]
+        Y[プログラム Program]
+        Z[関数型 A -> B]
+    end
+
+    A <--> X
+    B <--> Y
+    C <--> Z
+
+    style Logic fill:#e1f5fe,stroke:#01579b
+    style Computation fill:#e8f5e9,stroke:#1b5e20
+                            </div>
+                            <figcaption>&emsp;この図は、論理と計算の対応関係</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <p>
+                    &emsp;この対応によれば、「命題 $A$ を証明すること」は「型 $A$ を持つプログラムを作成すること」と等価になる。この原理は、CoqやLeanといった現代の<b>証明支援系（Proof Assistant）</b>の基礎となっており、数学の証明をコンピュータで実装・検証することを可能にしている。
+                </p>
+            </ul>
+            <h2 id="section_7">現代の数学基礎論の展望</h2>
+            <p>
+                &emsp;かつて数学基礎論は、数学全体の無矛盾性を保証するための「基礎づけ」の役割を期待されていたが、ゲーデルの定理以降、その役割は変化した。数学者マックレーン（Mac Lane）は、現代の数学基礎論（特に巨大基数論などの集合論の高度な展開）が、一般的な数学の実践から乖離していると批判したことがある。一方で、逆数学（Reverse Mathematics）のようなプログラムは、特定の数学的定理を証明するためにどの公理が必要不可欠かを分析することで、数学の体系の強さを測る新たな視点を提供している。
+            </p>
+            <p>
+                &emsp;また、シェラハ（Shelah）による分類理論（Classification Theory）は、モデルの同型類の数を調べることで理論の複雑さを分類し、代数幾何学など他の数学分野へも応用されている。数学基礎論は、単なる「基礎づけ」を超えて、数学的構造の深層を解明する強力なツールとして進化し続けている。
+            </p>
+
+
+
+            <section class="pulldown_list_wrapper" id="section_2" itemscope itemtype="https://schema.org/ItemList">
+                <h2 id="section_8">数学基礎論の各分野の一覧</h2>
+                <meta itemprop="itemListOrder" content="Unordered">
+                <div class="pulldown_list_wrapper" id="child-pages-list"></div>
+            </section> <!-- /.pulldown_list_wrapper -->
+
+<!--
+数学基礎論
+├── 数理論理学
+│   ├── 形式主義
+│   │   ├── 古典論理学
+│   │   │   ├── 命題論理
+│   │   │   │   ├── 構文論 (Syntax)
+│   │   │   │   │   ├── 論理結合子 (否定, 連言, 選言, 含意)
+│   │   │   │   │   ├── 証明図・推論規則 (自然演繹, シーケント計算, ヒルベルト流)
+│   │   │   │   │   └── タブロー法
+│   │   │   │   └── 意味論 (Semantics)
+│   │   │   │       ├── 真理値・真理表
+│   │   │   │       ├── トートロジー (恒真式)
+│   │   │   │       ├── 健全性と完全性
+│   │   │   │       └── コンパクト性定理
+│   │   │   └── 述語論理 (一階述語論理)
+│   │   │       ├── 量化 (全称量化, 存在量化)
+│   │   │       ├── 項・論理式・自由変数・束縛変数
+│   │   │       ├── 構造とモデル (解釈, 充足可能性)
+│   │   │       └── エルブランの定理 (Herbrand's theorem)
+│   │   ├── 様相理論学 (Modal logic)
+│   │   │   ├── 可能世界意味論
+│   │   │   └── 時相論理 (Temporal Logic)
+│   │   ├── ファジィ論理
+│   │   └── 矛盾許容論理
+│   ├── 直観主義
+│   │   ├── 構成的数学 (Constructive Mathematics)
+│   │   ├── ハイティング代数
+│   │   └── クリプキ意味論 (Kripke semantics)
+│   ├── 証明論 (構文論)
+│   │   ├── ヒルベルト・プログラム
+│   │   │   ├── 有限の立場 (Finitary standpoint)
+│   │   │   ├── 無矛盾性証明 (Consistency proofs)
+│   │   │   └── イプシロン算法 (ε-calculus / ε-substitution method)
+│   │   ├── 不完全性定理 (ゲーデル)
+│   │   │   ├── 第一不完全性定理
+│   │   │   └── 第二不完全性定理
+│   │   ├── 算術の体系
+│   │   │   ├── ペアノ算術 (PA)
+│   │   │   └── 二階算術の体系 (Subsystems of Second-Order Arithmetic)
+│   │   └── 逆数学 (Reverse Mathematics)
+│   │       ├── RCA_0 (再帰的内包公理)
+│   │       ├── WKL_0 (弱ケーニヒの補題)
+│   │       └── 逆再帰理論 (Reverse Recursion Theory)
+│   ├── モデル理論 (意味論)
+│   │   ├── 基礎モデル理論
+│   │   │   ├── 完全性定理 (ゲーデル)
+│   │   │   ├── コンパクト性定理
+│   │   │   ├── レーヴェンハイム・スコーレムの定理
+│   │   │   ├── 超積・超準モデル
+│   │   │   └── 量化記号消去 (Quantifier Elimination)
+│   │   ├── 現代モデル理論 (分類理論)
+│   │   │   ├── 安定性理論 (Stability Theory)
+│   │   │   │   ├── ω-安定性
+│   │   │   │   ├── フォークキング (Forking)
+│   │   │   │   └── 単純理論 (Simple theories)
+│   │   │   ├── モーリー階数 (Morley rank)
+│   │   │   ├── o-ミニマル理論 (o-minimality)
+│   │   │   ├── 幾何学的モデル理論 (Zariski structures等)
+│   │   │   └── モデル理論と代数幾何学の相互作用
+│   │   └── 超準解析 (Non-standard Analysis) (意味論)
+│   │       └── 無限小・無限大を含む解析学の形式化
+│   └── 計算可能性理論 (再帰理論) (副分類)
+├── 集合論
+│   ├── 素朴集合論
+│   ├── 公理的集合論
+│   │   ├── ツェルメロ＝フレンケル集合論 (ZFC)
+│   │   │   └── 基礎概念
+│   │   │       ├── 対応と写像
+│   │   │       ├── 関係 (二項関係、同値関係、順序関係)
+│   │   │       ├── 添字付けられた族
+│   │   │       ├── 選択公理
+│   │   │       ├── 順序集合
+│   │   │       │   ├── 整列順序と順序数
+│   │   │       │   ├── 基数 (濃度の概念)
+│   │   │       │   ├── 濃度 (可算集合、非可算集合、濃度の演算)
+│   │   │       │   └── アレフ数・ベート数
+│   │   │       └── 累積的階層 (The Cumulative Hierarchy, V)
+│   │   ├── フォン・ノイマン＝ベルナイス＝ゲーデル集合論
+│   │   ├── モース-ケリー集合論
+│   │   └── 新基礎集合論
+│   ├── メタ数学 (Metamathematics)
+│   │   ├── 内部モデル理論
+│   │   │   └── 構成可能集合 (L)
+│   │   ├── 独立性証明と強制法 (Forcing)
+│   │   │   ├── 連続体仮説 (CH) の独立性
+│   │   │   └── 強制関係・ブール値モデル
+│   │   └── 巨大基数論 (Large Cardinals)
+│   │       ├── 到達不能基数
+│   │       ├── 可測基数
+│   │       └── 超コンパクト基数・膨大基数 他
+│   ├── 記述集合論 (Descriptive Set Theory)
+│   │   ├── ボレル集合・解析集合 (位相的定義による階層構造)
+│   │   ├── ポーランド空間 (位相空間論・幾何学との接点)
+│   │   │   ※ 完備で可分な距離空間（実数直線など）
+│   │   └── 決定性公理 (AD)
+│   └── 拡張的集合論
+│       ├── 構成的集合論 (Constructive Set Theory)
+│       │   ├── 直観主義論理に基づく体系 (IZF, CZF)
+│       │   └── トポス理論的集合論
+│       ├── 非整礎集合論 (Non-well-founded Set Theory)
+│       │   └── 反基礎公理 (AFA) ・超集合
+│       ├── ファジィ集合論 (Fuzzy Set Theory)
+│       └── 内部集合論 (Internal Set Theory)
+│           └── 超準解析 (Non-standard Analysis) の基礎 (構文論)
+└── 圏論 (副分類)
+-->
+
+        </div> <!-- /.main -->
+        <div class="annotation">
+            ページ注釈
+            <ol class="olAnnotation">
+                <li id="note_1"><a href="#ref_1">^</a>
+                    注釈
+                </li>
+            </ol>
+        </div> <!-- /annotation -->
+        <div class="under-entry-content">
+            <div id="article-page-topic"></div>
+            <div class="article-page-stats">
+                <div class="article-page-stats__item">
+                    <div class="comment article-page-stats__icon">
+                        <i class="fa-regular fa-comment"></i>
+                        <span id="comment_counter" class="article-page-stats__counter"></span>
+                    </div>
+                </div>
+                <div class="article-page-stats__item">
+                    <div class="fav article-page-stats__icon">
+                        <i class="fa-solid fa-star"></i>
+                        <span id="fav_counter" class="article-page-stats__counter"></span>
+                    </div>
+                </div>
+                <div class="article-page-stats__item">
+                    <div class="like article-page-stats__icon">
+                        <i class="fa-solid fa-heart"></i>
+                        <span class="donut"></span>
+                        <div class="bubble">
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                            <span class="bubble_effect"></span>
+                        </div>
+                        <span id="like_counter" class="article-page-stats__counter"></span>
+                    </div>
+                </div>
+                <div class="article-page-stats__item">
+                    <div class="action share">
+                        <i class="fa-solid fa-share-from-square"></i>
+                    </div>
+                </div>
+                <div class="article-page-stats__item">
+                    <div class="action download">
+                        <i class="fa fa-solid fa-download"></i>
+                    </div>
+                </div>
+            </div>
+            <aside id="related-entries" class="related-entries rect-entry-card"></aside>
+            <div id="pager-post-navi" class="pager-post-navi post-navi-default cf"></div><!-- /.pager-post-navi -->
+        </div><!-- /under-entry-content -->
+    </div> <!-- /content -->
+    <section class="container" id="popular-section">
+        <section id="popular-section_container">
+            <div class="main-content">
+                <div id="main-scroll" class="main-scroll">
+                    <h1>人気記事</h1>
+                    <aside id="popular_entries" class="widget widget-main-scroll widget_popular_entries"></aside>
+                    <h1 class="widget-main-scroll-title main-widget-label widget-title">カテゴリー</h1>
+                    <aside id="categories" class="widget widget-main-scroll widget_categories"></aside>
+                </div>
+            </div>
+        </section>
+    </section>
+    <footer></footer>
+    </div> <!-- /wrapper -->
+    <nav id="nav"></nav>
+</body>
+</html>

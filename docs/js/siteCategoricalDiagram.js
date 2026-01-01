@@ -1,3 +1,11 @@
+// ----------------------------------------------------------------------------
+// ファイル名    : siteCategoricalDiagram.js
+// 名称          : サイト圏図式生成スクリプト
+// 内容          : サイト内の学問体系を圏図式で表現するためのデータロードと初期化処理
+// このプログラムの著作権及び、このプログラムに関する技術は（株）Fibrantixがその知的財産権を所有し
+// ており、所有者の事前の許可なくその全部又は一部を問わず、第三者に開示してはならない。
+// Copyright(c) 2025 Fibrantix CO.,LTD. All Rights Reserved
+// ----------------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', function () {
     'use strict'; // 状態遷移重視・エラーフラグ管理ありの完全版スクリプト
 
@@ -92,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // 数学30
         { id: 300, label: "数学用語", labelEn: "Mathematical Terms", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematical_terms/mathematical_terms.html", mainPath: ["0:3:30:300"], released: 0, isPaid: 0, keywords: ["一覧"], iconClass: "fa-folder fa-fw" },
         { id: 301, label: "数学基礎論", labelEn: "Foundations of Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html", mainPath: ["0:3:30:301"], released: 1, isPaid: 1, datePublished: "2025-12-28", dateModified: "2025-12-28", description: "数学そのものを研究対象とする「数学基礎論」の世界。構文論と意味論の対比、モデル理論、証明論、そして現代の逆数学や証明支援系への展開を概観し、Pythonによる有限モデルの検証シミュレーションを通じて、論理式の真偽がいかに判定されるかを学びます。", keywords: ["ゲーデル", "Python", "ヒルベルト・プログラム"], iconClass: "fa-folder fa-fw", thumbnailUrl: ["https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-120x68.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-160x90.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-320x180.png"] },
-        { id: 302, label: "数論", labelEn: "Number Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/number_theory.html", mainPath: ["0:3:30:302"], iconClass: "fa-folder fa-fw" },
+        { id: 302, label: "数論", labelEn: "Number Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/number_theory.html", mainPath: ["0:3:30:302"], released: 1, isPaid: 0, iconClass: "fa-folder fa-fw" },
         { id: 303, label: "代数学", labelEn: "Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebra.html", mainPath: ["0:3:30:303"], iconClass: "fa-folder fa-fw" },
         { id: 304, label: "解析学", labelEn: "Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/analysis.html", mainPath: ["0:3:30:304"], iconClass: "fa-folder fa-fw" },
         { id: 305, label: "幾何学", labelEn: "Geometry", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/geometry/geometry.html", mainPath: ["0:3:30:305"], iconClass: "fa-folder fa-fw" },
@@ -115,6 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // 数学基礎論301
         { id: 3010, label: "数理論理学", labelEn: "Mathematical Logic", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/mathematical_logic.html", mainPath: ["0:3:30:301:3010"], released: 0 },
         { id: 3011, label: "集合論", labelEn: "Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html", mainPath: ["0:3:30:301:3011"], released: 1, description: "集合の基本概念から応用まで解説。集合の定義、演算（和・積・差集合）、部分集合、冪集合などをPythonのコード例とベン図で分かりやすく学べる。数学の基礎を支える集合論の入門として最適。" },
+        //{ id: 3012, label: "圏論", labelEn: "Category Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/category_theory/category_theory.html", mainPath: ["0:3:30:301:3010"], released: 0 },
         // 数論302
         { id: 3020, label: "数学定数", labelEn: "Mathematical Constants", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/mathematical_constant/mathematical_constant.html", mainPath: ["0:3:30:302:3020"], released: 1, keywords: ["一覧"] },
         // 代数学303
@@ -124,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: 3040, label: "解析学基礎", labelEn: "Foundations of Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/foundations_of_analysis.html", mainPath: ["0:3:30:304:3040"], released: 1 },
         { id: 3041, label: "微分積分学", labelEn: "Differential and Integral Calculus", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/calculus/calculus.html", mainPath: ["0:3:30:304:3041"], released: 1 },
         // 多親（代数・解析の両方の子）paths: ["0:3:30:303:3030", "0:3:30:304:3030"]
-        { id: 3042, label: "代数解析学", labelEn: "Algebraic Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/algebraic_analysis/algebraic_analysis.html", mainPath: ["0:3:30:304:3042"], auxPath: ["0:3:30:303:3042"], released: 0 },
+        { id: 3042, label: "代数解析学", labelEn: "Algebraic Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/algebraic_analysis/algebraic_analysis.html", mainPath: ["0:3:30:304:3042"], auxPath: ["0:3:30:303:3032"], released: 0 },
         { id: 3043, label: "関数解析学", labelEn: "Functional Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/functional_analysis.html", mainPath: ["0:3:30:304:3043"], released: 0 },
         { id: 3044, label: "関数方程式", labelEn: "Functional Equations", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_equation/functional_equation.html", mainPath: ["0:3:30:304:3044"], released: 0 },
         { id: 3045, label: "数値解析", labelEn: "Numerical Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/numerical_analysis/numerical_analysis.html", mainPath: ["0:3:30:304:3045"], released: 0 },
@@ -144,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: 5022, label: "スキーマ", labelEn: "Schema", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/schema/schema.html", mainPath: ["0:5:50:502:5022"], released: 0 },
         { id: 5023, label: "計算モデル", labelEn: "Model of Computation", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/model_of_computation/model_of_computation.html", mainPath: ["0:5:50:502:5023"], released: 0 },
         { id: 5024, label: "アルゴリズム", labelEn: "Algorithm", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/algorithm/algorithm.html", mainPath: ["0:5:50:502:5024"], released: 0 },
-        { id: 5025, label: "計算可能性理論", labelEn: "Computability Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/computability_theory/computability_theory.html", mainPath: ["0:5:50:502:5025"], released: 0 },
+        { id: 5025, label: "計算可能性理論", labelEn: "Computability Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/computability_theory/computability_theory.html", mainPath: ["0:5:50:502:5025"], auxPath: ["0:3:30:301:3010:30104"], released: 0 },
         { id: 5026, label: "計算複雑性理論", labelEn: "Computational Complexity Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/computational_complexity_theory/computational_complexity_theory.html", mainPath: ["0:5:50:502:5026"], released: 0 },
         { id: 5027, label: "コンピュータ言語", labelEn: "Computer Language", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/computer_language/computer_language.html", mainPath: ["0:5:50:502:5027"], released: 0 },
         { id: 5028, label: "プログラム意味論", labelEn: "Program Semantics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/program_semantics/program_semantics.html", mainPath: ["0:5:50:502:5028"], released: 0 },
@@ -158,12 +167,21 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: 5051, label: "組込みシステム", labelEn: "Embedded System", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/information_system/embedded_system/embedded_system.html", mainPath: ["0:5:50:505:5051"], released: 0 },
 
         // 深さ5
+        // 数理論理学3010
+        { id: 30100, label: "形式主義", labelEn: "Formalism", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/formalism/formalism.html", mainPath: ["0:3:30:301:3010:30100"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 30101, label: "直観主義", labelEn: "Intuitionism", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/intuitionism/intuitionism.html", mainPath: ["0:3:30:301:3010:30101"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 30102, label: "証明論", labelEn: "Proof Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/proof_theory/proof_theory.html", mainPath: ["0:3:30:301:3010:30102"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 30103, label: "モデル理論", labelEn: "Model Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/model_theory/model_theory.html", mainPath: ["0:3:30:301:3010:30103"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        //{ id: 30104, label: "計算可能性理論", labelEn: "Computability Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/computability_theory/computability_theory.html", mainPath: ["0:3:30:301:3010:30104"], released: 0 },
         // 集合論3011
         { id: 30110, label: "素朴集合論", labelEn: "Naive Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/naive_set_theory/naive_set_theory.html", mainPath: ["0:3:30:301:3011:30110"], released: 1, description: "素朴集合論の基礎から応用まで解説。素朴包括原理やパラドックス許容論理を中心に、Pythonによる実装例を交えながら、ラッセルのパラドックスや論理体系の修正についても学べる数学基礎論の入門記事。", keywords: ["プログラミング", "Python"] },
         { id: 30111, label: "公理的集合論", labelEn: "Axiomatic Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/axiomatic_set_theory.html", mainPath: ["0:3:30:301:3011:30111"], released: 1, description: "公理的集合論の基礎から発展まで解説。ZF集合論、NBG集合論、MK集合論など主要な体系を比較しながら、各公理の意味や相互関係、数学基礎論における役割を学べる。図解とともに体系的に理解できる入門記事。" },
+        { id: 30112, label: "メタ数学", labelEn: "Metamathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/metamathematics/metamathematics.html", mainPath: ["0:3:30:301:3011:30112"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 30113, label: "記述集合論", labelEn: "Descriptive Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/descriptive_set_theory/descriptive_set_theory.html", mainPath: ["0:3:30:301:3011:30113"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 30114, label: "拡張的集合論", labelEn: "Extended Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/extended_set_theory/extended_set_theory.html", mainPath: ["0:3:30:301:3011:30114"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
         // 抽象代数学3030
         { id: 30300, label: "代数系一般論", labelEn: "Algebraic Structures", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/algebraic_structures.html", mainPath: ["0:3:30:303:3030:30300"] },
-        { id: 30301, label: "表現論・ホモロジー代数", labelEn: "Representation and Homological Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/representation_homological/representation_homological.html", mainPath: ["0:3:30:303:3030:30301"], auxPath: ["0:3:30:303:3030:30300:303001:30301"] },
+        { id: 30301, label: "表現論・ホモロジー代数", labelEn: "Representation and Homological Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/representation_homological/representation_homological.html", mainPath: ["0:3:30:303:3030:30301"], auxPath: ["0:3:30:303:3030:30300:303001:3030011"] },
         // 普遍代数学3031
         { id: 30310, label: "代数的構造の一般理論", labelEn: "General Theory of Algebraic Structures", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/general_structure_theory/general_structure_theory.html", mainPath: ["0:3:30:303:3031:30310"] },
         { id: 30311, label: "代数的理論（Lawvere理論）", labelEn: "Lawvere Theories", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/lawvere_theory/lawvere_theory.html", mainPath: ["0:3:30:303:3031:30311"] },
@@ -186,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: 30431, label: "作用素論", labelEn: "Operator Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/operator_theory/operator_theory.html", mainPath: ["0:3:30:304:3043:30431"], released: 0 },
         { id: 30432, label: "演算子環", labelEn: "Operator Ring", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/operator_ring/operator_ring.html", mainPath: ["0:3:30:304:3043:30432"], released: 0 },
         { id: 30433, label: "超関数論と分布論", labelEn: "Super Function Theory and Distribution Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/super_function_theory/super_function_theory.html", mainPath: ["0:3:30:304:3043:30433"], released: 0 },
-        { id: 30434, label: "調和解析", labelEn: "Harmonic Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/harmonic_analysis/harmonic_analysis.html", mainPath: ["0:3:30:304:3043:30434"], auxPath: ["0:3:30:304:3041:30434"], released: 0 },
+        { id: 30434, label: "調和解析", labelEn: "Harmonic Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/harmonic_analysis/harmonic_analysis.html", mainPath: ["0:3:30:304:3043:30434"], auxPath: ["0:3:30:304:3041:30414"], released: 0 },
         // 関数方程式3044
         { id: 30440, label: "代数的・構造的関数方程式", labelEn: "Algebraic and Structural Functional Equations", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_equation/algebraic_functional_equation/algebraic_functional_equation.html", mainPath: ["0:3:30:304:3044:30440"], released: 0 },
         { id: 30441, label: "解析的条件付関数方程式", labelEn: "Analytic Conditional Functional Equations", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_equation/analytic_conditional_functional_equation/analytic_conditional_functional_equation.html", mainPath: ["0:3:30:304:3044:30441"], released: 0 },
@@ -209,8 +227,42 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: 50230, label: "オートマトン理論", labelEn: "Automaton Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/model_of_computation/automaton_theory/automaton_theory.html", mainPath: ["0:5:50:502:5023:50230"], released: 0 },
 
         // 深さ6
+        // 形式主義30100
+        { id: 301000, label: "古典論理学", labelEn: "Classical Logic", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/formalism/classical_logic/classical_logic.html", mainPath: ["0:3:30:301:3010:30100:301000"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 301001, label: "様相論理", labelEn: "Modal Logic", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/formalism/modal_logic/modal_logic.html", mainPath: ["0:3:30:301:3010:30100:301001"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 301002, label: "ファジィ論理", labelEn: "Fuzzy Logic", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/formalism/fuzzy_logic/fuzzy_logic.html", mainPath: ["0:3:30:301:3010:30100:301002"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 301003, label: "矛盾許容論理", labelEn: "Paraconsistent Logic", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/formalism/paraconsistent_logic/paraconsistent_logic.html", mainPath: ["0:3:30:301:3010:30100:301003"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        // 直観主義 30101
+        { id: 301010, label: "構成的数学", labelEn: "Constructive Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/intuitionism/constructive_mathematics/constructive_mathematics.html", mainPath: ["0:3:30:301:3010:30101:301010"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 301011, label: "ハイティング代数", labelEn: "Heyting Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/intuitionism/heyting_algebra/heyting_algebra.html", mainPath: ["0:3:30:301:3010:30101:301011"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 301012, label: "クリプキ意味論", labelEn: "Kripke Semantics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/intuitionism/kripke_semantics/kripke_semantics.html", mainPath: ["0:3:30:301:3010:30101:301012"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        // 証明論 30102
+        { id: 301020, label: "ヒルベルト・プログラム", labelEn: "Hilbert's Program", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/proof_theory/hilbert_program/hilbert_program.html", mainPath: ["0:3:30:301:3010:30102:301020"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 301021, label: "不完全性定理", labelEn: "Incompleteness Theorems", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/proof_theory/incompleteness_theorems/incompleteness_theorems.html", mainPath: ["0:3:30:301:3010:30102:301021"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 301022, label: "算術の体系", labelEn: "system of arithmetic", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/proof_theory/system_of_arithmetic/system_of_arithmetic.html", mainPath: ["0:3:30:301:3010:30102:301022"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 301023, label: "逆数学", labelEn: "Reverse Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/proof_theory/reverse_mathematics/reverse_mathematics.html", mainPath: ["0:3:30:301:3010:30102:301023"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        // モデル理論 30103
+        { id: 301030, label: "基礎モデル理論", labelEn: "Basic Model Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/model_theory/basic_model_theory/basic_model_theory.html", mainPath: ["0:3:30:301:3010:30103:301030"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 301031, label: "現代モデル理論", labelEn: "Contemporary Model Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/model_theory/contemporary_model_theory/contemporary_model_theory.html", mainPath: ["0:3:30:301:3010:30103:301031"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 301032, label: "超準解析 (意味論)", labelEn: "Non-standard Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/model_theory/non-standard_analysis/non-standard_analysis.html", mainPath: ["0:3:30:301:3010:30103:301032"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
         // 公理的集合論30111
         { id: 301110, label: "ツェルメロ＝フレンケル集合論", labelEn: "Zermelo-Fraenkel Set Theory with the Axiom of Choice", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/zermelo_fraenkel_choice_set_theory.html", mainPath: ["0:3:30:301:3011:30111:301110"], released: 1, isPaid: 1 },
+        { id: 301111, label: "フォン・ノイマン＝ベルナイス＝ゲーデル集合論", labelEn: "von Neumann–Bernays–Gödel Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/nbg_set_theory/nbg_set_theory.html", mainPath: ["0:3:30:301:3011:30111:301111"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 301112, label: "モース＝ケリー集合論", labelEn: "Morse–Kelley Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/mk_set_theory/mk_set_theory.html", mainPath: ["0:3:30:301:3011:30111:301112"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 301113, label: "新基礎集合論", labelEn: "New Foundations Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/new_foundations_set_theory/new_foundations_set_theory.html", mainPath: ["0:3:30:301:3011:30111:301113"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        // メタ数学30112
+        { id: 301120, label: "内部モデル理論", labelEn: "Inner Model Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/metamathematics/inner_model_theory/inner_model_theory.html", mainPath: ["0:3:30:301:3011:30112:301120"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 301121, label: "独立性証明と強制法", labelEn: "Independence Proofs and Forcing Methods", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/metamathematics/forcing_method/forcing_method.html", mainPath: ["0:3:30:301:3011:30112:301121"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 301122, label: "巨大基数論", labelEn: "Large Cardinal Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/metamathematics/large_cardinal_theory/large_cardinal_theory.html", mainPath: ["0:3:30:301:3011:30112:301122"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        // 記述集合論30113
+        //{ id: 301130, label: "ボレル集合・解析集合", labelEn: "Borel and Analytic Sets", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/descriptive_set_theory/borel_analytic_sets/borel_analytic_sets.html", mainPath: ["0:3:30:301:3011:30113:301130"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        //{ id: 301131, label: "ポーランド空間", labelEn: "Polish Spaces", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/descriptive_set_theory/polish_spaces/polish_spaces.html", mainPath: ["0:3:30:301:3011:30113:301131"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 301132, label: "決定性公理", labelEn: "Axiom of Determinacy", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/descriptive_set_theory/axiom_of_determinacy/axiom_of_determinacy.html", mainPath: ["0:3:30:301:3011:30113:301132"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        // 拡張的集合論30114
+        { id: 301140, label: "構成的集合論", labelEn: "Constructive Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/extended_set_theory/constructive_set_theory/constructive_set_theory.html", mainPath: ["0:3:30:301:3011:30114:301140"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 301141, label: "非整礎集合論", labelEn: "Non-well-founded Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/extended_set_theory/non_well_founded_set_theory/non_well_founded_set_theory.html", mainPath: ["0:3:30:301:3011:30114:301141"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 301142, label: "ファジィ集合論", labelEn: "Fuzzy Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/extended_set_theory/fuzzy_set_theory/fuzzy_set_theory.html", mainPath: ["0:3:30:301:3011:30114:301142"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 301143, label: "内部集合論", labelEn: "Internal Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/extended_set_theory/internal_set_theory/internal_set_theory.html", mainPath: ["0:3:30:301:3011:30114:301143"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
         // 代数系一般論30300
         { id: 303000, label: "原始的な代数的構造", labelEn: "Primitive Algebraic Structures", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/primitive_structures/primitive_structures.html", mainPath: ["0:3:30:303:3030:30300:303000"] },
         { id: 303001, label: "群論", labelEn: "Group Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/group_theory/group_theory.html", mainPath: ["0:3:30:303:3030:30300:303001"] },
@@ -220,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // 代数的構造の一般理論30310
         { id: 303100, label: "代数・準同型・同値関係・商構造", labelEn: "Algebras, Homomorphisms, Congruence Relations, and Quotients", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebras_homomorphisms/algebras_homomorphisms.html", mainPath: ["0:3:30:303:3031:30310:303100"] },
         { id: 303101, label: "代数的性質", labelEn: "Algebraic Properties", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebraic_properties/algebraic_properties.html", mainPath: ["0:3:30:303:3031:30310:303101"] },
-        { id: 303130, label: "圏論", labelEn: "Category Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/category_theory/category_theory.html", mainPath: ["0:3:30:303:3031:30313:303130"] },
+        { id: 303130, label: "圏論", labelEn: "Category Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/category_theory/category_theory.html", mainPath: ["0:3:30:303:3031:30313:303130"], auxPath: ["0:3:30:301:3012"] },
         { id: 303131, label: "基礎：関手・自然変換・極限・余極限", labelEn: "Functors, Natural Transformations, Limits and Colimits", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/functors_limits/functors_limits.html", mainPath: ["0:3:30:303:3031:30313:303131"] },
         { id: 303132, label: "構造：モナド・アジュンクション・エンリッチド圏", labelEn: "Monads, Adjunctions, and Enriched Categories", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/monads_adjunctions/monads_adjunctions.html", mainPath: ["0:3:30:303:3031:30313:303132"] },
         { id: 303133, label: "トポス論", labelEn: "Topos Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/topos_theory/topos_theory.html", mainPath: ["0:3:30:303:3031:30313:303133"] },
@@ -292,6 +344,34 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: 304452, label: "フラクタル生成・自己相似方程式", labelEn: "Fractal Generation and Self-Similar Equations", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_equation/mechanical_systems/self-similar_equation/self-similar_equation.html", mainPath: ["0:3:30:304:3044:30445:304452"], released: 0, description: "IFS（Iterated Function System）の自己準同型式" },
 
         // 深さ7
+        // 古典論理学301000
+        { id: 3010000, label: "命題論理", labelEn: "Propositional Logic", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/formalism/classical_logic/propositional_logic/propositional_logic.html", mainPath: ["0:3:30:301:3010:30100:301000:3010000"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 3010001, label: "述語論理", labelEn: "Propositional Logic", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/formalism/classical_logic/propositional_logic/propositional_logic.html", mainPath: ["0:3:30:301:3010:30100:301000:3010001"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        // 様相論理301001
+        { id: 3010010, label: "可能世界意味論", labelEn: "Possible Worlds Semantics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/formalism/modal_logic/possible_worlds_semantics/possible_worlds_semantics.html", mainPath: ["0:3:30:301:3010:30100:301001:3010010"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 3010011, label: "時相論理", labelEn: "Temporal Logic", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/formalism/modal_logic/temporal_logic/temporal_logic.html", mainPath: ["0:3:30:301:3010:30100:301001:3010011"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        // ヒルベルト・プログラム301020
+        { id: 3010200, label: "有限の立場", labelEn: "Finitary Standpoint", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/proof_theory/hilbert_program/finitary_standpoint/finitary_standpoint.html", mainPath: ["0:3:30:301:3010:30102:301020:3010200"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 3010201, label: "無矛盾性証明", labelEn: "Consistency Proofs", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/proof_theory/hilbert_program/consistency_proof/consistency_proof.html", mainPath: ["0:3:30:301:3010:30102:301020:3010201"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 3010202, label: "イプシロン算法", labelEn: "Epsilon-Calculus", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/proof_theory/hilbert_program/epsilon-calculus/epsilon-calculus.html", mainPath: ["0:3:30:301:3010:30102:301020:3010202"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        // ツェルメロ＝フレンケル集合論301110
+        { id: 3011100, label: "基礎概念", labelEn: "Fundamental Concepts", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/fundamental_concepts/fundamental_concepts.html", mainPath: ["0:3:30:301:3011:30111:301110:3011100"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        // 内部モデル理論 301120
+        { id: 3011200, label: "構成可能集合", labelEn: "Constructible Universe (L)", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/metamathematics/inner_model_theory/constructible_universe/constructible_universe.html", mainPath: ["0:3:30:301:3011:30112:301120:3011200"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        // 強制法 301121
+        { id: 3011210, label: "連続体仮説の独立性", labelEn: "Independence of the Continuum Hypothesis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/metamathematics/forcing/ch_independence/ch_independence.html", mainPath: ["0:3:30:301:3011:30112:301121:3011210"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 3011211, label: "強制関係とブール値モデル", labelEn: "Forcing Relation and Boolean-Valued Models", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/metamathematics/forcing/boolean_valued_models/boolean_valued_models.html", mainPath: ["0:3:30:301:3011:30112:301121:3011211"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        // 巨大基数論 301122
+        { id: 3011220, label: "到達不能基数", labelEn: "Inaccessible Cardinals", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/metamathematics/large_cardinals/inaccessible_cardinals/inaccessible_cardinals.html", mainPath: ["0:3:30:301:3011:30112:301122:3011220"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 3011221, label: "可測基数", labelEn: "Measurable Cardinals", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/metamathematics/large_cardinals/measurable_cardinals/measurable_cardinals.html", mainPath: ["0:3:30:301:3011:30112:301122:3011221"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 3011222, label: "超コンパクト基数・膨大基数", labelEn: "Supercompact and Huge Cardinals", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/metamathematics/large_cardinals/supercompact_huge/supercompact_huge.html", mainPath: ["0:3:30:301:3011:30112:301122:3011222"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        // 構成的集合論 301140
+        { id: 3011400, label: "直観主義論理に基づく体系", labelEn: "Intuitionistic Set Theories (IZF, CZF)", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/extended_set_theory/constructive_set_theory/intuitionistic_set_theories/intuitionistic_set_theories.html", mainPath: ["0:3:30:301:3011:30114:301140:3011400"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 3011401, label: "トポス理論的集合論", labelEn: "Topos-Theoretic Set Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/extended_set_theory/constructive_set_theory/topos_set_theory/topos_set_theory.html", mainPath: ["0:3:30:301:3011:30114:301140:3011401"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        // 非整礎集合論 301141
+        { id: 3011410, label: "反基礎公理・超集合", labelEn: "Anti-Foundation Axiom and Hypersets", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/extended_set_theory/non_well_founded_set_theory/afa_hypersets/afa_hypersets.html", mainPath: ["0:3:30:301:3011:30114:301141:3011410"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        // 内部集合論 301143
+        { id: 3011430, label: "超準解析の基礎（構文論）", labelEn: "Foundations of Non-standard Analysis (Syntactic)", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/extended_set_theory/internal_set_theory/non_standard_analysis_foundations/non_standard_analysis_foundations.html", mainPath: ["0:3:30:301:3011:30114:301143:3011430"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
         // 原始的な代数的構造303000
         { id: 3030000, label: "マグマ", labelEn: "Magma", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/primitive_structures/magma/magma.html", mainPath: ["0:3:30:303:3030:30300:303000:3030000"] },
         { id: 3030001, label: "半群", labelEn: "Semigroup", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/primitive_structures/semigroup/semigroup.html", mainPath: ["0:3:30:303:3030:30300:303000:3030001"] },
@@ -337,6 +417,14 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: 3043431, label: "ラプラシアン固有値問題とスペクトル分解", labelEn: "Laplacian Eigenvalue Problem", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/harmonic_analysis/geometric_harmonic_analysis/laplacian_eigenvalue_problem/laplacian_eigenvalue_problem.html", mainPath: ["0:3:30:304:3043:30434:304343:3043431"], released: 0 },
 
         // 深さ8
+        // 基礎概念 3011100
+        { id: 30111000, label: "対応と写像", labelEn: "Correspondences and Mappings", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zfc/fundamental_concepts/mappings/mappings.html", mainPath: ["0:3:30:301:3011:30111:301110:3011100:30111000"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 30111001, label: "関係", labelEn: "Relations", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zfc/fundamental_concepts/relations/relations.html", mainPath: ["0:3:30:301:3011:30111:301110:3011100:30111001"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 30111002, label: "添字付けられた族", labelEn: "Indexed Families", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zfc/fundamental_concepts/indexed_families/indexed_families.html", mainPath: ["0:3:30:301:3011:30111:301110:3011100:30111002"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 30111003, label: "選択公理", labelEn: "Axiom of Choice", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zfc/fundamental_concepts/axiom_of_choice/axiom_of_choice.html", mainPath: ["0:3:30:301:3011:30111:301110:3011100:30111003"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 30111004, label: "順序集合", labelEn: "Ordered Sets", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zfc/fundamental_concepts/ordered_sets/ordered_sets.html", mainPath: ["0:3:30:301:3011:30111:301110:3011100:30111004"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 30111005, label: "累積的階層", labelEn: "Cumulative Hierarchy", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zfc/fundamental_concepts/cumulative_hierarchy/cumulative_hierarchy.html", mainPath: ["0:3:30:301:3011:30111:301110:3011100:30111005"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        // 可換環論3030020
         { id: 30300200, label: "加群論", labelEn: "Module Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/ring_theory/commutative_ring/module_theory/module_theory.html", mainPath: ["0:3:30:303:3030:30300:303002:3030020:30300200"] },
         { id: 30300202, label: "代数幾何学", labelEn: "Algebraic Geometry", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/abstract_algebra/algebraic_structures/ring_theory/commutative_ring/algebraic_geometry/algebraic_geometry.html", mainPath: ["0:3:30:303:3030:30300:303002:3030020:30300202"] },
         { id: 30300210, label: "多元環論", labelEn: "Algebras over a Ring", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebras_over_ring/algebras_over_ring.html", mainPath: ["0:3:30:303:3030:30300:303002:3030021:30300210"] },
@@ -348,6 +436,11 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: 30430000, label: "ノルム空間", labelEn: "Norm Space", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/functional_analysis/function_space_theory/topological_vector_space/L_p_space/norm_space/norm_space.html", mainPath: ["0:3:30:304:3043:30430:304300:3043000:30430000"], released: 0 },
 
         // 深さ9
+        // 順序集合 30111004
+        { id: 301110040, label: "整列順序と順序数", labelEn: "Well-orderings and Ordinals", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zfc/fundamental_concepts/ordered_sets/ordinals/ordinals.html", mainPath: ["0:3:30:301:3011:30111:301110:3011100:30111004:301110040"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 301110041, label: "基数", labelEn: "Cardinals", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zfc/fundamental_concepts/ordered_sets/cardinals/cardinals.html", mainPath: ["0:3:30:301:3011:30111:301110:3011100:30111004:301110041"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 301110042, label: "濃度", labelEn: "Cardinalities", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zfc/fundamental_concepts/ordered_sets/cardinality/cardinality.html", mainPath: ["0:3:30:301:3011:30111:301110:3011100:30111004:301110042"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 301110043, label: "アレフ数・ベート数", labelEn: "Aleph and Beth Numbers", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zfc/fundamental_concepts/ordered_sets/aleph_beth/aleph_beth.html", mainPath: ["0:3:30:301:3011:30111:301110:3011100:30111004:301110043"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
         // 加群論30300200
         { id: 303002000, label: "ホモロジー代数", labelEn: "Homological Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/homological_algebra/homological_algebra.html", mainPath: ["0:3:30:303:3030:30300:303002:3030020:30300200:303002000"] },
         { id: 303002001, label: "導来関手・Ext, Tor", labelEn: "Derived Functors (Ext, Tor)", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/derived_functors/derived_functors.html", mainPath: ["0:3:30:303:3030:30300:303002:3030020:30300200:303002001"] },
@@ -448,8 +541,23 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!pathList) return;
             for (const pathStr of pathList) {
                 const parts = pathStr.split(":").map(Number);
-                // 末尾が自身のIDチェック
-                if (parts[parts.length - 1] !== node.id) continue;
+
+                // mainPath: 末尾が自身のID
+                // auxPath: 末尾が親ノードIDを指す（親 -> node のエッジを1本作る）
+                let isValid = false;
+                if (type === 'main') {
+                    // mainPath は従来通り：末尾が自身のID
+                    isValid = (parts[parts.length - 1] === node.id);
+                } else if (type === 'aux') {
+                    // auxPath は新仕様：末尾が親ノードのID
+                    // したがって parts.length >= 1 であれば OK（末尾が何らかの親を指す）
+                    isValid = (parts.length >= 1);
+                }
+
+                if (!isValid) {
+                    console.warn(`[WARN] ${type}Path validation failed for node ${node.id}: ${pathStr}`);
+                    continue;
+                }
 
                 for (let i = 0; i < parts.length - 1; i++) {
                     const from = parts[i];
@@ -525,21 +633,52 @@ document.addEventListener('DOMContentLoaded', function () {
         const ids = new Set(nodesData.map(n => n.id));
 
         for (const n of nodesData) {
-            // mainPath と auxPath を結合
-            const allPaths = [...(n.mainPath || [])];
-            if (n.auxPath) allPaths.push(...n.auxPath);
+            // mainPath は従来通り処理
+            if (n.mainPath) {
+                const mainPaths = Array.isArray(n.mainPath) ? n.mainPath : [n.mainPath];
+                mainPaths.forEach(p => {
+                    if (typeof p !== 'string') return;
+                    const parts = p.split(':').map(Number);
+                    for (let i = 0; i < parts.length - 1; i++) {
+                        const parent = parts[i];
+                        const child = parts[i + 1];
+                        if (!ids.has(parent) || !ids.has(child)) continue;
 
-            for (const p of allPaths) {
-                const parts = p.split(':').map(Number);
-                for (let i = 0; i < parts.length - 1; i++) {
-                    const parent = parts[i];
-                    const child  = parts[i + 1];
-                    if (!ids.has(parent) || !ids.has(child)) continue;
-                    if (!__childrenMap.has(parent)) __childrenMap.set(parent, new Set());
-                    __childrenMap.get(parent).add(child);
-                    if (!__parentsMap.has(child)) __parentsMap.set(child, new Set());
-                    __parentsMap.get(child).add(parent);
-                }
+                        if (!__childrenMap.has(parent)) __childrenMap.set(parent, new Set());
+                        __childrenMap.get(parent).add(child);
+                        if (!__parentsMap.has(child)) __parentsMap.set(child, new Set());
+                        __parentsMap.get(child).add(parent);
+                    }
+                });
+            }
+
+            // auxPath: 末尾が親 ID を指す想定だが、一方で副分類を重複追加してはいない
+            if (n.auxPath) {
+                const auxPaths = Array.isArray(n.auxPath) ? n.auxPath : [n.auxPath];
+                auxPaths.forEach(p => {
+                    if (typeof p !== 'string') return;
+                    const parts = p.split(':').map(Number);
+
+                    if (parts.length >= 1) {
+                        // try to use the literal parent id; if missing, attempt resolution by prefix
+                        let parent = parts[parts.length - 1];
+                        if (!ids.has(parent)) {
+                            const resolved = resolveAuxParentId(parts);
+                            if (resolved == null) {
+                                console.warn(`[WARN] auxPath references non-existent node and could not be resolved: ${p}`);
+                                return; // skip this auxPath
+                            }
+                            parent = resolved;
+                            console.log(`[INFO] auxPath parent ${parts[parts.length - 1]} resolved -> ${parent} for node ${n.id}`);
+                        }
+
+                        const child = n.id;
+                        if (!__childrenMap.has(parent)) __childrenMap.set(parent, new Set());
+                        __childrenMap.get(parent).add(child);
+                        if (!__parentsMap.has(child)) __parentsMap.set(child, new Set());
+                        __parentsMap.get(child).add(parent);
+                    }
+                });
             }
         }
     }
@@ -808,6 +947,32 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    function normalizeAuxPathsIfNeeded(nodes) {
+        const ids = new Set(nodes.map(n => n.id));
+
+        for (const node of nodes) {
+            if (!node.auxPath) continue;
+            const auxArr = Array.isArray(node.auxPath) ? [...node.auxPath] : [node.auxPath];
+
+            for (let i = 0; i < auxArr.length; i++) {
+                const p = auxArr[i];
+                if (typeof p !== 'string') continue;
+                const parts = p.split(':');
+                if (parts.length < 1) continue;
+                const lastId = Number(parts[parts.length - 1]);
+
+                if (!ids.has(lastId)) {
+                    // 存在しない末尾IDはこの node.id で置換する
+                    parts[parts.length - 1] = String(node.id);
+                    const replaced = parts.join(':');
+                    auxArr[i] = replaced;
+                    console.log('[INFO] auxPath末尾を置換:', p, '->', replaced);
+                }
+            }
+            node.auxPath = Array.isArray(node.auxPath) ? auxArr : auxArr[0];
+        }
+    }
+
     // ------------------------
     // STATE 1: DATA_INITIALIZATION
     // （ここでは簡単なバリデーションを行う）
@@ -817,26 +982,29 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('[STATE] DATA_INITIALIZATION');
 
         // ノード id 重複チェック
+        // IDs を事前に収集しておく（空のままだと存在チェックが常に失敗する問題の修正）
         const ids = new Set();
+        const duplicateIds = [];
         for (const n of nodesData) {
-            if (ids.has(n.id)) {
-                console.error('[ERROR] nodesData に重複 id が存在します:', n.id);
-                errorFlags.invalidData = true;
-            }
+            if (ids.has(n.id)) duplicateIds.push(n.id);
             ids.add(n.id);
         }
+        if (duplicateIds.length) {
+            console.error('[ERROR] ノードIDの重複が検出されました:', duplicateIds);
+            errorFlags.invalidData = true;
+        }
 
-        // エッジの参照チェックpath の整合チェック: 各 mainPath の各要素が存在するか、および path の末尾が自身の id であるか
+        // auxPath の正規化
+        // auxPath の末尾が存在しない参照になっている場合、
+        // チェック対象ノードの id で置換しておく（ユーザ要望どおり）
+        normalizeAuxPathsIfNeeded(nodesData);
+
         for (const n of nodesData) {
-            // 【変更点】mainPath は必須。存在しない、または空の場合は即エラー
             if (!n.mainPath || n.mainPath.length === 0) {
-                console.error('[ERROR] 必須データ mainPath が欠落、または空です:', n.id);
                 errorFlags.invalidData = true;
                 continue;
             }
 
-            // 検証対象のパスを収集（mainPath + auxPath）
-            // auxPath は任意なので存在する場合のみ結合
             const pathsToCheck = [...n.mainPath];
             if (n.auxPath && Array.isArray(n.auxPath)) {
                 pathsToCheck.push(...n.auxPath);
@@ -844,19 +1012,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
             for (const p of pathsToCheck) {
                 const parts = p.split(':').map(Number);
+                const isMainPath = Array.isArray(n.mainPath) && n.mainPath.includes(p);
 
-                // 末尾チェック
-                if (parts[parts.length - 1] !== n.id) {
-                    console.error('[ERROR] path の末尾が id と一致しません:', n.id, p);
-                    errorFlags.invalidData = true;
-                    continue;
-                }
-
-                // 参照ID存在チェック
-                for (const pid of parts) {
-                    if (!ids.has(pid)) {
-                        console.error('[ERROR] path が存在しないノードを参照しています:', p, 'missing:', pid);
+                if (isMainPath) {
+                    // 末尾チェック
+                    if (parts[parts.length - 1] !== n.id) {
+                        console.error('[ERROR] mainPath の末尾が id と一致しません:', n.id, p);
                         errorFlags.invalidData = true;
+                        continue;
+                    }
+                    // 参照チェック
+                    for (const pid of parts) {
+                        if (!ids.has(pid)) {
+                            console.error('[ERROR] path が存在しないノードを参照しています:', p, 'missing:', pid);
+                            errorFlags.invalidData = true;
+                        }
+                    }
+                } else {
+                    // auxPath: 末尾は親ID（緩い条件）
+                    if (parts.length < 1) {
+                        console.error('[ERROR] auxPath が空です:', n.id, p);
+                        errorFlags.invalidData = true;
+                        continue;
                     }
                 }
             }

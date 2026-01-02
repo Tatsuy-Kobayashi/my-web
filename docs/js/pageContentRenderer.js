@@ -478,7 +478,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         // B. 公開日・編集日生成
         renderDateInfo(currentNode);
         // C. 下層記事一覧生成
-        renderChildList(siteData, currentNode);
+        renderChildList(siteData, currentNode, maxDepth = 3);
         // D. タグ一覧生成
         renderTagList(currentNode);
         // E. 関連記事リンク生成
@@ -500,72 +500,112 @@ document.addEventListener('DOMContentLoaded', async function () {
         const container = document.getElementById('breadcrumb-list');
         if (!container) return;
 
-        let html = `<a href="https://tatsuy-kobayashi.github.io/my-web/docs/"><i class="fa fa-home fa-fw" aria-hidden="true" style="margin-right:5px;"></i><span>Home</span></a>`;
+        const makeNodeHtml = (pathNode, asLink = true) => {
+            if (!pathNode) return '';
 
-        // まず mainPath があればそれを使う（siteData の id パス）
-        let pathIds = [];
-        if (current && current.mainPath) {
-            const mp = Array.isArray(current.mainPath) ? current.mainPath[0] : current.mainPath;
-            if (typeof mp === 'string') {
-                pathIds = mp.split(':').map(s => parseInt(s, 10)).filter(n => !Number.isNaN(n));
-            }
-        }
+            let nodeHtml = '<span class="link-container">';
 
-        if (pathIds.length > 0) {
-            // 最後の ID は現在の記事自身である想定のため、リンク生成は最後の要素を除外する
-            pathIds.forEach((id, index) => {
-                if (index >= pathIds.length - 1) return; // 最後はスキップ
-                const pathNode = allData.find(n => n.id === id);
-                if (pathNode) {
-                    html += `<span class="sp" style="margin-right:5px; margin-left:5px;"><span class="fa fa-angle-right" aria-hidden="true"></span></span>`;
-                    html += `<span class="link-container">`;
-
-                    // iタグ（iconClass がある場合のみ）
-                    let icon = '';
-                    if (pathNode.iconClass) {
-                        icon += `<i class="fa fa-solid ${pathNode.iconClass}" style="margin-right:5px;"></i>`;
-                    } else if (pathNode.iconUrl)
-                    {   // 代わりに iconUrl がある場合
-                        icon += `<span class="icon ${pathNode.iconClass}" style="margin-right:5px;"></span>`;
-                    }
-
-                    // aタグ: preview-link 属性
-                    const desc = pathNode.description || '説明はありません。';
-                    const img = pathNode.imageUrl || '';
-                    html += `<a href="${pathNode.url}" class="preview-link" data-title="${pathNode.label}" data-description="${desc}" data-image="${img}">` + icon + `${pathNode.label}</a>`;
-
-                    // link-preview div
-                    html += `<div class="link-preview">`;
-                    html += `<a href="${pathNode.url}" class="link-preview-clickable">`;
-                    if (img) {
-                        html += `<img class="preview-image" src="${img}" alt="Preview image">`;
-                    } else {
-                        html += `<img class="preview-image" src="" alt="Preview image" style="display:none;">`;
-                    }
-                    html += `<h3 class="preview-title">${pathNode.label}</h3>`;
-                    html += `<p class="preview-description">${desc}</p>`;
-                    html += `</a>`;
-                    html += `</div>`;
-
-                    html += `</span>`;
-                }
-            });
-            // 現在の記事（リンクなし）
-            html += `<span class="sp" style="margin-right:5px; margin-left:5px;"><span class="fa fa-angle-right" aria-hidden="true"></span></span>`;
             // iタグ（iconClass がある場合のみ）
-            if (current.iconClass) {
-                html += `<i class="fa fa-solid ${current.iconClass}" style="margin-right:5px;"></i>`;
-            } else if (current.iconUrl)
+            let icon = '';
+            if (pathNode.iconClass)
+            {
+                icon += `<i class="fa fa-solid ${pathNode.iconClass}" style="margin-right:5px;"></i>`;
+            } else if (pathNode.iconUrl)
             {   // 代わりに iconUrl がある場合
-                html += `<span class="icon ${current.iconClass}" style="margin-right:5px;"></span>`;
+                icon += `<span class="icon ${pathNode.iconClass}" style="margin-right:5px;"></span>`;
             }
-            html += `<span>${current.label || ''}</span>`;
-            container.innerHTML = html;
-            return;
+
+            // aタグ: preview-link 属性
+            const desc = pathNode.description || '説明はありません。';
+            const img = pathNode.imageUrl || '';
+            if (asLink && Number(pathNode.released) === 1 && pathNode.url) {
+                nodeHtml += `<a href="${pathNode.url}" class="preview-link" data-title="${pathNode.label}" data-description="${desc}" data-image="${img}">${icon}${pathNode.label}</a>`;
+                // link-preview div
+                nodeHtml += `<div class="link-preview"><a href="${pathNode.url}" class="link-preview-clickable">${img ? `<img class="preview-image" src="${img}" alt="Preview image">` : `<img class="preview-image" src="" alt="Preview image" style="display:none;">`}`
+                nodeHtml += `<h3 class="preview-title">${pathNode.label}</h3><p class="preview-description">${desc}</p></a></div></span>`;
+                return nodeHtml;
+            } else {
+                // 非公開 or リンク無しはプレーン表示（アイコン含む）
+                return `${icon}${pathNode.label}`;
+            }
+        };
+
+        // options:
+        //  - includeHome: boolean (first column only)
+        //  - treatAsMain: boolean (mainPath column: exclude last id because it's current)
+        const renderColumnFromPath = (pathStr, options = {}) => {
+            const { includeHome = false, treatAsMain = false } = options;
+            if (!pathStr || typeof pathStr !== 'string') return '';
+            const parts = pathStr.split(':').map(s => parseInt(s, 10)).filter(n => Number.isFinite(n));
+            if (parts.length === 0) return '';
+
+            let html = `<div class="breadcrumb_list_part">`;
+            if (includeHome) {
+                html += `<a href="https://tatsuy-kobayashi.github.io/my-web/docs/"><i class="fa fa-home fa-fw" aria-hidden="true" style="margin-right:5px;"></i><span>Home</span></a>`;
+            }
+
+            // path からリンクとしてレンダリングするエンドポイントインデックスを決定する
+            const lastIndexToRender = treatAsMain ? parts.length - 2 : parts.length - 1; // main: exclude last (current)
+            for (let i = 0; i <= lastIndexToRender; i++) {
+                const id = parts[i];
+                if (i === 0 && includeHome === false) {
+                    // optionally skip adding separator for very first element if Home not present
+                }
+                const pathNode = allData.find(n => n && n.id === id);
+                if (!pathNode) continue;
+                html += `<span class="sp" style="margin-right:5px; margin-left:5px;"><span class="fa fa-angle-right" aria-hidden="true"></span></span>`;
+                html += makeNodeHtml(pathNode, true);
+            }
+
+            // For mainPath column: append the current article label (no link) as final item
+            if (treatAsMain) {
+                html += `<span class="sp" style="margin-right:5px; margin-left:5px;"><span class="fa fa-angle-right" aria-hidden="true"></span></span>`;
+                if (current.iconClass) {
+                    html += `<i class="fa fa-solid ${current.iconClass}" style="margin-right:5px;"></i>`;
+                } else if (current.iconUrl) {
+                    html += `<span class="icon ${current.iconClass}" style="margin-right:5px;"></span>`;
+                }
+                html += `<span>${current.label || ''}</span>`;
+            }
+
+            html += `</div>`;
+            return html;
+        };
+
+        // collect mainPath (prefer first) and auxPaths (array)
+        const getFirstPath = (node) => {
+            if (!node) return '';
+            if (Array.isArray(node.mainPath) && node.mainPath.length > 0) return node.mainPath[0];
+            if (typeof node.mainPath === 'string') return node.mainPath;
+            return '';
+        };
+        const mainPath = getFirstPath(current);
+        const auxPaths = [];
+        if (current && current.auxPath) {
+            if (Array.isArray(current.auxPath)) {
+                current.auxPath.forEach(p => { if (p && p !== mainPath) auxPaths.push(p); });
+            } else if (typeof current.auxPath === 'string' && current.auxPath !== mainPath) {
+                auxPaths.push(current.auxPath);
+            }
         }
-        // mainPathがない場合、厳密に生成できないと判断してエラー処理
-        console.error('Failed to generate breadcrumbs: mainPath not found in current node.');
-        return;
+
+        // build columns: first main column (with Home), then one column per auxPath
+        let finalHtml = '';
+        if (mainPath) {
+            finalHtml += renderColumnFromPath(mainPath, { includeHome: true, treatAsMain: true });
+        } else {
+            // fallback: only Home + current label
+            finalHtml += `<div class="breadcrumb_list_part"><a href="https://tatsuy-kobayashi.github.io/my-web/docs/"><i class="fa fa-home fa-fw" aria-hidden="true" style="margin-right:5px;"></i><span>Home</span></a>`;
+            finalHtml += `<span class="sp" style="margin-right:5px; margin-left:5px;"><span class="fa fa-angle-right" aria-hidden="true"></span></span>`;
+            finalHtml += `<span>${current.label || ''}</span></div>`;
+        }
+
+        // auxPath 列も Home を先頭に表示し、最後に current のラベルを付けているが、それぞれを非表示にすることもできる。可能性としては、Git のブランチの様に表示できないか検討中
+        auxPaths.forEach(ap => {
+            finalHtml += renderColumnFromPath(ap, { includeHome: true, treatAsMain: true });
+        });
+
+        container.innerHTML = finalHtml;
     }
 
     /**
@@ -612,17 +652,15 @@ document.addEventListener('DOMContentLoaded', async function () {
     // **
     // * 下層記事一覧（階層構造メニュー）生成関数
     // * levelが現在より下（数値が大きい）記事を表示
-    //  * @param {Array|Object} allData siteData.jsonの中身
-    //  * @param {Object} currentEntry 現在の記事データ
+    // * @param {Array|Object} allData siteData.jsonの中身
+    // * @param {Object} currentEntry 現在の記事データ
     //
-    function renderChildList(allData, current) {
+    function renderChildList(allData, current, maxDepth) {
         const container = document.getElementById('child-pages-list');
         if (!container) return;
 
         // siteData（allData）から子孫を取得する。
-        // 以前の実装は current.dir_path に依存して早期リターンしてしまい、
-        // siteData 内の mainPath ベースの抽出が実行されない不具合があった。
-        // ここでは dir_path に依存せず mainPath を用いた抽出に委ねる。
+        // current.dir_path に依存せず mainPath を用いた抽出に委ねる。
         if (!Array.isArray(allData)) {
             try {
                 allData = Object.values(allData);
@@ -648,6 +686,52 @@ document.addEventListener('DOMContentLoaded', async function () {
             return mps.some(mp => typeof mp === 'string' && mp.startsWith(currentPath + ':'));
         });
 
+        const currentId = current && current.id;
+        // map: key=node.id -> { node, matchedAuxPaths: [], matchedPenultimateIds: Set }
+        const auxMatchesMap = new Map();
+        if (currentId != null) {
+            allData.forEach(item => {
+                if (!item || !item.auxPath) return;
+                const auxArr = Array.isArray(item.auxPath) ? item.auxPath : [item.auxPath];
+                auxArr.forEach(ap => {
+                    if (typeof ap !== 'string') return;
+                    // 数値配列化
+                    const parts = ap.split(':').map(s => parseInt(s.trim(), 10)).filter(n => Number.isFinite(n));
+                    if (parts.length === 0) return;
+                    // currentId を含む auxPath のみ扱う
+                    if (!parts.includes(currentId)) return;
+                    // penultimate を抽出（length>=2 でなければ無視）
+                    const penultimate = parts.length >= 2 ? parts[parts.length - 2] : null;
+                    if (!auxMatchesMap.has(item.id)) {
+                        auxMatchesMap.set(item.id, { node: item, matchedAuxPaths: [], matchedPenultimateIds: new Set() });
+                    }
+                    const entry = auxMatchesMap.get(item.id);
+                    entry.matchedAuxPaths.push(ap);
+                    if (Number.isFinite(penultimate)) entry.matchedPenultimateIds.add(penultimate);
+                });
+            });
+        }
+        // auxMatchesMap を配列化（必要に応じて descendants と併合して扱う）
+        const auxMatches = Array.from(auxMatchesMap.values());
+        console.log('auxMatches:', auxMatches);
+
+        // parentId -> [ { tailId, node }, ... ] 形式に変換しておく
+        const auxInsertionsByParent = new Map();
+        auxMatchesMap.forEach(({ node, matchedAuxPaths }) => {
+            if (!Array.isArray(matchedAuxPaths)) return;
+            matchedAuxPaths.forEach(ap => {
+                if (typeof ap !== 'string') return;
+                const parts = ap.split(':').map(s => parseInt(s.trim(), 10)).filter(n => Number.isFinite(n));
+                if (parts.length < 2) return; // penultimate + tail が必要
+                const penultimate = parts[parts.length - 2];
+                const tail = parts[parts.length - 1];
+                if (!Number.isFinite(penultimate) || !Number.isFinite(tail)) return;
+                const arr = auxInsertionsByParent.get(penultimate) || [];
+                arr.push({ tailId: tail, node });
+                auxInsertionsByParent.set(penultimate, arr);
+            });
+        });
+
         if (!descendants || descendants.length === 0) return;
 
         // parentPath の直下だけを返す（直下の子）
@@ -667,14 +751,44 @@ document.addEventListener('DOMContentLoaded', async function () {
                     }
                 });
             });
-            // mainPath の最後の ID でソート
-            results.sort((a, b) => {
-                const aPath = getFirstPath(a);
-                const bPath = getFirstPath(b);
-                const aId = parseInt(aPath.split(':').pop(), 10);
-                const bId = parseInt(bPath.split(':').pop(), 10);
-                return aId - bId;
-            });
+
+            // --- auxPath による挿入: auxMatchesMap から parentPath の最後の ID を親として参照するものを追加 ---
+            const parentId = parseInt(parentParts[parentParts.length - 1], 10);
+            if (!Number.isNaN(parentId)) {
+                const insertions = auxInsertionsByParent.get(parentId);
+                if (Array.isArray(insertions) && insertions.length > 0) {
+                    insertions.forEach(({ tailId, node }) => {
+                        // 重複挿入を避ける:
+                        const exists = results.some(r => {
+                            // 既に同ノードを mainPath として追加済み（同じ実ノードID）ならスキップ
+                            if (!r.__isAux && r.id === node.id) return true;
+                            // 既に同じ aux 挿入（同じ元ノード & tail）を追加済みならスキップ
+                            if (r.__isAux && r.__auxOriginalId === node.id && r.__auxTailId === tailId) return true;
+                            return false;
+                        });
+                        if (!exists) {
+                            // 合成オブジェクト: ソートキーとして __auxTailId を持たせる（id は変更しない）
+                            const synthetic = Object.assign({}, node, {
+                                __isAux: true,
+                                __auxOriginalId: node.id,
+                                __auxTailId: tailId
+                            });
+                            results.push(synthetic);
+                        }
+                    });
+                }
+            }
+            // ソート: aux 挿入ノードは __auxTailId を優先キーとする。なければ mainPath の末尾ID、最後に node.id。
+            const getSortKey = (item) => {
+                if (item && Number.isFinite(item.__auxTailId)) return item.__auxTailId;
+                const p = getFirstPath(item) || '';
+                if (p) {
+                    const last = parseInt(p.split(':').pop(), 10);
+                    if (Number.isFinite(last)) return last;
+                }
+                return (item && Number.isFinite(item.id)) ? item.id : 0;
+            };
+            results.sort((a, b) => getSortKey(a) - getSortKey(b));
             return results;
         };
 
@@ -701,10 +815,10 @@ document.addEventListener('DOMContentLoaded', async function () {
         };
 
         // 再帰的にリストを構築
-        const buildList = (parentPath) => {
+        const buildList = (parentPath, depth = 0, maxDepth) => {
             const children = immediateChildrenOf(parentPath);
             if (!children || children.length === 0) return '';
-            let out = '<ul class="ul_pulldownList">';
+            let out = '';
             children.forEach(child => {
                 const childPath = getFirstPath(child);
                 const hasDesc = descendants.some(d => {
@@ -714,10 +828,10 @@ document.addEventListener('DOMContentLoaded', async function () {
                 out += '<li class="li_pulldownList">';
                 // 深い子を持つ場合または現在ノードの直下の子（parentPath === currentPath）の場合は
                 // <details><summary> でラップする。ただし内部リストは存在する場合のみ追加する。
-                if (hasDesc || parentPath === currentPath) {
+                if ((hasDesc || parentPath === currentPath) && depth < maxDepth) {
                     out += '<details class="details_pulldownList">';
                     out += `<summary class="summary_pulldownList">${makePreviewHtml(child)}</summary>`;
-                    const inner = buildList(childPath);
+                    const inner = buildList(childPath, depth + 1, maxDepth);
                     if (inner) out += inner;
                     out += '</details>';
                 } else {
@@ -725,11 +839,14 @@ document.addEventListener('DOMContentLoaded', async function () {
                 }
                 out += '</li>';
             });
-            out += '</ul> <!-- /.ul_pulldownList -->';
             return out;
         };
 
-        container.innerHTML = buildList(currentPath);
+        let html = '<ul class="ul_pulldownList">';
+        html += buildList(currentPath, 0, maxDepth);
+        html += '</ul> <!-- /.ul_pulldownList -->';
+
+        container.innerHTML = html;
     }
 
     /**

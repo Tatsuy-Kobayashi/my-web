@@ -10,20 +10,20 @@
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="apple-touch-icon" />
     <!-- SEO -->
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="実解析と複素解析の共通点と相違点を解説。極限・連続・微分・積分の基本的枠組みから、微分可能性の条件、幾何学的背景の違いまで、解析学の土台となる概念を体系的に学べる。">
+    <meta name="description" content="数学基礎論の全体像を解説。構文論と意味論、モデル理論、証明論、型理論、集合論、圏論など、現代数学の基礎を支える主要分野をPythonの実装例とともに学べる包括的な入門記事。" />
     <meta name="keywords" content="ゲーデル, Python, ヒルベルト・プログラム">
     <link rel="canonical" href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html" />
     <!-- og -->
     <meta property="og:type" content="website" /> <!-- articleとか -->
     <meta property="og:title" content="数学基礎論｜ラクして数理研究所" />
-    <meta property="og:description" content="実解析と複素解析の共通点と相違点を解説。極限・連続・微分・積分の基本的枠組みから、微分可能性の条件、幾何学的背景の違いまで、解析学の土台となる概念を体系的に学べる。" />
+    <meta property="og:description" content="数学基礎論の全体像を解説。構文論と意味論、モデル理論、証明論、型理論、集合論、圏論など、現代数学の基礎を支える主要分野をPythonの実装例とともに学べる包括的な入門記事。" />
     <meta property="og:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html" />
     <meta property="og:site_name" content="ラクして数理研究所" />
     <link rel="dns-prefetch" href="//tatsuy-kobayashi.github.io/" /> <!-- HTTPSページのDNSプリフェッチはできない -->
     <!-- twitter card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="数学基礎論｜ラクして数理研究所">
-    <meta name="twitter:description" content="実解析と複素解析の共通点と相違点を解説。極限・連続・微分・積分の基本的枠組みから、微分可能性の条件、幾何学的背景の違いまで、解析学の土台となる概念を体系的に学べる。">
+    <meta name="twitter:description" content="数学基礎論の全体像を解説。構文論と意味論、モデル理論、証明論、型理論、集合論、圏論など、現代数学の基礎を支える主要分野をPythonの実装例とともに学べる包括的な入門記事。" />
     <meta name="twitter:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html">
     <meta name="twitter:image" content="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png">
 
@@ -108,10 +108,12 @@
                     <li><a href="#section_1">概要：数学を「数学」する</a></li>
                     <li><a href="#section_2">構文論と意味論：形式と内容の分離</a></li>
                     <li><a href="#section_3">モデル理論：構造と真理の関係</a></li>
-                    <li><a href="#section_4">証明論と現代の展開：逆数学</a></li>
-                    <li><a href="#section_5">集合論：数学の標準的な基盤</a></li>
-                    <li><a href="#section_6">型理論：計算と論理の融合</a></li>
-                    <li><a href="#section_7">数学基礎論の各分野の一覧</a></li>
+                    <li><a href="#section_4">証明論：逆数学と現代の展開</a></li>
+                    <li><a href="#section_5">型理論：計算と論理の融合</a></li>
+                    <li><a href="#section_6">集合論：数学の標準的な基盤</a></li>
+                    <li><a href="#section_7">圏論：射と合成による再構築</a></li>
+                    <li><a href="#section_8">現代の数学基礎論の展望</a></li>
+                    <li><a href="#section_9">数学基礎論の各分野の一覧</a></li>
                 </ul>
             </div>
 
@@ -180,7 +182,7 @@ graph LR
                     <b>コンパクト性定理（Compactness Theorem）</b>: モデル理論における強力なツールの一つがコンパクト性定理である。これは、「文の集合 $S$ の任意の有限部分集合がモデルを持つならば、集合 $S$ 全体もモデルを持つ」という定理である。この定理は、<b>超準解析（Non-standard Analysis）</b>のような新しい数学的枠組みの構築にも応用されている。実数の理論に「あらゆる正の実数より小さいが $0$ ではない定数 $c$」の存在を主張する文を無限に追加しても、その有限部分集合は矛盾しないため、コンパクト性定理により無限小を含む「超実数体」のモデルが存在することが示される。
                 </li>
                 <li>
-                    <b>量化記号消去（Quantifier Elimination）</b>: ある理論 $T$ において、任意の論理式が、それと同値な「量化記号（$∀,∃$）を含まない論理式」を持つとき、その理論は量化記号消去が可能であるという。 例えば、複素数体（代数的閉体）の理論 ACF や、実閉体の理論 RCF は量化記号消去を持つことが知られている。これは、代数的な方程式や不等式の系が解を持つかどうかという問題が、係数に関する条件だけで判定できることを意味し（例：判別式）、数式処理アルゴリズムの基礎ともなっている。
+                    <b>量化記号消去（Quantifier Elimination）</b>: ある理論 $T$ において、任意の論理式が、それと同値な「量化記号（$∀,∃$）を含まない論理式」を持つとき、その理論は量化記号消去が可能であるという。例えば、複素数体（代数的閉体）の理論 ACF や、実閉体の理論 RCF は量化記号消去を持つことが知られている。これは、代数的な方程式や不等式の系が解を持つかどうかという問題が、係数に関する条件だけで判定できることを意味し（例：判別式）、数式処理アルゴリズムの基礎ともなっている。
                 </li>
             </ul>
             <p>
@@ -298,13 +300,13 @@ print(f"Formula 2 (∃x ∀y ¬R(y, x)): {result2}")
             <p>
                 &emsp;このコードは、数学的な「構造」と「真理」の定義をプログラムとして実装したものである。モデル理論における「充足（satisfaction）」関係 $\mathcal{A} \vDash \sigma$ は、このように構造内の要素を走査する手続きとして解釈できる。実際のモデル理論では無限集合を扱うため、このように単純な全探索はできないが、概念の理解には役立つ。
             </p>
-            <h2 id="section_4">証明論と現代の展開：逆数学</h2>
+            <h2 id="section_4">証明論：逆数学と現代の展開</h2>
             <p>
                 &emsp;証明論（Proof Theory）は、数学的証明を形式的な記号操作の列として捉え、その構造を数学的に分析する。
             </p>
             <ul>
                 <li>
-                    <b>ヒルベルト・プログラム</b>: ヒルベルトは当初、数学全体を形式化し、その無矛盾性を「有限の立場（finitary standpoint）」から証明することを目指した。しかし、ゲーデルの不完全性定理は、算術を含む十分強力な形式体系においては、その体系が無矛盾であれば、体系内で証明も反証もできない命題（決定不能命題）が存在すること、さらには体系自身の無矛盾性を体系内で証明できないことを示した。 これはヒルベルトの当初の計画の修正を迫るものであったが、ゲンツェン（Gentzen）らによる順序数を用いた無矛盾性証明など、証明論はその後も深い発展を遂げている。
+                    <b>ヒルベルト・プログラム</b>: ヒルベルトは当初、数学全体を形式化し、その無矛盾性を「有限の立場（finitary standpoint）」から証明することを目指した。しかし、ゲーデルの不完全性定理は、算術を含む十分強力な形式体系においては、その体系が無矛盾であれば、体系内で証明も反証もできない命題（決定不能命題）が存在すること、さらには体系自身の無矛盾性を体系内で証明できないことを示した。これはヒルベルトの当初の計画の修正を迫るものであったが、ゲンツェン（Gentzen）らによる順序数を用いた無矛盾性証明など、証明論はその後も深い発展を遂げている。
                 </li>
             </ul>
             <p>
@@ -315,19 +317,7 @@ print(f"Formula 2 (∃x ∀y ¬R(y, x)): {result2}")
                     <b>計算可能性</b>: 論理式が「証明可能であるか」という問いは、「アルゴリズムによって判定可能か」という計算の問題と密接に関わる。チャーチやチューリングは、述語論理の妥当性がアルゴリズムで決定できないこと（決定不能性）を示した。計算機科学における形式検証や自動定理証明は、こうした論理学の成果を工学的に応用したものである。
                 </li>
             </ul>
-            <h2 id="section_5">集合論：数学の標準的な基盤</h2>
-            <p>
-                &emsp;集合論は、現代数学の諸概念（数、関数、空間など）を定義するための共通言語として機能している。特に、ツェルメロ＝フレンケル集合論（Zermelo-Fraenkel set theory, ZF）と選択公理（Axiom of Choice, AC）を組み合わせた<b>ZFC公理系</b>は、数学の標準的な基盤として広く受け入れられている。
-            </p>
-            <ul>
-                <li>
-                    <b>ZFC公理系と独立性</b>: 現代数学の事実上の標準的な基盤となっているのが、ZFC公理系である。ZFCは非常に強力な体系であり、通常の数学のほとんどすべてをその中で展開できる。しかし、ZFCだけでは決定できない命題（ZFCから証明も反証もできない命題）が存在することも知られており、その最も有名な例が<b>連続体仮説</b>（自然数の濃度と実数の濃度の間に、中間の濃度は存在しないという仮説）である。ポール・コーエン（Paul Cohen）が開発した<b>強制法（Forcing）</b>という手法により、連続体仮説がZFCから独立していること（ZFCと矛盾しない形で、連続体仮説が成り立つ世界も成り立たない世界も作れること）が証明された。
-                </li>
-                <li>
-                    <b>巨大基数と無限の階層</b>: ZFCを超えるさらに強力な公理として、<b>巨大基数（Large Cardinals）</b>の存在公理が研究されている。到達不能基数、可測基数、超コンパクト基数など、ZFCでは存在を証明できないほど「巨大」な無限集合の存在を仮定することで、数学的真理のさらなる深層を探求することが可能になる。これらの巨大基数は、単に大きいだけでなく、集合論の宇宙（Universe）の構造に強い「整列性」や「決定性」をもたらすことが知られているのだ。
-                </li>
-            </ul>
-            <h2 id="section_6">型理論：計算と論理の融合</h2>
+            <h2 id="section_5">型理論：計算と論理の融合</h2>
             <p>
                 &emsp;集合論が「すべての数学的対象は集合である」という立場をとるのに対し、<b>型理論（Type Theory）</b>は、対象をその性質（型）によって分類し、階層化して扱うアプローチである。ラッセル（Russell）がパラドックスを回避するために導入した階型理論に端を発し、チャーチ（Church）のラムダ計算などを経て発展した。
             </p>
@@ -367,7 +357,50 @@ graph LR
                     &emsp;この対応によれば、「命題 $A$ を証明すること」は「型 $A$ を持つプログラムを作成すること」と等価になる。この原理は、CoqやLeanといった現代の<b>証明支援系（Proof Assistant）</b>の基礎となっており、数学の証明をコンピュータで実装・検証することを可能にしている。
                 </p>
             </ul>
-            <h2 id="section_7">現代の数学基礎論の展望</h2>
+            <h2 id="section_6">集合論：数学の標準的な基盤</h2>
+            <p>
+                &emsp;集合論は、現代数学の諸概念（数、関数、空間など）を定義するための共通言語として機能している。特に、ツェルメロ＝フレンケル集合論（Zermelo-Fraenkel set theory, ZF）と選択公理（Axiom of Choice, AC）を組み合わせた<b>ZFC公理系</b>は、数学の標準的な基盤として広く受け入れられている。
+            </p>
+            <ul>
+                <li>
+                    <b>ZFC公理系と独立性</b>: 現代数学の事実上の標準的な基盤となっているのが、ZFC公理系である。ZFCは非常に強力な体系であり、通常の数学のほとんどすべてをその中で展開できる。しかし、ZFCだけでは決定できない命題（ZFCから証明も反証もできない命題）が存在することも知られており、その最も有名な例が<b>連続体仮説</b>（自然数の濃度と実数の濃度の間に、中間の濃度は存在しないという仮説）である。ポール・コーエン（Paul Cohen）が開発した<b>強制法（Forcing）</b>という手法により、連続体仮説がZFCから独立していること（ZFCと矛盾しない形で、連続体仮説が成り立つ世界も成り立たない世界も作れること）が証明された。
+                </li>
+                <li>
+                    <b>巨大基数と無限の階層</b>: ZFCを超えるさらに強力な公理として、<b>巨大基数（Large Cardinals）</b>の存在公理が研究されている。到達不能基数、可測基数、超コンパクト基数など、ZFCでは存在を証明できないほど「巨大」な無限集合の存在を仮定することで、数学的真理のさらなる深層を探求することが可能になる。これらの巨大基数は、単に大きいだけでなく、集合論の宇宙（Universe）の構造に強い「整列性」や「決定性」をもたらすことが知られているのだ。
+                </li>
+            </ul>
+            <h2 id="section_7">圏論：射と合成による再構築</h2>
+            <p>
+                &emsp;集合論が「元が集合に属する（$x∈A$）」という帰属関係を基礎とするのに対し、<b>圏論（Category Theory）</b>は、対象の内部構造には立ち入らず、対象間の「射（矢印）」と「合成」によって数学的構造を記述する枠組みである。本来は代数的トポロジーや普遍代数学の道具として発展したが、ローヴェア（Lawvere）らにより、集合論に代わる数学の基礎づけ（トポス理論など）としての側面も開拓された。
+            </p>
+            <ul>
+                <li>
+                    <b>宇宙と大きさ</b>: 圏論を数学の基礎として扱う際、「すべての集合の圏（$\textbf{Set}$）」や「すべての圏の圏（$\textbf{Cat}$）」といった巨大な対象をどのように正当化するかという問題が生じる。これらは通常のZFC集合論の内部では「集合」として扱えない（真のクラスになる）ほど巨大であるためである。この問題を解決するために、<b>グロタンディーク宇宙（Grothendieck Universe）</b>という概念が導入されることがある。しかし、グロタンディーク宇宙の存在を保証するには、ZFCよりも強い公理である「到達不能基数（Inaccessible Cardinal）」の存在が必要となる。すなわち、圏論を制約なく十全に展開しようとすれば、逆説的にも集合論における「巨大基数」の助けが必要となる場面があり、両者は対立するものではなく、現代数学の基礎において補完的な関係にあると言える。
+                </li>
+                <div class="tikzjax_wrapper">
+                    <div class="tikzjax_flex" style="padding: 20px 0 5px 5px;">
+                        <figure>
+                            <div class="mermaid">
+graph LR
+    subgraph SetTheory [集合論的視点]
+        E((要素)) -- 帰属 --> S(集合)
+    end
+
+    subgraph CategoryTheory [圏論的視点]
+        O1((対象A)) -- 射 f --> O2((対象B))
+        O2 -- 射 g --> O3((対象C))
+        O1 -. 合成 gf .-> O3
+    end
+
+    SetTheory -. "内部構造を捨象" .-> CategoryTheory
+    CategoryTheory -. "巨大な圏の正当化" .-> SetTheory
+                            </div>
+                            <figcaption>&emsp;この図は、圏論と集合論の対応関係</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </ul>
+            <h2 id="section_8">現代の数学基礎論の展望</h2>
             <p>
                 &emsp;かつて数学基礎論は、数学全体の無矛盾性を保証するための「基礎づけ」の役割を期待されていたが、ゲーデルの定理以降、その役割は変化した。数学者マックレーン（Mac Lane）は、現代の数学基礎論（特に巨大基数論などの集合論の高度な展開）が、一般的な数学の実践から乖離していると批判したことがある。一方で、逆数学（Reverse Mathematics）のようなプログラムは、特定の数学的定理を証明するためにどの公理が必要不可欠かを分析することで、数学の体系の強さを測る新たな視点を提供している。
             </p>
@@ -378,7 +411,7 @@ graph LR
 
 
             <section class="pulldown_list_wrapper" id="section_2" itemscope itemtype="https://schema.org/ItemList">
-                <h2 id="section_8">数学基礎論の各分野の一覧</h2>
+                <h2 id="section_9">数学基礎論の各分野の一覧</h2>
                 <meta itemprop="itemListOrder" content="Unordered">
                 <div class="pulldown_list_wrapper" id="child-pages-list"></div>
             </section> <!-- /.pulldown_list_wrapper -->

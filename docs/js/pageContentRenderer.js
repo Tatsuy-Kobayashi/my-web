@@ -620,7 +620,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         const rawRev = current.dateModified || null;
 
         // Date に安全に変換
-        const toStringSafe = (v) => {
+        const toDateSafe = (v) => {
             if (!v) return null;
             if (v instanceof Date) return isNaN(v) ? null : v;
             const d = new Date(v);

@@ -36,7 +36,6 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/include.js" defer></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/linkPreview.js" defer></script>
-    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/commentary.js" defer></script>
     <script>
         // JavaScriptの厳格モード使用
         'use strict';
@@ -65,7 +64,6 @@
     <style>
 .content {
     width: 100%;
-    display: flex;
 }
 .main {
     padding: 0 50px 0 50px;
@@ -226,8 +224,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     // imageUrl: プレビュー画像のURL
     // thumbnailUrl: サムネイル画像のURL配列（複数解像度対応）
     // ------------------------
-    console.log('[INIT] Loading nodesData...');
-    const nodesData = [
+    console.log('[INIT] Loading siteData...');
+    const siteData = [
         { id: 0, label: "学問", labelEn: "Academic Disciplines", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html", level: 0, mainPath: ["0"], released: 1, isPaid: 0, datePublished: "2024-09-28", dateModified: "2024-12-25", description: "あらゆる事物は何かしらの学問の一領域として捉えることができる", iconClass: "fa-graduation-cap", imageUrl: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" },
 
         // 深さ1
@@ -431,6 +429,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 allData = [];
             }
         }
+        console.log('siteData')
 
         // mainPath を使って現在ノードの下位（descendant）を階層的に表示する実装
         const getFirstPath = (node) => {
@@ -693,6 +692,31 @@ document.addEventListener('DOMContentLoaded', async function () {
         console.log('[UI] Initializing search UI...');
 
         // 目次トグル機能
+        const toggleButton = document.querySelector('.toc-toggle-button');
+        toggleButton.addEventListener('click', function(e) {
+            const tocContent = document.querySelector('.toc-content');
+
+            if (tocContent.style.display === 'none' || tocContent.style.display === '') {
+                tocContent.style.display = 'block';
+                toggleButton.textContent = '隠す';
+            } else {
+                tocContent.style.display = 'none';
+                toggleButton.textContent = '表示';
+            }
+        });
+
+        const uselabel = 'academic_discipline'
+        const useNode = siteData.find(n => uselabel);
+        console.log('Current node:', useNode);
+
+        if (!useNode) {
+            console.warn('Current node not found in siteData.');
+            return;
+        }
+
+        const computedMax = vof_ensureLevelsFromPaths(siteData);
+        // 
+        renderCategorySearchResult(siteData, useNode, computedMax);
 
         console.log('[UI] Search UI initialization complete');
     }

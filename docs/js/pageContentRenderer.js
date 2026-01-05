@@ -645,8 +645,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         const pubDate = toISOStringSafe(pubDateObj);
         const revDate = toISOStringSafe(revDateObj);
 
-         let html = '';
-         if (pubDate) {
+        let html = '';
+        if (pubDate) {
             const display = pubDate.split('T')[0];
             const parts = display.split('-');
             const y = parts[0] || '';

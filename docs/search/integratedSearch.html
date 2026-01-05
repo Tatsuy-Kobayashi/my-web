@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <title>高度な検索機能 - ラクして数理研究所</title>
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="icon" />
+    <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="apple-touch-icon" />
+    <!-- SEO -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="高度な検索機能を提供するページ。" />
+    <meta name="keywords" content="検索">
+    <link rel="canonical" href="https://tatsuy-kobayashi.github.io/my-web/docs/search/integratedSearch.html" />
+    <!-- og -->
+    <meta property="og:type" content="website" /> <!-- articleとか -->
+    <meta property="og:title" content="高度な検索機能｜ラクして数理研究所" />
+    <meta property="og:description" content="高度な検索機能を提供するページ。" />
+    <meta property="og:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/search/integratedSearch.html" />
+    <meta property="og:site_name" content="ラクして数理研究所" />
+    <link rel="dns-prefetch" href="//tatsuy-kobayashi.github.io/" /> <!-- HTTPSページのDNSプリフェッチはできない -->
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="高度な検索機能｜ラクして数理研究所">
+    <meta name="twitter:description" content="高度な検索機能を提供するページ。" />
+    <meta name="twitter:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/search/integratedSearch.html">
+    <meta name="twitter:image" content="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/style.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/special.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/search.css" />
+    <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/responsive_header.css" />
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/include.js" defer></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/linkPreview.js" defer></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/commentary.js" defer></script>
+    <script>
+        // JavaScriptの厳格モード使用
+        'use strict';
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+      
+        /*gtag('config', 'トラッキングID');*/
+    </script>
+    <script type="text/javascript">
+        window.MathJax = {
+            tex: {
+                tags: "ams", // 自動ナンバリングを有効化（AMSスタイル）
+                inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+                displayMath: [ ["$$","$$"], ["\\[","\\]"] ],
+                processEscapes: true,
+                maxBuffer: 10 * 1024,  // 数式バッファの設定
+            },
+            chtml: {
+                displayAlign: "left",
+                displayIndent: "2em",
+            }
+        };
+    </script>
+    <style>
+.content {
+    width: 100%;
+    display: flex;
+}
+.main {
+    padding: 0 50px 0 50px;
+    width: 100%;
+}
+.main figure, .main blockquote {
+    margin: 0 10px 0 50px; /* ブラウザデフォルトの隙間をリセット */
+}
+.figure-quote {
+    padding: 0 0 0 0.5em; /* 左側に余白 */
+    border-left: solid 3px black; /* 左側に線 */
+    font-style: italic; /* 引用文を斜体に */
+}
+.figure-quote p {
+    margin: 0.5em 0;
+}
+.figure-quote figcaption {
+    text-align: right; /* 出典は右寄せに */
+}
+
+.category_list_wrapper {
+    width: 100%;
+}
+.category_list_flex {
+    width: auto;
+    overflow-x: auto;
+}
+
+/* プルダウン・リスト */
+.main .pulldown_list_wrapper {
+    width: 500px;
+}
+.main .details_pulldownList {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-family: 'Arial', sans-serif;
+    transition: background-color 0.3s ease;
+}
+.main .summary_pulldownList {
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    padding: 5px;
+    transition: background-color 0.3s ease;
+}
+.main .details_pulldownList[open] {
+    background-color: #e6f7ff;
+}
+.main .details_pulldownList > .ul_pulldownList {
+    padding-left: 20px;
+}
+.main .ul_pulldownList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pulldown_list_wrapper .li_pulldownList {
+    padding-left: 10px; /* 基本のインデント */
+    list-style-type: none;
+}
+.pulldown_list_wrapper .li_pulldownList a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+}
+.pulldown_list_wrapper .li_pulldownList a:hover {
+    color: #1a73e8;
+}
+
+.pulldown_list_wrapper .li_pulldownList > .details_pulldownList > .summary_pulldownList {
+    padding-left: 0; /* 親要素にはインデントなし */
+}
+.pulldown_list_wrapper .li_pulldownList .details_pulldownList > .li_pulldownList {
+    padding-left: 10px; /* 第一階層：10pxのインデント */
+}
+.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList > .li_pulldownList {
+    padding-left: 20px; /* 第二階層：さらに10pxのインデント */
+}
+.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList > .li_pulldownList {
+    padding-left: 30px; /* 第三階層：さらに10pxのインデント */
+}
+.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList > .li_pulldownList {
+    padding-left: 40px; /* 第四階層：さらに10pxのインデント */
+}
+.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList > .li_pulldownList {
+    padding-left: 50px; /* 第五階層：さらに10pxのインデント */
+}
+
+/* 目次 */
+.toc-content {
+    display: none;
+    margin-top: 1rem;
+}
+.toc-toggle-button {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+}
+    </style>
+    <script>
+// ----------------------------------------------------------------------------
+// ファイル名    : integratedSearch.js
+// 名称          : ページの各パーツを生成するスクリプト
+// 内容          : ページの内容に応じて、関連リンクやナビゲーションリンクを生成・挿入する
+// このプログラムの著作権及び、このプログラムに関する技術は（株）Fibrantixがその知的財産権を所有し
+// ており、所有者の事前の許可なくその全部又は一部を問わず、第三者に開示してはならない。
+// Copyright(c) 2025 Fibrantix CO.,LTD. All Rights Reserved
+// ----------------------------------------------------------------------------
+document.addEventListener('DOMContentLoaded', async function () {
+    'use strict'; // 状態遷移重視・エラーフラグ管理ありの完全版スクリプト
+
+    // ------------------------
+    // 状態定義
+    // ------------------------
+    const STATE = {
+        DOM_LOADING: 'DOM_LOADING',
+        DATA_INITIALIZATION: 'DATA_INITIALIZATION',
+        //NETWORK_INITIALIZATION: 'NETWORK_INITIALIZATION',
+        //HASH_BOOTSTRAP: 'HASH_BOOTSTRAP',
+        BOOTSTRAP_SEARCH: 'BOOTSTRAP_SEARCH',
+        IDLE: 'IDLE',
+        SEARCHING: 'SEARCHING',
+        ERROR: 'ERROR'
+    };
+    // ------------------------
+    // エラーフラグ
+    // ------------------------
+    const errorFlags = {
+        missingDom: false,
+        visNotAvailable: false,
+        invalidData: false,
+        networkInitFailed: false
+    };
+
+    let currentState = STATE.DOM_LOADING; // 「DOM読み込み中」で初期化
+
+    // ------------------------
+    // データ（ノード）
+    // ------------------------
+    // id: ノードID
+    // label: ラベル
+    // labelEn: 英語ラベル
+    // url: ノードクリック時に開くURL
+    // level: 深さ（現在は学問のみが明示的に持つ）
+    // mainPath: ルートからのパス情報（多親対応）
+    // auxPath: 補助パス情報（複数可、多親対応）
+    // released: 公開フラグ（0: 未公開、1: 公開）
+    // isPaid: 有料フラグ（0: 無料、1: 有料）
+    // datePublished: 公開日
+    // dateModified: 更新日
+    // description: ノード説明文
+    // keywords: タグ配列
+    // iconClass: アイコンのCSSクラス（FontAwesome等）
+    // imageUrl: プレビュー画像のURL
+    // thumbnailUrl: サムネイル画像のURL配列（複数解像度対応）
+    // ------------------------
+    console.log('[INIT] Loading nodesData...');
+    const nodesData = [
+        { id: 0, label: "学問", labelEn: "Academic Disciplines", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html", level: 0, mainPath: ["0"], released: 1, isPaid: 0, datePublished: "2024-09-28", dateModified: "2024-12-25", description: "あらゆる事物は何かしらの学問の一領域として捉えることができる", iconClass: "fa-graduation-cap", imageUrl: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png" },
+
+        // 深さ1
+        { id: 1, label: "人文科学", labelEn: "Humanities", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/humanities.html", mainPath: ["0:1"], released: 0, isPaid: 0, iconClass: "fa-folder fa-fw" },
+        { id: 2, label: "社会科学", labelEn: "Social Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/social_science.html", mainPath: ["0:2"], released: 0, isPaid: 0, iconClass: "fa-folder fa-fw" },
+        { id: 3, label: "形式科学", labelEn: "Formal Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/formal_science.html", mainPath: ["0:3"], released: 1, isPaid: 0, iconClass: "fa-shapes" },
+        { id: 4, label: "自然科学", labelEn: "Natural Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/natural_science.html", mainPath: ["0:4"], released: 1, isPaid: 0, iconClass: "fa-leaf" },
+        { id: 5, label: "応用科学", labelEn: "Applied Sciences", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html", mainPath: ["0:5"], released: 0, isPaid: 0, iconClass: "fa-folder fa-fw" },
+        { id: 6, label: "学際領域", labelEn: "Interdisciplinary Fields", url: "https://tatsuy-kobayashi.github.io/my-web/docs/#", mainPath: ["0:6"], released: 0, isPaid: 0, iconClass: "fa-folder fa-fw" },
+
+        // 深さ2
+        // 人文科学1
+        { id: 10, label: "哲学", labelEn: "Philosophy", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/philosophy/philosophy.html", mainPath: ["0:1:10"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 11, label: "芸術学", labelEn: "Art Studies", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/art_study/art_study.html", mainPath: ["0:1:11"], released: 1, isPaid: 0, iconClass: "fa-folder fa-fw" },
+        /*{ id: 11, label: "宗教学", labelEn: "Religious Studies", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/religious_study/religious_study.html", mainPath: ["0:1:11"] },*/
+        { id: 12, label: "言語学", labelEn: "Linguistics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/linguistics/linguistics.html", mainPath: ["0:1:12"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 13, label: "心理学", labelEn: "Psychology", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/psychology/psychology.html", mainPath: ["0:1:13"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 14, label: "人類学", labelEn: "Anthropology", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/anthropology/anthropology.html", mainPath: ["0:1:14"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 15, label: "考古学", labelEn: "Archaeology", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/archaeology/archaeology.html", mainPath: ["0:1:15"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        // 社会科学2
+        { id: 20, label: "社会学", labelEn: "Sociology", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/sociology/sociology.html", mainPath: ["0:2:20"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 21, label: "地理学", labelEn: "Geography", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/geography/geography.html", mainPath: ["0:2:21"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 22, label: "歴史学", labelEn: "Historical Science", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/historical_science/historical_science.html", mainPath: ["0:2:22"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 23, label: "政治学", labelEn: "Political Science", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/political_science/political_science.html", mainPath: ["0:2:23"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 24, label: "経済学", labelEn: "Economics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/economics/economics.html", mainPath: ["0:2:24"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 25, label: "教育学", labelEn: "Pedagogy", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/pedagogy.html", mainPath: ["0:2:25"], released: 0, isPaid: 0, iconClass: "fa-folder fa-fw" },
+        // 形式科学3
+        { id: 30, label: "数学", labelEn: "Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html", mainPath: ["0:3:30"], released: 1, isPaid: 0, datePublished: "2024-09-30", dateModified: "2025-01-04", description: "数学とは、数量および空間図形の性質について研究する学問。", keywords: ["学問", "数学", "情報理論", "物理学", "プログラミング", "教育"], iconClass: "fa-folder fa-fw", thumbnailUrl: ["https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-120x68.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-160x90.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-320x180.png"] },
+        { id: 31, label: "統計学", labelEn: "Statistics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/statistics/statistics.html", mainPath: ["0:3:31"], released: 0, isPaid: 0, description: "統計学とは、確率論を基盤にして、集団全体の性質を一部の標本を調べることによって推定するための処理・分析方法について研究する学問。", thumbnailUrl: ["https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-120x68.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-160x90.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-320x180.png"] },
+        // 自然科学4
+        { id: 40, label: "物理学", labelEn: "Physics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/physics.html", mainPath: ["0:4:40"], released: 1, isPaid: 0, iconClass: "icon-physics" },
+        { id: 41, label: "化学", labelEn: "Chemistry", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/chemistry/chemistry.html", mainPath: ["0:4:41"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 42, label: "生物学", labelEn: "Biology", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/biology/biology.html", mainPath: ["0:4:42"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 43, label: "地学", labelEn: "Earth Science", url: "https://tatsuy-kobayashi.github.io/my-web/docs/#", mainPath: ["0:4:43"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        // 応用科学5
+        { id: 50, label: "情報学", labelEn: "Informatics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/informatics.html", mainPath: ["0:5:50"], released: 1, isPaid: 0, iconClass: "fa-folder fa-fw" },
+        { id: 51, label: "工学", labelEn: "Engineering", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/engineering/engineering.html", mainPath: ["0:5:51"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 52, label: "農学", labelEn: "Agricultural Science", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/agricultural_science/agricultural_science.html", mainPath: ["0:5:52"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+        { id: 53, label: "医学", labelEn: "Medical Science", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/medical_science/medical_science.html", mainPath: ["0:5:53"], released: 0, isPaid: 1, iconClass: "fa-folder fa-fw" },
+
+        // 深さ3
+        // 数学30
+        { id: 300, label: "数学用語", labelEn: "Mathematical Terms", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematical_terms/mathematical_terms.html", mainPath: ["0:3:30:300"], released: 0, isPaid: 0, keywords: ["一覧"], iconClass: "fa-folder fa-fw" },
+        { id: 301, label: "数学基礎論", labelEn: "Foundations of Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html", mainPath: ["0:3:30:301"], released: 1, isPaid: 1, datePublished: "2025-12-28", dateModified: "2026-01-04", description: "数学基礎論の全体像を解説。構文論と意味論、モデル理論、証明論、型理論、集合論、圏論など、現代数学の基礎を支える主要分野をPythonの実装例とともに学べる包括的な入門記事。", keywords: ["ゲーデル", "Pythonによる解説", "ヒルベルト・プログラム"], iconClass: "fa-folder fa-fw", thumbnailUrl: ["https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-120x68.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-160x90.png", "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-320x180.png"] },
+        { id: 302, label: "数論", labelEn: "Number Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/number_theory.html", mainPath: ["0:3:30:302"], released: 1, isPaid: 0, iconClass: "fa-folder fa-fw" },
+        { id: 303, label: "代数学", labelEn: "Algebra", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebra.html", mainPath: ["0:3:30:303"], iconClass: "fa-folder fa-fw" },
+        { id: 304, label: "解析学", labelEn: "Analysis", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/analysis.html", mainPath: ["0:3:30:304"], iconClass: "fa-folder fa-fw" },
+        { id: 305, label: "幾何学", labelEn: "Geometry", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/geometry/geometry.html", mainPath: ["0:3:30:305"], iconClass: "fa-folder fa-fw" },
+        { id: 306, label: "離散数学", labelEn: "Discrete Mathematics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/discrete_mathematics/discrete_mathematics.html", mainPath: ["0:3:30:306"], iconClass: "fa-folder fa-fw" },
+        { id: 307, label: "確率論", labelEn: "Probability Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/probability_theory/probability_theory.html", mainPath: ["0:3:30:307"], iconClass: "fa-folder fa-fw" },
+        // 物理学40
+        { id: 400, label: "物理用語", labelEn: "Physical Terms", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/physical_terms/physical_terms.html", mainPath: ["0:4:40:400"], released: 0 },
+        { id: 401, label: "古典物理学", labelEn: "Classical Physics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/classical_physics/classical_physics.html", mainPath: ["0:4:40:401"], released: 0 },
+        { id: 402, label: "量子物理学", labelEn: "Quantum Physics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/quantum_physics/quantum_physics.html", mainPath: ["0:4:40:402"], released: 0 },
+        { id: 403, label: "超ひも理論", labelEn: "Superstring Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/superstring_theory/superstring_theory.html", mainPath: ["0:4:40:403"], released: 0 },
+        // 情報学50
+        { id: 500, label: "IT用語", labelEn: "it_terms", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/it_terms/it_terms.html", mainPath: ["0:5:50:500"], released: 1 },
+        { id: 501, label: "情報理論", labelEn: "Information Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/information_theory/information_theory.html", mainPath: ["0:5:50:501"], released: 0 },
+        { id: 502, label: "計算理論", labelEn: "Theory of Computation", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/theory_of_computation.html", mainPath: ["0:5:50:502"], released: 0 },
+        { id: 503, label: "計算機科学", labelEn: "Computer Science", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/computer_science/computer_science.html", mainPath: ["0:5:50:503"], released: 0 },
+        { id: 504, label: "計算機工学", labelEn: "Computer Engineering", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/computer_engineering/computer_engineering.html", mainPath: ["0:5:50:504"], released: 0 },
+        { id: 505, label: "情報システム", labelEn: "Information System", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/information_system/information_system.html", mainPath: ["0:5:50:505"], released: 0 }
+    ];
+
+    // 1. データの取得 (パスは実際の環境に合わせて調整してください)
+    //const response = await fetch('../../../../../searchSource.json');
+    //const data = await response.json();
+
+    // ------------------------
+    // データ（ノード）
+    // ------------------------
+    // id: ノードID
+    // label: ラベル
+    // labelEn: 英語ラベル
+    // description: ノード説明文
+    // sections: セクション配列
+    // keywords: タグ配列
+    // iconClass: アイコンのCSSクラス（FontAwesome等）
+    // ------------------------
+    console.log('[INIT] Loading searchSource...');
+    const searchSource = [
+        { id: 0, label: "学問", labelEn: "Academic Disciplines", description: "あらゆる事物は何かしらの学問の一領域として捉えることができる", sections: [], keywords: [], iconClass: "fa-graduation-cap" },
+
+        // 深さ1
+        { id: 1, label: "人文科学", labelEn: "Humanities", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 2, label: "社会科学", labelEn: "Social Sciences", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 3, label: "形式科学", labelEn: "Formal Sciences", sections: [], keywords: [], iconClass: "fa-shapes" },
+        { id: 4, label: "自然科学", labelEn: "Natural Sciences", sections: [], keywords: [], iconClass: "fa-leaf" },
+        { id: 5, label: "応用科学", labelEn: "Applied Sciences", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 6, label: "学際領域", labelEn: "Interdisciplinary Fields", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+
+        // 深さ2
+        // 人文科学1
+        { id: 10, label: "哲学", labelEn: "Philosophy", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 11, label: "芸術学", labelEn: "Art Studies", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        /*{ id: 11, label: "宗教学", labelEn: "Religious Studies", sections: [], keywords: [] },*/
+        { id: 12, label: "言語学", labelEn: "Linguistics", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 13, label: "心理学", labelEn: "Psychology", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 14, label: "人類学", labelEn: "Anthropology", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 15, label: "考古学", labelEn: "Archaeology", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        // 社会科学2
+        { id: 20, label: "社会学", labelEn: "Sociology", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 21, label: "地理学", labelEn: "Geography", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 22, label: "歴史学", labelEn: "Historical Science", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 23, label: "政治学", labelEn: "Political Science", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 24, label: "経済学", labelEn: "Economics", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 25, label: "教育学", labelEn: "Pedagogy", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        // 形式科学3
+        { id: 30, label: "数学", labelEn: "Mathematics", sections: [], keywords: ["学問", "数学", "情報理論", "物理学", "プログラミング", "教育"], iconClass: "fa-folder fa-fw" },
+        { id: 31, label: "統計学", labelEn: "Statistics", description: "統計学とは、確率論を基盤にして、集団全体の性質を一部の標本を調べることによって推定するための処理・分析方法について研究する学問。", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        // 自然科学4
+        { id: 40, label: "物理学", labelEn: "Physics", sections: [], keywords: [], iconClass: "icon-physics" },
+        { id: 41, label: "化学", labelEn: "Chemistry", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 42, label: "生物学", labelEn: "Biology", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 43, label: "地学", labelEn: "Earth Science", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        // 応用科学5
+        { id: 50, label: "情報学", labelEn: "Informatics", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 51, label: "工学", labelEn: "Engineering", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 52, label: "農学", labelEn: "Agricultural Science", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 53, label: "医学", labelEn: "Medical Science", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+
+        // 深さ3
+        // 数学30
+        { id: 300, label: "数学用語", labelEn: "Mathematical Terms", sections: [], keywords: ["一覧"], iconClass: "fa-folder fa-fw" },
+        { id: 301, label: "数学基礎論", labelEn: "Foundations of Mathematics", description: "数学基礎論の全体像を解説。構文論と意味論、モデル理論、証明論、型理論、集合論、圏論など、現代数学の基礎を支える主要分野をPythonの実装例とともに学べる包括的な入門記事。", sections: [], keywords: ["ゲーデル", "Pythonによる解説", "ヒルベルト・プログラム"], iconClass: "fa-folder fa-fw" },
+        { id: 302, label: "数論", labelEn: "Number Theory", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 303, label: "代数学", labelEn: "Algebra", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 304, label: "解析学", labelEn: "Analysis", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 305, label: "幾何学", labelEn: "Geometry", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 306, label: "離散数学", labelEn: "Discrete Mathematics", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 307, label: "確率論", labelEn: "Probability Theory", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        // 物理学40
+        { id: 400, label: "物理用語", labelEn: "Physical Terms", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 401, label: "古典物理学", labelEn: "Classical Physics", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 402, label: "量子物理学", labelEn: "Quantum Physics", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 403, label: "超ひも理論", labelEn: "Superstring Theory", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        // 情報学50
+        { id: 500, label: "IT用語", labelEn: "it_terms", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 501, label: "情報理論", labelEn: "Information Theory", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 502, label: "計算理論", labelEn: "Theory of Computation", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 503, label: "計算機科学", labelEn: "Computer Science", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 504, label: "計算機工学", labelEn: "Computer Engineering", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 505, label: "情報システム", labelEn: "Information System", sections: [], keywords: [], iconClass: "fa-folder fa-fw" }
+    ];
+
+    // 本来はここで fetch('/api/stats/popular') 等を行う
+    // const ranking = await fetch('/api/popular').then(r => r.json());
+    // container.innerHTML = 'Loading popular articles...';
+
+    // ------------------------
+    // データ（記事閲覧数）
+    // ------------------------
+    const ranking = [
+        { id: 3011, label: "集合論",  url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html", totalViews: 90210, weeklyViews: 420, monthlyViews: 1800 },
+        { id: 304022, label: "特殊関数", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/theory_of_functions/special_functions/special_functions.html", totalViews: 80123, weeklyViews: 380, monthlyViews: 1600 }
+    ];
+
+    // グローバル: データが持つ最大の depth（level）
+    let maxAvailableLevel = 0;
+    // ------------------------
+    // 関数名   : vof_ensureLevelsFromPaths(nodes)
+    // 名称     : paths から各ノードの level を計算
+    // 内容     : nodes に含まれる mainPath を元に、各ノードの階層（level）を計算する。ノードの階層は、グラフの構造を決定づけるため、原則として mainPath に基づいて計算する
+    // 引数     : nodes - ノード配列
+    // 戻り値   : maxAvailableLevel (int)
+    // ------------------------
+    function vof_ensureLevelsFromPaths(nodes) {
+        maxAvailableLevel = 0;
+
+        for (const n of nodes) {
+            // mainPath が存在しない場合は validateData で弾かれるため、ここでは安全に参照可能
+            // 階層決定は mainPath を基準とする
+            const paths = n.mainPath;
+
+            if (!paths || paths.length === 0) continue;
+            const depths = paths.map(p => p.split(":").length - 1);
+            n.level = Math.min(...depths);       // ルートが level 0 として整合
+            if (typeof n.level === 'number' && Number.isFinite(n.level)) {
+                maxAvailableLevel = Math.max(maxAvailableLevel, n.level);
+            }
+        }
+        return maxAvailableLevel;
+    }
+
+    // **
+    // * カテゴリ検索結果生成関数
+    // * levelが現在より下（数値が大きい）記事を表示
+    // * @param {Array|Object} allData siteData.jsonの中身
+    // * @param {Object} currentEntry 現在の記事データ
+    //
+    function renderCategorySearchResult(allData, current, maxDepth) {
+        const container = document.getElementById('category-list');
+        if (!container) return;
+
+        // siteData（allData）から子孫を取得する。
+        // current.dir_path に依存せず mainPath を用いた抽出に委ねる。
+        if (!Array.isArray(allData)) {
+            try {
+                allData = Object.values(allData);
+            } catch (e) {
+                allData = [];
+            }
+        }
+
+        // mainPath を使って現在ノードの下位（descendant）を階層的に表示する実装
+        const getFirstPath = (node) => {
+            if (!node) return '';
+            if (Array.isArray(node.mainPath) && node.mainPath.length > 0) return node.mainPath[0];
+            if (typeof node.mainPath === 'string') return node.mainPath;
+            return '';
+        };
+
+        const currentPath = getFirstPath(current);
+        if (!currentPath) return;
+
+        // currentPath の下位にあるノードを descendants として抽出
+        const descendants = allData.filter(item => {
+            const mps = Array.isArray(item.mainPath) ? item.mainPath : [item.mainPath];
+            return mps.some(mp => typeof mp === 'string' && mp.startsWith(currentPath + ':'));
+        });
+
+        const currentId = current && current.id;
+        // map: key=node.id -> { node, matchedAuxPaths: [], matchedPenultimateIds: Set }
+        const auxMatchesMap = new Map();
+        if (currentId != null) {
+            allData.forEach(item => {
+                if (!item || !item.auxPath) return;
+                const auxArr = Array.isArray(item.auxPath) ? item.auxPath : [item.auxPath];
+                auxArr.forEach(ap => {
+                    if (typeof ap !== 'string') return;
+                    // 数値配列化
+                    const parts = ap.split(':').map(s => parseInt(s.trim(), 10)).filter(n => Number.isFinite(n));
+                    if (parts.length === 0) return;
+                    // currentId を含む auxPath のみ扱う
+                    if (!parts.includes(currentId)) return;
+                    // penultimate を抽出（length>=2 でなければ無視）
+                    const penultimate = parts.length >= 2 ? parts[parts.length - 2] : null;
+                    if (!auxMatchesMap.has(item.id)) {
+                        auxMatchesMap.set(item.id, { node: item, matchedAuxPaths: [], matchedPenultimateIds: new Set() });
+                    }
+                    const entry = auxMatchesMap.get(item.id);
+                    entry.matchedAuxPaths.push(ap);
+                    if (Number.isFinite(penultimate)) entry.matchedPenultimateIds.add(penultimate);
+                });
+            });
+        }
+        // auxMatchesMap を配列化（必要に応じて descendants と併合して扱う）
+        const auxMatches = Array.from(auxMatchesMap.values());
+        console.log('auxMatches:', auxMatches);
+
+        // parentId -> [ { tailId, node }, ... ] 形式に変換しておく
+        const auxInsertionsByParent = new Map();
+        auxMatchesMap.forEach(({ node, matchedAuxPaths }) => {
+            if (!Array.isArray(matchedAuxPaths)) return;
+            matchedAuxPaths.forEach(ap => {
+                if (typeof ap !== 'string') return;
+                const parts = ap.split(':').map(s => parseInt(s.trim(), 10)).filter(n => Number.isFinite(n));
+                if (parts.length < 2) return; // penultimate + tail が必要
+                const penultimate = parts[parts.length - 2];
+                const tail = parts[parts.length - 1];
+                if (!Number.isFinite(penultimate) || !Number.isFinite(tail)) return;
+                const arr = auxInsertionsByParent.get(penultimate) || [];
+                arr.push({ tailId: tail, node });
+                auxInsertionsByParent.set(penultimate, arr);
+            });
+        });
+
+        if (!descendants || descendants.length === 0) return;
+
+        // parentPath の直下だけを返す（直下の子）
+        const immediateChildrenOf = (parentPath) => {
+            const parentParts = parentPath.split(':').filter(Boolean);
+            const results = [];
+            descendants.forEach(item => {
+                const mps = Array.isArray(item.mainPath) ? item.mainPath : [item.mainPath];
+                mps.forEach(mp => {
+                    if (typeof mp !== 'string') return;
+                    if (!mp.startsWith(parentPath + ':')) return;
+                    const parts = mp.split(':').filter(Boolean);
+                    if (parts.length === parentParts.length + 1) {
+                        if (!results.find(r => r.id === item.id)) {
+                            results.push(item);
+                        }
+                    }
+                });
+            });
+
+            // --- auxPath による挿入: auxMatchesMap から parentPath の最後の ID を親として参照するものを追加 ---
+            const parentId = parseInt(parentParts[parentParts.length - 1], 10);
+            if (!Number.isNaN(parentId)) {
+                const insertions = auxInsertionsByParent.get(parentId);
+                if (Array.isArray(insertions) && insertions.length > 0) {
+                    insertions.forEach(({ tailId, node }) => {
+                        // 重複挿入を避ける:
+                        const exists = results.some(r => {
+                            // 既に同ノードを mainPath として追加済み（同じ実ノードID）ならスキップ
+                            if (!r.__isAux && r.id === node.id) return true;
+                            // 既に同じ aux 挿入（同じ元ノード & tail）を追加済みならスキップ
+                            if (r.__isAux && r.__auxOriginalId === node.id && r.__auxTailId === tailId) return true;
+                            return false;
+                        });
+                        if (!exists) {
+                            // 合成オブジェクト: ソートキーとして __auxTailId を持たせる（id は変更しない）
+                            const synthetic = Object.assign({}, node, {
+                                __isAux: true,
+                                __auxOriginalId: node.id,
+                                __auxTailId: tailId
+                            });
+                            results.push(synthetic);
+                        }
+                    });
+                }
+            }
+            // ソート: aux 挿入ノードは __auxTailId を優先キーとする。なければ mainPath の末尾ID、最後に node.id。
+            const getSortKey = (item) => {
+                if (item && Number.isFinite(item.__auxTailId)) return item.__auxTailId;
+                const p = getFirstPath(item) || '';
+                if (p) {
+                    const last = parseInt(p.split(':').pop(), 10);
+                    if (Number.isFinite(last)) return last;
+                }
+                return (item && Number.isFinite(item.id)) ? item.id : 0;
+            };
+            results.sort((a, b) => getSortKey(a) - getSortKey(b));
+            return results;
+        };
+
+        // preview-link 構造に合わせた HTML を作るヘルパ
+        const makePreviewHtml = (node) => {
+            if (Number(node.released) === 1) {
+                const desc = node.description || '説明はありません。';
+                const img = node.imageUrl || '';
+                let s = `<div class="link-container">`;
+                s += `<a href="${node.url}" class="preview-link" data-title="${(node.label||'').replace(/\"/g,'&quot;')}" data-description="${(desc||'').replace(/\"/g,'&quot;')}" data-image="${img}">${node.label}</a>`;
+                s += `<div class="link-preview">`;
+                s += `<a href="${node.url}" class="link-preview-clickable">`;
+                if (img) s += `<img class="preview-image" src="${img}" alt="Preview image">`;
+                else s += `<img class="preview-image" src="" alt="Preview image" style="display:none;">`;
+                s += `<h3 class="preview-title">${node.label}</h3>`;
+                s += `<p class="preview-description">${desc}</p>`;
+                s += `</a>`;
+                s += `</div>`;
+                s += `</div>`;
+                return s;
+            } else {
+                return `${node.label}`;
+            }
+        };
+
+        // 再帰的にリストを構築
+        const buildList = (parentPath, depth = 0, maxDepth) => {
+            const children = immediateChildrenOf(parentPath);
+            if (!children || children.length === 0) return '';
+            let out = '';
+            children.forEach(child => {
+                const childPath = getFirstPath(child);
+                const hasDesc = descendants.some(d => {
+                    const dps = Array.isArray(d.mainPath) ? d.mainPath : [d.mainPath];
+                    return dps.some(mp => typeof mp === 'string' && mp.startsWith(childPath + ':'));
+                });
+                out += '<li class="li_pulldownList">';
+                // 深い子を持つ場合または現在ノードの直下の子（parentPath === currentPath）の場合は
+                // <details><summary> でラップする。ただし内部リストは存在する場合のみ追加する。
+                if ((hasDesc || parentPath === currentPath) && depth < maxDepth) {
+                    out += '<details class="details_pulldownList">';
+                    out += `<summary class="summary_pulldownList">${makePreviewHtml(child)}</summary>`;
+                    const inner = buildList(childPath, depth + 1, maxDepth);
+                    if (inner) out += inner;
+                    out += '</details>';
+                } else {
+                    out += makePreviewHtml(child);
+                }
+                out += '</li>';
+            });
+            return out;
+        };
+
+        let html = '<ul class="ul_pulldownList">';
+        html += buildList(currentPath, 0, maxDepth);
+        html += '</ul> <!-- /.ul_pulldownList -->';
+
+        container.innerHTML = html;
+    }
+
+    // ------------------------
+    // DOM要素参照（安全に取得）
+    // ------------------------
+    function $id(id) {
+        const el = document.getElementById(id);
+        if (!el) console.warn(`[WARN] DOM element not found: #${id}`);
+        return el;
+    }
+
+    const dom = {
+        contentIntegSearch: $id('contentIntegSearch'),
+        contentIntegSearchResult: $id('contentIntegSearchResult')
+    };
+
+    // DOM 要素が揃っているか簡易チェック
+    if (!dom.contentIntegSearch || !dom.contentIntegSearchResult) {
+        console.error('[ERROR] 必要な DOM 要素が見つかりません。処理を中止します。');
+        errorFlags.missingDom = true;
+        currentState = STATE.ERROR;
+        return;
+    }
+
+    // ------------------------
+    // 関数名   : searchContentInit()
+    // 名称     : 高度な検索機能ページの初期化
+    // 内容     : 高度な検索機能用の HTML コンテンツを読み込み、初期化を行う
+    // 引数     : void
+    // 戻り値   : Promise<boolean> - 成功なら true、失敗なら false
+    // ------------------------
+    async function searchContentInit() {
+        currentState = STATE.DATA_INITIALIZATION;
+        console.log('[STATE] SEARCH_CONTENT_INITIALIZATION');
+
+        const containerSearch = document.getElementById('contentIntegSearch');
+        if (!containerSearch) return;
+        const containerResult = document.getElementById('contentIntegSearchResult');
+        if (!containerResult) return;
+
+        try {
+            // 1. resultコンテナをクリア
+            containerResult.style.display = 'none';
+            containerResult.innerHTML = '';
+            console.log('[INIT] contentIntegSearchResult cleared');
+
+            // 2. htmlIntegSearch.htmlをフェッチ
+            const response = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/search/htmlIntegSearch.html');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const htmlContent = await response.text();
+            console.log('[INIT] htmlIntegSearch.html fetched successfully');
+
+            // 3. contentIntegSearch内に挿入
+            containerSearch.innerHTML = htmlContent;
+            console.log('[INIT] HTML content inserted into contentIntegSearch');
+
+            // 4. 挿入後のDOM初期化（目次トグルなど）
+            initializeSearchUI();
+
+            return true;
+        } catch (error) {
+            console.error('[ERROR] searchContentInit failed:', error);
+            containerSearch.innerHTML = '<p style="color: red;">検索機能の読み込みに失敗しました。</p>';
+            errorFlags.networkInitFailed = true;
+            currentState = STATE.ERROR;
+            return false;
+        }
+    }
+
+    // ------------------------
+    // 関数名   : initializeSearchUI()
+    // 名称     : 検索UI要素の初期化
+    // 内容     : HTML挿入後のUIイベントハンドラを設定
+    // 引数     : void
+    // 戻り値   : void
+    // ------------------------
+    function initializeSearchUI() {
+        console.log('[UI] Initializing search UI...');
+
+        // 目次トグル機能
+
+        console.log('[UI] Search UI initialization complete');
+    }
+
+    // ------------------------
+    // 初期化フロー（状態遷移順）
+    // ------------------------
+    (function mainFlow() {
+        try {
+            console.log('[MAIN] start state machine');
+            // STATE 1: search content initialization
+            if (!searchContentInit()) {
+                console.error('[MAIN] search content initialization failed - abort');
+                return;
+            }/*
+
+            // STATE 2: network init
+            if (!initializeNetwork()) {
+                console.error('[MAIN] network initialization failed - abort');
+                return;
+            }
+
+            // register UI handlers after network ready
+            registerUiHandlers();
+
+            // STATE 3: hash bootstrap (if any)
+            const hashHandled = bootstrapFromHash();
+            if (hashHandled) {
+                // BOOTSTRAP_SEARCH did internal drawing
+                console.log('[MAIN] bootstrap handled, entering IDLE');
+                currentState = STATE.IDLE;
+                return;
+            }
+
+            // otherwise draw default graph according to selects
+            currentState = STATE.IDLE;
+            console.log('[MAIN] entering IDLE state');
+            // initial draw (respect current min/max selects)
+            performDepthSearch();*/
+        } catch (e) {
+            console.error('[MAIN] unexpected error:', e);
+            currentState = STATE.ERROR;
+        }
+    })();
+
+    // ------------------------
+    // 公開（デバッグ用）
+    // ------------------------
+    window.__SiteGraph = {
+        STATE,
+        getCurrentState: () => currentState,
+        getErrorFlags: () => ({ ...errorFlags }),
+        reinitNetwork: () => { networkInitialized = false; return u1f_initNetworkIfNeeded(); },
+        //performDepthSearch,
+        //u1f_performLabelSearch,
+        //u1f_performIdSearch,
+        //vof_clearVisualLock
+    };
+});
+
+    </script>
+</head>
+<body>
+<div id="wrapper">
+    <header></header>
+    <div class="content">
+        <div id="contentIntegSearch"></div>
+        <div id="contentIntegSearchResult"></div>
+    </div>
+    <footer></footer>
+</div> <!-- /wrapper -->
+<nav id="nav"></nav>
+</body>
+</html>

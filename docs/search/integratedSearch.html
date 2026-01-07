@@ -166,6 +166,41 @@
     color: blue;
     text-decoration: underline;
 }
+
+.tag-label {
+    display: inline-block;
+    margin: 4px 6px 4px 6px;
+    padding: 2px 5.5px;
+    background-color: rgb(17, 194, 17);
+    color: #fff;
+    transition: box-shadow 0.3s ease;
+    border: 1px solid #fff;
+    border-radius: 1em;
+    line-height: 1.2em;
+    cursor: pointer;
+    transition: color 150ms ease-in-out, background-color 150ms ease-in-out, transform 150ms ease-in-out;
+    outline: 0;
+}
+.tag-label:hover {
+    background-color: rgb(92, 216, 92);
+}
+.tag-label a {
+    text-decoration: none;
+    color: #fff;
+}
+.tag-label a:hover {
+    text-decoration: none;
+}
+
+/* グラフエリア */
+.site-categorical-diagram #network {
+    width: 80%;
+    height: 400px;
+    border: 2px solid #ccc;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
     </style>
     <script>
 // ----------------------------------------------------------------------------
@@ -185,8 +220,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     const STATE = {
         DOM_LOADING: 'DOM_LOADING',
         DATA_INITIALIZATION: 'DATA_INITIALIZATION',
-        //NETWORK_INITIALIZATION: 'NETWORK_INITIALIZATION',
-        //HASH_BOOTSTRAP: 'HASH_BOOTSTRAP',
+        NETWORK_INITIALIZATION: 'NETWORK_INITIALIZATION',
+        HASH_BOOTSTRAP: 'HASH_BOOTSTRAP',
         BOOTSTRAP_SEARCH: 'BOOTSTRAP_SEARCH',
         IDLE: 'IDLE',
         SEARCHING: 'SEARCHING',
@@ -334,7 +369,50 @@ document.addEventListener('DOMContentLoaded', async function () {
         { id: 24, label: "経済学", labelEn: "Economics", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
         { id: 25, label: "教育学", labelEn: "Pedagogy", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
         // 形式科学3
-        { id: 30, label: "数学", labelEn: "Mathematics", sections: [], keywords: ["学問", "数学", "情報理論", "物理学", "プログラミング", "教育"], iconClass: "fa-folder fa-fw" },
+        { id: 30, label: "数学", labelEn: "Mathematics", sections: [
+            {
+                h2: "数とは何か（仮）",
+                text: "数は数である。1, 2, 3, 10, 42。自然数？整数？実数？よく分からないが、とりあえず数える。count, counting, カウント。数学っぽいが中身は薄い。"
+            },
+            {
+                h2: "線形代数っぽい話",
+                text: "行列Aとベクトルxについて Ax = b を考える。Aが正則でないと困る。det(A)=0 は危険。線形？非線形？ときどき曖昧。",
+                math: "Ax=b, \\det(A)=0"
+            },
+            {
+                h2: "微分積分の雰囲気",
+                text: "微分すると増える。積分すると溜まる。d/dx や ∫ はよく出る記号。lim x→0 とか書きたくなるが、厳密性は気にしない。",
+                math: "\\frac{d}{dx}f(x), \\int f(x)dx, \\lim_{x\\to0}"
+            },
+            {
+                h2: "確率・統計（テスト用）",
+                text: "確率は0から1まで。P(A|B) とか書く。平均、分散、標準偏差。なぜ正規分布が好きなのかは謎。",
+                math: "P(A|B), \\mu, \\sigma^2"
+            },
+            {
+                h2: "離散数学の断片",
+                text: "グラフG=(V,E)。頂点と辺。木だけど森。DFS, BFS, 動的計画法？アルゴリズムと数学の境界が曖昧。",
+                math: "G=(V,E)"
+            },
+            {
+                h2: "論理記号の練習",
+                text: "∀x∃y P(x,y)。真か偽か。and/or/not。∧∨¬⇒⇔。意味は深いが、ここではただ並べる。",
+                math: "\\forall x \\exists y\\, P(x,y)"
+            },
+            {
+                h2: "集合っぽい何か",
+                text: "集合A⊂B⊂C。∅ は空っぽ。要素か部分集合かで混乱することがある。∈ と ⊂ は違う。",
+                math: "A \\subset B, x \\in A, \\varnothing"
+            },
+            {
+                h2: "数学とプログラミング",
+                text: "for文は数学的帰納法に似ている（たぶん）。再帰、関数、型。数学なのかコードなのか分からなくなる瞬間。"
+            },
+            {
+                h2: "意味のないテスト文章",
+                text: "これは検索テスト用の文章です。数学、Math, MATH, math。123abc。正規表現.*テスト。"
+            }
+        ], keywords: ["学問", "数学", "情報理論", "物理学", "プログラミング", "教育"], iconClass: "fa-folder fa-fw" },
         { id: 31, label: "統計学", labelEn: "Statistics", description: "統計学とは、確率論を基盤にして、集団全体の性質を一部の標本を調べることによって推定するための処理・分析方法について研究する学問。", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
         // 自然科学4
         { id: 40, label: "物理学", labelEn: "Physics", sections: [], keywords: [], iconClass: "icon-physics" },
@@ -350,7 +428,22 @@ document.addEventListener('DOMContentLoaded', async function () {
         // 深さ3
         // 数学30
         { id: 300, label: "数学用語", labelEn: "Mathematical Terms", sections: [], keywords: ["一覧"], iconClass: "fa-folder fa-fw" },
-        { id: 301, label: "数学基礎論", labelEn: "Foundations of Mathematics", description: "数学基礎論の全体像を解説。構文論と意味論、モデル理論、証明論、型理論、集合論、圏論など、現代数学の基礎を支える主要分野をPythonの実装例とともに学べる包括的な入門記事。", sections: [], keywords: ["ゲーデル", "Pythonによる解説", "ヒルベルト・プログラム"], iconClass: "fa-folder fa-fw" },
+        { id: 301, label: "数学基礎論", labelEn: "Foundations of Mathematics", description: "数学基礎論の全体像を解説。構文論と意味論、モデル理論、証明論、型理論、集合論、圏論など、現代数学の基礎を支える主要分野をPythonの実装例とともに学べる包括的な入門記事。", sections: [
+            {
+                h2: "概要：数学を「数学」する",
+                text: "&emsp;数学基礎論（Foundations of Mathematics）は、数学的な推論や証明、そして数学的構造そのものを数学的な手法を用いて研究する分野である。一般に、数学は数や図形についての真理を探究するが、論理学は「真理とは何か」「証明とは何か」というメタな問いを対象とする。&emsp;19世紀末から20世紀初頭にかけて、カントール（Cantor）による集合論の創始やパラドックスの発見を契機に、数学を厳密な基礎の上に再構築しようとする機運が高まりました。ヒルベルト（Hilbert）は、数学の無矛盾性を有限の立場から確立しようとする「ヒルベルト・プログラム」を提唱し、これが現代の証明論の源流となった。また、タルスキ（Tarski）らによる意味論の形式化はモデル理論へと発展し、ゲーデル（Gödel）の不完全性定理やチャーチ（Church）、チューリング（Turing）による計算可能性の研究と相まって、現代数学の深淵な構造を明らかにしてきた。"
+            },
+            {
+                h2: "構文論と意味論：形式と内容の分離",
+                text: "&emsp;数学基礎論において最も基本的かつ重要な視点は、構文論と意味論の区別である。構文論（Syntax）: 記号の操作や並び方に注目する立場。ここでは「証明」や「形式的推論」が扱われる。例えば、「A から B が証明可能である（A ⊢ B）」という概念は、記号変形の規則のみに基づいて定義される。意味論（Semantics）: 記号に数学的な対象（実体）を対応させ、その「真偽（truth）」を問う立場。ここでは「モデル（model）」や「充足（satisfaction）」が扱われる。例えば、「モデル M において論理式 φ が真である（M ⊨ φ）」という概念は、記号の解釈に基づいて定義される。この図は、構文論と意味論の二つの世界の関係を示したもの&emsp;ゲーデルの完全性定理（Gödel's Completeness Theorem）は、一階述語論理において、これら二つの側面が一致すること（⊢ A ⇔ ⊨ A 証明可能ならば真であり、真ならば証明可能である）を示した重要な定理である。",
+                math: "A \\vdash B M \\vDash \\varphi $\\vdash A \\iff \\vDash A$",
+                diagrams: "意味論Semantics構文論Syntax推論規則導出解釈充足健全性Soundness完全性Completeness論理式Formula証明Proof定理Theorem構造Structure真偽Truth ValueモデルModel"
+            },
+            {
+                h2: "モデル理論：構造と真理の関係",
+                text: "&emsp;モデル理論（Model Theory）は、形式言語の文（sentence）と、それを満たす（あるいは棄却する）構造（structure）との関係を研究する分野である。構造（Structure）: 構造 A とは、空でない集合 A（台集合、universe）と、その上の定数、関数、関係の集まりからなる。例えば、自然数全体 ℕ に、通常の 0、後者関数 s（+1 すること）、加法 +、乗法 ⋅ を備えたものは構造 (ℕ,0,s,+,⋅) である。言語 L の文 σ が構造 A で真であることを A ⊨ σ と書く。A が文の集合 T のすべてを真にするとき、A は T のモデルであるという。"
+            }
+        ], keywords: ["ゲーデル", "Pythonによる解説", "ヒルベルト・プログラム"], iconClass: "fa-folder fa-fw" },
         { id: 302, label: "数論", labelEn: "Number Theory", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
         { id: 303, label: "代数学", labelEn: "Algebra", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
         { id: 304, label: "解析学", labelEn: "Analysis", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
@@ -408,6 +501,43 @@ document.addEventListener('DOMContentLoaded', async function () {
             }
         }
         return maxAvailableLevel;
+    }
+
+    // ------------------------
+    // 関数名   : buildEdgesFromPaths(filteredNodes)
+    // 名称     : paths からエッジ情報を生成する処理
+    // 内容     : filteredNodes に含まれる paths を元に、エッジ情報を生成する
+    // 引数     : filteredNodes - ユーザ操作で選択されたノード配列
+    // 戻り値   : edges - 生成されたエッジ配列
+    // ------------------------
+    function buildEdgesFromPaths(filteredNodes) {
+        const visible = new Set(filteredNodes.map(n => n.id));
+        const edges = [];
+        const dedup = new Set();
+
+        for (const n of filteredNodes) {
+            const paths = n.mainPath || [];
+            for (const pathStr of paths) {
+                const parts = pathStr.split(":").map(Number);
+
+                // 末尾が自身のIDで終わっているか（データ健全性チェック）
+                // if (parts[parts.length - 1] !== n.id) continue;
+
+                for (let i = 0; i < parts.length - 1; i++) {
+                    const from = parts[i];
+                    const to   = parts[i + 1];
+                    // 可視ノード同士のみエッジを張る
+                    if (!visible.has(from) || !visible.has(to)) continue;
+
+                    const key = `${from}->${to}`;
+                    if (!dedup.has(key)) {
+                        dedup.add(key);
+                        edges.push({ from, to });
+                    }
+                }
+            }
+        }
+        return edges;
     }
 
     // **
@@ -611,6 +741,107 @@ document.addEventListener('DOMContentLoaded', async function () {
         container.innerHTML = html;
     }
 
+    function renderTagList(allData) {
+        const container = document.getElementById('tagsList');
+        if (!container) return;
+
+        // allData を配列に統一
+        if (!Array.isArray(allData)) {
+            try {
+                allData = Object.values(allData);
+            } catch (e) {
+                allData = [];
+            }
+        }
+        // キーワードをプール（重複除去）
+        const pool = new Set();
+        allData.forEach(item => {
+            if (!item) return;
+            const kws = Array.isArray(item.keywords) ? item.keywords : [];
+            kws.forEach(k => {
+                if (k == null) return;
+                const s = String(k).trim();
+                if (s) pool.add(s);
+            });
+        });
+
+        const tags = Array.from(pool);
+        if (tags.length === 0) {
+            container.innerHTML = '';
+            return;
+        }
+
+        // 文字コード順（UTF-16 code unit）で辞書順ソート
+        tags.sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+
+        // HTML 生成
+        let html = '';
+        const escapeHtml = (str) => String(str).replace(/[&<>"]+/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]||ch));
+        tags.forEach((tag, idx) => {
+            const tagUrl = `https://tatsuy-kobayashi.github.io/my-web/docs/tags/${encodeURIComponent(tag)}`;
+            html += `<span class="topic-label" data-index="${idx}">`;
+            html += `<a href="${tagUrl}"><span class="topic-label-text"># ${String(tag)}</span></a>`;
+            html += `</span>`;
+        });
+
+        container.innerHTML = html;
+    }
+
+    // アイコン検索
+    function renderIconBtnList(allData) {
+        const container = document.getElementById('iconBtnList');
+        if (!container) return;
+
+        // allData を配列に統一
+        if (!Array.isArray(allData)) {
+            try {
+                allData = Object.values(allData);
+            } catch (e) {
+                allData = [];
+            }
+        }
+
+        // iconClass を集める（文字列または配列に対応）
+        const pool = new Set();
+        allData.forEach(item => {
+            if (!item || item.iconClass == null) return;
+            if (Array.isArray(item.iconClass)) {
+                item.iconClass.forEach(ic => {
+                    if (ic == null) return;
+                    const s = String(ic).trim();
+                    if (s) pool.add(s);
+                });
+            } else if (typeof item.iconClass === 'string') {
+                const s = item.iconClass.trim();
+                if (s) pool.add(s);
+            } else {
+                // その他の型（例: オブジェクト等）は無視
+            }
+        });
+
+        const icons = Array.from(pool);
+        console.log('iconClass array created:', icons);
+        if (icons.length === 0) {
+            container.innerHTML = '';
+            return;
+        }
+
+        // 文字コード順（UTF-16 code unit）で辞書順ソート
+        icons.sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+
+        // HTML 生成
+        let html = '<span class="icon-label" data-index="home"><a href="https://tatsuy-kobayashi.github.io/my-web/docs/"><span class="icon-label-content"><i class="fa fa-home fa-fw" aria-hidden="true" style="margin-right:5px;"></i></span></a></span>';
+        const escapeHtml = (str) => String(str).replace(/[&<>"]+/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]||ch));
+        icons.forEach((icon, idx) => {
+            const tagUrl = `https://tatsuy-kobayashi.github.io/my-web/docs/icons/${encodeURIComponent(icon)}`;
+            html += `<span class="icon-label" data-index="${idx}">`;
+            html += `<a href="${tagUrl}"><span class="icon-label-content"><i class="fa ${String(icon)}" style="margin-right:5px;"></i></span></a>`;
+            html += `</span>`;
+        });
+
+        container.innerHTML = html;
+    }
+
     // ------------------------
     // DOM要素参照（安全に取得）
     // ------------------------
@@ -622,16 +853,26 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     const dom = {
         contentIntegSearch: $id('contentIntegSearch'),
-        contentIntegSearchResult: $id('contentIntegSearchResult')
+        contentIntegSearchResult: $id('contentIntegSearchResult'),
+        categoryList: $id('category-list'),
+        tagsList: $id('tagsList'),
+        iconBtnList: $id('iconBtnList'),
+        networkContainer: $id('network')
     };
 
     // DOM 要素が揃っているか簡易チェック
-    if (!dom.contentIntegSearch || !dom.contentIntegSearchResult) {
+    if (!dom.contentIntegSearch || !dom.contentIntegSearchResult || !dom.categoryList) {
         console.error('[ERROR] 必要な DOM 要素が見つかりません。処理を中止します。');
         errorFlags.missingDom = true;
         currentState = STATE.ERROR;
         return;
     }
+
+    // ------------------------
+    // vis-network 管理（初回生成は1度だけ）
+    // ------------------------
+    let network = null; // vis-network インスタンス
+    let networkInitialized = false; // 初期化済みフラグを失敗で初期化
 
     // ------------------------
     // 関数名   : searchContentInit()
@@ -715,10 +956,207 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
 
         const computedMax = vof_ensureLevelsFromPaths(siteData);
-        // 
+        // カテゴリ検索
         renderCategorySearchResult(siteData, useNode, computedMax);
+        // タグ検索
+        renderTagList(searchSource);
+        // アイコン検索
+        renderIconBtnList(searchSource);
+
+        // サイト圏図式（動的グラフ）
+        if (networkInitialized) return true;
+        if (typeof vis === 'undefined' || !vis.Network) {
+            console.error('[ERROR] vis-network が読み込まれていません。');
+            errorFlags.visNotAvailable = true;
+            currentState = STATE.ERROR;
+            return false;
+        }
+
+        try {
+            const nodes = new vis.DataSet([]); // 空で初期化
+            const edges = new vis.DataSet([]);
+            const data = { nodes, edges };
+            const options = {
+                layout: { hierarchical: false },
+                physics: {
+                    enabled: true,
+                    solver: "forceAtlas2Based",
+                    forceAtlas2Based: {
+                        gravitationalConstant: -40,  // 反発力を弱める（デフォルト -200）
+                        springLength: 60,            // エッジの自然長を短くする（重要）
+                        springConstant: 0.2          // バネの硬さ、強すぎると暴れる
+                    },
+                    stabilization: {
+                        enabled: true,
+                        iterations: 200              // 少なすぎると変な形で止まりやすい
+                    }
+                },
+                interaction: { hover: true, zoomView: true },
+                edges: {
+                    arrows: "to",
+                    smooth: {
+                        enabled: false               // 変な曲がりをなくすため
+                    }
+                }
+            };
+
+            network = new vis.Network(dom.networkContainer, data, options);
+            networkInitialized = true;
+            console.log('[NETWORK] vis.Network 初期化完了');
+            return true;
+        } catch (e) {
+            console.error('[ERROR] network 初期化に失敗しました:', e);
+            errorFlags.networkInitFailed = true;
+            currentState = STATE.ERROR;
+            return false;
+        }
 
         console.log('[UI] Search UI initialization complete');
+    }
+
+    // ------------------------
+    // 関数名   : vof_setNetworkData(nodeList, edgeList)
+    // 名称     : network のデータ更新
+    // 内容     : network に nodeList と edgeList をセットする（初回は setData が使える想定）
+    // 引数     : nodeList - ノードリスト配列
+    //            edgeList - エッジリスト配列
+    // 戻り値   : void
+    // ------------------------
+    function vof_setNetworkData(nodeList, edgeList) {
+        if (!initializeSearchUI()) return;
+        try {
+            const nodes = new vis.DataSet(nodeList);
+            const edges = new vis.DataSet(edgeList);
+            network.setData({ nodes, edges });
+            console.log('[NETWORK] setData 実行: nodes=', nodeList.length, 'edges=', edgeList.length);
+        } catch (e) {
+            console.error('[ERROR] vof_setNetworkData 失敗:', e);
+        }
+    }
+
+    // ------------------------
+    // STATE 1: DATA_INITIALIZATION
+    // （ここでは簡単なバリデーションを行う）
+    // ------------------------
+    function validateData() {
+        currentState = STATE.DATA_INITIALIZATION;
+        console.log('[STATE] DATA_INITIALIZATION');
+
+        // ノード id 重複チェック
+        const ids = new Set();
+        for (const n of nodesData) {
+            if (ids.has(n.id)) {
+                console.error('[ERROR] nodesData に重複 id が存在します:', n.id);
+                errorFlags.invalidData = true;
+            }
+            ids.add(n.id);
+        }
+
+        // エッジの参照チェックpaths の整合チェック: 各 path の各要素が存在するか、および path の末尾が自身の id であるか
+        for (const n of nodesData) {
+            if (!n.mainPath) continue;
+            for (const p of n.mainPath) {
+                const parts = p.split(':').map(Number);
+                if (parts[parts.length - 1] !== n.id) {
+                    console.error('[ERROR] paths の末尾が node.id と一致しません:', n.id, p);
+                    errorFlags.invalidData = true;
+                    continue;
+                }
+                for (const pid of parts) {
+                    if (!ids.has(pid)) {
+                        console.error('[ERROR] paths が存在しないノードを参照しています:', p, 'missing:', pid);
+                        errorFlags.invalidData = true;
+                    }
+                }
+            }
+        }
+
+        if (errorFlags.invalidData) {
+            currentState = STATE.ERROR;
+            return false;
+        }
+
+        // 2層までを表示
+        const maxis2 = 2;
+        maxAvailableLevel = (typeof maxis2 === 'number' && Number.isFinite(maxis2)) ? maxis2 : 0;
+        console.log('[DATA] computed maxAvailableLevel =', maxAvailableLevel);
+
+        return true;
+    }
+
+
+    // ------------------------
+    // STATE 2: NETWORK_INITIALIZATION
+    // ------------------------
+    function initializeNetwork() {
+        currentState = STATE.NETWORK_INITIALIZATION;
+        console.log('[STATE] NETWORK_INITIALIZATION');
+
+        // 初回描画：デフォルト（min/max）による描画をしないで空で開始することも選べる
+        // 今は初期値を用いて描画
+        currentState = STATE.SEARCHING;
+
+        let min = 0;
+        let max = 2;
+
+        // filter nodes and edges
+        const filteredNodes = siteData.filter(n => (typeof n.level === 'number') && n.level >= min && n.level <= max);
+        const filteredEdges = buildEdgesFromPaths(filteredNodes);
+
+        vof_setNetworkData(filteredNodes, filteredEdges);
+
+        currentState = STATE.IDLE;
+        console.log('[SEARCH] vof_setNetworkData done');
+
+        return true;
+    }
+
+    // ------------------------
+    // 関数名: u1f_performIdSearch(id, options = {})
+    // 引数：
+    // - u1f_performIdSearch(id) : id 指定から
+    // - id: 数値
+    // - options: { fromHash: boolean } -- ハッシュ起動かどうかのフラグ
+    // 戻り値：true if success, false if not
+    // ------------------------
+    function u1f_performIdSearch(id, options = {}) {
+        currentState = STATE.SEARCHING;
+        console.log('[SEARCH] u1f_performIdSearch start, id=', id, 'options=', options);
+
+        if (!Number.isFinite(id)) {
+            alert('ID が不正です');
+            currentState = STATE.IDLE;
+            return false;
+        }
+
+        const target = nodesData.find(n => n.id === id);
+        if (!target) {
+            alert('指定したIDのノードが存在しません: ' + id);
+            currentState = STATE.IDLE;
+            return false;
+        }
+
+        const level = target.level;
+        const min = Math.max(0, level - 1);
+        let max = level + 1;
+        // データの最大深さを超えている場合は clamp
+        if (max > 3) { max = 3 }
+
+        // 深さを更新（UI に反映）
+        dom.minDepth.value = String(min);
+        dom.maxDepth.value = String(max);
+
+        // node/edge フィルタ
+        const filteredNodes = nodesData.filter(n => (typeof n.level === 'number') && n.level >= min && n.level <= max);
+        const filteredEdges = buildEdgesFromPaths(filteredNodes);
+
+        // 描画
+        vof_setNetworkData(filteredNodes, filteredEdges);
+
+        currentState = STATE.IDLE;
+        console.log('[SEARCH] performIdSearch done');
+        console.log('[SEARCH] u1f_performIdSearch done');
+        return true;
     }
 
     // ------------------------
@@ -731,7 +1169,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             if (!searchContentInit()) {
                 console.error('[MAIN] search content initialization failed - abort');
                 return;
-            }/*
+            }
 
             // STATE 2: network init
             if (!initializeNetwork()) {
@@ -739,23 +1177,9 @@ document.addEventListener('DOMContentLoaded', async function () {
                 return;
             }
 
-            // register UI handlers after network ready
-            registerUiHandlers();
-
-            // STATE 3: hash bootstrap (if any)
-            const hashHandled = bootstrapFromHash();
-            if (hashHandled) {
-                // BOOTSTRAP_SEARCH did internal drawing
-                console.log('[MAIN] bootstrap handled, entering IDLE');
-                currentState = STATE.IDLE;
-                return;
-            }
-
             // otherwise draw default graph according to selects
             currentState = STATE.IDLE;
             console.log('[MAIN] entering IDLE state');
-            // initial draw (respect current min/max selects)
-            performDepthSearch();*/
         } catch (e) {
             console.error('[MAIN] unexpected error:', e);
             currentState = STATE.ERROR;
@@ -769,11 +1193,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         STATE,
         getCurrentState: () => currentState,
         getErrorFlags: () => ({ ...errorFlags }),
-        reinitNetwork: () => { networkInitialized = false; return u1f_initNetworkIfNeeded(); },
-        //performDepthSearch,
-        //u1f_performLabelSearch,
-        //u1f_performIdSearch,
-        //vof_clearVisualLock
+        reinitNetwork: () => { networkInitialized = false; return initializeSearchUI(); },
+        u1f_performIdSearch
     };
 });
 

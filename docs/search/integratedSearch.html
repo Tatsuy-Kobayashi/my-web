@@ -1826,9 +1826,27 @@ document.addEventListener('DOMContentLoaded', async function () {
             return;
         }
 
+        // siteData を配列に統一
+        if (!Array.isArray(siteData)) {
+            try {
+                siteData = Object.values(siteData);
+            } catch (e) {
+                siteData = [];
+            }
+        }
+
+        // results.id と同じ id を持つノードを siteData から探す
+        const findTargetPage = (id) => siteData.find(n => n && n.id === id);
+
         // 結果HTMLの構築
-        let resultHtml = '<div class="search-results">';
-        resultHtml += '<h3>検索結果 (' + results.length + '件)</h3>';
+        let resultHtml = '<div class="main search-results">';
+
+        // 戻るボタンを追加
+        resultHtml += '<div style="margin-bottom: 20px;">';
+        resultHtml += '<button id="backToSearchBtn" style="padding: 8px 16px; cursor: pointer;">← 検索画面に戻る</button>';
+        resultHtml += '</div>';
+
+        resultHtml += `<h1>検索結果 ( ${results.length} 件がヒット)</h1>`;
 
         // クエリ情報があれば簡易表示（内部デバッグ用）
         try {
@@ -1836,7 +1854,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 const qstr = (queryInfo.original || queryInfo.query || '');
                 const frag = queryInfo.fragment ? ('<code>' + String(queryInfo.fragment) + '</code>') : '';
                 if (qstr || frag) {
-                    resultHtml += '<p class="search-query-info">クエリ: ' + (String(qstr).replace(/</g,'&lt;')) + ' ' + frag + '</p>';
+                    resultHtml += '<p class="search-query-info" style="overflow-wrap: break-word;">クエリ: ' + (String(qstr).replace(/</g,'&lt;')) + ' ' + frag + '</p>';
                 }
             }
         } catch (e) {
@@ -1848,11 +1866,14 @@ document.addEventListener('DOMContentLoaded', async function () {
         } else {
             resultHtml += '<ul>';
             for (const result of results) {
+                const targetPage = findTargetPage(result.id) || {};
                 resultHtml += '<li>';
+                resultHtml += `<a href="${targetPage.url}">`;
                 resultHtml += '<strong>' + (result.label || 'N/A') + '</strong>';
                 if (result.labelEn) {
                     resultHtml += ' (' + result.labelEn + ')';
                 }
+                resultHtml += '</a>';
                 resultHtml += '</li>';
             }
             resultHtml += '</ul>';
@@ -1860,7 +1881,64 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         resultHtml += '</div>';
         resultContainer.innerHTML = resultHtml;
+
+        // 戻るボタンのイベントリスナーを追加
+        const backBtn = document.getElementById('backToSearchBtn');
+        if (backBtn) {
+            backBtn.addEventListener('click', () => {
+                console.log('[SEARCH] Back to search button clicked');
+                returnToSearchScreen();
+            });
+        }
     }
+
+    /**
+     * 関数名   : returnToSearchScreen()
+     * 名称     : 検索画面に戻る
+     * 内容     : 結果表示を隠し、検索画面を再表示
+     * 引数     : void
+     * 戻り値   : void
+     */
+    function returnToSearchScreen() {
+        try {
+            const searchPanel = document.getElementById('contentIntegSearch');
+            if (searchPanel) searchPanel.style.display = 'block';
+        } catch (e) { /* ignore */ }
+
+        try {
+            const resultContainer = document.getElementById('contentIntegSearchResult');
+            if (resultContainer) {
+                resultContainer.style.display = 'none';
+                resultContainer.innerHTML = '';
+            }
+        } catch (e) { /* ignore */ }
+
+        // URL をクエリなしの検索ページに戻す
+        try {
+            history.pushState(null, '', location.pathname);
+        } catch (e) {
+            location.hash = '';
+        }
+
+        // 入力フィールドをクリア
+        try {
+            const input = document.getElementById('labelSubstringSearchInput');
+            if (input) input.value = '';
+        } catch (e) { /* ignore */ }
+
+        console.log('[SEARCH] Returned to search screen');
+    }
+
+    // ブラウザの戻る/進む操作に対応
+    window.addEventListener('popstate', (event) => {
+        // ハッシュが無い = 検索画面に戻す
+        if (!location.hash) {
+            returnToSearchScreen();
+        } else {
+            // フラグメントあり → 再度結果を復元
+            bootstrapSearchFromHash();
+        }
+    });
 
     // ------------------------
     // 初期化フロー（状態遷移順）
@@ -1932,6 +2010,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                             <li><a href="#section_1_3">アイコン検索</a></li>
                         </ul>
                         <li><a href="#section_2">テキスト検索</a></li>
+                            <li><a href="#section_2_1">単純文字列検索</a></li>
                         <li><a href="#section_3">セマンティック検索</a></li>
                         <li><a href="#section_4">推薦・探索型検索証</a></li>
                     </ul>

@@ -1545,6 +1545,138 @@ document.addEventListener('DOMContentLoaded', async function () {
         try { bootstrapSearchFromHash(); } catch (e) { console.error('[HASH] bootstrap failed:', e); }
     });
 
+    function searchBreadcrumbs(allData, current) {
+        // options:
+        //  - includeHome: boolean (first column only)
+        //  - treatAsMain: boolean (mainPath column: exclude last id because it's current)
+        const renderColumnFromPath = (pathStr, options = {}) => {
+            const { includeHome = false, treatAsMain = false } = options;
+            if (!pathStr || typeof pathStr !== 'string') return '';
+            const parts = pathStr.split(':').map(s => parseInt(s, 10)).filter(n => Number.isFinite(n));
+            if (parts.length === 0) return '';
+
+            let html = `<div class="breadcrumb_list_part">`;
+            if (includeHome) {
+                html += `<span>Home</span>`;
+            }
+
+            // path からリンクとしてレンダリングするエンドポイントインデックスを決定する
+            const lastIndexToRender = treatAsMain ? parts.length - 2 : parts.length - 1; // main: exclude last (current)
+            for (let i = 0; i <= lastIndexToRender; i++) {
+                const id = parts[i];
+                if (i === 0 && includeHome === false) {
+                    // optionally skip adding separator for very first element if Home not present
+                }
+                const pathNode = allData.find(n => n && n.id === id);
+                if (!pathNode) continue;
+                html += `<span class="sp" style="margin-right:5px; margin-left:5px;"><span class="fa fa-angle-right" aria-hidden="true"></span></span>`;
+                html += `${pathNode.label}`;
+            }
+
+            // For mainPath column: append the current article label (no link) as final item
+            if (treatAsMain) {
+                html += `<span class="sp" style="margin-right:5px; margin-left:5px;"><span class="fa fa-angle-right" aria-hidden="true"></span></span>`;
+                html += `<span>${current.label || ''}</span>`;
+            }
+
+            html += `</div>`;
+            return html;
+        };
+
+        // collect mainPath (prefer first) and auxPaths (array)
+        const getFirstPath = (node) => {
+            if (!node) return '';
+            if (Array.isArray(node.mainPath) && node.mainPath.length > 0) return node.mainPath[0];
+            if (typeof node.mainPath === 'string') return node.mainPath;
+            return '';
+        };
+        const mainPath = getFirstPath(current);
+        const auxPaths = [];
+        if (current && current.auxPath) {
+            if (Array.isArray(current.auxPath)) {
+                current.auxPath.forEach(p => { if (p && p !== mainPath) auxPaths.push(p); });
+            } else if (typeof current.auxPath === 'string' && current.auxPath !== mainPath) {
+                auxPaths.push(current.auxPath);
+            }
+        }
+
+        // 列の構築: 最初にメイン列 (Home を含む)、次に auxPath ごとに 1 つの列
+        let finalHtml = '';
+        if (mainPath) {
+            finalHtml += renderColumnFromPath(mainPath, { includeHome: true, treatAsMain: true });
+        } else {
+            // fallback: only Home + current label
+            finalHtml += `<div class="breadcrumb_list_part">`;
+            finalHtml += `<span class="sp" style="margin-right:5px; margin-left:5px;"><span class="fa fa-angle-right" aria-hidden="true"></span></span>`;
+            finalHtml += `<span>${current.label || ''}</span></div>`;
+        }
+
+        // auxPath 列も Home を先頭に表示し、最後に current のラベルを付けているが、それぞれを非表示にすることもできる。可能性としては、Git のブランチの様に表示できないか検討中
+        auxPaths.forEach(ap => {
+            finalHtml += renderColumnFromPath(ap, { includeHome: true, treatAsMain: true });
+        });
+
+        return finalHtml;
+    }
+
+    /**
+     * 公開日/編集日
+     */
+    function searchDateInfo(current) {
+        const container = document.getElementById('date-info');
+        if (!container) return;
+
+        // ISO文字列を想定 (例: "2020-02-15T09:40:52Z")
+        const rawPub = current.datePublished || null;
+        const rawRev = current.dateModified || null;
+
+        // Date に安全に変換
+        const toDateSafe = (v) => {
+            if (!v) return null;
+            if (v instanceof Date) return isNaN(v) ? null : v;
+            const d = new Date(v);
+            return isNaN(d) ? null : d;
+        };
+
+        const pubDateObj = toDateSafe(rawPub);
+        let revDateObj = toDateSafe(rawRev);
+
+        // ===== 応急処置ロジック =====
+        // 公開日 > 編集日 の場合は 編集日 = 公開日 に補正
+        if (pubDateObj && revDateObj && pubDateObj.getTime() > revDateObj.getTime()) {
+            console.warn('[date-info] dateModified is earlier than datePublished. ', {datePublished: pubDateObj.toISOString(), dateModified: revDateObj.toISOString(), source: current});
+            revDateObj = new Date(pubDateObj.getTime());
+        }
+
+        /**
+         * Date → ISO文字列
+         */
+        const toISOStringSafe = (d) => (d ? d.toISOString() : '');
+
+        const pubDate = toISOStringSafe(pubDateObj);
+        const revDate = toISOStringSafe(revDateObj);
+
+        let html = '';
+        if (pubDate) {
+            const display = pubDate.split('T')[0];
+            const parts = display.split('-');
+            const y = parts[0] || '';
+            const m = parts[1] || '';
+            const d = parts[2] || '';
+            html += `<span><i class="fa fa-pencil"></i>&ensp;<time datetime="${pubDate}" title="${pubDate}">公開日: <span class="date-year">${y}</span><span class="hyphen">年</span><span class="date-month">${m}</span><span class="hyphen">月</span><span class="date-day">${d}</span>日</time></span>`;
+        }
+        if (revDate) {
+            const display = revDate.split('T')[0];
+            const parts = display.split('-');
+            const y = parts[0] || '';
+            const m = parts[1] || '';
+            const d = parts[2] || '';
+            html += `<span style="margin-left:0.8em;"><i class="fa fa-refresh"></i>&ensp;<time datetime="${revDate}" title="${revDate}" class="updated">更新: <span class="date-year">${y}</span><span class="hyphen">年</span><span class="date-month">${m}</span><span class="hyphen">月</span><span class="date-day">${d}</span>日</time></span>`;
+        }
+
+        return html;
+    }
+
     /**
      * 関数名   : displaySearchResults()
      * 名称     : 検索結果の表示
@@ -1598,22 +1730,46 @@ document.addEventListener('DOMContentLoaded', async function () {
             // ignore
         }
 
+        // サムネイル等の存在チェック用ヘルパ
+        const thumbHtml = (node) => {
+            if (!node) return '';
+            if (Array.isArray(node.thumbnailUrl) && node.thumbnailUrl.length > 0 && node.thumbnailUrl[1]) {
+                const src = node.thumbnailUrl[1];
+                return `<img class="search-result-thumb" src="${src}" alt="" referrerpolicy="no-referrer" loading="lazy" decoding="async" onerror="this.parentNode.querySelector('.js-aarecord-list-fallback-cover').classList.remove('hidden'); this.parentNode.removeChild(this)">`;
+            }
+            return ''; // サムネイルが無ければ空
+        };
+
         if (results.length === 0) {
             resultHtml += '<p>マッチする結果がありません。</p>';
         } else {
-            resultHtml += '<ul>';
+            resultHtml += '<div class="article-list">';
             for (const result of results) {
                 const targetPage = findTargetPage(result.id) || {};
-                resultHtml += '<li>';
-                resultHtml += `<a href="${targetPage.url}">`;
-                resultHtml += '<strong>' + (result.label || 'N/A') + '</strong>';
-                if (result.labelEn) {
-                    resultHtml += ' (' + result.labelEn + ')';
-                }
-                resultHtml += '</a>';
-                resultHtml += '</li>';
+                const targetThumb = thumbHtml(targetPage);
+                resultHtml += '<div class="article-item">';
+                resultHtml += `<a href="${targetPage.url}" class="img-container-link">`;
+                resultHtml += `<div id="" class="img-container">`;
+                resultHtml += `${targetThumb}`;
+                resultHtml += '</div> <!-- img-container -->';
+                resultHtml += '</a> <!-- img-container-link -->';
+                resultHtml += '<div class="search-result-label">';
+                resultHtml += '<div>';
+                resultHtml += '<div class="search-result-breadcrumb_list">';
+                resultHtml += '<div id="date-info" class="date">';
+                resultHtml += searchBreadcrumbs(siteData, targetPage);
+                resultHtml += '</div> <!-- date -->';
+                resultHtml += '</div> <!-- search-result-breadcrumb_list -->';
+                resultHtml += `<a href="${targetPage.url}" class="search-result-title-link">`;
+                resultHtml += `<strong> ${targetPage.label || 'N/A'} </strong> (${targetPage.labelEn})`;
+                resultHtml += '</a> <!-- search-result-title-link -->';
+                resultHtml += '</div>';
+                resultHtml += searchDateInfo(targetPage);
+                resultHtml += `<div style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; line-height: 1.3;">${(result.sections?.[0]?.text || '').replace(/</g,'&lt;')}</div>`;
+                resultHtml += '</div> <!-- search-result-label -->';
+                resultHtml += '</div> <!-- article-item -->';
             }
-            resultHtml += '</ul>';
+            resultHtml += '</div>';
         }
 
         resultHtml += '</div>';

@@ -44,17 +44,17 @@
         'use strict';
 
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-      
+
         /*gtag('config', 'トラッキングID');*/
     </script>
     <script type="text/javascript">
         window.MathJax = {
             tex: {
                 tags: "ams", // 自動ナンバリングを有効化（AMSスタイル）
-                inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-                displayMath: [ ["$$","$$"], ["\\[","\\]"] ],
+                inlineMath: [["$", "$"], ["\\(", "\\)"]],
+                displayMath: [["$$", "$$"], ["\\[", "\\]"]],
                 processEscapes: true,
                 maxBuffer: 10 * 1024,  // 数式バッファの設定
             },
@@ -68,6 +68,7 @@
 .content {
     width: 100%;
 }
+
 .main {
     padding: 0 50px 0 50px;
     width: 100%;
@@ -76,6 +77,7 @@
 .category_list_wrapper {
     width: 100%;
 }
+
 .category_list_flex {
     width: auto;
     overflow-x: auto;
@@ -85,6 +87,7 @@
 .main .pulldown_list_wrapper {
     width: 500px;
 }
+
 .main .details_pulldownList {
     padding: 10px;
     margin: 5px 0;
@@ -94,6 +97,7 @@
     font-family: 'Arial', sans-serif;
     transition: background-color 0.3s ease;
 }
+
 .main .summary_pulldownList {
     cursor: pointer;
     font-weight: bold;
@@ -101,12 +105,15 @@
     padding: 5px;
     transition: background-color 0.3s ease;
 }
+
 .main .details_pulldownList[open] {
     background-color: #e6f7ff;
 }
-.main .details_pulldownList > .ul_pulldownList {
+
+.main .details_pulldownList>.ul_pulldownList {
     padding-left: 20px;
 }
+
 .main .ul_pulldownList {
     list-style: none;
     padding: 0;
@@ -114,35 +121,49 @@
 }
 
 .pulldown_list_wrapper .li_pulldownList {
-    padding-left: 10px; /* 基本のインデント */
+    padding-left: 10px;
+    /* 基本のインデント */
     list-style-type: none;
 }
+
 .pulldown_list_wrapper .li_pulldownList a {
     text-decoration: none;
     color: #333;
     transition: color 0.3s ease;
 }
+
 .pulldown_list_wrapper .li_pulldownList a:hover {
     color: #1a73e8;
 }
 
-.pulldown_list_wrapper .li_pulldownList > .details_pulldownList > .summary_pulldownList {
-    padding-left: 0; /* 親要素にはインデントなし */
+.pulldown_list_wrapper .li_pulldownList>.details_pulldownList>.summary_pulldownList {
+    padding-left: 0;
+    /* 親要素にはインデントなし */
 }
-.pulldown_list_wrapper .li_pulldownList .details_pulldownList > .li_pulldownList {
-    padding-left: 10px; /* 第一階層：10pxのインデント */
+
+.pulldown_list_wrapper .li_pulldownList .details_pulldownList>.li_pulldownList {
+    padding-left: 10px;
+    /* 第一階層：10pxのインデント */
 }
-.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList > .li_pulldownList {
-    padding-left: 20px; /* 第二階層：さらに10pxのインデント */
+
+.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList>.li_pulldownList {
+    padding-left: 20px;
+    /* 第二階層：さらに10pxのインデント */
 }
-.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList > .li_pulldownList {
-    padding-left: 30px; /* 第三階層：さらに10pxのインデント */
+
+.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList>.li_pulldownList {
+    padding-left: 30px;
+    /* 第三階層：さらに10pxのインデント */
 }
-.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList > .li_pulldownList {
-    padding-left: 40px; /* 第四階層：さらに10pxのインデント */
+
+.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList>.li_pulldownList {
+    padding-left: 40px;
+    /* 第四階層：さらに10pxのインデント */
 }
-.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList > .li_pulldownList {
-    padding-left: 50px; /* 第五階層：さらに10pxのインデント */
+
+.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList>.li_pulldownList {
+    padding-left: 50px;
+    /* 第五階層：さらに10pxのインデント */
 }
 
 /* 目次 */
@@ -150,6 +171,7 @@
     display: none;
     margin-top: 1rem;
 }
+
 .toc-toggle-button {
     cursor: pointer;
     color: blue;
@@ -170,13 +192,16 @@
     transition: color 150ms ease-in-out, background-color 150ms ease-in-out, transform 150ms ease-in-out;
     outline: 0;
 }
+
 .tag-label:hover {
     background-color: rgb(92, 216, 92);
 }
+
 .tag-label a {
     text-decoration: none;
     color: #fff;
 }
+
 .tag-label a:hover {
     text-decoration: none;
 }
@@ -187,6 +212,7 @@
     align-items: center;
     margin-top: 10px;
 }
+
 .icon-label {
     display: inline-block;
     text-align: center;
@@ -202,23 +228,28 @@
     transition: color 150ms ease-in-out, background-color 150ms ease-in-out, transform 150ms ease-in-out;
     outline: 0;
 }
+
 .icon-label:hover {
     color: #9bd4fa;
     border: 1px solid #9bd4fa;
 }
+
 .icon-label a {
     vertical-align: middle;
     text-decoration: none;
     color: #1DA1F2;
 }
+
 .icon-label a:hover {
     text-decoration: none;
     color: #9bd4fa;
 }
+
 .icon-label a .icon-label-content {
     width: 40px;
     height: 40px;
 }
+
 .icon-label a .icon-label-content i {
     width: 40px;
     height: 40px;
@@ -227,12 +258,12 @@
 
 /* グラフエリア */
 .site-categorical-diagram #network {
-    width: 80%;
+    width: 100%;
     height: 400px;
     border: 2px solid #ccc;
     background: #fff;
     border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
 .article-item {
@@ -241,11 +272,13 @@
     border-color: rgb(243 244 246);
     border-bottom-width: 1px;
 }
+
 .img-container-link {
     display: block;
     margin-right: 1rem;
     outline-color: #00000055;
 }
+
 .img-container {
     position: relative;
     text-align: left;
@@ -253,8 +286,9 @@
     width: 160px;
     height: 90px;
     border-radius: .25rem;
-    box-shadow: var(0 0 #0000, 0 0 #0000), var(0 0 #0000, 0 0 #0000), var(0 1px 3px 0 #0000001a,0 1px 2px -1px #0000001a);
+    box-shadow: var(0 0 #0000, 0 0 #0000), var(0 0 #0000, 0 0 #0000), var(0 1px 3px 0 #0000001a, 0 1px 2px -1px #0000001a);
 }
+
 .search-result-thumb {
     display: block;
     vertical-align: middle;
@@ -271,6 +305,7 @@
     -o-object-fit: cover;
     object-fit: cover;
 }
+
 .search-result-label {
     display: flex;
     max-width: 100%;
@@ -278,6 +313,7 @@
     overflow: hidden;
     justify-content: space-around;
 }
+
 .search-result-breadcrumb_list {
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -287,6 +323,7 @@
     color: rgb(107 114 128);
     font-size: 9px;
 }
+
 .search-result-title-link {
     display: inline-block;
     -webkit-box-orient: vertical;
@@ -471,50 +508,52 @@ document.addEventListener('DOMContentLoaded', async function () {
         { id: 24, label: "経済学", labelEn: "Economics", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
         { id: 25, label: "教育学", labelEn: "Pedagogy", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
         // 形式科学3
-        { id: 30, label: "数学", labelEn: "Mathematics", sections: [
-            {
-                h2: "数とは何か（仮）",
-                text: "数は数である。1, 2, 3, 10, 42。自然数？整数？実数？よく分からないが、とりあえず数える。count, counting, カウント。数学っぽいが中身は薄い。"
-            },
-            {
-                h2: "線形代数っぽい話",
-                text: "行列Aとベクトルxについて Ax = b を考える。Aが正則でないと困る。det(A)=0 は危険。線形？非線形？ときどき曖昧。",
-                math: "Ax=b, \\det(A)=0"
-            },
-            {
-                h2: "微分積分の雰囲気",
-                text: "微分すると増える。積分すると溜まる。d/dx や ∫ はよく出る記号。lim x→0 とか書きたくなるが、厳密性は気にしない。",
-                math: "\\frac{d}{dx}f(x), \\int f(x)dx, \\lim_{x\\to0}"
-            },
-            {
-                h2: "確率・統計（テスト用）",
-                text: "確率は0から1まで。P(A|B) とか書く。平均、分散、標準偏差。なぜ正規分布が好きなのかは謎。",
-                math: "P(A|B), \\mu, \\sigma^2"
-            },
-            {
-                h2: "離散数学の断片",
-                text: "グラフG=(V,E)。頂点と辺。木だけど森。DFS, BFS, 動的計画法？アルゴリズムと数学の境界が曖昧。",
-                math: "G=(V,E)"
-            },
-            {
-                h2: "論理記号の練習",
-                text: "∀x∃y P(x,y)。真か偽か。and/or/not。∧∨¬⇒⇔。意味は深いが、ここではただ並べる。",
-                math: "\\forall x \\exists y\\, P(x,y)"
-            },
-            {
-                h2: "集合っぽい何か",
-                text: "集合A⊂B⊂C。∅ は空っぽ。要素か部分集合かで混乱することがある。∈ と ⊂ は違う。",
-                math: "A \\subset B, x \\in A, \\varnothing"
-            },
-            {
-                h2: "数学とプログラミング",
-                text: "for文は数学的帰納法に似ている（たぶん）。再帰、関数、型。数学なのかコードなのか分からなくなる瞬間。"
-            },
-            {
-                h2: "意味のないテスト文章",
-                text: "これは検索テスト用の文章です。数学、Math, MATH, math。123abc。正規表現.*テスト。"
-            }
-        ], keywords: ["学問", "数学", "情報理論", "物理学", "プログラミング", "教育"], iconClass: "fa-folder fa-fw" },
+        {
+            id: 30, label: "数学", labelEn: "Mathematics", sections: [
+                {
+                    h2: "数とは何か（仮）",
+                    text: "数は数である。1, 2, 3, 10, 42。自然数？整数？実数？よく分からないが、とりあえず数える。count, counting, カウント。数学っぽいが中身は薄い。"
+                },
+                {
+                    h2: "線形代数っぽい話",
+                    text: "行列Aとベクトルxについて Ax = b を考える。Aが正則でないと困る。det(A)=0 は危険。線形？非線形？ときどき曖昧。",
+                    math: "Ax=b, \\det(A)=0"
+                },
+                {
+                    h2: "微分積分の雰囲気",
+                    text: "微分すると増える。積分すると溜まる。d/dx や ∫ はよく出る記号。lim x→0 とか書きたくなるが、厳密性は気にしない。",
+                    math: "\\frac{d}{dx}f(x), \\int f(x)dx, \\lim_{x\\to0}"
+                },
+                {
+                    h2: "確率・統計（テスト用）",
+                    text: "確率は0から1まで。P(A|B) とか書く。平均、分散、標準偏差。なぜ正規分布が好きなのかは謎。",
+                    math: "P(A|B), \\mu, \\sigma^2"
+                },
+                {
+                    h2: "離散数学の断片",
+                    text: "グラフG=(V,E)。頂点と辺。木だけど森。DFS, BFS, 動的計画法？アルゴリズムと数学の境界が曖昧。",
+                    math: "G=(V,E)"
+                },
+                {
+                    h2: "論理記号の練習",
+                    text: "∀x∃y P(x,y)。真か偽か。and/or/not。∧∨¬⇒⇔。意味は深いが、ここではただ並べる。",
+                    math: "\\forall x \\exists y\\, P(x,y)"
+                },
+                {
+                    h2: "集合っぽい何か",
+                    text: "集合A⊂B⊂C。∅ は空っぽ。要素か部分集合かで混乱することがある。∈ と ⊂ は違う。",
+                    math: "A \\subset B, x \\in A, \\varnothing"
+                },
+                {
+                    h2: "数学とプログラミング",
+                    text: "for文は数学的帰納法に似ている（たぶん）。再帰、関数、型。数学なのかコードなのか分からなくなる瞬間。"
+                },
+                {
+                    h2: "意味のないテスト文章",
+                    text: "これは検索テスト用の文章です。数学、Math, MATH, math。123abc。正規表現.*テスト。"
+                }
+            ], keywords: ["学問", "数学", "情報理論", "物理学", "プログラミング", "教育"], iconClass: "fa-folder fa-fw"
+        },
         { id: 31, label: "統計学", labelEn: "Statistics", description: "統計学とは、確率論を基盤にして、集団全体の性質を一部の標本を調べることによって推定するための処理・分析方法について研究する学問。", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
         // 自然科学4
         { id: 40, label: "物理学", labelEn: "Physics", sections: [], keywords: [], iconClass: "icon-physics" },
@@ -530,25 +569,27 @@ document.addEventListener('DOMContentLoaded', async function () {
         // 深さ3
         // 数学30
         { id: 300, label: "数学用語", labelEn: "Mathematical Terms", sections: [], keywords: ["一覧"], iconClass: "fa-folder fa-fw" },
-        { id: 301, label: "数学基礎論", labelEn: "Foundations of Mathematics", description: "数学基礎論の全体像を解説。構文論と意味論、モデル理論、証明論、型理論、集合論、圏論など、現代数学の基礎を支える主要分野をPythonの実装例とともに学べる包括的な入門記事。", sections: [
-            {
-                h2: "概要：数学を「数学」する",
-                text: "数学基礎論（Foundations of Mathematics）は、数学的な推論や証明、そして数学的構造そのものを数学的な手法を用いて研究する分野である。一般に、数学は数や図形についての真理を探究するが、論理学は「真理とは何か」「証明とは何か」というメタな問いを対象とする。"
-            },
-            {
-                text: "19世紀末から20世紀初頭にかけて、カントール（Cantor）による集合論の創始やパラドックスの発見を契機に、数学を厳密な基礎の上に再構築しようとする機運が高まりました。ヒルベルト（Hilbert）は、数学の無矛盾性を有限の立場から確立しようとする「ヒルベルト・プログラム」を提唱し、これが現代の証明論の源流となった。また、タルスキ（Tarski）らによる意味論の形式化はモデル理論へと発展し、ゲーデル（Gödel）の不完全性定理やチャーチ（Church）、チューリング（Turing）による計算可能性の研究と相まって、現代数学の深淵な構造を明らかにしてきた。"
-            },
-            {
-                h2: "構文論と意味論：形式と内容の分離",
-                text: "&emsp;数学基礎論において最も基本的かつ重要な視点は、構文論と意味論の区別である。構文論（Syntax）: 記号の操作や並び方に注目する立場。ここでは「証明」や「形式的推論」が扱われる。例えば、「A から B が証明可能である（A ⊢ B）」という概念は、記号変形の規則のみに基づいて定義される。意味論（Semantics）: 記号に数学的な対象（実体）を対応させ、その「真偽（truth）」を問う立場。ここでは「モデル（model）」や「充足（satisfaction）」が扱われる。例えば、「モデル M において論理式 φ が真である（M ⊨ φ）」という概念は、記号の解釈に基づいて定義される。この図は、構文論と意味論の二つの世界の関係を示したもの&emsp;ゲーデルの完全性定理（Gödel's Completeness Theorem）は、一階述語論理において、これら二つの側面が一致すること（⊢ A ⇔ ⊨ A 証明可能ならば真であり、真ならば証明可能である）を示した重要な定理である。",
-                math: "A \\vdash B M \\vDash \\varphi $\\vdash A \\iff \\vDash A$",
-                diagrams: "意味論Semantics構文論Syntax推論規則導出解釈充足健全性Soundness完全性Completeness論理式Formula証明Proof定理Theorem構造Structure真偽Truth ValueモデルModel"
-            },
-            {
-                h2: "モデル理論：構造と真理の関係",
-                text: "&emsp;モデル理論（Model Theory）は、形式言語の文（sentence）と、それを満たす（あるいは棄却する）構造（structure）との関係を研究する分野である。構造（Structure）: 構造 A とは、空でない集合 A（台集合、universe）と、その上の定数、関数、関係の集まりからなる。例えば、自然数全体 ℕ に、通常の 0、後者関数 s（+1 すること）、加法 +、乗法 ⋅ を備えたものは構造 (ℕ,0,s,+,⋅) である。言語 L の文 σ が構造 A で真であることを A ⊨ σ と書く。A が文の集合 T のすべてを真にするとき、A は T のモデルであるという。"
-            }
-        ], keywords: ["ゲーデル", "Pythonによる解説", "ヒルベルト・プログラム"], iconClass: "fa-folder fa-fw" },
+        {
+            id: 301, label: "数学基礎論", labelEn: "Foundations of Mathematics", description: "数学基礎論の全体像を解説。構文論と意味論、モデル理論、証明論、型理論、集合論、圏論など、現代数学の基礎を支える主要分野をPythonの実装例とともに学べる包括的な入門記事。", sections: [
+                {
+                    h2: "概要：数学を「数学」する",
+                    text: "数学基礎論（Foundations of Mathematics）は、数学的な推論や証明、そして数学的構造そのものを数学的な手法を用いて研究する分野である。一般に、数学は数や図形についての真理を探究するが、論理学は「真理とは何か」「証明とは何か」というメタな問いを対象とする。"
+                },
+                {
+                    text: "19世紀末から20世紀初頭にかけて、カントール（Cantor）による集合論の創始やパラドックスの発見を契機に、数学を厳密な基礎の上に再構築しようとする機運が高まりました。ヒルベルト（Hilbert）は、数学の無矛盾性を有限の立場から確立しようとする「ヒルベルト・プログラム」を提唱し、これが現代の証明論の源流となった。また、タルスキ（Tarski）らによる意味論の形式化はモデル理論へと発展し、ゲーデル（Gödel）の不完全性定理やチャーチ（Church）、チューリング（Turing）による計算可能性の研究と相まって、現代数学の深淵な構造を明らかにしてきた。"
+                },
+                {
+                    h2: "構文論と意味論：形式と内容の分離",
+                    text: "&emsp;数学基礎論において最も基本的かつ重要な視点は、構文論と意味論の区別である。構文論（Syntax）: 記号の操作や並び方に注目する立場。ここでは「証明」や「形式的推論」が扱われる。例えば、「A から B が証明可能である（A ⊢ B）」という概念は、記号変形の規則のみに基づいて定義される。意味論（Semantics）: 記号に数学的な対象（実体）を対応させ、その「真偽（truth）」を問う立場。ここでは「モデル（model）」や「充足（satisfaction）」が扱われる。例えば、「モデル M において論理式 φ が真である（M ⊨ φ）」という概念は、記号の解釈に基づいて定義される。この図は、構文論と意味論の二つの世界の関係を示したもの&emsp;ゲーデルの完全性定理（Gödel's Completeness Theorem）は、一階述語論理において、これら二つの側面が一致すること（⊢ A ⇔ ⊨ A 証明可能ならば真であり、真ならば証明可能である）を示した重要な定理である。",
+                    math: "A \\vdash B M \\vDash \\varphi $\\vdash A \\iff \\vDash A$",
+                    diagrams: "意味論Semantics構文論Syntax推論規則導出解釈充足健全性Soundness完全性Completeness論理式Formula証明Proof定理Theorem構造Structure真偽Truth ValueモデルModel"
+                },
+                {
+                    h2: "モデル理論：構造と真理の関係",
+                    text: "&emsp;モデル理論（Model Theory）は、形式言語の文（sentence）と、それを満たす（あるいは棄却する）構造（structure）との関係を研究する分野である。構造（Structure）: 構造 A とは、空でない集合 A（台集合、universe）と、その上の定数、関数、関係の集まりからなる。例えば、自然数全体 ℕ に、通常の 0、後者関数 s（+1 すること）、加法 +、乗法 ⋅ を備えたものは構造 (ℕ,0,s,+,⋅) である。言語 L の文 σ が構造 A で真であることを A ⊨ σ と書く。A が文の集合 T のすべてを真にするとき、A は T のモデルであるという。"
+                }
+            ], keywords: ["ゲーデル", "Pythonによる解説", "ヒルベルト・プログラム"], iconClass: "fa-folder fa-fw"
+        },
         { id: 302, label: "数論", labelEn: "Number Theory", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
         { id: 303, label: "代数学", labelEn: "Algebra", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
         { id: 304, label: "解析学", labelEn: "Analysis", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
@@ -577,7 +618,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // データ（記事閲覧数）
     // ------------------------
     const ranking = [
-        { id: 3011, label: "集合論",  url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html", totalViews: 90210, weeklyViews: 420, monthlyViews: 1800 },
+        { id: 3011, label: "集合論", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html", totalViews: 90210, weeklyViews: 420, monthlyViews: 1800 },
         { id: 304022, label: "特殊関数", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/theory_of_functions/special_functions/special_functions.html", totalViews: 80123, weeklyViews: 380, monthlyViews: 1600 }
     ];
 
@@ -758,7 +799,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 const desc = node.description || '説明はありません。';
                 const img = node.imageUrl || '';
                 let s = `<div class="link-container">`;
-                s += `<a href="${node.url}" class="preview-link" data-title="${(node.label||'').replace(/\"/g,'&quot;')}" data-description="${(desc||'').replace(/\"/g,'&quot;')}" data-image="${img}">${node.label}</a>`;
+                s += `<a href="${node.url}" class="preview-link" data-title="${(node.label || '').replace(/\"/g, '&quot;')}" data-description="${(desc || '').replace(/\"/g, '&quot;')}" data-image="${img}">${node.label}</a>`;
                 s += `<div class="link-preview">`;
                 s += `<a href="${node.url}" class="link-preview-clickable">`;
                 if (img) s += `<img class="preview-image" src="${img}" alt="Preview image">`;
@@ -844,7 +885,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         // HTML 生成
         let html = '';
-        const escapeHtml = (str) => String(str).replace(/[&<>"]+/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]||ch));
+        const escapeHtml = (str) => String(str).replace(/[&<>"]+/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch] || ch));
         tags.forEach((tag, idx) => {
             html += `<span class="tag-label" data-index="${idx}">`;
             html += `<a href="#" class="tag-search-link" data-tag="${escapeHtml(tag)}" title="タグ: ${escapeHtml(tag)}"><span class="tag-label-text"># ${String(tag)}</span></a>`;
@@ -908,7 +949,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         // HTML 生成
         let html = '<span class="icon-label" data-index="home"><a href="https://tatsuy-kobayashi.github.io/my-web/docs/"><span class="icon-label-content"><i class="fa fa-home fa-fw" aria-hidden="true"></i></span></a></span>';
-        const escapeHtml = (str) => String(str).replace(/[&<>"]+/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]||ch));
+        const escapeHtml = (str) => String(str).replace(/[&<>"]+/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch] || ch));
         icons.forEach((icon, idx) => {
             html += `<span class="icon-label" data-index="${idx}">`;
             html += `<a href="#" class="icon-search-link" data-icon="${escapeHtml(icon)}" title="アイコン: ${escapeHtml(icon)}">`;
@@ -974,7 +1015,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
                 for (let i = 0; i < parts.length - 1; i++) {
                     const from = parts[i];
-                    const to   = parts[i + 1];
+                    const to = parts[i + 1];
                     // 可視ノード同士のみエッジを張る
                     if (!visible.has(from) || !visible.has(to)) continue;
 
@@ -1844,8 +1885,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
 
         // UI 表示制御：検索画面を隠し結果を表示
-        try { const sp = document.getElementById('contentIntegSearch'); if (sp) sp.style.display = 'none'; } catch (e) {}
-        try { const rc = document.getElementById('contentIntegSearchResult'); if (rc) rc.style.display = 'block'; } catch (e) {}
+        try { const sp = document.getElementById('contentIntegSearch'); if (sp) sp.style.display = 'none'; } catch (e) { }
+        try { const rc = document.getElementById('contentIntegSearchResult'); if (rc) rc.style.display = 'block'; } catch (e) { }
 
         // 表示: fragment を保持した queryInfo を渡す
         const qi = {
@@ -1962,7 +2003,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         // ===== 応急処置ロジック =====
         // 公開日 > 編集日 の場合は 編集日 = 公開日 に補正
         if (pubDateObj && revDateObj && pubDateObj.getTime() > revDateObj.getTime()) {
-            console.warn('[date-info] dateModified is earlier than datePublished. ', {datePublished: pubDateObj.toISOString(), dateModified: revDateObj.toISOString(), source: current});
+            console.warn('[date-info] dateModified is earlier than datePublished. ', { datePublished: pubDateObj.toISOString(), dateModified: revDateObj.toISOString(), source: current });
             revDateObj = new Date(pubDateObj.getTime());
         }
 
@@ -2041,7 +2082,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 const qstr = (queryInfo.original || queryInfo.query || '');
                 const frag = queryInfo.fragment ? ('<code>' + String(queryInfo.fragment) + '</code>') : '';
                 if (qstr || frag) {
-                    resultHtml += '<p class="search-query-info" style="overflow-wrap: break-word;">クエリ: ' + (String(qstr).replace(/</g,'&lt;')) + ' ' + frag + '</p>';
+                    resultHtml += '<p class="search-query-info" style="overflow-wrap: break-word;">クエリ: ' + (String(qstr).replace(/</g, '&lt;')) + ' ' + frag + '</p>';
                 }
             }
         } catch (e) {
@@ -2083,7 +2124,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 resultHtml += '</a> <!-- search-result-title-link -->';
                 resultHtml += '</div>';
                 resultHtml += searchDateInfo(targetPage);
-                resultHtml += `<div style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; line-height: 1.3;">${(result.sections?.[0]?.text || '').replace(/</g,'&lt;')}</div>`;
+                resultHtml += `<div style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; line-height: 1.3;">${(result.sections?.[0]?.text || '').replace(/</g, '&lt;')}</div>`;
                 resultHtml += '</div> <!-- search-result-label -->';
                 resultHtml += '</div> <!-- article-item -->';
             }
@@ -2203,6 +2244,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     </script>
 </head>
+
 <body>
 <div id="wrapper">
     <header></header>
@@ -2221,7 +2263,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                             <li><a href="#section_1_3">アイコン検索</a></li>
                         </ul>
                         <li><a href="#section_2">テキスト検索</a></li>
-                            <li><a href="#section_2_1">単純文字列検索</a></li>
+                        <li><a href="#section_2_1">単純文字列検索</a></li>
                         <li><a href="#section_3">セマンティック検索</a></li>
                         <li><a href="#section_4">推薦・探索型検索証</a></li>
                     </ul>
@@ -2237,17 +2279,27 @@ document.addEventListener('DOMContentLoaded', async function () {
                         <meta itemprop="itemListOrder" content="Unordered">
                         <div class="pulldown_list_wrapper">
                             <ul class="ul_pulldownList">
-                                <li class="li_pulldownList" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><details class="details_pulldownList" open> <!-- 学問 -->
-                                    <summary class="summary_pulldownList"><div class="link-container">
-                                        <a itemprop="item" href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html" class="preview-link" data-title="学問" data-description="あらゆる事物は何かしらの学問の一領域として捉えることができる" data-image=""><span itemprop="name">学問</span></a>
-                                        <div class="link-preview">
-                                            <img class="preview-image">
-                                            <h3 class="preview-title">学問</h3>
-                                            <p class="preview-description">あらゆる事物は何かしらの学問の一領域として捉えることができる</p>
-                                        </div> <!-- link-preview -->
-                                    </div></summary>
-                                    <div id="category-list"></div>
-                                </details></li> <!-- /学問 -->
+                                <li class="li_pulldownList" itemprop="itemListElement" itemscope
+                                    itemtype="https://schema.org/ListItem">
+                                    <details class="details_pulldownList" open> <!-- 学問 -->
+                                        <summary class="summary_pulldownList">
+                                            <div class="link-container">
+                                                <a itemprop="item"
+                                                    href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html"
+                                                    class="preview-link" data-title="学問"
+                                                    data-description="あらゆる事物は何かしらの学問の一領域として捉えることができる"
+                                                    data-image=""><span itemprop="name">学問</span></a>
+                                                <div class="link-preview">
+                                                    <img class="preview-image">
+                                                    <h3 class="preview-title">学問</h3>
+                                                    <p class="preview-description">あらゆる事物は何かしらの学問の一領域として捉えることができる
+                                                    </p>
+                                                </div> <!-- link-preview -->
+                                            </div>
+                                        </summary>
+                                        <div id="category-list"></div>
+                                    </details>
+                                </li> <!-- /学問 -->
                             </ul> <!-- /.ul_pulldownList -->
                         </div>
                     </div>
@@ -2266,7 +2318,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                     </li>
                     <li>
                         サイト圏図式（動的グラフ）<br>
-                        以下は、あくまでもイメージです。実際の検索機能は<a href="https://tatsuy-kobayashi.github.io/my-web/docs/search/siteCategoricalDiagram.html">こちら</a>でお試しください。
+                        以下は、あくまでもイメージです。実際の検索機能は<a
+                            href="https://tatsuy-kobayashi.github.io/my-web/docs/search/siteCategoricalDiagram.html">こちら</a>でお試しください。
                     </li>
                 </ul>
                 <div class="site-categorical-diagram">
@@ -2277,12 +2330,16 @@ document.addEventListener('DOMContentLoaded', async function () {
                     <li style="margin-bottom: 10px;">
                         単純文字列検索（Substring Search）
                         <div class="control-group control-substringSearch">
-                            <label class="control-substringSearch-label" for="labelSubstringSearchInput" title="文字列を入力してください" style="margin-right: 5px;">単純文字列検索:</label>
-                            <div class="search-box" role="combobox" style="position: relative; display: inline-block; margin-right: 5px; width: 200px;">
-                                <input type="text" id="labelSubstringSearchInput" placeholder="例: 数学" autocomplete="off">
+                            <label class="control-substringSearch-label" for="labelSubstringSearchInput"
+                                title="文字列を入力してください" style="margin-right: 5px;">単純文字列検索:</label>
+                            <div class="search-box" role="combobox"
+                                style="position: relative; display: inline-block; margin-right: 5px; width: 200px;">
+                                <input type="text" id="labelSubstringSearchInput" placeholder="例: 数学"
+                                    autocomplete="off">
                                 <ul id="labelSubstringSearchSuggestions"></ul>
                             </div>
-                            <button id="labelSubstringSearchBtn" aria-label="入力した文字列で検索を実行" title="検索を実行">検索</button>
+                            <button id="labelSubstringSearchBtn" aria-label="入力した文字列で検索を実行"
+                                title="検索を実行">検索</button>
                         </div> <!-- control-group -->
                         <div class="search-help" style="margin-top: 8px; font-size: 0.9em;">
                             <p><strong>正規表現検索について</strong></p>
@@ -2294,7 +2351,8 @@ document.addEventListener('DOMContentLoaded', async function () {
 
                             <p>
                                 正規表現は <code>/pattern/flags</code> の形式で入力すると有効になる。
-                                利用可能なフラグは <code>g</code>, <code>i</code>, <code>m</code>, <code>u</code>, <code>y</code>。
+                                利用可能なフラグは <code>g</code>, <code>i</code>, <code>m</code>, <code>u</code>,
+                                <code>y</code>。
                             </p>
 
                             <p>

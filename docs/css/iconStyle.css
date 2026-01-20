@@ -45,3 +45,6 @@ a .physics-link:hover {
 a .icon-physics:hover:before {
     background-color: #ffb974;
 }
+a .icon-physics:after {
+	content: none;
+}

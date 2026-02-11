@@ -4,18 +4,21 @@
     設計方針  : サイズは参照元の font-size に追従する (1em)。
                 参照先で font-size を指定すればアイコンもそれに合わせてスケーリングされる。
                 font-size 未指定時はブラウザデフォルト（通常 16px 前後）にフォールバックする。
+                色は currentColor を使用し、参照元の color プロパティに追従する。
+                例: style.css の a { color: #ed8a29 } → そのまま反映
+                    .icon-label a { color: #1DA1F2 } → 上書きで反映
 */
-a .icon-physics {
+.icon-physics {
 	text-align: center;
 	text-decoration: none;
 }
-a .icon-physics:before {
+.icon-physics:before {
 	content: "";
 	width: 1em;
 	height: 1em;
 	display: inline-block;
 	vertical-align: middle;
-	background-color: #ed8a29;
+	background-color: currentColor;
 	-webkit-mask-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/images/pendulum.svg);
 	mask-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/images/pendulum.svg);
 	-webkit-mask-position: center center;
@@ -26,28 +29,5 @@ a .icon-physics:before {
 	mask-size: contain;
 }
 .icon-physics:after {
-	content: "";
-	width: 1em;
-	height: 1em;
-	display: inline-block;
-	vertical-align: middle;
-	background-color: #000000;
-	-webkit-mask-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/images/pendulum.svg);
-	mask-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/images/pendulum.svg);
-	-webkit-mask-position: center center;
-	mask-position: center center;
-	-webkit-mask-repeat: no-repeat;
-	mask-repeat: no-repeat;
-	-webkit-mask-size: contain;
-	mask-size: contain;
-}
-a .physics-link:hover {
-    background-color: #ffffff;
-    color: #ffb974;
-}
-a .icon-physics:hover:before {
-    background-color: #ffb974;
-}
-a .icon-physics:after {
 	content: none;
 }

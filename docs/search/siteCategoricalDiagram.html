@@ -141,215 +141,214 @@
 
 <style>
 .site-categorical-diagram .controls {
-display: flex;
-flex-direction: column;        /* 横並び → 縦並びへ変更 */
-align-items: stretch;          /* 横幅いっぱい使う */
-margin-bottom: 15px;
-padding: 12px 16px;
-background: #f8f9fa;
-border: 1px solid #ddd;
-border-radius: 8px;
+    display: flex;
+    flex-direction: column;        /* 横並び → 縦並びへ変更 */
+    align-items: stretch;          /* 横幅いっぱい使う */
+    margin-bottom: 15px;
+    padding: 12px 16px;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
 }
 
 /* 各入力ブロック */
 .controls .control-group {
-flex-direction: row;           /* 中身を横並び */
-align-items: center;           /* 縦中央揃え */
-gap: 12px;
-flex-wrap: wrap;               /* 画面が狭いときは折り返し */
-margin-bottom: 8px;
-font-size: 14px;
+    flex-direction: row;           /* 中身を横並び */
+    align-items: center;           /* 縦中央揃え */
+    gap: 12px;
+    flex-wrap: wrap;               /* 画面が狭いときは折り返し */
+    margin-bottom: 8px;
+    font-size: 14px;
 }
 /* fieldsetは中だけ横並び */
 .controls fieldset.control-group {
-flex-direction: row;
-flex-wrap: wrap;
-align-items: center;
-gap: 12px 16px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 16px;
 }
 
 /* labelを横並び用サイズに */
 .control-label {
-min-width: 80px;               /* ラベル幅をある程度固定 */
-text-align: right;             /* 学習サイトらしい整列 */
-font-size: 13px;
-color: #555;
+    min-width: 80px;               /* ラベル幅をある程度固定 */
+    text-align: right;             /* 学習サイトらしい整列 */
+    font-size: 13px;
+    color: #555;
 }
 
 /* 検索エリアの横並び最適化 */
 .controls .control-search {
-flex-direction: row;
-align-items: center;
-gap: 12px;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
 }
 
 /* 検索ボックス */
 .control-search .search-box {
-position: relative;
-width: 220px;
+    position: relative;
+    width: 220px;
 }
 
 /* Radio/fieldset */
 .radio-group {
-border: 1px solid #ddd;
-border-radius: 8px;
-padding: 5px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 5px 12px;
 }
 
 .radio-group legend {
-font-size: 12px;
-padding: 0 6px;
-color: #666;
+    font-size: 12px;
+    padding: 0 6px;
+    color: #666;
 }
 
 /* 入力フォーム - 視認性UP */
 .site-categorical-diagram input[type="number"],
 .site-categorical-diagram input[type="text"] {
-padding: 6px 8px;
-font-size: 14px;
-border: 1px solid #bbb;
-border-radius: 4px;
-transition: border 0.2s ease;
+    padding: 6px 8px;
+    font-size: 14px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    transition: border 0.2s ease;
 }
 .site-categorical-diagram input[type="number"] {
-width: 56px;
+    width: 56px;
 }
 .site-categorical-diagram input[type="text"] {
-width: 100%;
-box-sizing: border-box;
+    width: 100%;
+    box-sizing: border-box;
 }
 .site-categorical-diagram input:focus {
-border-color: #0078d4;
-outline: none;
-box-shadow: 0 0 3px rgba(0, 120, 212, 0.4);
+    border-color: #0078d4;
+    outline: none;
+    box-shadow: 0 0 3px rgba(0, 120, 212, 0.4);
 }
 
 /* ボタンデザイン */
 .site-categorical-diagram button {
-padding: 6px 12px;
-border-radius: 6px;
-border: 1px solid #0078d4;
-background: #0078d4;
-color: #fff;
-cursor: pointer;
-font-size: 14px;
-transition: background 0.15s ease, opacity 0.2s ease;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #0078d4;
+    background: #0078d4;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.15s ease, opacity 0.2s ease;
 }
 
 .site-categorical-diagram button:hover {
-background: #006dc2;
+    background: #006dc2;
 }
 
 /* ラジオ行 */
 .radio-label {
-display: inline-flex;
-align-items: center;
-gap: 6px;
-margin-right: 12px;
-font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-right: 12px;
+    font-size: 13px;
 }
 
 /* フォーカス深さ領域 */
 .focus-depth {
-display: inline-flex;
-gap: 10px;
-
+    display: inline-flex;
+    gap: 10px;
 }
 
 /* グラフエリア */
 .site-categorical-diagram #network {
-width: 80%;
-height: 400px;
-border: 2px solid #ccc;
-background: #fff;
-border-radius: 8px;
-box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    width: 80%;
+    height: 400px;
+    border: 2px solid #ccc;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
 }
 
 .dimmed {
-opacity: 0.45;
-transition: opacity 0.18s ease;
+    opacity: 0.45;
+    transition: opacity 0.18s ease;
 }
 
 /* ボタンを見た目だけ無効化したい場合（押せない雰囲気） */
 .btn-dim {
-opacity: 0.6;
-pointer-events: none;
+    opacity: 0.6;
+    pointer-events: none;
 }
 
 /* optional: 見た目で「有効」状態を強調 */
 .controls .active {
-outline: 2px solid rgba(0,120,212,0.12);
-border-radius: 6px;
-padding: 4px;
+    outline: 2px solid rgba(0,120,212,0.12);
+    border-radius: 6px;
+    padding: 4px;
 }
 
 /* ノード情報パネル */
 .node-info-panel {
-position: fixed;
-bottom: 20px;
-right: 20px;
-max-width: 320px;
-max-height: 260px;
-background: #ffffff;
-border: 1px solid #bbb;
-border-radius: 8px;
-box-shadow: 0 2px 12px rgba(0,0,0,0.18);
-padding: 12px;
-overflow: hidden;
-display: flex;
-flex-direction: column;
-z-index: 9999;
-animation: fadein 0.2s ease-out;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    max-width: 320px;
+    max-height: 260px;
+    background: #ffffff;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    padding: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    z-index: 9999;
+    animation: fadein 0.2s ease-out;
 }
 @keyframes fadein {
-from { opacity: 0; transform: translateY(6px); }
-to   { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 .node-info-title {
-font-weight: bold;
-margin-bottom: 8px;
-font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 16px;
 }
 .node-info-title-english {
-margin-bottom: 8px;
-font-size: 14px;
+    margin-bottom: 8px;
+    font-size: 14px;
 }
 .node-info-body {
-overflow-y: auto;
-max-height: 140px;
-line-height: 1.4;
-font-size: 14px;
+    overflow-y: auto;
+    max-height: 140px;
+    line-height: 1.4;
+    font-size: 14px;
 }
 
 /* 初期状態は非表示 */
 .site-categorical-diagram .hidden {
-display: none;
+    display: none;
 }
 #labelSearchSuggestions {
-position: absolute;
-top: 100%;
-left: 0;
-right: 0;
-background: #fff;
-border: 1px solid #ccc;
-border-top: none;
-list-style: none;
-padding: 0;
-margin: 0;
-max-height: 200px;
-overflow-y: auto;
-display: none;
-z-index: 1000;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
 }
 #labelSearchSuggestions li {
-padding: 8px 10px;
-cursor: pointer;
-border-bottom: 1px solid #eee;
+    padding: 8px 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
 }
 #labelSearchSuggestions li:hover {
-background: #f0f6ff;
+    background: #f0f6ff;
 }
 </style>
                     <p>

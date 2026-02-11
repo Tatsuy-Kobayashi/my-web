@@ -984,11 +984,12 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     const dom = {
         contentIntegSearch: $id('contentIntegSearch'),
+        labelSubstringSearchSuggestions: $id('labelSubstringSearchSuggestions'),
         contentIntegSearchResult: $id('contentIntegSearchResult')
     };
 
     // DOM 要素が揃っているか簡易チェック
-    if (!dom.contentIntegSearch || !dom.contentIntegSearchResult) {
+    if (!dom.contentIntegSearch || !dom.labelSubstringSearchSuggestions || !dom.contentIntegSearchResult) {
         console.error('[ERROR] 必要な DOM 要素が見つかりません。処理を中止します。');
         errorFlags.missingDom = true;
         currentState = STATE.ERROR;
@@ -1071,6 +1072,15 @@ document.addEventListener('DOMContentLoaded', async function () {
             currentState = STATE.ERROR;
             return false;
         }
+    }
+
+    // label にマッチする候補を返す
+    function u1f_suggestNodesByLabel(label) {
+        if (!label || label.trim() === '') {
+            return [];
+        }
+        const trimmed = label.trim().toLowerCase();
+        return siteData.filter(n => n.label.toLowerCase().includes(trimmed)).slice(0, 10); // 最大10件
     }
 
     // ------------------------
@@ -1163,12 +1173,80 @@ document.addEventListener('DOMContentLoaded', async function () {
                 }
             });
 
-            // オプション：入力中にリアルタイム判定（デバッグ用）
             substringInput.addEventListener('input', (event) => {
+                // オプション：入力中にリアルタイム判定（デバッグ用）
                 const input = event.target.value;
                 const analysisResult = determineInputType(input);
                 console.log('[UI] Real-time input analysis:', analysisResult.type);
                 // 必要に応じてUIに反映
+
+                // label input でのリアルタイム候補表示
+                const label = substringInput.value;
+                const suggestions = u1f_suggestNodesByLabel(label);
+
+                if (suggestions.length === 0) {
+                    dom.labelSubstringSearchSuggestions.style.display = 'none';
+                    return;
+                }
+
+                // サジェスト一覧をクリア
+                dom.labelSubstringSearchSuggestions.innerHTML = '';
+                console.log('[UI] label substring search suggestions are cleared');
+
+                // 候補を追加
+                for (const node of suggestions) {
+                    const li = document.createElement('li');
+                    // Flex layout: Use specific styles directly or add a class if preferred.
+                    // Using inline styles here to match existing pattern.
+                    li.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; border-bottom: 1px solid #eee; transition: background-color 0.2s;';
+
+                    // Text part (Click -> Populate Input)
+                    const textSpan = document.createElement('span');
+                    textSpan.textContent = node.label;
+                    textSpan.style.cssText = 'flex-grow: 1; cursor: pointer;';
+                    textSpan.addEventListener('click', (e) => {
+                        // Prevent bubbling so we don't trigger anything else if necessary
+                        e.stopPropagation();
+                        substringInput.value = node.label;
+                        dom.labelSubstringSearchSuggestions.style.display = 'none';
+                    });
+
+                    // Link Icon part (Click -> Navigate)
+                    const iconLink = document.createElement('a');
+                    iconLink.href = node.url;
+                    iconLink.className = 'icon-arrow-left-to-line';
+                    // Adjust style for the icon
+                    iconLink.style.cssText = 'margin-left: 10px; text-decoration: none; color: #555; font-size: 1.2em; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; border-radius: 4px;';
+                    // Optional: subtle hover effect for the icon itself
+                    iconLink.addEventListener('mouseover', function () { this.style.backgroundColor = '#ddd'; });
+                    iconLink.addEventListener('mouseout', function () { this.style.backgroundColor = 'transparent'; });
+                    // Prevent bubbling to avoid triggering textSpan click (though they are siblings, so bubbling goes to li)
+                    iconLink.addEventListener('click', (e) => {
+                        e.stopPropagation(); // Stop bubbling to li
+                    });
+
+                    li.appendChild(textSpan);
+                    li.appendChild(iconLink);
+
+                    // Row hover effect
+                    li.addEventListener('mouseover', () => {
+                        li.style.backgroundColor = '#f0f0f0';
+                    });
+                    li.addEventListener('mouseout', () => {
+                        li.style.backgroundColor = '';
+                    });
+
+                    dom.labelSubstringSearchSuggestions.appendChild(li);
+                }
+
+                dom.labelSubstringSearchSuggestions.style.display = 'block';
+            });
+
+            // 外クリックで候補を非表示（学問検索）
+            document.addEventListener('click', (e) => {
+                if (!substringInput.contains(e.target) && !dom.labelSubstringSearchSuggestions.contains(e.target)) {
+                    dom.labelSubstringSearchSuggestions.style.display = 'none';
+                }
             });
 
             console.log('[UI] Substring search event handlers attached');

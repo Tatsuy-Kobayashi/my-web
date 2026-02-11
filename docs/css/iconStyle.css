@@ -31,3 +31,29 @@
 .icon-physics:after {
 	content: none;
 }
+
+.icon-arrow-left-to-line {
+	text-align: center;
+	text-decoration: none;
+}
+
+.icon-arrow-left-to-line:before {
+	content: "";
+	width: 1em;
+	height: 1em;
+	display: inline-block;
+	vertical-align: middle;
+	background-color: currentColor;
+	-webkit-mask-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/images/arrow-left-to-line.svg);
+	mask-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/images/arrow-left-to-line.svg);
+	-webkit-mask-position: center center;
+	mask-position: center center;
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-size: contain;
+	mask-size: contain;
+}
+
+.icon-arrow-left-to-line:after {
+	content: none;
+}

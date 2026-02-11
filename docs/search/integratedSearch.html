@@ -98,7 +98,6 @@
     font-family: 'Arial', sans-serif;
     transition: background-color 0.3s ease;
 }
-
 .main .summary_pulldownList {
     cursor: pointer;
     font-weight: bold;
@@ -106,15 +105,12 @@
     padding: 5px;
     transition: background-color 0.3s ease;
 }
-
 .main .details_pulldownList[open] {
     background-color: #e6f7ff;
 }
-
-.main .details_pulldownList>.ul_pulldownList {
+.main .details_pulldownList > .ul_pulldownList {
     padding-left: 20px;
 }
-
 .main .ul_pulldownList {
     list-style: none;
     padding: 0;
@@ -122,49 +118,35 @@
 }
 
 .pulldown_list_wrapper .li_pulldownList {
-    padding-left: 10px;
-    /* 基本のインデント */
+    padding-left: 10px; /* 基本のインデント */
     list-style-type: none;
 }
-
 .pulldown_list_wrapper .li_pulldownList a {
     text-decoration: none;
     color: #333;
     transition: color 0.3s ease;
 }
-
 .pulldown_list_wrapper .li_pulldownList a:hover {
     color: #1a73e8;
 }
 
-.pulldown_list_wrapper .li_pulldownList>.details_pulldownList>.summary_pulldownList {
-    padding-left: 0;
-    /* 親要素にはインデントなし */
+.pulldown_list_wrapper .li_pulldownList > .details_pulldownList > .summary_pulldownList {
+    padding-left: 0; /* 親要素にはインデントなし */
 }
-
-.pulldown_list_wrapper .li_pulldownList .details_pulldownList>.li_pulldownList {
-    padding-left: 10px;
-    /* 第一階層：10pxのインデント */
+.pulldown_list_wrapper .li_pulldownList .details_pulldownList > .li_pulldownList {
+    padding-left: 10px; /* 第一階層：10pxのインデント */
 }
-
-.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList>.li_pulldownList {
-    padding-left: 20px;
-    /* 第二階層：さらに10pxのインデント */
+.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList > .li_pulldownList {
+    padding-left: 20px; /* 第二階層：さらに10pxのインデント */
 }
-
-.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList>.li_pulldownList {
-    padding-left: 30px;
-    /* 第三階層：さらに10pxのインデント */
+.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList > .li_pulldownList {
+    padding-left: 30px; /* 第三階層：さらに10pxのインデント */
 }
-
-.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList>.li_pulldownList {
-    padding-left: 40px;
-    /* 第四階層：さらに10pxのインデント */
+.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList > .li_pulldownList {
+    padding-left: 40px; /* 第四階層：さらに10pxのインデント */
 }
-
-.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList>.li_pulldownList {
-    padding-left: 50px;
-    /* 第五階層：さらに10pxのインデント */
+.pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList > .li_pulldownList {
+    padding-left: 50px; /* 第五階層：さらに10pxのインデント */
 }
 
 /* 目次 */
@@ -350,6 +332,90 @@
     line-height: 1.2;
     border-radius: 3px;
     outline-color: #00000055;
+}
+
+/* 各入力ブロック */
+.substring-controls .control-group {
+    flex-direction: row;           /* 中身を横並び */
+    align-items: center;           /* 縦中央揃え */
+    gap: 12px;
+    flex-wrap: wrap;               /* 画面が狭いときは折り返し */
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+/* fieldsetは中だけ横並び */
+.substring-controls fieldset.control-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 16px;
+}
+
+/* labelを横並び用サイズに */
+.control-substringSearch-label {
+    min-width: 80px;               /* ラベル幅をある程度固定 */
+    text-align: right;             /* 学習サイトらしい整列 */
+    font-size: 13px;
+}
+
+/* 検索エリアの横並び最適化 */
+.substring-controls .control-substringSearch {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+/* 検索ボックス */
+.control-substringSearch .search-box {
+    position: relative;
+    width: 220px;
+}
+
+/* 入力フォーム - 視認性UP */
+.substring-controls input[type="number"],
+.substring-controls input[type="text"] {
+    padding: 6px 8px;
+    font-size: 14px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    transition: border 0.2s ease;
+}
+.substring-controls input[type="number"] {
+    width: 56px;
+}
+.substring-controls input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+}
+.substring-controls input:focus {
+    border-color: #0078d4;
+    outline: none;
+    box-shadow: 0 0 3px rgba(0, 120, 212, 0.4);
+}
+
+#labelSubstringSearchSuggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+}
+#labelSubstringSearchSuggestions li {
+    padding: 8px 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+#labelSubstringSearchSuggestions li:hover {
+    background: #f0f6ff;
 }
     </style>
 </head>

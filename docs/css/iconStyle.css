@@ -1,42 +1,45 @@
 /*
     ファイル名: iconStyle.css
     内容      : アイコンのスタイル
+    設計方針  : サイズは参照元の font-size に追従する (1em)。
+                参照先で font-size を指定すればアイコンもそれに合わせてスケーリングされる。
+                font-size 未指定時はブラウザデフォルト（通常 16px 前後）にフォールバックする。
 */
 a .icon-physics {
-	text-align:center;
-	text-decoration:none;
+	text-align: center;
+	text-decoration: none;
 }
 a .icon-physics:before {
-    content:"";
-	width:21px;
-	height:21px;
-	display:inline-block;
-	vertical-align:middle;
-    background-color: #ed8a29;
-    -webkit-mask-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/images/pendulum.svg);
-    mask-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/images/pendulum.svg);
-    -webkit-mask-position:center center;
-	mask-position:center center;
-	-webkit-mask-repeat:no-repeat;
-	mask-repeat:no-repeat;
-	-webkit-mask-size:contain;
-	mask-size:contain;
+	content: "";
+	width: 1em;
+	height: 1em;
+	display: inline-block;
+	vertical-align: middle;
+	background-color: #ed8a29;
+	-webkit-mask-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/images/pendulum.svg);
+	mask-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/images/pendulum.svg);
+	-webkit-mask-position: center center;
+	mask-position: center center;
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-size: contain;
+	mask-size: contain;
 }
 .icon-physics:after {
-    content:"";
-	width:21px;
-	height:21px;
-	display:inline-block;
-	vertical-align:middle;
-    background-color: #000000;
-    -webkit-mask-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/images/pendulum.svg);
-    mask-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/images/pendulum.svg);
-    -webkit-mask-position:center center;
-	mask-position:center center;
-	-webkit-mask-repeat:no-repeat;
-	mask-repeat:no-repeat;
-	-webkit-mask-size:contain;
-	mask-size:contain;
+	content: "";
+	width: 1em;
+	height: 1em;
+	display: inline-block;
+	vertical-align: middle;
+	background-color: #000000;
+	-webkit-mask-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/images/pendulum.svg);
+	mask-image: url(https://tatsuy-kobayashi.github.io/my-web/docs/images/pendulum.svg);
+	-webkit-mask-position: center center;
+	mask-position: center center;
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-size: contain;
+	mask-size: contain;
 }
 a .physics-link:hover {
     background-color: #ffffff;

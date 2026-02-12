@@ -74,6 +74,13 @@
     padding: 0 50px 0 50px;
     width: 100%;
 }
+.main code {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    padding: 1px 4px;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", monospace;
+    font-size: 0.95em;
+}
 
 .category_list_wrapper {
     width: 100%;
@@ -518,33 +525,34 @@
                         </div> <!-- control-group -->
                         <div class="search-help" style="margin-top: 8px; font-size: 0.9em;">
                             <p><strong>正規表現検索について</strong></p>
-
                             <p>
                                 まず重要な点として、<strong>/.../ 形式で入力しない限り正規表現検索にはならない</strong>。
                                 例: <code>/foo.*bar/i</code> は正規表現検索になるが、<code>foo.*bar</code> は通常の文字列検索になる。
                             </p>
-
                             <p>
                                 正規表現は <code>/pattern/flags</code> の形式で入力すると有効になる。
                                 利用可能なフラグは <code>g</code>, <code>i</code>, <code>m</code>, <code>u</code>,
                                 <code>y</code>。
                             </p>
-
                             <p>
                                 検索対象は label、labelEn、各セクションの見出し（h2）および本文。
                                 JavaScript の <code>RegExp.test()</code> により一致判定を行う。
                             </p>
-
                             <p>
                                 構文が誤っている正規表現は無効として扱う。
                                 その場合、検索は実行されずエラー通知が表示される。
                             </p>
-
                             <p>
                                 <strong>注意点</strong><br>
                                 ・論理演算子検索（AND/OR/NOT）とは組み合わせられない<br>
                                 ・g フラグ使用時は <code>lastIndex</code> により一致判定が変化する可能性がある<br>
                                 ・<code>/.../</code> 形式以外は常に通常検索として処理される
+                            </p>
+                            <p>
+                                <strong>検索候補</strong><br>
+                                ・入力した文字列が既存のページ名に含まれるものであった場合、入力欄下部に検索候補が表示されます。ただし、候補は10項目までしか表示されません。<br>
+                                ・検索候補内のタイトルを押下すると、その文字列を入力欄に追加できます。<br>
+                                ・検索候補内のアイコン「<span class="icon-arrow-left-to-line"></span>」を押下すると直接リンク先のページを開くことができます。
                             </p>
                         </div>
                     </li>

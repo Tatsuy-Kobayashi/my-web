@@ -2213,6 +2213,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         resultHtml += '</div>';
         resultContainer.innerHTML = resultHtml;
+        window.scrollTo(0, 0);
 
         // 戻るボタンのイベントリスナーを追加
         const backBtn = document.getElementById('backToSearchBtn');

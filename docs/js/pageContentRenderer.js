@@ -884,8 +884,27 @@ document.addEventListener('DOMContentLoaded', async function () {
         html += '<dt>関連タグ</dt>';
         html += '<dd>';
 
+        // Hash function (djb2)
+        function djb2Hash(str) {
+            let h = 5381;
+            for (let i = 0; i < str.length; i++) {
+                h = ((h << 5) + h) + str.charCodeAt(i);
+                h = h & 0xFFFFFFFF;
+            }
+            return (h >>> 0).toString(16);
+        }
+
         keywords.forEach((kw, idx) => {
-            const tagUrl = `https://tatsuy-kobayashi.github.io/my-web/docs/tags/${encodeURIComponent(kw)}`;
+            // Generate search URL
+            const base = kw;
+            const type = 'tag';
+            const normalized = kw;
+            const payload = String(base) + '|' + type + '|' + JSON.stringify(normalized);
+            const hash = djb2Hash(payload);
+            const ts = Date.now();
+            const frag = 'q=' + encodeURIComponent(String(base)) + '&type=' + encodeURIComponent(type) + '&h=' + hash + '&ts=' + ts;
+            const tagUrl = `https://tatsuy-kobayashi.github.io/my-web/docs/search/integratedSearch.html#${frag}`;
+
             html += `<span class="topic-label" data-index="${idx}">`;
             html += `<a href="${tagUrl}"><span class="topic-label-text"># ${String(kw)}</span></a>`;
             html += `</span>`;
@@ -1179,10 +1198,30 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         // HTML 生成
         let html = '<ul>';
-        const escapeHtml = (str) => String(str).replace(/[&<>"]+/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]||ch));
+        const escapeHtml = (str) => String(str).replace(/[&<>"]+/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch] || ch));
+
+        // Hash function (djb2) - if not already defined in scope, or reuse if possible.
+        function djb2Hash(str) {
+            let h = 5381;
+            for (let i = 0; i < str.length; i++) {
+                h = ((h << 5) + h) + str.charCodeAt(i);
+                h = h & 0xFFFFFFFF;
+            }
+            return (h >>> 0).toString(16);
+        }
+
         tags.forEach((tag, idx) => {
             const tagId = idx;
-            const url = `https://tatsuy-kobayashi.github.io/my-web/docs/tags/${encodeURIComponent(tag)}`;
+            // Generate search URL
+            const base = tag;
+            const type = 'tag';
+            const normalized = tag;
+            const payload = String(base) + '|' + type + '|' + JSON.stringify(normalized);
+            const hash = djb2Hash(payload);
+            const ts = Date.now();
+            const frag = 'q=' + encodeURIComponent(String(base)) + '&type=' + encodeURIComponent(type) + '&h=' + hash + '&ts=' + ts;
+            const url = `https://tatsuy-kobayashi.github.io/my-web/docs/search/integratedSearch.html#${frag}`;
+
             html += `<li class="cat-item cat-item-${tagId}">`;
             html += `<a href="${url}" data-nodal=""><span class="list-item-caption">${escapeHtml(tag)}</span></a>`;
             html += `</li>`;

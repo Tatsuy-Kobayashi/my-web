@@ -1080,7 +1080,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             return [];
         }
         const trimmed = label.trim().toLowerCase();
-        return siteData.filter(n => n.label.toLowerCase().includes(trimmed)).slice(0, 10); // 最大10件
+        return searchSource.filter(n => n.label.toLowerCase().includes(trimmed)).slice(0, 10); // 最大10件
     }
 
     // ------------------------

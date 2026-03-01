@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: 402, label: "量子物理学", labelEn: "Quantum Physics", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/quantum_physics/quantum_physics.html", mainPath: ["0:4:40:402"], released: 0 },
         { id: 403, label: "超ひも理論", labelEn: "Superstring Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/physics/superstring_theory/superstring_theory.html", mainPath: ["0:4:40:403"], released: 0 },
         // 情報学50
-        { id: 500, label: "IT用語", labelEn: "it_terms", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/it_terms/it_terms.html", mainPath: ["0:5:50:500"], released: 1 },
+        { id: 500, label: "IT用語", labelEn: "IT Terms", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/it_terms/it_terms.html", mainPath: ["0:5:50:500"], released: 1 },
         { id: 501, label: "情報理論", labelEn: "Information Theory", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/information_theory/information_theory.html", mainPath: ["0:5:50:501"], released: 0 },
         { id: 502, label: "計算理論", labelEn: "Theory of Computation", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/theory_of_computation/theory_of_computation.html", mainPath: ["0:5:50:502"], released: 0 },
         { id: 503, label: "計算機科学", labelEn: "Computer Science", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/informatics/computer_science/computer_science.html", mainPath: ["0:5:50:503"], released: 0 },
@@ -1642,6 +1642,93 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('[MAIN] unexpected error:', e);
             currentState = STATE.ERROR;
         }
+    })();
+
+    // ------------------------
+    // パネル ドラッグ移動
+    // ------------------------
+    (function initPanelDrag() {
+        const panel = document.getElementById('controlsPanel');
+        const header = document.getElementById('controlsHeader');
+        if (!panel || !header) return;
+
+        let isDragging = false;
+        let startX = 0, startY = 0;
+        let panelStartX = 0, panelStartY = 0;
+
+        function onDragStart(clientX, clientY) {
+            isDragging = true;
+            startX = clientX;
+            startY = clientY;
+            const rect = panel.getBoundingClientRect();
+            panelStartX = rect.left;
+            panelStartY = rect.top;
+            header.classList.add('dragging');
+        }
+
+        function onDragMove(clientX, clientY) {
+            if (!isDragging) return;
+            let newX = panelStartX + (clientX - startX);
+            let newY = panelStartY + (clientY - startY);
+
+            // ビューポート外へのクランプ
+            const pw = panel.offsetWidth;
+            const ph = panel.offsetHeight;
+            const vw = window.innerWidth;
+            const vh = window.innerHeight;
+            newX = Math.max(0, Math.min(newX, vw - pw));
+            newY = Math.max(0, Math.min(newY, vh - Math.min(ph, 40)));
+
+            panel.style.left = newX + 'px';
+            panel.style.top = newY + 'px';
+        }
+
+        function onDragEnd() {
+            isDragging = false;
+            header.classList.remove('dragging');
+        }
+
+        // Mouse events
+        header.addEventListener('mousedown', function (e) {
+            // トグルボタンの場合はドラッグしない
+            if (e.target.closest('.controls-toggle-btn')) return;
+            e.preventDefault();
+            onDragStart(e.clientX, e.clientY);
+        });
+        document.addEventListener('mousemove', function (e) {
+            if (!isDragging) return;
+            e.preventDefault();
+            onDragMove(e.clientX, e.clientY);
+        });
+        document.addEventListener('mouseup', onDragEnd);
+
+        // Touch events
+        header.addEventListener('touchstart', function (e) {
+            if (e.target.closest('.controls-toggle-btn')) return;
+            const t = e.touches[0];
+            onDragStart(t.clientX, t.clientY);
+        }, { passive: true });
+        document.addEventListener('touchmove', function (e) {
+            if (!isDragging) return;
+            const t = e.touches[0];
+            onDragMove(t.clientX, t.clientY);
+        }, { passive: false });
+        document.addEventListener('touchend', onDragEnd);
+    })();
+
+    // ------------------------
+    // パネル 縮小/拡大トグル
+    // ------------------------
+    (function initPanelToggle() {
+        const panel = document.getElementById('controlsPanel');
+        const toggleBtn = document.getElementById('controlsToggleBtn');
+        if (!panel || !toggleBtn) return;
+
+        toggleBtn.addEventListener('click', function () {
+            const isCollapsed = panel.classList.toggle('collapsed');
+            toggleBtn.textContent = isCollapsed ? '▲' : '▼';
+            toggleBtn.title = isCollapsed ? 'パネルを開く' : 'パネルを閉じる';
+        });
     })();
 
     // ------------------------

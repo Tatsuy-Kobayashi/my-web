@@ -1,0 +1,289 @@
+/* style for siteCategoricalDiagram */
+.site-categorical-diagram .controls {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    /* フローティングパネル化 */
+    position: fixed;
+    z-index: 100;
+    top: 80px;
+    left: 20px;
+    max-width: 420px;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 0;
+    background: rgba(248, 249, 250, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(200, 200, 200, 0.6);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.2s ease;
+}
+
+/* 縮小時 */
+.site-categorical-diagram .controls.collapsed {
+    overflow: hidden;
+    max-height: none;
+}
+.site-categorical-diagram .controls.collapsed .controls-body {
+    display: none;
+}
+
+/* ドラッグハンドル（ヘッダー） */
+.controls-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 14px;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    background: rgba(0, 120, 212, 0.08);
+    border-bottom: 1px solid rgba(200, 200, 200, 0.4);
+    border-radius: 10px 10px 0 0;
+    min-height: 18px;
+}
+.controls-header:active {
+    cursor: grabbing;
+}
+.controls-header.dragging {
+    cursor: grabbing;
+}
+.controls-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+    pointer-events: none;
+}
+
+/* 開閉ボタン */
+.controls-toggle-btn {
+    background: none !important;
+    border: none !important;
+    color: #666 !important;
+    font-size: 14px !important;
+    cursor: pointer;
+    padding: 2px 6px !important;
+    border-radius: 4px !important;
+    line-height: 1;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+.controls-toggle-btn:hover {
+    background: rgba(0, 0, 0, 0.08) !important;
+    color: #333 !important;
+}
+
+/* パネル本体 */
+.controls-body {
+    padding: 12px 16px;
+}
+
+/* 各入力ブロック */
+.controls .control-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* fieldsetは中だけ横並び */
+.controls fieldset.control-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 16px;
+}
+
+/* labelを横並び用サイズに */
+.control-label {
+    min-width: 80px;
+    text-align: right;
+    font-size: 13px;
+    color: #555;
+}
+
+/* 検索エリアの横並び最適化 */
+.controls .control-search {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+/* 検索ボックス */
+.control-search .search-box {
+    position: relative;
+    width: 220px;
+}
+
+/* Radio/fieldset */
+.radio-group {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 5px 12px;
+}
+.radio-group legend {
+    font-size: 12px;
+    padding: 0 6px;
+    color: #666;
+}
+
+/* 入力フォーム - 視認性UP */
+.site-categorical-diagram input[type="number"],
+.site-categorical-diagram input[type="text"] {
+    padding: 6px 8px;
+    font-size: 14px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    transition: border 0.2s ease;
+}
+.site-categorical-diagram input[type="number"] {
+    width: 56px;
+}
+.site-categorical-diagram input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+}
+.site-categorical-diagram input:focus {
+    border-color: #0078d4;
+    outline: none;
+    box-shadow: 0 0 3px rgba(0, 120, 212, 0.4);
+}
+
+/* ボタンデザイン */
+.site-categorical-diagram button {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #0078d4;
+    background: #0078d4;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.15s ease, opacity 0.2s ease;
+}
+.site-categorical-diagram button:hover {
+    background: #006dc2;
+}
+
+/* ラジオ行 */
+.radio-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-right: 12px;
+    font-size: 13px;
+}
+
+/* フォーカス深さ領域 */
+.focus-depth {
+    display: inline-flex;
+    gap: 10px;
+}
+
+/* グラフエリア — 全画面化 */
+.site-categorical-diagram #network {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    border: none;
+    background: #fff;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.dimmed {
+    opacity: 0.45;
+    transition: opacity 0.18s ease;
+}
+
+/* ボタンを見た目だけ無効化したい場合（押せない雰囲気） */
+.btn-dim {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* optional: 見た目で「有効」状態を強調 */
+.controls .active {
+    outline: 2px solid rgba(0, 120, 212, 0.12);
+    border-radius: 6px;
+    padding: 4px;
+}
+
+/* ノード情報パネル */
+.node-info-panel {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    max-width: 320px;
+    max-height: 260px;
+    background: #ffffff;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+    padding: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    z-index: 9999;
+    animation: fadein 0.2s ease-out;
+}
+@keyframes fadein {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.node-info-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+.node-info-title-english {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+.node-info-body {
+    overflow-y: auto;
+    max-height: 140px;
+    line-height: 1.4;
+    font-size: 14px;
+}
+
+/* 初期状態は非表示 */
+.site-categorical-diagram .hidden {
+    display: none;
+}
+#labelSearchSuggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+}
+#labelSearchSuggestions li {
+    padding: 8px 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+#labelSearchSuggestions li:hover {
+    background: #f0f6ff;
+}

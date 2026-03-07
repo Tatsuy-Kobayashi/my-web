@@ -87,57 +87,55 @@
                             <div class="controls-body" id="controlsBody">
                                 <!-- 深さ制御 -->
                                 <div class="control-group">
-                                    <label class="control-label" for="minDepth" title="どの階層からノードを表示するかを指定してください"
-                                        style="margin-right: 5px;">最小深さ:</label>
-                                    <input type="number" step="1" min="0" inputmode="numeric" id="minDepth"
-                                        value="0" style="margin-right: 5px;">
+                                    <label class="control-label" for="minDepth" title="どの階層からノードを表示するかを指定してください" style="margin-right: 5px;">最小深さ:</label>
+                                    <input type="number" step="1" min="0" inputmode="numeric" id="minDepth" value="0" style="margin-right: 5px;">
 
-                                    <label class="control-label" for="maxDepth" title="表示するノードの最大階層を指定してください"
-                                        style="margin-right: 5px;">最大深さ:</label>
-                                    <input type="number" step="1" min="0" inputmode="numeric" id="maxDepth"
-                                        value="2" style="margin-right: 5px;">
+                                    <label class="control-label" for="maxDepth" title="表示するノードの最大階層を指定してください" style="margin-right: 5px;">最大深さ:</label>
+                                    <input type="number" step="1" min="0" inputmode="numeric" id="maxDepth" value="2" style="margin-right: 5px;">
 
-                                    <button id="updateBtn" aria-label="現在の条件でグラフを再描画"
-                                        title="条件を反映してグラフを更新">更新</button>
+                                    <button id="updateBtn" aria-label="現在の条件でグラフを再描画" title="条件を反映してグラフを更新">更新</button>
                                 </div> <!-- control-group -->
 
                                 <!-- 学問検索 -->
                                 <div class="control-group control-search">
                                     <label class="control-label" for="labelSearchInput" title="学問領域名を入力してください"
                                         style="margin-right: 5px;">学問検索:</label>
-                                    <div class="search-box" role="combobox"
-                                        style="position: relative; display: inline-block; margin-right: 5px; width: 200px;">
-                                        <input type="text" id="labelSearchInput" placeholder="例: 数学"
-                                            autocomplete="off">
+                                    <div class="search-box" role="combobox" style="position: relative; display: inline-block; margin-right: 5px; width: 200px;">
+                                        <input type="text" id="labelSearchInput" placeholder="例: 数学" autocomplete="off">
                                         <ul id="labelSearchSuggestions"></ul>
                                     </div>
                                     <button id="labelSearchBtn" aria-label="入力した学問名で検索を実行" title="検索を実行">検索</button>
+                                </div> <!-- control-group -->
+
+                                <!-- ページ内検索 -->
+                                <div class="control-group control-search">
+                                    <label class="control-label" for="pageSearchInput" title="ノード名を完全一致で検索します" style="margin-right: 5px;">ページ内検索:</label>
+                                    <div class="search-box" role="combobox" style="position: relative; display: inline-block; margin-right: 5px; width: 200px;">
+                                        <input type="text" id="pageSearchInput" placeholder="例: 数学" autocomplete="off">
+                                        <ul id="pageSearchSuggestions"></ul>
+                                    </div>
+                                    <button id="pageSearchBtn" aria-label="入力したノード名でページ内検索を実行" title="ページ内検索を実行">検索</button>
                                 </div> <!-- control-group -->
 
                                 <!-- クリック動作 -->
                                 <fieldset class="control-group radio-group">
                                     <legend title="ノードクリック時の動作を選択してください">クリック時の動作:</legend>
                                     <label class="radio-label" title="ノード情報を説明パネルに表示">
-                                        <input type="radio" name="clickMode" value="select" checked
-                                            aria-label="ノードの説明を表示するモード"> 説明パネル表示
+                                        <input type="radio" name="clickMode" value="select" checked aria-label="ノードの説明を表示するモード"> 説明パネル表示
                                     </label>
                                     <label class="radio-label" title="周辺ノードだけを強調表示">
-                                        <input type="radio" name="clickMode" value="nodeFocus"
-                                            aria-label="ノード周辺をフォーカス表示するモード"> ノードフォーカス
+                                        <input type="radio" name="clickMode" value="nodeFocus" aria-label="ノード周辺をフォーカス表示するモード"> ノードフォーカス
                                     </label>
                                     <!-- 追加：ノードフォーカス 用 上方/下方 深さ入力 -->
                                     <div class="focus-depth" aria-label="ノードフォーカス範囲設定">
                                         <span style="margin-left:8px;">上方
-                                            <input type="number" id="focusUp" min="0" value="1"
-                                                style="display:inline-block; margin:0 6px;">
+                                            <input type="number" id="focusUp" min="0" value="1" style="display:inline-block; margin:0 6px;">
                                             から下方
-                                            <input type="number" id="focusDown" min="0" value="1"
-                                                style="display:inline-block; margin:0 6px;">
+                                            <input type="number" id="focusDown" min="0" value="1" style="display:inline-block; margin:0 6px;">
                                             までを表示</span>
                                     </div>
                                     <label class="radio-label" title="ノードに設定されたURLへ遷移">
-                                        <input type="radio" name="clickMode" value="link"
-                                            aria-label="ノードのリンク先を開くモード">
+                                        <input type="radio" name="clickMode" value="link" aria-label="ノードのリンク先を開くモード">
                                         URLリンク遷移
                                     </label>
                                 </fieldset> <!-- control-group -->
@@ -146,12 +144,10 @@
                                 <fieldset class="control-group radio-group">
                                     <legend title="グラフのノード色表示方法を選択してください">カラー指定:</legend>
                                     <label class="radio-label" title="標準カラーテーマを使用">
-                                        <input type="radio" name="colorMode" value="default-color" checked
-                                            aria-label="デフォルトカラーで表示"> デフォルト
+                                        <input type="radio" name="colorMode" value="default-color" checked aria-label="デフォルトカラーで表示"> デフォルト
                                     </label>
                                     <label class="radio-label" title="分野ごとに色分けして表示">
-                                        <input type="radio" name="colorMode" value="rainbow"
-                                            aria-label="分野別に色分けして表示">
+                                        <input type="radio" name="colorMode" value="rainbow" aria-label="分野別に色分けして表示">
                                         分野別色分け
                                     </label>
                                 </fieldset> <!-- control-group -->

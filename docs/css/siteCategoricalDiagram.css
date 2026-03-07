@@ -287,3 +287,29 @@
 #labelSearchSuggestions li:hover {
     background: #f0f6ff;
 }
+
+/* ページ内検索 サジェスト */
+#pageSearchSuggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+}
+#pageSearchSuggestions li {
+    padding: 8px 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+#pageSearchSuggestions li:hover {
+    background: #f0f6ff;
+}

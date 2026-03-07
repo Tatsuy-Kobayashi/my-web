@@ -754,6 +754,9 @@ document.addEventListener('DOMContentLoaded', function () {
         labelSearchInput: $id('labelSearchInput'),
         labelSearchBtn: $id('labelSearchBtn'),
         labelSearchSuggestions: $id('labelSearchSuggestions'),
+        pageSearchInput: $id('pageSearchInput'),
+        pageSearchBtn: $id('pageSearchBtn'),
+        pageSearchSuggestions: $id('pageSearchSuggestions'),
         focusUp: $id('focusUp'),
         focusDown: $id('focusDown'),
         clickModeRadios: document.getElementsByName('clickMode'),
@@ -1230,6 +1233,124 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ------------------------
+    // ページ内検索ハイライト管理
+    // ------------------------
+    let _pageSearchHighlightTimer = null;
+    let _pageSearchHighlightNodeId = null;
+    let _pageSearchDragListener = null;
+    let _pageSearchClickListener = null;
+
+    // ------------------------
+    // 関数名   : vof_clearPageSearchHighlight()
+    // 名称     : ページ内検索ハイライト解除
+    // 内容     : 赤色ハイライトを解除し、デフォルト色に戻す
+    // 引数     : void
+    // 戻り値   : void
+    // ------------------------
+    function vof_clearPageSearchHighlight() {
+        if (_pageSearchHighlightTimer) {
+            clearTimeout(_pageSearchHighlightTimer);
+            _pageSearchHighlightTimer = null;
+        }
+        if (_pageSearchHighlightNodeId !== null && network && network.body && network.body.data && network.body.data.nodes) {
+            try {
+                const existing = network.body.data.nodes.get(_pageSearchHighlightNodeId);
+                if (existing) {
+                    network.body.data.nodes.update({
+                        id: _pageSearchHighlightNodeId,
+                        color: { background: '#97C2FC', border: '#2B7CE9', highlight: { background: '#D2E5FF', border: '#2B7CE9' } }
+                    });
+                }
+            } catch (e) {
+                console.warn('[PAGE_SEARCH] clearHighlight failed:', e);
+            }
+        }
+        // イベントリスナー解除
+        if (_pageSearchClickListener && network) {
+            network.off('click', _pageSearchClickListener);
+            _pageSearchClickListener = null;
+        }
+        if (_pageSearchDragListener && network) {
+            network.off('dragStart', _pageSearchDragListener);
+            _pageSearchDragListener = null;
+        }
+        _pageSearchHighlightNodeId = null;
+        console.log('[PAGE_SEARCH] highlight cleared');
+    }
+
+    // ------------------------
+    // 関数名   : u1f_performPageSearch(label)
+    // 名称     : ページ内検索実行
+    // 内容     : 完全一致でノードを検索し、ヒット時は赤色ハイライト+フォーカス
+    // 引数     : label - 検索文字列
+    // 戻り値   : void
+    // ------------------------
+    function u1f_performPageSearch(label) {
+        console.log('[PAGE_SEARCH] u1f_performPageSearch start, label=', label);
+
+        // 既存ハイライトをクリア
+        vof_clearPageSearchHighlight();
+
+        if (!label || label.trim() === '') {
+            return;
+        }
+        const trimmed = label.trim();
+
+        // 完全一致検索
+        const target = nodesData.find(n => n.label === trimmed);
+        if (!target) {
+            console.log('[PAGE_SEARCH] no exact match found for:', trimmed);
+            return;
+        }
+
+        const nodeId = target.id;
+
+        // 現在表示中のネットワークに存在するか確認
+        if (!network || !network.body || !network.body.data || !network.body.data.nodes) {
+            return;
+        }
+        const visNode = network.body.data.nodes.get(nodeId);
+        if (!visNode) {
+            console.log('[PAGE_SEARCH] node not in current network:', nodeId);
+            return;
+        }
+
+        // カラーモードをデフォルトに変更
+        const defaultRadio = document.querySelector('input[name="colorMode"][value="default-color"]');
+        if (defaultRadio && !defaultRadio.checked) {
+            defaultRadio.checked = true;
+            refreshNetworkColors();
+        }
+
+        // ヒットノードを赤色に変更
+        network.body.data.nodes.update({
+            id: nodeId,
+            color: { background: '#FF0000', border: '#CC0000', highlight: { background: '#FF3333', border: '#CC0000' } }
+        });
+        _pageSearchHighlightNodeId = nodeId;
+
+        // フォーカス
+        network.focus(nodeId, { scale: 1.2, animation: { duration: 500 } });
+
+        // 10秒後に自動リセット
+        _pageSearchHighlightTimer = setTimeout(() => {
+            vof_clearPageSearchHighlight();
+        }, 10000);
+
+        // ユーザ操作でリセット
+        _pageSearchClickListener = function () {
+            vof_clearPageSearchHighlight();
+        };
+        _pageSearchDragListener = function () {
+            vof_clearPageSearchHighlight();
+        };
+        network.on('click', _pageSearchClickListener);
+        network.on('dragStart', _pageSearchDragListener);
+
+        console.log('[PAGE_SEARCH] highlighted node:', nodeId);
+    }
+
+    // ------------------------
     // u1f_performIdSearch(id, options = {})
     // 引数：
     // - u1f_performIdSearch(id) : id 指定から
@@ -1596,11 +1717,69 @@ document.addEventListener('DOMContentLoaded', function () {
             for (const r of dom.colorModeRadios) {
                 r.addEventListener('change', () => {
                     console.log('[UI] colorMode changed ->', document.querySelector('input[name="colorMode"]:checked').value);
+                    // ページ内検索ハイライトをクリア
+                    vof_clearPageSearchHighlight();
                     // 現在表示しているノード/エッジを再取得して色を再適用
                     refreshNetworkColors();
                 });
             }
         }
+
+        // ページ内検索ボタン
+        dom.pageSearchBtn.addEventListener('click', () => {
+            console.log('[UI] page search clicked');
+            const label = String(dom.pageSearchInput.value);
+            dom.pageSearchSuggestions.style.display = 'none';
+            u1f_performPageSearch(label);
+        });
+
+        // ページ内検索 Enter キー
+        dom.pageSearchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const label = dom.pageSearchInput.value;
+                dom.pageSearchSuggestions.style.display = 'none';
+                u1f_performPageSearch(label);
+            }
+        });
+
+        // ページ内検索 サジェスト表示
+        dom.pageSearchInput.addEventListener('input', () => {
+            const label = dom.pageSearchInput.value;
+            const suggestions = u1f_suggestNodesByLabel(label);
+
+            if (suggestions.length === 0) {
+                dom.pageSearchSuggestions.style.display = 'none';
+                return;
+            }
+
+            dom.pageSearchSuggestions.innerHTML = '';
+
+            for (const node of suggestions) {
+                const li = document.createElement('li');
+                li.textContent = node.label;
+                li.addEventListener('mouseover', () => {
+                    li.style.backgroundColor = '#f0f0f0';
+                });
+                li.addEventListener('mouseout', () => {
+                    li.style.backgroundColor = '';
+                });
+                li.addEventListener('click', () => {
+                    dom.pageSearchInput.value = node.label;
+                    dom.pageSearchSuggestions.style.display = 'none';
+                    u1f_performPageSearch(node.label);
+                });
+                dom.pageSearchSuggestions.appendChild(li);
+            }
+
+            dom.pageSearchSuggestions.style.display = 'block';
+        });
+
+        // 外クリックでページ内検索サジェスト非表示
+        document.addEventListener('click', (e) => {
+            if (!dom.pageSearchInput.contains(e.target) && !dom.pageSearchSuggestions.contains(e.target)) {
+                dom.pageSearchSuggestions.style.display = 'none';
+            }
+        });
     }
 
     // ------------------------

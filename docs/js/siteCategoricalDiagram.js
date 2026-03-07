@@ -833,6 +833,92 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // 色計算ヘルパー
+    const clamp = v => Math.max(0, Math.min(255, Math.round(v)));
+    const toHex = v => ('0' + clamp(v).toString(16)).slice(-2);
+
+    function detectCategoryFromNode(n) {
+        // カテゴリ判定は mainPath のみを使用する（auxPathによる汚染を防ぐ）
+        const paths = n.mainPath;
+        // mainPath は validateData で必須チェック済みだが、念のためガード
+        if (!paths || !paths.length) return null;
+        // 最初の mainPath を正とする
+        for (const p of paths) {
+            const parts = p.split(':').map(Number);
+
+            // 配列の要素数が2以上（ルートと大カテゴリを含む）であり、かつ先頭（ルート）が確実に '0' であることを確認（データの整合性チェック）
+            if (parts.length >= 2 && parts[0] === 0) {
+                // 「そのノードがどの『大カテゴリ（分野）』に属しているか」を知るために2番目の要素（インデックス1）を返す
+                return parts[1]; // 1..6 expected
+            }
+        }
+        return null;
+    }
+
+    // 関数: compute rainbow color according to spec
+    function computeRainbowHex(n) {
+        const l = (typeof n.level === 'number' && Number.isFinite(n.level)) ? n.level : 0;
+        const cat = detectCategoryFromNode(n);
+        // root
+        if (n.id === 0 || l === 0) {
+            return `#${toHex(255)}${toHex(255)}${toHex(255)}`; // white
+        }
+        const level = l;
+        const inRange = (level >= 1 && level <= 8);
+        let r = 255, g = 255, b = 255;
+        switch (cat) {
+            case 1: // 人文科学
+                if (inRange) { r = 255; g = 256 - 32 * level; b = 256 - 32 * level; }
+                else { r = 255; g = 0; b = 0; }
+                break;
+            case 2: // 社会科学
+                if (inRange) { r = 255; g = 255; b = 256 - 32 * level; }
+                else { r = 255; g = 255; b = 0; }
+                break;
+            case 3: // 形式科学
+                if (inRange) { r = 256 - 32 * level; g = 255; b = 256 - 32 * level; }
+                else { r = 0; g = 255; b = 0; }
+                break;
+            case 4: // 自然科学
+                if (inRange) { r = 256 - 32 * level; g = 255; b = 255; }
+                else { r = 0; g = 255; b = 255; }
+                break;
+            case 5: // 応用科学
+                if (inRange) { r = 256 - 32 * level; g = 256 - 32 * level; b = 255; }
+                else { r = 0; g = 0; b = 255; }
+                break;
+            case 6: // 学際領域
+                if (inRange) { r = 255; g = 256 - 32 * level; b = 255; }
+                else { r = 255; g = 0; b = 255; }
+                break;
+            default:
+                // unknown category: fallback to grey-ish by level
+                if (inRange) { const v = 256 - 16 * level; r = v; g = v; b = v; }
+                else { r = 200; g = 200; b = 200; }
+        }
+        // clamp and form hex
+        return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+    }
+
+    // border darker
+    function darkenHex(hex, amount = 30) {
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return `#${toHex(r - amount)}${toHex(g - amount)}${toHex(b - amount)}`;
+    }
+
+    // ノードに適用する色オブジェクトを計算する
+    function computeNodeColorObj(n, colorMode) {
+        if (colorMode === 'rainbow') {
+            const bg = computeRainbowHex(n);
+            const border = darkenHex(bg, 30);
+            return { background: bg, border: border, highlight: { background: bg, border: border } };
+        }
+        // colorMode === 'default-color': 共通のデフォルトカラーを明示的に適用（古い色を上書き）
+        return { background: '#97C2FC', border: '#2B7CE9', highlight: { background: '#D2E5FF', border: '#2B7CE9' } };
+    }
+
     // ------------------------
     // 関数名   : vof_setNetworkData(nodeList, edgeList)
     // 名称     : network のデータ更新
@@ -845,99 +931,14 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('[NETWORK] Updating network data...');
         if (!u1f_initNetworkIfNeeded()) return;
         try {
-            // helper: clamp and hex
-            const clamp = v => Math.max(0, Math.min(255, Math.round(v)));
-            const toHex = v => ('0' + clamp(v).toString(16)).slice(-2);
-
             // get selected color mode ('default-color' or 'rainbow')
             const colorModeEl = document.querySelector('input[name="colorMode"]:checked');
             const colorMode = colorModeEl ? colorModeEl.value : 'default-color';
 
-            // 内部関数: determine category from a path: return integer 1..6 or null
-            const detectCategoryFromNode = (n) => {
-                // カテゴリ判定は mainPath のみを使用する（auxPathによる汚染を防ぐ）
-                const paths = n.mainPath;
-                // mainPath は validateData で必須チェック済みだが、念のためガード
-                if (!paths || !paths.length) return null;
-                // 最初の mainPath を正とする
-                for (const p of paths) {
-                    const parts = p.split(':').map(Number);
-
-                    // 配列の要素数が2以上（ルートと大カテゴリを含む）であり、かつ先頭（ルート）が確実に '0' であることを確認（データの整合性チェック）
-                    if (parts.length >= 2 && parts[0] === 0) {
-                        // 「そのノードがどの『大カテゴリ（分野）』に属しているか」を知るために2番目の要素（インデックス1）を返す
-                        return parts[1]; // 1..6 expected
-                    }
-                }
-                return null;
-            };
-
-            // 内部関数: compute rainbow color according to spec
-            const computeRainbowHex = (n) => {
-                const l = (typeof n.level === 'number' && Number.isFinite(n.level)) ? n.level : 0;
-                const cat = detectCategoryFromNode(n);
-                // root
-                if (n.id === 0 || l === 0) {
-                    return `#${toHex(255)}${toHex(255)}${toHex(255)}`; // white
-                }
-                const level = l; // level >=1 for children
-                const inRange = (level >= 1 && level <= 8);
-
-                let r = 255, g = 255, b = 255;
-                switch (cat) {
-                    case 1: // 人文科学
-                        if (inRange) { r = 255; g = 256 - 32 * level; b = 256 - 32 * level; }
-                        else { r = 255; g = 0; b = 0; }
-                        break;
-                    case 2: // 社会科学
-                        if (inRange) { r = 255; g = 255; b = 256 - 32 * level; }
-                        else { r = 255; g = 255; b = 0; }
-                        break;
-                    case 3: // 形式科学
-                        if (inRange) { r = 256 - 32 * level; g = 255; b = 256 - 32 * level; }
-                        else { r = 0; g = 255; b = 0; }
-                        break;
-                    case 4: // 自然科学
-                        if (inRange) { r = 256 - 32 * level; g = 255; b = 255; }
-                        else { r = 0; g = 255; b = 255; }
-                        break;
-                    case 5: // 応用科学
-                        if (inRange) { r = 256 - 32 * level; g = 256 - 32 * level; b = 255; }
-                        else { r = 0; g = 0; b = 255; }
-                        break;
-                    case 6: // 学際領域
-                        if (inRange) { r = 255; g = 256 - 32 * level; b = 255; }
-                        else { r = 255; g = 0; b = 255; }
-                        break;
-                    default:
-                        // unknown category: fallback to grey-ish by level
-                        if (inRange) { const v = 256 - 16 * level; r = v; g = v; b = v; }
-                        else { r = 200; g = 200; b = 200; }
-                }
-                // clamp and form hex
-                return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
-            };
-
-            // border darker
-            const darkenHex = (hex, amount = 30) => {
-                // hex #rrggbb
-                const r = parseInt(hex.slice(1,3),16);
-                const g = parseInt(hex.slice(3,5),16);
-                const b = parseInt(hex.slice(5,7),16);
-                return `#${toHex(r - amount)}${toHex(g - amount)}${toHex(b - amount)}`;
-            };
-
             // Map nodeList to nodes for vis, applying color mode
             const mappedNodes = nodeList.map(n => {
                 const nodeCopy = Object.assign({}, n); // shallow copy
-                if (colorMode === 'rainbow') {
-                    const bg = computeRainbowHex(n);
-                    const border = darkenHex(bg, 30);
-                    nodeCopy.color = { background: bg, border: border, highlight: { background: bg, border: border } };
-                } else {
-                    // colorMode === 'default-color': 共通のデフォルトカラーを明示的に適用（古い色を上書き）
-                    nodeCopy.color = { background: '#97C2FC', border: '#2B7CE9', highlight: { background: '#D2E5FF', border: '#2B7CE9' } };
-                }
+                nodeCopy.color = computeNodeColorObj(n, colorMode);
                 return nodeCopy;
             });
 
@@ -1495,15 +1496,20 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // 再レンダリング（現在表示中のノード/エッジを再取得して色を再適用）
+    // 再レンダリング（現在表示中のノードの色だけを差分更新する。レイアウトは維持される）
     function refreshNetworkColors() {
-        if (!network || !network.body || !network.body.data) return;
+        if (!network || !network.body || !network.body.data || !network.body.data.nodes) return;
         try {
+            const colorModeEl = document.querySelector('input[name="colorMode"]:checked');
+            const colorMode = colorModeEl ? colorModeEl.value : 'default-color';
+
             const currentNodes = network.body.data.nodes.get(); // 表示中のノード配列
-            const currentEdges = network.body.data.edges.get(); // 表示中のエッジ配列
-            // vof_setNetworkData は色付けロジックを参照して再描画するのでこれを呼ぶ
-            vof_setNetworkData(currentNodes, currentEdges);
-            console.log('[UI] refreshNetworkColors executed, nodes=', currentNodes.length, 'edges=', currentEdges.length);
+            const updates = currentNodes.map(n => ({
+                id: n.id,
+                color: computeNodeColorObj(n, colorMode)
+            }));
+            network.body.data.nodes.update(updates);
+            console.log('[UI] refreshNetworkColors executed (in-place), nodes=', updates.length);
         } catch (e) {
             console.warn('[UI] refreshNetworkColors failed:', e);
         }

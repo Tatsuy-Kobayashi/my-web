@@ -511,48 +511,29 @@ document.addEventListener('DOMContentLoaded', async function () {
         { id: 25, label: "教育学", labelEn: "Pedagogy", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
         // 形式科学3
         {
-            id: 30, label: "数学", labelEn: "Mathematics", sections: [
+            id: 30, label: "数学", labelEn: "Mathematics", description: "このサイトのメインコンテンツ。主にPuthonを使って数学の各分野を解説していく。", sections: [
                 {
-                    h2: "数とは何か（仮）",
-                    text: "数は数である。1, 2, 3, 10, 42。自然数？整数？実数？よく分からないが、とりあえず数える。count, counting, カウント。数学っぽいが中身は薄い。"
+                    h2: "「完成」ではなく「生成」の場として",
+                    text: "当サイトにおける「数学」の領域へようこそ。"
                 },
                 {
-                    h2: "線形代数っぽい話",
-                    text: "行列Aとベクトルxについて Ax = b を考える。Aが正則でないと困る。det(A)=0 は危険。線形？非線形？ときどき曖昧。",
-                    math: "Ax=b, \\det(A)=0"
+                    text: "あなたがここで見つけるものは、受験のための公式集でもなければ、世界を美しく描ききった完成品の定理のショールームでもない。私たちが本当に提供すべきものは、「理解が生成され続ける構造」に他ならず、あなたが本当に求めているものは、その構造をインスタントに体験できる道具に過ぎない。"
                 },
                 {
-                    h2: "微分積分の雰囲気",
-                    text: "微分すると増える。積分すると溜まる。d/dx や ∫ はよく出る記号。lim x→0 とか書きたくなるが、厳密性は気にしない。",
-                    math: "\\frac{d}{dx}f(x), \\int f(x)dx, \\lim_{x\\to0}"
+                    text: "世の中には、数学を単なる暗号解読ゲームか何かと勘違いしている者が多すぎる。ちょっと数式を捏ね繰り回して答えを出して満足したり、偉大な定理を丸暗記して理解した気になっている。しかし、アンリ・ポアンカレが「数学とは、異なるものに同じ名前を付ける技法<ruby>技法<rp>（</rp><rt>art</rt><rp>）</rp></ruby>である[1]」と言い切ったように、あるいは佐藤 幹夫が「朝目覚めたときには既に数学（論理的思考）の世界に入っていなければならない[2]」と語ったように、数学の本質はもっと泥臭く、そして極めて厳密な論理的推論の絶え間ない連続の中にある。数式を弄ることなど、その「論理的推論」という巨大な営みのほんの表面的な作業に過ぎないのだ。"
                 },
                 {
-                    h2: "確率・統計（テスト用）",
-                    text: "確率は0から1まで。P(A|B) とか書く。平均、分散、標準偏差。なぜ正規分布が好きなのかは謎。",
-                    math: "P(A|B), \\mu, \\sigma^2"
+                    text: "私は、完璧に磨き上げられた一分の隙もない解説を提供するつもりなど毛頭ない。なぜなら、知識というものは常に不完全であり、私を含め人間の理解もまた変化し続けるものだからだ。重要なのは、正当な「定義」と「原理」という絶対の掟から出発し、そこからいかに論理を組み上げていくか、そのプロセスすべてを開示することである。その過程であなたが抱く疑問、あるいは私がかつて陥った誤解そのものすら、この構造を更新するための極めて価値ある「入力データ」となる。安易な正解に飛びつくのではなく、この底知れぬ論理の淵で己の思考を研ぎ澄まし続けることこそが、ここでの唯一の「成功」と呼べる状態なのだ。"
                 },
                 {
-                    h2: "離散数学の断片",
-                    text: "グラフG=(V,E)。頂点と辺。木だけど森。DFS, BFS, 動的計画法？アルゴリズムと数学の境界が曖昧。",
-                    math: "G=(V,E)"
+                    text: "少し長口上が過ぎたかもしれない。我々がどのようなプロセスで数学というものに向き合おうとしているのか、私が思い描く構造を少し図解しておこう。この図は、「理解が生成され続ける構造」を示したもの",
+                    diagrams: "絶対的な土台 定義・原理・前提条件 論理的推論の展開 数式展開や証明の記述 理解の衝突と観測 読者の疑問・誤解・想定外の解釈 排除されるべきノイズではなく正当な入力 構造の更新 なぜ誤解が生じたかを追記し、過程を深化させる"
                 },
                 {
-                    h2: "論理記号の練習",
-                    text: "∀x∃y P(x,y)。真か偽か。and/or/not。∧∨¬⇒⇔。意味は深いが、ここではただ並べる。",
-                    math: "\\forall x \\exists y\\, P(x,y)"
+                    text: "上の図を見てもらえばわかる通り、一番上にある「定義」や「原理」は不動の土台として厳守する。そこへの一切の妥協はしない。どんなに自由な思考を謳おうとも、数学である以上、ルールは絶対だ。ルールのない思考は単なる妄想や陰謀論に堕ちる。しかし、それ以下の説明や解釈のプロセスにおいては、あらゆる誤解や想定外の解釈を歓迎し、それを取り込んでいく。完成を目指さないからこそ、この営みに終わりはない。"
                 },
                 {
-                    h2: "集合っぽい何か",
-                    text: "集合A⊂B⊂C。∅ は空っぽ。要素か部分集合かで混乱することがある。∈ と ⊂ は違う。",
-                    math: "A \\subset B, x \\in A, \\varnothing"
-                },
-                {
-                    h2: "数学とプログラミング",
-                    text: "for文は数学的帰納法に似ている（たぶん）。再帰、関数、型。数学なのかコードなのか分からなくなる瞬間。"
-                },
-                {
-                    h2: "意味のないテスト文章",
-                    text: "これは検索テスト用の文章です。数学、Math, MATH, math。123abc。正規表現.*テスト。"
+                    text: "もしあなたが、綺麗にパッケージ化された知識を消費するだけの場所から一歩踏み出し、自らの理性を本気で稼働させる覚悟があるのなら、泥臭い論理の探求も決して遠い世界のおとぎ話ではない。Pythonという軽快な道具を通せば、それは驚くほど具体的な体験へと変わる。終わりなき論理の路を、コードと共に歩んでいこう。"
                 }
             ], keywords: ["学問", "数学", "情報理論", "物理学", "プログラミング", "教育"], iconClass: "fa-folder fa-fw"
         },
@@ -583,12 +564,41 @@ document.addEventListener('DOMContentLoaded', async function () {
                 {
                     h2: "構文論と意味論：形式と内容の分離",
                     text: "&emsp;数学基礎論において最も基本的かつ重要な視点は、構文論と意味論の区別である。構文論（Syntax）: 記号の操作や並び方に注目する立場。ここでは「証明」や「形式的推論」が扱われる。例えば、「A から B が証明可能である（A ⊢ B）」という概念は、記号変形の規則のみに基づいて定義される。意味論（Semantics）: 記号に数学的な対象（実体）を対応させ、その「真偽（truth）」を問う立場。ここでは「モデル（model）」や「充足（satisfaction）」が扱われる。例えば、「モデル M において論理式 φ が真である（M ⊨ φ）」という概念は、記号の解釈に基づいて定義される。この図は、構文論と意味論の二つの世界の関係を示したもの&emsp;ゲーデルの完全性定理（Gödel's Completeness Theorem）は、一階述語論理において、これら二つの側面が一致すること（⊢ A ⇔ ⊨ A 証明可能ならば真であり、真ならば証明可能である）を示した重要な定理である。",
-                    math: "A \\vdash B M \\vDash \\varphi $\\vdash A \\iff \\vDash A$",
+                    math: "A \\vdash B M \\vDash \\varphi $\\vdash A \\iff \\vDash A",
                     diagrams: "意味論Semantics構文論Syntax推論規則導出解釈充足健全性Soundness完全性Completeness論理式Formula証明Proof定理Theorem構造Structure真偽Truth ValueモデルModel"
                 },
                 {
                     h2: "モデル理論：構造と真理の関係",
-                    text: "&emsp;モデル理論（Model Theory）は、形式言語の文（sentence）と、それを満たす（あるいは棄却する）構造（structure）との関係を研究する分野である。構造（Structure）: 構造 A とは、空でない集合 A（台集合、universe）と、その上の定数、関数、関係の集まりからなる。例えば、自然数全体 ℕ に、通常の 0、後者関数 s（+1 すること）、加法 +、乗法 ⋅ を備えたものは構造 (ℕ,0,s,+,⋅) である。言語 L の文 σ が構造 A で真であることを A ⊨ σ と書く。A が文の集合 T のすべてを真にするとき、A は T のモデルであるという。"
+                    text: "&emsp;モデル理論（Model Theory）は、形式言語の文（sentence）と、それを満たす（あるいは棄却する）構造（structure）との関係を研究する分野である。構造（Structure）: 構造 A とは、空でない集合 A（台集合、universe）と、その上の定数、関数、関係の集まりからなる。例えば、自然数全体 ℕ に、通常の 0、後者関数 s（+1 すること）、加法 +、乗法 ⋅ を備えたものは構造 (ℕ,0,s,+,⋅) である。言語 L の文 σ が構造 A で真であることを A ⊨ σ と書く。A が文の集合 T のすべてを真にするとき、A は T のモデルであるという。コンパクト性定理（Compactness Theorem）: モデル理論における強力なツールの一つがコンパクト性定理である。これは、「文の集合 S の任意の有限部分集合がモデルを持つならば、集合 S 全体もモデルを持つ」という定理である。この定理は、超準解析（Non-standard Analysis）のような新しい数学的枠組みの構築にも応用されている。実数の理論に「あらゆる正の実数より小さいが 0 ではない定数 c」の存在を主張する文を無限に追加しても、その有限部分集合は矛盾しないため、コンパクト性定理により無限小を含む「超実数体」のモデルが存在することが示される。量化記号消去（Quantifier Elimination）: ある理論 T において、任意の論理式が、それと同値な「量化記号（∀,∃）を含まない論理式」を持つとき、その理論は量化記号消去が可能であるという。例えば、複素数体（代数的閉体）の理論 ACF や、実閉体の理論 RCF は量化記号消去を持つことが知られている。これは、代数的な方程式や不等式の系が解を持つかどうかという問題が、係数に関する条件だけで判定できることを意味し（例：判別式）、数式処理アルゴリズムの基礎ともなっている。",
+                    math: "\\mathbb N \\cdot \\sigma \\mathcal A \\forall \\exists"
+                },
+                {
+                    text: "モデル検査のシミュレーション: ここでは、モデル理論の基本的な考え方である「構造における論理式の真偽判定（モデル検査）」をPythonでシミュレートする。有限の台集合 D = { 0,1,2 } 上で、二項関係 R（例えば x < y）を解釈し、第一階述語論理の文 ∀x ∃y R(x,y) がその構造で真となるかを判定する。このコードは、数学的な「構造」と「真理」の定義をプログラムとして実装したものである。モデル理論における「充足（satisfaction）」関係 A ⊨ σ は、このように構造内の要素を走査する手続きとして解釈できる。実際のモデル理論では無限集合を扱うため、このように単純な全探索はできないが、概念の理解には役立つ。",
+                    math: "\\forall \\exists \\mathcal A \\vDash \\sigma",
+                    code: "モデル検査のシミュレーション itertools domain relations evaluate"
+                },
+                {
+                    h2: "証明論：逆数学と現代の展開",
+                    text: "&emsp;証明論（Proof Theory）は、数学的証明を形式的な記号操作の列として捉え、その構造を数学的に分析する。ヒルベルト・プログラム: ヒルベルトは当初、数学全体を形式化し、その無矛盾性を「有限の立場（finitary standpoint）」から証明することを目指した。しかし、ゲーデルの不完全性定理は、算術を含む十分強力な形式体系においては、その体系が無矛盾であれば、体系内で証明も反証もできない命題（決定不能命題）が存在すること、さらには体系自身の無矛盾性を体系内で証明できないことを示した。これはヒルベルトの当初の計画の修正を迫るものであったが、ゲンツェン（Gentzen）らによる順序数を用いた無矛盾性証明など、証明論はその後も深い発展を遂げている。しかし、これは証明論の終わりを意味するものではない。現代では、特定の数学的定理を証明するために「どの公理が必要不可欠か」を分析する逆数学（Reverse Mathematics）というプログラムが活発に研究されている。逆数学では、定理から公理を導く（逆向きの推論を行う）ことで、その定理の論理的な強さを測定する。これにより、数学の体系における「公理の強さ」の階層構造が明らかになってきている。計算可能性: 論理式が「証明可能であるか」という問いは、「アルゴリズムによって判定可能か」という計算の問題と密接に関わる。チャーチやチューリングは、述語論理の妥当性がアルゴリズムで決定できないこと（決定不能性）を示した。計算機科学における形式検証や自動定理証明は、こうした論理学の成果を工学的に応用したものである。"
+                },
+                {
+                    h2: "型理論：計算と論理の融合",
+                    text: "&emsp;集合論が「すべての数学的対象は集合である」という立場をとるのに対し、型理論（Type Theory）は、対象をその性質（型）によって分類し、階層化して扱うアプローチである。ラッセル（Russell）がパラドックスを回避するために導入した階型理論に端を発し、チャーチ（Church）のラムダ計算などを経て発展した。カリー＝ハワード同型対応（Curry-Howard Isomorphism）: 型理論における最も美しい発見の一つが、カリー＝ハワード同型対応だ。これは、「論理」と「計算」という一見異なる二つの世界が、構造的に全く同じものであるという対応関係。この図は、論理と計算の対応関係 この対応によれば、「命題 A を証明すること」は「型 A を持つプログラムを作成すること」と等価になる。この原理は、CoqやLeanといった現代の証明支援系（Proof Assistant）の基礎となっており、数学の証明をコンピュータで実装・検証することを可能にしている。",
+                    diagrams: "計算Computation論理Logic命題Proposition証明Proof含意 A -> B型 TypeプログラムProgram関数型 A -> B"
+                },
+                {
+                    h2: "集合論：数学の標準的な基盤",
+                    text: "&emsp;集合論は、現代数学の諸概念（数、関数、空間など）を定義するための共通言語として機能している。特に、ツェルメロ＝フレンケル集合論（Zermelo-Fraenkel set theory, ZF）と選択公理（Axiom of Choice, AC）を組み合わせたZFC公理系は、数学の標準的な基盤として広く受け入れられている。ZFC公理系と独立性: 現代数学の事実上の標準的な基盤となっているのが、ZFC公理系である。ZFCは非常に強力な体系であり、通常の数学のほとんどすべてをその中で展開できる。しかし、ZFCだけでは決定できない命題（ZFCから証明も反証もできない命題）が存在することも知られており、その最も有名な例が連続体仮説（自然数の濃度と実数の濃度の間に、中間の濃度は存在しないという仮説）である。ポール・コーエン（Paul Cohen）が開発した強制法（Forcing）という手法により、連続体仮説がZFCから独立していること（ZFCと矛盾しない形で、連続体仮説が成り立つ世界も成り立たない世界も作れること）が証明された。巨大基数と無限の階層: ZFCを超えるさらに強力な公理として、巨大基数（Large Cardinals）の存在公理が研究されている。到達不能基数、可測基数、超コンパクト基数など、ZFCでは存在を証明できないほど「巨大」な無限集合の存在を仮定することで、数学的真理のさらなる深層を探求することが可能になる。これらの巨大基数は、単に大きいだけでなく、集合論の宇宙（Universe）の構造に強い「整列性」や「決定性」をもたらすことが知られているのだ。"
+                },
+                {
+                    h2: "圏論：射と合成による再構築",
+                    text: "&emsp;集合論が「元が集合に属する（x ∈ A）」という帰属関係を基礎とするのに対し、圏論（Category Theory）は、対象の内部構造には立ち入らず、対象間の「射（矢印）」と「合成」によって数学的構造を記述する枠組みである。本来は代数的トポロジーや普遍代数学の道具として発展したが、ローヴェア（Lawvere）らにより、集合論に代わる数学の基礎づけ（トポス理論など）としての側面も開拓された。宇宙と大きさ: 圏論を数学の基礎として扱う際、「すべての集合の圏（Set）」や「すべての圏の圏（Cat）」といった巨大な対象をどのように正当化するかという問題が生じる。これらは通常のZFC集合論の内部では「集合」として扱えない（真のクラスになる）ほど巨大であるためである。この問題を解決するために、グロタンディーク宇宙（Grothendieck Universe）という概念が導入されることがある。しかし、グロタンディーク宇宙の存在を保証するには、ZFCよりも強い公理である「到達不能基数（Inaccessible Cardinal）」の存在が必要となる。すなわち、圏論を制約なく十全に展開しようとすれば、逆説的にも集合論における「巨大基数」の助けが必要となる場面があり、両者は対立するものではなく、現代数学の基礎において補完的な関係にあると言える。この図は、圏論と集合論の対応関係",
+                    math: "\\in \\textbf Set \\textbf Cat",
+                    diagrams: "内部構造を捨象 巨大な圏の正当化 圏論的視点 射 f 射 g 合成 gf 対象A 対象B 対象C 集合論的視点 帰属 要素 集合"
+                },
+                {
+                    h2: "現代の数学基礎論の展望",
+                    text: "&emsp;かつて数学基礎論は、数学全体の無矛盾性を保証するための「基礎づけ」の役割を期待されていたが、ゲーデルの定理以降、その役割は変化した。数学者マックレーン（Mac Lane）は、現代の数学基礎論（特に巨大基数論などの集合論の高度な展開）が、一般的な数学の実践から乖離していると批判したことがある。一方で、逆数学（Reverse Mathematics）のようなプログラムは、特定の数学的定理を証明するためにどの公理が必要不可欠かを分析することで、数学の体系の強さを測る新たな視点を提供している。また、シェラハ（Shelah）による分類理論（Classification Theory）は、モデルの同型類の数を調べることで理論の複雑さを分類し、代数幾何学など他の数学分野へも応用されている。数学基礎論は、単なる「基礎づけ」を超えて、数学的構造の深層を解明する強力なツールとして進化し続けている。"
                 }
             ], keywords: ["ゲーデル", "Pythonによる解説", "ヒルベルト・プログラム"], iconClass: "fa-folder fa-fw"
         },
@@ -609,7 +619,54 @@ document.addEventListener('DOMContentLoaded', async function () {
         { id: 502, label: "計算理論", labelEn: "Theory of Computation", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
         { id: 503, label: "計算機科学", labelEn: "Computer Science", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
         { id: 504, label: "計算機工学", labelEn: "Computer Engineering", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
-        { id: 505, label: "情報システム", labelEn: "Information System", sections: [], keywords: [], iconClass: "fa-folder fa-fw" }
+        { id: 505, label: "情報システム", labelEn: "Information System", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+
+        // 深さ4
+        // 数学基礎論301
+        { id: 3010, label: "数理論理学", labelEn: "Mathematical Logic", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 3011, label: "集合論", labelEn: "Set Theory", description: "集合の基本概念から応用まで解説。集合の定義、演算（和・積・差集合）、部分集合、冪集合などをPythonのコード例とベン図で分かりやすく学べる。数学の基礎を支える集合論の入門として最適。", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        //{ id: 3012, label: "圏論", labelEn: "Category Theory", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        // 数論302
+        { id: 3020, label: "数学定数", labelEn: "Mathematical Constants", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        // 代数学303
+        { id: 3030, label: "抽象代数学", labelEn: "Abstract Algebra", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 3031, label: "普遍代数学", labelEn: "Universal Algebra", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        // 解析学304
+        { id: 3040, label: "解析学基礎", labelEn: "Foundations of Analysis", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 3041, label: "微分積分学", labelEn: "Differential and Integral Calculus", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        // 多親（代数・解析の両方の子）paths: ["0:3:30:303:3030", "0:3:30:304:3030"]
+        { id: 3042, label: "代数解析学", labelEn: "Algebraic Analysis", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 3043, label: "関数解析学", labelEn: "Functional Analysis", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 3044, label: "関数方程式", labelEn: "Functional Equations", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 3045, label: "数値解析", labelEn: "Numerical Analysis", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 3046, label: "超準解析", labelEn: "Nonstandard Analysis", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        // 物理学401
+        { id: 4010, label: "ニュートン力学", labelEn: "Newtonian Mechanics", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 4011, label: "統計力学", labelEn: "Statistical Mechanics", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 4012, label: "連続体の物理学", labelEn: "Physics of Continuum", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        // 情報理論501
+        { id: 5010, label: "符号理論", labelEn: "Coding Theory", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 5011, label: "暗号理論", labelEn: "Cryptography", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 5012, label: "型理論", labelEn: "Type Theory", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 5013, label: "信号処理", labelEn: "Signal Processing", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        // 計算理論502
+        { id: 5020, label: "システム科学", labelEn: "Systems Science", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 5021, label: "プログラム構造", labelEn: "Structure of Programs", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 5022, label: "スキーマ", labelEn: "Schema", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 5023, label: "計算モデル", labelEn: "Model of Computation", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 5024, label: "アルゴリズム", labelEn: "Algorithm", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 5025, label: "計算可能性理論", labelEn: "Computability Theory", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 5026, label: "計算複雑性理論", labelEn: "Computational Complexity Theory", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 5027, label: "コンピュータ言語", labelEn: "Computer Language", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 5028, label: "プログラム意味論", labelEn: "Program Semantics", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 5029, label: "データサイエンス", labelEn: "Data Science", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        // 計算機科学503
+        { id: 5030, label: "ハードウェア・エンジニアリング", labelEn: "Hardware Engineering", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 5031, label: "ソフトウェア・エンジニアリング", labelEn: "Software Engineering", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 5032, label: "コンピュータ・セキュリティ", labelEn: "Computer Security", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        // 情報システム505
+        { id: 5050, label: "コンピュータ・システム", labelEn: "Computer System", sections: [], keywords: [], iconClass: "fa-folder fa-fw" },
+        { id: 5051, label: "組込みシステム", labelEn: "Embedded System", sections: [], keywords: [], iconClass: "fa-folder fa-fw" }
     ];
 
     // 本来はここで fetch('/api/stats/popular') 等を行う

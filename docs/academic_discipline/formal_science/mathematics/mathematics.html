@@ -67,7 +67,17 @@
         };
     </script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/mathjax-config.js" defer></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" defer></script><!--
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" defer></script>
+    <link rel="stylesheet" href="https://unpkg.com/mermaid/dist/mermaid.min.css">
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad:true,
+            flowchart: {
+                useMaxWidth: false     // レスポンシブ SVG の無効化
+            }
+        });
+    </script><!--
     <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css" media="print" onload="this.media='all'" />
     <script type="text/javascript" src="https://tikzjax.com/v1/tikzjax.js" defer></script> -->
 </head>
@@ -88,49 +98,56 @@
             <h2>目次[<span class="toc-toggle-button">表示</span>]</h2>
             <div class="toc-content">
                 <ul>
-                    <li><a href="#section_1">AI時代の学問のすゝめ</a></li>
+                    <li><a href="#section_1">「完成」ではなく「生成」の場として</a></li>
                     <li><a href="#section_2">数学の一覧</a></li>
-                    <li><a href="#section_3">関連記事</a></li>
                 </ul>
             </div>
 
             <div itemprop="articleBody" id="section_1">
-                <h2>数学をするとは</h2>
-                <figure class="figure-quote">
-                    <blockquote><p>「数学とは、異なるものに同じ名前を付ける<ruby>技法<rp>（</rp><rt>art</rt><rp>）</rp></ruby>である<sup id="ref_1"><a href="#note_1">[1]</a></sup>」</p></blockquote>
-                    <figcaption>
-                        アンリ・ポアンカレ──『<cite><a href="http://classiques.uqac.ca/classiques/poincare_henri/Science_et_methode/Science_et_methode.html">Science et M&#0233;thode&ensp;</a></cite>』より。
-                    </figcaption>
-                </figure>
+                <h2>「完成」ではなく「生成」の場として</h2>
                 <p>
-                    &emsp;皆、どのような心持ちでこのサイトを見ているのであろうか？もしHomeのページを見てから、この数学のページに来たのであれば、おそらく'数理研究をしたい'あるいは'数理の内容をソースコード化したい'という気持ちでいるのだろう。もっと雑に断定してしまえば、数学や物理の研究者になりたいと思っているに違いない。そこである大数学者のお言葉を引用しておこう。
-                </p>
-                <figure class="figure-quote">
-                    <blockquote><p>「朝起きた時に，きょうも一日数学をやるぞと思ってるようでは，とてもものにならない。数学を考えながら，いつのまにか眠り，朝，目が覚めたときは既に数学の世界に入っていなければならない。どの位，数学に浸っているかが，勝負の分かれ目だ。数学は自分の命を削ってやるようなものなのだ」──佐藤 幹夫</p></blockquote>
-                    <figcaption>
-                        木村 達雄──『<cite><a href="https://ci.nii.ac.jp/ncid/AN00367115">筑波フォーラム&ensp;</a></cite>』45号（1996 年刊）より。
-                    </figcaption>
-                </figure>
-                <p>
-                    &emsp;私がこの言葉に出会ったのは、数学の研究を始めて数年経ってからだったが、故にこそ この言葉には深く共感を覚えた。しかしこの言葉はあまりにも数学者向けなため、これから数学者になろうという卵たちには恐怖を感じさせてしまうかもしれない。そこで数学研究を<ruby>生業<rp>（</rp><rt>なりわい</rt><rp>）</rp></ruby>としていない人々のためにも、もう少し嚙み砕いて話そうと思う。
+                    &emsp;当サイトにおける「数学」の領域へようこそ。
                 </p>
                 <p>
-                    &emsp;おおよそ数学者以外の人々が想像する数学者像というのは、常に毎秒複雑極まりない数式を捏ね繰り回しているとういものなのだろうが、実際のところは「論理的推論」を行っていることの方が多い。というよりは、「論理的推論」という大きな数学活動の中に数式<ruby>弄<rp>（</rp><rt>いじ</rt><rp>）</rp></ruby>りが含まれているとでも言うべきであろう。
-                </p>
-                \[
-                    数式弄り \subset 論理的推論
-                \]
-                <p>
-                    &emsp;従って、佐藤幹夫の言葉はこう解釈できる。「論理的に思考しながら、いつのまにか眠り、朝、目が覚めたときには既に論理的に思考している状態になっていなければならない。」と。しかし、こう言うと我も数学者だと勘違いし出す者達が現れるだろう。たとえば、日頃SNSなどには人生や政治について語っている論者達で溢れているわけだが、あれらは数学者でもなければ、何らかの専門家とも言えない。なぜなら、彼らの主張は結論在りきだからだ。数学にはルールがある。
+                    &emsp;あなたがここで見つけるものは、受験のための公式集でもなければ、世界を美しく描ききった完成品の定理のショールームでもない。私たちが本当に提供すべきものは、「理解が生成され続ける構造」に他ならず、あなたが本当に求めているものは、その構造をインスタントに体験できる道具に過ぎない。
                 </p>
                 <p>
-                    &emsp;もしこの記事を読んでいて将来数学者になりたいと思う者がいるなら、先ずは数学に限定せずに身の回りのあらゆることを論理的に考える習慣をつけることから始めることをお勧めする。たとえば、日本に住んでいるならエアコンは欠くことのできない設備であると思うが、その仕組みを理解しているだろうか？電化製品以外であっても、自然現象や人体の構造など、あらゆることを論理的に考える習慣を身につけることが大切である。そして何度も言うようだが、一般の学問規則に則ることだ; でなければいくら思考していても陰謀論にしかならない。
+                    &emsp;世の中には、数学を単なる暗号解読ゲームか何かと勘違いしている者が多すぎる。ちょっと数式を捏ね繰り回して答えを出して満足したり、偉大な定理を丸暗記して理解した気になっている。しかし、アンリ・ポアンカレが「数学とは、異なるものに同じ名前を付ける技法<ruby>技法<rp>（</rp><rt>art</rt><rp>）</rp></ruby>である<sup id="ref_1"><a href="#note_1">[1]</a></sup>」と言い切ったように、あるいは佐藤 幹夫が「朝目覚めたときには既に数学（論理的思考）の世界に入っていなければならない<sup id="ref_2"><a href="#note_2">[2]</a></sup>」と語ったように、数学の本質はもっと泥臭く、そして極めて厳密な論理的推論の絶え間ない連続の中にある。数式を弄ることなど、その「論理的推論」という巨大な営みのほんの表面的な作業に過ぎないのだ。
                 </p>
                 <p>
-                    &emsp;仮にこの過程で数学者以外の<ruby>路<rp>（</rp><rt>みち</rt><rp>）</rp></ruby>に進むことになったとしても、それはそれで新たな出会いということで目指せば良いだろう。私も子どもの頃はよく推理小説などを読んでいて、その中の東野圭吾『探偵ガリレオ』に出会って理系の路を進み始めた。これもまた論理的推論を好んだからかもしれない。<ruby>何<rp>（</rp><rt>いず</rt><rp>）</rp></ruby>れにせよ、寝ても覚めても夢の中でも論理的に思考するようにすることが研究者になる上での第一歩である。
+                    &emsp;私は、完璧に磨き上げられた一分の隙もない解説を提供するつもりなど毛頭ない。なぜなら、知識というものは常に不完全であり、私を含め人間の理解もまた変化し続けるものだからだ。重要なのは、正当な「定義」と「原理」という絶対の掟から出発し、そこからいかに論理を組み上げていくか、そのプロセスすべてを開示することである。その過程であなたが抱く疑問、あるいは私がかつて陥った誤解そのものすら、この構造を更新するための極めて価値ある「入力データ」となる。安易な正解に飛びつくのではなく、この底知れぬ論理の淵で己の思考を研ぎ澄まし続けることこそが、ここでの唯一の「成功」と呼べる状態なのだ。
                 </p>
                 <p>
-                    &emsp;（もう少し深掘ってみる。）一見簡単そうに見えるかもしれないが、数学するどころか論理的に思考するだけでも日常生活に支障をきたしてしまう人が居ても不思議ではない。一番困難であろう部分はルールに従うことであり、そのためには自分の思考に対して常に反証を探すことが必要になる。もちろんこの探せば何でも答えが見つかりそうな現代にあっても、是非が直ぐに定まることなど殆どない。なのであらゆることを論理的に考察するには、思考のスタックと管理が必須になる。こういう直ぐに結論が得られないことに対する忍耐や思考上のコツ何かも研究者業においては重要な要素となる。
+                    &emsp;少し長口上が過ぎたかもしれない。我々がどのようなプロセスで数学というものに向き合おうとしているのか、私が思い描く構造を少し図解しておこう。
+                </p>
+                <div class="tikzjax_wrapper">
+                    <div class="tikzjax_flex" style="padding: 20px 0 5px 5px;">
+                        <figure>
+                            <div class="mermaid">
+graph TB
+    A["絶対的な土台<br>定義・原理・前提条件"] --> B("論理的推論の展開<br>数式展開や証明の記述")
+
+    B --> C{"理解の衝突と観測<br>読者の疑問・誤解・想定外の解釈"}
+
+    C -->|"排除されるべきノイズではなく正当な入力"| D["構造の更新<br>なぜ誤解が生じたかを追記し、過程を深化させる"]
+
+    D --> B
+
+    style A fill:#f9f9f9,stroke:#333,stroke-width:4px
+
+    style C fill:#ffe6e6,stroke:#ff0000,stroke-width:2px
+
+    style D fill:#e6ffe6,stroke:#00aa00,stroke-width:2px
+                            </div>
+                            <figcaption>&emsp;この図は、「理解が生成され続ける構造」を示したもの</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <p>
+                    &emsp;上の図を見てもらえばわかる通り、一番上にある「定義」や「原理」は不動の土台として厳守する。そこへの一切の妥協はしない。どんなに自由な思考を謳おうとも、数学である以上、ルールは絶対だ。ルールのない思考は単なる妄想や陰謀論に堕ちる。しかし、それ以下の説明や解釈のプロセスにおいては、あらゆる誤解や想定外の解釈を歓迎し、それを取り込んでいく。完成を目指さないからこそ、この営みに終わりはない。
+                </p>
+                <p>
+                    &emsp;もしあなたが、綺麗にパッケージ化された知識を消費するだけの場所から一歩踏み出し、自らの理性を本気で稼働させる覚悟があるのなら、泥臭い論理の探求も決して遠い世界のおとぎ話ではない。Pythonという軽快な道具を通せば、それは驚くほど具体的な体験へと変わる。終わりなき論理の路を、コードと共に歩んでいこう。
                 </p>
             </div>
 
@@ -149,6 +166,12 @@
                 <li id="note_1"><a href="#ref_1">^</a>
                     原文<br>
                     La mathématique est l'art de donner le même nom à des choses différentes.<br>
+                    アンリ・ポアンカレ──『<cite><a href="http://classiques.uqac.ca/classiques/poincare_henri/Science_et_methode/Science_et_methode.html">Science et M&#0233;thode&ensp;</a></cite>』より。
+                </li>
+                <li id="note_2"><a href="#ref_2">^</a>
+                    原文<br>
+                    朝起きた時に，きょうも一日数学をやるぞと思ってるようでは，とてもものにならない。数学を考えながら，いつのまにか眠り，朝，目が覚めたときは既に数学の世界に入っていなければならない。どの位，数学に浸っているかが，勝負の分かれ目だ。数学は自分の命を削ってやるようなものなのだ。<br>
+                    木村 達雄──『<cite><a href="https://ci.nii.ac.jp/ncid/AN00367115">筑波フォーラム&ensp;</a></cite>』45号（1996 年刊）より。
                 </li>
             </ol>
         </div> <!-- /annotation -->

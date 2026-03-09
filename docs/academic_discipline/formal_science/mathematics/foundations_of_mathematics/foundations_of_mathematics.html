@@ -252,6 +252,10 @@ class Structure:
         else:
             raise ValueError(f"Unknown operator: {op}")
 
+# 例としてドメインと関係を定義
+domain = range(0, 3)  # 例: {0, 1, 2}
+relation_R = {(x, y) for x in domain for y in domain if x < y} # 例: {(0,1), (0,2), (1,2)}
+
 # 構造 M = (D, R)
 structure_M = Structure(domain, {'R': relation_R})
 
@@ -290,11 +294,16 @@ print(f"Formula 1 (∀x ∃y R(x, y)): {result1}")
 
 result2 = structure_M.evaluate(formula_2, {})
 print(f"Formula 2 (∃x ∀y ¬R(y, x)): {result2}")
-# 解説: x=0を選べば、任意のyに対して (y, 0) はrelation_Rに含まれないため ¬R(y,0) は真。よって全体もTrue.</code></pre>
+# 解説: x=0を選べば、任意のyに対して (y, 0) はrelation_Rに含まれないため ¬R(y,0) は真。よって全体もTrue.
+</code></pre>
                 </div> <!-- /code-main -->
                 <div class="output-wrapper">
                     <div class="outputInfo">-></div>
-                    <div class="outputIfram">Formula (∀x ∃y R(x, y)): {result}</div>
+                    <div class="outputIfram">Domain: range(0, 3)
+Relation R (x < y): {(0, 1), (0, 2), (1, 2)}
+------------------------------
+Formula 1 (∀x ∃y R(x, y)): False
+Formula 2 (∃x ∀y ¬R(y, x)): True</div>
                 </div>
             </div> <!-- /coding_file_wrapper -->
             <p>

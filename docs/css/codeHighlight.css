@@ -20,6 +20,16 @@
     padding-left: 50px;
     border-radius: 9px 9px 0 0;
     font-family: monospace;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.toggle-code-btn {
+    cursor: pointer;
+    font-size: 1.2em;
+    user-select: none;
+    padding-right: 15px;
+    color: inherit;
 }
 .code-main {
     grid-area: code-main;
@@ -29,6 +39,12 @@
     color: #ffffff;
     -webkit-text-size-adjust: none;
     overflow-x: auto;
+    overflow-y: auto;
+    max-height: 24em;    /* 約15行分の高さ */
+}
+.coding_file_wrapper.is-expanded .code-main {
+    max-height: none;
+    overflow-y: visible;
 }
 .code-toolbar, pre {
     display: flex;
@@ -71,6 +87,9 @@
         grid-area: file-title;
         padding-left: 50px;
         border-radius: 9px 9px 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
     .code-main {
         grid-area: code-main;

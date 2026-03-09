@@ -9,10 +9,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         wrappers.forEach(wrapper => {
             const codeMain = wrapper.querySelector('.code-main');
-            if (!codeMain) return;
+            const preElement = codeMain.querySelector('pre');
+            const codeElement = codeMain.querySelector('code');
+
+            // Flexboxレイアウト等の影響で codeMain や pre の height が等しくなる場合があるため、
+            // 内部の code タグがあればそのスクロール高さを優先してチェックする
+            const targetForScroll = codeElement || preElement || codeMain;
+            const targetForClient = codeElement || preElement || codeMain;
+
+            const checkScrollHeight = targetForScroll.scrollHeight;
+            const checkClientHeight = targetForClient.clientHeight;
 
             // 要素内のコンテンツが枠（最大高さ15行）を超えているか判定
-            if (codeMain.scrollHeight > codeMain.clientHeight) {
+            if (checkScrollHeight > checkClientHeight) {
                 const title = wrapper.querySelector('.fileTitle');
                 if (title) {
                     // 切替ボタン生成

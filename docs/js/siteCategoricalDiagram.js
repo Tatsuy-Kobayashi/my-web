@@ -777,13 +777,26 @@ document.addEventListener('DOMContentLoaded', async function () {
         return nodesData.find(n => n.label.toLowerCase().includes(trimmed));
     }
 
-    // label にマッチする候補を返す
+    // label にマッチする候補を返す（全ノードデータから）
     function u1f_suggestNodesByLabel(label) {
         if (!label || label.trim() === '') {
             return [];
         }
         const trimmed = label.trim().toLowerCase();
         return nodesData.filter(n => n.label.toLowerCase().includes(trimmed)).slice(0, 10); // 最大10件
+    }
+
+    // label にマッチする候補を返す（現在表示中のノードのみ）
+    function u1f_suggestVisibleNodesByLabel(label) {
+        if (!label || label.trim() === '') {
+            return [];
+        }
+        if (!network || !network.body || !network.body.data || !network.body.data.nodes) {
+            return [];
+        }
+        const trimmed = label.trim().toLowerCase();
+        const visibleNodes = network.body.data.nodes.get(); // 表示中のノード配列
+        return visibleNodes.filter(n => n.label && n.label.toLowerCase().includes(trimmed)).slice(0, 10); // 最大10件
     }
 
     // 新規関数：label での検索実行
@@ -1339,10 +1352,10 @@ document.addEventListener('DOMContentLoaded', async function () {
             }
         });
 
-        // ページ内検索 サジェスト表示
+        // ページ内検索 サジェスト表示（表示中ノードのみから候補を列挙）
         dom.pageSearchInput.addEventListener('input', () => {
             const label = dom.pageSearchInput.value;
-            const suggestions = u1f_suggestNodesByLabel(label);
+            const suggestions = u1f_suggestVisibleNodesByLabel(label);
 
             if (suggestions.length === 0) {
                 dom.pageSearchSuggestions.style.display = 'none';

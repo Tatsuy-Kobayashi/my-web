@@ -314,6 +314,79 @@ document.addEventListener('DOMContentLoaded', async function () {
         html += '</ul> <!-- /.ul_pulldownList -->';
 
         container.innerHTML = html;
+
+        // ===================================================
+        // 動的幅調整: details 展開時にメニュー幅を自動拡張
+        // ===================================================
+        const BASE_WIDTH = 500;       // 基底幅 (px)
+        const MIN_CHILD_WIDTH = 230;  // 子要素の最小表示幅 (px)
+
+        /**
+         * 開いている details の最深の子要素の実効幅を実測し、
+         * MIN_CHILD_WIDTH を下回る場合は wrapper の幅を拡張する。
+         *
+         * 実測ベース: wrapper を一時的に BASE_WIDTH に戻し、
+         * getBoundingClientRect で各 li の実幅を計測してから
+         * 必要な幅を算出し、transition 付きで適用する。
+         */
+        function updatePulldownWidth() {
+            const wrapper = document.querySelector('.pulldown_list_wrapper');
+            if (!wrapper) return;
+
+            const openDetails = wrapper.querySelectorAll('details[open]');
+            if (openDetails.length === 0) {
+                wrapper.style.setProperty('--pulldown-width', BASE_WIDTH + 'px');
+                return;
+            }
+
+            // --- 測定フェーズ: transition を無効化し BASE_WIDTH にリセット ---
+            wrapper.style.transition = 'none';
+            wrapper.style.setProperty('--pulldown-width', BASE_WIDTH + 'px');
+            void wrapper.offsetWidth; // 強制リフロー
+
+            // すべての open details 内の可視 li の中で最も狭い幅を取得
+            let minChildWidth = Infinity;
+            openDetails.forEach(details => {
+                // details 直下の li（buildListがulなしで生成するケース）、
+                // ul > li、div > ul > li のすべてを取得
+                const childLis = details.querySelectorAll(
+                    ':scope > .li_pulldownList, :scope > .ul_pulldownList > .li_pulldownList, :scope > div > .ul_pulldownList > .li_pulldownList'
+                );
+                childLis.forEach(li => {
+                    const rect = li.getBoundingClientRect();
+                    if (rect.width > 0) {
+                        minChildWidth = Math.min(minChildWidth, rect.width);
+                    }
+                });
+            });
+
+            // --- 適用フェーズ: 必要な幅を計算し transition 付きで設定 ---
+            let requiredWidth = BASE_WIDTH;
+            if (minChildWidth !== Infinity && minChildWidth < MIN_CHILD_WIDTH) {
+                const deficit = MIN_CHILD_WIDTH - minChildWidth;
+                requiredWidth = BASE_WIDTH + deficit;
+            }
+
+            // transition を復元してから新しい幅を適用（アニメーション付き）
+            // リセット状態から requiredWidth への変化がアニメーションされる
+            wrapper.style.transition = '';
+            void wrapper.offsetWidth; // transition 復元を確定
+            wrapper.style.setProperty('--pulldown-width', requiredWidth + 'px');
+            console.log('[WIDTH] minChildWidth:', minChildWidth, 'required:', requiredWidth);
+        }
+
+        // details の toggle イベントをイベント委譲で監視 (capture: true)
+        const wrapperEl = document.querySelector('.pulldown_list_wrapper');
+        if (wrapperEl) {
+            wrapperEl.addEventListener('toggle', (e) => {
+                if (e.target.tagName === 'DETAILS') {
+                    updatePulldownWidth();
+                }
+            }, true);
+        }
+
+        // 初回計算（HTML に open 属性が既にある details への対応）
+        updatePulldownWidth();
     }
 
     function renderTagList(allData) {

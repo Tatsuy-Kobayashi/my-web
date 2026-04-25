@@ -93,7 +93,9 @@
 
 /* プルダウン・リスト */
 .main .pulldown_list_wrapper {
-    width: 500px;
+    width: var(--pulldown-width, 500px);
+    min-width: 500px;
+    transition: width 0.3s ease;
 }
 
 .main .details_pulldownList {
@@ -150,10 +152,10 @@
     padding-left: 30px; /* 第三階層：さらに10pxのインデント */
 }
 .pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList > .li_pulldownList {
-    padding-left: 40px; /* 第四階層：さらに10pxのインデント */
+    padding-left: 30px; /* 第四階層：さらに10pxのインデント */
 }
 .pulldown_list_wrapper .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList .li_pulldownList .details_pulldownList > .li_pulldownList {
-    padding-left: 50px; /* 第五階層：さらに10pxのインデント */
+    padding-left: 30px; /* 第五階層：さらに10pxのインデント */
 }
 
 /* 目次 */

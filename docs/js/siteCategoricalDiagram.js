@@ -1132,10 +1132,64 @@ document.addEventListener('DOMContentLoaded', async function () {
         titleEn.textContent = node.labelEn || '';
 
         // ノード説明：node.description が無いなら空文字
+        // innerHTML を使用して TeX デリミタ ($...$) を MathJax が認識できるようにする
         const desc = node.description || "説明はありません。";
-        body.textContent = desc;
+        body.innerHTML = desc;
+
+        // MathJax による数式レンダリング（動的に挿入されたコンテンツ用）
+        // MathJax 3 の CDN スクリプトは defer + 内部非同期初期化があるため、
+        // typesetPromise が利用可能になるまでポーリングで待機する
+        _typesetWhenReady(body);
 
         panel.classList.remove('hidden');
+    }
+
+    /**
+     * MathJax が利用可能になるまで待機し、対象要素を typeset する。
+     * CDN の読み込み遅延や MathJax 内部の非同期初期化を吸収する。
+     * @param {HTMLElement} element - typeset 対象の要素
+     */
+    function _typesetWhenReady(element) {
+        // 既に ready なら即座に実行
+        if (typeof MathJax !== 'undefined' && typeof MathJax.typesetPromise === 'function') {
+            _doTypeset(element);
+            return;
+        }
+
+        // MathJax.startup.promise が存在すれば、それを待つ
+        if (typeof MathJax !== 'undefined' && MathJax.startup && MathJax.startup.promise) {
+            MathJax.startup.promise
+                .then(() => _doTypeset(element))
+                .catch(err => console.error('[MathJax] startup error:', err));
+            return;
+        }
+
+        // CDN がまだロードされていない → ポーリングで待機（最大 10 秒）
+        let elapsed = 0;
+        const interval = 100; // ms
+        const maxWait = 10000; // ms
+        const timer = setInterval(() => {
+            elapsed += interval;
+            if (typeof MathJax !== 'undefined' && typeof MathJax.typesetPromise === 'function') {
+                clearInterval(timer);
+                _doTypeset(element);
+            } else if (elapsed >= maxWait) {
+                clearInterval(timer);
+                console.warn('[MathJax] MathJax did not become available after', maxWait, 'ms. TeX will not be rendered.');
+            }
+        }, interval);
+    }
+
+    /**
+     * MathJax の typeset を実行する（二重レンダリング防止付き）
+     * @param {HTMLElement} element - typeset 対象の要素
+     */
+    function _doTypeset(element) {
+        if (typeof MathJax.typesetClear === 'function') {
+            MathJax.typesetClear([element]);
+        }
+        MathJax.typesetPromise([element])
+            .catch(err => console.error('[MathJax] typeset error:', err));
     }
 
     function hideNodeInfo() {

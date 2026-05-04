@@ -750,7 +750,9 @@ document.addEventListener('DOMContentLoaded', async function () {
 
                     // Link Icon part (Click -> Navigate)
                     const iconLink = document.createElement('a');
-                    iconLink.href = node.url;
+                    // siteData から同じ label のノードを探して URL を取得
+                    const siteNode = siteData.find(sn => sn.label === node.label);
+                    iconLink.href = siteNode ? siteNode.url : 'undefined';
                     iconLink.className = 'icon-arrow-left-to-line';
                     // Adjust style for the icon
                     iconLink.style.cssText = 'margin-left: 10px; text-decoration: none; color: #555; font-size: 1.2em; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; border-radius: 4px;';

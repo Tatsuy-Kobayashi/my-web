@@ -118,12 +118,12 @@
             </div>
 
             <h2 id="section_1">概要</h2>
-            <p>
-                &emsp;<a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/axiomatic_set_theory.html">公理的集合論</a>の中でも最も広く用いられているのが ZFC集合論（Zermelo-Fraenkel Set Theory with the Axiom of Choice）である。集合論の古典的な結果の多くは、<a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/naive_set_theory/naive_set_theory.html">素朴集合論</a>的立場からも十分に理解可能だが、現代的な研究成果の正確な記述や理解には、公理系の明確化が必要不可欠である。ZFC集合論は、要素関係を表す2 変数の述語記号 $\in$ のみを持つ言語 $\mathscr{L}_{ZF}$ 上の 1 階の述語論理の論理式（群）、公理1-10として定式化される。$\in$、論理記号と $=$ 以外の記号は、形式的にはすべて補助記号にすぎない。また、以降に出てくる記号$\in$、$\notin$、$=$、$\cup$、$\varnothing$は、<a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html">集合論</a>にて扱っているため、既知とする。
+            <p class="init-paragraph">
+                <a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/axiomatic_set_theory.html">公理的集合論</a>の中でも最も広く用いられているのが ZFC集合論（Zermelo-Fraenkel Set Theory with the Axiom of Choice）である。集合論の古典的な結果の多くは、<a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/naive_set_theory/naive_set_theory.html">素朴集合論</a>的立場からも十分に理解可能だが、現代的な研究成果の正確な記述や理解には、公理系の明確化が必要不可欠である。ZFC集合論は、要素関係を表す2 変数の述語記号 $\in$ のみを持つ言語 $\mathscr{L}_{ZF}$ 上の 1 階の述語論理の論理式（群）、公理1-10として定式化される。$\in$、論理記号と $=$ 以外の記号は、形式的にはすべて補助記号にすぎない。また、以降に出てくる記号$\in$、$\notin$、$=$、$\cup$、$\varnothing$は、<a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html">集合論</a>にて扱っているため、既知とする。
             </p>
             <h2 id="section_2">ZFC集合論の構成</h2>
-            <p>
-                &emsp;ZFC集合論は以下の3つの特徴を持つ：
+            <p class="init-paragraph">
+                ZFC集合論は以下の3つの特徴を持つ：
                 <ol>
                     <li>Zermelo-Fraenkel（ZF）：基本的な集合の操作を制御するための公理群。</li>
                     <li>Choice（C）：選択公理。任意の集合族から1つずつ選ぶことができるという強力な仮定。</li>
@@ -132,8 +132,10 @@
                 ZFCは、現在の数学の大部分が依拠する形式的基盤であり、算術・代数・実解析・位相などあらゆる分野の理論構築に使用されている。
             </p>
             <p>
-                <b id="section_2_1">ZFC集合論の公理系</b><br>
-                &emsp;ZFCは以下のような9つの（公理スキームを含む）基本公理から成り立ちます。各公理は集合がどのように構成されるか、どのように振る舞うかを制御します。
+                <b id="section_2_1">ZFC集合論の公理系</b>
+            </p>
+            <p class="init-paragraph">
+                ZFCは以下のような9つの（公理スキームを含む）基本公理から成り立ちます。各公理は集合がどのように構成されるか、どのように振る舞うかを制御します。
                 <ol>
                     <li>外延性公理（Axiom of Extensionality）</li>
                     <div class="mathjax_wrapper">
@@ -141,15 +143,15 @@
                             形式：$\forall x \, \forall y \, [ (\forall z \, (z \in x \iff z \in y)) \Rightarrow x = y ]$
                         </div>
                     </div>
-                    <p>
-                        &emsp;どのような論理体系でも、集合の同一性を保証するための最も根本的な公理。「集合は含まれる要素によってのみ決定される」ことを主張するものである。空集合の公理、対の公理、和集合の公理、冪集合公理で存在が主張される集合はそれぞれ、外延性の公理により一意に定まる。
+                    <p class="init-paragraph">
+                        どのような論理体系でも、集合の同一性を保証するための最も根本的な公理。「集合は含まれる要素によってのみ決定される」ことを主張するものである。空集合の公理、対の公理、和集合の公理、冪集合公理で存在が主張される集合はそれぞれ、外延性の公理により一意に定まる。
                     </p>
                     <li>空集合の公理（Axiom of Empty set）</li>
                     <p>
                         形式：$\exists x \, \forall y \, (y \notin x)$
                     </p>
-                    <p>
-                        &emsp;空集合が存在することを保証する公理。「要素を持たない集合が存在する」ことを主張するものである。空集合は、どの要素も含まない集合であり、最も基本的な集合である。
+                    <p class="init-paragraph">
+                        空集合が存在することを保証する公理。「要素を持たない集合が存在する」ことを主張するものである。空集合は、どの要素も含まない集合であり、最も基本的な集合である。
                     </p>
                     <li>置換公理スキーム（Axiom schema of Replacement）</li>
                     <div class="mathjax_wrapper">
@@ -157,8 +159,8 @@
                             形式：$\forall w_{1}, \ldots ,w_{n}\,\forall A\,([\forall x\in A \, \exists !y \, P(x,y,w_{1},\ldots ,w_{n},A)]\ \Rightarrow \ \exists B \, \forall y \, [y \in B \iff \exists x \in A \, P(x,y,w_{1}, \ldots ,w_{n},A)])$
                         </div>
                     </div>
-                    <p>
-                        &emsp;「任意のパラメータ列 $w_{1}, \ldots ,w_{n}$ と任意の集合 $A$ に対して、もし $\forall x \in A \, \exists !y \, P(x,y,w_{1}, \ldots ,w_{n},A)$ ならば、ある集合 $B$ が存在して任意の $y$ に対して、$[y \in B \iff \exists x \in A \, P(x,y,w_{1}, \ldots ,w_{n},A)]$」ことを主張するものである。関数的対応によって「像」を取ったときに、それもまた集合となる。
+                    <p class="init-paragraph">
+                        「任意のパラメータ列 $w_{1}, \ldots ,w_{n}$ と任意の集合 $A$ に対して、もし $\forall x \in A \, \exists !y \, P(x,y,w_{1}, \ldots ,w_{n},A)$ ならば、ある集合 $B$ が存在して任意の $y$ に対して、$[y \in B \iff \exists x \in A \, P(x,y,w_{1}, \ldots ,w_{n},A)]$」ことを主張するものである。関数的対応によって「像」を取ったときに、それもまた集合となる。
                     </p>
                     <div class="tikzjax_wrapper">
                         <div class="tikzjax_flex" style="padding: 20px 0 5px 5px;">
@@ -398,11 +400,11 @@
                             形式：$\forall w_{1},...,w_{n} \, \forall x \, \exists y \, \forall z \, (z \in y \iff [z \in x \land P(z, w_{1},...,w_{n}, x)])$
                         </div>
                     </div>
-                    <p>
-                        &emsp;「ある既存の集合から条件をみたす要素だけを取り出して部分集合をつくる」ことを主張するものである。$x$, $z$, $w_{1}$, ..., $w_{n}$ を自由変数とする集合論の言語における論理式 $P$ ごとに、公理図式のインスタンスが1つずつ含まれる（公理図式の中の1つの公理が含まれる）。ゆえに $y$ は $P$ において自由変数でない。素朴集合論における（素朴な）包括原理と同じ位置の公理だが、『ある既存の集合を前提として、そのうち述語 $P$ をみたす元だけを取り出して“部分集合”を作る』という“制限付き”の原理とすることで、ラッセルのパラドックスなどの矛盾を回避している。
+                    <p class="init-paragraph">
+                        「ある既存の集合から条件をみたす要素だけを取り出して部分集合をつくる」ことを主張するものである。$x$, $z$, $w_{1}$, ..., $w_{n}$ を自由変数とする集合論の言語における論理式 $P$ ごとに、公理図式のインスタンスが1つずつ含まれる（公理図式の中の1つの公理が含まれる）。ゆえに $y$ は $P$ において自由変数でない。素朴集合論における（素朴な）包括原理と同じ位置の公理だが、『ある既存の集合を前提として、そのうち述語 $P$ をみたす元だけを取り出して“部分集合”を作る』という“制限付き”の原理とすることで、ラッセルのパラドックスなどの矛盾を回避している。
                     </p>
-                    <p>
-                        &emsp;分出公理は置換公理と空集合の公理から導かれる。
+                    <p class="init-paragraph">
+                        分出公理は置換公理と空集合の公理から導かれる。
                     </p>
                     <li>対の公理（Axiom of Pairing）</li>
                     <div class="mathjax_wrapper">
@@ -410,8 +412,8 @@
                             形式：$\forall x \, \forall y \, \exists z \, \forall w \, (w \in z \iff (w = x \lor w = y))$
                         </div>
                     </div>
-                    <p>
-                        &emsp;「任意の二つの元 $x$, $y$ に対し、$x$ と$y$ のみを要素とする集合 $z$ が存在する」ことを主張するものである。あるいは、より弱い主張である
+                    <p class="init-paragraph">
+                        「任意の二つの元 $x$, $y$ に対し、$x$ と$y$ のみを要素とする集合 $z$ が存在する」ことを主張するものである。あるいは、より弱い主張である
                     </p>
                     <div class="mathjax_wrapper">
                         <div class="mathjax_flex">
@@ -433,8 +435,8 @@
                     <p>
                         が存在するため上の定義と同等になる。これにより、任意の2つの集合を要素とする集合（対）が構成できる。
                     </p>
-                    <p>
-                        &emsp;そもそも、対の公理はZF公理系の他の公理と独立ではない。すなわち、置換公理および「濃度が2以上の集合の存在」から、任意のx,yに対する対 $\{x, y\}$ の存在を導ける（濃度が2以上の集合の存在については、無限公理、あるいは空集合の公理と冪集合の公理の組み合わせから導くことができる）。 そのため対の公理は、公理系を記述する際に省略されることもある。
+                    <p class="init-paragraph">
+                        そもそも、対の公理はZF公理系の他の公理と独立ではない。すなわち、置換公理および「濃度が2以上の集合の存在」から、任意のx,yに対する対 $\{x, y\}$ の存在を導ける（濃度が2以上の集合の存在については、無限公理、あるいは空集合の公理と冪集合の公理の組み合わせから導くことができる）。 そのため対の公理は、公理系を記述する際に省略されることもある。
                     </p>
                     <li>和集合の公理（Axiom of Union）</li>
                     <div class="mathjax_wrapper">
@@ -442,8 +444,8 @@
                             形式：$\forall x \, \exists y \, \forall z \, [ z \in y \iff \exists w \, (z \in w ∧ w \in x) ]$
                         </div>
                     </div>
-                    <p>
-                        &emsp;「任意の集合族 $x$ に対し、そのすべての要素を集めた合併集合が存在する」ことを主張するものである。すなわち、集合族 $x$ の和集合 $y$ が存在することを保証する。公理により存在を保証される集合 $y$ は、外延性の公理より一意に定まり、
+                    <p class="init-paragraph">
+                        「任意の集合族 $x$ に対し、そのすべての要素を集めた合併集合が存在する」ことを主張するものである。すなわち、集合族 $x$ の和集合 $y$ が存在することを保証する。公理により存在を保証される集合 $y$ は、外延性の公理より一意に定まり、
                     </p>
                     <div class="mathjax_wrapper">
                         <div class="mathjax_flex">
@@ -461,8 +463,8 @@
                             形式：$\forall A \, \exists \mathcal{P} \, \forall B \, [ B \in \mathcal{P} \iff \forall C \, (C \in B \Rightarrow C \in A) ]$
                         </div>
                     </div>
-                    <p>
-                        &emsp;「ある集合 $A$ が与えられたとき、その部分集合全体を要素とする冪集合 $\mathcal{P}$ が存在する」ことを主張するものである。部分集合関係は公理的に定義されるため、形式言語において部分集合は用いられない。外延性公理により、上記の集合は一意であり、このことはすべての集合に冪集合が存在することを意味する。
+                    <p class="init-paragraph">
+                        「ある集合 $A$ が与えられたとき、その部分集合全体を要素とする冪集合 $\mathcal{P}$ が存在する」ことを主張するものである。部分集合関係は公理的に定義されるため、形式言語において部分集合は用いられない。外延性公理により、上記の集合は一意であり、このことはすべての集合に冪集合が存在することを意味する。
                     </p>
                     <li>無限公理（Axiom of Infinity）</li>
                     <div class="mathjax_wrapper">
@@ -470,8 +472,8 @@
                             形式：$\exists \, \mathrm {I} \ (\exists o\ [o\in \mathrm {I} \ \land \lnot \, \exists n\ (n\in o)]\ \land \ \forall x\ [x\in \mathrm {I} \Rightarrow \exists y\ \langle y\in \mathrm {I} \ \land \ \forall a\ [a\in y\Leftrightarrow (a\in x\ \lor \ a=x)]\rangle])$
                         </div>
                     </div>
-                    <p>
-                        &emsp;上記は一階述語論理の原始的な記号だけを用いて表したもので、集合を構築する記法を用いた場合は
+                    <p class="init-paragraph">
+                        上記は一階述語論理の原始的な記号だけを用いて表したもので、集合を構築する記法を用いた場合は
                     </p>
                     <div class="mathjax_wrapper">
                         <div class="mathjax_flex">
@@ -489,8 +491,8 @@
                             形式：$\forall x \, (x \neq \varnothing \Rightarrow \exists y \in x, \, \forall z \in x \, (z \notin y))$
                         </div>
                     </div>
-                    <p>
-                        &emsp;「空でない集合は必ず自分自身と交わらない要素を持つ」ことを主張するものである。これは以下の主張と同値である。
+                    <p class="init-paragraph">
+                        「空でない集合は必ず自分自身と交わらない要素を持つ」ことを主張するものである。これは以下の主張と同値である。
                     </p>
                     <div class="mathjax_wrapper">
                         <div class="mathjax_flex">
@@ -499,8 +501,8 @@
                             \]
                         </div>
                     </div>
-                    <p>
-                        &emsp;上記の命題は、「どんな非空集合にも、その集合と交わりを持たない要素が少なくともひとつある」ことを主張するものである。正則性公理は、無限降下や自己包含などの集合の循環的な定義を排除し、集合の階層構造を確立するために重要である。
+                    <p class="init-paragraph">
+                        上記の命題は、「どんな非空集合にも、その集合と交わりを持たない要素が少なくともひとつある」ことを主張するものである。正則性公理は、無限降下や自己包含などの集合の循環的な定義を排除し、集合の階層構造を確立するために重要である。
                     </p>
                     <li>選択公理（Axiom of Choice）</li>
                     <div class="mathjax_wrapper">
@@ -513,8 +515,8 @@
                             換言：$\forall a \, [(\forall x\in a\ [x \neq \varnothing]) \Rightarrow ([\forall x,\ y\in a\ (x \neq y \Rightarrow x \cap y = \varnothing)] \Rightarrow \exists c \, \forall x\in a\ \exists! y\in c\ [y\in x])]$
                         </div>
                     </div>
-                    <p>
-                        &emsp;「(非空で)互いに素な集合 $x$（や $y$）からなる族 $a$ について、“$a$ の各集合からちょうど1つずつ元を選び出した集合” $c$ が存在する」ことを主張するものである。ここで、$\exists!$ は一意存在量化子で、$\exists! y\in c\ [y\in x]$ は「c の元で、x の要素となるような y がちょうど1つだけ存在する」という意味になる。選択公理においては、選択関数を用いた、
+                    <p class="init-paragraph">
+                        「(非空で)互いに素な集合 $x$（や $y$）からなる族 $a$ について、“$a$ の各集合からちょうど1つずつ元を選び出した集合” $c$ が存在する」ことを主張するものである。ここで、$\exists!$ は一意存在量化子で、$\exists! y\in c\ [y\in x]$ は「c の元で、x の要素となるような y がちょうど1つだけ存在する」という意味になる。選択公理においては、選択関数を用いた、
                     </p>
                     <div class="mathjax_wrapper">
                         <div class="mathjax_flex">
@@ -530,15 +532,15 @@
             </p>
 
             <h2 id="section_3">いくつかの帰結</h2>
-            <p>
-                &emsp;上記の公理から導かれるいくつかの重要な帰結をまとめる。
+            <p class="init-paragraph">
+                上記の公理から導かれるいくつかの重要な帰結をまとめる。
             </p>
             <div class="website_table_wrapper">
                 <div class="website_table">
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">命題 1.1</p></div>
                     <div class="website_proposition_table_td">
-                        <p>
-                            &emsp;「1. 外延性公理」で、
+                        <p class="init-paragraph">
+                            「1. 外延性公理」で、
                         </p>
                         <div class="mathjax_wrapper">
                             <div class="mathjax_flex">
@@ -563,8 +565,8 @@
                     </div>
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">命題 3.1</p></div>
                     <div class="website_proposition_table_td">
-                        <p>
-                            &emsp;置換公理スキームは、<b>一価性が成り立つ述語 $P$ に限り、</b>
+                        <p class="init-paragraph">
+                            置換公理スキームは、<b>一価性が成り立つ述語 $P$ に限り、</b>
                         </p>
                         <div class="mathjax_wrapper">
                             <div class="mathjax_flex">
@@ -579,8 +581,8 @@
                     </div>
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">証明 3.1</p></div>
                     <div class="website_proposition_table_td">
-                        <p>
-                            &emsp;上記、ZFC集合論の公理系では、置換公理スキームを
+                        <p class="init-paragraph">
+                            上記、ZFC集合論の公理系では、置換公理スキームを
                         </p>
                         <div class="mathjax_wrapper">
                             <div class="mathjax_flex">
@@ -612,11 +614,11 @@
                         <p>
                             が導かれる。
                         </p>
-                        <p>
-                            &emsp;逆についても証明する。
+                        <p class="init-paragraph">
+                            逆についても証明する。
                         </p>
-                        <p>
-                            &emsp;任意のパラメータ列 $\bar{w}$ と任意の集合 $A$ を固定する。目標は
+                        <p class="init-paragraph">
+                            任意のパラメータ列 $\bar{w}$ と任意の集合 $A$ を固定する。目標は
                         </p>
                         <div class="mathjax_wrapper">
                             <div class="mathjax_flex">
@@ -670,8 +672,8 @@
                     </div>
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">命題 7.1</p></div>
                     <div class="website_proposition_table_td">
-                        <p>
-                            &emsp;和集合公理、冪集合公理、分出公理を用いて、デカルト積
+                        <p class="init-paragraph">
+                            和集合公理、冪集合公理、分出公理を用いて、デカルト積
                         </p>
                         <div class="mathjax_wrapper">
                             <div class="mathjax_flex">
@@ -687,8 +689,10 @@
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">証明 7.1</p></div>
                     <div class="website_proposition_table_td">
                         <p>
-                            <b>前提：</b><br>
-                            &emsp;Kuratowskiの順序対を次のように定義する：
+                            <b>前提：</b>
+                        </p>
+                        <p class="init-paragraph">
+                            Kuratowskiの順序対を次のように定義する：
                         </p>
                         <div class="mathjax_wrapper">
                             <div class="mathjax_flex">
@@ -701,8 +705,10 @@
                             この集合の2つの要素 $\{x\}$ と $\{x, y\}$ は対公理で与えられるため、通常のZFC 体系ではこれらの集合の存在を前提とする。
                         </p>
                         <p>
-                            <b>ステップ 1：</b><br>
-                            &emsp;仮に $x \in A$ かつ $y \in B$ とすると、
+                            <b>ステップ 1：</b>
+                        </p>
+                        <p class="init-paragraph">
+                            仮に $x \in A$ かつ $y \in B$ とすると、
                         </p>
                         <div style="padding: 0 0 0 40px;">
                             <li>$\{x\} \subseteq A \cup B$（なぜなら $x \in A \subseteq A \cup B$）</li>
@@ -722,8 +728,10 @@
                             要点：<b>二重の冪集合</b> $\mathcal{P}(\mathcal{P}(A \cup B))$ は、すべてのKuratowski順序対 $\langle x, y\rangle$ を含む「上界（スーパーセット）」になっている。
                         </p>
                         <p>
-                            <b>ステップ 2：</b><br>
-                            &emsp;まず「$z$ が順序対 $\langle x, y\rangle$ である」という述語を形式化する：
+                            <b>ステップ 2：</b>
+                        </p>
+                        <p class="init-paragraph">
+                            まず「$z$ が順序対 $\langle x, y\rangle$ である」という述語を形式化する：
                         </p>
                         <div class="mathjax_wrapper">
                             <div class="mathjax_flex">
@@ -761,19 +769,23 @@
                     </div>
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">命題 8.1</p></div>
                     <div class="website_proposition_table_td">
-                        <p>
-                            &emsp;無限公理より、標準的な von Neumann の定義による $\omega$（自然数全体の集合 $\mathbb{N}$ と同じ濃度の基数）の存在を厳密に構成できる。
+                        <p class="init-paragraph">
+                            無限公理より、標準的な von Neumann の定義による $\omega$（自然数全体の集合 $\mathbb{N}$ と同じ濃度の基数）の存在を厳密に構成できる。
                         </p>
                     </div>
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">構成 8.1</p></div>
                     <div class="website_proposition_table_td">
                         <p>
-                            <b>ステップ 1：</b><br>
-                            &emsp;無限公理より存在する $I$ を一つ固定する（存在を取り出す）。無限公理の第一部分は「ある $o \in I$ が存在して、その $o$ は空集合である」というものである。したがって空集合 $\varnothing$ が $I$ に含まれることが示される（空集合を用いない無限公理もあるため、必要なら空集合を別途公理で与えることも可）。第二部分は「任意の $x \in I$ に対して後続 $S(x) := x \cup \{x\}$ が存在して $S(x) \in I$」。このような $I$ を「インダクティブ集合（inductive set）」と呼ぶ。
+                            <b>ステップ 1：</b>
+                        </p>
+                        <p class="init-paragraph">
+                            無限公理より存在する $I$ を一つ固定する（存在を取り出す）。無限公理の第一部分は「ある $o \in I$ が存在して、その $o$ は空集合である」というものである。したがって空集合 $\varnothing$ が $I$ に含まれることが示される（空集合を用いない無限公理もあるため、必要なら空集合を別途公理で与えることも可）。第二部分は「任意の $x \in I$ に対して後続 $S(x) := x \cup \{x\}$ が存在して $S(x) \in I$」。このような $I$ を「インダクティブ集合（inductive set）」と呼ぶ。
                         </p>
                         <p>
-                            <b>ステップ 2：</b><br>
-                            &emsp;直感的に我々が欲しいのは「すべてのインダクティブ集合に共通する元全体」、すなわち最小のインダクティブ集合である。これを構成する。
+                            <b>ステップ 2：</b>
+                        </p>
+                        <p class="init-paragraph">
+                            直感的に我々が欲しいのは「すべてのインダクティブ集合に共通する元全体」、すなわち最小のインダクティブ集合である。これを構成する。
                         </p>
                         <ol>
                             <li>
@@ -814,25 +826,29 @@
                     </div>
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">証明 8.1</p></div>
                     <div class="website_proposition_table_td">
-                        <p>
-                            &emsp;$\omega$ がインダクティブであり最小であることの証明をする。
+                        <p class="init-paragraph">
+                            $\omega$ がインダクティブであり最小であることの証明をする。
                         </p>
                         <p>
-                            <b>ステップ 1：</b>$\omega$ はインダクティブである<br>
-                            &emsp;空集合が $\omega$ に含まれ（無限公理の仮定）、かつ任意の $X \in J$ はインダクティブなので $\varnothing \in X$。よって $\varnothing$ は $J$ のすべての元に含まれるから、$\varnothing \in \omega$（定義より）。
+                            <b>ステップ 1：</b>$\omega$ はインダクティブである
+                        </p>
+                        <p class="init-paragraph">
+                            空集合が $\omega$ に含まれ（無限公理の仮定）、かつ任意の $X \in J$ はインダクティブなので $\varnothing \in X$。よって $\varnothing$ は $J$ のすべての元に含まれるから、$\varnothing \in \omega$（定義より）。
+                        </p>
+                        <p class="init-paragraph">
+                            閉包性（後続を取っても $\omega$ に残る）：任意の $x \in \omega$ を取ると、$x \in X$ が任意の $X \in J$ に対して成り立つ。しかし各 $X \in J$ はインダクティブなので $S(x) \in X$ である。従って $S(x)$ は $J$ のすべての元に含まれるので、$S(x) \in \omega$。したがって $\omega$ はインダクティブである。
                         </p>
                         <p>
-                            &emsp;閉包性（後続を取っても $\omega$ に残る）：任意の $x \in \omega$ を取ると、$x \in X$ が任意の $X \in J$ に対して成り立つ。しかし各 $X \in J$ はインダクティブなので $S(x) \in X$ である。従って $S(x)$ は $J$ のすべての元に含まれるので、$S(x) \in \omega$。したがって $\omega$ はインダクティブである。
+                            <b>ステップ 2：</b>$\omega$ は最小のインダクティブ集合である
                         </p>
-                        <p>
-                            <b>ステップ 2：</b>$\omega$ は最小のインダクティブ集合である<br>
-                            &emsp;任意のインダクティブ集合 $X \subseteq I$（すなわち $X \in J$）を取れば、定義から $\omega \subseteq X$（$\omega$ は $J$ の共通部分）となる。すなわち $\omega$ は $I$ 内の任意のインダクティブ集合に含まれるので最小。
+                        <p class="init-paragraph">
+                            任意のインダクティブ集合 $X \subseteq I$（すなわち $X \in J$）を取れば、定義から $\omega \subseteq X$（$\omega$ は $J$ の共通部分）となる。すなわち $\omega$ は $I$ 内の任意のインダクティブ集合に含まれるので最小。
                         </p>
                     </div>
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">命題 8.2</p></div>
                     <div class="website_proposition_table_td">
-                        <p>
-                            &emsp;無限公理より、標準的な von Neumann の定義による自然数の構成ができる。ただし、この方法では、空集合をゼロとする。
+                        <p class="init-paragraph">
+                            無限公理より、標準的な von Neumann の定義による自然数の構成ができる。ただし、この方法では、空集合をゼロとする。
                         </p>
                     </div>
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">証明 8.2</p></div>

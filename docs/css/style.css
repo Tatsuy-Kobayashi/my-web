@@ -36,6 +36,9 @@ header {
     background-color: #1aaedb;
     border-bottom: #ead963 6px solid;
 }
+.init-paragraph {
+    text-indent: 1rem;
+}
 /*
  -@brief: header icon
 */

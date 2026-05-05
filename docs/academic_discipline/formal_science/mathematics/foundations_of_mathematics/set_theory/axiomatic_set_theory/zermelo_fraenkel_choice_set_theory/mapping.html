@@ -157,15 +157,15 @@
             </div>
 
             <h2 id="section_1">概要</h2>
-            <p>
-                &emsp;この記事は公理的集合論を前提に、集合論の記法で写像・関係の扱いを整然と示すことを目的としている。また、写像を拡張した「対応」についても述べる。
+            <p class="init-paragraph">
+                この記事は公理的集合論を前提に、集合論の記法で写像・関係の扱いを整然と示すことを目的としている。また、写像を拡張した「対応」についても述べる。
             </p>
-            <p>
-                &emsp;本文は定義と標準記法に重心を置きつつ、図や命題を通して直観と厳密性の両立を図る構成になっているため、理論的に整った参照として使いやすくなるように設計している。初めて公理的集合論に触れる読者は、パンくずリストにある基礎的な公理や概念をまとめた上位記事で集合論の考え方を復習してから本稿に進むと理解が深まるだろう。
+            <p class="init-paragraph">
+                本文は定義と標準記法に重心を置きつつ、図や命題を通して直観と厳密性の両立を図る構成になっているため、理論的に整った参照として使いやすくなるように設計している。初めて公理的集合論に触れる読者は、パンくずリストにある基礎的な公理や概念をまとめた上位記事で集合論の考え方を復習してから本稿に進むと理解が深まるだろう。
             </p>
             <h2 id="section_2">$n$ - 項関係</h2>
-            <p>
-                &emsp;$\langle x, y\rangle$ を順序対とすると、2つの集合 $X, Y$ の直積は、
+            <p class="init-paragraph">
+                $\langle x, y\rangle$ を順序対とすると、2つの集合 $X, Y$ の直積は、
             </p>
             <div class="mathjax_wrapper">
                 <div class="mathjax_flex">
@@ -177,11 +177,11 @@
             <p>
                 と表される。集合 $X_{1}, X_{2}, \ldots, X_{n}$ に対して、$R \subseteq X_{1} \times X_{2} \times \cdots \times X_{n}$ である集合 $R$ を $X_{1}, X_{2}, \ldots, X_{n}$ 上の $n$ 項関係（$n$-ary relation）と呼ぶ。$X_{1} = X_{2} = \cdots = X_{n} = X$ のとき、$X$ 上の $n$ 項関係と呼ぶ。
             </p>
-            <p>
-                &emsp;$R$ を $X,Y$ 上の二項関係（binary relation）としたとき、$\langle x, y\rangle \in R$ を $x \, R \> y$ と表す。
+            <p class="init-paragraph">
+                $R$ を $X,Y$ 上の二項関係（binary relation）としたとき、$\langle x, y\rangle \in R$ を $x \, R \> y$ と表す。
             </p>
-            <p>
-                &emsp;次をみたす集合 $X$ 上の二項関係 $R$ を $X$ 上の（狭義）全順序と呼ぶ。
+            <p class="init-paragraph">
+                次をみたす集合 $X$ 上の二項関係 $R$ を $X$ 上の（狭義）全順序と呼ぶ。
             </p>
             <div style="padding: 0 0 0 40px;">
                 <li>$(\forall x \in X) \lnot \, x \, R \> x$.（非反射律）</li>
@@ -193,8 +193,8 @@
             </p>
 
             <h2 id="section_3">写像</h2>
-            <p>
-                &emsp;$f$ が集合 $X, Y$ 上の二項関係で、
+            <p class="init-paragraph">
+                $f$ が集合 $X, Y$ 上の二項関係で、
             </p>
             <div class="mathjax_wrapper">
                 <div class="mathjax_flex">
@@ -206,8 +206,8 @@
             <p>
                 であるとき、$f$ を $X$ から $Y$ への写像（mapping）または関数（function）といい、$f: X \to Y$ と表す。上記の論理式は「$x \in X$ に対して、$\langle x, y\rangle \in f$ を満たすただ一つの $y$ が存在する」という意味である。
             </p>
-            <p>
-                &emsp;$X$ を $f$ の始域（または定義域）と呼び、$\mathrm{dom}(f)$ で表す。一方、$f$ の終域（または値域）を
+            <p class="init-paragraph">
+                $X$ を $f$ の始域（または定義域）と呼び、$\mathrm{dom}(f)$ で表す。一方、$f$ の終域（または値域）を
             </p>
             <div class="mathjax_wrapper">
                 <div class="mathjax_flex">
@@ -219,8 +219,8 @@
             <p>
                 と定義する。
             </p>
-            <p>
-                &emsp;写像 $f: X \to Y$ と $X' \subseteq X$ に対し、
+            <p class="init-paragraph">
+                写像 $f: X \to Y$ と $X' \subseteq X$ に対し、
             </p>
             <div class="mathjax_wrapper">
                 <div class="mathjax_flex">
@@ -232,8 +232,8 @@
             <p>
                 とし、$f[X']$ を $X'$ の $f$ による像（image）と呼ぶ。$f(x)$ が多くの場合、元や<ruby>数<rp>（</rp><rt>すう</rt><rp>）</rp></ruby>相当であるのに対して、$f[X']$ は集合であることに注意されたい。
             </p>
-            <p>
-                &emsp;写像 $f$ が $\forall x_{1}, x_{2} \in X$ に対して、
+            <p class="init-paragraph">
+                写像 $f$ が $\forall x_{1}, x_{2} \in X$ に対して、
             </p>
             <div class="mathjax_wrapper">
                 <div class="mathjax_flex">
@@ -289,8 +289,8 @@
                         <p>
                             <b>カントールの定理</b>
                         </p>
-                        <p>
-                            &emsp;すべての集合 $X$ に対して、
+                        <p class="init-paragraph">
+                            すべての集合 $X$ に対して、
                         </p>
                         <div class="mathjax_wrapper">
                             <div class="mathjax_flex">
@@ -305,8 +305,8 @@
                         <p>
                             <b>ベルンシュタイン・シュレーダーの定理</b>
                         </p>
-                        <p>
-                            &emsp;すべての集合 $X, Y$ に対して、
+                        <p class="init-paragraph">
+                            すべての集合 $X, Y$ に対して、
                         </p>
                         <div class="mathjax_wrapper">
                             <div class="mathjax_flex">
@@ -319,8 +319,8 @@
                 </div> <!-- /website_table -->
             </div>
             <h2 id="section_4">対応</h2>
-            <p>
-                &emsp;この考え方を拡張して、集合 $M$ から $N$ への対応（correspondence）を次のように定義する。
+            <p class="init-paragraph">
+                この考え方を拡張して、集合 $M$ から $N$ への対応（correspondence）を次のように定義する。
             </p>
             <div class="tikzjax_wrapper">
                 <div class="tikzjax_flex" style="padding: 20px 0 5px 5px;">
@@ -527,11 +527,11 @@
                     </script>
                 </div>
             </div>
-            <p>
-                &emsp;直積 $M \times N$ の任意の部分集合を $G$ とする。$G$ の元 $(x, y)$ の $M$ への射影 $x$ の集合を $\mathrm{pr}_{M}(G)$ または $D$ で表し、$(x, y)$ の $N$ への射影 $y$ の集合を $\mathrm{pr}_{N}(G)$ または $V$ で表す。もちろん $D \subseteq M, V \subseteq N$ である。$x$ を $M$ の元とするとき、$(x, y) \in G$ となるような $y$ の集合を $G(x)$ で表し、$M \supset A$ であるとき、$(x,y) \in G$ なる $x \in A$ が存在するような $y$ の集合を $G[A]$ で表す。$G(x) \neq \varnothing$ となるのは $x \in D$ となるときに限り、また $G(x), G[A]$ はいつでも $\subset V$ である。
+            <p class="init-paragraph">
+                直積 $M \times N$ の任意の部分集合を $G$ とする。$G$ の元 $(x, y)$ の $M$ への射影 $x$ の集合を $\mathrm{pr}_{M}(G)$ または $D$ で表し、$(x, y)$ の $N$ への射影 $y$ の集合を $\mathrm{pr}_{N}(G)$ または $V$ で表す。もちろん $D \subseteq M, V \subseteq N$ である。$x$ を $M$ の元とするとき、$(x, y) \in G$ となるような $y$ の集合を $G(x)$ で表し、$M \supset A$ であるとき、$(x,y) \in G$ なる $x \in A$ が存在するような $y$ の集合を $G[A]$ で表す。$G(x) \neq \varnothing$ となるのは $x \in D$ となるときに限り、また $G(x), G[A]$ はいつでも $\subset V$ である。
             </p>
-            <p>
-                &emsp;$(G,M,N)$ なる組が与えられたとき、$M$ から $N$ への一つの<b>対応</b>が与えられたといい、対応を一つの文字、たとえば $\Gamma$ で表すことにする。$M$ を対応 $\Gamma$ の<b>始集合</b>、$N$ を $\Gamma$ の<b>終集合</b>、$G$ を $\Gamma$ のグラフ（graph）という。上の $G(x), G[A]$ はそれぞれ $\Gamma(x), \Gamma[A]$ とも書く。$G(x) = \Gamma(x)$ の元を $\Gamma$ によって $x$ に対応する<b>値</b>という。また $G[A] = \Gamma[A]$ を $A$ の $\Gamma$ による<b>像</b>という。
+            <p class="init-paragraph">
+                $(G,M,N)$ なる組が与えられたとき、$M$ から $N$ への一つの<b>対応</b>が与えられたといい、対応を一つの文字、たとえば $\Gamma$ で表すことにする。$M$ を対応 $\Gamma$ の<b>始集合</b>、$N$ を $\Gamma$ の<b>終集合</b>、$G$ を $\Gamma$ のグラフ（graph）という。上の $G(x), G[A]$ はそれぞれ $\Gamma(x), \Gamma[A]$ とも書く。$G(x) = \Gamma(x)$ の元を $\Gamma$ によって $x$ に対応する<b>値</b>という。また $G[A] = \Gamma[A]$ を $A$ の $\Gamma$ による<b>像</b>という。
             </p>
             <h2 id="section_5">写像の一覧</h2>
             <div class="pulldown_list_wrapper">

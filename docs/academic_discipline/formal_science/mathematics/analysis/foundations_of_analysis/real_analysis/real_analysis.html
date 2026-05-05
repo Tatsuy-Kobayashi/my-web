@@ -102,60 +102,60 @@
             </div>
 
             <h2 id="section_1">概要</h2>
-            <p>
-                &emsp;当サイトの多くのページで言えることだが、細かく各分野ごとに記事を分けている以上、厳密に取り扱う範囲を検討しなければならない。特に普通の教科書ならある程度取り扱う範囲はブレていても前提知識の準備だとか、取り扱った内容の応用だとか言って<ruby>誤魔化<rp>（</rp><rt>ごまか</rt><rp>）</rp></ruby>せるのだが。このページでは、実数の（抽象）代数的性質などについて細かく扱わない。それに関しては<a href="#">実数論</a>のページであらかじめ抑えておいてほしい。
+            <p class="init-paragraph">
+                当サイトの多くのページで言えることだが、細かく各分野ごとに記事を分けている以上、厳密に取り扱う範囲を検討しなければならない。特に普通の教科書ならある程度取り扱う範囲はブレていても前提知識の準備だとか、取り扱った内容の応用だとか言って<ruby>誤魔化<rp>（</rp><rt>ごまか</rt><rp>）</rp></ruby>せるのだが。このページでは、実数の（抽象）代数的性質などについて細かく扱わない。それに関しては<a href="#">実数論</a>のページであらかじめ抑えておいてほしい。
             </p>
             <h2 id="section_2">数の集合・上限・下限</h2>
-            <p>
-                &emsp;集合論に基づいた一般の「集合」については<a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html">集合論</a>で述べている。ここでは、ある<b>条件</b>を満たす<ruby>数<rp>（</rp><rt>すう</rt><rp>）</rp></ruby>の全ての集まりを集合とする。
+            <p class="init-paragraph">
+                集合論に基づいた一般の「集合」については<a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html">集合論</a>で述べている。ここでは、ある<b>条件</b>を満たす<ruby>数<rp>（</rp><rt>すう</rt><rp>）</rp></ruby>の全ての集まりを集合とする。
             </p>
             <div class="website_table_wrapper">
                 <div class="website_table">
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex1&rpar;</p></div>
                     <div class="website_proposition_table_td">
-                        <p>
-                            &emsp;全ての有理数の集合 $\mathbb{Q}$ を考えられる。条件は有理数であることである。
+                        <p class="init-paragraph">
+                            全ての有理数の集合 $\mathbb{Q}$ を考えられる。条件は有理数であることである。
                         </p>
                     </div>
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex2&rpar;</p></div>
                     <div class="website_proposition_table_td">
-                        <p>
-                            &emsp;$a, b$ が定数で $a \lt b$ とするとき、$a \le x \le b$ であるすべての $x$ の集合。この集合を<b>閉区間</b> $\left[a, b\right]$ という。
+                        <p class="init-paragraph">
+                            $a, b$ が定数で $a \lt b$ とするとき、$a \le x \le b$ であるすべての $x$ の集合。この集合を<b>閉区間</b> $\left[a, b\right]$ という。
                         </p>
                     </div>
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex3&rpar;</p></div>
                     <div class="website_proposition_table_td">
-                        <p>
-                            &emsp;$a, b$ が定数で $a \lt b$ とするとき、$a \lt x \lt b$ であるすべての $x$ の集合。この集合を<b>開区間</b> $(a, b)$ という。
+                        <p class="init-paragraph">
+                            $a, b$ が定数で $a \lt b$ とするとき、$a \lt x \lt b$ であるすべての $x$ の集合。この集合を<b>開区間</b> $(a, b)$ という。
                         </p>
                     </div>
                 </div> <!-- /example_table -->
             </div> <!-- /website_table_wrapper -->
-            <p>
-                &emsp;集合 $S$ に属する数がすべて一つの数 $M$ よりも大［あるいは小］でないときには、$S$ は<b>上方</b> [あるいは<b>下方</b>] <b>に有界</b>であるといい、$M$ をその一つの<b>上界</b> [あるいは<b>下界</b>] という。上方にも下方にも有界ならば、単に<b>有界</b>という。
+            <p class="init-paragraph">
+                集合 $S$ に属する数がすべて一つの数 $M$ よりも大［あるいは小］でないときには、$S$ は<b>上方</b> [あるいは<b>下方</b>] <b>に有界</b>であるといい、$M$ をその一つの<b>上界</b> [あるいは<b>下界</b>] という。上方にも下方にも有界ならば、単に<b>有界</b>という。
             </p>
-            <p>
-                &emsp;なお、集合 $S$ に対して固定の定数 $M$ が決定するわけではない。すなわち一つの上界よりも大なる数はやはり上界であり。また一つの下界よりも小なる数は下界である。故に集合の限界としては、なるべく小なる上界、および、なるべく大なる下界に興味がある。集合 $S$ に最大数があるならば、それは、もちろん上界の中で最小なるものであり、また $S$ に最小数があれば、それは下界の中で最大なるものである。さて次に証明するように、$S$ が有界ならば、最大または最小の数がないときにも、最小の上界および最大の下界が存在する。それらを $S$ の<b>上限</b>または<b>下限</b>という。故に上限・下限は必ずしも $S$ に属する数ではない。すなわち、$S$ に最大数がないときには、上限は $S$ に属しない。下限も同様である。
+            <p class="init-paragraph">
+                なお、集合 $S$ に対して固定の定数 $M$ が決定するわけではない。すなわち一つの上界よりも大なる数はやはり上界であり。また一つの下界よりも小なる数は下界である。故に集合の限界としては、なるべく小なる上界、および、なるべく大なる下界に興味がある。集合 $S$ に最大数があるならば、それは、もちろん上界の中で最小なるものであり、また $S$ に最小数があれば、それは下界の中で最大なるものである。さて次に証明するように、$S$ が有界ならば、最大または最小の数がないときにも、最小の上界および最大の下界が存在する。それらを $S$ の<b>上限</b>または<b>下限</b>という。故に上限・下限は必ずしも $S$ に属する数ではない。すなわち、$S$ に最大数がないときには、上限は $S$ に属しない。下限も同様である。
             </p>
-            <p>
-                &emsp;整理すると、集合 $S$ の上限 $a$ とは次の条件 1.、2. に適合する数である。
+            <p class="init-paragraph">
+                整理すると、集合 $S$ の上限 $a$ とは次の条件 1.、2. に適合する数である。
             </p>
             <ol>
                 <li>$S$ に属する<b>すべての</b>数 $x$ に対して、$x \le a$。</li>
                 <li>$a' \lt a$ とすれば、$a' \lt x$ となる<b>任意の</b>数 $x$ が $S$ に属する。</li>
             </ol>
-            <p>
-                &emsp;上記 1. は $a$ が $S$ の上界であること、2. は $a$ よりも小なる上界のないことを意味する。故に<b>上限すなわち最小上界</b>である。
+            <p class="init-paragraph">
+                上記 1. は $a$ が $S$ の上界であること、2. は $a$ よりも小なる上界のないことを意味する。故に<b>上限すなわち最小上界</b>である。
             </p>
-            <p>
-                &emsp;下限に関しては不等号の向きを反対にすればよい。
+            <p class="init-paragraph">
+                下限に関しては不等号の向きを反対にすればよい。
             </p>
             <div class="website_table_wrapper">
                 <div class="website_table">
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex4&rpar;</p></div>
                     <div class="website_proposition_table_td">
-                        <p>
-                            &emsp;下図は、集合に最小の数がない場合の下限の例。集合
+                        <p class="init-paragraph">
+                            下図は、集合に最小の数がない場合の下限の例。集合
                         </p>
                         <div class="mathjax_wrapper">
                             <div class="mathjax_flex">
@@ -337,8 +337,8 @@
                     </script>
                 </div>
             </div>
-            <p>
-                &emsp;以上、上限・下限の意味を述べたが、次にその存在の証明をする。
+            <p class="init-paragraph">
+                以上、上限・下限の意味を述べたが、次にその存在の証明をする。
             </p>
             <div class="website_table_wrapper">
                 <div class="website_table">
@@ -347,41 +347,41 @@
                         <p>
                             <b>Weierstrass の定理</b>
                         </p>
-                        <p>
-                            &emsp;数の集合 $S$ が上方 [あるいは下方] に有界ならば $S$ の上限 [または下限] が存在する。
+                        <p class="init-paragraph">
+                            数の集合 $S$ が上方 [あるいは下方] に有界ならば $S$ の上限 [または下限] が存在する。
                         </p>
                     </div>
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">証明1:</p></div>
                     <div class="website_proposition_table_td">
-                        <p>
-                            &emsp;まず $S$ は下方に有界であると仮定して、下限の存在を証明する。
+                        <p class="init-paragraph">
+                            まず $S$ は下方に有界であると仮定して、下限の存在を証明する。
                         </p>
-                        <p>
-                            &emsp;$S$ の一つの下界を $a$ とすれば、$a$ よりも小なる数はやはり $S$ の下界である。よって $S$ の下界でありうる数の全部を $A$ 組とし、その他の数の全部を $B$ 組とすれば、一つの切断が生ずる。実際、$B$ 組に属する数は $S$ の下界でありえない数だから、それは、どんな下界よりも大でなければならない。従って $A$ 組に属する数よりも大である。
+                        <p class="init-paragraph">
+                            $S$ の一つの下界を $a$ とすれば、$a$ よりも小なる数はやはり $S$ の下界である。よって $S$ の下界でありうる数の全部を $A$ 組とし、その他の数の全部を $B$ 組とすれば、一つの切断が生ずる。実際、$B$ 組に属する数は $S$ の下界でありえない数だから、それは、どんな下界よりも大でなければならない。従って $A$ 組に属する数よりも大である。
                         </p>
-                        <p>
-                            &emsp;この切断によって確定される数を $s$ とする。然らば $s$ は $A$ に属して $A$ の最大数であるか、あるいは $s$ は $B$ に属して $B$ の最小数であるか、いずれか一つである（定理1）。
+                        <p class="init-paragraph">
+                            この切断によって確定される数を $s$ とする。然らば $s$ は $A$ に属して $A$ の最大数であるか、あるいは $s$ は $B$ に属して $B$ の最小数であるか、いずれか一つである（定理1）。
                         </p>
-                        <p>
-                            &emsp;さて、$s$ は $B$ に属するであろうか。
+                        <p class="init-paragraph">
+                            さて、$s$ は $B$ に属するであろうか。
                         </p>
-                        <p>
-                            &emsp;かりに $s$ が $B$ に属するとすれば、$s$ は $S$ の下界でありえないのだから、$s$ よりも小で、しかも $S$ に属する数がある。その一つを $x$ とする。すなわち $x \lt s$。
+                        <p class="init-paragraph">
+                            かりに $s$ が $B$ に属するとすれば、$s$ は $S$ の下界でありえないのだから、$s$ よりも小で、しかも $S$ に属する数がある。その一つを $x$ とする。すなわち $x \lt s$。
                         </p>
-                        <p>
-                            &emsp;$x$ と $s$ との中間にある一つの数を $b$ とする。すなわち $x \lt b \lt s$。
+                        <p class="init-paragraph">
+                            $x$ と $s$ との中間にある一つの数を $b$ とする。すなわち $x \lt b \lt s$。
                         </p>
-                        <p>
-                            &emsp;然らば $b$ は $S$ に属する数 $x$ よりも大であるから、$S$ の下界ではない。すなわち $B$ に属する。しかも、その $b$ が $x$ よりも小であるから、これは矛盾である。
+                        <p class="init-paragraph">
+                            然らば $b$ は $S$ に属する数 $x$ よりも大であるから、$S$ の下界ではない。すなわち $B$ に属する。しかも、その $b$ が $x$ よりも小であるから、これは矛盾である。
                         </p>
-                        <p>
-                            &emsp;故に $s$ は $B$ の最小数ではありえない。
+                        <p class="init-paragraph">
+                            故に $s$ は $B$ の最小数ではありえない。
                         </p>
-                        <p>
-                            &emsp;故に $s$ は $A$ の最大数、すなわち $S$ の最大下界、すなわち $S$ の下限である。
+                        <p class="init-paragraph">
+                            故に $s$ は $A$ の最大数、すなわち $S$ の最大下界、すなわち $S$ の下限である。
                         </p>
-                        <p>
-                            &emsp;$S$ が上方に有界なるとき、上限の存在することも、同じように証明される。
+                        <p class="init-paragraph">
+                            $S$ が上方に有界なるとき、上限の存在することも、同じように証明される。
                         </p>
                     </div>
                 </div> <!-- /example_table -->

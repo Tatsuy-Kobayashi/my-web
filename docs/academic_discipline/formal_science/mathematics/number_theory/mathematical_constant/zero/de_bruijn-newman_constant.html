@@ -272,8 +272,8 @@
 
             <div itemprop="articleBody" id="section_1">
                 <h2>概要</h2>
-                <p>
-                    &emsp;デ・ブリュイン-ニューマン定数 $\Lambda$ とは、おそらく$0$であると<ruby>目<rp>（</rp><rt>もく</rt><rp>）</rp></ruby>されている定数である。
+                <p class="init-paragraph">
+                    デ・ブリュイン-ニューマン定数 $\Lambda$ とは、おそらく$0$であると<ruby>目<rp>（</rp><rt>もく</rt><rp>）</rp></ruby>されている定数である。
                 </p>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex important_formula">
@@ -282,15 +282,15 @@
                         \]
                     </div>
                 </div>
-                <p>
-                    &emsp;現在、$\Lambda$ は上記の範囲まで絞られている。
+                <p class="init-paragraph">
+                    現在、$\Lambda$ は上記の範囲まで絞られている。
                 </p>
                 <h2>解説</h2>
-                <p>
-                    &emsp;まず導入として、リーマンゼータ関数に関連する特定の整関数の零点について論じる。
+                <p class="init-paragraph">
+                    まず導入として、リーマンゼータ関数に関連する特定の整関数の零点について論じる。
                 </p>
-                <p>
-                    &emsp;関数$\psi$、$\phi$、$\Phi$をそれぞれ以下のように定義する。
+                <p class="init-paragraph">
+                    関数$\psi$、$\phi$、$\Phi$をそれぞれ以下のように定義する。
                 </p>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex" style="padding: 40px 0;">
@@ -317,8 +317,8 @@
                 <p>
                     は、よく知られている。実際、最初の式は<a href="https://ja.wikipedia.org/wiki/ポアソン和公式">ポアソン和公式</a>の結果であり、2 番目の式は最初の式を 2 回微分して項を並べ替えることで得られ、3 番目の式は 2 番目の式と同値である。
                 </p>
-                <p>
-                    &emsp;関数$H(\lambda, t)$ を次のように定義する。
+                <p class="init-paragraph">
+                    関数$H(\lambda, t)$ を次のように定義する。
                 </p>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex">
@@ -333,8 +333,8 @@
                 <p>
                     ここで、$\lambda$ は定数（数学定数の意ではなく、一定の値という意味合い）。上記一行目の式は、$H(\lambda, t)$ が $u$ の偶関数のフーリエ変換であであり、その偶関数は $u \rightarrow \infty$ で非常に早く $0$ に収束することを示している。これにより、Paley-Wiener の定理（および [17, pp. 9-10]）により、$H(\lambda, t)$ は次数 $1$ の最大型の偶全関数であることが分かる。特に、Hadamard の因子分解定理から、$H(\lambda, t)$ は無限個の零点を持つ。さらに、$\lambda \in \mathbb{R}$ のとき、$H(\lambda, t)$ は実軸上で実数値をとり、Pólya の基準 [16] によれば、無限個の実零点を持つことが示されている。
                 </p>
-                <p>
-                    &emsp;また、$s = \frac{1}{2} + i t$ と置くと、$H(0, t)$ とリーマンのゼータ関数 $\zeta$ は
+                <p class="init-paragraph">
+                    また、$s = \frac{1}{2} + i t$ と置くと、$H(0, t)$ とリーマンのゼータ関数 $\zeta$ は
                 </p>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex">
@@ -370,40 +370,40 @@ xi(0) = (0.497120778188314 + 0.0j)</div>
                     <input type="range" id="slider-lambda" min="0" max="5" step="0.01" value="0.2">
                     <span id="slider-value">0.20</span>
                 </div>
-                <p>
-                    &emsp;上のコードでは、関数$\Phi$、$H$、リーマンのクシー関数$\xi$（の変形）を定義し、それぞれの値を確認し、簡単に $H$ と $\xi$ が等しいことを確認している。さらに、Pythonによるグラフ生成のコードも置いているが、見えているものはJavaScriptによるものである。
+                <p class="init-paragraph">
+                    上のコードでは、関数$\Phi$、$H$、リーマンのクシー関数$\xi$（の変形）を定義し、それぞれの値を確認し、簡単に $H$ と $\xi$ が等しいことを確認している。さらに、Pythonによるグラフ生成のコードも置いているが、見えているものはJavaScriptによるものである。
                 </p>
-                <p>
-                    &emsp;$\lambda_{1} \lt \lambda_{2}$ とすると、$H(\lambda_{2}, t)$の零点は$H(\lambda_{1}, t)$の零点よりも実軸に近くなる。
+                <p class="init-paragraph">
+                    $\lambda_{1} \lt \lambda_{2}$ とすると、$H(\lambda_{2}, t)$の零点は$H(\lambda_{1}, t)$の零点よりも実軸に近くなる。
                 </p>
                 <h2>デ・ブリュイン-ニューマン定数</h2>
                 <p>
                     <b>命題 A. </b>もし$\lambda_{1} \le \lambda_{2}$, $\Delta \ge 0$であり、$H(\lambda_{1}, t)$ の零点が$\{ t: |\Im t| \le \Delta \}$に全て含まれているとすると、$H(\lambda_{2}, t)$ の零点は$\{ t: |\Im t| \le \tilde{\Delta} \}$に含まれる。ここで$\tilde{\Delta} = \sqrt{\max{\{ \Delta^{2} - 2 (\lambda_{2} - \lambda_{1}), 0 \}}}$。
                 </p>
-                <p>
-                    &emsp;この命題は、$H(\lambda, t)$ の積分表示 (1.1) に対して N.G. de Bruijn の定理 [6, Theorem 13] を適用することで容易に証明できる（さらに、de Bruijn の定理を一般化した Theorem 2.3 も参照せよ）。
+                <p class="init-paragraph">
+                    この命題は、$H(\lambda, t)$ の積分表示 (1.1) に対して N.G. de Bruijn の定理 [6, Theorem 13] を適用することで容易に証明できる（さらに、de Bruijn の定理を一般化した Theorem 2.3 も参照せよ）。
                 </p>
-                <p>
-                    &emsp;また、$H(0, t)$の零点が$\{ t: |\Im t| \lt 1 / 2 \}$に含まれることから、命題 A により、$\lambda \ge 1 / 8$のとき$H(\lambda, t)$ は実零点のみを持つことが示される。さらに、もし$\lambda_{1} \le \lambda_{2}$で$H(\lambda_{1}, t)$ が実零点のみを持つならば、$H(\lambda_{2}, t)$ も実零点のみを持つことになる。
+                <p class="init-paragraph">
+                    また、$H(0, t)$の零点が$\{ t: |\Im t| \lt 1 / 2 \}$に含まれることから、命題 A により、$\lambda \ge 1 / 8$のとき$H(\lambda, t)$ は実零点のみを持つことが示される。さらに、もし$\lambda_{1} \le \lambda_{2}$で$H(\lambda_{1}, t)$ が実零点のみを持つならば、$H(\lambda_{2}, t)$ も実零点のみを持つことになる。
                 </p>
-                <p>
-                    &emsp;一方、[14] において C.M. Newman は、ある負の定数$\lambda$ に対して$H(\lambda, t)$ が非実零点を持つことを証明している。これにより、実定数 $\lambda^{(0)} \le 1 / 8$ が存在し、
+                <p class="init-paragraph">
+                    一方、[14] において C.M. Newman は、ある負の定数$\lambda$ に対して$H(\lambda, t)$ が非実零点を持つことを証明している。これにより、実定数 $\lambda^{(0)} \le 1 / 8$ が存在し、
                 </p>
                 <li>$\lambda^{(0)} \le \lambda$のとき、$H(\lambda, t)$ は実零点のみを持ち、</li>
                 <li>$\lambda \lt \lambda^{(0)}$のとき、$H(\lambda, t)$ は非実零点を持つ。</li>
                 <p>
                     （[14, Theorem 3]）という状況になる。リーマン予想は、この$\lambda^{(0)} \le 0$という不等式と同値である。一方、Newman は逆の不等式$0 \le \lambda^{(0)}$を予想し、これを「リーマン予想が正しいならば、その正しさはかろうじて保たれている」という説明の定量的な表現と位置付けた [14, p. 247]。
                 </p>
-                <p>
-                    &emsp;さらに、de Bruijn-Newman 定数$\Lambda$は$\Lambda = 4 \lambda^{(0)}$と定義される [5]。したがって、$\Lambda \le 1 / 2$が成り立り、リーマン予想および Newman の予想はそれぞれ、
+                <p class="init-paragraph">
+                    さらに、de Bruijn-Newman 定数$\Lambda$は$\Lambda = 4 \lambda^{(0)}$と定義される [5]。したがって、$\Lambda \le 1 / 2$が成り立り、リーマン予想および Newman の予想はそれぞれ、
                 </p>
                 <li>リーマン予想：$\Lambda \le 0$</li>
                 <li>Newman の予想：$0 \le \Lambda$</li>
                 <p>
                     という不等式と同値である。なお、$\Lambda$ の初めての明示的な下界は、1988 年に G. Csordas、T.S. Norfolk、R.S. Varga によって示され、彼らは$- 50 \lt \Lambda$を証明した。
                 </p>
-                <p>
-                    &emsp;その後、この下界は多くの著者（[15, Section 1] 参照）によって Newman の予想を支持する方向に大幅に改善されているが、現時点で $\Lambda \le 0.2$ よりも良い上界が示された例はないようである。
+                <p class="init-paragraph">
+                    その後、この下界は多くの著者（[15, Section 1] 参照）によって Newman の予想を支持する方向に大幅に改善されているが、現時点で $\Lambda \le 0.2$ よりも良い上界が示された例はないようである。
                 </p>
 <!--
   上位文書: On the de Bruijn–Newman constant.pdf

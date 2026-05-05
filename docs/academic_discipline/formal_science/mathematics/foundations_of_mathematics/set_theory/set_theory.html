@@ -132,17 +132,21 @@
             </div>
 
             <h2 id="section_1">概要</h2>
-            <p>
-                &emsp;さまざまな集合論に対して共通の概念を定義する。もちろんこれらはそれぞれの集合論の公理から演繹的に導かれるものであるが、「集合論の基礎」として重要な部分をまとめておくのも良いだろう。ここで述べることの多くは、離散的で有限な数学的対象に関するものである。
+            <p class="init-paragraph">
+                さまざまな集合論に対して共通の概念を定義する。もちろんこれらはそれぞれの集合論の公理から演繹的に導かれるものであるが、「集合論の基礎」として重要な部分をまとめておくのも良いだろう。ここで述べることの多くは、離散的で有限な数学的対象に関するものである。
             </p>
             <h2 id="section_2">集合の基本概念と用語</h2>
             <p>
-                <b id="section_2_1">集合</b><br>
-                &emsp;集合は「ある条件に基づいて選ばれた対象のまとまり」を意味する。たとえば、「自然数全体の集合」や「赤い果物の集合」などがその典型としてあげられる。また、集合を構成する個々の対象を<b>元（要素）</b>と呼ぶ。
+                <b id="section_2_1">集合</b>
+            </p>
+            <p class="init-paragraph">
+                集合は「ある条件に基づいて選ばれた対象のまとまり」を意味する。たとえば、「自然数全体の集合」や「赤い果物の集合」などがその典型としてあげられる。また、集合を構成する個々の対象を<b>元（要素）</b>と呼ぶ。
             </p>
             <p>
-                <b id="section_2_2">帰属関係</b><br>
-                &emsp;$x$ が集合 $A$ の要素である場合、 x は A に属している、または x は A に含まれると表現する（ただし、包含関係という場合は部分集合を表す）。これは
+                <b id="section_2_2">帰属関係</b>
+            </p>
+            <p class="init-paragraph">
+                $x$ が集合 $A$ の要素である場合、 x は A に属している、または x は A に含まれると表現する（ただし、包含関係という場合は部分集合を表す）。これは
             </p>
             <div class="mathjax_wrapper">
                 <div class="mathjax_flex">
@@ -154,21 +158,21 @@
             <p>
                 で表される。記号 $\in$ は、1889年にジュゼッペ・ペアノによって導入された、ギリシャ文字の小文字のイプシロン「<span style="font: 16px math;">ε</span>」から派生したもので、<span style="font: 16px math;">ἐστί</span>（「is」の意味）という単語の最初の文字である。記号 $\notin$ は、$x \notin A$ という表記でよく用いられ「x は A に含まれない」という意味になる。
             </p>
-            <p>
-                &emsp;集合の集合(要素が集合である集合)を、特に<b>集合族</b>という。
+            <p class="init-paragraph">
+                集合の集合(要素が集合である集合)を、特に<b>集合族</b>という。
             </p>
-            <p>
-                &emsp;元が$1$つである集合を、特に<b><ruby>一<rp>（</rp><rt>いち</rt><rp>）</rp></ruby>元集合</b>という。また、元が存在しない集合を<b>空集合</b>といい、記号$\varnothing$（$\emptyset$）または$\{\}$（$(\ |\ )$）で表す。集合はその要素によって完全に定まるため、空集合は1種類だけである（空集合の公理を参照）。空集合には要素がないが、他の集合（集合族）の要素である可能性はある。したがって、前者には要素がなく、後者には1つの要素があるため、$\varnothing \neq \{ \varnothing \}$ である。
+            <p class="init-paragraph">
+                元が$1$つである集合を、特に<b><ruby>一<rp>（</rp><rt>いち</rt><rp>）</rp></ruby>元集合</b>という。また、元が存在しない集合を<b>空集合</b>といい、記号$\varnothing$（$\emptyset$）または$\{\}$（$(\ |\ )$）で表す。集合はその要素によって完全に定まるため、空集合は1種類だけである（空集合の公理を参照）。空集合には要素がないが、他の集合（集合族）の要素である可能性はある。したがって、前者には要素がなく、後者には1つの要素があるため、$\varnothing \neq \{ \varnothing \}$ である。
             </p>
             <div class="website_table_wrapper">
                 <div class="website_table">
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex1&rpar;</p></div>
                     <div class="website_proposition_table_td">
-                        <p>&emsp;元が$x$のみである集合$\{ x\}$は一元集合であり、$x$とは異なる数学的対象として考える。</p>
+                        <p class="init-paragraph">元が$x$のみである集合$\{ x\}$は一元集合であり、$x$とは異なる数学的対象として考える。</p>
                     </div>
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex2&rpar;</p></div>
                     <div class="website_proposition_table_td">
-                        <p>&emsp;$1$桁の自然数の集合は、外延的表記によって、</p>
+                        <p class="init-paragraph">$1$桁の自然数の集合は、外延的表記によって、</p>
                         <div class="mathjax_wrapper">
                             <div class="mathjax_flex">
                                 \[
@@ -188,13 +192,13 @@
                     </div>
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex3&rpar;</p></div>
                     <div class="website_proposition_table_td">
-                        <p>&emsp;元が$x$のみである集合$\{ x\}$は一元集合であり、$x$とは異なる数学的対象として考える。</p>
+                        <p class="init-paragraph">元が$x$のみである集合$\{ x\}$は一元集合であり、$x$とは異なる数学的対象として考える。</p>
                     </div>
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex4&rpar;</p></div>
                     <div class="website_proposition_table_td">
-                        <p>
+                        <p class="init-paragraph">
                             <div style="padding: 0 0 0 40px;">
-                                <li>&emsp;素数全体の集合を$\mathbb{P}$とする。</li>
+                                <li class="init-paragraph">素数全体の集合を$\mathbb{P}$とする。</li>
                                 <li>$2$は素数であるから、$2$は集合$P$に属する。ゆえに、$2\in P$が成り立つ。</li>
                                 <li>$6$は素数でないから、$6$は集合$P$に属さない。ゆえに、$6\not\in P$が成り立つ。</li>
                             </div>
@@ -202,8 +206,8 @@
                     </div>
                 </div> <!-- /example_table -->
             </div>
-            <p>
-                &emsp;Pythonには、「集合」というデータ型が用意されている。
+            <p class="init-paragraph">
+                Pythonには、「集合」というデータ型が用意されている。
             </p>
             <div class="coding_file_wrapper">
                 <div class="fileTitle">集合型</div>
@@ -226,32 +230,38 @@ for文のブロックで定義: {1, 2, 3, 4, 5, 6, 7, 8, 9}
                 通常、数学の集合には、要素に順番はなく要素に重複もない。Pythonの集合型にも要素の順番はなく要素に重複もない。ソースコード例にもあるように集合族も定義できないことはないが、単にまとまりを元としたいだけなら、タプルを元とした方が良い（例：冪<rp>（</rp><rt>べき</rt><rp>）</ruby>集合、直積集合）。
             </p>
             <p>
-                <b id="section_2_3">部分集合</b><br>
-                &emsp;任意の集合$A$の元が集合$B$の元であるとき、$A$は$B$に含まれる、$B$は$A$を含むといい、$A\subseteq B$、$B\supseteq A$と書く。また、$A$を$B$の部分集合という。$A\subseteq B$かつ$B\subseteq A$であるとき、$A$と$B$は等しいといい、$A=B$と書く。また、$A=B$が成り立たないとき、$A\neq B$と書く。$B$と等しくない$B$の部分集合を真部分集合といい、$A\subset B$と書く（文章によっては、$A$と$B$が等しい場合も含む部分集合を$A\subset B$と書き、真部分集合を$A\subsetneq B$と書くこともある。しかしその場合、否定を含意しない記号$\subseteq$は活用しないのか？という当然の疑問がうまれる）。
+                <b id="section_2_3">部分集合</b>
+            </p>
+            <p class="init-paragraph">
+                任意の集合$A$の元が集合$B$の元であるとき、$A$は$B$に含まれる、$B$は$A$を含むといい、$A\subseteq B$、$B\supseteq A$と書く。また、$A$を$B$の部分集合という。$A\subseteq B$かつ$B\subseteq A$であるとき、$A$と$B$は等しいといい、$A=B$と書く。また、$A=B$が成り立たないとき、$A\neq B$と書く。$B$と等しくない$B$の部分集合を真部分集合といい、$A\subset B$と書く（文章によっては、$A$と$B$が等しい場合も含む部分集合を$A\subset B$と書き、真部分集合を$A\subsetneq B$と書くこともある。しかしその場合、否定を含意しない記号$\subseteq$は活用しないのか？という当然の疑問がうまれる）。
+            </p>
+            <p class="init-paragraph">
+                全ての集合は空集合を部分集合として含む：任意の集合 $A$ に対し、$\varnothing \subseteq A$である。何故なら、任意の集合 $A$ に対し、命題「${}^{\forall} x : x \in \varnothing \Rightarrow x \in A$」は常に真だからである（<a href="https://ja.wikipedia.org/wiki/%E7%A9%BA%E8%99%9A%E3%81%AA%E7%9C%9F">空虚な真</a>参照。なぜ前件が真にならないのかと言うと、空集合には要素がないからである）。特に$A = \varnothing$とすれば、$\varnothing \subseteq \varnothing$が成り立つことも分かる。また、空集合の部分集合は空集合自身のみである。
             </p>
             <p>
-                &emsp;全ての集合は空集合を部分集合として含む：任意の集合 $A$ に対し、$\varnothing \subseteq A$である。何故なら、任意の集合 $A$ に対し、命題「${}^{\forall} x : x \in \varnothing \Rightarrow x \in A$」は常に真だからである（<a href="https://ja.wikipedia.org/wiki/%E7%A9%BA%E8%99%9A%E3%81%AA%E7%9C%9F">空虚な真</a>参照。なぜ前件が真にならないのかと言うと、空集合には要素がないからである）。特に$A = \varnothing$とすれば、$\varnothing \subseteq \varnothing$が成り立つことも分かる。また、空集合の部分集合は空集合自身のみである。
+                <b id="section_2_4"><ruby>冪<rp>（</rp><rt>べき</rt><rp>）</ruby>集合</b>
+            </p>
+            <p class="init-paragraph">
+                任意の集合$A$に対し、$A$の部分集合全体の集合を$A$の冪集合といい、$\mathcal{P}(A)$、$\mathfrak{P}(A)$、$P(A)$、${2}^{A}$などと書く。冪集合は集合族の一つである。冪集合の要素数は$2^{|A|}$となる。
             </p>
             <p>
-                <b id="section_2_4"><ruby>冪<rp>（</rp><rt>べき</rt><rp>）</ruby>集合</b><br>
-                &emsp;任意の集合$A$に対し、$A$の部分集合全体の集合を$A$の冪集合といい、$\mathcal{P}(A)$、$\mathfrak{P}(A)$、$P(A)$、${2}^{A}$などと書く。冪集合は集合族の一つである。冪集合の要素数は$2^{|A|}$となる。
+                <b id="section_2_5">集合の大きさ（濃度、基数）</b>
             </p>
-            <p>
-                <b id="section_2_5">集合の大きさ（濃度、基数）</b><br>
-                &emsp;集合$A$の元の個数を$|A|$と記し、その値が有限であるものを有限集合、有限でないものを無限集合という。無限集合の場合は、集合の濃度を考えないとき$|A|=\infty$と表現することもある。また、基数は$\#A$や$\operatorname{Card}(A)$と表現することもある。
+            <p class="init-paragraph">
+                集合$A$の元の個数を$|A|$と記し、その値が有限であるものを有限集合、有限でないものを無限集合という。無限集合の場合は、集合の濃度を考えないとき$|A|=\infty$と表現することもある。また、基数は$\#A$や$\operatorname{Card}(A)$と表現することもある。
             </p>
-            <p>
-                &emsp;なお、数学では自然数全体の集合を$\mathbb{N}$、整数全体の集合を$\mathbb{Z}$、有理数全体の集合を$\mathbb{Q}$、実数全体の集合を$\mathbb{R}$、複素数全体の集合を$\mathbb{C}$と書く。ただし、自然数の定義は文脈によって異なるので注意すること。また、素数全体の集合を記号$\mathbb{P}$とする場合がある。
+            <p class="init-paragraph">
+                なお、数学では自然数全体の集合を$\mathbb{N}$、整数全体の集合を$\mathbb{Z}$、有理数全体の集合を$\mathbb{Q}$、実数全体の集合を$\mathbb{R}$、複素数全体の集合を$\mathbb{C}$と書く。ただし、自然数の定義は文脈によって異なるので注意すること。また、素数全体の集合を記号$\mathbb{P}$とする場合がある。
             </p>
             <div class="website_table_wrapper">
                 <div class="website_table">
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex5&rpar;</p></div>
                     <div class="website_proposition_table_td">
-                        <p>&emsp;集合$A = \{ 1, 2, 5 \}$のすべての元は自然数であるから、$A$は自然数の部分集合であり、$A\subseteq \mathbb{N}$と書ける。</p>
+                        <p class="init-paragraph">集合$A = \{ 1, 2, 5 \}$のすべての元は自然数であるから、$A$は自然数の部分集合であり、$A\subseteq \mathbb{N}$と書ける。</p>
                     </div>
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex6&rpar;</p></div>
                     <div class="website_proposition_table_td">
-                        <p>&emsp;集合$A = \{ 1, 2, 5 \}$の冪集合は
+                        <p class="init-paragraph">集合$A = \{ 1, 2, 5 \}$の冪集合は
                             <div class="mathjax_wrapper">
                                 <div class="mathjax_flex">
                                     \[
@@ -264,12 +274,12 @@ for文のブロックで定義: {1, 2, 3, 4, 5, 6, 7, 8, 9}
                     </div>
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex7&rpar;</p></div>
                     <div class="website_proposition_table_td">
-                        <p>&emsp;集合$A = \{ 1, 2, 5 \}$の要素数は$|A|=3$である。</p>
+                        <p class="init-paragraph">集合$A = \{ 1, 2, 5 \}$の要素数は$|A|=3$である。</p>
                     </div>
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">ex8&rpar;</p></div>
                     <div class="website_proposition_table_td">
-                        <p>
-                            &emsp;無限集合の大きさは濃度（可算濃度、連続体濃度）で表す。<br>
+                        <p class="init-paragraph">
+                            無限集合の大きさは濃度（可算濃度、連続体濃度）で表す。<br>
                             <div class="mathjax_wrapper">
                                 <div class="mathjax_flex">
                                     \[
@@ -281,10 +291,12 @@ for文のブロックで定義: {1, 2, 3, 4, 5, 6, 7, 8, 9}
                     </div>
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">命題1: </p></div>
                     <div class="website_proposition_table_td">
-                        <p>&emsp;冪集合の要素数は$2^{|A|}$となる。</p>
+                        <p class="init-paragraph">冪集合の要素数は$2^{|A|}$となる。</p>
                         <p>
-                            <b>証明</b><br>
-                            &emsp;$|A| = n$と置く。冪集合の定義より、冪集合の各元は、要素数$0$の集合、要素数$1$の集合、要素数$2$の集合、、、要素数$n$の集合の各組合せであり、それらの集合の構成パターンは、それぞれ${}_n \mathrm{C}_{0}$、${}_n \mathrm{C}_{1}$、${}_n \mathrm{C}_{2}$、、、${}_n \mathrm{C}_{n}$となる。ここで二項定理より、
+                            <b>証明</b>
+                        </p>
+                        <p class="init-paragraph">
+                            $|A| = n$と置く。冪集合の定義より、冪集合の各元は、要素数$0$の集合、要素数$1$の集合、要素数$2$の集合、、、要素数$n$の集合の各組合せであり、それらの集合の構成パターンは、それぞれ${}_n \mathrm{C}_{0}$、${}_n \mathrm{C}_{1}$、${}_n \mathrm{C}_{2}$、、、${}_n \mathrm{C}_{n}$となる。ここで二項定理より、
                         </p>
                         <div class="mathjax_wrapper">
                             <div class="mathjax_flex">
@@ -312,13 +324,17 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                 </div>
             </div> <!-- /coding_file_wrapper -->
             <p>
-                <b id="section_2_6">集合の代数学</b><br>
-                &emsp;数の基礎──群論などでは、各数体の演算について学ぶが、集合にも演算がある。以下の演算によって、集合の直感的かつ基本的な操作が可能になる。
+                <b id="section_2_6">集合の代数学</b>
+            </p>
+            <p class="init-paragraph">
+                数の基礎──群論などでは、各数体の演算について学ぶが、集合にも演算がある。以下の演算によって、集合の直感的かつ基本的な操作が可能になる。
             </p>
             <ul>
                 <p>
                     <li><b>和集合（Union）</b></li>
-                    &emsp;2つの集合$A, B$の和集合を
+                </p>
+                <p class="init-paragraph">
+                    2つの集合$A, B$の和集合を
                 </p>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex">
@@ -362,8 +378,8 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                         </script>
                     </div>
                 </div>
-                <p>
-                    &emsp;和集合には<b>交換法則</b>と<b>結合法則</b>が成り立つ。
+                <p class="init-paragraph">
+                    和集合には<b>交換法則</b>と<b>結合法則</b>が成り立つ。
                 </p>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex">
@@ -377,7 +393,9 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                 </div>
                 <p>
                     <li><b>積集合（Intersection、共通部分、交叉）</b></li>
-                    &emsp;2つの集合$A, B$の共通部分を
+                </p>
+                <p class="init-paragraph">
+                    2つの集合$A, B$の共通部分を
                 </p>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex">
@@ -420,8 +438,8 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                         </script>
                     </div>
                 </div>
-                <p>
-                    &emsp;積集合には<b>交換法則</b>と<b>結合法則</b>が成り立つ。
+                <p class="init-paragraph">
+                    積集合には<b>交換法則</b>と<b>結合法則</b>が成り立つ。
                 </p>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex">
@@ -433,8 +451,8 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                         \end{equation*}
                     </div>
                 </div>
-                <p>
-                    &emsp;集合$A, B, C$に対し，次の<b>分配法則（分配律）</b>が成り立つ。
+                <p class="init-paragraph">
+                    集合$A, B, C$に対し，次の<b>分配法則（分配律）</b>が成り立つ。
                 </p>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex">
@@ -448,7 +466,9 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                 </div>
                 <p>
                     <li><b>差集合（Difference、相対補集合）</b></li>
-                    &emsp;2つの集合$A, B$の差集合を
+                </p>
+                <p class="init-paragraph">
+                    2つの集合$A, B$の差集合を
                 </p>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex">
@@ -499,10 +519,12 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                 </div>
                 <p>
                     <li><b>（絶対）補集合（complement）</b></li>
-                    &emsp;特定の状況では、考えているすべての集合を、特定の普遍集合（Universal set）の部分集合と見なすことができる。真の普遍集合は標準集合論には含まれていないが、一部の非標準集合論には含まれている。
                 </p>
-                <p>
-                    &emsp;普遍集合$U$と$U$の部分集合$X$が与えられたとき、$X$の補集合（$U$の部分集合）を
+                <p class="init-paragraph">
+                    特定の状況では、考えているすべての集合を、特定の普遍集合（Universal set）の部分集合と見なすことができる。真の普遍集合は標準集合論には含まれていないが、一部の非標準集合論には含まれている。
+                </p>
+                <p class="init-paragraph">
+                    普遍集合$U$と$U$の部分集合$X$が与えられたとき、$X$の補集合（$U$の部分集合）を
                 </p>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex">
@@ -514,7 +536,9 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                 <p>と定義する。言い換えると、$X^{C}$（"A-complement"）は、$A$ の要素ではない $U$ のすべての要素の集合である。</p>
                 <p>
                     <li><b>対称差（Symmetric difference）</b></li>
-                    &emsp;2つの集合$A, B$の対称差を
+                </p>
+                <p class="init-paragraph">
+                    2つの集合$A, B$の対称差を
                 </p>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex">
@@ -572,8 +596,8 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                         </script>
                     </div>
                 </div>
-                <p>
-                    &emsp;対称差には<b>交換法則</b>と<b>結合法則</b>が成り立つ。
+                <p class="init-paragraph">
+                    対称差には<b>交換法則</b>と<b>結合法則</b>が成り立つ。
                 </p>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex">
@@ -587,10 +611,12 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                 </div>
                 <p>
                     <li><b>直積 [デカルト積]（Direct product [Cartesian product]）</b></li>
-                    &emsp;解析幾何学で周知のように、<ruby>Descartes<rp>（</rp><rt>デカルト</rt><rp>）</rp></ruby>座標を用いれば、平面上の一点は二つの実数 $x,y$ の対 $(x,y)$ として表わされる。二点 $(x,y)$, $(x', y')$ が一致するために必要にして十分な条件は $x = x', y = y'$ である。このような数の組を順序対（ordered pair）と呼ぶ。
                 </p>
-                <p>
-                    &emsp;ここで上記の順序対を用いて2つの集合$A, B$の直積を
+                <p class="init-paragraph">
+                    解析幾何学で周知のように、<ruby>Descartes<rp>（</rp><rt>デカルト</rt><rp>）</rp></ruby>座標を用いれば、平面上の一点は二つの実数 $x,y$ の対 $(x,y)$ として表わされる。二点 $(x,y)$, $(x', y')$ が一致するために必要にして十分な条件は $x = x', y = y'$ である。このような数の組を順序対（ordered pair）と呼ぶ。
+                </p>
+                <p class="init-paragraph">
+                    ここで上記の順序対を用いて2つの集合$A, B$の直積を
                 </p>
                 <div class="mathjax_wrapper">
                     <div class="mathjax_flex">
@@ -602,8 +628,8 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                 <p>
                     と定義できる。直積のZFC公理系からの導出は、<a href="https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/zermelo_fraenkel_choice_set_theory.html">ツェルメロ＝フレンケル集合論</a>の命題 7.1を参照されたい。
                 </p>
-                <p>
-                    &emsp;再び解析幾何学の観点で述べると、$x$ を $A \times B$ の元 $(x,y) = z$ の 'A座標' または 'Aへの<b>射影</b>' (projection onto A) といい $\mathrm{pr}_{A}(z)$ で表せる。同様に $y$ を $(x,y) = z$ の 'B座標' または 'Bへの射影' といい $\mathrm{pr}_{B}(z)$ で表せる。
+                <p class="init-paragraph">
+                    再び解析幾何学の観点で述べると、$x$ を $A \times B$ の元 $(x,y) = z$ の 'A座標' または 'Aへの<b>射影</b>' (projection onto A) といい $\mathrm{pr}_{A}(z)$ で表せる。同様に $y$ を $(x,y) = z$ の 'B座標' または 'Bへの射影' といい $\mathrm{pr}_{B}(z)$ で表せる。
                 </p>
             </ul>
             <div class="coding_file_wrapper">
@@ -622,8 +648,10 @@ set2のべき集合: [(), (1,), (2,), (5,), (1, 2), (1, 5), (2, 5), (1, 2, 5)]
                 </div>
             </div> <!-- /coding_file_wrapper -->
             <p>
-                <b id="section_2_7">ベン図</b><br>
-                &emsp;集合論において、必須の概念というわけではないが、2、3の集合の関係（特に交叉）を分かりやすくする道具を紹介しておく（複数とは言わないのは、4つを超える集合の場合には、必ずしも見やすくなるわけではないからである）。
+                <b id="section_2_7">ベン図</b>
+            </p>
+            <p class="init-paragraph">
+                集合論において、必須の概念というわけではないが、2、3の集合の関係（特に交叉）を分かりやすくする道具を紹介しておく（複数とは言わないのは、4つを超える集合の場合には、必ずしも見やすくなるわけではないからである）。
             </p>
             <div class="coding_file_wrapper">
                 <div class="fileTitle">ベン図</div>

@@ -134,7 +134,7 @@
 
             <h2>概要</h2>
             <p class="init-paragraph">
-                $p$ を素数とする。位数 $p^{n}$ を持つ群<sup id="ref_1"><a href="#note_1">[1]</a></sup>を $p$-群という。なぜそのような群を一纏めに考えるのかというと、ラグランジュの定理からも分かる通り、有限群の性質というものがその群の位数の約数と深く関わってくるからだ。もちろん有限群の構造は複雑で、1つ2つの定理だけで語り尽くせるものではない。故に、$p$-群というのもあくまで有限群の一側面にすぎない。<a href="#">有限群の分類</a>に関しては、当該ページを参照のこと。
+                $p$ を素数とする。位数 $p^{n}$ を持つ群<sup><a href="#fn-pgroup-1" id="fnref-pgroup-1">1</a></sup>を $p$-群という。なぜそのような群を一纏めに考えるのかというと、ラグランジュの定理からも分かる通り、有限群の性質というものがその群の位数の約数と深く関わってくるからだ。もちろん有限群の構造は複雑で、1つ2つの定理だけで語り尽くせるものではない。故に、$p$-群というのもあくまで有限群の一側面にすぎない。<a href="#">有限群の分類</a>に関しては、当該ページを参照のこと。
             </p>
             <p class="init-paragraph">
                 位数から見る群の構造とは、例えば、位数と群の数の間には興味深い関係がある。$x$ を任意の有限群の位数、$f$ をそのような位数 $x$ を持つ有限群の数（ただし、同型なものを除く）を返す関数とする。そのときの $f(x)$ の値は以下の通りである。
@@ -285,7 +285,7 @@
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">証明1:</p></div>
                     <div class="website_proposition_table_td">
                         <p class="init-paragraph">
-                            $G$ を位数が素数 $p$ である任意の群とする。この $G$ の任意の元 $g \in G$ （ただし $g \neq 1$ ）について、Gの巡回部分群$\langle g \rangle$を考慮する<sup id="ref_2"><a href="#note_2">[2]</a></sup>と、
+                            $G$ を位数が素数 $p$ である任意の群とする。この $G$ の任意の元 $g \in G$ （ただし $g \neq 1$ ）について、Gの巡回部分群$\langle g \rangle$を考慮する<sup><a href="#fn-pgroup-2" id="fnref-pgroup-2">2</a></sup>と、
                         </p>
                         <div class="mathjax_wrapper">
                             <div class="mathjax_flex" style="padding: 3px 0;">
@@ -294,7 +294,7 @@
                                 \]
                             </div>
                         </div>
-                        <p>まず、これらの元の２つが等しい場合を考える。つまり、一般性を失わずに $g^u = g^v (u \lt v)$ と言える<sup id="ref_3"><a href="#note_3">[3]</a></sup>。このとき、$g^{v-u} = 1 (1 \leq v-u \leq p-1)$ である。よって、$g^{v-u} = g^p = 1$。これは $g = 1$ という矛盾を導く。よって、$S$ の全ての二元は、互いに相違でなければならない。</p>
+                        <p>まず、これらの元の２つが等しい場合を考える。つまり、一般性を失わずに $g^u = g^v (u \lt v)$ と言える<sup><a href="#fn-pgroup-3" id="fnref-pgroup-3">3</a></sup>。このとき、$g^{v-u} = 1 (1 \leq v-u \leq p-1)$ である。よって、$g^{v-u} = g^p = 1$。これは $g = 1$ という矛盾を導く。よって、$S$ の全ての二元は、互いに相違でなければならない。</p>
                     </div>
                     <div class="website_proposition_table_th" style="vertical-align: top;"><p class="website_proposition_table_th_bold">証明2:</p></div>
                     <div class="website_proposition_table_td">
@@ -320,13 +320,13 @@
         <div class="annotation">
             ページ注釈
             <ol class="olAnnotation">
-                <li id="note_1"><a href="#ref_1">^</a>
+                <li id="fn-pgroup-1"><a href="#fnref-pgroup-1">^</a>
                     有限位数を持つ群の話をしているので、当然ながら $p$-群は有限群である。
                 </li>
-                <li id="note_2"><a href="#ref_2">^</a>
+                <li id="fn-pgroup-2"><a href="#fnref-pgroup-2">^</a>
                     g \neq 1のとき、$\langle g \rangle$ はGの部分群であり、その位数はGの位数pの約数でなければならない。ここで、pは素数であるから$\langle g \rangle$ の位数もpであり、g^p = 1。
                 </li>
-                <li id="note_3"><a href="#ref_3">^</a>
+                <li id="fn-pgroup-3"><a href="#fnref-pgroup-3">^</a>
                     群の元が等しい？と思われた方も多いと思う。当然、群としてはそのような元を想定していないのだが、今回は、任意のgを使って元を巡回的に生成しているので、群の定義に基づいて生成したわけではない。そのような場合、巡回的に生成された元の中に重複したものが含まれているおそれがある。<br>
 しかし、結論を言ってしまえば、位数pの群は巡回群であり、そのような部分群は生成しない。
                 </li>

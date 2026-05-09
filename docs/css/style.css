@@ -9,12 +9,152 @@ html, body {
 body *, ::before, ::after {
     box-sizing: border-box;
 }
+/* ===== カラーパレットとタイポグラフィの定義 ===== */
+:root {
+    --font-size-headline-1: 40px;
+    --font-size-headline-2: 32px;
+    --font-size-headline-3: 24px;
+    --font-size-headline-4: 16px;
+    --font-size-headline-5: 14px;
+    --font-size-headline-6: 10px;
+    --font-size-subhead-1: 20px;
+    --font-size-subhead-2: 18px;
+    --font-size-body-1: 16px;
+    --font-size-body-2: 14px;
+    --font-size-body-3: 12px;
+    --line-height-headline: 1.4;
+    --line-height-subhead: 1.6;
+    --line-height-subhead-dense: 1.4;
+    --line-height-body: 1.8;
+    --line-height-body-dense: 1.5;
+    --font-weight-body-1: 400;
+}
+:root {
+    --color-gray0: #ffffff;
+    --color-gray10: #f5f6f6;
+    --color-gray20: #edeeee;
+    --color-gray30: #dfe0e0;
+    --color-gray40: #bcbdbd;
+    --color-gray50: #9c9e9e;
+    --color-gray60: #7a7d7d;
+    --color-gray70: #5e6060;
+    --color-gray80: #494b4b;
+    --color-gray90: #3a3c3c;
+    --color-gray100: #2f3232;
+    --color-gray110: #1d2020;
+    --color-gray120: #000000;
+    --color-green10: #f0fae9;
+    --color-green20: #dff4cf;
+    --color-green30: #c7ecab;
+    --color-green40: #aae280;
+    --color-green50: #8ad74f;
+    --color-green60: #67cb1b;
+    --color-green70: #4cb100;
+    --color-green80: #357a00;
+    --color-green90: #2b6300;
+    --color-green100: #1c4100;
+    --color-green110: #102500;
+    --color-blue10: #eff6fc;
+    --color-blue20: #dbebf8;
+    --color-blue30: #c0ddf3;
+    --color-blue40: #a0cbed;
+    --color-blue50: #7bb7e6;
+    --color-blue60: #54a2df;
+    --color-blue70: #3987c4;
+    --color-blue80: #2c6897;
+    --color-blue90: #204c6e;
+    --color-blue100: #153248;
+    --color-blue110: #0c1d2a;
+    --color-yellow10: #fbf5e0;
+    --color-yellow20: #fff0b3;
+    --color-yellow30: #ffe380;
+    --color-yellow40: #ffdb57;
+    --color-yellow50: #ffce1f;
+    --color-yellow60: #e0af00;
+    --color-yellow70: #ae8803;
+    --color-yellow80: #866903;
+    --color-yellow90: #685103;
+    --color-yellow100: #3f3203;
+    --color-yellow110: #261e03;
+    --color-red10: #fff0f0;
+    --color-red20: #ffdbdb;
+    --color-red30: #ffb8b8;
+    --color-red40: #ff7575;
+    --color-red50: #ff4d4d;
+    --color-red60: #ec1313;
+    --color-red70: #bd0505;
+    --color-red80: #970404;
+    --color-red90: #6d0303;
+    --color-red100: #460202;
+    --color-red110: #2a0101;
+    --color-emas-lab: #1aaedb;
+    --color-teamBlue: #4097db;
+    --color-twitter: #000000;
+    --color-github: #1a1414;
+    --color-hatena-blog: #333333;
+    --color-findy: #155aa8;
+    --color-findyDim: #003d83;
+    --color-qiitaGreen: #55c500;
+    --color-background: var(--color-gray0);
+    --color-surface: var(--color-gray0);
+    --color-surfaceVariant: var(--color-gray20);
+    --color-surfaceVariantDim: var(--color-gray30);
+    --color-greenContainer: var(--color-green80);
+    --color-greenContainerDim: var(--color-green90);
+    --color-greenContainerVariant: var(--color-green20);
+    --color-greenContainerVariantDim: var(--color-green30);
+    --color-blueContainer: var(--color-blue80);
+    --color-blueContainerDim: var(--color-blue90);
+    --color-blueContainerVariant: var(--color-blue20);
+    --color-blueContainerVariantDim: var(--color-blue30);
+    --color-yellowContainer: var(--color-yellow80);
+    --color-yellowContainerDim: var(--color-yellow90);
+    --color-yellowContainerVariant: var(--color-yellow20);
+    --color-yellowContainerVariantDim: var(--color-yellow30);
+    --color-yellowHeaderBorder: var(--color-yellow50);
+    --color-redContainer: var(--color-red70);
+    --color-redContainerDim: var(--color-red80);
+    --color-redContainerVariant: var(--color-red20);
+    --color-redContainerVariantDim: var(--color-red30);
+    --color-grayContainer: var(--color-gray80);
+    --color-grayContainerDim: var(--color-gray90);
+    --color-grayContainerVariant: var(--color-gray30);
+    --color-grayContainerVariantDim: var(--color-gray40);
+    --color-bronzeContainer: #ffdcb3;
+    --color-divider: rgb(0 0 0 / 12%);
+    --color-greenBorder: var(--color-green80);
+    --color-blueBorder: var(--color-blue80);
+    --color-yellowBorder: var(--color-yellow80);
+    --color-redBorder: var(--color-red70);
+    --color-grayBorder: var(--color-gray80);
+    --color-highEmphasis: rgb(0 0 0 / 87%);
+    --color-mediumEmphasis: rgb(0 0 0 / 60%);
+    --color-disabled: rgb(0 0 0 / 38%);
+    --color-onContainerText: rgb(255 255 255 / 92%);
+    --color-orangeText: #ed8a29;
+    --color-orangeTextVariant: #ffb974;
+    --color-greenText: var(--color-green80);
+    --color-greenTextVariant: var(--color-green70);
+    --color-greenHeaderBorder: #1abc9c;
+    --color-blueText: var(--color-blue80);
+    --color-blueTextDim: var(--color-blue90);
+    --color-blueHeaderText: var(--color-blue100);
+    --color-blueHeaderBorder: var(--color-blue70);
+    --color-yellowText: var(--color-yellow80);
+    --color-yellowTextVariant: var(--color-yellow70);
+    --color-redText: var(--color-red70);
+    --color-grayText: var(--color-gray80);
+    --color-grayVisitedText: var(--color-gray70);
+    --color-bronzeText: #663700;
+    --color-scrim: rgb(0 0 0 / 32%);
+}
 body {
     margin: 0;
-    font-family: 'M PLUS 1p', sans-serif;
-    font-weight: 400;
-    background-color: #fff;
-    color: #000;
+    background-color: var(--color-background);
+    color: var(--color-gray120);
+    font-family: "M PLUS 1p", "Noto Sans JP", "BIZ UDPGothic", "Meiryo", sans-serif;
+    font-size: var(--font-size-body-1);
+    font-weight: var(--font-weight-body-1);
 }
 .container {
     margin: 0 auto;
@@ -33,8 +173,8 @@ body {
     }
 }
 header {
-    background-color: #1aaedb;
-    border-bottom: #ead963 6px solid;
+    background-color: var(--color-emas-lab);
+    border-bottom: var(--color-yellowHeaderBorder) 6px solid;
 }
 .init-paragraph {
     text-indent: 1rem;
@@ -60,28 +200,28 @@ header .header_container {
 header .header_container h1,
 header .header_container h2 {
     margin: 0;
-    color: #fff;
+    color: var(--color-onContainerText);
     line-height: 1;
 }
 header .header_container h1 {
     padding: 1px 0 4px 0;
     border-bottom: 1px dotted #fff;
-    font-size: 16px;
+    font-size: var(--font-size-headline-4);
     font-weight: 500;
 }
 header .header_container h2 {
     padding: 5px 0 0 0;
-    font-size: 10px;
+    font-size: var(--font-size-headline-6);
     font-weight: 400;
 }
 @media (min-width: 768px) {
     header .header_container h1 {
         padding: 10px 150px 5px 0;
-        font-size: 24px;
+        font-size: var(--font-size-headline-2);
     }
     header .header_container h2 {
         padding: 6px 0 0 0;
-        font-size: 14px;
+        font-size: var(--font-size-headline-5);
     }
 }
 /* ===== ヘッダーにボタンを配置 ===== */
@@ -101,17 +241,17 @@ main {
 }
 main .container {
     margin: 0 auto;
-    background-color: #fff;
+    background-color: var(--color-background);
 }
 footer {
-    background-color: #1aaedb;
+    background-color: var(--color-emas-lab);
 }
 footer .container {
     min-height: 50px;
-    padding-top:10px;
-    padding-bottom:10px;
-    color: #fff;
-    font-size: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: var(--color-onContainerText);
+    font-size: var(--font-size-body-3);
 }
 @media (max-width: 768px) {
     footer .container {
@@ -123,12 +263,17 @@ footer .container p {
     margin: 0;
 }
 a {
-    color: #ed8a29;
+    background-color: rgba(0,0,0,0);
+    color: var(--color-orangeText);
     text-decoration: none;
 }
 a:hover {
-    color: #ffb974;
-    text-decoration: underline;
+    color: var(--color-orangeTextVariant);
+    -webkit-text-decoration:underline currentColor;
+    text-decoration: underline currentColor;
+}
+a:active, a:hover {
+    outline-width: 0;
 }
 
 /* ベーススタイル */
@@ -140,14 +285,14 @@ a:hover {
 /* 見出しレベルに応じたスタイル */
 .container h1, .content h1 {
     font-size: 2.5rem; /* 最大の文字サイズ */
-    color: #2c3e50; /* 強調された色 */
-    border-bottom: 4px solid #3498db; /* 下線で視覚的な区切り */
+    color: var(--color-blueHeaderText);
+    border-bottom: 4px solid var(--color-blueHeaderBorder); /* 下線で視覚的な区切り */
     padding-bottom: 10px;
 }
 .container h2, .content h2 {
     font-size: 2rem;
-    color: #34495e;
-    border-left: 6px solid #1abc9c; /* 左のボーダーでアクセント */
+    color: var(--color-blueTextDim);
+    border-left: 6px solid var(--color-greenHeaderBorder); /* 左のボーダーでアクセント */
     padding-left: 10px;
 }
 /* ホバー時のアニメーション */
@@ -166,7 +311,7 @@ a:hover {
         top: 100%;
         left: 0;
         width: 250px;
-        background-color: #fff;
+        background-color: var(--color-background);
         border: 1px solid #ccc;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         padding: 10px;
@@ -219,8 +364,19 @@ a:hover {
     left: 0;                 /* 左端に位置させます */
     width: 100%;             /* ヘッダーの幅をページ全体に広げます */
     z-index: 400;            /* 他の要素よりも前に表示させるための順序を設定します */
-    background-color: #1aaedb; /* ヘッダーの背景色（透明防止のための指定） */
+    background-color: var(--color-emas-lab); /* ヘッダーの背景色（透明防止のための指定） */
     border-bottom: #ead963 6px solid; /* 下に6pxのボーダーを追加 */
+}
+
+/* 脚注 */
+sup a[id^=fnref]{
+    scroll-margin-top: 164px;
+    padding-inline: .2em;
+}
+sup a[id^=fnref]::before{content:"["}
+sup a[id^=fnref]::after{content:"]"}
+li[id^=fn]{
+    scroll-margin-top: 164px;
 }
 
 .website_table_wrapper {

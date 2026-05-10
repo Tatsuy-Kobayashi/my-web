@@ -659,7 +659,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         // アイコン検索
         renderIconBtnList(searchSource);
 
-        // サイト圏図式（動的グラフ）
+        // 学問体系ネットワーク図（動的グラフ）
         if (networkInitialized) return true;
         if (typeof vis === 'undefined' || !vis.Network) {
             console.error('[ERROR] vis-network が読み込まれていません。');

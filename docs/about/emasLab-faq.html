@@ -3,7 +3,7 @@
 <head prefix="og: http://ogp.me/ns#">
     <meta charset="UTF-8">
     <meta name="format-detection" content="telephone=no">
-    <title>プライバシーポリシー - ラクして数理研究所</title>
+    <title>製品についての質問 - ラクして数理研究所</title>
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="icon" />
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="icon" />
@@ -16,14 +16,14 @@
     <link rel="canonical" href="https://tatsuy-kobayashi.github.io/my-web/docs/" />
     <!-- og -->
     <meta property="og:type" content="website" /> <!-- articleとか -->
-    <meta property="og:title" content="プライバシーポリシー｜ラクして数理研究所" />
+    <meta property="og:title" content="製品についての質問｜ラクして数理研究所" />
     <meta property="og:description" content="ラクして数理研究所は、数学や物理学が好きで将来研究したいが、まだ専門書には太刀打ちできないという人をプログラミングで支えたい機関。" />
     <meta property="og:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/" />
     <meta property="og:site_name" content="ラクして数理研究所" />
     <link rel="dns-prefetch" href="//tatsuy-kobayashi.github.io/" /> <!-- HTTPSページのDNSプリフェッチはできない -->
     <!-- twitter card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="プライバシーポリシー｜ラクして数理研究所">
+    <meta name="twitter:title" content="製品についての質問｜ラクして数理研究所">
     <meta name="twitter:description" content="ラクして数理研究所は、数学や物理学が好きで将来研究したいが、まだ専門書には太刀打ちできないという人をプログラミングで支えたい機関。">
     <meta name="twitter:url" content="https://tatsuy-kobayashi.github.io/my-web/docs/">
     <meta name="twitter:image" content="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png">
@@ -33,9 +33,14 @@
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/special.css" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/search.css" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/responsive_header.css" />
+
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/include.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/linkPreview.js"></script>
+
+    <!-- vis-network CDN -->
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+
     <script>
         // JavaScriptの厳格モード使用
         'use strict';
@@ -46,32 +51,45 @@
 
         /*gtag('config', 'トラッキングID');*/
     </script>
+    <script type="text/javascript">
+        window.MathJax = {
+            tex: {
+                tags: "ams", // 自動ナンバリングを有効化（AMSスタイル）
+                inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+                displayMath: [ ["$$","$$"], ["\\[","\\]"] ],
+                processEscapes: true,
+                maxBuffer: 10 * 1024,  // 数式バッファの設定
+            },
+            chtml: {
+                displayAlign: "left",
+                displayIndent: "2em",
+            }
+        };
+    </script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/mathjax-config.js" defer></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" defer></script>
 </head>
 <body>
-    <div id="wrapper">
-        <header></header>
-        <main>
-            <div class="container">
-                <section>
-                    <div class="content" style="margin: 100px 10px 30px 20px;">
-                        <h1>プライバシーポリシー</h1>
-                        <h2>「個人情報」の定義</h2>
-                        <p class="init-paragraph">
-                            ラクして数理研究所において「個人情報」とは、皆様を直接特定する情報（氏名やメールアドレス、請求情報など）、またはリンクすることもしくは組み合わせることで合理的に皆様を特定できる情報（アカウント識別番号や IP アドレスなど）をいいます。ラクして数理研究所は、ラクして数理研究所がどのような個人情報を皆様から収集しているかを、常に皆様にお知らせします。具体的な詳細については、各製品のプライバシーに関する通知をご覧ください。
-                        </p>
-                        <p class="init-paragraph">
-                            この定義に該当しない情報は、すべて「非個人情報」となります。ラクして数理研究所は、個人情報と共に非個人情報を保有する場合、これらの情報を合わせて個人情報とみなします。個人情報を含む一連のデータからすべての個人情報が削除された場合、残りの情報は非個人情報となります。
-                        </p>
-                    </div>
-                    <div class="archive">
-                    </div>
-                </section>
-            </div><!-- /.container -->
-            <br>
-            contents
-        </main>
-        <footer></footer>
-    </div>
-    <nav id="nav"></nav>
+<div id="wrapper">
+    <header></header>
+    <dev class="main">
+        <div class="container">
+            <section>
+                <div class="content" style="margin: 0 10px 30px 20px;">
+                    <h1>製品についての質問</h1>
+                    <p class="init-paragraph">
+                        パスワードとログイン
+                    </p>
+
+
+                </div>
+            </section>
+        </div><!-- /.container -->
+        <br>
+        contents
+    </dev>
+    <footer></footer>
+</div>
+<nav id="nav"></nav>
 </body>
 </html>

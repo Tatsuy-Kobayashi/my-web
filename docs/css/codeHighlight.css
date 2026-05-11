@@ -21,6 +21,8 @@
     border-radius: 9px 9px 0 0;
     font-family: monospace;
     display: flex;
+    /* タイトルとトグルボタンを左右に配置 */
+    /* LaTeX などHTML要素を生成する構文を含まないようにする */
     justify-content: space-between;
     align-items: center;
 }

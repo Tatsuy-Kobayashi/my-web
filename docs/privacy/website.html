@@ -64,6 +64,86 @@ button {
 
         /*gtag('config', 'トラッキングID');*/
     </script>
+    <script>
+(function() {
+    'use strict';
+
+    function toggleDetails(button) {
+        var targetId = button.getAttribute('aria-controls');
+        if (!targetId) {
+            return;
+        }
+
+        var detail = document.getElementById(targetId);
+        if (!detail) {
+            return;
+        }
+
+        var isClosed = detail.classList.contains('is-closed');
+        var openText = button.getAttribute('data-open') || 'もっと詳しく';
+        var closeText = button.getAttribute('data-close') || '折りたたむ';
+
+        if (isClosed) {
+            detail.classList.remove('is-closed');
+            detail.setAttribute('aria-hidden', 'false');
+            button.setAttribute('aria-expanded', 'true');
+            button.textContent = closeText;
+        } else {
+            detail.classList.add('is-closed');
+            detail.setAttribute('aria-hidden', 'true');
+            button.setAttribute('aria-expanded', 'false');
+            button.textContent = openText;
+        }
+    }
+
+    function initializeSummaryButtons() {
+        var buttons = document.querySelectorAll('.summary.is-summary button[type="button"]');
+        buttons.forEach(function(button) {
+            var openText = button.getAttribute('data-open') || 'もっと詳しく';
+            var closeText = button.getAttribute('data-close') || '折りたたむ';
+            var detail = document.getElementById(button.getAttribute('aria-controls'));
+
+            if (detail) {
+                detail.classList.add('is-closed');
+                detail.setAttribute('aria-hidden', 'true');
+                button.setAttribute('aria-expanded', 'false');
+                button.textContent = openText;
+            }
+
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                toggleDetails(button);
+            });
+        });
+    }
+
+    function openSectionFromHash() {
+        var hash = window.location.hash;
+        if (!hash || hash.length <= 1) {
+            return;
+        }
+
+        var id = hash.slice(1);
+        var detail = document.getElementById(id);
+        if (detail && detail.classList.contains('mzp-js-details-wrapper')) {
+            var button = document.querySelector('.summary.is-summary button[aria-controls="' + id + '"]');
+            if (button) {
+                if (detail.classList.contains('is-closed')) {
+                    toggleDetails(button);
+                }
+                detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeSummaryButtons();
+        openSectionFromHash();
+    });
+
+    window.addEventListener('hashchange', openSectionFromHash, false);
+})();
+    </script>
 </head>
 <body>
     <div id="wrapper">
@@ -71,33 +151,33 @@ button {
         <main>
             <div class="container">
                 <section>
-                    <div class="content" style="margin: 100px 10px 30px 20px;">
+                    <div class="content" style="margin: 50px 10px 30px 20px;">
                         <h1>ウェブサイト、コミュニケーションおよび Cookie プライバシーについて</h1>
                         公開日<time datetime="2024-12-10" itemprop="datePublished">2024年12月10日</time>
                         更新日<time datetime="2024-12-10" itemprop="dateModified">2024年12月10日</time>
                         <p class="init-paragraph">
-                            Mozilla は、皆様のプライバシーを尊重します。<a href="https://tatsuy-kobayashi.github.io/my-web/docs/privacy/privacy.html">Mozilla のプライバシーポリシー</a> は、Mozilla (当社) が皆様の情報を収集した場合に、その情報をどのように取り扱うかについて、説明しています。
+                            Fibrantix は、皆様のプライバシーを尊重します。<a href="https://tatsuy-kobayashi.github.io/my-web/docs/privacy/privacy.html">Fibrantix のプライバシーポリシー</a> は、Fibrantix (当社) が皆様の情報を収集した場合に、その情報をどのように取り扱うかについて、説明しています。
                         </p>
                         <p class="init-paragraph">
-                            このプライバシーに関する通知は、mozilla.org および firefox.com といったドメインを含む Mozilla が運営するウェブサイトおよびモバイルアプリに適用されます。これには例えば、addons.mozilla.org、bugzilla.mozilla.org、careers.mozilla.org、community.mozilla.org、developer.mozilla.org、foundation.mozilla.org、people.mozilla.org、support.mozilla.org、wiki.mozilla.org が該当します。
+                            このプライバシーに関する通知は、keyweb.com および emas-lab.com といったドメインを含む Fibrantix が運営するウェブサイトおよびモバイルアプリに適用されます。<!-- これには例えば、addons.mozilla.org、bugzilla.mozilla.org、careers.mozilla.org、community.mozilla.org、developer.mozilla.org、foundation.mozilla.org、people.mozilla.org、support.mozilla.org、wiki.mozilla.org が該当します。-->
                         </p>
                         <h2 id="_1">留意事項</h2>
                         <p class="summary is-summary" id="personal-info">
-                            <button type="button" aria-controls="expand-formatparagraphssummary-0" aria-expanded="false" data-open="もっと詳しく" data-close="折りたたむ">皆様が、求人採用、インターン、助成金およびフェローに応募したり、Mozilla のコミュニティメンバーとしてボランティア活動に従事したり、ユーザとしてフィードバックやリクエストを Mozilla に送信したり、アカウントやメール購読にサインアップしたり、製品またはポリシーのキャンペーンに参加したりする場合、ソーシャルメディアプラットフォーム上で Mozilla と連絡をとることにより、Mozilla が皆様から個人情報を受信することがあります。 </button>
+                            <button type="button" aria-controls="expand-formatparagraphssummary-0" aria-expanded="false" data-open="もっと詳しく" data-close="折りたたむ">皆様が、求人採用、インターン、助成金およびフェローに応募したり、Fibrantix のコミュニティメンバーとしてボランティア活動に従事したり、ユーザとしてフィードバックやリクエストを Fibrantix に送信したり、アカウントやメール購読にサインアップしたり、製品またはポリシーのキャンペーンに参加したりする場合、ソーシャルメディアプラットフォーム上で Fibrantix と連絡をとることにより、Fibrantix が皆様から個人情報を受信することがあります。 </button>
                         </p>
                         <div class="mzp-js-details-wrapper is-closed" id="expand-formatparagraphssummary-0" aria-hidden="true">
                             <ul class="mzp-u-list-styled">
                                 <li>
-                                    <p><strong>ソーシャルメディア</strong>:X (旧Twitter) や Facebook などの外部ソーシャルメディアプラットフォームで Mozilla のアカウントと連絡をとる場合、Mozilla は皆様の個人情報を受信する場合があります。これらネットワークの利用にあたっては、各社のプライバシーポリシーが適用されますので、別途お読み下さい。</p>
+                                    <p><strong>ソーシャルメディア</strong>:X (旧Twitter) や Facebook などの外部ソーシャルメディアプラットフォームで Fibrantix のアカウントと連絡をとる場合、Fibrantix は皆様の個人情報を受信する場合があります。これらネットワークの利用にあたっては、各社のプライバシーポリシーが適用されますので、別途お読み下さい。</p>
                                 </li>
                                 <li>
-                                    <p><strong>求人採用、インターン、助成金およびフェロー応募者</strong>:Mozilla の求人採用、インターンシップ、助成金またはフェローシップへの応募者は、氏名、住所、電話番号、メールアドレス、履歴書、および場合によってはその他の追加情報を Mozilla に提供しなければなりません。Mozilla はこの情報を、応募申込を処理および選考し、採用に関して応募者と連絡を取り合うために利用します。Mozilla は、求人採用およびインターンの応募申込の処理にあたって、<a href="https://www.greenhouse.io/privacy-policy">Greenhouse</a> を利用し、フェローシップおよび MOSS 助成金の応募申込の処理にあたっては、<a href="https://www.fluxx.io/privacy-policy">Fluxx.io</a> を利用します。</p>
+                                    <p><strong>求人採用、インターン、助成金およびフェロー応募者</strong>:Fibrantix の求人採用、インターンシップ、助成金またはフェローシップへの応募者は、氏名、住所、電話番号、メールアドレス、履歴書、および場合によってはその他の追加情報を Fibrantix に提供しなければなりません。Fibrantix はこの情報を、応募申込を処理および選考し、採用に関して応募者と連絡を取り合うために利用します。<!-- Fibrantix は、求人採用およびインターンの応募申込の処理にあたって、<a href="https://www.greenhouse.io/privacy-policy">Greenhouse</a> を利用し、フェローシップおよび MOSS 助成金の応募申込の処理にあたっては、<a href="https://www.fluxx.io/privacy-policy">Fluxx.io</a> を利用します。--></p>
                                 </li>
                                 <li>
-                                    <p><strong>貢献者 (コントリビューター)</strong>:コミュニティの貢献者として Mozilla でボランティアを行っていただくにあたって、Mozilla およびその他の者が、皆様が貢献をされるにあたり提供されたメールアドレス宛に連絡を行い、皆様の成果を確認することが必要になる場合があります。Mozilla のコードベース、Bugzilla に貢献される場合、皆様のメールアドレスおよび場合によっては名前が全てのインターネットユーザに公開されます。Mozilla Connect (<a href="https://khoros.com/privacy">Khoros</a> が提供するプラットフォームで、独自のプライバシーポリシーがあります) でアカウントを作成する場合、皆様の氏名、アバター、投稿および返信、その他皆様が共有する情報は、Mozilla およびその他のコミュニティのメンバーに公開されます。people.mozilla.org にプロフィールを作成する場合、このプロフィールは Mozilla の従業員および Mozilla の貢献者に公開されます。ご自身のプロフィールは <a href="https://people.mozilla.org/e?section=personal-info">プロフィール設定</a> で編集できます。Mozilla は、統計データを Mozilla コミュニティ上で視覚的に共有するため、(Bugzilla などの) ソースから得た貢献者の情報をダッシュボードで使用する場合があります。例えば、<a href="https://wiki.mozilla.org/Contribute/Dashboards">https://wiki.mozilla.org/Contribute/Dashboards</a> がこれにあたります。Mozilla は公開表示される連絡先情報をできる限り最低限に抑えるように努めます。</p>
+                                    <p><strong>貢献者 (コントリビューター)</strong>:コミュニティの貢献者として Fibrantix でボランティアを行っていただくにあたって、Fibrantix およびその他の者が、皆様が貢献をされるにあたり提供されたメールアドレス宛に連絡を行い、皆様の成果を確認することが必要になる場合があります。<!-- Mozilla のコードベース、Bugzilla に貢献される場合、皆様のメールアドレスおよび場合によっては名前が全てのインターネットユーザに公開されます。Mozilla Connect (<a href="https://khoros.com/privacy">Khoros</a> が提供するプラットフォームで、独自のプライバシーポリシーがあります) でアカウントを作成する場合、皆様の氏名、アバター、投稿および返信、その他皆様が共有する情報は、Mozilla およびその他のコミュニティのメンバーに公開されます。people.mozilla.org にプロフィールを作成する場合、このプロフィールは Mozilla の従業員および Mozilla の貢献者に公開されます。ご自身のプロフィールは <a href="https://people.mozilla.org/e?section=personal-info">プロフィール設定</a> で編集できます。Mozilla は、統計データを Mozilla コミュニティ上で視覚的に共有するため、(Bugzilla などの) ソースから得た貢献者の情報をダッシュボードで使用する場合があります。例えば、<a href="https://wiki.mozilla.org/Contribute/Dashboards">https://wiki.mozilla.org/Contribute/Dashboards</a> がこれにあたります。Mozilla は公開表示される連絡先情報をできる限り最低限に抑えるように努めます。--></p>
                                 </li>
                                 <li>
-                                    <p><strong>ユーザフィードバック</strong>:皆様は、<a href="https://connect.mozilla.org/">connect.mozilla.org</a> などのウェブページにおいて、製品内での体験を通じて、電子メール、Bugzilla、Matrix、ソーシャルメディアのアカウント、Mozilla の Get Involved ページなどのチャネルを通じて、または Student Ambassadors といったグループを通じて、Mozilla の製品およびサービスに対するフィードバックを Mozilla に提供することができます。皆様のコメントは一般公開される場合がありますので、これらのフォーラム上で共有する個人情報は最小限に抑えるようにしてください。</p>
+                                    <p><strong>ユーザフィードバック</strong>:皆様は、<a href="https://tatsuy-kobayashi.github.io/my-web/docs/">ラクして数理研究所</a> などのウェブページにおいて、製品内での体験を通じて、電子メール、<!-- Bugzilla、Matrix、ソーシャルメディアのアカウント、Mozilla の Get Involved ページなどのチャネルを通じて、または Student Ambassadors といったグループ-->を通じて、Fibrantix の製品およびサービスに対するフィードバックを Fibrantix に提供することができます。皆様のコメントは一般公開される場合がありますので、これらのフォーラム上で共有する個人情報は最小限に抑えるようにしてください。</p>
                                 </li>
                                 <li>
                                     <p><strong>アカウントおよびメール購読</strong>:例えば <a href="https://addons.mozilla.org/firefox/">Firefox 向けアドオン</a>、<a href="https://relay.firefox.com/">Relay</a>、<a href="https://monitor.firefox.com/">Monitor</a>、<a href="https://developer.mozilla.org/">MDN</a> などの一部のウェブサイトでは、アカウントを作成する必要があります。Mozilla では、アカウント管理に <a href="/privacy/mozilla-accounts/">Mozilla アカウント</a>、<a href="https://support.github.com/#our-use-of-cookies-and-tracking">Github</a>、またはカスタムのシステムを利用します。Mozilla アカウントのデータを管理するには <a href="https://support.mozilla.org/kb/managing-account-data">詳細</a> をご覧ください。皆様は、アカウントに関する電子メールやメールニュース購読を通じた電子メールを定期的に受信する場合があります。Mozilla が電子メール管理にあたって利用するベンダーは、<a href="https://www.salesforce.com/company/privacy/">SalesForce Marketing Cloud</a>、<a href="https://aws.amazon.com/privacy/">Amazon Simple Email Service</a>、<a href="https://www.intuit.com/privacy/statement/">Mailchimp</a>、<a href="https://www.socketlabs.com/legal/service-privacy/">SocketLabs</a>、<a href="https://meetmarigold.com/privacy-notices">Campaign Monitor</a>、または <a href="https://www.braze.com/company/legal/privacy">Braze</a> です。皆様は、該当する電子メールの一番下にあるリンクを使用して購読を解除することができます。</p>
@@ -124,6 +204,7 @@ button {
                                     <ul class="mzp-u-list-styled">
                                         <li>Mozilla のファーストパーティで、製品利用統計情報および分析プラットフォームである Mozilla Glean。Mozilla が収集するデータの特定の種類に関する詳細については <a href="https://dictionary.telemetry.mozilla.org/apps/bedrock">Glean Dictionary</a> をご覧ください。</li>
                                         <li>Cookie をユーザのデバイスに配置し、ユーザが Mozilla のウェブサイトにどのように関与しているかのメトリクスを得るための Google アナリティクス。この機能は、Mozilla がウェブサイトのコンテンツを改善するのに役立ちます。</li>
+                                        <li>このGoogleアナリティクスはトラフィックデータの収集のためにCookieを使用しています。このトラフィックデータは匿名で収集されており、個人を特定するものではありません。</li>
                                         <li>Cookie をユーザのデバイスに配置し、ウェブコンテンツのバリエーションをテストするのに役立つ Convert.com および ShareProgress。この機能は、Mozilla がより良いウェブ経験をユーザに提供するのに役立ちます。</li>
                                         <li>ユーザを Mozilla のダウンロードページに差し向けたウェブサイトドメインまたは広告キャンペーンを理解するために Firefox のインストーラに含めることがある HTTP リファラルデータ。この情報は、広告キャンペーンの効果を理解し、向上させるのに役立ちます。</li>
                                         <li>試験的に時々用いられるその他のメトリクスツール。例えば、Mozilla では、新しいメトリクスツールを評価したり、既存のメトリクスコレクションをテストしたりする場合にこれを行います。</li>
@@ -154,6 +235,7 @@ button {
                                     <ul class="mzp-u-list-styled">
                                         <li>Mozilla の独自ツール:<a href="/privacy/websites/data-preferences/">www.mozilla.org でオプトアウト</a> します。</li>
                                         <li>Google:<a href="https://tools.google.com/dlpage/gaoptout">Google アナリティクス オプトアウトブラウザーアドオン</a> をインストールします。これにより、Google アナリティクスへのデータ送信が禁止されます。一部の Mozilla.org ページでは、広告キャンペーンの効率を理解するために DoubleClick と通信するクリア GIF が使われています。皆様は、Google の広告設定で DoubleClick からのパーソナライズ化された広告を制御できます (お持ちの Google アカウントにサインインするよう求められます)。</li>
+                                        <li>この規約に関して、詳しくは<a href="https://www.google.com/analytics/terms/jp.html" target="_blank" rel="noopener noreferrer">ここをクリック</a>してください。</li>
                                         <li>Convert.com:<a href="/exp/opt-out/">www.mozilla.org でオプトアウト</a> します。</li>
                                         <li>ShareProgress および Fathom.com:<a href="https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature">お使いのブラウザでトラッキング拒否機能を有効化</a> できます。</li>
                                     </ul>
@@ -174,6 +256,52 @@ button {
                                 </li>
                                 <li>
                                     <p><strong>連絡先および寄付の情報</strong>:Mozilla は、電子メール受信と記録保管のために <a href="https://acoustic.com/privacy-notice/">Acoustic</a>、<a href="https://www.salesforce.com/company/privacy/">Salesforce</a>、<a href="https://fundraiseup.com/privacy/">Fundraise Up</a>、および <a href="https://meetmarigold.com/privacy-notices/">Campaign Monitor</a> を利用し、これらの情報は最後の支払日から10年間保持されます。皆様が Mozilla Foundation または Thunderbird に寄付される場合、Mozilla は寄付を管理し、寄付者に送金の領収書を提供するため、<a href="https://fundraiseup.com/privacy/">Fundraise Up</a> を利用します。</p>
+                                </li>
+                            </ul>
+                            <hr>
+                        </div>
+                        <p class="summary is-summary" id="user-comments">
+                            <button type="button" aria-controls="expand-formatparagraphssummary-4" aria-expanded="false" data-open="もっと詳しく" data-close="折りたたむ">当サイトでは、スパム・荒らしへの対応として、コメントの際に使用されたIPアドレスを記録しています。これはサイトの標準機能として備えている機能で、スパム・荒らしへの対応以外にこのIPアドレスを使用することはありません。また、メールアドレスの入力に関しては、必須となっております。全てのコメントは管理人が事前にその内容を確認し、承認した上での掲載となりますことをあらかじめご了承下さい。加えて、次の各号に掲げる内容を含むコメントは管理人の裁量によって承認せず、削除する事があります。</button>
+                        </p>
+                        <div class="mzp-js-details-wrapper is-closed" id="expand-formatparagraphssummary-4" aria-hidden="true">
+                            <ul class="mzp-u-list-styled">
+                                <li>
+                                    <p>特定の自然人または法人を誹謗し、中傷するもの。</p>
+                                </li>
+                                <li>
+                                    <p>極度にわいせつな内容を含むもの。</p>
+                                </li>
+                                <li>
+                                    <p>虚偽情報を含むもの。</p>
+                                </li>
+                                <li>
+                                    <p>スパムを含むもの。</p>
+                                </li>
+                                <li>
+                                    <p>禁制品の取引に関するものや、他者を害する行為の依頼など、法律によって禁止されている物品、行為の依頼や斡旋などに関するもの。</p>
+                                </li>
+                                <li>
+                                    <p>その他、公序良俗に反し、または管理人によって承認すべきでないと認められるもの。</p>
+                                </li>
+                            </ul>
+                            <hr>
+                        </div>
+                        <p class="summary is-summary" id="disclaimer">
+                            <button type="button" aria-controls="expand-formatparagraphssummary-4" aria-expanded="false" data-open="もっと詳しく" data-close="折りたたむ">当サイトで掲載している画像の著作権・肖像権等は各権利所有者に帰属致します。権利を侵害する目的ではございません。記事の内容や掲載画像等に問題がございましたら、各権利所有者様本人が直接メールでご連絡下さい。確認後、対応させて頂きます。</button>
+                        </p>
+                        <div class="mzp-js-details-wrapper is-closed" id="expand-formatparagraphssummary-4" aria-hidden="true">
+                            <ul class="mzp-u-list-styled">
+                                <li>
+                                    <p>当サイトからリンクやバナーなどによって他のサイトに移動された場合、移動先サイトで提供される情報、サービス等について一切の責任を負いません。</p>
+                                </li>
+                                <li>
+                                    <p>当サイトのコンテンツ・情報につきまして、可能な限り正確な情報を掲載するよう努めておりますが、誤情報が入り込んだり、情報が古くなっていることもございます。</p>
+                                </li>
+                                <li>
+                                    <p>当サイトのコンテンツ・情報につきまして、可能な限り正確な情報を掲載するよう努めておりますが、誤情報が入り込んだり、情報が古くなっていることもございます。</p>
+                                </li>
+                                <li>
+                                    <p>当サイトに掲載された内容によって生じた損害等の一切の責任を負いかねますのでご了承ください。</p>
                                 </li>
                             </ul>
                             <hr>

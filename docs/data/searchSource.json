@@ -12,11 +12,11 @@
 
     { "id": 10, "label": "哲学", "labelEn": "Philosophy", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
     { "id": 11, "label": "芸術学", "labelEn": "Art Studies", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-
-    { "id": 12, "label": "言語学", "labelEn": "Linguistics", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 13, "label": "心理学", "labelEn": "Psychology", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 14, "label": "人類学", "labelEn": "Anthropology", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 15, "label": "考古学", "labelEn": "Archaeology", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 12, "label": "宗教学", "labelEn": "Religious Studies", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 13, "label": "言語学", "labelEn": "Linguistics", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 14, "label": "心理学", "labelEn": "Psychology", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 15, "label": "人類学", "labelEn": "Anthropology", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 16, "label": "考古学", "labelEn": "Archaeology", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
 
     { "id": 20, "label": "社会学", "labelEn": "Sociology", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
     { "id": 21, "label": "地理学", "labelEn": "Geography", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
@@ -63,6 +63,74 @@
     { "id": 51, "label": "工学", "labelEn": "Engineering", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
     { "id": 52, "label": "農学", "labelEn": "Agricultural Science", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
     { "id": 53, "label": "医学", "labelEn": "Medical Science", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+
+
+    { "id": 100, "label": "哲学用語", "labelEn": "Philosophical Terms", "sections": [], "keywords": ["一覧"], "iconClass": "fa-folder fa-fw" },
+    { "id": 101, "label": "理論哲学", "labelEn": "Theoretical Philosophy", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 102, "label": "実践哲学", "labelEn": "Practical Philosophy", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 103, "label": "価値哲学", "labelEn": "Value Philosophy", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 104, "label": "地域思想", "labelEn": "Regional Philosophy", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+
+
+    { "id": 110, "label": "宗教学用語", "labelEn": "Religious Studies Terms", "sections": [], "keywords": ["一覧"], "iconClass": "fa-folder fa-fw" },
+
+
+    { "id": 120, "label": "言語学用語", "labelEn": "Linguistic Terms", "sections": [], "keywords": ["一覧"], "iconClass": "fa-folder fa-fw" },
+    { "id": 121, "label": "言語基礎論", "labelEn": "Foundations of Linguistics", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 122, "label": "言語的相対論", "labelEn": "Linguistic Relativity", "description": "サピア＝ウォーフ仮説など", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 123, "label": "比較言語学", "labelEn": "Comparative Linguistics", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 124, "label": "歴史言語学", "labelEn": "Historical Linguistics", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 125, "label": "社会言語学", "labelEn": "Sociolinguistics", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 126, "label": "語学", "labelEn": "Language Studies", "description": "具体的言語の習得・教育・研究", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+
+
+    { "id": 130, "label": "心理学用語", "labelEn": "Psychological Terms", "description": "実験心理学", "sections": [], "keywords": ["一覧"], "iconClass": "fa-folder fa-fw" },
+    { "id": 131, "label": "心理学基礎理論", "labelEn": "Psychological Foundations", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 132, "label": "心理学の認知構造", "labelEn": "Cognitive Structure of Psychology", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 133, "label": "心理的存在", "labelEn": "Psychological Level of Existence", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 134, "label": "社会・文化心理学", "labelEn": "Social and Cultural Psychology", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 135, "label": "応用心理学", "labelEn": "Applied Psychology", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+
+
+    { "id": 140, "label": "芸術学用語", "labelEn": "Art Terms", "sections": [], "keywords": ["一覧"], "iconClass": "fa-folder fa-fw" },
+    { "id": 141, "label": "音響芸術学", "labelEn": "Acoustic Art Studies", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 142, "label": "視覚芸術学", "labelEn": "Visual Art Studies", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 143, "label": "言語芸術学", "labelEn": "Linguistic Art Studies", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 144, "label": "総合芸術学", "labelEn": "Comprehensive Art Studies", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+
+
+    { "id": 150, "label": "人類学用語", "labelEn": "Anthropological Terms", "sections": [], "keywords": ["一覧"], "iconClass": "fa-folder fa-fw" },
+
+
+    { "id": 160, "label": "考古学用語", "labelEn": "Archaeological Terms", "sections": [], "keywords": ["一覧"], "iconClass": "fa-folder fa-fw" },
+
+
+    { "id": 200, "label": "社会学用語", "labelEn": "Sociological Terms", "sections": [], "keywords": ["一覧"], "iconClass": "fa-folder fa-fw" },
+
+
+    { "id": 210, "label": "地理学用語", "labelEn": "Geographical Terms", "sections": [], "keywords": ["一覧"], "iconClass": "fa-folder fa-fw" },
+    { "id": 211, "label": "系統地理学", "labelEn": "Systematic Geography", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 212, "label": "地誌学", "labelEn": "Regional Geography", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+
+
+    { "id": 220, "label": "歴史学用語", "labelEn": "Historical Terms", "sections": [], "keywords": ["一覧"], "iconClass": "fa-folder fa-fw" },
+
+
+    { "id": 230, "label": "政治学用語", "labelEn": "Political Science Terms", "sections": [], "keywords": ["一覧"], "iconClass": "fa-folder fa-fw" },
+
+
+    { "id": 240, "label": "経済学用語", "labelEn": "Economic Terms", "sections": [], "keywords": ["一覧"], "iconClass": "fa-folder fa-fw" },
+    { "id": 241, "label": "経営学", "labelEn": "Business Administration", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 242, "label": "労働学", "labelEn": "Labor Studies", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+
+
+    { "id": 250, "label": "教育学用語", "labelEn": "Educational Terms", "sections": [], "keywords": ["一覧"], "iconClass": "fa-folder fa-fw" },
+    { "id": 251, "label": "教育学の基礎理論", "labelEn": "Foundations of Pedagogy", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 252, "label": "教育の人間科学的基礎", "labelEn": "Human Scientific Foundations of Education", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 253, "label": "教育方法論", "labelEn": "Educational Methodology", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 254, "label": "教育制度・政策", "labelEn": "Educational Systems and Policies", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 255, "label": "実践教育学", "labelEn": "Practical Pedagogy", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 256, "label": "学際・先端領域", "labelEn": "Interdisciplinary and Advanced Fields", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
 
 
     { "id": 300, "label": "数学用語", "labelEn": "Mathematical Terms", "sections": [], "keywords": ["一覧"], "iconClass": "fa-folder fa-fw" },
@@ -123,60 +191,34 @@
     { "id": 306, "label": "離散数学", "labelEn": "Discrete Mathematics", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
     { "id": 307, "label": "確率論", "labelEn": "Probability Theory", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
 
-    { "id": 400, "label": "物理用語", "labelEn": "Physical Terms", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+
+    { "id": 310, "label": "統計学用語", "labelEn": "Statistical Terms", "sections": [], "keywords": ["一覧"], "iconClass": "fa-folder fa-fw" },
+    { "id": 311, "label": "記述統計学", "labelEn": "Descriptive Statistics", "description": "一般構造: 手元にある観測データそのものの分布・要約構造", "sections": [], "keywords": ["一覧"], "iconClass": "fa-folder fa-fw" },
+    { "id": 312, "label": "推測統計学", "labelEn": "Inferential Statistics", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 313, "label": "ベイズ統計学", "labelEn": "Bayesian Statistics", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 314, "label": "多変量統計学", "labelEn": "Multivariate Statistics", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 315, "label": "時系列統計学", "labelEn": "Time Series Statistics", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 316, "label": "標本抽出論", "labelEn": "Sampling Theory", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 317, "label": "実験計画法", "labelEn": "Design of Experiments", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+
+
+    { "id": 400, "label": "物理用語", "labelEn": "Physical Terms", "sections": [], "keywords": ["一覧"], "iconClass": "fa-folder fa-fw" },
     { "id": 401, "label": "古典物理学", "labelEn": "Classical Physics", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
     { "id": 402, "label": "量子物理学", "labelEn": "Quantum Physics", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
     { "id": 403, "label": "超ひも理論", "labelEn": "Superstring Theory", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
 
-    { "id": 500, "label": "IT用語", "labelEn": "it_terms", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+
+    { "id": 500, "label": "IT用語", "labelEn": "it_terms", "sections": [], "keywords": ["一覧"], "iconClass": "fa-folder fa-fw" },
     { "id": 501, "label": "情報理論", "labelEn": "Information Theory", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
     { "id": 502, "label": "計算理論", "labelEn": "Theory of Computation", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 503, "label": "計算機科学", "labelEn": "Computer Science", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 504, "label": "計算機工学", "labelEn": "Computer Engineering", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 505, "label": "情報システム", "labelEn": "Information System", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 503, "label": "人工知能学", "labelEn": "Artificial Intelligence", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 504, "label": "計算機科学", "labelEn": "Computer Science", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 505, "label": "計算機工学", "labelEn": "Computer Engineering", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
+    { "id": 506, "label": "情報システム学", "labelEn": "Information Systems", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
 
 
     { "id": 3010, "label": "数理論理学", "labelEn": "Mathematical Logic", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
     { "id": 3011, "label": "集合論", "labelEn": "Set Theory", "description": "集合の基本概念から応用まで解説。集合の定義、演算（和・積・差集合）、部分集合、冪集合などをPythonのコード例とベン図で分かりやすく学べる。数学の基礎を支える集合論の入門として最適。", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
 
-    { "id": 3020, "label": "数学定数", "labelEn": "Mathematical Constants", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-
-    { "id": 3030, "label": "抽象代数学", "labelEn": "Abstract Algebra", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 3031, "label": "普遍代数学", "labelEn": "Universal Algebra", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-
-    { "id": 3040, "label": "解析学基礎", "labelEn": "Foundations of Analysis", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 3041, "label": "微分積分学", "labelEn": "Differential and Integral Calculus", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-
-    { "id": 3042, "label": "代数解析学", "labelEn": "Algebraic Analysis", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 3043, "label": "関数解析学", "labelEn": "Functional Analysis", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 3044, "label": "関数方程式", "labelEn": "Functional Equations", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 3045, "label": "数値解析", "labelEn": "Numerical Analysis", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 3046, "label": "超準解析", "labelEn": "Nonstandard Analysis", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-
-    { "id": 4010, "label": "ニュートン力学", "labelEn": "Newtonian Mechanics", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 4011, "label": "統計力学", "labelEn": "Statistical Mechanics", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 4012, "label": "連続体の物理学", "labelEn": "Physics of Continuum", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-
-    { "id": 5010, "label": "符号理論", "labelEn": "Coding Theory", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 5011, "label": "暗号理論", "labelEn": "Cryptography", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 5012, "label": "型理論", "labelEn": "Type Theory", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 5013, "label": "信号処理", "labelEn": "Signal Processing", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-
-    { "id": 5020, "label": "システム科学", "labelEn": "Systems Science", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 5021, "label": "プログラム構造", "labelEn": "Structure of Programs", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 5022, "label": "スキーマ", "labelEn": "Schema", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 5023, "label": "計算モデル", "labelEn": "Model of Computation", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 5024, "label": "アルゴリズム", "labelEn": "Algorithm", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 5025, "label": "計算可能性理論", "labelEn": "Computability Theory", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 5026, "label": "計算複雑性理論", "labelEn": "Computational Complexity Theory", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 5027, "label": "コンピュータ言語", "labelEn": "Computer Language", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 5028, "label": "プログラム意味論", "labelEn": "Program Semantics", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 5029, "label": "データサイエンス", "labelEn": "Data Science", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-
-    { "id": 5030, "label": "ハードウェア・エンジニアリング", "labelEn": "Hardware Engineering", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 5031, "label": "ソフトウェア・エンジニアリング", "labelEn": "Software Engineering", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 5032, "label": "コンピュータ・セキュリティ", "labelEn": "Computer Security", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-
-    { "id": 5050, "label": "コンピュータ・システム", "labelEn": "Computer System", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" },
-    { "id": 5051, "label": "組込みシステム", "labelEn": "Embedded System", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" }
+    { "id": 3020, "label": "数学定数", "labelEn": "Mathematical Constants", "sections": [], "keywords": [], "iconClass": "fa-folder fa-fw" }
 ]

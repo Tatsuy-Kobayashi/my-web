@@ -55,12 +55,25 @@ document.addEventListener('DOMContentLoaded', async function () {
     // thumbnailUrl: サムネイル画像のURL配列（複数解像度対応）
     // ------------------------
     console.log('[INIT] Loading siteData...');
-
     const siteData = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/siteData.json').then(response => response.json());
 
     // 1. データの取得 (パスは実際の環境に合わせて調整してください)
     //const response = await fetch('../../../../../searchSource.json');
     //const data = await response.json();
+
+    // ------------------------
+    // データ（ノード）
+    // ------------------------
+    // id: ノードID（siteData.json から生成）
+    // label: ラベル（siteData.json から生成）
+    // labelEn: 英語ラベル（siteData.json から生成）
+    // description: ノード説明文（siteData.json から生成）
+    // sections: セクション配列（各Webページの HTML から生成）
+    // keywords: タグ配列（siteData.json から生成）
+    // iconClass: アイコンのCSSクラス（siteData.json から生成）
+    // ------------------------
+    console.log('[INIT] Loading searchSource...');
+    const searchSource = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/searchSource.json').then(response => response.json());
 
     // ------------------------
     // データ（ノード）
@@ -76,14 +89,77 @@ document.addEventListener('DOMContentLoaded', async function () {
     console.log('[INIT] Loading searchSource...');
     const searchSource = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/searchSource.json').then(response => response.json());
 
+    // ------------------------
+    // 概念エンティティ
+    // ------------------------
+    // conceptId: 概念ID（siteData.json から生成）
+    // siteRef: 関連サイトデータ
+    //      id: サイトID（siteData.json から生成）
+    //      label: サイトラベル（siteData.json から生成）
+    //      labelEn: サイト英語ラベル（siteData.json から生成）
+    //      mainPath: ルートからのパス情報（siteData.json から生成）
+    //      url: サイトURL（siteData.json から生成）
+    //      released: 公開フラグ（siteData.json から生成）
+    //      isPaid: 有料フラグ（siteData.json から生成）
+    // labels: 概念ラベル配列
+    //      ja: 日本語ラベル（siteData.json から生成）
+    //      en: 英語ラベル（siteData.json から生成）
+    // kind: 概念種別（固有データ）
+    // description: 概念説明文（固有データ）
+    // aliases: 概念の別名配列（固有データ）
+    // tags: 概念タグ配列（固有データ）
+    // parentConceptIds: 親概念ID配列（siteData.json のツリー構造そのもの）
+    // childConceptIds: 子概念ID配列（siteData.json のツリー構造そのもの）
+    // searchHints: 検索ヒント配列（固有データ）
+    // notes: 備考（固有データ）
+    // ------------------------
+    console.log('[INIT] Loading concepts...');
+    const concepts = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/concepts.json').then(response => response.json()).catch(() => []);
+
+    // ------------------------
+    // 型付き辺
+    // ------------------------
+    // relationId: 概念同士の関連ID
+    // from: 前提ID（関連の出発点となる概念）
+    // to: 支援ID（関連の到着点となる概念）
+    // type: 関係の種別
+    // inverseType: 逆関係の種別（存在する場合）
+    // confidence: 確信度（0.0～1.0の数値、存在する場合）
+    // weight: 重み（0.0～1.0の数値、存在する場合）
+    // evidence: 確認情報（複数可）
+    //      sitePath: サイトのパス情報
+    //      siteId: サイトID
+    // note: 備考
+    // ------------------------
+    console.log('[INIT] Loading relations...');
+    const relations = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/relations.json').then(response => response.json()).catch(() => []);
+
+    // ------------------------
+    // 検索意図（Webページの変化に依存せず、（基本）固定の資産として保存）
+    // ------------------------
+    // intentId: 検索意図ID
+    // name: 検索意図名
+    // description: 検索意図の説明
+    // targetKinds: 対象となる概念種別の配列
+    // preferredFields: 検索意図に関連する概念のフィールドの配列
+    // returnShape: 検索結果の返却形状
+    // rankBy: 検索結果の並び替え基準
+    // exampleQueries: 検索意図の例となる検索クエリの配列
+    // ------------------------
+    console.log('[INIT] Loading queryIntents...');
+    const queryIntents = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/queryIntents.json').then(response => response.json()).catch(() => []);
+
+    const keywordEdges = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/keywordEdges.json').then(response => response.json()).catch(() => []);
+    const rankingData = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/ranking.json').then(response => response.json()).catch(() => ({ scores: [] }));
+
     // 本来はここで fetch('/api/stats/popular') 等を行う
-    // const ranking = await fetch('/api/popular').then(r => r.json());
+    // const viewStats = await fetch('/api/popular').then(r => r.json());
     // container.innerHTML = 'Loading popular articles...';
 
     // ------------------------
     // データ（記事閲覧数）
     // ------------------------
-    const ranking = [
+    const viewStats = [
         { id: 3011, label: "集合論", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html", totalViews: 90210, weeklyViews: 420, monthlyViews: 1800 },
         { id: 304022, label: "特殊関数", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/theory_of_functions/special_functions/special_functions.html", totalViews: 80123, weeklyViews: 380, monthlyViews: 1600 }
     ];
@@ -658,6 +734,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         renderTagList(searchSource);
         // アイコン検索
         renderIconBtnList(searchSource);
+        // 検索意図セレクト
+        renderIntentSelect(queryIntents);
 
         // 学問体系ネットワーク図（動的グラフ）
         if (networkInitialized) return true;
@@ -828,6 +906,59 @@ document.addEventListener('DOMContentLoaded', async function () {
 
             console.log('[TOC] toggled.');
         });
+    }
+
+    function escapeHtmlForSearch(str) {
+        return String(str == null ? '' : str).replace(/[&<>"']/g, (s) => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+        }[s]));
+    }
+
+    function renderIntentSelect(intents) {
+        if (document.getElementById('queryIntentSelect')) return;
+
+        const searchInput = document.getElementById('labelSubstringSearchInput');
+        const host = searchInput ? searchInput.closest('.control-substringSearch') : null;
+        if (!host) return;
+
+        const labels = {
+            definition_lookup: '定義を知りたい',
+            learning_roadmap: '学習順序を知りたい',
+            related_concepts: '関連概念を知りたい',
+            application_or_method: '応用先を知りたい',
+            history_lookup: '歴史を知りたい',
+            dependency_search: '前提概念を知りたい',
+            hierarchy_lookup: '階層を知りたい',
+            lexicon_navigation: '用語から探したい'
+        };
+
+        const intentOptions = Array.isArray(intents) && intents.length > 0 ? intents : [
+            { name: 'definition_lookup', description: '概念の定義や意味を確認するための検索意図。' },
+            { name: 'learning_roadmap', description: '学習順序を探す検索意図。' },
+            { name: 'related_concepts', description: '関連概念を探す検索意図。' },
+            { name: 'application_or_method', description: '応用先を探す検索意図。' },
+            { name: 'history_lookup', description: '歴史を探す検索意図。' }
+        ];
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'control-group control-queryIntent';
+        wrapper.style.marginBottom = '12px';
+        wrapper.innerHTML = `
+            <label class="control-substringSearch-label" for="queryIntentSelect">検索意図</label>
+            <select id="queryIntentSelect" title="検索結果の並び替えに使う意図を選択します" style="width: 100%; max-width: 320px; padding: 8px;">
+                ${intentOptions.map(intent => {
+                    const value = intent.name || intent.intentId || '';
+                    const label = labels[value] || intent.description || value;
+                    return `<option value="${escapeHtmlForSearch(value)}" title="${escapeHtmlForSearch(intent.description || '')}">${escapeHtmlForSearch(label)}</option>`;
+                }).join('')}
+            </select>
+        `;
+
+        host.insertBefore(wrapper, host.firstChild);
     }
 
     // ------------------------
@@ -1075,6 +1206,244 @@ document.addEventListener('DOMContentLoaded', async function () {
         return result;
     }
 
+    function getSelectedIntentName() {
+        const select = document.getElementById('queryIntentSelect');
+        return select && select.value ? select.value : 'definition_lookup';
+    }
+
+    function getIntentDefinition(intentName) {
+        if (!Array.isArray(queryIntents)) return null;
+        return queryIntents.find(intent => intent && (intent.name === intentName || intent.intentId === intentName)) || null;
+    }
+
+    function buildSearchDataIndexes() {
+        const conceptBySiteId = new Map();
+        const relationByConceptId = new Map();
+        const keywordEdgesBySiteId = new Map();
+        const rankingBySiteId = new Map();
+
+        if (Array.isArray(concepts)) {
+            concepts.forEach(concept => {
+                if (concept && concept.siteRef && Number.isFinite(Number(concept.siteRef.id))) {
+                    conceptBySiteId.set(Number(concept.siteRef.id), concept);
+                }
+            });
+        }
+
+        if (Array.isArray(relations)) {
+            relations.forEach(relation => {
+                if (!relation) return;
+                [relation.from, relation.to].forEach(conceptId => {
+                    if (!relationByConceptId.has(conceptId)) relationByConceptId.set(conceptId, []);
+                    relationByConceptId.get(conceptId).push(relation);
+                });
+            });
+        }
+
+        if (Array.isArray(keywordEdges)) {
+            keywordEdges.forEach(edge => {
+                if (!edge) return;
+                [Number(edge.from), Number(edge.to)].forEach(siteId => {
+                    if (!Number.isFinite(siteId)) return;
+                    if (!keywordEdgesBySiteId.has(siteId)) keywordEdgesBySiteId.set(siteId, []);
+                    keywordEdgesBySiteId.get(siteId).push(edge);
+                });
+            });
+        }
+
+        if (rankingData && Array.isArray(rankingData.scores)) {
+            rankingData.scores.forEach((score, index) => {
+                const siteId = Number(score && score.id);
+                if (!Number.isFinite(siteId)) return;
+                rankingBySiteId.set(siteId, Object.assign({ __rankIndex: index }, score));
+            });
+        }
+
+        return { conceptBySiteId, relationByConceptId, keywordEdgesBySiteId, rankingBySiteId };
+    }
+
+    function getTextForIntentScoring(result, concept) {
+        const sectionsText = Array.isArray(result.sections)
+            ? result.sections.map(section => `${section.h2 || ''} ${section.text || ''}`).join(' ')
+            : '';
+        const conceptText = concept
+            ? `${concept.description || ''} ${(concept.searchHints || []).join(' ')} ${(concept.tags || []).join(' ')} ${(concept.aliases || []).join(' ')}`
+            : '';
+        return `${result.label || ''} ${result.labelEn || ''} ${result.description || ''} ${sectionsText} ${conceptText}`.toLowerCase();
+    }
+
+    function getRankingBoost(rankingScore, intentName) {
+        if (!rankingScore) return 0;
+
+        const intentScore = rankingScore.intentScores && Number.isFinite(Number(rankingScore.intentScores[intentName]))
+            ? Number(rankingScore.intentScores[intentName])
+            : 0;
+        const overallScore = Number(rankingScore.overallScore) || 0;
+        const contentScore = Number(rankingScore.contentScore) || 0;
+        const popularity = Number(rankingScore.popularity) || 0;
+        const freshnessScore = Number(rankingScore.freshnessScore) || 0;
+
+        return (
+            intentScore * 0.9 +
+            overallScore * 0.45 +
+            contentScore * 0.2 +
+            popularity * 0.15 +
+            freshnessScore * 0.1
+        );
+    }
+
+    function applyIntentRanking(results, queryInfo = {}) {
+        const intentName = queryInfo.intent || getSelectedIntentName();
+        const intent = getIntentDefinition(intentName);
+        const indexes = buildSearchDataIndexes();
+        const query = String(queryInfo.original || queryInfo.query || '').toLowerCase();
+
+        const ranked = (Array.isArray(results) ? results : []).map((result, index) => {
+            const concept = indexes.conceptBySiteId.get(Number(result.id));
+            const conceptRelations = concept ? (indexes.relationByConceptId.get(concept.conceptId) || []) : [];
+            const keywordMatches = indexes.keywordEdgesBySiteId.get(Number(result.id)) || [];
+            const rankingScore = indexes.rankingBySiteId.get(Number(result.id));
+            const text = getTextForIntentScoring(result, concept);
+            let score = 0;
+            const reasons = [];
+
+            if (query && text.includes(query)) {
+                score += 1;
+                reasons.push('文字列一致');
+            }
+            if (concept) {
+                score += 0.5;
+                reasons.push('概念データあり');
+            }
+
+            switch (intentName) {
+                case 'learning_roadmap': {
+                    const roadmapRelations = conceptRelations.filter(relation =>
+                        ['depends_on', 'supports', 'part_of'].includes(relation.type) ||
+                        ['depends_on', 'supports', 'part_of'].includes(relation.inverseType)
+                    );
+                    if (roadmapRelations.length > 0) {
+                        score += roadmapRelations.reduce((sum, relation) => sum + Number(relation.weight || relation.confidence || 0.5), 0);
+                        reasons.push('学習順序に使える関係あり');
+                    }
+                    if (concept && (concept.parentConceptIds?.length || concept.childConceptIds?.length)) {
+                        score += 0.5;
+                        reasons.push('階層情報あり');
+                    }
+                    break;
+                }
+                case 'related_concepts': {
+                    const relatedRelations = conceptRelations.filter(relation =>
+                        ['adjacent_to', 'glossary_supports', 'methodologically_relevant_to'].includes(relation.type) ||
+                        ['adjacent_to', 'supported_by_glossary', 'benefits_from'].includes(relation.inverseType)
+                    );
+                    if (relatedRelations.length > 0) {
+                        score += relatedRelations.reduce((sum, relation) => sum + Number(relation.weight || relation.confidence || 0.4), 0);
+                        reasons.push('型付き関連あり');
+                    }
+                    if (keywordMatches.length > 0) {
+                        score += Math.min(1, keywordMatches.reduce((sum, edge) => sum + Number(edge.weight || 0), 0));
+                        reasons.push('共通タグ関係あり');
+                    }
+                    break;
+                }
+                case 'application_or_method': {
+                    if (/応用|利用|方法|実践|工学|技術|プログラミング|application|method|use/.test(text)) {
+                        score += 1.2;
+                        reasons.push('応用・方法語に一致');
+                    }
+                    const applicationRelations = conceptRelations.filter(relation =>
+                        ['applied_to', 'uses', 'methodologically_relevant_to'].includes(relation.type) ||
+                        ['applied_to', 'uses', 'benefits_from'].includes(relation.inverseType)
+                    );
+                    if (applicationRelations.length > 0) {
+                        score += 0.8;
+                        reasons.push('応用・方法関係あり');
+                    }
+                    break;
+                }
+                case 'history_lookup': {
+                    if (/歴史|成立|発展|背景|由来|影響|history|historical|inspired/.test(text)) {
+                        score += 1.2;
+                        reasons.push('歴史語に一致');
+                    }
+                    const historyRelations = conceptRelations.filter(relation =>
+                        ['inspired_by', 'historically_precedes'].includes(relation.type) ||
+                        ['influenced', 'historically_follows'].includes(relation.inverseType)
+                    );
+                    if (historyRelations.length > 0) {
+                        score += 0.8;
+                        reasons.push('歴史関係あり');
+                    }
+                    break;
+                }
+                case 'dependency_search': {
+                    const dependencyRelations = conceptRelations.filter(relation =>
+                        ['depends_on', 'supports', 'methodologically_relevant_to'].includes(relation.type) ||
+                        ['depends_on', 'supports', 'benefits_from'].includes(relation.inverseType)
+                    );
+                    if (dependencyRelations.length > 0) {
+                        score += dependencyRelations.reduce((sum, relation) => sum + Number(relation.weight || relation.confidence || 0.5), 0);
+                        reasons.push('前提関係あり');
+                    }
+                    break;
+                }
+                case 'hierarchy_lookup': {
+                    if (concept && (concept.parentConceptIds?.length || concept.childConceptIds?.length)) {
+                        score += 1;
+                        reasons.push('階層概念あり');
+                    }
+                    break;
+                }
+                case 'lexicon_navigation': {
+                    if (concept && concept.kind === 'term_collection') {
+                        score += 2;
+                        reasons.push('用語集');
+                    }
+                    if (/用語|索引|一覧|term|glossary|index/.test(text)) {
+                        score += 1;
+                        reasons.push('用語検索語に一致');
+                    }
+                    break;
+                }
+                case 'definition_lookup':
+                default: {
+                    if ((concept && concept.description) || result.description) {
+                        score += 1;
+                        reasons.push('定義説明あり');
+                    }
+                    break;
+                }
+            }
+
+            const rankingBoost = getRankingBoost(rankingScore, intentName);
+            if (rankingBoost > 0) {
+                score += rankingBoost;
+                reasons.push('ランキング補正');
+            }
+
+            return Object.assign({}, result, {
+                __intentScore: Number(score.toFixed(4)),
+                __intentName: intentName,
+                __intentLabel: intent ? (intent.description || intent.name) : intentName,
+                __intentReasons: reasons,
+                __rankingScore: rankingScore || null,
+                __rankingBoost: Number(rankingBoost.toFixed(4)),
+                __originalIndex: index
+            });
+        });
+
+        ranked.sort((a, b) => {
+            if (b.__intentScore !== a.__intentScore) return b.__intentScore - a.__intentScore;
+            const aOverall = a.__rankingScore ? Number(a.__rankingScore.overallScore || 0) : 0;
+            const bOverall = b.__rankingScore ? Number(b.__rankingScore.overallScore || 0) : 0;
+            if (bOverall !== aOverall) return bOverall - aOverall;
+            return a.__originalIndex - b.__originalIndex;
+        });
+
+        return ranked;
+    }
+
     /**
      * 関数名   : inputSubstringReceive()
      * 名称     : 単純文字列検索入力を受け取る
@@ -1167,7 +1536,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
 
         console.log('[SEARCH] Plain text search results count:', results.length);
-        showSearchResultsWithFragment(results, { type: SEARCH_INPUT_TYPES.PLAIN_TEXT, original: searchQuery, normalized: searchQuery });
+        const queryInfo = { type: SEARCH_INPUT_TYPES.PLAIN_TEXT, original: searchQuery, normalized: searchQuery, intent: getSelectedIntentName() };
+        showSearchResultsWithFragment(applyIntentRanking(results, queryInfo), queryInfo);
         return true;
     }
 
@@ -1192,7 +1562,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
 
         console.log('[SEARCH] Logical search results count:', results.length);
-        showSearchResultsWithFragment(results, parsedQuery);
+        const queryInfo = Object.assign({}, parsedQuery, { intent: getSelectedIntentName() });
+        showSearchResultsWithFragment(applyIntentRanking(results, queryInfo), queryInfo);
         return true;
     }
 
@@ -1287,7 +1658,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
 
         console.log('[SEARCH] Regex search results count:', results.length);
-        showSearchResultsWithFragment(results, { type: SEARCH_INPUT_TYPES.REGEX, original: regexInfo.regexStr || (regexInfo.pattern || ''), normalized: regexInfo });
+        const queryInfo = { type: SEARCH_INPUT_TYPES.REGEX, original: regexInfo.regexStr || (regexInfo.pattern || ''), normalized: regexInfo, intent: getSelectedIntentName() };
+        showSearchResultsWithFragment(applyIntentRanking(results, queryInfo), queryInfo);
         return true;
     }
 
@@ -1317,7 +1689,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
 
         console.log('[SEARCH] Tag search results count:', results.length);
-        showSearchResultsWithFragment(results, { type: 'tag', original: tag, normalized: tag });
+        const queryInfo = { type: 'tag', original: tag, normalized: tag, intent: getSelectedIntentName() };
+        showSearchResultsWithFragment(applyIntentRanking(results, queryInfo), queryInfo);
         return true;
     }
 
@@ -1347,7 +1720,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
 
         console.log('[SEARCH] Icon search results count:', results.length);
-        showSearchResultsWithFragment(results, { type: 'icon', original: iconClass, normalized: iconClass });
+        const queryInfo = { type: 'icon', original: iconClass, normalized: iconClass, intent: getSelectedIntentName() };
+        showSearchResultsWithFragment(applyIntentRanking(results, queryInfo), queryInfo);
         return true;
     }
 
@@ -1368,10 +1742,11 @@ document.addEventListener('DOMContentLoaded', async function () {
     function generateSearchFragment(queryInfo) {
         const base = (typeof queryInfo === 'string') ? queryInfo : (queryInfo.original || queryInfo.query || '');
         const normalized = queryInfo && queryInfo.normalized ? queryInfo.normalized : '';
+        const intent = queryInfo && queryInfo.intent ? queryInfo.intent : getSelectedIntentName();
         const payload = String(base) + '|' + (queryInfo && queryInfo.type ? queryInfo.type : '') + '|' + JSON.stringify(normalized);
         const hash = djb2Hash(payload);
         const ts = Date.now();
-        const frag = 'q=' + encodeURIComponent(String(base)) + '&type=' + encodeURIComponent(queryInfo && queryInfo.type ? queryInfo.type : '') + '&h=' + hash + '&ts=' + ts;
+        const frag = 'q=' + encodeURIComponent(String(base)) + '&type=' + encodeURIComponent(queryInfo && queryInfo.type ? queryInfo.type : '') + '&intent=' + encodeURIComponent(intent) + '&h=' + hash + '&ts=' + ts;
         return frag;
     }
 
@@ -1429,6 +1804,9 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         const q = decodeURIComponent(params.q || '');
         const searchType = params.type || '';
+        const intent = params.intent ? decodeURIComponent(params.intent) : getSelectedIntentName();
+        const intentSelect = document.getElementById('queryIntentSelect');
+        if (intentSelect && intent) intentSelect.value = intent;
         // 判定し直して結果を作る（URLフラグメント自体はそのまま表示に使う）
         const analysis = determineInputType(q);
         if (!analysis.isValid) {
@@ -1512,9 +1890,10 @@ document.addEventListener('DOMContentLoaded', async function () {
             original: q,
             type: searchType || (analysis && analysis.type),
             normalized: analysis && analysis.normalized ? analysis.normalized : q,
+            intent,
             fragment: params.raw
         };
-        displaySearchResults(results, qi);
+        displaySearchResults(applyIntentRanking(results, qi), qi);
         return true;
     }
 
@@ -1701,7 +2080,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                 const qstr = (queryInfo.original || queryInfo.query || '');
                 const frag = queryInfo.fragment ? ('<code>' + String(queryInfo.fragment) + '</code>') : '';
                 if (qstr || frag) {
-                    resultHtml += '<p class="search-query-info" style="overflow-wrap: break-word;">クエリ: ' + (String(qstr).replace(/</g, '&lt;')) + ' ' + frag + '</p>';
+                    const intentText = queryInfo.intent ? ` / 意図: ${escapeHtmlForSearch(queryInfo.intent)}` : '';
+                    resultHtml += '<p class="search-query-info" style="overflow-wrap: break-word;">クエリ: ' + escapeHtmlForSearch(qstr) + intentText + ' ' + frag + '</p>';
                 }
             }
         } catch (e) {
@@ -1741,6 +2121,10 @@ document.addEventListener('DOMContentLoaded', async function () {
                 resultHtml += `<a href="${targetPage.url}" class="search-result-title-link">`;
                 resultHtml += `<strong> ${targetPage.label || 'N/A'} </strong> (${targetPage.labelEn})`;
                 resultHtml += '</a> <!-- search-result-title-link -->';
+                if (result.__intentScore != null) {
+                    const reasons = Array.isArray(result.__intentReasons) ? result.__intentReasons.join(' / ') : '';
+                    resultHtml += `<div class="search-result-intent-score" style="font-size: 0.85em; color: #555;">意図スコア: ${Number(result.__intentScore).toFixed(2)}${reasons ? ` <span>${escapeHtmlForSearch(reasons)}</span>` : ''}</div>`;
+                }
                 resultHtml += '</div>';
                 resultHtml += searchDateInfo(targetPage);
                 resultHtml += `<div style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; line-height: 1.3;">${(result.sections?.[0]?.text || '').replace(/</g, '&lt;')}</div>`;

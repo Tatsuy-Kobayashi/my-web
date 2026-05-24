@@ -246,7 +246,7 @@
     { "id": 2563, "label": "教育未来学", "labelEn": "Futures of Education", "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/pedagogy/interdisciplinary_advanced_fields/futures_of_education/futures_of_education.html", "mainPath": ["0:2:25:256:2563"], "released": 0, "isPaid": 1, "iconClass": "fa-folder fa-fw" },
 
 
-    { "id": 3010, "label": "数理論理学", "labelEn": "Mathematical Logic", "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/mathematical_logic.html", "mainPath": ["0:3:30:301:3010"], "auxPath": ["0:1:10:101:1013:10130"], "released": 0, "isPaid": 1, "iconClass": "fa-folder fa-fw" },
+    { "id": 3010, "label": "数理論理学", "labelEn": "Mathematical Logic", "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/mathematical_logic/mathematical_logic.html", "mainPath": ["0:3:30:301:3010"], "auxPath": ["0:1:10:101:1013:10130"], "released": 0, "isPaid": 1, "description": "数学基礎論の全体像を解説。構文論と意味論、モデル理論、証明論、型理論、集合論、圏論など、現代数学の基礎を支える主要分野をPythonの実装例とともに学べる包括的な入門記事。", "iconClass": "fa-folder fa-fw" },
     { "id": 3011, "label": "集合論", "labelEn": "Set Theory", "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html", "mainPath": ["0:3:30:301:3011"], "released": 1, "isPaid": 0, "datePublished": "2025-02-19", "description": "集合の基本概念から応用まで解説。集合の定義、演算（和・積・差集合）、部分集合、冪集合などをPythonのコード例とベン図で分かりやすく学べる。数学の基礎を支える集合論の入門として最適。", "keywords": ["Pythonによる解説"], "iconClass": "fa-folder fa-fw" },
 
 

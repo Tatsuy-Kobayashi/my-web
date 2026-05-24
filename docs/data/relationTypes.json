@@ -1,0 +1,312 @@
+{
+  "schemaVersion": 1,
+  "description": "Typed edge definitions for concept relations and generated graph edges.",
+  "relationTypes": [
+    {
+      "type": "part_of",
+      "label": "所属",
+      "labelEn": "Part of",
+      "edgeLabel": "所属",
+      "inverseType": "has_part",
+      "directed": true,
+      "symmetric": false,
+      "transitive": true,
+      "category": "hierarchy",
+      "description": "分野・概念が上位概念に含まれる関係。",
+      "defaultWeight": 1.0,
+      "visual": {
+        "dashes": false,
+        "arrows": "to"
+      }
+    },
+    {
+      "type": "has_part",
+      "label": "下位概念",
+      "labelEn": "Has part",
+      "edgeLabel": "下位",
+      "inverseType": "part_of",
+      "directed": true,
+      "symmetric": false,
+      "transitive": true,
+      "category": "hierarchy",
+      "description": "上位概念が下位概念を含む関係。",
+      "defaultWeight": 1.0,
+      "visual": {
+        "dashes": false,
+        "arrows": "to"
+      }
+    },
+    {
+      "type": "depends_on",
+      "label": "前提",
+      "labelEn": "Depends on",
+      "edgeLabel": "前提",
+      "inverseType": "supports",
+      "directed": true,
+      "symmetric": false,
+      "transitive": true,
+      "category": "dependency",
+      "description": "理解、構成、利用に前提概念を必要とする関係。",
+      "defaultWeight": 0.9,
+      "visual": {
+        "dashes": false,
+        "arrows": "to"
+      }
+    },
+    {
+      "type": "supports",
+      "label": "支える",
+      "labelEn": "Supports",
+      "edgeLabel": "支援",
+      "inverseType": "depends_on",
+      "directed": true,
+      "symmetric": false,
+      "transitive": true,
+      "category": "dependency",
+      "description": "ある概念が別の概念の前提や基盤として働く関係。",
+      "defaultWeight": 0.9,
+      "visual": {
+        "dashes": false,
+        "arrows": "to"
+      }
+    },
+    {
+      "type": "adjacent_to",
+      "label": "近接",
+      "labelEn": "Adjacent to",
+      "edgeLabel": "近接",
+      "inverseType": "adjacent_to",
+      "directed": false,
+      "symmetric": true,
+      "transitive": false,
+      "category": "related",
+      "description": "対象、方法、応用領域などが近い関係。",
+      "defaultWeight": 0.7,
+      "visual": {
+        "dashes": false,
+        "arrows": ""
+      }
+    },
+    {
+      "type": "methodologically_relevant_to",
+      "label": "方法論的関連",
+      "labelEn": "Methodologically relevant to",
+      "edgeLabel": "方法論",
+      "inverseType": "benefits_from",
+      "directed": true,
+      "symmetric": false,
+      "transitive": false,
+      "category": "related",
+      "description": "直接の前提ではないが、形式化、解法、視点、方法論として関係する。",
+      "defaultWeight": 0.45,
+      "visual": {
+        "dashes": true,
+        "arrows": "to"
+      }
+    },
+    {
+      "type": "benefits_from",
+      "label": "方法論を受ける",
+      "labelEn": "Benefits from",
+      "edgeLabel": "受益",
+      "inverseType": "methodologically_relevant_to",
+      "directed": true,
+      "symmetric": false,
+      "transitive": false,
+      "category": "related",
+      "description": "別概念の方法論や視点から支援を受ける関係。",
+      "defaultWeight": 0.45,
+      "visual": {
+        "dashes": true,
+        "arrows": "to"
+      }
+    },
+    {
+      "type": "glossary_of",
+      "label": "用語集",
+      "labelEn": "Glossary of",
+      "edgeLabel": "用語集",
+      "inverseType": "has_glossary",
+      "directed": true,
+      "symmetric": false,
+      "transitive": false,
+      "category": "lexicon",
+      "description": "用語集や索引が特定分野に属する関係。",
+      "defaultWeight": 0.85,
+      "visual": {
+        "dashes": true,
+        "arrows": "to"
+      }
+    },
+    {
+      "type": "has_glossary",
+      "label": "用語集を持つ",
+      "labelEn": "Has glossary",
+      "edgeLabel": "用語",
+      "inverseType": "glossary_of",
+      "directed": true,
+      "symmetric": false,
+      "transitive": false,
+      "category": "lexicon",
+      "description": "分野が用語集や索引を持つ関係。",
+      "defaultWeight": 0.85,
+      "visual": {
+        "dashes": true,
+        "arrows": "to"
+      }
+    },
+    {
+      "type": "glossary_supports",
+      "label": "用語支援",
+      "labelEn": "Glossary supports",
+      "edgeLabel": "用語支援",
+      "inverseType": "supported_by_glossary",
+      "directed": true,
+      "symmetric": false,
+      "transitive": false,
+      "category": "lexicon",
+      "description": "用語集が特定分野の探索や理解を支援する関係。",
+      "defaultWeight": 0.5,
+      "visual": {
+        "dashes": true,
+        "arrows": "to"
+      }
+    },
+    {
+      "type": "supported_by_glossary",
+      "label": "用語集に支援される",
+      "labelEn": "Supported by glossary",
+      "edgeLabel": "用語参照",
+      "inverseType": "glossary_supports",
+      "directed": true,
+      "symmetric": false,
+      "transitive": false,
+      "category": "lexicon",
+      "description": "分野が用語集によって探索や理解を支援される関係。",
+      "defaultWeight": 0.5,
+      "visual": {
+        "dashes": true,
+        "arrows": "to"
+      }
+    },
+    {
+      "type": "keyword_shared",
+      "label": "共通タグ",
+      "labelEn": "Shared keyword",
+      "edgeLabel": "共通タグ",
+      "inverseType": "keyword_shared",
+      "directed": false,
+      "symmetric": true,
+      "transitive": false,
+      "category": "keyword",
+      "description": "同じ siteData.keywords を持つページ同士を結ぶ弱い双方向関係。",
+      "defaultWeight": 0.2,
+      "visual": {
+        "dashes": true,
+        "arrows": ""
+      }
+    },
+    {
+      "type": "applied_to",
+      "label": "応用先",
+      "labelEn": "Applied to",
+      "edgeLabel": "応用",
+      "inverseType": "uses",
+      "directed": true,
+      "symmetric": false,
+      "transitive": false,
+      "category": "application",
+      "description": "概念や方法が別領域へ応用される関係。",
+      "defaultWeight": 0.65,
+      "visual": {
+        "dashes": false,
+        "arrows": "to"
+      }
+    },
+    {
+      "type": "uses",
+      "label": "利用",
+      "labelEn": "Uses",
+      "edgeLabel": "利用",
+      "inverseType": "applied_to",
+      "directed": true,
+      "symmetric": false,
+      "transitive": false,
+      "category": "application",
+      "description": "ある領域が別概念や方法を利用する関係。",
+      "defaultWeight": 0.65,
+      "visual": {
+        "dashes": false,
+        "arrows": "to"
+      }
+    },
+    {
+      "type": "inspired_by",
+      "label": "影響源",
+      "labelEn": "Inspired by",
+      "edgeLabel": "影響源",
+      "inverseType": "influenced",
+      "directed": true,
+      "symmetric": false,
+      "transitive": false,
+      "category": "history",
+      "description": "概念や分野が別概念から発想や影響を受けた関係。",
+      "defaultWeight": 0.55,
+      "visual": {
+        "dashes": true,
+        "arrows": "to"
+      }
+    },
+    {
+      "type": "historically_precedes",
+      "label": "歴史的先行",
+      "labelEn": "Historically precedes",
+      "edgeLabel": "先行",
+      "inverseType": "historically_follows",
+      "directed": true,
+      "symmetric": false,
+      "transitive": true,
+      "category": "history",
+      "description": "ある概念や分野が別概念に歴史的に先行する関係。",
+      "defaultWeight": 0.55,
+      "visual": {
+        "dashes": true,
+        "arrows": "to"
+      }
+    },
+    {
+      "type": "main_path",
+      "label": "主経路",
+      "labelEn": "Main path",
+      "edgeLabel": "主経路",
+      "inverseType": "main_path_parent",
+      "directed": true,
+      "symmetric": false,
+      "transitive": true,
+      "category": "site_path",
+      "description": "siteData.mainPath から生成されるページ階層の主経路。",
+      "defaultWeight": 1.0,
+      "visual": {
+        "dashes": false,
+        "arrows": "to"
+      }
+    },
+    {
+      "type": "aux_path",
+      "label": "副経路",
+      "labelEn": "Auxiliary path",
+      "edgeLabel": "副経路",
+      "inverseType": "aux_path_parent",
+      "directed": true,
+      "symmetric": false,
+      "transitive": false,
+      "category": "site_path",
+      "description": "siteData.auxPath から生成されるページ階層の補助経路。",
+      "defaultWeight": 0.6,
+      "visual": {
+        "dashes": true,
+        "arrows": "to"
+      }
+    }
+  ]
+}

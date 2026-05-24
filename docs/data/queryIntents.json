@@ -1,0 +1,254 @@
+[
+  {
+    "intentId": "qi_definition",
+    "name": "definition_lookup",
+    "description": "概念の定義や意味を確認するための検索意図。",
+    "targetKinds": [
+      "discipline",
+      "term_collection",
+      "category_root"
+    ],
+    "preferredFields": [
+      "labels",
+      "description",
+      "aliases",
+      "siteRef.description"
+    ],
+    "returnShape": [
+      "canonicalLabel",
+      "shortDefinition",
+      "aliases",
+      "parentConceptIds"
+    ],
+    "rankBy": [
+      "description_presence",
+      "concept_centrality",
+      "label_match"
+    ],
+    "exampleQueries": [
+      "数学とは",
+      "解析学の定義",
+      "数学基礎論とは"
+    ]
+  },
+  {
+    "intentId": "qi_hierarchy",
+    "name": "hierarchy_lookup",
+    "description": "上位・下位・所属関係をたどるための検索意図。",
+    "targetKinds": [
+      "discipline",
+      "category_root"
+    ],
+    "preferredFields": [
+      "parentConceptIds",
+      "childConceptIds",
+      "siteRef.mainPath"
+    ],
+    "returnShape": [
+      "parentConceptIds",
+      "childConceptIds",
+      "sitePath",
+      "depth"
+    ],
+    "rankBy": [
+      "path_match",
+      "tree_proximity",
+      "child_count"
+    ],
+    "exampleQueries": [
+      "数学の下位分野",
+      "形式科学の配下",
+      "数学基礎論の位置"
+    ]
+  },
+  {
+    "intentId": "qi_prerequisite",
+    "name": "dependency_search",
+    "description": "前提概念・依存関係を探す検索意図。",
+    "targetKinds": [
+      "discipline",
+      "term_collection"
+    ],
+    "preferredFields": [
+      "relations.depends_on",
+      "relations.methodologically_relevant_to",
+      "searchHints"
+    ],
+    "returnShape": [
+      "incomingDependencies",
+      "outgoingDependents",
+      "confidence"
+    ],
+    "rankBy": [
+      "dependency_strength",
+      "relation_confidence",
+      "concept_relevance"
+    ],
+    "exampleQueries": [
+      "統計学の前提",
+      "解析学に必要な概念",
+      "数学基礎論が支える分野"
+    ]
+  },
+  {
+    "intentId": "qi_learning_roadmap",
+    "name": "learning_roadmap",
+    "description": "学習順序、前提から発展先への道筋、上位・下位分野の流れを探す検索意図。",
+    "targetKinds": [
+      "discipline",
+      "term_collection",
+      "category_root"
+    ],
+    "preferredFields": [
+      "relations.depends_on",
+      "relations.supports",
+      "relations.part_of",
+      "parentConceptIds",
+      "childConceptIds",
+      "siteRef.mainPath",
+      "searchHints"
+    ],
+    "returnShape": [
+      "prerequisites",
+      "currentConcept",
+      "nextConcepts",
+      "parentConceptIds",
+      "childConceptIds",
+      "confidence",
+      "weight"
+    ],
+    "rankBy": [
+      "dependency_strength",
+      "path_proximity",
+      "relation_weight",
+      "concept_relevance"
+    ],
+    "exampleQueries": [
+      "数学の学習順序",
+      "統計学を学ぶ前に必要なもの",
+      "解析学の次に学ぶ分野"
+    ]
+  },
+  {
+    "intentId": "qi_related",
+    "name": "related_concepts",
+    "description": "近接概念や横断概念を探す検索意図。",
+    "targetKinds": [
+      "discipline",
+      "term_collection"
+    ],
+    "preferredFields": [
+      "relations.adjacent_to",
+      "relations.glossary_supports",
+      "tags"
+    ],
+    "returnShape": [
+      "neighbors",
+      "crossLinks",
+      "sharedTags"
+    ],
+    "rankBy": [
+      "relation_density",
+      "semantic_similarity",
+      "shared_tags"
+    ],
+    "exampleQueries": [
+      "確率論に近い概念",
+      "解析学の関連概念",
+      "数学用語から辿れる概念"
+    ]
+  },
+  {
+    "intentId": "qi_terms",
+    "name": "lexicon_navigation",
+    "description": "用語集や索引から具体概念へ降りる検索意図。",
+    "targetKinds": [
+      "term_collection"
+    ],
+    "preferredFields": [
+      "childConceptIds",
+      "labels",
+      "aliases",
+      "tags",
+      "searchHints"
+    ],
+    "returnShape": [
+      "termCollection",
+      "linkedConcepts"
+    ],
+    "rankBy": [
+      "index_match",
+      "term_frequency",
+      "coverage"
+    ],
+    "exampleQueries": [
+      "数学用語一覧",
+      "用語から探す",
+      "索引"
+    ]
+  },
+  {
+    "intentId": "qi_history",
+    "name": "history_lookup",
+    "description": "概念や分野の歴史、成立背景、発展の流れ、影響関係を探す検索意図。",
+    "targetKinds": [
+      "discipline",
+      "term_collection",
+      "category_root"
+    ],
+    "preferredFields": [
+      "description",
+      "siteRef.datePublished",
+      "siteRef.dateModified",
+      "searchHints",
+      "relations.inspired_by",
+      "relations.historically_precedes",
+      "relations.methodologically_relevant_to"
+    ],
+    "returnShape": [
+      "historicalSummary",
+      "milestones",
+      "influences",
+      "relatedConcepts",
+      "evidence"
+    ],
+    "rankBy": [
+      "history_term_match",
+      "description_presence",
+      "relation_confidence",
+      "date_relevance"
+    ],
+    "exampleQueries": [
+      "数学基礎論の歴史",
+      "解析学の成立背景",
+      "確率論の発展"
+    ]
+  },
+  {
+    "intentId": "qi_applications",
+    "name": "application_or_method",
+    "description": "応用先・利用場面・方法論を探す検索意図。",
+    "targetKinds": [
+      "discipline"
+    ],
+    "preferredFields": [
+      "tags",
+      "searchHints",
+      "relations.methodologically_relevant_to"
+    ],
+    "returnShape": [
+      "applications",
+      "methods",
+      "crossDisciplinaryLinks"
+    ],
+    "rankBy": [
+      "application_relevance",
+      "cross_field_coverage"
+    ],
+    "exampleQueries": [
+      "統計学の応用",
+      "数学の使い道",
+      "解析学の方法"
+    ]
+  }
+]

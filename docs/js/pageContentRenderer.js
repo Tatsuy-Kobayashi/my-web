@@ -34,14 +34,66 @@ document.addEventListener('DOMContentLoaded', async function () {
     console.log('[INIT] Loading siteData...');
     const siteData = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/siteData.json').then(response => response.json());
 
+    // ------------------------
+    // 概念エンティティ
+    // ------------------------
+    // conceptId: 概念ID（siteData.json から生成）
+    // siteRef: 関連サイトデータ
+    //      id: サイトID（siteData.json から生成）
+    //      label: サイトラベル（siteData.json から生成）
+    //      labelEn: サイト英語ラベル（siteData.json から生成）
+    //      mainPath: ルートからのパス情報（siteData.json から生成）
+    //      url: サイトURL（siteData.json から生成）
+    //      released: 公開フラグ（siteData.json から生成）
+    //      isPaid: 有料フラグ（siteData.json から生成）
+    // labels: 概念ラベル配列
+    //      ja: 日本語ラベル（siteData.json から生成）
+    //      en: 英語ラベル（siteData.json から生成）
+    // kind: 概念種別（固有データ）
+    // description: 概念説明文（固有データ）
+    // aliases: 概念の別名配列（固有データ）
+    // tags: 概念タグ配列（固有データ）
+    // parentConceptIds: 親概念ID配列（siteData.json のツリー構造そのもの）
+    // childConceptIds: 子概念ID配列（siteData.json のツリー構造そのもの）
+    // searchHints: 検索ヒント配列（固有データ）
+    // notes: 備考（固有データ）
+    // ------------------------
+    console.log('[INIT] Loading concepts...');
+    const concepts = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/concepts.json').then(response => response.json()).catch(() => []);
+
+    // ------------------------
+    // 型付き辺
+    // ------------------------
+    // relationId: 概念同士の関連ID
+    // from: 前提ID（関連の出発点となる概念）
+    // to: 支援ID（関連の到着点となる概念）
+    // type: 関係の種別
+    // inverseType: 逆関係の種別（存在する場合）
+    // confidence: 確信度（0.0～1.0の数値、存在する場合）
+    // weight: 重み（0.0～1.0の数値、存在する場合）
+    // evidence: 確認情報（複数可）
+    //      sitePath: サイトのパス情報
+    //      siteId: サイトID
+    // note: 備考
+    // ------------------------
+    console.log('[INIT] Loading relations...');
+    const relations = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/relations.json').then(response => response.json()).catch(() => []);
+
+    // ------------------------
+    // 型付き辺の種別（Webページの変化に依存せず、（基本）固定の資産として保存）
+    // ------------------------
+    console.log('[INIT] Loading relationTypes...');
+    const relationTypesData = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/relationTypes.json').then(response => response.json()).catch(() => ({ relationTypes: [] }));
+    const relationTypes = Array.isArray(relationTypesData.relationTypes) ? relationTypesData.relationTypes : [];
+
     // 本来はここで fetch('/api/stats/popular') 等を行う
-    // const ranking = await fetch('/api/popular').then(r => r.json());
+    // const viewStats = await fetch('/api/popular').then(r => r.json());
     // container.innerHTML = 'Loading popular articles...';
 
     // ------------------------
     // データ（記事閲覧数）
     // ------------------------
-    const ranking = [
+    const viewStats = [
         { id: 3011, label: "集合論",  url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html", totalViews: 90210, weeklyViews: 420, monthlyViews: 1800 },
         { id: 304022, label: "特殊関数", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/theory_of_functions/special_functions/special_functions.html", totalViews: 80123, weeklyViews: 380, monthlyViews: 1600 }
     ];
@@ -72,12 +124,14 @@ document.addEventListener('DOMContentLoaded', async function () {
         renderChildList(siteData, currentNode, maxDepth = 3);
         // D. タグ一覧生成
         renderTagList(currentNode);
+        // D2. 型付き概念関係生成
+        renderTypedRelations(siteData, currentNode, concepts, relations, relationTypes);
         // E. 関連記事リンク生成
         renderRelatedLinks(siteData, currentNode);
         // F. 前後記事リンク生成
         renderPager(siteData, currentNode);
         // G. 人気記事（これだけは別途 Views API等が必要ですが、枠組みだけ用意）
-        renderPopularSection(siteData, ranking);
+        renderPopularSection(siteData, viewStats);
         // H. カテゴリー一覧生成
         renderCategoryList(siteData);
     } catch (error) {
@@ -508,6 +562,119 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     /**
+     * 型付き概念関係
+     */
+    function renderTypedRelations(allData, current, conceptData, relationData, relationTypeData) {
+        if (!current || !Array.isArray(conceptData) || !Array.isArray(relationData)) return;
+
+        const currentConcept = conceptData.find(concept => concept && concept.siteRef && Number(concept.siteRef.id) === Number(current.id));
+        if (!currentConcept) return;
+
+        const relationTypeMap = new Map();
+        if (Array.isArray(relationTypeData)) {
+            relationTypeData.forEach(typeDef => {
+                if (typeDef && typeDef.type) relationTypeMap.set(typeDef.type, typeDef);
+            });
+        }
+
+        const conceptById = new Map(conceptData.map(concept => [concept.conceptId, concept]));
+        const siteById = new Map((Array.isArray(allData) ? allData : []).map(node => [Number(node.id), node]));
+        const relatedRelations = relationData.filter(relation =>
+            relation && (relation.from === currentConcept.conceptId || relation.to === currentConcept.conceptId)
+        );
+
+        const existingContainer = document.getElementById('typed-relations-panel');
+        const container = existingContainer || document.createElement('section');
+        container.id = 'typed-relations-panel';
+        container.className = 'typed-relations-panel';
+
+        if (!existingContainer) {
+            const tagContainer = document.getElementById('article-page-topic');
+            if (tagContainer && tagContainer.parentNode) {
+                tagContainer.insertAdjacentElement('afterend', container);
+            } else {
+                const relatedContainer = document.getElementById('related-entries');
+                if (relatedContainer && relatedContainer.parentNode) {
+                    relatedContainer.parentNode.insertBefore(container, relatedContainer);
+                }
+            }
+        }
+
+        if (!container) return;
+        if (relatedRelations.length === 0) {
+            container.innerHTML = '';
+            return;
+        }
+
+        const escapeHtml = (str) => String(str == null ? '' : str).replace(/[&<>"']/g, ch => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+        }[ch]));
+
+        const getConceptLabel = (concept) => {
+            if (!concept) return '';
+            return (concept.labels && concept.labels.ja) || (concept.siteRef && concept.siteRef.label) || concept.conceptId || '';
+        };
+
+        const getConceptUrl = (concept) => {
+            if (!concept || !concept.siteRef) return '';
+            const siteNode = siteById.get(Number(concept.siteRef.id));
+            return (siteNode && siteNode.url) || concept.siteRef.url || '';
+        };
+
+        const grouped = new Map();
+        relatedRelations.forEach(relation => {
+            const isOutgoing = relation.from === currentConcept.conceptId;
+            const type = isOutgoing ? relation.type : (relation.inverseType || relation.type);
+            if (!grouped.has(type)) grouped.set(type, []);
+            grouped.get(type).push(Object.assign({}, relation, { __isOutgoing: isOutgoing, __displayType: type }));
+        });
+
+        const sortByWeight = (a, b) => Number(b.weight || b.confidence || 0) - Number(a.weight || a.confidence || 0);
+
+        let html = '<section class="typed-relations">';
+        html += '<h2 class="typed-relations-heading">型付き関係</h2>';
+        html += '<div class="typed-relations-groups">';
+
+        Array.from(grouped.entries()).sort(([a], [b]) => a.localeCompare(b)).forEach(([type, items]) => {
+            const typeDef = relationTypeMap.get(type) || {};
+            const typeLabel = typeDef.label || type;
+            const typeDescription = typeDef.description || '';
+            html += '<section class="typed-relations-group">';
+            html += `<h3 class="typed-relations-type" title="${escapeHtml(typeDescription)}">${escapeHtml(typeLabel)}</h3>`;
+            html += '<ul class="typed-relations-list">';
+
+            items.sort(sortByWeight).forEach(relation => {
+                const targetConceptId = relation.__isOutgoing ? relation.to : relation.from;
+                const targetConcept = conceptById.get(targetConceptId);
+                const targetLabel = getConceptLabel(targetConcept) || targetConceptId;
+                const targetUrl = getConceptUrl(targetConcept);
+                const score = relation.weight != null ? relation.weight : relation.confidence;
+                const scoreText = Number.isFinite(Number(score)) ? ` <span class="typed-relation-score">(${Number(score).toFixed(2)})</span>` : '';
+                const noteText = relation.note ? `<span class="typed-relation-note">${escapeHtml(relation.note)}</span>` : '';
+                const targetHtml = targetUrl
+                    ? `<a href="${escapeHtml(targetUrl)}">${escapeHtml(targetLabel)}</a>`
+                    : `<span>${escapeHtml(targetLabel)}</span>`;
+
+                html += '<li class="typed-relation-item">';
+                html += `<span class="typed-relation-target">${targetHtml}</span>${scoreText}`;
+                html += noteText;
+                html += '</li>';
+            });
+
+            html += '</ul>';
+            html += '</section>';
+        });
+
+        html += '</div>';
+        html += '</section>';
+        container.innerHTML = html;
+    }
+
+    /**
      * 関連記事リンク
      * mainPath に基づいて同じ親を持つ兄弟ノードから関連リンクを生成
      */
@@ -687,7 +854,7 @@ document.addEventListener('DOMContentLoaded', async function () {
      * ここは閲覧数APIと結合する必要があります。
      * 記事の人気順ソートなどはサーバー側で行う想定です。
      */
-    function renderPopularSection(allData, ranking) {
+    function renderPopularSection(allData, viewStats) {
         const container = document.getElementById('popular_entries');
         if (!container) return;
 
@@ -699,12 +866,12 @@ document.addEventListener('DOMContentLoaded', async function () {
                 allData = [];
             }
         }
-        // ranking を配列に統一
-        if (!Array.isArray(ranking)) {
+        // viewStats を配列に統一
+        if (!Array.isArray(viewStats)) {
             try {
-                ranking = Object.values(ranking);
+                viewStats = Object.values(viewStats);
             } catch (e) {
-                ranking = [];
+                viewStats = [];
             }
         }
 
@@ -725,16 +892,16 @@ document.addEventListener('DOMContentLoaded', async function () {
             return String(str).replace(/[&<>"']/g, (s) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[s]));
         }
 
-        let html = `<div class="popular-entry-cards widget-entry-cards no-icon cf border-partition ranking-visible">`;
+        let html = `<div class="popular-entry-cards widget-entry-cards no-icon cf border-partition viewStats-visible">`;
 
-        ranking.forEach(item => {
+        viewStats.forEach(item => {
             // DOM へ追加
             const node = findNode(item.id) || {}; // allData 側の完全情報を優先
-            const rankingThumb = thumbHtml(node);
+            const viewStatsThumb = thumbHtml(node);
 
             html += `<a href="${item.url}" class="popular-entry-card-link widget-entry-card-link a-wrap no-1" title="${escapeHtml(item.label||'')}" data-nodal="">`;
             html += `<div class="post-${item.id} popular-entry-card widget-entry-card e-card cf post type-post status-publish format-standard has-post-thumbnail hentry category-python-post">`;
-            html += `${rankingThumb}`;
+            html += `${viewStatsThumb}`;
             html += `<div class="popular-entry-card-content widget-entry-card-content card-content">`;
             html += `<div class="popular-entry-card-title widget-entry-card-title card-title">${escapeHtml(item.label||node.label||'')}</div>`;
             html += `<div class="popular-entry-card-date widget-entry-card-date display-none">`;

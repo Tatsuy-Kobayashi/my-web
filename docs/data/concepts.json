@@ -1,0 +1,638 @@
+[
+  {
+    "conceptId": "concept_academic_disciplines",
+    "siteRef": {
+      "id": 0,
+      "label": "学問",
+      "labelEn": "Academic Disciplines",
+      "mainPath": [
+        "0"
+      ],
+      "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html",
+      "released": 1,
+      "isPaid": 0
+    },
+    "labels": {
+      "ja": "学問",
+      "en": "Academic Disciplines"
+    },
+    "kind": "category_root",
+    "description": "あらゆる事物を学問の一領域として捉えるための最上位概念。ページ群全体のルートとして機能する。",
+    "aliases": [
+      "学術分野",
+      "学問体系"
+    ],
+    "tags": [
+      "root",
+      "taxonomy",
+      "discipline"
+    ],
+    "parentConceptIds": [],
+    "childConceptIds": [
+      "concept_humanities",
+      "concept_social_sciences",
+      "concept_formal_sciences",
+      "concept_natural_sciences",
+      "concept_applied_sciences",
+      "concept_interdisciplinary_fields"
+    ],
+    "searchHints": [
+      "体系全体",
+      "最上位分類",
+      "学問の範囲"
+    ],
+    "notes": "ページ構造の根。意味ネットワークでは、すべての分野ノードの祖先として扱う。"
+  },
+  {
+    "conceptId": "concept_humanities",
+    "siteRef": {
+      "id": 1,
+      "label": "人文科学",
+      "labelEn": "Humanities",
+      "mainPath": [
+        "0:1"
+      ],
+      "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/humanities.html",
+      "released": 0,
+      "isPaid": 0
+    },
+    "labels": {
+      "ja": "人文科学",
+      "en": "Humanities"
+    },
+    "kind": "discipline",
+    "description": "人間の文化、思想、言語、歴史、芸術などを主な対象とする学問群。",
+    "aliases": [
+      "人文学",
+      "humanities"
+    ],
+    "tags": [
+      "culture",
+      "history",
+      "language",
+      "arts"
+    ],
+    "parentConceptIds": [
+      "concept_academic_disciplines"
+    ],
+    "childConceptIds": [],
+    "searchHints": [
+      "文化",
+      "思想",
+      "歴史",
+      "言語",
+      "芸術"
+    ],
+    "notes": "上位カテゴリとして定義し、詳細な下位概念は後続データで追加する。"
+  },
+  {
+    "conceptId": "concept_social_sciences",
+    "siteRef": {
+      "id": 2,
+      "label": "社会科学",
+      "labelEn": "Social Sciences",
+      "mainPath": [
+        "0:2"
+      ],
+      "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/social_science.html",
+      "released": 0,
+      "isPaid": 0,
+      "datePublished": "2025-02-10"
+    },
+    "labels": {
+      "ja": "社会科学",
+      "en": "Social Sciences"
+    },
+    "kind": "discipline",
+    "description": "社会、制度、経済、政治、教育など、人間集団の構造と活動を扱う学問群。",
+    "aliases": [
+      "社会諸科学",
+      "social sciences"
+    ],
+    "tags": [
+      "society",
+      "institutions",
+      "economics",
+      "politics"
+    ],
+    "parentConceptIds": [
+      "concept_academic_disciplines"
+    ],
+    "childConceptIds": [],
+    "searchHints": [
+      "社会",
+      "制度",
+      "経済",
+      "政治",
+      "教育"
+    ],
+    "notes": "上位カテゴリとして定義し、詳細な下位概念は後続データで追加する。"
+  },
+  {
+    "conceptId": "concept_formal_sciences",
+    "siteRef": {
+      "id": 3,
+      "label": "形式科学",
+      "labelEn": "Formal Sciences",
+      "mainPath": [
+        "0:3"
+      ],
+      "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/formal_science.html",
+      "released": 1,
+      "isPaid": 0
+    },
+    "labels": {
+      "ja": "形式科学",
+      "en": "Formal Sciences"
+    },
+    "kind": "discipline",
+    "description": "記号・構造・推論・形式体系を対象とする学問群。数学と統計学を含む上位分類。",
+    "aliases": [
+      "形式諸科学"
+    ],
+    "tags": [
+      "formal",
+      "structure",
+      "logic"
+    ],
+    "parentConceptIds": [
+      "concept_academic_disciplines"
+    ],
+    "childConceptIds": [
+      "concept_mathematics",
+      "concept_statistics"
+    ],
+    "searchHints": [
+      "抽象構造",
+      "推論",
+      "記号体系",
+      "下位分野"
+    ],
+    "notes": "この層は数学系と統計系の上位に置くと、横断検索の起点として扱いやすい。"
+  },
+  {
+    "conceptId": "concept_natural_sciences",
+    "siteRef": {
+      "id": 4,
+      "label": "自然科学",
+      "labelEn": "Natural Sciences",
+      "mainPath": [
+        "0:4"
+      ],
+      "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/natural_science.html",
+      "released": 1,
+      "isPaid": 0,
+      "datePublished": "2025-02-04"
+    },
+    "labels": {
+      "ja": "自然科学",
+      "en": "Natural Sciences"
+    },
+    "kind": "discipline",
+    "description": "自然現象、物質、生命、地球、宇宙などを観察と理論により研究する学問群。",
+    "aliases": [
+      "自然諸科学",
+      "natural sciences"
+    ],
+    "tags": [
+      "nature",
+      "physics",
+      "chemistry",
+      "biology"
+    ],
+    "parentConceptIds": [
+      "concept_academic_disciplines"
+    ],
+    "childConceptIds": [],
+    "searchHints": [
+      "自然現象",
+      "物理学",
+      "化学",
+      "生物学",
+      "地学"
+    ],
+    "notes": "上位カテゴリとして定義し、詳細な下位概念は後続データで追加する。"
+  },
+  {
+    "conceptId": "concept_applied_sciences",
+    "siteRef": {
+      "id": 5,
+      "label": "応用科学",
+      "labelEn": "Applied Sciences",
+      "mainPath": [
+        "0:5"
+      ],
+      "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/applied_science.html",
+      "released": 0,
+      "isPaid": 0
+    },
+    "labels": {
+      "ja": "応用科学",
+      "en": "Applied Sciences"
+    },
+    "kind": "discipline",
+    "description": "理論や方法を実社会の課題解決、設計、技術、医療などへ応用する学問群。",
+    "aliases": [
+      "応用諸科学",
+      "applied sciences"
+    ],
+    "tags": [
+      "application",
+      "engineering",
+      "technology",
+      "practice"
+    ],
+    "parentConceptIds": [
+      "concept_academic_disciplines"
+    ],
+    "childConceptIds": [],
+    "searchHints": [
+      "応用",
+      "工学",
+      "技術",
+      "医療",
+      "実践"
+    ],
+    "notes": "上位カテゴリとして定義し、詳細な下位概念は後続データで追加する。"
+  },
+  {
+    "conceptId": "concept_interdisciplinary_fields",
+    "siteRef": {
+      "id": 6,
+      "label": "学際領域",
+      "labelEn": "Interdisciplinary Fields",
+      "mainPath": [
+        "0:6"
+      ],
+      "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/interdisciplinary_fields/interdisciplinary_fields.html",
+      "released": 0,
+      "isPaid": 0
+    },
+    "labels": {
+      "ja": "学際領域",
+      "en": "Interdisciplinary Fields"
+    },
+    "kind": "discipline",
+    "description": "複数の学問分野を横断し、統合的な方法や対象を扱う研究領域。",
+    "aliases": [
+      "学際研究",
+      "interdisciplinary fields"
+    ],
+    "tags": [
+      "interdisciplinary",
+      "cross-domain",
+      "integration"
+    ],
+    "parentConceptIds": [
+      "concept_academic_disciplines"
+    ],
+    "childConceptIds": [],
+    "searchHints": [
+      "横断領域",
+      "複合分野",
+      "分野融合",
+      "統合研究"
+    ],
+    "notes": "横断検索や関連概念探索で重要になる上位カテゴリ。"
+  },
+  {
+    "conceptId": "concept_mathematics",
+    "siteRef": {
+      "id": 30,
+      "label": "数学",
+      "labelEn": "Mathematics",
+      "mainPath": [
+        "0:3:30"
+      ],
+      "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html",
+      "released": 1,
+      "isPaid": 0,
+      "datePublished": "2024-09-30",
+      "dateModified": "2025-01-04"
+    },
+    "labels": {
+      "ja": "数学",
+      "en": "Mathematics"
+    },
+    "kind": "discipline",
+    "description": "数量および空間図形の性質について研究する学問。サイトのメインコンテンツに相当する。",
+    "aliases": [
+      "math",
+      "数学分野"
+    ],
+    "tags": [
+      "学問",
+      "数学",
+      "情報理論",
+      "物理学",
+      "プログラミング",
+      "教育"
+    ],
+    "parentConceptIds": [
+      "concept_formal_sciences"
+    ],
+    "childConceptIds": [
+      "concept_mathematical_terms",
+      "concept_foundations_of_mathematics",
+      "concept_number_theory",
+      "concept_algebra",
+      "concept_analysis",
+      "concept_probability_theory"
+    ],
+    "searchHints": [
+      "定義",
+      "分野構造",
+      "下位分野",
+      "学習順序"
+    ],
+    "notes": "ページと概念を分ける場合、このノードは「数学」という意味の中心に置く。"
+  },
+  {
+    "conceptId": "concept_mathematical_terms",
+    "siteRef": {
+      "id": 300,
+      "label": "数学用語",
+      "labelEn": "Mathematical Terms",
+      "mainPath": [
+        "0:3:30:300"
+      ],
+      "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematical_terms/mathematical_terms.html",
+      "released": 0,
+      "isPaid": 0,
+      "datePublished": "2024-12-22"
+    },
+    "labels": {
+      "ja": "数学用語",
+      "en": "Mathematical Terms"
+    },
+    "kind": "term_collection",
+    "description": "数学分野に属する用語群をまとめる索引・参照層。独立分野ではなく、概念横断の入口として機能する。",
+    "aliases": [
+      "数学の用語集",
+      "数学用語一覧"
+    ],
+    "tags": [
+      "glossary",
+      "index",
+      "terms"
+    ],
+    "parentConceptIds": [
+      "concept_mathematics"
+    ],
+    "childConceptIds": [],
+    "searchHints": [
+      "用語一覧",
+      "辞書",
+      "索引",
+      "概念参照"
+    ],
+    "notes": "独立した学問分野ではないものを束ねる管理単位として有効。"
+  },
+  {
+    "conceptId": "concept_foundations_of_mathematics",
+    "siteRef": {
+      "id": 301,
+      "label": "数学基礎論",
+      "labelEn": "Foundations of Mathematics",
+      "mainPath": [
+        "0:3:30:301"
+      ],
+      "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html",
+      "released": 1,
+      "isPaid": 1,
+      "datePublished": "2025-12-28",
+      "dateModified": "2026-01-04"
+    },
+    "labels": {
+      "ja": "数学基礎論",
+      "en": "Foundations of Mathematics"
+    },
+    "kind": "discipline",
+    "description": "構文論と意味論、モデル理論、証明論、型理論、集合論、圏論など、現代数学の基礎を支える主要分野を扱う数学の基盤領域。",
+    "aliases": [
+      "数学基礎",
+      "基礎数学"
+    ],
+    "tags": [
+      "logic",
+      "semantics",
+      "proof",
+      "set theory",
+      "category theory"
+    ],
+    "parentConceptIds": [
+      "concept_mathematics"
+    ],
+    "childConceptIds": [],
+    "searchHints": [
+      "構文論",
+      "意味論",
+      "証明論",
+      "モデル理論",
+      "集合論",
+      "型理論"
+    ],
+    "notes": "検索意図としては『定義』『前提』『基礎』『体系』に強い。"
+  },
+  {
+    "conceptId": "concept_number_theory",
+    "siteRef": {
+      "id": 302,
+      "label": "数論",
+      "labelEn": "Number Theory",
+      "mainPath": [
+        "0:3:30:302"
+      ],
+      "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/number_theory.html",
+      "released": 1,
+      "isPaid": 0,
+      "datePublished": "2024-10-20"
+    },
+    "labels": {
+      "ja": "数論",
+      "en": "Number Theory"
+    },
+    "kind": "discipline",
+    "description": "整数や素数など数の性質を中心に扱う数学の分野。",
+    "aliases": [
+      "整数論"
+    ],
+    "tags": [
+      "integers",
+      "primes",
+      "arithmetic"
+    ],
+    "parentConceptIds": [
+      "concept_mathematics"
+    ],
+    "childConceptIds": [],
+    "searchHints": [
+      "整数",
+      "素数",
+      "合同式",
+      "ディオファントス"
+    ],
+    "notes": "ここでは詳細な下位分野はまだ入れず、上位概念としてのみ置く。"
+  },
+  {
+    "conceptId": "concept_algebra",
+    "siteRef": {
+      "id": 303,
+      "label": "代数学",
+      "labelEn": "Algebra",
+      "mainPath": [
+        "0:3:30:303"
+      ],
+      "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebra.html",
+      "released": 1,
+      "isPaid": 1
+    },
+    "labels": {
+      "ja": "代数学",
+      "en": "Algebra"
+    },
+    "kind": "discipline",
+    "description": "演算、構造、対称性を中心に研究する数学の分野。",
+    "aliases": [
+      "algebra"
+    ],
+    "tags": [
+      "structure",
+      "operations",
+      "symmetry"
+    ],
+    "parentConceptIds": [
+      "concept_mathematics"
+    ],
+    "childConceptIds": [],
+    "searchHints": [
+      "群",
+      "環",
+      "体",
+      "線形代数",
+      "抽象代数"
+    ],
+    "notes": "将来、群論・環論・体論・線形代数などの下位ノードを接続しやすい。"
+  },
+  {
+    "conceptId": "concept_analysis",
+    "siteRef": {
+      "id": 304,
+      "label": "解析学",
+      "labelEn": "Analysis",
+      "mainPath": [
+        "0:3:30:304"
+      ],
+      "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/analysis.html",
+      "released": 1,
+      "isPaid": 1
+    },
+    "labels": {
+      "ja": "解析学",
+      "en": "Analysis"
+    },
+    "kind": "discipline",
+    "description": "極限、収束、連続性、微分積分、関数空間などを中心に扱う数学の分野。",
+    "aliases": [
+      "analysis"
+    ],
+    "tags": [
+      "limits",
+      "convergence",
+      "integration",
+      "function spaces"
+    ],
+    "parentConceptIds": [
+      "concept_mathematics"
+    ],
+    "childConceptIds": [],
+    "searchHints": [
+      "極限",
+      "収束",
+      "積分",
+      "ルベーグ積分",
+      "フーリエ解析"
+    ],
+    "notes": "ルベーグ積分や測度論の横断ノードを将来つなぎやすい。"
+  },
+  {
+    "conceptId": "concept_probability_theory",
+    "siteRef": {
+      "id": 307,
+      "label": "確率論",
+      "labelEn": "Probability Theory",
+      "mainPath": [
+        "0:3:30:307"
+      ],
+      "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/probability_theory/probability_theory.html",
+      "released": 1,
+      "isPaid": 1
+    },
+    "labels": {
+      "ja": "確率論",
+      "en": "Probability Theory"
+    },
+    "kind": "discipline",
+    "description": "偶然性を含む現象を確率として定式化し、ランダム性の構造を研究する数学の分野。",
+    "aliases": [
+      "probability"
+    ],
+    "tags": [
+      "probability",
+      "randomness",
+      "stochastic"
+    ],
+    "parentConceptIds": [
+      "concept_mathematics"
+    ],
+    "childConceptIds": [],
+    "searchHints": [
+      "確率変数",
+      "分布",
+      "期待値",
+      "測度論的確率論"
+    ],
+    "notes": "統計学との横断関係を扱いやすい中核分野。"
+  },
+  {
+    "conceptId": "concept_statistics",
+    "siteRef": {
+      "id": 31,
+      "label": "統計学",
+      "labelEn": "Statistics",
+      "mainPath": [
+        "0:3:31"
+      ],
+      "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/statistics/statistics.html",
+      "released": 0,
+      "isPaid": 0,
+      "description": "確率論を基盤にして、集団全体の性質を一部の標本を調べることによって推定するための処理・分析方法について研究する学問。"
+    },
+    "labels": {
+      "ja": "統計学",
+      "en": "Statistics"
+    },
+    "kind": "discipline",
+    "description": "確率論を基盤に、標本から母集団の性質を推定するための処理・分析方法を研究する分野。",
+    "aliases": [
+      "statistics"
+    ],
+    "tags": [
+      "sampling",
+      "estimation",
+      "inference",
+      "data analysis"
+    ],
+    "parentConceptIds": [
+      "concept_formal_sciences"
+    ],
+    "childConceptIds": [],
+    "searchHints": [
+      "記述統計",
+      "推測統計",
+      "ベイズ統計",
+      "実験計画"
+    ],
+    "notes": "数学とは別ツリーだが、確率論との依存関係を張ると検索価値が高い。"
+  }
+]

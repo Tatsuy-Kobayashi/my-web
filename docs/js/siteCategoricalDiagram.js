@@ -57,6 +57,12 @@ document.addEventListener('DOMContentLoaded', async function () {
     console.log('[INIT] Loading nodesData...');
     const nodesData = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/siteData.json').then(response => response.json());
 
+    const keywordEdgesData = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/keywordEdges.json').then(response => response.json()).catch(() => []);
+    const conceptsData = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/concepts.json').then(response => response.json()).catch(() => []);
+    const relationsData = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/relations.json').then(response => response.json()).catch(() => []);
+    const relationTypesData = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/relationTypes.json').then(response => response.json()).catch(() => ({ relationTypes: [] }));
+    const rankingData = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/ranking.json').then(response => response.json()).catch(() => ({ scores: [] }));
+
     // ------------------------
     // データ（エッジ）
     // ------------------------
@@ -88,6 +94,20 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     // グローバル: データが持つ最大の depth（level）
     let maxAvailableLevel = 0;
+    const edgeLayerState = {
+        hierarchy: true,
+        keyword: false,
+        typed: false
+    };
+
+    function getRelationTypeDef(type) {
+        return relationTypes.find(def => def && def.type === type) || {};
+    }
+
+    function getRelationEdgeLabel(type) {
+        const typeDef = getRelationTypeDef(type);
+        return typeDef.edgeLabel || typeDef.label || type;
+    }
     // ------------------------
     // 関数名   : vof_ensureLevelsFromPaths(nodes)
     // 名称     : paths から各ノードの level を計算
@@ -179,7 +199,14 @@ document.addEventListener('DOMContentLoaded', async function () {
         dedup.forEach((type, key) => {
             const [from, to] = key.split('->').map(Number);
 
-            let edgeOptions = { from, to };
+            const relationType = type === 'main' ? 'main_path' : 'aux_path';
+            let edgeOptions = {
+                from,
+                to,
+                type: relationType,
+                relationType,
+                title: getRelationTypeDef(relationType).description || relationType
+            };
 
             if (type === 'main') {
                 // 主経路: 直線（物理演算の骨格となる）
@@ -205,6 +232,88 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
 
         return edges;
+    }
+
+    function buildKeywordLayerEdges(filteredNodes) {
+        const visible = new Set(filteredNodes.map(n => Number(n.id)));
+        if (!Array.isArray(keywordEdgesData)) return [];
+
+        return keywordEdgesData
+            .filter(edge => visible.has(Number(edge.from)) && visible.has(Number(edge.to)))
+            .map(edge => {
+                const keywords = Array.isArray(edge.keywords) && edge.keywords.length > 0
+                    ? edge.keywords.map(keyword => String(keyword).trim()).filter(Boolean)
+                    : [String(edge.edgeLabel || edge.label || '').replace(/^共通タグ:\s*/, '').trim()].filter(Boolean);
+                const keywordLabel = keywords.length > 0 ? keywords.join(' / ') : getRelationEdgeLabel('keyword_shared');
+                const fromLabel = edge.evidence?.fromLabel || String(edge.from);
+                const toLabel = edge.evidence?.toLabel || String(edge.to);
+
+                return {
+                    from: Number(edge.from),
+                    to: Number(edge.to),
+                    type: edge.type || 'keyword_shared',
+                    relationType: edge.relationType || edge.type || 'keyword_shared',
+                    label: keywordLabel,
+                    title: `共通タグ : ${keywordLabel} : ${fromLabel} ↔ ${toLabel}`,
+                    dashes: true,
+                    arrows: '',
+                    width: Math.max(1, Math.min(4, 1 + Number(edge.weight || 0) * 3)),
+                    color: { color: '#8A8F98', opacity: 0.45 },
+                    smooth: { enabled: true, type: 'dynamic', roundness: 0.25 },
+                    length: 220
+                };
+            });
+    }
+
+    function buildTypedRelationLayerEdges(filteredNodes) {
+        const visible = new Set(filteredNodes.map(n => Number(n.id)));
+        if (!Array.isArray(conceptsData) || !Array.isArray(relationsData)) return [];
+
+        const conceptById = new Map(conceptsData.map(concept => [concept.conceptId, concept]));
+        const siteIdByConceptId = new Map();
+        conceptsData.forEach(concept => {
+            if (concept && concept.siteRef && Number.isFinite(Number(concept.siteRef.id))) {
+                siteIdByConceptId.set(concept.conceptId, Number(concept.siteRef.id));
+            }
+        });
+
+        return relationsData
+            .filter(relation => relation && relation.type !== 'part_of')
+            .map(relation => {
+                const from = siteIdByConceptId.get(relation.from);
+                const to = siteIdByConceptId.get(relation.to);
+                if (!visible.has(from) || !visible.has(to)) return null;
+
+                const typeDef = getRelationTypeDef(relation.type);
+                const fromConcept = conceptById.get(relation.from);
+                const toConcept = conceptById.get(relation.to);
+                const fromLabel = fromConcept?.labels?.ja || fromConcept?.siteRef?.label || relation.from;
+                const toLabel = toConcept?.labels?.ja || toConcept?.siteRef?.label || relation.to;
+
+                return {
+                    from,
+                    to,
+                    type: relation.type,
+                    relationType: relation.type,
+                    label: typeDef.edgeLabel || typeDef.label || relation.type,
+                    title: `${fromLabel} → ${toLabel}: ${typeDef.description || relation.note || relation.type}`,
+                    arrows: typeDef.directed === false ? '' : 'to',
+                    dashes: Boolean(typeDef.visual && typeDef.visual.dashes),
+                    width: Math.max(1, Math.min(5, 1 + Number(relation.weight || relation.confidence || 0.5) * 3)),
+                    color: { color: '#2F6FB0', opacity: 0.75 },
+                    smooth: { enabled: true, type: 'dynamic', roundness: 0.2 },
+                    length: 180
+                };
+            })
+            .filter(Boolean);
+    }
+
+    function buildVisibleEdges(filteredNodes) {
+        const edgeLayers = [];
+        if (edgeLayerState.hierarchy) edgeLayers.push(...buildEdgesFromPaths(filteredNodes));
+        if (edgeLayerState.keyword) edgeLayers.push(...buildKeywordLayerEdges(filteredNodes));
+        if (edgeLayerState.typed) edgeLayers.push(...buildTypedRelationLayerEdges(filteredNodes));
+        return edgeLayers;
     }
 
     // build parent/child maps from nodesData.paths
@@ -353,6 +462,49 @@ document.addEventListener('DOMContentLoaded', async function () {
         clickModeRadios: document.getElementsByName('clickMode'),
         colorModeRadios: document.getElementsByName('colorMode')
     };
+
+    function renderEdgeLayerControls() {
+        if (document.getElementById('edgeLayerControls')) return;
+
+        const panel = document.getElementById('controlsPanel');
+        const anchor = panel ? panel.querySelector('.controls-body') || panel : null;
+        if (!anchor) return;
+
+        const fieldset = document.createElement('fieldset');
+        fieldset.id = 'edgeLayerControls';
+        fieldset.className = 'control-group edge-layer-controls';
+        fieldset.style.marginTop = '10px';
+        fieldset.innerHTML = `
+            <legend title="表示するエッジの種類を選択してください">エッジ表示:</legend>
+            <label title="mainPath と auxPath から生成される階層エッジ">
+                <input type="checkbox" id="showHierarchyEdges" checked>
+                階層
+            </label>
+            <label title="siteData.keywords が共通するページ同士の双方向エッジ">
+                <input type="checkbox" id="showKeywordEdges">
+                共通タグ
+            </label>
+            <label title="relations.json に定義された概念間の型付き辺">
+                <input type="checkbox" id="showTypedEdges">
+                型付き辺
+            </label>
+        `;
+
+        anchor.appendChild(fieldset);
+
+        const bind = (id, key) => {
+            const checkbox = document.getElementById(id);
+            if (!checkbox) return;
+            checkbox.addEventListener('change', () => {
+                edgeLayerState[key] = checkbox.checked;
+                performDepthSearch();
+            });
+        };
+
+        bind('showHierarchyEdges', 'hierarchy');
+        bind('showKeywordEdges', 'keyword');
+        bind('showTypedEdges', 'typed');
+    }
 
     // DOM 要素が揃っているか簡易チェック
     if (!dom.networkContainer || !dom.minDepth || !dom.maxDepth || !dom.updateBtn || !dom.labelSearchInput || !dom.labelSearchBtn) {
@@ -510,6 +662,59 @@ document.addEventListener('DOMContentLoaded', async function () {
         return { background: '#97C2FC', border: '#2B7CE9', highlight: { background: '#D2E5FF', border: '#2B7CE9' } };
     }
 
+    let rankingIndexCache = null;
+
+    function buildRankingIndex() {
+        if (rankingIndexCache) return rankingIndexCache;
+
+        const scores = rankingData && Array.isArray(rankingData.scores) ? rankingData.scores : [];
+        const bySiteId = new Map();
+
+        scores.forEach((score, index) => {
+            const siteId = Number(score && score.id);
+            if (!Number.isFinite(siteId)) return;
+            bySiteId.set(siteId, Object.assign({ __rankIndex: index }, score));
+        });
+
+        rankingIndexCache = {
+            bySiteId,
+            maxRankIndex: Math.max(1, scores.length - 1)
+        };
+        return rankingIndexCache;
+    }
+
+    function computeRankingNodeSize(node) {
+        const index = buildRankingIndex();
+        const rankingScore = index.bySiteId.get(Number(node && node.id));
+        const minSize = 18;
+        const maxSize = 40;
+
+        if (!rankingScore) return minSize;
+
+        const rankIndex = Math.max(0, Number(rankingScore.__rankIndex) || 0);
+        const denominator = Math.log1p(index.maxRankIndex + 1);
+        const normalized = denominator > 0
+            ? 1 - (Math.log1p(rankIndex + 1) / denominator)
+            : 0;
+
+        return Math.round(minSize + Math.max(0, Math.min(1, normalized)) * (maxSize - minSize));
+    }
+
+    function mapNodeForNetwork(node, colorMode) {
+        const nodeCopy = Object.assign({}, node);
+        const rankingScore = buildRankingIndex().bySiteId.get(Number(node && node.id));
+        nodeCopy.color = computeNodeColorObj(node, colorMode);
+        nodeCopy.size = computeRankingNodeSize(node);
+
+        if (rankingScore) {
+            nodeCopy.rankingScore = rankingScore.overallScore;
+            nodeCopy.rankingRank = rankingScore.__rankIndex + 1;
+            nodeCopy.title = `${nodeCopy.title || nodeCopy.label || ''}\nランキング: ${nodeCopy.rankingRank}\n総合スコア: ${Number(rankingScore.overallScore || 0).toFixed(3)}`;
+        }
+
+        return nodeCopy;
+    }
+
     // ------------------------
     // 関数名   : vof_setNetworkData(nodeList, edgeList)
     // 名称     : network のデータ更新
@@ -526,12 +731,8 @@ document.addEventListener('DOMContentLoaded', async function () {
             const colorModeEl = document.querySelector('input[name="colorMode"]:checked');
             const colorMode = colorModeEl ? colorModeEl.value : 'default-color';
 
-            // Map nodeList to nodes for vis, applying color mode
-            const mappedNodes = nodeList.map(n => {
-                const nodeCopy = Object.assign({}, n); // shallow copy
-                nodeCopy.color = computeNodeColorObj(n, colorMode);
-                return nodeCopy;
-            });
+            // Map nodeList to nodes for vis, applying color and ranking size.
+            const mappedNodes = nodeList.map(n => mapNodeForNetwork(n, colorMode));
 
             const nodes = new vis.DataSet(mappedNodes);
             const edges = new vis.DataSet(edgeList);
@@ -754,7 +955,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         // filter nodes and edges
         const filteredNodes = nodesData.filter(n => (typeof n.level === 'number') && n.level >= min && n.level <= max);
-        const filteredEdges = buildEdgesFromPaths(filteredNodes);
+        const filteredEdges = buildVisibleEdges(filteredNodes);
 
         // 描画
         vof_setNetworkData(filteredNodes, filteredEdges);
@@ -824,7 +1025,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         // node/edge フィルタ
         const filteredNodes = nodesData.filter(n => (typeof n.level === 'number') && n.level >= min && n.level <= max);
-        const filteredEdges = buildEdgesFromPaths(filteredNodes);
+        const filteredEdges = buildVisibleEdges(filteredNodes);
 
         // 描画
         vof_setNetworkData(filteredNodes, filteredEdges);
@@ -992,7 +1193,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         // node/edge フィルタ
         const filteredNodes = nodesData.filter(n => (typeof n.level === 'number') && n.level >= min && n.level <= max);
-        const filteredEdges = buildEdgesFromPaths(filteredNodes);
+        const filteredEdges = buildVisibleEdges(filteredNodes);
 
         // 描画
         vof_setNetworkData(filteredNodes, filteredEdges);
@@ -1019,7 +1220,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         const focusSet = computeFocusSet(nodeId, Math.max(0, Math.floor(Number(up) || 0)), Math.max(0, Math.floor(Number(down) || 0)));
         const filteredNodes = nodesData.filter(n => focusSet.has(n.id));
-        const filteredEdges = buildEdgesFromPaths(filteredNodes);
+        const filteredEdges = buildVisibleEdges(filteredNodes);
 
         vof_setNetworkData(filteredNodes, filteredEdges);
         vof_applyVisualLock('id'); // reuse id-lock (visual effect)
@@ -1110,7 +1311,8 @@ document.addEventListener('DOMContentLoaded', async function () {
             const currentNodes = network.body.data.nodes.get(); // 表示中のノード配列
             const updates = currentNodes.map(n => ({
                 id: n.id,
-                color: computeNodeColorObj(n, colorMode)
+                color: computeNodeColorObj(n, colorMode),
+                size: computeRankingNodeSize(n)
             }));
             network.body.data.nodes.update(updates);
             console.log('[UI] refreshNetworkColors executed (in-place), nodes=', updates.length);
@@ -1234,6 +1436,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     // クリック／イベントハンドラの初期登録（STATE.IDLE で動く）
     // ------------------------
     function registerUiHandlers() {
+        renderEdgeLayerControls();
+
         // 深さ検索ボタン
         dom.updateBtn.addEventListener('click', () => {
             console.log('[UI] depth search clicked');

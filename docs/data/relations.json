@@ -1,0 +1,282 @@
+[
+  {
+    "relationId": "rel_0001",
+    "from": "concept_formal_sciences",
+    "to": "concept_academic_disciplines",
+    "type": "part_of",
+    "inverseType": "has_part",
+    "confidence": 1.0,
+    "weight": 1.0,
+    "evidence": {
+      "sitePath": "0:3",
+      "siteId": 3
+    },
+    "note": "形式科学は学問の下位分類。"
+  },
+  {
+    "relationId": "rel_0002",
+    "from": "concept_mathematics",
+    "to": "concept_formal_sciences",
+    "type": "part_of",
+    "inverseType": "has_part",
+    "confidence": 1.0,
+    "weight": 1.0,
+    "evidence": {
+      "sitePath": "0:3:30",
+      "siteId": 30
+    },
+    "note": "数学は形式科学に属する。"
+  },
+  {
+    "relationId": "rel_0003",
+    "from": "concept_mathematical_terms",
+    "to": "concept_mathematics",
+    "type": "glossary_of",
+    "inverseType": "has_glossary",
+    "confidence": 1.0,
+    "weight": 0.85,
+    "evidence": {
+      "sitePath": "0:3:30:300",
+      "siteId": 300
+    },
+    "note": "数学用語は数学の用語集・索引層。"
+  },
+  {
+    "relationId": "rel_0004",
+    "from": "concept_foundations_of_mathematics",
+    "to": "concept_mathematics",
+    "type": "part_of",
+    "inverseType": "has_part",
+    "confidence": 1.0,
+    "weight": 1.0,
+    "evidence": {
+      "sitePath": "0:3:30:301",
+      "siteId": 301
+    },
+    "note": "数学基礎論は数学の下位領域。"
+  },
+  {
+    "relationId": "rel_0005",
+    "from": "concept_number_theory",
+    "to": "concept_mathematics",
+    "type": "part_of",
+    "inverseType": "has_part",
+    "confidence": 1.0,
+    "weight": 1.0,
+    "evidence": {
+      "sitePath": "0:3:30:302",
+      "siteId": 302
+    },
+    "note": "数論は数学の下位領域。"
+  },
+  {
+    "relationId": "rel_0006",
+    "from": "concept_algebra",
+    "to": "concept_mathematics",
+    "type": "part_of",
+    "inverseType": "has_part",
+    "confidence": 1.0,
+    "weight": 1.0,
+    "evidence": {
+      "sitePath": "0:3:30:303",
+      "siteId": 303
+    },
+    "note": "代数学は数学の下位領域。"
+  },
+  {
+    "relationId": "rel_0007",
+    "from": "concept_analysis",
+    "to": "concept_mathematics",
+    "type": "part_of",
+    "inverseType": "has_part",
+    "confidence": 1.0,
+    "weight": 1.0,
+    "evidence": {
+      "sitePath": "0:3:30:304",
+      "siteId": 304
+    },
+    "note": "解析学は数学の下位領域。"
+  },
+  {
+    "relationId": "rel_0008",
+    "from": "concept_probability_theory",
+    "to": "concept_mathematics",
+    "type": "part_of",
+    "inverseType": "has_part",
+    "confidence": 1.0,
+    "weight": 1.0,
+    "evidence": {
+      "sitePath": "0:3:30:307",
+      "siteId": 307
+    },
+    "note": "確率論は数学の下位領域。"
+  },
+  {
+    "relationId": "rel_0009",
+    "from": "concept_statistics",
+    "to": "concept_formal_sciences",
+    "type": "part_of",
+    "inverseType": "has_part",
+    "confidence": 1.0,
+    "weight": 1.0,
+    "evidence": {
+      "sitePath": "0:3:31",
+      "siteId": 31
+    },
+    "note": "統計学は形式科学の下位領域。"
+  },
+  {
+    "relationId": "rel_0010",
+    "from": "concept_statistics",
+    "to": "concept_probability_theory",
+    "type": "depends_on",
+    "inverseType": "supports",
+    "confidence": 0.95,
+    "weight": 0.95,
+    "evidence": {
+      "siteId": 31,
+      "description": "確率論を基盤にして...推定するための処理・分析方法"
+    },
+    "note": "サイト上の説明に基づく依存関係。"
+  },
+  {
+    "relationId": "rel_0011",
+    "from": "concept_probability_theory",
+    "to": "concept_statistics",
+    "type": "adjacent_to",
+    "inverseType": "adjacent_to",
+    "confidence": 0.75,
+    "weight": 0.7,
+    "evidence": {
+      "sitePath": "0:3:30:307",
+      "sitePath2": "0:3:31"
+    },
+    "note": "両者は方法・対象の近接性が高い。"
+  },
+  {
+    "relationId": "rel_0012",
+    "from": "concept_foundations_of_mathematics",
+    "to": "concept_algebra",
+    "type": "methodologically_relevant_to",
+    "inverseType": "benefits_from",
+    "confidence": 0.45,
+    "weight": 0.45,
+    "evidence": {
+      "siteId": 301,
+      "description": "現代数学の基礎を支える主要分野"
+    },
+    "note": "直接の前提というより、形式化・公理化の観点で関連が強い。"
+  },
+  {
+    "relationId": "rel_0013",
+    "from": "concept_foundations_of_mathematics",
+    "to": "concept_analysis",
+    "type": "methodologically_relevant_to",
+    "inverseType": "benefits_from",
+    "confidence": 0.45,
+    "weight": 0.45,
+    "evidence": {
+      "siteId": 301,
+      "description": "構文論と意味論、モデル理論、証明論、型理論、集合論、圏論など"
+    },
+    "note": "解析学そのものの前提ではないが、厳密化の基盤として関係がある。"
+  },
+  {
+    "relationId": "rel_0014",
+    "from": "concept_mathematical_terms",
+    "to": "concept_analysis",
+    "type": "glossary_supports",
+    "inverseType": "supported_by_glossary",
+    "confidence": 0.6,
+    "weight": 0.5,
+    "evidence": {
+      "sitePath": "0:3:30:300",
+      "sitePath2": "0:3:30:304"
+    },
+    "note": "用語集は下位分野検索の入口として機能する。"
+  },
+  {
+    "relationId": "rel_0015",
+    "from": "concept_mathematical_terms",
+    "to": "concept_probability_theory",
+    "type": "glossary_supports",
+    "inverseType": "supported_by_glossary",
+    "confidence": 0.6,
+    "weight": 0.5,
+    "evidence": {
+      "sitePath": "0:3:30:300",
+      "sitePath2": "0:3:30:307"
+    },
+    "note": "同上。"
+  },
+  {
+    "relationId": "rel_0016",
+    "from": "concept_humanities",
+    "to": "concept_academic_disciplines",
+    "type": "part_of",
+    "inverseType": "has_part",
+    "confidence": 1.0,
+    "weight": 1.0,
+    "evidence": {
+      "sitePath": "0:1",
+      "siteId": 1
+    },
+    "note": "人文科学は学問の上位分類の一つ。"
+  },
+  {
+    "relationId": "rel_0017",
+    "from": "concept_social_sciences",
+    "to": "concept_academic_disciplines",
+    "type": "part_of",
+    "inverseType": "has_part",
+    "confidence": 1.0,
+    "weight": 1.0,
+    "evidence": {
+      "sitePath": "0:2",
+      "siteId": 2
+    },
+    "note": "社会科学は学問の上位分類の一つ。"
+  },
+  {
+    "relationId": "rel_0018",
+    "from": "concept_natural_sciences",
+    "to": "concept_academic_disciplines",
+    "type": "part_of",
+    "inverseType": "has_part",
+    "confidence": 1.0,
+    "weight": 1.0,
+    "evidence": {
+      "sitePath": "0:4",
+      "siteId": 4
+    },
+    "note": "自然科学は学問の上位分類の一つ。"
+  },
+  {
+    "relationId": "rel_0019",
+    "from": "concept_applied_sciences",
+    "to": "concept_academic_disciplines",
+    "type": "part_of",
+    "inverseType": "has_part",
+    "confidence": 1.0,
+    "weight": 1.0,
+    "evidence": {
+      "sitePath": "0:5",
+      "siteId": 5
+    },
+    "note": "応用科学は学問の上位分類の一つ。"
+  },
+  {
+    "relationId": "rel_0020",
+    "from": "concept_interdisciplinary_fields",
+    "to": "concept_academic_disciplines",
+    "type": "part_of",
+    "inverseType": "has_part",
+    "confidence": 1.0,
+    "weight": 1.0,
+    "evidence": {
+      "sitePath": "0:6",
+      "siteId": 6
+    },
+    "note": "学際領域は学問の上位分類の一つ。"
+  }
+]

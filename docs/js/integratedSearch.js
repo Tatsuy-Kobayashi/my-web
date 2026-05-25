@@ -76,20 +76,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     const searchSource = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/searchSource.json').then(response => response.json());
 
     // ------------------------
-    // データ（ノード）
-    // ------------------------
-    // id: ノードID
-    // label: ラベル
-    // labelEn: 英語ラベル
-    // description: ノード説明文
-    // sections: セクション配列
-    // keywords: タグ配列
-    // iconClass: アイコンのCSSクラス（FontAwesome等）
-    // ------------------------
-    console.log('[INIT] Loading searchSource...');
-    const searchSource = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/searchSource.json').then(response => response.json());
-
-    // ------------------------
     // 概念エンティティ
     // ------------------------
     // conceptId: 概念ID（siteData.json から生成）

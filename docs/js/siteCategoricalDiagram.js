@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const conceptsData = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/concepts.json').then(response => response.json()).catch(() => []);
     const relationsData = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/relations.json').then(response => response.json()).catch(() => []);
     const relationTypesData = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/relationTypes.json').then(response => response.json()).catch(() => ({ relationTypes: [] }));
+    const relationTypes = Array.isArray(relationTypesData.relationTypes) ? relationTypesData.relationTypes : [];
     const rankingData = await fetch('https://tatsuy-kobayashi.github.io/my-web/docs/data/ranking.json').then(response => response.json()).catch(() => ({ scores: [] }));
 
     // ------------------------
@@ -309,10 +310,14 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     function buildVisibleEdges(filteredNodes) {
+        console.log('[SEARCH] building edges for visible nodes');
+
         const edgeLayers = [];
         if (edgeLayerState.hierarchy) edgeLayers.push(...buildEdgesFromPaths(filteredNodes));
         if (edgeLayerState.keyword) edgeLayers.push(...buildKeywordLayerEdges(filteredNodes));
         if (edgeLayerState.typed) edgeLayers.push(...buildTypedRelationLayerEdges(filteredNodes));
+        console.log('[SEARCH] built edges for visible nodes');
+
         return edgeLayers;
     }
 

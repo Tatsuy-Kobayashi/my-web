@@ -521,6 +521,19 @@
                                     autocomplete="off">
                                 <ul id="labelSubstringSearchSuggestions"></ul>
                             </div>
+                            <span>
+                                検索意図
+                                <select id="queryIntentSelect">
+                                    <option value="definition_lookup">定義を知りたい</option>
+                                    <option value="learning_roadmap">学習順序を知りたい</option>
+                                    <option value="related_concepts">関連概念を知りたい</option>
+                                    <option value="application_or_method">応用先を知りたい</option>
+                                    <option value="history_lookup">歴史を知りたい</option>
+                                    <option value="dependency_search">前提概念を知りたい</option>
+                                    <option value="hierarchy_lookup">階層を知りたい</option>
+                                    <option value="lexicon_navigation">用語から探したい</option>
+                                </select>
+                            </span>
                             <button id="labelSubstringSearchBtn" aria-label="入力した文字列で検索を実行"
                                 title="検索を実行">検索</button>
                         </div> <!-- control-group -->

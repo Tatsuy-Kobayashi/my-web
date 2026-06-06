@@ -21,13 +21,15 @@ import { renderCategoryList } from './CategoryListRenderer.js';
 /**
  * 名称     : 全パーツを描画
  * 内容     : 全描画パーツを順序どおり実行する
- * @param {Object} data - { siteData, concepts, relations, relationTypes, viewStats }
+ * @param {Object} siteData - サイトデータ
+ * @param {Object} concepts - 概念データ
+ * @param {Object} relations - 関係データ
+ * @param {Object} relationTypes - 関係種別データ
+ * @param {Object} viewStats - 表示統計データ
  * @param {Object} currentNode - 現在の記事ノード
  * @returns {Promise<void>}
  */
-export function PCR_renderAllParts(data, currentNode) {
-    const { siteData, concepts, relations, relationTypes, viewStats } = data;
-
+export function PCR_renderAllParts(siteData, concepts, relations, relationTypes, viewStats, currentNode) {
     // A. パンくずリスト生成
     renderBreadcrumbs(siteData, currentNode);
     // B. 公開日・編集日生成

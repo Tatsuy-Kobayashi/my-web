@@ -8,7 +8,7 @@
 // ----------------------------------------------------------------------------
 // Import
 // ----------------------------------------------------------------------------
-import { FETCHDATA_FetchAllData } from '../Communication/FetchSiteData.js';
+import { FETCHDATA_FetchSiteData, FETCHDATA_FetchConcepts, FETCHDATA_FetchRelations, FETCHDATA_FetchRelationTypes, FETCHDATA_FetchViewStats } from '../Communication/FetchSiteData.js';
 import { DEVICE_ResolveCurrentNode } from '../Communication/DeviceInfo.js';
 import { PCR_renderAllParts } from '../Application/PcrCtrl.js';
 
@@ -20,11 +20,15 @@ import { PCR_renderAllParts } from '../Application/PcrCtrl.js';
  */
 export async function TskMng_BootPgCntRndr() {
     // データの取得
-    const TskMng_Data = await FETCHDATA_FetchAllData();
+    const TSKMNG_SiteData = await FETCHDATA_FetchSiteData();
+    const TSKMNG_Concepts = await FETCHDATA_FetchConcepts();
+    const TSKMNG_Relations = await FETCHDATA_FetchRelations();
+    const TSKMNG_RelationTypes = await FETCHDATA_FetchRelationTypes();
+    const TSKMNG_ViewStats = await FETCHDATA_FetchViewStats();
 
     // 現在の記事ノードを特定
     try {
-        const TskMng_CurrentNode = DEVICE_ResolveCurrentNode(TskMng_Data.FETCHDATA_SiteData);
+        const TskMng_CurrentNode = DEVICE_ResolveCurrentNode(TSKMNG_SiteData);
 
         if (!TskMng_CurrentNode) {
             console.warn('Current node not found in siteData.');
@@ -32,7 +36,7 @@ export async function TskMng_BootPgCntRndr() {
         }
 
         // --- 各パーツの生成実行 ---
-        PCR_renderAllParts(TskMng_Data, TskMng_CurrentNode);
+        PCR_renderAllParts(TSKMNG_SiteData, TSKMNG_Concepts, TSKMNG_Relations, TSKMNG_RelationTypes, TSKMNG_ViewStats, TskMng_CurrentNode);
     } catch (error) {
         console.error('Error initializing page components:', error);
     }

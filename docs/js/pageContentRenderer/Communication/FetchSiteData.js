@@ -24,17 +24,26 @@ async function FetchData_FetchJson(url, fallback) {
 }
 
 /**
- * 名称     : 全データ取得
- * 内容     : サイトのレンダリングに必要な全データを非同期で読み込む
- * @returns {Promise<{ FETCHDATA_SiteData: Array, FETCHDATA_Concepts: Array, FETCHDATA_Relations: Array, FETCHDATA_RelationTypes: Array, FETCHDATA_ViewStats: Array }>}
+ * 名称     : サイトデータ取得
+ * 内容     : JSONファイルからサイトデータを読み込む
+ * @returns {Promise<Array>}
  */
-export async function FETCHDATA_FetchAllData() {
+export async function FETCHDATA_FetchSiteData() {
     // ------------------------
     // データ（ノード）
     // ------------------------
     console.log('[INIT] Loading siteData...');
     const FETCHDATA_SiteData = await FetchData_FetchJson('https://tatsuy-kobayashi.github.io/my-web/docs/data/siteData.json', []);
 
+    return FETCHDATA_SiteData;
+}
+
+/**
+ * 名称     : 概念データ取得
+ * 内容     : JSONファイルから概念エンティティを読み込む
+ * @returns {Promise<Array>}
+ */
+export async function FETCHDATA_FetchConcepts() {
     // ------------------------
     // 概念エンティティ
     // ------------------------
@@ -62,6 +71,15 @@ export async function FETCHDATA_FetchAllData() {
     console.log('[INIT] Loading concepts...');
     const FETCHDATA_Concepts = await FetchData_FetchJson('https://tatsuy-kobayashi.github.io/my-web/docs/data/concepts.json', []);
 
+    return FETCHDATA_Concepts;
+}
+
+/**
+ * 名称     : 関係データ取得
+ * 内容     : JSONファイルから型付き関係を読み込む
+ * @returns {Promise<Array>}
+ */
+export async function FETCHDATA_FetchRelations() {
     // ------------------------
     // 型付き辺
     // ------------------------
@@ -80,13 +98,31 @@ export async function FETCHDATA_FetchAllData() {
     console.log('[INIT] Loading relations...');
     const FETCHDATA_Relations = await FetchData_FetchJson('https://tatsuy-kobayashi.github.io/my-web/docs/data/relations.json', []);
 
+    return FETCHDATA_Relations;
+}
+
+/**
+ * 名称     : 関係種別データ取得
+ * 内容     : JSONファイルから型付き関係の種別を読み込む
+ * @returns {Promise<Array>}
+ */
+export async function FETCHDATA_FetchRelationTypes() {
     // ------------------------
     // 型付き辺の種別（Webページの変化に依存せず、（基本）固定の資産として保存）
     // ------------------------
     console.log('[INIT] Loading relationTypes...');
-    const FetchData_RelationTypesData = await FetchData_FetchJson('https://tatsuy-kobayashi.github.io/my-web/docs/data/relationTypes.json', { relationTypes: [] });
-    const FETCHDATA_RelationTypes = Array.isArray(FetchData_RelationTypesData.relationTypes) ? FetchData_RelationTypesData.relationTypes : [];
+    const FetchData_relationTypesData = await FetchData_FetchJson('https://tatsuy-kobayashi.github.io/my-web/docs/data/relationTypes.json', { relationTypes: [] });
+    const FETCHDATA_relationTypes = Array.isArray(FetchData_relationTypesData.relationTypes) ? FetchData_relationTypesData.relationTypes : [];
 
+    return FETCHDATA_relationTypes;
+}
+
+/**
+ * 名称     : 閲覧統計データ取得
+ * 内容     : 人気記事などの閲覧数データを返す
+ * @returns {Promise<Array>}
+ */
+export async function FETCHDATA_FetchViewStats() {
     // 本来はここで fetch('/api/stats/popular') 等を行う
     // ------------------------
     // データ（記事閲覧数）
@@ -96,5 +132,5 @@ export async function FETCHDATA_FetchAllData() {
         { id: 304022, label: "特殊関数", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/theory_of_functions/special_functions/special_functions.html", totalViews: 80123, weeklyViews: 380, monthlyViews: 1600 }
     ];
 
-    return { FETCHDATA_SiteData, FETCHDATA_Concepts, FETCHDATA_Relations, FETCHDATA_RelationTypes, FETCHDATA_ViewStats };
+    return FETCHDATA_ViewStats;
 }

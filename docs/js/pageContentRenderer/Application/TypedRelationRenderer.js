@@ -79,6 +79,7 @@ export function renderTypedRelations(allData, current, conceptData, relationData
 
     const sortByWeight = (a, b) => Number(b.weight || b.confidence || 0) - Number(a.weight || a.confidence || 0);
 
+    // HTML 生成
     let html = '<section class="typed-relations">';
     html += '<h2 class="typed-relations-heading">型付き関係</h2>';
     html += '<div class="typed-relations-groups">';

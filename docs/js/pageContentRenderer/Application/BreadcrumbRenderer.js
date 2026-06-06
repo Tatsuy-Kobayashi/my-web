@@ -24,6 +24,7 @@ export function renderBreadcrumbs(allData, current) {
         const parts = parsePathIds(pathStr);
         if (parts.length === 0) return '';
 
+        // HTML 生成
         let html = `<div class="breadcrumb_list_part">`;
         if (includeHome) {
             html += `<a href="https://tatsuy-kobayashi.github.io/my-web/docs/"><i class="fa fa-home fa-fw" aria-hidden="true" style="margin-right:5px;"></i><span>Home</span></a>`;

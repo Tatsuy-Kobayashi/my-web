@@ -14,35 +14,49 @@ import { writeToContainer } from '../Middleware/DomWriter.js';
  * @param {Object} current - 現在の記事ノード
  */
 export function renderRelatedLinks(allData, current) {
+    // allData を配列に統一
     allData = ensureArray(allData);
 
+    // 現在のノードがタグを持つか確認
     const currentKeywords = Array.isArray(current && current.keywords) ? current.keywords : [];
     if (currentKeywords.length === 0) {
         writeToContainer('related-entries', '');
+
         return;
     }
 
+    // 同じタグを持つ記事をプール（ただし current 自身は除外）
     const relatedPool = allData.filter(item => {
+        // 自身は除外
         if (item.id === current.id) return false;
+        // リリースされていない記事は除外
         if (Number(item.released) !== 1) return false;
+        // タグがない場合は除外
         const itemKeywords = Array.isArray(item.keywords) ? item.keywords : [];
         if (itemKeywords.length === 0) return false;
+
+        // 一つでも同じタグがあるか確認
         return itemKeywords.some(kw => currentKeywords.includes(kw));
     });
 
+    // 関連記事がない場合は何も表示しない
     if (relatedPool.length === 0) {
         writeToContainer('related-entries', '');
+
         return;
     }
 
+    // ランダムに最大6件をシャッフル
     const shuffled = relatedPool.sort(() => Math.random() - 0.5).slice(0, 6);
 
+    // HTML 生成
     let html = `<h1 class="related-entry-heading">関連記事</h1>`;
     html += `<div class="related-list">`;
 
     shuffled.forEach(related => {
         const thumbUrl = Array.isArray(related.thumbnailUrl) && related.thumbnailUrl[1]
             ? related.thumbnailUrl[1] : '';
+        // タグリストを表示（最初のタグのみ使用）
         const tagLabel = Array.isArray(related.keywords) && related.keywords.length > 0
             ? related.keywords[0] : '';
         const relatedDesc = related.description || '';

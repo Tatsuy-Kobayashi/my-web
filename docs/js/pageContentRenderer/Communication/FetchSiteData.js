@@ -1,53 +1,39 @@
 // ----------------------------------------------------------------------------
-// ファイル名    : SiteDataFetcher.js
-// 名称          : サイトデータ取得
-// 内容          : JSONファイルからサイトデータ、概念、関係などのデータをフェッチする
+// ファイル名      : FetchSiteData.js
+// モジュール記号  : FETCHDATA / FetchData
+// モジュール名    : サイトデータ取得 (SW100-COM-FETCHDATA) Source File
+// 内容           : JSONファイルからサイトデータ、概念、関係などのデータをフェッチする
 // Copyright(c) 2025 Fibrantix CO.,LTD. All Rights Reserved
 // ----------------------------------------------------------------------------
 
 /**
- * JSONを取得する内部ヘルパ。エラー時はフォールバック値を返す。
+ * 名称     : JSONファイル取得処理
+ * 内容     : JSONファイルからサイトデータ、概念、関係などのデータを読み込む
  * @param {string} url - 取得先URL
  * @param {any} fallback - エラー時のフォールバック値
  * @returns {Promise<any>}
  */
-async function fetchJson(url, fallback) {
+async function FetchData_FetchJson(url, fallback) {
     try {
         const response = await fetch(url);
         return await response.json();
     } catch (e) {
-        console.warn(`[SiteDataFetcher] Failed to fetch ${url}. Using fallback.`, e);
+        console.warn(`[FetchSiteData] Failed to fetch ${url}. Using fallback.`, e);
         return fallback;
     }
 }
 
 /**
- * サイトのレンダリングに必要な全データを非同期で取得する
- * @returns {Promise<{ siteData: Array, concepts: Array, relations: Array, relationTypes: Array, viewStats: Array }>}
+ * 名称     : 全データ取得
+ * 内容     : サイトのレンダリングに必要な全データを非同期で読み込む
+ * @returns {Promise<{ FETCHDATA_SiteData: Array, FETCHDATA_Concepts: Array, FETCHDATA_Relations: Array, FETCHDATA_RelationTypes: Array, FETCHDATA_ViewStats: Array }>}
  */
-export async function fetchAllData() {
+export async function FETCHDATA_FetchAllData() {
     // ------------------------
     // データ（ノード）
     // ------------------------
-    // id: ノードID
-    // label: ラベル
-    // labelEn: 英語ラベル
-    // url: ノードクリック時に開くURL
-    // level: 深さ（現在は学問のみが明示的に持つ）
-    // mainPath: ルートからのパス情報（多親対応）
-    // auxPath: 補助パス情報（複数可、多親対応）
-    // released: 公開フラグ（0: 未公開、1: 公開）
-    // isPaid: 有料フラグ（0: 無料、1: 有料）
-    // datePublished: 公開日
-    // dateModified: 更新日
-    // description: ノード説明文
-    // keywords: タグ配列
-    // iconClass: アイコンのCSSクラス（FontAwesome等）
-    // imageUrl: プレビュー画像のURL
-    // thumbnailUrl: サムネイル画像のURL配列（複数解像度対応）
-    // ------------------------
     console.log('[INIT] Loading siteData...');
-    const siteData = await fetchJson('https://tatsuy-kobayashi.github.io/my-web/docs/data/siteData.json', []);
+    const FETCHDATA_SiteData = await FetchData_FetchJson('https://tatsuy-kobayashi.github.io/my-web/docs/data/siteData.json', []);
 
     // ------------------------
     // 概念エンティティ
@@ -74,7 +60,7 @@ export async function fetchAllData() {
     // notes: 備考（固有データ）
     // ------------------------
     console.log('[INIT] Loading concepts...');
-    const concepts = await fetchJson('https://tatsuy-kobayashi.github.io/my-web/docs/data/concepts.json', []);
+    const FETCHDATA_Concepts = await FetchData_FetchJson('https://tatsuy-kobayashi.github.io/my-web/docs/data/concepts.json', []);
 
     // ------------------------
     // 型付き辺
@@ -92,23 +78,23 @@ export async function fetchAllData() {
     // note: 備考
     // ------------------------
     console.log('[INIT] Loading relations...');
-    const relations = await fetchJson('https://tatsuy-kobayashi.github.io/my-web/docs/data/relations.json', []);
+    const FETCHDATA_Relations = await FetchData_FetchJson('https://tatsuy-kobayashi.github.io/my-web/docs/data/relations.json', []);
 
     // ------------------------
     // 型付き辺の種別（Webページの変化に依存せず、（基本）固定の資産として保存）
     // ------------------------
     console.log('[INIT] Loading relationTypes...');
-    const relationTypesData = await fetchJson('https://tatsuy-kobayashi.github.io/my-web/docs/data/relationTypes.json', { relationTypes: [] });
-    const relationTypes = Array.isArray(relationTypesData.relationTypes) ? relationTypesData.relationTypes : [];
+    const FetchData_RelationTypesData = await FetchData_FetchJson('https://tatsuy-kobayashi.github.io/my-web/docs/data/relationTypes.json', { relationTypes: [] });
+    const FETCHDATA_RelationTypes = Array.isArray(FetchData_RelationTypesData.relationTypes) ? FetchData_RelationTypesData.relationTypes : [];
 
     // 本来はここで fetch('/api/stats/popular') 等を行う
     // ------------------------
     // データ（記事閲覧数）
     // ------------------------
-    const viewStats = [
+    const FETCHDATA_ViewStats = [
         { id: 3011, label: "集合論", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html", totalViews: 90210, weeklyViews: 420, monthlyViews: 1800 },
         { id: 304022, label: "特殊関数", url: "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/theory_of_functions/special_functions/special_functions.html", totalViews: 80123, weeklyViews: 380, monthlyViews: 1600 }
     ];
 
-    return { siteData, concepts, relations, relationTypes, viewStats };
+    return { FETCHDATA_SiteData, FETCHDATA_Concepts, FETCHDATA_Relations, FETCHDATA_RelationTypes, FETCHDATA_ViewStats };
 }

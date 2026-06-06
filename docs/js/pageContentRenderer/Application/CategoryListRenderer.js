@@ -13,8 +13,10 @@ import { writeToContainer } from '../Middleware/DomWriter.js';
  * @param {Array} allData - サイトデータの配列
  */
 export function renderCategoryList(allData) {
+    // allData を配列に統一
     allData = ensureArray(allData);
 
+    // キーワードをプール（重複除去）
     const pool = new Set();
     allData.forEach(item => {
         if (!item) return;
@@ -35,6 +37,7 @@ export function renderCategoryList(allData) {
     // 文字コード順（UTF-16 code unit）で辞書順ソート
     tags.sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
 
+    // HTML 生成
     let html = '<ul>';
     tags.forEach((tag, idx) => {
         const tagId = idx;

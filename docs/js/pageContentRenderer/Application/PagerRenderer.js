@@ -16,19 +16,22 @@ import { writeToContainer } from '../Middleware/DomWriter.js';
  * @param {Object} current - 現在の記事ノード
  */
 export function renderPager(allData, current) {
+    // allData を配列に統一
     allData = ensureArray(allData);
 
-    const currentPath = getFirstPath(current);
+    const currentPath = getFirstPath(current);      // mainPath から経路情報を抽出するヘルパ
     if (!currentPath) return;
 
-    const parentPath = getParentPath(currentPath);
-    if (!parentPath) return;
+    const parentPath = getParentPath(currentPath);  // 親パスを計算（最後の ID を除いたパス）
+    if (!parentPath) return;                        // ルートレベルには兄弟がない
 
+    // 同じ親を持つ兄弟を抽出
     const siblings = allData.filter(item => {
         const itemPath = getFirstPath(item);
         return getParentPath(itemPath) === parentPath;
     });
 
+    // mainPath の最後の ID でソート
     siblings.sort((a, b) => {
         const aPath = getFirstPath(a);
         const bPath = getFirstPath(b);
@@ -46,6 +49,7 @@ export function renderPager(allData, current) {
     const prev = siblings[currentIndex - 1];
     const next = siblings[currentIndex + 1];
 
+    // HTML 生成
     let html = '';
     if (prev && Number(prev.released) === 1) {
         const prevThumb = buildThumbHtml(prev, 'prev-post-thumb');

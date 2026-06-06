@@ -19,6 +19,7 @@ export function renderTagList(current) {
         return;
     }
 
+    // HTML 生成
     let html = '';
     html += '<dl>';
     html += '<dt>関連タグ</dt>';

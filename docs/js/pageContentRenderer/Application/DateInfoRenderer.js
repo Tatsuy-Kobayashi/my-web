@@ -42,6 +42,7 @@ export function renderDateInfo(current) {
     const pubDate = toISOStringSafe(pubDateObj);
     const revDate = toISOStringSafe(revDateObj);
 
+    // HTML 生成
     let html = '';
     if (pubDate) {
         const display = pubDate.split('T')[0];

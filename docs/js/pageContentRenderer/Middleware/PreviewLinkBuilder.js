@@ -80,5 +80,5 @@ export const buildThumbHtml = (node, cssClass = '') => {
         const src = node.thumbnailUrl[0];
         return `<figure class="${escapeHtml(cssClass)} card-thumb"><img width="120" height="68" src="${escapeHtml(src)}" class="attachment-thumb120 size-thumb120 wp-post-image lazyautosizes ls-is-cached lazyloaded" alt="" decoding="async"></figure>`;
     }
-    return '';
+    return '';      // サムネイルが無ければ空
 };

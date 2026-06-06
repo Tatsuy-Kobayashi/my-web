@@ -17,8 +17,11 @@ import { writeToContainer } from '../Middleware/DomWriter.js';
  * @param {number} maxDepth - 最大展開深度
  */
 export function renderChildList(allData, current, maxDepth) {
+    // siteData（allData）から子孫を取得する。
+    // current.dir_path に依存せず mainPath を用いた抽出に委ねる。
     allData = ensureArray(allData);
 
+    // mainPath を使って現在ノードの下位（descendant）を階層的に表示する実装
     const currentPath = getFirstPath(current);
     if (!currentPath) return;
 
@@ -37,9 +40,12 @@ export function renderChildList(allData, current, maxDepth) {
             const auxArr = Array.isArray(item.auxPath) ? item.auxPath : [item.auxPath];
             auxArr.forEach(ap => {
                 if (typeof ap !== 'string') return;
+                // 数値配列化
                 const parts = parsePathIds(ap);
                 if (parts.length === 0) return;
+                // currentId を含む auxPath のみ扱う
                 if (!parts.includes(currentId)) return;
+                // penultimate を抽出（length>=2 でなければ無視）
                 const penultimate = parts.length >= 2 ? parts[parts.length - 2] : null;
                 if (!auxMatchesMap.has(item.id)) {
                     auxMatchesMap.set(item.id, { node: item, matchedAuxPaths: [], matchedPenultimateIds: new Set() });
@@ -50,6 +56,7 @@ export function renderChildList(allData, current, maxDepth) {
             });
         });
     }
+    // auxMatchesMap を配列化（必要に応じて descendants と併合して扱う）
     const auxMatches = Array.from(auxMatchesMap.values());
     console.log('auxMatches:', auxMatches);
 
@@ -60,7 +67,7 @@ export function renderChildList(allData, current, maxDepth) {
         matchedAuxPaths.forEach(ap => {
             if (typeof ap !== 'string') return;
             const parts = parsePathIds(ap);
-            if (parts.length < 2) return;
+            if (parts.length < 2) return; // penultimate + tail が必要
             const penultimate = parts[parts.length - 2];
             const tail = parts[parts.length - 1];
             if (!Number.isFinite(penultimate) || !Number.isFinite(tail)) return;
@@ -72,6 +79,7 @@ export function renderChildList(allData, current, maxDepth) {
 
     if (!descendants || descendants.length === 0) return;
 
+    // parentPath の直下だけを返す（直下の子）
     const immediateChildrenOf = (parentPath) => {
         const parentParts = parentPath.split(':').filter(Boolean);
         const results = [];
@@ -89,18 +97,22 @@ export function renderChildList(allData, current, maxDepth) {
             });
         });
 
-        // auxPath による挿入
+        //  --- auxPath による挿入: auxMatchesMap から parentPath の最後の ID を親として参照するものを追加 ---
         const parentId = parseInt(parentParts[parentParts.length - 1], 10);
         if (!Number.isNaN(parentId)) {
             const insertions = auxInsertionsByParent.get(parentId);
             if (Array.isArray(insertions) && insertions.length > 0) {
                 insertions.forEach(({ tailId, node }) => {
+                    // 重複挿入を避ける: すでに results に同一ノード（auxPath であっても）が存在しないか確認してから追加
                     const exists = results.some(r => {
+                        // 既に同ノードを mainPath として追加済み（同じ実ノードID）ならスキップ
                         if (!r.__isAux && r.id === node.id) return true;
+                        // 既に同じ aux 挿入（同じ元ノード & tail）を追加済みならスキップ
                         if (r.__isAux && r.__auxOriginalId === node.id && r.__auxTailId === tailId) return true;
                         return false;
                     });
                     if (!exists) {
+                        // 合成オブジェクト: ソートキーとして __auxTailId を持たせる（id は変更しない）
                         const synthetic = Object.assign({}, node, {
                             __isAux: true,
                             __auxOriginalId: node.id,
@@ -111,6 +123,7 @@ export function renderChildList(allData, current, maxDepth) {
                 });
             }
         }
+        // ソート: aux 挿入ノードは __auxTailId を優先キーとする。なければ mainPath の末尾ID、最後に node.id。
         const getSortKey = (item) => {
             if (item && Number.isFinite(item.__auxTailId)) return item.__auxTailId;
             const p = getFirstPath(item) || '';
@@ -136,6 +149,8 @@ export function renderChildList(allData, current, maxDepth) {
                 return dps.some(mp => typeof mp === 'string' && mp.startsWith(childPath + ':'));
             });
             out += '<li class="li_pulldownList">';
+            // 深い子を持つ場合または現在ノードの直下の子（parentPath === currentPath）の場合は
+            // <details><summary> でラップする。ただし内部リストは存在する場合のみ追加する。
             if ((hasDesc || parentPath === currentPath) && depth < maxD) {
                 out += '<details class="details_pulldownList">';
                 out += `<summary class="summary_pulldownList">${buildPreviewCardHtml(child)}</summary>`;
@@ -150,6 +165,7 @@ export function renderChildList(allData, current, maxDepth) {
         return out;
     };
 
+    // HTML 生成
     let html = '<ul class="ul_pulldownList">';
     html += buildList(currentPath, 0, maxDepth);
     html += '</ul> <!-- /.ul_pulldownList -->';

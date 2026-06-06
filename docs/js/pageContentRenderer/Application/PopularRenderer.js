@@ -15,11 +15,14 @@ import { writeToContainer } from '../Middleware/DomWriter.js';
  * @param {Array} viewStats - 閲覧統計データの配列
  */
 export function renderPopularSection(allData, viewStats) {
+    // allData を配列に統一
     allData = ensureArray(allData);
+    // viewStats を配列に統一
     viewStats = ensureArray(viewStats);
 
     const findNode = (id) => allData.find(n => n && n.id === id);
 
+    // HTML 生成
     let html = `<div class="popular-entry-cards widget-entry-cards no-icon cf border-partition viewStats-visible">`;
 
     viewStats.forEach(item => {

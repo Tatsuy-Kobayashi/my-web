@@ -24,7 +24,7 @@ export async function TskMng_BootPgCntRndr() {
 
     // 現在の記事ノードを特定
     try {
-        const TskMng_CurrentNode = DEVICE_ResolveCurrentNode(TskMng_Data.siteData);
+        const TskMng_CurrentNode = DEVICE_ResolveCurrentNode(TskMng_Data.FETCHDATA_SiteData);
 
         if (!TskMng_CurrentNode) {
             console.warn('Current node not found in siteData.');

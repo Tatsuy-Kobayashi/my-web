@@ -3,7 +3,7 @@
 <head prefix="og: http://ogp.me/ns#">
     <meta charset="UTF-8">
     <meta name="format-detection" content="telephone=no">
-    <title>かぞえあげれんしゅう - ラクして数理研究所</title>
+    <title>かずとすうじ - ラクして数理研究所</title>
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="https://tatsuy-kobayashi.github.io/my-web/docs/icon.png" rel="apple-touch-icon" />
 
@@ -64,7 +64,6 @@
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/include.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/linkPreview.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/commentary.js"></script>
-    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/enumerative_pra.js"></script>
     <script type="module" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/pageContentRenderer/System/TaskManager.js"></script>
     <script>
         // JavaScriptの厳格モード使用
@@ -92,16 +91,16 @@
         };
     </script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/mathjax-config.js" defer></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" defer></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" defer></script><!--
     <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
-    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script> -->
 </head>
 <body>
 <div id="wrapper">
     <header></header>
     <div class="content">
         <div class="main">
-            <h1>かぞえ<ruby>上<rp>（</rp><rt>あ</rt><rp>）</rp></ruby>げのれんしゅう</h1>
+            <h1><ruby>数<rp>（</rp><rt>かず</rt><rp>）</rp></ruby>と<ruby>数字<rp>（</rp><rt>すうじ</rt><rp>）</rp></ruby></h1>
             <div id="date-info" class="date"></div>
             <meta itemprop="author" content="ラクして数理研究所" itemscope itemtype="https://schema.org/Organization">
                 <meta itemprop="name" content="ラクして数理研究所">
@@ -110,28 +109,37 @@
             <h2>もくじ[<span class="toc-toggle-button">表示</span>]</h2>
             <div class="toc-content">
                 <ul>
-                    <li>かぞえ<ruby>上<rp>（</rp><rt>あ</rt><rp>）</rp></ruby>げのれんしゅう（0&#xff5e;10までのかず）</li>
+                    <li><a href="#section_1">なかまづくり</a></li>
                 </ul>
             </div>
 
-            <p style="text-align: center; font-size: 20px;">
-                アメをうごかして、はこの<ruby>中<rp>（</rp><rt>なか</rt><rp>）</rp></ruby>になおしましょう
-            </p>
-            <!-- 入力フォーム -->
-            <div style="text-align: center; font-size: 20px;">
-                <label for="circleCount">はじめにならべるアメのかずを<ruby>入力<rp>（</rp><rt>にゅうりょく</rt><rp>）</rp></ruby>してください:</label>
-                <input type="number" id="circleCount" min="1" max="10" value="5">コ
-                <button id="generateCircles" style="user-select: none;">アメをあつめる</button>
-            </div>
-            <div id="box" class="dropzone">
-                <p style="text-align: center; font-size: 20px;">ここにアメを<ruby>入<rp>（</rp><rt>い</rt><rp>）</rp></ruby>れてください</p>
-            </div>
-            <div id="counter">
-                はこの<ruby>中<rp>（</rp><rt>なか</rt><rp>）</rp></ruby>のアメのかず: <span id="count">0</span>
+            <p class="init-paragraph">くらべた ことが あるかな</p>
+
+            <img src="jungle_jim_kids.png" alt="ジャングルジムと3人の子供" height="300" />
+            <img src="water.png" alt="2つの異なる量の水が入ったコップ" height="300" />
+
+            <p class="init-paragraph">おおいのは どちらかな</p>
+            <div class="table_finite_group_wrapper">
+                <div class="table_finite_group">
+                    <table border="1">
+                        <tr>
+                            <td style="width: 300px; height: 50px;">🍎🍎🍎🍎🍎<br>🍎🍎🍎🍎</td><td style="width: 300px;">🍏🍏</td>
+                        </tr>
+                        <tr>
+                            <td style="height: 50px;">✏️✏️✏️</td><td>🖊️🖊️🖊️🖊️🖊️<br>🖊️🖊️🖊️</td>
+                        </tr>
+                        <tr>
+                            <td style="height: 50px;">⚽⚽⚽⚽⚽</td><td>🏀🏀</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
 
+            <h2 id="section_1">なかまづくり</h2>
 
-            <div id="circles-container"></div> <!-- 円を追加するコンテナ -->
+            <p class="init-paragraph"><ruby>足<rp>（</rp><rt>た</rt><rp>）</rp></ruby>りるかな</p>
+
+            <a href="enumerative_pra.html">かぞえ<ruby>上<rp>（</rp><rt>あ</rt><rp>）</rp></ruby>げのれんしゅう</a>
 
 
         </div> <!-- /.main -->
@@ -139,7 +147,7 @@
             <h3>保護者の方へ</h3>
             <ol class="olAnnotation">
                 <li id="note_1">^
-                    このページは、幼稚から小学低学年の子どもが物の数え方を学ぶために用意したWebアプリケーションです。
+                    <p>このページは、幼稚から小学低学年の子どもが物の数え方を学ぶために用意したWebアプリケーションです。</p>
                     <p>入力はキーボードや右の上下矢印で可能です。1&#xff5e;10個のアメまでしか生成できません。それ以上の数は別のページで勉強してもらいましょう。</p>
                     <p>『アメを集める』ボタンで入力した数だけアメを生成します。このアメはマウスや指フリックで操作できます。アメを操作して箱にしまうことで、下部のカウンタに箱の中のアメの個数が現れるので、子どもが数えた値とカウンタの値を比較することで、正しい数え方を学べることが期待されます。これは1増加の加算の勉強にもなると思います。</p>
                     <p>アメの操作として、一つずつ箱から取り出すこともできます。取り出したアメは消失するので、『食べた』ことにしてください。これは1減少の減算の勉強にもなると思います。</p>

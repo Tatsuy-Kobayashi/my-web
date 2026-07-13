@@ -16,54 +16,162 @@
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/mathContentWrapper.css" />
     <link rel="stylesheet" media="all" href="https://tatsuy-kobayashi.github.io/my-web/docs/css/underEntryContent.css" />
     <style>
-        #box {
-            width: 400px;
-            height: 200px;
-            margin: 20px auto;
-            border: 2px solid #333;
+        /* ===== 紐付けアプリ ===== */
+        #pairing-app {
+            max-width: 600px;
+            margin: 24px auto;
+            padding: 20px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #e3f2fd 100%);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        #pairing-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        #pairing-controls label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #37474f;
+        }
+        #pairing-controls input[type="number"] {
+            width: 56px;
+            padding: 6px 8px;
+            border: 2px solid #90caf9;
+            border-radius: 8px;
+            font-size: 16px;
+            text-align: center;
+            background: #fff;
+            transition: border-color .2s;
+        }
+        #pairing-controls input[type="number"]:focus {
+            outline: none;
+            border-color: #42a5f5;
+        }
+        #pairing-reset-btn {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #66bb6a, #43a047);
+            color: #fff;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(67,160,71,0.3);
+            transition: transform .15s, box-shadow .15s;
+        }
+        #pairing-reset-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(67,160,71,0.4);
+        }
+        #pairing-reset-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Stage */
+        #pairing-stage {
             position: relative;
-            background-color: #f0f0f0;
+            min-height: 260px;
         }
-        #box p {
-            line-height: 180px;
-            color: #999;
-            user-select: none;
-        }
-        #circles-container {
+        .pairing-row {
             display: flex;
             justify-content: center;
-            margin-top: 20px;
+            gap: 8px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+            padding: 8px 0;
+            margin-bottom: 50px;
         }
-        .circle {
-            width: 50px;
-            height: 50px;
-            background-color: #3498db;
+        .pairing-row:last-child {
+            margin-bottom: 0;
+        }
+        .pairing-item {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             border-radius: 50%;
-            margin: 10px;
-            cursor: grab;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            cursor: pointer;
+            transition: transform .15s, box-shadow .15s;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: none;
             position: relative;
         }
-        .circle:active {
-            cursor: grabbing;
+        .pairing-item img {
+            width: 44px;
+            height: 44px;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-drag: none;
         }
-        #counter {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 20px;
+        .pairing-item:hover {
+            transform: scale(1.08);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.16);
         }
-        .dropzone {
-            position: relative;
+        .pairing-item.paired {
+            background: #c8e6c9;
+            box-shadow: 0 0 0 3px #66bb6a, 0 2px 8px rgba(0,0,0,0.10);
         }
-        .circle-inside-box {
-            position: absolute; /* 箱の中にドロップされたら絶対位置に */
+        .pairing-item.active-drag {
+            transform: scale(1.15);
+            box-shadow: 0 0 0 3px #42a5f5, 0 4px 16px rgba(66,165,245,0.4);
+        }
+
+        /* SVG canvas */
+        #pairing-svg {
+            position: absolute;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        #pairing-svg line {
+            stroke-linecap: round;
+        }
+
+        /* Counter */
+        #pairing-counter {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: #2e7d32;
+            margin-top: 14px;
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.7);
+        }
+        #pair-count {
+            font-size: 28px;
+            color: #e65100;
+        }
+
+        @media (max-width: 480px) {
+            .pairing-item {
+                width: 48px;
+                height: 48px;
+            }
+            .pairing-item img {
+                width: 34px;
+                height: 34px;
+            }
         }
     </style>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/include.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/linkPreview.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/commentary.js"></script>
+    <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/numbers_and_numerals.js"></script>
     <script type="module" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/pageContentRenderer/System/TaskManager.js"></script>
     <script>
         // JavaScriptの厳格モード使用
@@ -109,7 +217,7 @@
             <h2>もくじ[<span class="toc-toggle-button">表示</span>]</h2>
             <div class="toc-content">
                 <ul>
-                    <li><a href="#section_1">なかまづくり</a></li>
+                    <li><a href="#section_1">なかまづくりと かず</a></li>
                 </ul>
             </div>
 
@@ -121,7 +229,7 @@
             <p class="init-paragraph">おおいのは どちらかな</p>
             <div class="table_finite_group_wrapper">
                 <div class="table_finite_group">
-                    <table border="1">
+                    <table border="1" style="font-size: 2.5em; font-family: apple color emoji, segoe ui emoji, noto color emoji, android emoji, emojisymbols, emojione mozilla, twemoji mozilla, segoe ui symbol;">
                         <tr>
                             <td style="width: 300px; height: 50px;">🍎🍎🍎🍎🍎<br>🍎🍎🍎🍎</td><td style="width: 300px;">🍏🍏</td>
                         </tr>
@@ -135,9 +243,28 @@
                 </div>
             </div>
 
-            <h2 id="section_1">なかまづくり</h2>
+            <h2 id="section_1">なかまづくりと かず</h2>
 
             <p class="init-paragraph"><ruby>足<rp>（</rp><rt>た</rt><rp>）</rp></ruby>りるかな</p>
+
+            <!-- 紐付けアプリ -->
+            <div id="pairing-app">
+                <div id="pairing-controls">
+                    <label for="umbrella-count">☂ かさのかず:
+                        <input type="number" id="umbrella-count" min="1" max="10" value="6">
+                    </label>
+                    <label for="koala-count">🐨 コアラのかず:
+                        <input type="number" id="koala-count" min="1" max="10" value="5">
+                    </label>
+                    <button id="pairing-reset-btn" type="button">リセット</button>
+                </div>
+                <div id="pairing-stage">
+                    <div id="umbrella-row" class="pairing-row"></div>
+                    <svg id="pairing-svg"></svg>
+                    <div id="koala-row" class="pairing-row"></div>
+                </div>
+                <div id="pairing-counter">かさを とれた かず: <span id="pair-count">0</span></div>
+            </div>
 
             <a href="enumerative_pra.html">かぞえ<ruby>上<rp>（</rp><rt>あ</rt><rp>）</rp></ruby>げのれんしゅう</a>
 
@@ -147,19 +274,10 @@
             <h3>保護者の方へ</h3>
             <ol class="olAnnotation">
                 <li id="note_1">^
-                    算数の第1章ということで緊張感を欠いている保護者は居ないだろうか。残念ながら学校教育に余裕や遊び（物事のゆとりや余白のこと）などは存在しません。この「数と数字」というテーマは、少し言語学の言葉も使って言い換えると「数と数詞 Numbers and Numerals」で、リンゴなどの具体的な物体を抽象的な<ruby>数<rp>（</rp><rt>かず</rt><rp>）</rp></ruby>で表現し、文字（数字）で書き表す。そういったことを学ぶためのページです。
-                    <p>入力はキーボードや右の上下矢印で可能です。1&#xff5e;10個のアメまでしか生成できません。それ以上の数は別のページで勉強してもらいましょう。</p>
-                    <p>操作とシナリオ例:</p>
-                    <ol>
-                        <li>入力欄にアメの数を「5」と入力して『アメを集める』ボタンを押す。</li>
-                        <li>この操作を「箱の外にアメが5個あります」と説明する。</li>
-                        <li>箱の中にアメを3個入れる。</li>
-                        <li>この操作を「箱の中にアメを3個、直しました」と説明する。<br>
-                            このとき、箱の外にあるアメの個数は、$5-3=2$個と表せる。
-                        </li>
-                        <li>ときには、箱の中からアメを取り出す。</li>
-                        <li>この操作を「箱の中のアメを～個、食べました」と説明する。</li>
-                    </ol>
+                    算数の第1章だからといって、「簡単な導入に過ぎない」と考えてしまう保護者もいるかもしれません。しかし、実際にはこの章は算数全体の土台となる、非常に重要な内容を扱っています。
+                    <p>「数と数字」というテーマは、言語学の用語を借りれば「数と数詞 Numbers and Numerals」に相当します。リンゴなどの具体的な対象を抽象的な<ruby>数<rp>（</rp><rt>かず</rt><rp>）</rp></ruby>として捉え、それを文字である数字によって表現する――そのような基本的な考え方を学ぶのが、この単元です。</p>
+                    <p>この区別が十分に理解されないまま算数を学び、また教えることになると、文章題における足し算や掛け算の順序そのものに過度にこだわる指導につながることがあります。これではせっかく自然言語を抽象化して数式で表現した意味がありません。このように演算の意味を理解することよりも、式の見た目の順番が重視されてしまう事例が見られるのは、その一例といえるでしょう。</p>
+                    <p>だからこそ、「数」と「数字」の違いを最初に正しく理解することは、この先の算数・数学を学ぶうえで欠かせない第一歩なのです。</p>
                 </li>
                 <li id="note_2">^
                     このページの本文では、小学校1年生に習う漢字のみを使用しています。もしお子さまが、習っていない漢字に拒否感を示しているようであれば、ふりがながあるからと無理に教育を敢行するのではなく、一度、国語の漢字学習の方から優先してほしいと思います。

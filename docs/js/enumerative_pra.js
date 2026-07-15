@@ -3,11 +3,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const circlesContainer = document.getElementById('circles-container');
     const box = document.getElementById('box');
     const countDisplay = document.getElementById('count');
+/* DebugLog top */
+    const debugLogOutput = document.getElementById('debugLogOutput');
+/* DebugLog down */
 
     if (!generateButton || !circlesContainer || !box || !countDisplay) {
         console.error('必要な要素が見つかりません。');
         return;
     }
+
+/* DebugLog top */
+    const debugLogEntries = [];
+    const debugLogLimit = 120;
+    const debugLogThrottleMs = 80;
+    let lastDebugLogAt = 0;
+
+    function appendDebugLog(message, level = 'info') {
+        if (!debugLogOutput) return;
+
+        const now = Date.now();
+        if (now - lastDebugLogAt < debugLogThrottleMs && debugLogEntries.length > 0) {
+            return;
+        }
+
+        lastDebugLogAt = now;
+        const timestamp = new Date().toTimeString().split(' ')[0];
+        debugLogEntries.push({ timestamp, message, level });
+
+        if (debugLogEntries.length > debugLogLimit) {
+            debugLogEntries.splice(0, debugLogEntries.length - debugLogLimit);
+        }
+
+        debugLogOutput.innerHTML = debugLogEntries
+            .map(({ timestamp, message, level }) => {
+                const levelClass = level === 'warn' ? 'debug-log-entry--warn' : level === 'error' ? 'debug-log-entry--error' : '';
+                return `<div class="debug-log-entry ${levelClass}">[${timestamp}] ${message}</div>`;
+            })
+            .join('');
+
+        debugLogOutput.scrollTop = debugLogOutput.scrollHeight;
+    }
+/* DebugLog down */
 
     // 円の幅と高さ（固定サイズ）
     const circleSize = 50; // ピクセル単位
@@ -47,6 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
             circle.style.left = `${xPos}px`;
             circle.style.top = `${yPos}px`;
         });
+
+/* DebugLog top */
+        appendDebugLog(`repositionAllCirclesInBox: boxWidth=${boxWidth}px, circlesPerRow=${circlesPerRow}, count=${circles.length}`, 'info');
+/* DebugLog down */
     }
 
     // 箱とコンテナ内の全ての円を削除する関数
@@ -57,6 +97,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // コンテナ内の円をすべて削除
         circlesContainer.innerHTML = '';
 
+/* DebugLog top */
+        appendDebugLog('removeAllCircles: reset circles and box state', 'info');
+/* DebugLog down */
+
         // カウンタをリセット
         refreshCount();
     }
@@ -64,6 +108,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // 動的に円を生成する関数
     function generateCircles() {
         const circleCount = parseInt(document.getElementById('circleCount').value, 10);
+
+/* DebugLog top */
+        appendDebugLog(`generateCircles: requested=${circleCount}`, 'info');
+/* DebugLog down */
 
         // 既存の円を削除
         removeAllCircles();
@@ -100,6 +148,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // タッチ位置と円の左上角との距離を保存
         offsetX = touch.pageX - circleRect.left;
         offsetY = touch.pageY - circleRect.top;
+
+/* DebugLog top */
+        appendDebugLog(
+            `touchstart: target=${currentTouch.id || currentTouch.className} page=(${touch.pageX}, ${touch.pageY}) client=(${touch.clientX}, ${touch.clientY}) circleRect=(${Math.round(circleRect.left)}, ${Math.round(circleRect.top)}, ${Math.round(circleRect.width)}x${Math.round(circleRect.height)}) offset=(${offsetX.toFixed(2)}, ${offsetY.toFixed(2)})`,
+            'info'
+        );
+/* DebugLog down */
     }
 
     function touchMove(event) {
@@ -107,11 +162,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const touch = event.touches[0];
         const circle = currentTouch;
+/* DebugLog top */
+        const nextLeft = touch.pageX - offsetX;
+        const nextTop = touch.pageY - offsetY;
+        const circleRect = circle.getBoundingClientRect();
+        const boxRect = box.getBoundingClientRect();
+/* DebugLog down */
 
         // 指の位置に基づいて円の位置を移動（オフセットを考慮）
         circle.style.position = 'absolute';
-        circle.style.left = `${touch.pageX - offsetX}px`;
-        circle.style.top = `${touch.pageY - offsetY}px`;
+        circle.style.left = `${nextLeft}px`;
+        circle.style.top = `${nextTop}px`;
+
+/* DebugLog top */
+        appendDebugLog(
+            `touchmove: target=${circle.id || circle.className} nextPos=(${Math.round(nextLeft)}, ${Math.round(nextTop)}) page=(${touch.pageX}, ${touch.pageY}) client=(${touch.clientX}, ${touch.clientY}) circleRect=(${Math.round(circleRect.left)}, ${Math.round(circleRect.top)}) boxRect=(${Math.round(boxRect.left)}, ${Math.round(boxRect.top)}, ${Math.round(boxRect.width)}x${Math.round(boxRect.height)})`,
+            'info'
+        );
+/* DebugLog down */
     }
 
     function touchEnd(event) {
@@ -127,6 +195,13 @@ document.addEventListener('DOMContentLoaded', () => {
             touch.pageX > boxRect.left && touch.pageX < boxRect.right &&
             touch.pageY > boxRect.top && touch.pageY < boxRect.bottom;
 
+/* DebugLog top */
+        appendDebugLog(
+            `touchend: target=${circle.id || circle.className} wasInBox=${wasInBox} isInsideBox=${isInsideBox} endPage=(${touch.pageX}, ${touch.pageY}) endClient=(${touch.clientX}, ${touch.clientY})`,
+            'info'
+        );
+/* DebugLog down */
+
         if (isInsideBox) {
             if (!wasInBox) {
                 // 箱の外から中へ → 箱に追加
@@ -141,6 +216,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             if (wasInBox) {
                 // 箱の中から外へ → 箱から削除（消失＝「食べた」）
+/* DebugLog top */
+                appendDebugLog(`touchend: remove circle from box because it left the box`, 'warn');
+/* DebugLog down */
                 console.log('箱の外に出ました:', circle);
                 circle.remove();
                 repositionAllCirclesInBox();
@@ -156,6 +234,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function dragStart(event) {
         dropHandled = false; // フラグをリセット
         event.dataTransfer.setData('circleId', event.target.id);
+/* DebugLog top */
+        appendDebugLog(`dragstart: target=${event.target.id}`, 'info');
+/* DebugLog down */
     }
 
     // ドラッグオーバーの処理（ドロップを許可するために必要）
@@ -172,11 +253,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const draggedCircle = document.getElementById(circleId);
 
         if (!draggedCircle) {
+/* DebugLog top */
+            appendDebugLog(`drop: circle not found for id=${circleId}`, 'error');
+/* DebugLog down */
             console.error('円が見つかりません:', circleId);
             return;
         }
 
         dropHandled = true; // ドロップ処理済みフラグを立てる
+/* DebugLog top */
+        appendDebugLog(`drop: target=${draggedCircle.id} insideBox=${box.contains(draggedCircle)}`, 'info');
+/* DebugLog down */
 
         if (box.contains(draggedCircle)) {
             // 既に箱に含まれている円を箱にドロップ → 再配置のみ
@@ -209,6 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (isOutsideBox && box.contains(circle)) {
             // ドラッグ終了位置が箱の範囲外 → 箱から削除（消失＝「食べた」）
+            appendDebugLog(`dragend: remove circle from box because pointer left the box`, 'warn');
             console.log('箱の外に出ました:', circle);
             circle.remove();
             repositionAllCirclesInBox();
@@ -223,8 +311,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const a = parseInt(inputValue, 10);
 
         if (!Number.isNaN(a) && a > 0 && a <= 10) {
+            appendDebugLog(`button click: generate ${a} circles`, 'info');
             generateCircles();
         } else {
+            appendDebugLog(`button click: invalid input=${inputValue}`, 'warn');
             alert('1から10の間で入力してください');
             document.getElementById('circleCount').value = inputValue.replace(/[^0-9]/g, '').slice(0, 2);
         }
@@ -243,4 +333,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('drop', (event) => {
         event.preventDefault();
     });
+
+    appendDebugLog('debug panel ready: touch and drag logs will appear here', 'info');
 });

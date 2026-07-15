@@ -141,17 +141,17 @@ document.addEventListener('DOMContentLoaded', () => {
         currentTouch = event.target;
         event.preventDefault();
 
-        // タッチ位置と円の位置のオフセットを取得
+        // タッチ位置と円の位置のオフセットを取得（client座標系で統一）
         const touch = event.touches[0];
         const circleRect = currentTouch.getBoundingClientRect();
 
-        // タッチ位置と円の左上角との距離を保存
-        offsetX = touch.pageX - circleRect.left;
-        offsetY = touch.pageY - circleRect.top;
+        // タッチ位置（client座標）と円の左上角（client座標）との距離を保存
+        offsetX = touch.clientX - circleRect.left;
+        offsetY = touch.clientY - circleRect.top;
 
 /* DebugLog top */
         appendDebugLog(
-            `touchstart: target=${currentTouch.id || currentTouch.className} page=(${touch.pageX}, ${touch.pageY}) client=(${touch.clientX}, ${touch.clientY}) circleRect=(${Math.round(circleRect.left)}, ${Math.round(circleRect.top)}, ${Math.round(circleRect.width)}x${Math.round(circleRect.height)}) offset=(${offsetX.toFixed(2)}, ${offsetY.toFixed(2)})`,
+            `touchstart: target=${currentTouch.id || currentTouch.className} client=(${touch.clientX.toFixed(1)}, ${touch.clientY.toFixed(1)}) circleRect=(${Math.round(circleRect.left)}, ${Math.round(circleRect.top)}, ${Math.round(circleRect.width)}x${Math.round(circleRect.height)}) offset=(${offsetX.toFixed(2)}, ${offsetY.toFixed(2)}) scroll=(${window.scrollX}, ${window.scrollY})`,
             'info'
         );
 /* DebugLog down */
@@ -162,21 +162,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const touch = event.touches[0];
         const circle = currentTouch;
-/* DebugLog top */
-        const nextLeft = touch.pageX - offsetX;
-        const nextTop = touch.pageY - offsetY;
-        const circleRect = circle.getBoundingClientRect();
-        const boxRect = box.getBoundingClientRect();
-/* DebugLog down */
 
-        // 指の位置に基づいて円の位置を移動（オフセットを考慮）
+        // client座標でオフセットを適用し、scrollを加算してpage座標に変換
+        // （style.left/top はドキュメント全体基準なのでpage座標が必要）
+        const nextLeft = touch.clientX - offsetX + window.scrollX;
+        const nextTop = touch.clientY - offsetY + window.scrollY;
+
+        // 指の位置に基づいて円の位置を移動
         circle.style.position = 'absolute';
         circle.style.left = `${nextLeft}px`;
         circle.style.top = `${nextTop}px`;
 
 /* DebugLog top */
+        const circleRect = circle.getBoundingClientRect();
+        const boxRect = box.getBoundingClientRect();
         appendDebugLog(
-            `touchmove: target=${circle.id || circle.className} nextPos=(${Math.round(nextLeft)}, ${Math.round(nextTop)}) page=(${touch.pageX}, ${touch.pageY}) client=(${touch.clientX}, ${touch.clientY}) circleRect=(${Math.round(circleRect.left)}, ${Math.round(circleRect.top)}) boxRect=(${Math.round(boxRect.left)}, ${Math.round(boxRect.top)}, ${Math.round(boxRect.width)}x${Math.round(boxRect.height)})`,
+            `touchmove: target=${circle.id || circle.className} nextPos=(${Math.round(nextLeft)}, ${Math.round(nextTop)}) client=(${touch.clientX.toFixed(1)}, ${touch.clientY.toFixed(1)}) circleRect=(${Math.round(circleRect.left)}, ${Math.round(circleRect.top)}) boxRect=(${Math.round(boxRect.left)}, ${Math.round(boxRect.top)}, ${Math.round(boxRect.width)}x${Math.round(boxRect.height)}) scroll=(${window.scrollX}, ${window.scrollY})`,
             'info'
         );
 /* DebugLog down */
@@ -190,14 +191,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const circle = currentTouch;
         const wasInBox = box.contains(circle);
 
-        // 指が離れたときに円が箱の範囲内にあるか確認
+        // 指が離れたときに円が箱の範囲内にあるか確認（client座標系で統一）
         const isInsideBox =
-            touch.pageX > boxRect.left && touch.pageX < boxRect.right &&
-            touch.pageY > boxRect.top && touch.pageY < boxRect.bottom;
+            touch.clientX > boxRect.left && touch.clientX < boxRect.right &&
+            touch.clientY > boxRect.top && touch.clientY < boxRect.bottom;
 
 /* DebugLog top */
         appendDebugLog(
-            `touchend: target=${circle.id || circle.className} wasInBox=${wasInBox} isInsideBox=${isInsideBox} endPage=(${touch.pageX}, ${touch.pageY}) endClient=(${touch.clientX}, ${touch.clientY})`,
+            `touchend: target=${circle.id || circle.className} wasInBox=${wasInBox} isInsideBox=${isInsideBox} client=(${touch.clientX.toFixed(1)}, ${touch.clientY.toFixed(1)}) boxRect=(${Math.round(boxRect.left)}, ${Math.round(boxRect.top)}, ${Math.round(boxRect.right)}, ${Math.round(boxRect.bottom)}) scroll=(${window.scrollX}, ${window.scrollY})`,
             'info'
         );
 /* DebugLog down */
@@ -296,7 +297,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (isOutsideBox && box.contains(circle)) {
             // ドラッグ終了位置が箱の範囲外 → 箱から削除（消失＝「食べた」）
+/* DebugLog top */
             appendDebugLog(`dragend: remove circle from box because pointer left the box`, 'warn');
+/* DebugLog down */
             console.log('箱の外に出ました:', circle);
             circle.remove();
             repositionAllCirclesInBox();
@@ -311,10 +314,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const a = parseInt(inputValue, 10);
 
         if (!Number.isNaN(a) && a > 0 && a <= 10) {
+/* DebugLog top */
             appendDebugLog(`button click: generate ${a} circles`, 'info');
+/* DebugLog down */
             generateCircles();
         } else {
+/* DebugLog top */
             appendDebugLog(`button click: invalid input=${inputValue}`, 'warn');
+/* DebugLog down */
             alert('1から10の間で入力してください');
             document.getElementById('circleCount').value = inputValue.replace(/[^0-9]/g, '').slice(0, 2);
         }
@@ -333,6 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('drop', (event) => {
         event.preventDefault();
     });
-
+/* DebugLog top */
     appendDebugLog('debug panel ready: touch and drag logs will appear here', 'info');
+/* DebugLog down */
 });

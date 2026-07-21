@@ -11,15 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 円の幅と高さ（固定サイズ）
     const circleSize = 50; // ピクセル単位
-    const margin = 10; // 各円の間隔
+    const margin = 10;      // 各円の間隔
 
-    // タッチイベントの処理
-    let currentTouch = null; // 現在操作している円を保存
+    // 現在ドラッグ中の状態
+    let activeCircle = null;   // 操作中の円
     let offsetX = 0; // タッチ開始時のXオフセット
     let offsetY = 0; // タッチ開始時のYオフセット
-
-    // ドロップ処理済みフラグ（dragEnd との二重処理を防止）
-    let dropHandled = false;
 
     // 箱の中の円の数を数える関数
     function getBoxCircleCount() {
@@ -35,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function repositionAllCirclesInBox() {
         const circles = box.querySelectorAll('.circle');
         const boxWidth = box.clientWidth;
-        const circlesPerRow = Math.floor(boxWidth / (circleSize + margin));
+        const circlesPerRow = Math.max(1, Math.floor(boxWidth / (circleSize + margin)));
 
         circles.forEach((circle, index) => {
             const row = Math.floor(index / circlesPerRow);
@@ -46,6 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
             circle.style.position = 'absolute';
             circle.style.left = `${xPos}px`;
             circle.style.top = `${yPos}px`;
+            // ドラッグ用に上げていた z-index / transition を戻す
+            circle.style.zIndex = '';
+            circle.style.transition = '';
         });
     }
 
@@ -72,45 +72,48 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 1; i <= circleCount; i++) {
             const circle = document.createElement('div');
             circle.classList.add('circle');
-            circle.setAttribute('draggable', 'true');
             circle.setAttribute('id', `circle${i}`);
 
-            // マウスイベントリスナーを追加
-            circle.addEventListener('dragstart', dragStart);
-            circle.addEventListener('dragend', dragEnd);
-
-            // タッチイベントリスナーを追加
-            circle.addEventListener('touchstart', touchStart);
-            circle.addEventListener('touchmove', touchMove);
-            circle.addEventListener('touchend', touchEnd);
+            // Pointer Events でマウス・タッチを統一処理
+            circle.addEventListener('pointerdown', pointerDown);
 
             // 円をコンテナに追加
             circlesContainer.appendChild(circle);
         }
     }
 
-    function touchStart(event) {
-        currentTouch = event.target;
+    // ------- Pointer（マウス・タッチ共通）処理 -------
+    function pointerDown(event) {
+        // 主ボタン（左クリック）または指のみ
+        if (event.button !== undefined && event.button !== 0) return;
+
         event.preventDefault();
+        activeCircle = event.currentTarget;
 
-        // タッチ位置と円の位置のオフセットを取得（client座標系で統一）
-        const touch = event.touches[0];
-        const circleRect = currentTouch.getBoundingClientRect();
+        const circleRect = activeCircle.getBoundingClientRect();
+        offsetX = event.clientX - circleRect.left;
+        offsetY = event.clientY - circleRect.top;
 
-        // タッチ位置（client座標）と円の左上角（client座標）との距離を保存
-        offsetX = touch.clientX - circleRect.left;
-        offsetY = touch.clientY - circleRect.top;
+        // ドラッグ中は最前面に、追従を滑らかに見せるため transition は無効化
+        activeCircle.style.zIndex = '1000';
+        activeCircle.style.transition = 'none';
+
+        // このポインタのイベントを円で受け取り続ける（指が要素外に出ても追従）
+        activeCircle.setPointerCapture(event.pointerId);
+
+        // move / up は円自身にキャプチャされているので円に登録すればよい
+        activeCircle.addEventListener('pointermove', pointerMove);
+        activeCircle.addEventListener('pointerup', pointerUp);
+        activeCircle.addEventListener('pointercancel', pointerUp);
     }
 
-    function touchMove(event) {
-        if (!currentTouch) return;
+    function pointerMove(event) {
+        if (!activeCircle) return;
 
-        const touch = event.touches[0];
-        const circle = currentTouch;
+        const circle = activeCircle;
 
-        // ビューポート上での新しい目標座標
-        const newViewportLeft = touch.clientX - offsetX;
-        const newViewportTop = touch.clientY - offsetY;
+        const newViewportLeft = event.clientX - offsetX;
+        const newViewportTop = event.clientY - offsetY;
 
         // 要素を絶対配置に変更（これにより offsetParent が確定する）
         if (circle.style.position !== 'absolute') {
@@ -138,18 +141,27 @@ document.addEventListener('DOMContentLoaded', () => {
         circle.style.top = `${nextTop}px`;
     }
 
-    function touchEnd(event) {
-        if (!currentTouch) return;
+    function pointerUp(event) {
+        if (!activeCircle) return;
 
-        const touch = event.changedTouches[0];
+        const circle = activeCircle;
+
+        // イベント解除
+        circle.removeEventListener('pointermove', pointerMove);
+        circle.removeEventListener('pointerup', pointerUp);
+        circle.removeEventListener('pointercancel', pointerUp);
+        if (circle.hasPointerCapture && circle.hasPointerCapture(event.pointerId)) {
+            circle.releasePointerCapture(event.pointerId);
+        }
+
+        // ★ 判定は全て clientX/clientY（ビューポート座標）で統一 → スクロールずれ解消
         const boxRect = box.getBoundingClientRect();
-        const circle = currentTouch;
         const wasInBox = box.contains(circle);
 
         // 指が離れたときに円が箱の範囲内にあるか確認（client座標系で統一）
         const isInsideBox =
-            touch.clientX > boxRect.left && touch.clientX < boxRect.right &&
-            touch.clientY > boxRect.top && touch.clientY < boxRect.bottom;
+            event.clientX > boxRect.left && event.clientX < boxRect.right &&
+            event.clientY > boxRect.top && event.clientY < boxRect.bottom;
 
         if (isInsideBox) {
             if (!wasInBox) {
@@ -169,77 +181,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 circle.remove();
                 repositionAllCirclesInBox();
                 refreshCount();
+            } else {
+                // 箱の外→外：見た目のクリーンアップだけ
+                circle.style.zIndex = '';
+                circle.style.transition = '';
             }
             // 箱の外から外へ移動した場合は何もしない（元の位置に戻る動作はブラウザ任せ）
         }
 
-        currentTouch = null;
-    }
-
-    // ドラッグスタートの処理
-    function dragStart(event) {
-        dropHandled = false; // フラグをリセット
-        event.dataTransfer.setData('circleId', event.target.id);
-    }
-
-    // ドラッグオーバーの処理（ドロップを許可するために必要）
-    function dragOver(event) {
-        event.preventDefault();
-    }
-
-    // ドロップの処理
-    function drop(event) {
-        event.preventDefault();
-
-        // ドラッグされた円のIDを取得
-        const circleId = event.dataTransfer.getData('circleId');
-        const draggedCircle = document.getElementById(circleId);
-
-        if (!draggedCircle) {
-            console.error('円が見つかりません:', circleId);
-            return;
-        }
-
-        dropHandled = true; // ドロップ処理済みフラグを立てる
-
-        if (box.contains(draggedCircle)) {
-            // 既に箱に含まれている円を箱にドロップ → 再配置のみ
-            repositionAllCirclesInBox();
-        } else {
-            // 箱の外からドロップ → 箱に追加
-            box.appendChild(draggedCircle);
-            draggedCircle.classList.add('circle-inside-box');
-            repositionAllCirclesInBox();
-            refreshCount();
-        }
-    }
-
-    // ドラッグ終了時の処理
-    function dragEnd(event) {
-        // drop で既に処理済みなら何もしない
-        if (dropHandled) {
-            dropHandled = false;
-            return;
-        }
-
-        const circle = event.target;
-        const mouseX = event.pageX;
-        const mouseY = event.pageY;
-        const boxRect = box.getBoundingClientRect();
-
-        const isOutsideBox =
-            mouseX < boxRect.left || mouseX > boxRect.right ||
-            mouseY < boxRect.top || mouseY > boxRect.bottom;
-
-        if (isOutsideBox && box.contains(circle)) {
-            // ドラッグ終了位置が箱の範囲外 → 箱から削除（消失＝「食べた」）
-            console.log('箱の外に出ました:', circle);
-            circle.remove();
-            repositionAllCirclesInBox();
-            refreshCount();
-        }
-
-        dropHandled = false;
+        activeCircle = null;
     }
 
     generateButton.addEventListener('click', function () {
@@ -252,19 +202,5 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('1から10の間で入力してください');
             document.getElementById('circleCount').value = inputValue.replace(/[^0-9]/g, '').slice(0, 2);
         }
-    });
-
-    // ドロップゾーン（箱）に対してドラッグオーバーとドロップのイベントリスナーを設定
-    box.addEventListener('dragover', dragOver);
-    box.addEventListener('drop', drop);
-
-    // ページ全体でのドラッグオーバー許可（ブラウザのデフォルト動作を防止）
-    document.addEventListener('dragover', (event) => {
-        event.preventDefault();
-    });
-
-    // ページ全体でのドロップ時、ブラウザのデフォルト動作を防止
-    document.addEventListener('drop', (event) => {
-        event.preventDefault();
     });
 });

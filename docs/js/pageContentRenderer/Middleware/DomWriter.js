@@ -1,17 +1,19 @@
 // ----------------------------------------------------------------------------
-// ファイル名    : DomWriter.js
-// 名称          : DOM出力ラッパー
-// 内容          : DOM要素への出力、取得、挿入を共通化する
+// ファイル名      : DomWriter.js
+// モジュール記号  : DOMWRITER / DomWriter
+// モジュール名    : DOM出力ラッパー (SW202-MID-DOMWRITER) Source File
+// 内容            : DOM要素への出力、取得、挿入を共通化する
 // Copyright(c) 2025 Fibrantix CO.,LTD. All Rights Reserved
 // ----------------------------------------------------------------------------
 
 /**
- * 指定したIDのコンテナにHTMLを書き込む
+ * 名称     : コンテナへHTML書き込み
+ * 内容     : 指定したIDのコンテナにHTMLを書き込む
  * @param {string} elementId - コンテナの要素ID
  * @param {string} html - 書き込むHTML
  * @returns {boolean} 成功した場合はtrue、コンテナが存在しない場合はfalse
  */
-export function writeToContainer(elementId, html) {
+export function DOMWRITER_WriteToContainer(elementId, html) {
     const container = document.getElementById(elementId);
     if (!container) return false;
     container.innerHTML = html;
@@ -19,20 +21,22 @@ export function writeToContainer(elementId, html) {
 }
 
 /**
- * 指定したIDのコンテナ要素を取得する
+ * 名称     : コンテナ要素取得
+ * 内容     : 指定したIDのコンテナ要素を取得する
  * @param {string} elementId - 取得する要素のID
  * @returns {HTMLElement | null} 要素、または存在しない場合はnull
  */
-export function getContainer(elementId) {
+export function DOMWRITER_GetContainer(elementId) {
     return document.getElementById(elementId);
 }
 
 /**
- * 指定した基準要素の直後に新しい要素を挿入する
+ * 名称     : 基準要素の後に要素挿入
+ * 内容     : 指定した基準要素の直後に新しい要素を挿入する
  * @param {HTMLElement} referenceEl - 基準となる要素
  * @param {HTMLElement} newEl - 挿入する新しい要素
  */
-export function insertAfterElement(referenceEl, newEl) {
+export function DOMWRITER_InsertAfterElement(referenceEl, newEl) {
     if (referenceEl && referenceEl.parentNode) {
         referenceEl.insertAdjacentElement('afterend', newEl);
     }

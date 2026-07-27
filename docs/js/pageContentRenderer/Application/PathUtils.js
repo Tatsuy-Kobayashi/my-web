@@ -1,7 +1,8 @@
 // ----------------------------------------------------------------------------
-// ファイル名    : PathUtils.js
-// 名称          : パス解析共通処理
-// 内容          : mainPath や auxPath のパース・比較を行う共通ユーティリティ
+// ファイル名      : PathUtils.js
+// モジュール記号  : PATHUTILS / PathUtils
+// モジュール名    : パス解析共通処理
+// 内容            : mainPath や auxPath のパース・比較を行う共通ユーティリティ
 // Copyright(c) 2025 Fibrantix CO.,LTD. All Rights Reserved
 // ----------------------------------------------------------------------------
 
@@ -10,7 +11,7 @@
  * @param {Object} node - siteData のノード
  * @returns {string} パス文字列（例: "1:2:3"）
  */
-export function getFirstPath(node) {
+export function PATHUTILS_GetFirstPath(node) {
     if (!node) return '';
     if (Array.isArray(node.mainPath) && node.mainPath.length > 0) return node.mainPath[0];
     if (typeof node.mainPath === 'string') return node.mainPath;
@@ -22,7 +23,7 @@ export function getFirstPath(node) {
  * @param {string} path - パス文字列（例: "1:2:3"）
  * @returns {string} 親パス（例: "1:2"）
  */
-export function getParentPath(path) {
+export function PATHUTILS_GetParentPath(path) {
     const parts = path.split(':').filter(Boolean);
     if (parts.length <= 1) return ''; // ルートレベルには親がない
     return parts.slice(0, -1).join(':');
@@ -33,7 +34,7 @@ export function getParentPath(path) {
  * @param {string} pathStr - パス文字列（例: "1:2:3"）
  * @returns {number[]} 数値配列（例: [1, 2, 3]）
  */
-export function parsePathIds(pathStr) {
+export function PATHUTILS_ParsePathIds(pathStr) {
     if (!pathStr || typeof pathStr !== 'string') return [];
     return pathStr.split(':').map(s => parseInt(s.trim(), 10)).filter(n => Number.isFinite(n));
 }
@@ -44,7 +45,7 @@ export function parsePathIds(pathStr) {
  * @param {string} mainPath - メインパス文字列
  * @returns {string[]} 補助パスの配列
  */
-export function getAuxPaths(node, mainPath) {
+export function PATHUTILS_GetAuxPaths(node, mainPath) {
     const auxPaths = [];
     if (node && node.auxPath) {
         if (Array.isArray(node.auxPath)) {

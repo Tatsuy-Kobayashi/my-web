@@ -1,31 +1,33 @@
 // ----------------------------------------------------------------------------
-// ファイル名    : DateInfoRenderer.js
-// 名称          : 公開日・編集日生成
-// 内容          : datePublished や dateModified を整形して出力する
+// ファイル名      : DateInfoRenderer.js
+// モジュール記号  : DINFORENDR / DInfoRendr
+// モジュール名    : 公開日・編集日生成 (SW302-APP-DINFORENDR) Source File
+// 内容            : datePublished や dateModified を整形して出力する
 // Copyright(c) 2025 Fibrantix CO.,LTD. All Rights Reserved
 // ----------------------------------------------------------------------------
 
-import { writeToContainer } from '../Middleware/DomWriter.js';
+import { DOMWRITER_WriteToContainer } from '../Middleware/DomWriter.js';
 
 /**
- * 公開日と編集日をレンダリングする
+ * 名称     : 記事日付情報生成
+ * 内容     : 公開日と編集日をレンダリングする
  * @param {Object} current - 現在の記事ノード
  */
-export function renderDateInfo(current) {
+export function DINFORENDR_RenderDateInfo(current) {
     // ISO文字列を想定 (例: "2020-02-15T09:40:52Z")
     const rawPub = current.datePublished || null;
     const rawRev = current.dateModified || null;
 
     // Date に安全に変換
-    const toDateSafe = (v) => {
+    const DInfoRendr_ConvDateSafe = (v) => {
         if (!v) return null;
         if (v instanceof Date) return isNaN(v) ? null : v;
         const d = new Date(v);
         return isNaN(d) ? null : d;
     };
 
-    const pubDateObj = toDateSafe(rawPub);
-    let revDateObj = toDateSafe(rawRev);
+    const pubDateObj = DInfoRendr_ConvDateSafe(rawPub);
+    let revDateObj = DInfoRendr_ConvDateSafe(rawRev);
 
     // ===== 応急処置ロジック =====
     // 公開日 > 編集日 の場合は 編集日 = 公開日 に補正
@@ -37,10 +39,10 @@ export function renderDateInfo(current) {
     /**
      * Date → ISO文字列
      */
-    const toISOStringSafe = (d) => (d ? d.toISOString() : '');
+    const DInfoRendr_ConvISOStringSafe = (d) => (d ? d.toISOString() : '');
 
-    const pubDate = toISOStringSafe(pubDateObj);
-    const revDate = toISOStringSafe(revDateObj);
+    const pubDate = DInfoRendr_ConvISOStringSafe(pubDateObj);
+    const revDate = DInfoRendr_ConvISOStringSafe(revDateObj);
 
     // HTML 生成
     let html = '';
@@ -61,5 +63,5 @@ export function renderDateInfo(current) {
         html += `<span style="margin-left:0.8em;"><i class="fa fa-refresh"></i>&ensp;<time datetime="${revDate}" title="${revDate}" class="updated">更新: <span class="date-year">${y}</span><span class="hyphen">年</span><span class="date-month">${m}</span><span class="hyphen">月</span><span class="date-day">${d}</span>日</time></span>`;
     }
 
-    writeToContainer('date-info', html);
+    DOMWRITER_WriteToContainer('date-info', html);
 }

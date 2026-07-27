@@ -1,12 +1,13 @@
 // ----------------------------------------------------------------------------
-// ファイル名    : TypedRelationRenderer.js
-// 名称          : 型付き概念関係生成
-// 内容          : concepts.json と relations.json から関係パネルを描画する
+// ファイル名      : TypedRelationRenderer.js
+// モジュール記号  : TRLTRENDR / TRltRendr
+// モジュール名    : 型付き概念関係生成
+// 内容            : concepts.json と relations.json から関係パネルを描画する
 // Copyright(c) 2025 Fibrantix CO.,LTD. All Rights Reserved
 // ----------------------------------------------------------------------------
 
-import { escapeHtml } from '../Middleware/HtmlHelper.js';
-import { getContainer, insertAfterElement } from '../Middleware/DomWriter.js';
+import { HTMLHLPR_EscapeHtml } from '../Middleware/HtmlHelper.js';
+import { DOMWRITER_GetContainer, DOMWRITER_InsertAfterElement } from '../Middleware/DomWriter.js';
 
 /**
  * 型付き概念関係をレンダリングする
@@ -16,7 +17,7 @@ import { getContainer, insertAfterElement } from '../Middleware/DomWriter.js';
  * @param {Array} relationData - 関係データ
  * @param {Array} relationTypeData - 関係種別データ
  */
-export function renderTypedRelations(allData, current, conceptData, relationData, relationTypeData) {
+export function TRLTRENDR_RenderTypedRelations(allData, current, conceptData, relationData, relationTypeData) {
     if (!current || !Array.isArray(conceptData) || !Array.isArray(relationData)) return;
 
     const currentConcept = conceptData.find(concept => concept && concept.siteRef && Number(concept.siteRef.id) === Number(current.id));
@@ -35,17 +36,17 @@ export function renderTypedRelations(allData, current, conceptData, relationData
         relation && (relation.from === currentConcept.conceptId || relation.to === currentConcept.conceptId)
     );
 
-    const existingContainer = getContainer('typed-relations-panel');
+    const existingContainer = DOMWRITER_GetContainer('typed-relations-panel');
     const container = existingContainer || document.createElement('section');
     container.id = 'typed-relations-panel';
     container.className = 'typed-relations-panel';
 
     if (!existingContainer) {
-        const tagContainer = getContainer('article-page-topic');
+        const tagContainer = DOMWRITER_GetContainer('article-page-topic');
         if (tagContainer && tagContainer.parentNode) {
-            insertAfterElement(tagContainer, container);
+            DOMWRITER_InsertAfterElement(tagContainer, container);
         } else {
-            const relatedContainer = getContainer('related-entries');
+            const relatedContainer = DOMWRITER_GetContainer('related-entries');
             if (relatedContainer && relatedContainer.parentNode) {
                 relatedContainer.parentNode.insertBefore(container, relatedContainer);
             }
@@ -58,12 +59,12 @@ export function renderTypedRelations(allData, current, conceptData, relationData
         return;
     }
 
-    const getConceptLabel = (concept) => {
+    const TRltRendr_GetConceptLabel = (concept) => {
         if (!concept) return '';
         return (concept.labels && concept.labels.ja) || (concept.siteRef && concept.siteRef.label) || concept.conceptId || '';
     };
 
-    const getConceptUrl = (concept) => {
+    const TRltRendr_GetConceptUrl = (concept) => {
         if (!concept || !concept.siteRef) return '';
         const siteNode = siteById.get(Number(concept.siteRef.id));
         return (siteNode && siteNode.url) || concept.siteRef.url || '';
@@ -89,20 +90,20 @@ export function renderTypedRelations(allData, current, conceptData, relationData
         const typeLabel = typeDef.label || type;
         const typeDescription = typeDef.description || '';
         html += '<section class="typed-relations-group">';
-        html += `<h3 class="typed-relations-type" title="${escapeHtml(typeDescription)}">${escapeHtml(typeLabel)}</h3>`;
+        html += `<h3 class="typed-relations-type" title="${HTMLHLPR_EscapeHtml(typeDescription)}">${HTMLHLPR_EscapeHtml(typeLabel)}</h3>`;
         html += '<ul class="typed-relations-list">';
 
         items.sort(sortByWeight).forEach(relation => {
             const targetConceptId = relation.__isOutgoing ? relation.to : relation.from;
             const targetConcept = conceptById.get(targetConceptId);
-            const targetLabel = getConceptLabel(targetConcept) || targetConceptId;
-            const targetUrl = getConceptUrl(targetConcept);
+            const targetLabel = TypRltRendr_GetConceptLabel(targetConcept) || targetConceptId;
+            const targetUrl = TypRltRendr_GetConceptUrl(targetConcept);
             const score = relation.weight != null ? relation.weight : relation.confidence;
             const scoreText = Number.isFinite(Number(score)) ? ` <span class="typed-relation-score">(${Number(score).toFixed(2)})</span>` : '';
-            const noteText = relation.note ? `<span class="typed-relation-note">${escapeHtml(relation.note)}</span>` : '';
+            const noteText = relation.note ? `<span class="typed-relation-note">${HTMLHLPR_EscapeHtml(relation.note)}</span>` : '';
             const targetHtml = targetUrl
-                ? `<a href="${escapeHtml(targetUrl)}">${escapeHtml(targetLabel)}</a>`
-                : `<span>${escapeHtml(targetLabel)}</span>`;
+                ? `<a href="${HTMLHLPR_EscapeHtml(targetUrl)}">${HTMLHLPR_EscapeHtml(targetLabel)}</a>`
+                : `<span>${HTMLHLPR_EscapeHtml(targetLabel)}</span>`;
 
             html += '<li class="typed-relation-item">';
             html += `<span class="typed-relation-target">${targetHtml}</span>${scoreText}`;

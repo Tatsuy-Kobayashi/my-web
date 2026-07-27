@@ -1,20 +1,21 @@
 // ----------------------------------------------------------------------------
-// ファイル名    : CategoryListRenderer.js
-// 名称          : カテゴリー一覧生成
-// 内容          : 全タグを収集し、カテゴリーリストとして描画する
+// ファイル名      : CategoryListRenderer.js
+// モジュール記号  : CTLISTRENDR / CtListRendr
+// モジュール名    : カテゴリー一覧生成
+// 内容            : 全タグを収集し、カテゴリーリストとして描画する
 // Copyright(c) 2025 Fibrantix CO.,LTD. All Rights Reserved
 // ----------------------------------------------------------------------------
 
-import { escapeHtml, ensureArray, buildSearchUrl } from '../Middleware/HtmlHelper.js';
-import { writeToContainer } from '../Middleware/DomWriter.js';
+import { HTMLHLPR_EscapeHtml, HTMLHLPR_EnsureArray, HTMLHLPR_BuildSearchUrl } from '../Middleware/HtmlHelper.js';
+import { DOMWRITER_WriteToContainer } from '../Middleware/DomWriter.js';
 
 /**
  * カテゴリー一覧をレンダリングする
  * @param {Array} allData - サイトデータの配列
  */
-export function renderCategoryList(allData) {
+export function CTLISTRENDR_RenderCategoryList(allData) {
     // allData を配列に統一
-    allData = ensureArray(allData);
+    allData = HTMLHLPR_EnsureArray(allData);
 
     // キーワードをプール（重複除去）
     const pool = new Set();
@@ -30,7 +31,7 @@ export function renderCategoryList(allData) {
 
     const tags = Array.from(pool);
     if (tags.length === 0) {
-        writeToContainer('categories', '');
+        DOMWRITER_WriteToContainer('categories', '');
         return;
     }
 
@@ -41,12 +42,12 @@ export function renderCategoryList(allData) {
     let html = '<ul>';
     tags.forEach((tag, idx) => {
         const tagId = idx;
-        const url = buildSearchUrl(tag, 'tag');
+        const url = HTMLHLPR_BuildSearchUrl(tag, 'tag');
         html += `<li class="cat-item cat-item-${tagId}">`;
-        html += `<a href="${url}" data-nodal=""><span class="list-item-caption">${escapeHtml(tag)}</span></a>`;
+        html += `<a href="${url}" data-nodal=""><span class="list-item-caption">${HTMLHLPR_EscapeHtml(tag)}</span></a>`;
         html += `</li>`;
     });
     html += '</ul>';
 
-    writeToContainer('categories', html);
+    DOMWRITER_WriteToContainer('categories', html);
 }

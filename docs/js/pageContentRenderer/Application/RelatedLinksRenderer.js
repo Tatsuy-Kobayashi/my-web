@@ -1,26 +1,27 @@
 // ----------------------------------------------------------------------------
-// ファイル名    : RelatedLinksRenderer.js
-// 名称          : 関連記事リンク生成
-// 内容          : タグ一致で関連記事カードを描画する
+// ファイル名      : RelatedLinksRenderer.js
+// モジュール記号  : RLTLINKRENDR / RltLinkRendr
+// モジュール名    : 関連記事リンク生成
+// 内容            : タグ一致で関連記事カードを描画する
 // Copyright(c) 2025 Fibrantix CO.,LTD. All Rights Reserved
 // ----------------------------------------------------------------------------
 
-import { ensureArray } from '../Middleware/HtmlHelper.js';
-import { writeToContainer } from '../Middleware/DomWriter.js';
+import { HTMLHLPR_EnsureArray } from '../Middleware/HtmlHelper.js';
+import { DOMWRITER_WriteToContainer } from '../Middleware/DomWriter.js';
 
 /**
  * 関連記事リンクをレンダリングする
  * @param {Array} allData - サイトデータの配列
  * @param {Object} current - 現在の記事ノード
  */
-export function renderRelatedLinks(allData, current) {
+export function RLTLINKRENDR_RenderRelatedLinks(allData, current) {
     // allData を配列に統一
-    allData = ensureArray(allData);
+    allData = HTMLHLPR_EnsureArray(allData);
 
     // 現在のノードがタグを持つか確認
     const currentKeywords = Array.isArray(current && current.keywords) ? current.keywords : [];
     if (currentKeywords.length === 0) {
-        writeToContainer('related-entries', '');
+        DOMWRITER_WriteToContainer('related-entries', '');
 
         return;
     }
@@ -41,7 +42,7 @@ export function renderRelatedLinks(allData, current) {
 
     // 関連記事がない場合は何も表示しない
     if (relatedPool.length === 0) {
-        writeToContainer('related-entries', '');
+        DOMWRITER_WriteToContainer('related-entries', '');
 
         return;
     }
@@ -81,5 +82,5 @@ export function renderRelatedLinks(allData, current) {
     });
 
     html += `</div> <!-- /related-list -->`;
-    writeToContainer('related-entries', html);
+    DOMWRITER_WriteToContainer('related-entries', html);
 }

@@ -1,22 +1,22 @@
 // ----------------------------------------------------------------------------
-// ファイル名     : PcrCtrl.js
+// ファイル名      : PcrCtrl.js
 // モジュール記号  : PCR / Pcr
 // モジュール名    : PCR制御 (SW300-APP-PCR) Source File
-// 内容           : 各描画関数を順序どおり呼び出すオーケストレータ
+// 内容            : 各描画関数を順序どおり呼び出すオーケストレータ
 // Copyright(c) 2025 Fibrantix CO.,LTD. All Rights Reserved
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 // Import
 // ----------------------------------------------------------------------------
-import { renderBreadcrumbs } from './BreadcrumbRenderer.js';
-import { renderDateInfo } from './DateInfoRenderer.js';
-import { renderChildList } from './ChildListRenderer.js';
-import { renderTagList } from './TagListRenderer.js';
-import { renderTypedRelations } from './TypedRelationRenderer.js';
-import { renderRelatedLinks } from './RelatedLinksRenderer.js';
-import { renderPager } from './PagerRenderer.js';
-import { renderPopularSection } from './PopularRenderer.js';
-import { renderCategoryList } from './CategoryListRenderer.js';
+import { BREADRENDR_RenderBreadcrumbs } from './BreadcrumbRenderer.js';
+import { DINFORENDR_RenderDateInfo } from './DateInfoRenderer.js';
+import { CHLISTRENDR_RenderChildList } from './ChildListRenderer.js';
+import { TLISTRENDR_RenderTagList } from './TagListRenderer.js';
+import { TRLTRENDR_RenderTypedRelations } from './TypedRelationRenderer.js';
+import { RLTLINKRENDR_RenderRelatedLinks } from './RelatedLinksRenderer.js';
+import { PAGRRENDR_RenderPager } from './PagerRenderer.js';
+import { POPRENDR_RenderPopularSection } from './PopularRenderer.js';
+import { CTLISTRENDR_RenderCategoryList } from './CategoryListRenderer.js';
 
 /**
  * 名称     : 全パーツを描画
@@ -29,23 +29,23 @@ import { renderCategoryList } from './CategoryListRenderer.js';
  * @param {Object} currentNode - 現在の記事ノード
  * @returns {Promise<void>}
  */
-export function PCR_renderAllParts(siteData, concepts, relations, relationTypes, viewStats, currentNode) {
+export function PCR_RenderAllParts(siteData, concepts, relations, relationTypes, viewStats, currentNode) {
     // A. パンくずリスト生成
-    renderBreadcrumbs(siteData, currentNode);
+    BREADRENDR_RenderBreadcrumbs(siteData, currentNode);
     // B. 公開日・編集日生成
-    renderDateInfo(currentNode);
+    DINFORENDR_RenderDateInfo(currentNode);
     // C. 下層記事一覧生成
-    renderChildList(siteData, currentNode, 3);
+    CHLISTRENDR_RenderChildList(siteData, currentNode, 3);
     // D. タグ一覧生成
-    renderTagList(currentNode);
+    TLISTRENDR_RenderTagList(currentNode);
     // E. 型付き概念関係生成
-    renderTypedRelations(siteData, currentNode, concepts, relations, relationTypes);
+    TRLTRENDR_RenderTypedRelations(siteData, currentNode, concepts, relations, relationTypes);
     // F. 関連記事リンク生成
-    renderRelatedLinks(siteData, currentNode);
+    RLTLINKRENDR_RenderRelatedLinks(siteData, currentNode);
     // G. 前後記事リンク生成
-    renderPager(siteData, currentNode);
+    PAGRRENDR_RenderPager(siteData, currentNode);
     // H. 人気記事
-    renderPopularSection(siteData, viewStats);
+    POPRENDR_RenderPopularSection(siteData, viewStats);
     // I. カテゴリー一覧生成
-    renderCategoryList(siteData);
+    CTLISTRENDR_RenderCategoryList(siteData);
 }

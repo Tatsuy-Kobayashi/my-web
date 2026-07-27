@@ -1,27 +1,31 @@
 // ----------------------------------------------------------------------------
-// ファイル名    : BreadcrumbRenderer.js
-// 名称          : パンくずリスト生成
-// 内容          : mainPath や auxPath からパンくずリストHTMLを構築し出力する
+// ファイル名      : BreadcrumbRenderer.js
+// モジュール記号  : BREADRENDR / BreadRendr
+// モジュール名    : パンくずリスト生成 (SW301-APP-BREADRENDR) Source File
+// 内容            : mainPath や auxPath からパンくずリストHTMLを構築し出力する
 // Copyright(c) 2025 Fibrantix CO.,LTD. All Rights Reserved
 // ----------------------------------------------------------------------------
-
-import { getFirstPath, getAuxPaths, parsePathIds } from './PathUtils.js';
-import { buildPreviewLinkHtml } from '../Middleware/PreviewLinkBuilder.js';
-import { writeToContainer } from '../Middleware/DomWriter.js';
+// ----------------------------------------------------------------------------
+// Import
+// ----------------------------------------------------------------------------
+import { PATHUTILS_GetFirstPath, PATHUTILS_GetAuxPaths, PATHUTILS_ParsePathIds } from './PathUtils.js';
+import { PREVLINK_BuildPreviewLinkHtml } from '../Middleware/PreviewLinkBuilder.js';
+import { DOMWRITER_WriteToContainer } from '../Middleware/DomWriter.js';
 
 /**
- * パンくずリストをレンダリングする
+ * 名称     : パンくずリスト生成
+ * 内容     : パンくずリストをレンダリングする
  * @param {Array} allData - サイトデータの配列
  * @param {Object} current - 現在の記事ノード
  */
 // options:
 //  - includeHome: boolean (first column only)
 //  - treatAsMain: boolean (mainPath column: exclude last id because it's current)
-export function renderBreadcrumbs(allData, current) {
-    const renderColumnFromPath = (pathStr, options = {}) => {
+export function BREADRENDR_RenderBreadcrumbs(allData, current) {
+    const BreadRendr_RenderColumnFromPath = (pathStr, options = {}) => {
         const { includeHome = false, treatAsMain = false } = options;
         if (!pathStr || typeof pathStr !== 'string') return '';
-        const parts = parsePathIds(pathStr);
+        const parts = PATHUTILS_ParsePathIds(pathStr);
         if (parts.length === 0) return '';
 
         // HTML 生成
@@ -40,7 +44,7 @@ export function renderBreadcrumbs(allData, current) {
             const pathNode = allData.find(n => n && n.id === id);
             if (!pathNode) continue;
             html += `<span class="sp" style="margin-right:5px; margin-left:5px;"><span class="fa fa-angle-right" aria-hidden="true"></span></span>`;
-            html += buildPreviewLinkHtml(pathNode, { asLink: true });
+            html += PREVLINK_BuildPreviewLinkHtml(pathNode, { asLink: true });
         }
 
         // For mainPath column: append the current article label (no link) as final item
@@ -59,13 +63,13 @@ export function renderBreadcrumbs(allData, current) {
     };
 
     // collect mainPath (prefer first) and auxPaths (array)
-    const mainPath = getFirstPath(current);
-    const auxPaths = getAuxPaths(current, mainPath);
+    const mainPath = PATHUTILS_GetFirstPath(current);
+    const auxPaths = PATHUTILS_GetAuxPaths(current, mainPath);
 
     // 列の構築: 最初にメイン列 (Home を含む)、次に auxPath ごとに 1 つの列
     let finalHtml = '';
     if (mainPath) {
-        finalHtml += renderColumnFromPath(mainPath, { includeHome: true, treatAsMain: true });
+        finalHtml += BreadRendr_RenderColumnFromPath(mainPath, { includeHome: true, treatAsMain: true });
     } else {
         // fallback: only Home + current label
         finalHtml += `<div class="breadcrumb_list_part"><a href="https://tatsuy-kobayashi.github.io/my-web/docs/"><i class="fa fa-home fa-fw" aria-hidden="true" style="margin-right:5px;"></i><span>Home</span></a>`;
@@ -75,8 +79,8 @@ export function renderBreadcrumbs(allData, current) {
 
     // auxPath 列も Home を先頭に表示し、最後に current のラベルを付けているが、それぞれを非表示にすることもできる。可能性としては、Git のブランチの様に表示できないか検討中
     auxPaths.forEach(ap => {
-        finalHtml += renderColumnFromPath(ap, { includeHome: true, treatAsMain: true });
+        finalHtml += BreadRendr_RenderColumnFromPath(ap, { includeHome: true, treatAsMain: true });
     });
 
-    writeToContainer('breadcrumb-list', finalHtml);
+    DOMWRITER_WriteToContainer('breadcrumb-list', finalHtml);
 }

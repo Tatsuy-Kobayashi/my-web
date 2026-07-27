@@ -1,14 +1,15 @@
 // ----------------------------------------------------------------------------
-// ファイル名    : ChildListRenderer.js
-// 名称          : 下層記事一覧生成
-// 内容          : 現在ノード配下の子孫を階層ツリーで描画する
+// ファイル名      : ChildListRenderer.js
+// モジュール記号  : CHLISTRENDR / ChListRendr
+// モジュール名    : 下層記事一覧生成 (SW303-APP-CHILDLIST) Source File
+// 内容            : 現在ノード配下の子孫を階層ツリーで描画する
 // Copyright(c) 2025 Fibrantix CO.,LTD. All Rights Reserved
 // ----------------------------------------------------------------------------
 
-import { getFirstPath, parsePathIds } from './PathUtils.js';
-import { ensureArray } from '../Middleware/HtmlHelper.js';
-import { buildPreviewCardHtml } from '../Middleware/PreviewLinkBuilder.js';
-import { writeToContainer } from '../Middleware/DomWriter.js';
+import { PATHUTILS_GetFirstPath, PATHUTILS_ParsePathIds } from './PathUtils.js';
+import { HTMLHLPR_EnsureArray } from '../Middleware/HtmlHelper.js';
+import { PREVLINK_BuildPreviewCardHtml } from '../Middleware/PreviewLinkBuilder.js';
+import { DOMWRITER_WriteToContainer } from '../Middleware/DomWriter.js';
 
 /**
  * 下層記事一覧（階層構造メニュー）を生成する
@@ -16,13 +17,13 @@ import { writeToContainer } from '../Middleware/DomWriter.js';
  * @param {Object} current - 現在の記事データ
  * @param {number} maxDepth - 最大展開深度
  */
-export function renderChildList(allData, current, maxDepth) {
+export function CHLISTRENDR_RenderChildList(allData, current, maxDepth) {
     // siteData（allData）から子孫を取得する。
     // current.dir_path に依存せず mainPath を用いた抽出に委ねる。
-    allData = ensureArray(allData);
+    allData = HTMLHLPR_EnsureArray(allData);
 
     // mainPath を使って現在ノードの下位（descendant）を階層的に表示する実装
-    const currentPath = getFirstPath(current);
+    const currentPath = PATHUTILS_GetFirstPath(current);
     if (!currentPath) return;
 
     // currentPath の下位にあるノードを descendants として抽出
@@ -41,7 +42,7 @@ export function renderChildList(allData, current, maxDepth) {
             auxArr.forEach(ap => {
                 if (typeof ap !== 'string') return;
                 // 数値配列化
-                const parts = parsePathIds(ap);
+                const parts = PATHUTILS_ParsePathIds(ap);
                 if (parts.length === 0) return;
                 // currentId を含む auxPath のみ扱う
                 if (!parts.includes(currentId)) return;
@@ -66,7 +67,7 @@ export function renderChildList(allData, current, maxDepth) {
         if (!Array.isArray(matchedAuxPaths)) return;
         matchedAuxPaths.forEach(ap => {
             if (typeof ap !== 'string') return;
-            const parts = parsePathIds(ap);
+            const parts = PATHUTILS_ParsePathIds(ap);
             if (parts.length < 2) return; // penultimate + tail が必要
             const penultimate = parts[parts.length - 2];
             const tail = parts[parts.length - 1];
@@ -80,7 +81,7 @@ export function renderChildList(allData, current, maxDepth) {
     if (!descendants || descendants.length === 0) return;
 
     // parentPath の直下だけを返す（直下の子）
-    const immediateChildrenOf = (parentPath) => {
+    const ChListRendr_immediateChildrenOf = (parentPath) => {
         const parentParts = parentPath.split(':').filter(Boolean);
         const results = [];
         descendants.forEach(item => {
@@ -126,7 +127,7 @@ export function renderChildList(allData, current, maxDepth) {
         // ソート: aux 挿入ノードは __auxTailId を優先キーとする。なければ mainPath の末尾ID、最後に node.id。
         const getSortKey = (item) => {
             if (item && Number.isFinite(item.__auxTailId)) return item.__auxTailId;
-            const p = getFirstPath(item) || '';
+            const p = PATHUTILS_GetFirstPath(item) || '';
             if (p) {
                 const last = parseInt(p.split(':').pop(), 10);
                 if (Number.isFinite(last)) return last;
@@ -138,12 +139,12 @@ export function renderChildList(allData, current, maxDepth) {
     };
 
     // 再帰的にリストを構築
-    const buildList = (parentPath, depth = 0, maxD) => {
-        const children = immediateChildrenOf(parentPath);
+    const ChListRendr_buildList = (parentPath, depth = 0, maxD) => {
+        const children = ChListRendr_immediateChildrenOf(parentPath);
         if (!children || children.length === 0) return '';
         let out = '';
         children.forEach(child => {
-            const childPath = getFirstPath(child);
+            const childPath = PATHUTILS_GetFirstPath(child);
             const hasDesc = descendants.some(d => {
                 const dps = Array.isArray(d.mainPath) ? d.mainPath : [d.mainPath];
                 return dps.some(mp => typeof mp === 'string' && mp.startsWith(childPath + ':'));
@@ -153,12 +154,12 @@ export function renderChildList(allData, current, maxDepth) {
             // <details><summary> でラップする。ただし内部リストは存在する場合のみ追加する。
             if ((hasDesc || parentPath === currentPath) && depth < maxD) {
                 out += '<details class="details_pulldownList">';
-                out += `<summary class="summary_pulldownList">${buildPreviewCardHtml(child)}</summary>`;
-                const inner = buildList(childPath, depth + 1, maxD);
+                out += `<summary class="summary_pulldownList">${PREVLINK_BuildPreviewCardHtml(child)}</summary>`;
+                const inner = ChListRendr_buildList(childPath, depth + 1, maxD);
                 if (inner) out += inner;
                 out += '</details>';
             } else {
-                out += buildPreviewCardHtml(child);
+                out += PREVLINK_BuildPreviewCardHtml(child);
             }
             out += '</li>';
         });
@@ -167,8 +168,8 @@ export function renderChildList(allData, current, maxDepth) {
 
     // HTML 生成
     let html = '<ul class="ul_pulldownList">';
-    html += buildList(currentPath, 0, maxDepth);
+    html += ChListRendr_buildList(currentPath, 0, maxDepth);
     html += '</ul> <!-- /.ul_pulldownList -->';
 
-    writeToContainer('child-pages-list', html);
+    DOMWRITER_WriteToContainer('child-pages-list', html);
 }

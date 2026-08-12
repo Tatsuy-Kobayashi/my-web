@@ -6,6 +6,8 @@
 // Copyright(c) 2025 Fibrantix CO.,LTD. All Rights Reserved
 // ----------------------------------------------------------------------------
 
+const FetchSearch_BASE_URL = 'https://tatsuy-kobayashi.github.io/my-web/docs/data/';
+
 /**
  * 名称     : JSONファイル取得処理
  * 内容     : JSONファイルからサイトデータ、概念、関係などのデータを読み込む
@@ -16,6 +18,7 @@
 async function FetchData_FetchJson(url, fallback) {
     try {
         const response = await fetch(url);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
         return await response.json();
     } catch (e) {
         console.warn(`[FetchSiteData] Failed to fetch ${url}. Using fallback.`, e);
@@ -33,7 +36,7 @@ export async function FETCHDATA_FetchSiteData() {
     // データ（ノード）
     // ------------------------
     console.log('[INIT] Loading siteData...');
-    const FETCHDATA_SiteData = await FetchData_FetchJson('https://tatsuy-kobayashi.github.io/my-web/docs/data/siteData.json', []);
+    const FETCHDATA_SiteData = await FetchData_FetchJson(FetchSearch_BASE_URL + 'siteData.json', []);
 
     return FETCHDATA_SiteData;
 }
@@ -48,7 +51,7 @@ export async function FETCHDATA_FetchConcepts() {
     // 概念エンティティ
     // ------------------------
     console.log('[INIT] Loading concepts...');
-    const FETCHDATA_Concepts = await FetchData_FetchJson('https://tatsuy-kobayashi.github.io/my-web/docs/data/concepts.json', []);
+    const FETCHDATA_Concepts = await FetchData_FetchJson(FetchSearch_BASE_URL + 'concepts.json', []);
 
     return FETCHDATA_Concepts;
 }
@@ -63,7 +66,7 @@ export async function FETCHDATA_FetchRelations() {
     // 型付き辺
     // ------------------------
     console.log('[INIT] Loading relations...');
-    const FETCHDATA_Relations = await FetchData_FetchJson('https://tatsuy-kobayashi.github.io/my-web/docs/data/relations.json', []);
+    const FETCHDATA_Relations = await FetchData_FetchJson(FetchSearch_BASE_URL + 'relations.json', []);
 
     return FETCHDATA_Relations;
 }
@@ -78,7 +81,7 @@ export async function FETCHDATA_FetchRelationTypes() {
     // 型付き辺の種別（Webページの変化に依存せず、（基本）固定の資産として保存）
     // ------------------------
     console.log('[INIT] Loading relationTypes...');
-    const FetchData_RelationTypesData = await FetchData_FetchJson('https://tatsuy-kobayashi.github.io/my-web/docs/data/relationTypes.json', { relationTypes: [] });
+    const FetchData_RelationTypesData = await FetchData_FetchJson(FetchSearch_BASE_URL + 'relationTypes.json', { relationTypes: [] });
     const FETCHDATA_RelationTypes = Array.isArray(FetchData_RelationTypesData.relationTypes) ? FetchData_RelationTypesData.relationTypes : [];
 
     return FETCHDATA_RelationTypes;

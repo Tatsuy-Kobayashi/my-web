@@ -35,8 +35,15 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://tatsuy-kobayashi.github.io/my-web/docs/js/linkPreview.js"></script>
 
-    <!-- vis-network CDN -->
-    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <!-- Force-Graph 2D / 3D CDN -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/force-graph"></script>
+    <script type="module">
+        // Three.jsを先に読み込み、3d-force-graphとカスタムノードで共有する。
+        const THREE = await import('https://cdn.jsdelivr.net/npm/three@0.183.2/+esm');
+        window.THREE = THREE;
+        const forceGraph3DModule = await import('https://cdn.jsdelivr.net/npm/3d-force-graph/+esm');
+        window.ForceGraph3D = forceGraph3DModule.default || forceGraph3DModule.ForceGraph3D;
+    </script>
 
     <script>
         // JavaScriptの厳格モード使用
@@ -135,6 +142,17 @@
                                     <label class="radio-label" title="ノードに設定されたURLへ遷移">
                                         <input type="radio" name="clickMode" value="link" aria-label="ノードのリンク先を開くモード">
                                         URLリンク遷移
+                                    </label>
+                                </fieldset> <!-- control-group -->
+
+                                <!-- グラフ表示モード -->
+                                <fieldset class="control-group radio-group">
+                                    <legend title="ネットワーク図の表示方式を選択してください">表示モード:</legend>
+                                    <label class="radio-label" title="2次元のネットワーク図を表示">
+                                        <input type="radio" name="graphMode" value="2d" checked aria-label="2D表示"> 2D
+                                    </label>
+                                    <label class="radio-label" title="3次元のネットワーク図を表示">
+                                        <input type="radio" name="graphMode" value="3d" aria-label="3D表示"> 3D
                                     </label>
                                 </fieldset> <!-- control-group -->
 

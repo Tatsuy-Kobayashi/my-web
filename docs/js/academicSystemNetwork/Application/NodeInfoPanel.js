@@ -9,7 +9,7 @@
 // Import
 // ----------------------------------------------------------------------------
 import { $id, DOMWRITER_GetByName } from '../Middleware/DomWriter.js';
-import { ADAPTNET_GetNetwork } from '../Middleware/NetworkAdapter.js';
+import { ADAPTNET_AddInteractionListener } from '../Middleware/NetworkAdapter.js';
 
 /**
  * 名称     : typeset 実行
@@ -146,7 +146,7 @@ export function NODEINFPNL_RegisterNodeClickHandler(dom, onNodeFocus) {
         // パネルをクリックした場合 → 閉じない
         if (panel.contains(e.target)) return;
 
-        // ノードクリック直後の document click は無視（vis の click と document click が同時発火するため）
+        // ノードクリック直後の document click は無視（Canvasのクリックとdocument.clickが同時発火するため）
         // タッチ操作の場合は遅延が大きめなので余裕を持たせる
         const now = Date.now();
         if ((__lastNodeClickAt && (now - __lastNodeClickAt) < 500) ||
@@ -157,67 +157,52 @@ export function NODEINFPNL_RegisterNodeClickHandler(dom, onNodeFocus) {
         NODEINFPNL_HideNodeInfo();
     });
 
-    // we keep a single handler: if network is not ready, we ignore clicks
-    dom.networkContainer.addEventListener('click', (ev) => {
-        // do nothing special here; actual node clicks handled by vis event registered below
-    });
-    // register vis 'click' when network ready
-    const network = ADAPTNET_GetNetwork();
-    if (network) {
-        network.on('click', function (params) {
-            try {
-                // ノードが選択されているか判定
-                if (!params.nodes || !params.nodes.length) {
-                    // ノード以外（背景・エッジ等）をクリックした場合はパネルを閉じる
-                    console.log('[NETWORK] background/edge clicked - hiding panel');
-                    NODEINFPNL_HideNodeInfo();
+    // Force-Graphはノードオブジェクトを直接コールバックへ渡すため、
+    // 描画ライブラリ内部のDataSet/bodyへアクセスせずに処理する。
+    ADAPTNET_AddInteractionListener('nodeClick', (node) => {
+        try {
+            if (!node) return;
+            const nodeId = node.id;
+            const clickMode = NODEINFPNL_GetClickMode();
+            console.log('[NETWORK] node clicked', nodeId, node, 'clickMode=', clickMode);
+
+            // ノードクリック時刻を記録（document.click 側の誤閉じ防止）
+            __lastNodeClickAt = Date.now();
+
+            if (clickMode === 'select') {
+                try {
+                    console.log('[click] Selecting node:', node.label);
+                    NODEINFPNL_ShowNodeInfo(node);
+                } catch (e) {
+                    console.warn('[NETWORK] select failed:', e);
+                }
+            } else if (clickMode === 'nodeFocus') {
+                const up = dom.focusUp ? Number(dom.focusUp.value) : 1;
+                const down = dom.focusDown ? Number(dom.focusDown.value) : 1;
+                onNodeFocus(node.id, up, down);
+            } else {
+                // link モード: released フラグを確認 (存在しなければ 0 扱い)
+                const releasedFlag = Number(node.released) === 1 ? 1 : 0;
+                if (releasedFlag !== 1) {
+                    console.log('[NETWORK] node is not released, blocking link open:', nodeId);
+                    NODEINFPNL_ShowNodeInfo(node);
                     return;
                 }
-
-                const nodeId = params.nodes[0];
-                const node = (network.body && network.body.data && network.body.data.nodes) ? network.body.data.nodes.get(nodeId) : null;
-                if (!node) {
-                    console.warn('[NETWORK] node not found in internal dataset:', nodeId);
-                    return;
-                }
-                const clickMode = NODEINFPNL_GetClickMode();
-                console.log('[NETWORK] node clicked', nodeId, node, 'clickMode=', clickMode);
-
-                // ノードクリック時刻を記録（document.click 側の誤閉じ防止）
-                __lastNodeClickAt = Date.now();
-
-                if (clickMode === 'select') {
-                    // パネル表示
-                    try {
-                        console.log("[click] Selecting node:", node.label);
-                        NODEINFPNL_ShowNodeInfo(node);
-                    } catch (e) {
-                        console.warn('[NETWORK] select failed:', e);
-                    }
-                } else if (clickMode === 'nodeFocus') {
-                    // ノードフォーカスモード：上方/下方の入力値を取得して表示
-                    const up = dom.focusUp ? Number(dom.focusUp.value) : 1;
-                    const down = dom.focusDown ? Number(dom.focusDown.value) : 1;
-                    onNodeFocus(node.id, up, down);
+                if (node.url) {
+                    window.open(node.url, '_blank');
                 } else {
-                    // link モード: released フラグを確認 (存在しなければ 0 扱い)
-                    const releasedFlag = Number(node.released) === 1 ? 1 : 0;
-                    if (releasedFlag !== 1) {
-                        // 公開されていないのでリンク遷移は行わない。説明パネルで案内する。
-                        console.log('[NETWORK] node is not released, blocking link open:', nodeId);
-                        NODEINFPNL_ShowNodeInfo(node);
-                        return;
-                    }
-                    // 公開済みなら新しいタブで開く
-                    if (node.url) {
-                        window.open(node.url, '_blank');
-                    } else {
-                        console.warn('[NETWORK] node has no URL:', node);
-                    }
+                    console.warn('[NETWORK] node has no URL:', node);
                 }
-            } catch (e) {
-                console.error('[NETWORK] click handler error:', e);
             }
-        });
-    }
+        } catch (e) {
+            console.error('[NETWORK] click handler error:', e);
+        }
+    });
+
+    const hidePanel = () => {
+        console.log('[NETWORK] background/link clicked - hiding panel');
+        NODEINFPNL_HideNodeInfo();
+    };
+    ADAPTNET_AddInteractionListener('backgroundClick', hidePanel);
+    ADAPTNET_AddInteractionListener('linkClick', hidePanel);
 }

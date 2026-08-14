@@ -116,7 +116,9 @@ export function PATHUTILS_BuildEdgesFromPaths(filteredNodes, relationTypes) {
             to,
             type: relationType,
             relationType,
-            title: typeDef.description || relationType
+            title: typeDef.description || relationType,
+            // mainPath / auxPath はいずれも親から子へたどる階層エッジ
+            arrows: 'to'
         };
 
         if (type === 'main') {

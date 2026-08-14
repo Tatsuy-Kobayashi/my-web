@@ -23,6 +23,11 @@ import { VISLKMNG_ClearVisualLock } from '../Application/VisualLockManager.js';
 
 let dom = {};
 
+/**
+ * 名称     : メインタスク処理
+ * 内容     : 状態遷移に従ってメイン処理を実行する
+ * @returns {Promise<void>}
+ */
 async function TSKMNG_MainTask() {
     console.log('[MAIN] start state machine');
 
@@ -45,6 +50,7 @@ async function TSKMNG_MainTask() {
     dom.focusDown = $id('focusDown');
     dom.clickModeRadios = DOMWRITER_GetByName('clickMode');
     dom.colorModeRadios = DOMWRITER_GetByName('colorMode');
+    dom.graphModeRadios = DOMWRITER_GetByName('graphMode');
 
     // ------------------------
     // 初期化フロー（状態遷移順）
@@ -129,7 +135,7 @@ async function TSKMNG_MainTask() {
             APPSTATE_STATE,
             DEBUG_GetCurrentState: () => APPSTATE_GetDebugState().AppState_CurrentState,
             DEBUG_GetErrorFlags: () => APPSTATE_GetErrorFlags(),
-            DEBUG_ReinitNetwork: () => initNetworkIfNeeded(dom.networkContainer),
+            DEBUG_ReinitNetwork: () => ADAPTNET_InitNetworkIfNeeded(dom.networkContainer),
             DEBUG_PerformDepthSearch: () => SEARCHDEPTH_PerformDepthSearch(dom, maxAvailableLevel, EDGELYRCTRL_GetEdgeLayerState(), TSKMNG_NodesData, TSKMNG_KeywordEdgesData, TSKMNG_ConceptsData, TSKMNG_RelationsData, TSKMNG_RelationTypesData, TSKMNG_RankingData),
             // __SiteGraph.DEBUG_PerformLabelSearch('物理学'): 「物理学」で検索した状態を直接再現
             DEBUG_PerformLabelSearch: (label) => SEARCHLABEL_PerformLabelSearch(label, dom, maxAvailableLevel, EDGELYRCTRL_GetEdgeLayerState(), TSKMNG_NodesData, TSKMNG_KeywordEdgesData, TSKMNG_ConceptsData, TSKMNG_RelationsData, TSKMNG_RelationTypesData, TSKMNG_RankingData),
@@ -145,4 +151,5 @@ async function TSKMNG_MainTask() {
     }
 }
 
+// エントリポイント: DOMContentLoaded で初期化を開始
 document.addEventListener('DOMContentLoaded', TSKMNG_MainTask);

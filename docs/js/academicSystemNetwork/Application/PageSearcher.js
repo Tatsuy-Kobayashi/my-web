@@ -9,15 +9,17 @@
 // Import
 // ----------------------------------------------------------------------------
 import { DOMWRITER_QuerySelector, DOMWRITER_CreateElement } from '../Middleware/DomWriter.js';
-import { ADAPTNET_GetNetwork, ADAPTNET_RefreshNetworkColors } from '../Middleware/NetworkAdapter.js';
+import { ADAPTNET_GetVisibleNodes, ADAPTNET_GetVisibleNodeById, ADAPTNET_UpdateNodeVisual, ADAPTNET_ResetNodeVisual, ADAPTNET_FocusNode, ADAPTNET_RefreshNetworkColors, ADAPTNET_AddInteractionListener, ADAPTNET_RemoveInteractionListener } from '../Middleware/NetworkAdapter.js';
 
 // ------------------------
 // ページ内検索ハイライト管理
 // ------------------------
 let SearchPage_HighlightTimer = null;   // ハイライトタイマー
 let SearchPage_HighlightNodeId = null;  // ハイライトノードID
-let SearchPage_DragListener = null;     // ドラッグリスナー
-let SearchPage_ClickListener = null;    // クリックリスナー
+let SearchPage_DragListener = null;     // ノードドラッグリスナー
+let SearchPage_ClickListener = null;    // ノードクリックリスナー
+let SearchPage_BackgroundListener = null;
+let SearchPage_LinkListener = null;
 
 /**
  * 名称     : デフォルト色への更新
@@ -43,28 +45,32 @@ export function SEARCHPAGE_ClearPageSearchHighlight() {
         clearTimeout(SearchPage_HighlightTimer);
         SearchPage_HighlightTimer = null;
     }
-    const network = ADAPTNET_GetNetwork();
-    if (SearchPage_HighlightNodeId !== null && network && network.body && network.body.data && network.body.data.nodes) {
+    if (SearchPage_HighlightNodeId !== null) {
         try {
-            const existing = network.body.data.nodes.get(SearchPage_HighlightNodeId);
+            const existing = ADAPTNET_GetVisibleNodeById(SearchPage_HighlightNodeId);
             if (existing) {
-                network.body.data.nodes.update({
-                    id: SearchPage_HighlightNodeId,
-                    color: { background: '#97C2FC', border: '#2B7CE9', highlight: { background: '#D2E5FF', border: '#2B7CE9' } }
-                });
+                ADAPTNET_ResetNodeVisual(SearchPage_HighlightNodeId);
             }
         } catch (e) {
             console.warn('[PAGE_SEARCH] clearHighlight failed:', e);
         }
     }
     // イベントリスナー解除
-    if (SearchPage_ClickListener && network) {
-        network.off('click', SearchPage_ClickListener);
+    if (SearchPage_ClickListener) {
+        ADAPTNET_RemoveInteractionListener('nodeClick', SearchPage_ClickListener);
         SearchPage_ClickListener = null;
     }
-    if (SearchPage_DragListener && network) {
-        network.off('dragStart', SearchPage_DragListener);
+    if (SearchPage_DragListener) {
+        ADAPTNET_RemoveInteractionListener('nodeDrag', SearchPage_DragListener);
         SearchPage_DragListener = null;
+    }
+    if (SearchPage_BackgroundListener) {
+        ADAPTNET_RemoveInteractionListener('backgroundClick', SearchPage_BackgroundListener);
+        SearchPage_BackgroundListener = null;
+    }
+    if (SearchPage_LinkListener) {
+        ADAPTNET_RemoveInteractionListener('linkClick', SearchPage_LinkListener);
+        SearchPage_LinkListener = null;
     }
     SearchPage_HighlightNodeId = null;
     console.log('[PAGE_SEARCH] highlight cleared');
@@ -95,13 +101,9 @@ export function SEARCHPAGE_PerformPageSearch(label, nodesData, rankingData) {
     }
 
     const nodeId = target.id;
-    const network = ADAPTNET_GetNetwork();
-
     // 現在表示中のネットワークに存在するか確認
-    if (!network || !network.body || !network.body.data || !network.body.data.nodes) return;
-
-    const visNode = network.body.data.nodes.get(nodeId);
-    if (!visNode) {
+    const visibleNode = ADAPTNET_GetVisibleNodeById(nodeId);
+    if (!visibleNode) {
         console.log('[PAGE_SEARCH] node not in current network:', nodeId);
         return;
     }
@@ -110,14 +112,15 @@ export function SEARCHPAGE_PerformPageSearch(label, nodesData, rankingData) {
     SearchPage_RefreshColors2Def(rankingData);
 
     // ヒットノードを赤色に変更
-    network.body.data.nodes.update({
-        id: nodeId,
-        color: { background: '#FF0000', border: '#CC0000', highlight: { background: '#FF3333', border: '#CC0000' } }
+    ADAPTNET_UpdateNodeVisual(nodeId, {
+        color: '#FF0000',
+        borderColor: '#CC0000',
+        highlightColor: '#FF3333'
     });
     SearchPage_HighlightNodeId = nodeId;
 
     // フォーカス
-    network.focus(nodeId, { scale: 1.2, animation: { duration: 500 } });
+    ADAPTNET_FocusNode(nodeId, { scale: 1.2, duration: 500 });
 
     // 10秒後に自動リセット
     SearchPage_HighlightTimer = setTimeout(() => {
@@ -127,8 +130,12 @@ export function SEARCHPAGE_PerformPageSearch(label, nodesData, rankingData) {
     // ユーザ操作でリセット
     SearchPage_ClickListener = function () { SEARCHPAGE_ClearPageSearchHighlight(); };
     SearchPage_DragListener = function () { SEARCHPAGE_ClearPageSearchHighlight(); };
-    network.on('click', SearchPage_ClickListener);
-    network.on('dragStart', SearchPage_DragListener);
+    SearchPage_BackgroundListener = function () { SEARCHPAGE_ClearPageSearchHighlight(); };
+    SearchPage_LinkListener = function () { SEARCHPAGE_ClearPageSearchHighlight(); };
+    ADAPTNET_AddInteractionListener('nodeClick', SearchPage_ClickListener);
+    ADAPTNET_AddInteractionListener('nodeDrag', SearchPage_DragListener);
+    ADAPTNET_AddInteractionListener('backgroundClick', SearchPage_BackgroundListener);
+    ADAPTNET_AddInteractionListener('linkClick', SearchPage_LinkListener);
 
     console.log('[PAGE_SEARCH] highlighted node:', nodeId);
 }
@@ -142,11 +149,8 @@ export function SEARCHPAGE_PerformPageSearch(label, nodesData, rankingData) {
 // 備考     : 最大10件まで返す
 export function SEARCHPAGE_SuggestVisibleNodesByLabel(label) {
     if (!label || label.trim() === '') return [];
-    const network = ADAPTNET_GetNetwork();
-    if (!network || !network.body || !network.body.data || !network.body.data.nodes) return [];
-
     const trimmed = label.trim().toLowerCase();
-    const visibleNodes = network.body.data.nodes.get(); // 表示中のノード配列
+    const visibleNodes = ADAPTNET_GetVisibleNodes(); // 表示中のノード配列
     return visibleNodes.filter(n => n.label && n.label.toLowerCase().includes(trimmed)).slice(0, 10); // 最大10件
 }
 

@@ -24,7 +24,7 @@ export const APPSTATE_STATE = {
 // ------------------------
 const AppState_ErrorFlags = {
     missingDom: false,
-    visNotAvailable: false,
+    forceGraphNotAvailable: false,
     invalidData: false,
     networkInitFailed: false
 };

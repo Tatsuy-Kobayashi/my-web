@@ -18,7 +18,7 @@ import { NODEINFPNL_RegisterNodeClickHandler } from './NodeInfoPanel.js';
 import { CTRLPNLMNG_InitPanelDrag, CTRLPNLMNG_InitPanelToggle } from './ControlsPanelManager.js';
 import { VISLKMNG_BindFocusResetEvents } from './VisualLockManager.js';
 import { APPSTATE_STATE, APPSTATE_SetState, APPSTATE_SetErrorFlag, APPSTATE_GetErrorFlags } from '../Middleware/AppState.js';
-import { ADAPTNET_GetCurrentNodeIds, ADAPTNET_RefreshNetworkColors, ADAPTNET_SetNetworkData } from '../Middleware/NetworkAdapter.js';
+import { ADAPTNET_GetCurrentNodeIds, ADAPTNET_RefreshNetworkColors, ADAPTNET_SetNetworkData, ADAPTNET_SetDisplayMode, ADAPTNET_GetDisplayMode } from '../Middleware/NetworkAdapter.js';
 import { DOMWRITER_QuerySelector } from '../Middleware/DomWriter.js';
 
 // ------------------------
@@ -163,6 +163,26 @@ export function ASNCTRL_InitAsn(nodesData, keywordEdgesData, conceptsData, relat
                 const colorMode = DOMWRITER_QuerySelector('input[name="colorMode"]:checked').value;
                 // 現在表示しているノード/エッジを再取得して色を再適用
                 ADAPTNET_RefreshNetworkColors(colorMode, rankingData);
+            });
+        }
+    }
+
+    // 2D / 3D表示モードの変更。ラジオボタンは同じnameで排他的に維持する。
+    if (dom.graphModeRadios && dom.graphModeRadios.length) {
+        for (const r of dom.graphModeRadios) {
+            r.addEventListener('change', () => {
+                const requestedMode = DOMWRITER_QuerySelector('input[name="graphMode"]:checked')?.value || '2d';
+                if (ADAPTNET_SetDisplayMode(requestedMode, dom.networkContainer)) {
+                    console.log('[UI] graphMode changed ->', requestedMode);
+                    return;
+                }
+
+                // 3Dライブラリが利用できない場合は、直前のモードへ戻す。
+                const activeMode = ADAPTNET_GetDisplayMode();
+                for (const modeRadio of dom.graphModeRadios) {
+                    modeRadio.checked = modeRadio.value === activeMode;
+                }
+                console.warn('[UI] graphMode change rejected ->', requestedMode);
             });
         }
     }

@@ -25,7 +25,11 @@ let AdaptNet_CurrentNodes = [];
 let AdaptNet_CurrentEdges = [];
 let AdaptNet_CurrentColorMode = 'default-color';
 let AdaptNet_CurrentRankingData = [];
+let AdaptNet_2DTouchTarget = null;
+let AdaptNet_2DTouchHandlers = null;
+let AdaptNet_2DTouchAction = null;
 
+// 相互作用リスナー
 const AdaptNet_InteractionListeners = {
     nodeClick: new Set(),
     nodeRightClick: new Set(),
@@ -229,6 +233,279 @@ function AdaptNet_DrawNode(node, ctx, globalScale) {
 }
 
 /**
+ * 名称     : 角度正規化
+ * 内容     : 角度を正規化する
+ * @param {number} angle - 角度
+ * @returns {number} - 正規化した角度
+ */
+function AdaptNet_NormalizeAngle(angle) {
+    while (angle > Math.PI) angle -= 2 * Math.PI;
+    while (angle < -Math.PI) angle += 2 * Math.PI;
+    return angle;
+}
+
+/**
+ * 名称     : 2Dグラフの座標取得
+ * 内容     : 2Dグラフの座標を取得する
+ * @param {number} clientX - clientX
+ * @param {number} clientY - clientY
+ * @returns {number} - 2Dグラフの座標
+ */
+function AdaptNet_Get2DGraphPoint(clientX, clientY) {
+    const container = AdaptNet_NetworkContainer;
+    if (!container || !AdaptNet_Network || typeof AdaptNet_Network.zoom !== 'function') return null;
+
+    const rect = container.getBoundingClientRect();
+    const zoom = Number(AdaptNet_Network.zoom());
+    const center = typeof AdaptNet_Network.centerAt === 'function'
+        ? AdaptNet_Network.centerAt()
+        : { x: 0, y: 0 };
+    const safeZoom = Number.isFinite(zoom) && zoom > 0 ? zoom : 1;
+    const centerX = Number.isFinite(Number(center && center.x)) ? Number(center.x) : 0;
+    const centerY = Number.isFinite(Number(center && center.y)) ? Number(center.y) : 0;
+
+    return {
+        x: centerX + ((clientX - rect.left) - rect.width / 2) / safeZoom,
+        y: centerY + ((clientY - rect.top) - rect.height / 2) / safeZoom
+    };
+}
+
+/**
+ * 名称     : タッチペア取得
+ * 内容     : タッチペアの取得
+ * @param {Event} event - タッチイベント
+ * @returns {Array<Object>} - タッチペア
+ */
+function AdaptNet_GetTouchPair(event) {
+    if (event && event.touches && event.touches.length >= 2) {
+        return [event.touches[0], event.touches[1]].map(touch => ({
+            clientX: touch.clientX,
+            clientY: touch.clientY
+        }));
+    }
+
+    if (event && event.pointerId != null && AdaptNet_2DTouchAction) {
+        const pointer = AdaptNet_2DTouchAction.pointers.get(event.pointerId);
+        if (pointer) {
+            pointer.clientX = event.clientX;
+            pointer.clientY = event.clientY;
+        }
+    }
+    if (AdaptNet_2DTouchAction && AdaptNet_2DTouchAction.pointers.size >= 2) {
+        return [...AdaptNet_2DTouchAction.pointers.values()].slice(0, 2);
+    }
+    return null;
+}
+
+
+/**
+ * 名称     : 2Dタッチ回転開始
+ * 内容     : 2Dタッチ回転を開始する
+ * @param {Array<Object>} pair - タッチペア
+ * @returns {boolean} - 2Dタッチ回転の開始
+ */
+function AdaptNet_Start2DTouchRotation(pair) {
+    if (!pair || pair.length < 2) return false;
+    const midpoint = {
+        clientX: (pair[0].clientX + pair[1].clientX) / 2,
+        clientY: (pair[0].clientY + pair[1].clientY) / 2
+    };
+    const center = AdaptNet_Get2DGraphPoint(midpoint.clientX, midpoint.clientY);
+    if (!center) return false;
+
+    AdaptNet_2DTouchAction.rotation = {
+        lastAngle: Math.atan2(
+            pair[1].clientY - pair[0].clientY,
+            pair[1].clientX - pair[0].clientX
+        ),
+        center
+    };
+    return true;
+}
+
+/**
+ * 名称     : 2Dタッチ回転
+ * 内容     : 2Dタッチ回転
+ * @param {number} deltaAngle - 角度差
+ * @param {Object} center - 回転中心
+ * @returns {void}
+ */
+function AdaptNet_Rotate2DNodes(deltaAngle, center) {
+    if (!Number.isFinite(deltaAngle) || !center) return;
+    const cos = Math.cos(deltaAngle);
+    const sin = Math.sin(deltaAngle);
+
+    AdaptNet_CurrentNodes.forEach(node => {
+        if (!Number.isFinite(Number(node.x)) || !Number.isFinite(Number(node.y))) return;
+        const offsetX = Number(node.x) - center.x;
+        const offsetY = Number(node.y) - center.y;
+        node.x = center.x + offsetX * cos - offsetY * sin;
+        node.y = center.y + offsetX * sin + offsetY * cos;
+
+        // 固定済みノードは、表示位置と固定位置を同時に回転させる。
+        if (Number.isFinite(Number(node.fx))) node.fx = node.x;
+        if (Number.isFinite(Number(node.fy))) node.fy = node.y;
+        if (Number.isFinite(Number(node.vx)) && Number.isFinite(Number(node.vy))) {
+            const velocityX = Number(node.vx);
+            const velocityY = Number(node.vy);
+            node.vx = velocityX * cos - velocityY * sin;
+            node.vy = velocityX * sin + velocityY * cos;
+        }
+    });
+}
+
+/**
+ * 名称     : 2Dタッチ回転の適用
+ * 内容     : 2Dタッチ回転を適用する
+ * @param {Event} event - タッチイベント
+ * @returns {boolean} - 2Dタッチ回転の適用
+ */
+function AdaptNet_Apply2DTouchRotation(event) {
+    if (!AdaptNet_2DTouchAction || AdaptNet_NetworkMode !== '2d') return false;
+    const pair = AdaptNet_GetTouchPair(event);
+    if (!pair || pair.length < 2) return false;
+
+    if (!AdaptNet_2DTouchAction.rotation && !AdaptNet_Start2DTouchRotation(pair)) return false;
+    const angle = Math.atan2(
+        pair[1].clientY - pair[0].clientY,
+        pair[1].clientX - pair[0].clientX
+    );
+    const deltaAngle = AdaptNet_NormalizeAngle(angle - AdaptNet_2DTouchAction.rotation.lastAngle);
+    AdaptNet_Rotate2DNodes(deltaAngle, AdaptNet_2DTouchAction.rotation.center);
+    AdaptNet_2DTouchAction.rotation.lastAngle = angle;
+    return true;
+}
+
+/**
+ * 名称     : 2Dタッチ回転の停止
+ * 内容     : 2Dタッチ回転を停止する
+ * @param {Event} event - タッチイベント
+ * @returns {void}
+ */
+function AdaptNet_Stop2DTouchRotation(event) {
+    if (event && event.pointerId != null && AdaptNet_2DTouchAction) {
+        AdaptNet_2DTouchAction.pointers.delete(event.pointerId);
+    }
+    if (AdaptNet_2DTouchAction) {
+        AdaptNet_2DTouchAction.rotation = null;
+    }
+}
+
+/**
+ * 名称     : 2Dタッチイベントのブロック
+ * 内容     : 2Dタッチイベントをブロックする
+ * @param {Event} event - タッチイベント
+ * @returns {void}
+ */
+function AdaptNet_Block2DTouchEvent(event) {
+    if (event.cancelable) event.preventDefault();
+    event.stopImmediatePropagation();
+}
+
+/**
+ * 名称     : 2Dタッチ回転の解除
+ * 内容     : 2Dタッチ回転の解除
+ * @returns {void}
+ */
+function AdaptNet_Remove2DTouchRotation() {
+    if (AdaptNet_2DTouchTarget && AdaptNet_2DTouchHandlers) {
+        Object.entries(AdaptNet_2DTouchHandlers).forEach(([type, handler]) => {
+            if (typeof handler === 'function') {
+                AdaptNet_2DTouchTarget.removeEventListener(type, handler, true);
+            }
+        });
+        if (AdaptNet_2DTouchHandlers.pointerdown) {
+            AdaptNet_2DTouchTarget.style.touchAction = AdaptNet_2DTouchHandlers.originalTouchAction;
+        }
+    }
+    AdaptNet_2DTouchTarget = null;
+    AdaptNet_2DTouchHandlers = null;
+    AdaptNet_2DTouchAction = null;
+}
+
+/**
+ * 名称     : 2Dタッチ回転のインストール
+ * 内容     : 2Dタッチ回転のインストール
+ * @param {HTMLElement} container - コンテナ
+ * @returns {void}
+ */
+function AdaptNet_Install2DTouchRotation(container) {
+    AdaptNet_Remove2DTouchRotation();
+    if (!container || AdaptNet_NetworkMode !== '2d') return;
+
+    const action = {
+        pointers: new Map(),
+        rotation: null
+    };
+    const handlers = {
+        originalTouchAction: container.style.touchAction,
+        pointerdown: event => {
+            if (event.pointerType !== 'touch') return;
+            action.pointers.set(event.pointerId, {
+                clientX: event.clientX,
+                clientY: event.clientY
+            });
+            if (action.pointers.size >= 2) {
+                AdaptNet_2DTouchAction = action;
+                AdaptNet_Start2DTouchRotation(AdaptNet_GetTouchPair(event));
+                AdaptNet_Block2DTouchEvent(event);
+            }
+        },
+        pointermove: event => {
+            if (event.pointerType !== 'touch' || !action.pointers.has(event.pointerId)) return;
+            AdaptNet_2DTouchAction = action;
+            if (action.pointers.size >= 2 && AdaptNet_Apply2DTouchRotation(event)) {
+                AdaptNet_Block2DTouchEvent(event);
+            }
+        },
+        pointerup: event => {
+            if (event.pointerType !== 'touch' || !action.pointers.has(event.pointerId)) return;
+            const wasRotating = !!action.rotation;
+            AdaptNet_Stop2DTouchRotation(event);
+            if (wasRotating) AdaptNet_Block2DTouchEvent(event);
+        },
+        pointercancel: event => {
+            if (event.pointerType !== 'touch' || !action.pointers.has(event.pointerId)) return;
+            const wasRotating = !!action.rotation;
+            AdaptNet_Stop2DTouchRotation(event);
+            if (wasRotating) AdaptNet_Block2DTouchEvent(event);
+        }
+    };
+
+    // Pointer Events対応ブラウザ（現行PC/スマホ）を優先し、非対応環境はTouch Eventsで補完する。
+    if (typeof window !== 'undefined' && window.PointerEvent) {
+        ['pointerdown', 'pointermove', 'pointerup', 'pointercancel'].forEach(type => {
+            container.addEventListener(type, handlers[type], { capture: true, passive: false });
+        });
+    } else {
+        handlers.touchstart = event => {
+            if (!event.touches || event.touches.length < 2) return;
+            AdaptNet_2DTouchAction = action;
+            AdaptNet_Start2DTouchRotation(AdaptNet_GetTouchPair(event));
+            AdaptNet_Block2DTouchEvent(event);
+        };
+        handlers.touchmove = event => {
+            if (!event.touches || event.touches.length < 2) return;
+            AdaptNet_2DTouchAction = action;
+            if (AdaptNet_Apply2DTouchRotation(event)) AdaptNet_Block2DTouchEvent(event);
+        };
+        handlers.touchend = event => {
+            if (!action.rotation) return;
+            AdaptNet_Stop2DTouchRotation(event);
+            AdaptNet_Block2DTouchEvent(event);
+        };
+        handlers.touchcancel = handlers.touchend;
+        ['touchstart', 'touchmove', 'touchend', 'touchcancel'].forEach(type => {
+            container.addEventListener(type, handlers[type], { capture: true, passive: false });
+        });
+    }
+    container.style.touchAction = 'none';
+    AdaptNet_2DTouchTarget = container;
+    AdaptNet_2DTouchHandlers = handlers;
+    AdaptNet_2DTouchAction = action;
+}
+
+/**
  * 名称     : 3Dテキストスプライト作成
  * 内容     : 3Dテキストスプライトを作成する
  * @param {string} text - テキスト
@@ -338,6 +615,7 @@ function AdaptNet_ApplyInteractionHandlers() {
  * 内容     : Force-Graphを破棄する
  */
 function AdaptNet_DestroyNetwork() {
+    AdaptNet_Remove2DTouchRotation();
     if (!AdaptNet_Network) return;
 
     try {
@@ -478,6 +756,7 @@ function AdaptNet_BuildActiveNetwork(mode, container) {
             : AdaptNet_Create2DNetwork(container);
         AdaptNet_NetworkMode = mode;
         AdaptNet_NetworkContainer = container;
+        AdaptNet_Install2DTouchRotation(container);
         AdaptNet_ApplyForceSettings(AdaptNet_Network);
         AdaptNet_ApplyInteractionHandlers();
         AdaptNet_NetworkInitialized = true;

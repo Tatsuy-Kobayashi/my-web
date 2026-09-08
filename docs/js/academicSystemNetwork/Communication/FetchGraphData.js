@@ -96,9 +96,20 @@ export async function FETCHGRAPH_FetchRelationTypes() {
     // 関係タイプ
     // ------------------------
     console.log('[INIT] Loading relationTypes...');
-    const FETCHGRAPH_RelationTypes = await FetchGraph_FetchJson(FetchGraph_BASE_URL + 'relationTypes.json', []);
+    const expectedSchemaVersion = 1;
+    const FETCHGRAPH_RelationTypesData = await FetchGraph_FetchJson(FetchGraph_BASE_URL + 'relationTypes.json', null);
 
-    return FETCHGRAPH_RelationTypes;
+    if (!FETCHGRAPH_RelationTypesData || typeof FETCHGRAPH_RelationTypesData !== 'object' || Array.isArray(FETCHGRAPH_RelationTypesData)) {
+        throw new Error('[FetchGraphData] relationTypes.json must be an object.');
+    }
+    if (FETCHGRAPH_RelationTypesData.schemaVersion !== expectedSchemaVersion) {
+        throw new Error(`[FetchGraphData] Unsupported relationTypes schemaVersion: ${FETCHGRAPH_RelationTypesData.schemaVersion}`);
+    }
+    if (!Array.isArray(FETCHGRAPH_RelationTypesData.relationTypes)) {
+        throw new Error('[FetchGraphData] relationTypes.json must contain a relationTypes array.');
+    }
+
+    return FETCHGRAPH_RelationTypesData.relationTypes;
 }
 
 /**

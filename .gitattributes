@@ -1,0 +1,12 @@
+# Published JSON hashes refer to exact UTF-8/LF bytes on every checkout.
+docs/data/*.json text eol=lf
+data/source/*.json text eol=lf
+
+# Frozen migration fixtures: preserve original (including mixed) line endings.
+docs/js/pageContentRenderer.js -text
+docs/js/integratedSearch.js -text
+docs/js/siteCategoricalDiagram.js -text
+ラクして数理研究所Webサイト/02_ソフトウェアアーキテクチャ設計/統合検索機能AD書.md -text
+ラクして数理研究所Webサイト/02_ソフトウェアアーキテクチャ設計/ページコンテンツ描画機能AD書.md -text
+ラクして数理研究所Webサイト/02_ソフトウェアアーキテクチャ設計/学問体系ネットワーク図AD書.md -text
+docs/js/integratedSearch/Application/NetworkGraphRenderer.js -text

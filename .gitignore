@@ -1,0 +1,4 @@
+node_modules/
+.data-build/
+data/private/*
+!data/private/README.md

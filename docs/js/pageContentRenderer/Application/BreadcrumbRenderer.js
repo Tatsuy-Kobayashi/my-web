@@ -1,3 +1,4 @@
+import { createHierarchyIndex } from '../../common/siteHierarchy/Hierarchy.mjs';
 // ----------------------------------------------------------------------------
 // ファイル名      : BreadcrumbRenderer.js
 // モジュール記号  : BREADRENDR / BreadRendr
@@ -8,7 +9,7 @@
 // ----------------------------------------------------------------------------
 // Import
 // ----------------------------------------------------------------------------
-import { PATHUTILS_GetFirstPath, PATHUTILS_GetAuxPaths, PATHUTILS_ParsePathIds } from './PathUtils.js';
+import { PATHUTILS_ParsePathIds } from './PathUtils.js';
 import { PREVLINK_BuildPreviewLinkHtml } from '../Middleware/PreviewLinkBuilder.js';
 import { DOMWRITER_WriteToContainer } from '../Middleware/DomWriter.js';
 
@@ -63,8 +64,7 @@ export function BREADRENDR_RenderBreadcrumbs(allData, current) {
     };
 
     // collect mainPath (prefer first) and auxPaths (array)
-    const mainPath = PATHUTILS_GetFirstPath(current);
-    const auxPaths = PATHUTILS_GetAuxPaths(current, mainPath);
+    const [mainPath, ...auxPaths] = createHierarchyIndex(allData).getBreadcrumbs(current.id).map(ids => ids.join(':'));
 
     // 列の構築: 最初にメイン列 (Home を含む)、次に auxPath ごとに 1 つの列
     let finalHtml = '';

@@ -8,6 +8,7 @@
 // ----------------------------------------------------------------------------
 // Import
 // ----------------------------------------------------------------------------
+import { ROADMAP_RenderLearningRoadmaps } from './LearningRoadmapRenderer.js';
 import { BREADRENDR_RenderBreadcrumbs } from './BreadcrumbRenderer.js';
 import { DINFORENDR_RenderDateInfo } from './DateInfoRenderer.js';
 import { CHLISTRENDR_RenderChildList } from './ChildListRenderer.js';
@@ -29,17 +30,18 @@ import { CTLISTRENDR_RenderCategoryList } from './CategoryListRenderer.js';
  * @param {Object} currentNode - 現在の記事ノード
  * @returns {Promise<void>}
  */
-export function PCR_RenderAllParts(siteData, concepts, relations, relationTypes, viewStats, currentNode) {
+export function PCR_RenderAllParts(siteData, concepts, relations, relationTypes, viewStats, currentNode, learningRoadmaps = { roadmaps: [] }) {
     // A. パンくずリスト生成
     BREADRENDR_RenderBreadcrumbs(siteData, currentNode);
     // B. 公開日・編集日生成
     DINFORENDR_RenderDateInfo(currentNode);
     // C. 下層記事一覧生成
-    CHLISTRENDR_RenderChildList(siteData, currentNode, 3);
+    CHLISTRENDR_RenderChildList(siteData, currentNode, 4); // Preserve the former 4 visible tiers.
     // D. タグ一覧生成
     TLISTRENDR_RenderTagList(currentNode);
     // E. 型付き概念関係生成
     TRLTRENDR_RenderTypedRelations(siteData, currentNode, concepts, relations, relationTypes);
+    ROADMAP_RenderLearningRoadmaps(siteData, currentNode, learningRoadmaps);
     // F. 関連記事リンク生成
     RLTLINKRENDR_RenderRelatedLinks(siteData, currentNode);
     // G. 前後記事リンク生成

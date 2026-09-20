@@ -1,3 +1,4 @@
+import { getVisibleEdges, createHierarchyIndex } from '../../common/siteHierarchy/Hierarchy.mjs';
 // ----------------------------------------------------------------------------
 // ファイル名      : PathUtils.js
 // モジュール記号  : PATHUTILS / PathUtils
@@ -50,100 +51,16 @@ export function PATHUTILS_EnsureLevelsFromPaths(nodes) {
  * @returns {Object[]} エッジ配列
  */
 export function PATHUTILS_BuildEdgesFromPaths(filteredNodes, relationTypes) {
-    const visible = new Set(filteredNodes.map(n => n.id));
-    const edges = [];
-    // 重複エッジ防止用（from->to をキーにする）
-    // ただし、同じ from->to でも main と aux が競合する場合、main を優先する仕様とする
-    const dedup = new Map(); // Key: "from->to", Value: "main" | "aux"
-
-    // 内部関数: パスからエッジを抽出して一時マップに登録
-    const processPaths = (node, pathList, type) => {
-        if (!pathList) return;
-        for (const pathStr of pathList) {
-            const parts = pathStr.split(":").map(Number);
-
-            // mainPath: 末尾が自身のID
-            // auxPath: 末尾が親ノードIDを指す（親 -> node のエッジを1本作る）
-            let isValid = false;
-            if (type === 'main') {
-                // mainPath は従来通り：末尾が自身のID
-                isValid = (parts[parts.length - 1] === node.id);
-            } else if (type === 'aux') {
-                // auxPath は新仕様：末尾が親ノードのID
-                // したがって parts.length >= 1 であれば OK（末尾が何らかの親を指す）
-                isValid = (parts.length >= 1);
-            }
-
-            if (!isValid) {
-                console.warn(`[WARN] ${type}Path validation failed for node ${node.id}: ${pathStr}`);
-                continue;
-            }
-
-            for (let i = 0; i < parts.length - 1; i++) {
-                const from = parts[i];
-                const to = parts[i + 1];
-
-                // 可視ノード同士のみ
-                if (!visible.has(from) || !visible.has(to)) continue;
-
-                const key = `${from}->${to}`;
-                const currentType = dedup.get(key);
-
-                // まだ登録されていない、または既存が aux で今回が main の場合は上書き（main優先）
-                if (!currentType || (currentType === 'aux' && type === 'main')) {
-                    dedup.set(key, type);
-                }
-            }
-        }
-    };
-
-    for (const n of filteredNodes) {
-        // 1. auxPath (副経路) を先に処理
-        processPaths(n, n.auxPath, 'aux');
-        // 2. mainPath (主経路) を後に処理（重複時は main として判定させるため）
-        processPaths(n, n.mainPath, 'main');
-    }
-
-    // マップから最終的なエッジ配列を生成
-    dedup.forEach((type, key) => {
-        const [from, to] = key.split('->').map(Number);
-
-        const relationType = type === 'main' ? 'main_path' : 'aux_path';
-        const typeDef = PathUtils_GetRelationTypeDef(relationType, relationTypes);
-
-        let edgeOptions = {
-            from,
-            to,
-            type: relationType,
-            relationType,
-            title: typeDef.description || relationType,
-            // mainPath / auxPath はいずれも親から子へたどる階層エッジ
-            arrows: 'to'
-        };
-
-        if (type === 'main') {
-            // 主経路: 直線（物理演算の骨格となる）
-            edgeOptions.smooth = { enabled: false };
-            // 必要であれば色や幅を強調
-            // edgeOptions.width = 2;
-        } else {
-            // 副経路: 曲線（物理要請を尊重しつつ、空いている空間を通す）
-            edgeOptions.smooth = {
-                enabled: true,
-                type: "dynamic",   // 動的に曲がり具合を調整
-                roundness: 0.4
-            };
-            // 物理的な長さを主経路の数倍に設定して「緩く」する
-            // これにより、主経路の構造（反発力と張力）が優先され、副経路はそこからあぶれた距離をつなぐ形になる
-            edgeOptions.length = 300; // default (65) の約4〜5倍
-            // 副経路であることを視覚的に区別（例: 破線、少し薄い色など）
-            edgeOptions.dashes = true;
-            edgeOptions.color = { opacity: 0.6, inherit: 'from' };
-        }
-        edges.push(edgeOptions);
+    return getVisibleEdges(filteredNodes).map(({ from, to, type }) => {
+        const typeDef = PathUtils_GetRelationTypeDef(type, relationTypes);
+        const edge = { from, to, type, relationType: type, title: typeDef.description || type, arrows: 'to' };
+        if (type === 'main_path') edge.smooth = { enabled: false };
+        else Object.assign(edge, {
+            smooth: { enabled: true, type: 'dynamic', roundness: 0.4 },
+            length: 300, dashes: true, color: { opacity: 0.6, inherit: 'from' }
+        });
+        return edge;
     });
-
-    return edges;
 }
 
 /**
@@ -178,8 +95,9 @@ export function PATHUTILS_BuildKeywordLayerEdges(filteredNodes, keywordEdgesData
                 relationType: edge.relationType || edge.type || 'keyword_shared',
                 label: keywordLabel,
                 title: `共通タグ : ${keywordLabel} : ${fromLabel} ↔ ${toLabel}`,
-                dashes: true,
-                arrows: '',
+                dashes: Boolean(typeDef.presentation?.dashes),
+                arrows: typeDef.presentation?.arrows ?? '',
+                // keywordEdges.weight is a generated shared-tag strength, separate from typed relation strength.
                 width: Math.max(1, Math.min(4, 1 + Number(edge.weight || 0) * 3)),
                 color: { color: '#8A8F98', opacity: 0.45 },
                 smooth: { enabled: true, type: 'dynamic', roundness: 0.25 },
@@ -229,9 +147,9 @@ export function PATHUTILS_BuildTypedRelationLayerEdges(filteredNodes, conceptsDa
                 relationType: relation.type,
                 label: typeDef.edgeLabel || typeDef.label || relation.type,
                 title: `${fromLabel} → ${toLabel}: ${typeDef.description || relation.note || relation.type}`,
-                arrows: typeDef.directed === false ? '' : 'to',
-                dashes: Boolean(typeDef.visual && typeDef.visual.dashes),
-                width: Math.max(1, Math.min(5, 1 + Number(relation.weight || relation.confidence || 0.5) * 3)),
+                arrows: typeDef.presentation?.arrows ?? (typeDef.directed === false ? '' : 'to'),
+                dashes: Boolean(typeDef.presentation?.dashes),
+                width: Math.max(1, Math.min(5, 1 + Number(relation.strength) * 2 + Number(typeDef.presentation?.visualPriority || 0))),
                 color: { color: '#2F6FB0', opacity: 0.75 },
                 smooth: { enabled: true, type: 'dynamic', roundness: 0.2 },
                 length: 180
@@ -268,49 +186,11 @@ export function PATHUTILS_BuildVisibleEdges(filteredNodes, edgeLayerState, data)
  */
 // 備考     : 現在はノードフォーカス処理のみからコールされる。
 export function PATHUTILS_BuildParentChildMaps(nodesData) {
-    const parentsMap = new Map();
-    const childrenMap = new Map();
-    const ids = new Set(nodesData.map(n => n.id));
-
-    for (const n of nodesData) {
-        if (n.mainPath) {
-            const mainPaths = Array.isArray(n.mainPath) ? n.mainPath : [n.mainPath];
-            mainPaths.forEach(p => {
-                if (typeof p !== 'string') return;
-                const parts = p.split(':').map(Number);
-                for (let i = 0; i < parts.length - 1; i++) {
-                    const parent = parts[i];
-                    const child = parts[i + 1];
-                    if (!ids.has(parent) || !ids.has(child)) continue;
-
-                    if (!childrenMap.has(parent)) childrenMap.set(parent, new Set());
-                    childrenMap.get(parent).add(child);
-                    if (!parentsMap.has(child)) parentsMap.set(child, new Set());
-                    parentsMap.get(child).add(parent);
-                }
-            });
-        }
-
-        // auxPath: normalizeAuxPathsIfNeeded() により末尾は node.id に正規化済み
-        // mainPath と同様に全隣接ペアを走査し、auxPath 経由の親子関係も正しく登録する
-        // （旧実装では末尾IDのみを親として扱っていたため、正規化後に自己参照が生じていた）
-        if (n.auxPath) {
-            const auxPaths = Array.isArray(n.auxPath) ? n.auxPath : [n.auxPath];
-            auxPaths.forEach(p => {
-                if (typeof p !== 'string') return;
-                const parts = p.split(':').map(Number);
-                for (let i = 0; i < parts.length - 1; i++) {
-                    const parent = parts[i];
-                    const child = parts[i + 1];
-                    if (!ids.has(parent) || !ids.has(child)) continue;
-
-                    if (!childrenMap.has(parent)) childrenMap.set(parent, new Set());
-                    childrenMap.get(parent).add(child);
-                    if (!parentsMap.has(child)) parentsMap.set(child, new Set());
-                    parentsMap.get(child).add(parent);
-                }
-            });
-        }
+    const index = createHierarchyIndex(nodesData);
+    const parentsMap = new Map(), childrenMap = new Map();
+    for (const node of nodesData) {
+        parentsMap.set(node.id, new Set(index.getParents(node.id).map(edge => edge.from)));
+        childrenMap.set(node.id, new Set(index.getChildren(node.id).map(edge => edge.to)));
     }
     return { parentsMap, childrenMap };
 }
@@ -369,33 +249,3 @@ export function PATHUTILS_ComputeFocusSet(nodeId, upDepth, downDepth, parentsMap
     return result;
 }
 
-/**
- * 名称     : auxPath 正規化
- * 内容     : auxPath の末尾が存在しない参照になっている場合、チェック対象ノードの id で置換しておく
- * @param {Array<Object>} nodes - ノードデータ配列
- */
-export function PATHUTILS_NormalizeAuxPaths(nodes) {
-    const ids = new Set(nodes.map(n => n.id));
-
-    for (const node of nodes) {
-        if (!node.auxPath) continue;
-        const auxArr = Array.isArray(node.auxPath) ? [...node.auxPath] : [node.auxPath];
-
-        for (let i = 0; i < auxArr.length; i++) {
-            const p = auxArr[i];
-            if (typeof p !== 'string') continue;
-            const parts = p.split(':');
-            if (parts.length < 1) continue;
-            const lastId = Number(parts[parts.length - 1]);
-
-            if (!ids.has(lastId)) {
-                // 存在しない末尾IDはこの node.id で置換する
-                parts[parts.length - 1] = String(node.id);
-                const replaced = parts.join(':');
-                auxArr[i] = replaced;
-                console.log('[INFO] auxPath末尾を置換:', p, '->', replaced);
-            }
-        }
-        node.auxPath = Array.isArray(node.auxPath) ? auxArr : auxArr[0];
-    }
-}

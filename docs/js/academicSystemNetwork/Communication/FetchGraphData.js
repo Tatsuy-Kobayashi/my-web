@@ -5,25 +5,26 @@
 // 内容            : JSONファイルから検索、サイトデータ、概念、関係、ランキングなどのデータをフェッチする
 // Copyright(c) 2025 Fibrantix CO.,LTD. All Rights Reserved
 // ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// Import
+// ----------------------------------------------------------------------------
+import { DATA_BASE_URL, loadDataSet } from '../../common/siteHierarchy/HierarchyLoader.mjs';
 
-const FetchGraph_BASE_URL = 'https://tatsuy-kobayashi.github.io/my-web/docs/data/';
+const FetchGraph_BASE_URL = DATA_BASE_URL;
+let graphDataPromise;
+function graphData() {
+    return graphDataPromise ??= loadDataSet(['siteData','siteHierarchy','concepts','relations','relationTypes','keywordEdges','ranking']);
+}
 
 /**
  * 名称     : JSONファイル取得処理
  * 内容     : JSONファイルからデータを読み込む
  * @param {string} url - 取得先URL
- * @param {any} fallback - エラー時のフォールバック値
  * @returns {Promise<any>}
  */
-async function FetchGraph_FetchJson(url, fallback) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        return await response.json();
-    } catch (e) {
-        console.warn(`[FetchGraphData] Failed to fetch ${url}. Using fallback.`, e);
-        return fallback;
-    }
+async function FetchGraph_FetchJson(url) {
+    const name = new URL(url).pathname.split('/').at(-1).replace('.json','');
+    return (await graphData())[name];
 }
 
 /**
@@ -36,7 +37,7 @@ export async function FETCHGRAPH_FetchNodesData() {
     // データ（ノード）
     // ------------------------
     console.log('[INIT] Loading nodesData...');
-    const FETCHGRAPH_NodesData = await FetchGraph_FetchJson(FetchGraph_BASE_URL + 'siteData.json', []);
+    const FETCHGRAPH_NodesData = (await graphData()).nodes;
 
     return FETCHGRAPH_NodesData;
 }
@@ -51,7 +52,7 @@ export async function FETCHGRAPH_FetchKeywordEdges() {
     // キーワード間の関係
     // ------------------------
     console.log('[INIT] Loading keywordEdges...');
-    const FETCHGRAPH_KeywordEdges = await FetchGraph_FetchJson(FetchGraph_BASE_URL + 'keywordEdges.json', []);
+    const FETCHGRAPH_KeywordEdges = await FetchGraph_FetchJson(FetchGraph_BASE_URL + 'keywordEdges.json');
 
     return FETCHGRAPH_KeywordEdges;
 }
@@ -66,7 +67,7 @@ export async function FETCHGRAPH_FetchConcepts() {
     // 概念エンティティ
     // ------------------------
     console.log('[INIT] Loading concepts...');
-    const FETCHGRAPH_Concepts = await FetchGraph_FetchJson(FetchGraph_BASE_URL + 'concepts.json', []);
+    const FETCHGRAPH_Concepts = await FetchGraph_FetchJson(FetchGraph_BASE_URL + 'concepts.json');
 
     return FETCHGRAPH_Concepts;
 }
@@ -81,7 +82,7 @@ export async function FETCHGRAPH_FetchRelations() {
     // 型付き辺
     // ------------------------
     console.log('[INIT] Loading relations...');
-    const FETCHGRAPH_Relations = await FetchGraph_FetchJson(FetchGraph_BASE_URL + 'relations.json', []);
+    const FETCHGRAPH_Relations = await FetchGraph_FetchJson(FetchGraph_BASE_URL + 'relations.json');
 
     return FETCHGRAPH_Relations;
 }
@@ -97,7 +98,7 @@ export async function FETCHGRAPH_FetchRelationTypes() {
     // ------------------------
     console.log('[INIT] Loading relationTypes...');
     const expectedSchemaVersion = 1;
-    const FETCHGRAPH_RelationTypesData = await FetchGraph_FetchJson(FetchGraph_BASE_URL + 'relationTypes.json', null);
+    const FETCHGRAPH_RelationTypesData = await FetchGraph_FetchJson(FetchGraph_BASE_URL + 'relationTypes.json');
 
     if (!FETCHGRAPH_RelationTypesData || typeof FETCHGRAPH_RelationTypesData !== 'object' || Array.isArray(FETCHGRAPH_RelationTypesData)) {
         throw new Error('[FetchGraphData] relationTypes.json must be an object.');
@@ -122,7 +123,7 @@ export async function FETCHGRAPH_FetchRankingData() {
     // ランキングスコア
     // ------------------------
     console.log('[INIT] Loading ranking...');
-    const FetchGraph_RankingData = await FetchGraph_FetchJson(FetchGraph_BASE_URL + 'ranking.json', { scores: [] });
+    const FetchGraph_RankingData = (await graphData()).ranking;
     const FETCHGRAPH_RankingData = Array.isArray(FetchGraph_RankingData.scores) ? FetchGraph_RankingData.scores : [];
 
     return FETCHGRAPH_RankingData;

@@ -8,7 +8,8 @@
 // ----------------------------------------------------------------------------
 // Import
 // ----------------------------------------------------------------------------
-import { PATHUTILS_NormalizeAuxPaths, PATHUTILS_BuildVisibleEdges } from './PathUtils.js';
+import { assertLoadedNodes } from '../../common/siteHierarchy/Hierarchy.mjs';
+import { PATHUTILS_BuildVisibleEdges } from './PathUtils.js';
 import { SEARCHDEPTH_BindDepthSearchEvents, SEARCHDEPTH_PerformDepthSearch } from './DepthSearcher.js';
 import { SEARCHLABEL_BindLabelSearchEvents, SEARCHLABEL_PerformLabelSearch } from './LabelSearcher.js';
 import { SEARCHPAGE_ClearPageSearchHighlight, SEARCHPAGE_BindPageSearchEvents, SEARCHPAGE_PerformPageSearch } from './PageSearcher.js';
@@ -34,66 +35,15 @@ import { DOMWRITER_QuerySelector } from '../Middleware/DomWriter.js';
 export function ASNCTRL_ValidateData(nodesData) {
     APPSTATE_SetState(APPSTATE_STATE.DATA_INITIALIZATION);
     console.log('[STATE] DATA_INITIALIZATION');
-
-    // ノード id 重複チェック
-    // IDs を事前に収集しておく（空のままだと存在チェックが常に失敗する問題の修正）
-    const ids = new Set();
-    const duplicateIds = [];
-    for (const n of nodesData) {
-        if (ids.has(n.id)) duplicateIds.push(n.id);
-        ids.add(n.id);
-    }
-    if (duplicateIds.length) {
-        console.error('[ERROR] ノードIDの重複が検出されました:', duplicateIds);
+    APPSTATE_SetErrorFlag('invalidData', false);
+    try {
+        assertLoadedNodes(nodesData);
+        return true;
+    } catch (error) {
+        console.error(error);
         APPSTATE_SetErrorFlag('invalidData', true);
+        return false;
     }
-
-    // auxPath の正規化
-    // auxPath の末尾が存在しない参照になっている場合、
-    // チェック対象ノードの id で置換しておく
-    PATHUTILS_NormalizeAuxPaths(nodesData);
-
-    for (const n of nodesData) {
-        if (!n.mainPath || n.mainPath.length === 0) {
-            APPSTATE_SetErrorFlag('invalidData', true);
-            continue;
-        }
-
-        const pathsToCheck = [...n.mainPath];
-        if (n.auxPath && Array.isArray(n.auxPath)) {
-            pathsToCheck.push(...n.auxPath);
-        }
-
-        for (const p of pathsToCheck) {
-            const parts = p.split(':').map(Number);
-            const isMainPath = Array.isArray(n.mainPath) && n.mainPath.includes(p);
-
-            if (isMainPath) {
-                // 末尾チェック
-                if (parts[parts.length - 1] !== n.id) {
-                    console.error('[ERROR] mainPath の末尾が id と一致しません:', n.id, p);
-                    APPSTATE_SetErrorFlag('invalidData', true);
-                    continue;
-                }
-                // 参照チェック
-                for (const pid of parts) {
-                    if (!ids.has(pid)) {
-                        console.error('[ERROR] path が存在しないノードを参照しています:', p, 'missing:', pid);
-                        APPSTATE_SetErrorFlag('invalidData', true);
-                    }
-                }
-            } else {
-                // auxPath: 末尾は親ID（緩い条件）
-                if (parts.length < 1) {
-                    console.error('[ERROR] auxPath が空です:', n.id, p);
-                    APPSTATE_SetErrorFlag('invalidData', true);
-                    continue;
-                }
-            }
-        }
-    }
-
-    return !APPSTATE_GetErrorFlags().invalidData;
 }
 
 // ------------------------

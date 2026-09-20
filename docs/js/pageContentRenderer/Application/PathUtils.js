@@ -1,3 +1,4 @@
+import { parsePath } from '../../common/siteHierarchy/Hierarchy.mjs';
 // ----------------------------------------------------------------------------
 // ファイル名      : PathUtils.js
 // モジュール記号  : PATHUTILS / PathUtils
@@ -35,8 +36,7 @@ export function PATHUTILS_GetParentPath(path) {
  * @returns {number[]} 数値配列（例: [1, 2, 3]）
  */
 export function PATHUTILS_ParsePathIds(pathStr) {
-    if (!pathStr || typeof pathStr !== 'string') return [];
-    return pathStr.split(':').map(s => parseInt(s.trim(), 10)).filter(n => Number.isFinite(n));
+    return parsePath(pathStr);
 }
 
 /**

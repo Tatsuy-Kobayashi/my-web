@@ -1,3 +1,4 @@
+import { createHierarchyIndex } from '../../common/siteHierarchy/Hierarchy.mjs';
 // ----------------------------------------------------------------------------
 // ファイル名      : PagerRenderer.js
 // モジュール記号  : PAGRRENDR / PagrRendr
@@ -6,7 +7,6 @@
 // Copyright(c) 2025 Fibrantix CO.,LTD. All Rights Reserved
 // ----------------------------------------------------------------------------
 
-import { PATHUTILS_GetFirstPath, PATHUTILS_GetParentPath } from './PathUtils.js';
 import { HTMLHLPR_EnsureArray } from '../Middleware/HtmlHelper.js';
 import { PREVLINK_BuildThumbHtml } from '../Middleware/PreviewLinkBuilder.js';
 import { DOMWRITER_WriteToContainer } from '../Middleware/DomWriter.js';
@@ -20,26 +20,9 @@ export function PAGRRENDR_RenderPager(allData, current) {
     // allData を配列に統一
     allData = HTMLHLPR_EnsureArray(allData);
 
-    const currentPath = PATHUTILS_GetFirstPath(current);      // mainPath から経路情報を抽出するヘルパ
-    if (!currentPath) return;
-
-    const parentPath = PATHUTILS_GetParentPath(currentPath);  // 親パスを計算（最後の ID を除いたパス）
-    if (!parentPath) return;                        // ルートレベルには兄弟がない
-
-    // 同じ親を持つ兄弟を抽出
-    const siblings = allData.filter(item => {
-        const itemPath = PATHUTILS_GetFirstPath(item);
-        return PATHUTILS_GetParentPath(itemPath) === parentPath;
-    });
-
-    // mainPath の最後の ID でソート
-    siblings.sort((a, b) => {
-        const aPath = PATHUTILS_GetFirstPath(a);
-        const bPath = PATHUTILS_GetFirstPath(b);
-        const aId = parseInt(aPath.split(':').pop(), 10);
-        const bId = parseInt(bPath.split(':').pop(), 10);
-        return aId - bId;
-    });
+    if (current.primaryParentId === null) return;
+    const siblings = createHierarchyIndex(allData)
+        .getChildren(current.primaryParentId, ['main_path']).map(entry => entry.node);
 
     const currentIndex = siblings.findIndex(item => item.url === current.url);
     if (currentIndex === -1) {

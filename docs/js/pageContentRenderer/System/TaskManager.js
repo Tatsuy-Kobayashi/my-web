@@ -8,7 +8,7 @@
 // ----------------------------------------------------------------------------
 // Import
 // ----------------------------------------------------------------------------
-import { FETCHDATA_FetchSiteData, FETCHDATA_FetchConcepts, FETCHDATA_FetchRelations, FETCHDATA_FetchRelationTypes, FETCHDATA_FetchViewStats } from '../Communication/FetchSiteData.js';
+import { FETCHDATA_FetchSiteData, FETCHDATA_FetchConcepts, FETCHDATA_FetchRelations, FETCHDATA_FetchRelationTypes, FETCHDATA_FetchViewStats, FETCHDATA_FetchLearningRoadmaps } from '../Communication/FetchSiteData.js';
 import { DEVICE_ResolveCurrentNode } from '../Communication/DeviceInfo.js';
 import { PCR_RenderAllParts } from '../Application/PcrCtrl.js';
 
@@ -19,15 +19,17 @@ import { PCR_RenderAllParts } from '../Application/PcrCtrl.js';
  * @returns {Promise<void>}
  */
 export async function TskMng_BootPgCntRndr() {
-    // データの取得
-    const TSKMNG_SiteData       = await FETCHDATA_FetchSiteData();
-    const TSKMNG_Concepts       = await FETCHDATA_FetchConcepts();
-    const TSKMNG_Relations      = await FETCHDATA_FetchRelations();
-    const TSKMNG_RelationTypes  = await FETCHDATA_FetchRelationTypes();
-    const TSKMNG_ViewStats      = await FETCHDATA_FetchViewStats();
-
-    // 現在の記事ノードを特定
     try {
+        // データの取得
+        const TSKMNG_SiteData       = await FETCHDATA_FetchSiteData();
+        const TSKMNG_Concepts       = await FETCHDATA_FetchConcepts();
+        const TSKMNG_Relations      = await FETCHDATA_FetchRelations();
+        const TSKMNG_RelationTypes  = await FETCHDATA_FetchRelationTypes();
+        const TSKMNG_ViewStats      = await FETCHDATA_FetchViewStats();
+
+        const learningRoadmaps = await FETCHDATA_FetchLearningRoadmaps();
+
+        // 現在の記事ノードを特定
         const TSKMNG_CurrentNode = DEVICE_ResolveCurrentNode(TSKMNG_SiteData);
 
         if (!TSKMNG_CurrentNode) {
@@ -36,7 +38,7 @@ export async function TskMng_BootPgCntRndr() {
         }
 
         // --- 各パーツの生成実行 ---
-        PCR_RenderAllParts(TSKMNG_SiteData, TSKMNG_Concepts, TSKMNG_Relations, TSKMNG_RelationTypes, TSKMNG_ViewStats, TSKMNG_CurrentNode);
+        PCR_RenderAllParts(TSKMNG_SiteData, TSKMNG_Concepts, TSKMNG_Relations, TSKMNG_RelationTypes, TSKMNG_ViewStats, TSKMNG_CurrentNode, learningRoadmaps);
     } catch (error) {
         console.error('Error initializing page components:', error);
     }

@@ -73,12 +73,17 @@ export function TRLTRENDR_RenderTypedRelations(allData, current, conceptData, re
     const grouped = new Map();
     relatedRelations.forEach(relation => {
         const isOutgoing = relation.from === currentConcept.conceptId;
-        const type = isOutgoing ? relation.type : (relation.inverseType || relation.type);
+        const definition = relationTypeMap.get(relation.type);
+        const type = isOutgoing ? relation.type : definition?.inverseType;
+        if (!type || !relationTypeMap.has(type)) {
+            console.warn('[TypedRelationRenderer] Unknown relation type:', relation.type);
+            return;
+        }
         if (!grouped.has(type)) grouped.set(type, []);
         grouped.get(type).push(Object.assign({}, relation, { __isOutgoing: isOutgoing, __displayType: type }));
     });
 
-    const sortByWeight = (a, b) => Number(b.weight || b.confidence || 0) - Number(a.weight || a.confidence || 0);
+    const sortByStrength = (a, b) => Number(b.strength) - Number(a.strength);
 
     // HTML 生成
     let html = '<section class="typed-relations">';
@@ -93,13 +98,16 @@ export function TRLTRENDR_RenderTypedRelations(allData, current, conceptData, re
         html += `<h3 class="typed-relations-type" title="${HTMLHLPR_EscapeHtml(typeDescription)}">${HTMLHLPR_EscapeHtml(typeLabel)}</h3>`;
         html += '<ul class="typed-relations-list">';
 
-        items.sort(sortByWeight).forEach(relation => {
+        items.sort(sortByStrength).forEach(relation => {
             const targetConceptId = relation.__isOutgoing ? relation.to : relation.from;
             const targetConcept = conceptById.get(targetConceptId);
-            const targetLabel = TypRltRendr_GetConceptLabel(targetConcept) || targetConceptId;
-            const targetUrl = TypRltRendr_GetConceptUrl(targetConcept);
-            const score = relation.weight != null ? relation.weight : relation.confidence;
-            const scoreText = Number.isFinite(Number(score)) ? ` <span class="typed-relation-score">(${Number(score).toFixed(2)})</span>` : '';
+            const targetLabel = TRltRendr_GetConceptLabel(targetConcept) || targetConceptId;
+            const targetUrl = TRltRendr_GetConceptUrl(targetConcept);
+            const strength = Number(relation.strength);
+            const confidence = Number(relation.confidence);
+            const scoreText = Number.isFinite(strength) && Number.isFinite(confidence)
+                ? ` <span class="typed-relation-score">(強さ ${strength.toFixed(2)} / 確信度 ${confidence.toFixed(2)})</span>`
+                : '';
             const noteText = relation.note ? `<span class="typed-relation-note">${HTMLHLPR_EscapeHtml(relation.note)}</span>` : '';
             const targetHtml = targetUrl
                 ? `<a href="${HTMLHLPR_EscapeHtml(targetUrl)}">${HTMLHLPR_EscapeHtml(targetLabel)}</a>`

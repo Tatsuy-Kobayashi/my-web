@@ -5,13 +5,13 @@
     "to": "concept_academic_disciplines",
     "type": "part_of",
     "inverseType": "has_part",
-    "confidence": 1.0,
-    "weight": 1.0,
+    "confidence": 1,
     "evidence": {
       "sitePath": "0:3",
       "siteId": 3
     },
-    "note": "形式科学は学問の下位分類。"
+    "note": "形式科学は学問の下位分類。",
+    "strength": 1
   },
   {
     "relationId": "rel_0002",
@@ -19,13 +19,13 @@
     "to": "concept_formal_sciences",
     "type": "part_of",
     "inverseType": "has_part",
-    "confidence": 1.0,
-    "weight": 1.0,
+    "confidence": 1,
     "evidence": {
       "sitePath": "0:3:30",
       "siteId": 30
     },
-    "note": "数学は形式科学に属する。"
+    "note": "数学は形式科学に属する。",
+    "strength": 1
   },
   {
     "relationId": "rel_0003",
@@ -33,13 +33,13 @@
     "to": "concept_mathematics",
     "type": "glossary_of",
     "inverseType": "has_glossary",
-    "confidence": 1.0,
-    "weight": 0.85,
+    "confidence": 1,
     "evidence": {
       "sitePath": "0:3:30:300",
       "siteId": 300
     },
-    "note": "数学用語は数学の用語集・索引層。"
+    "note": "数学用語は数学の用語集・索引層。",
+    "strength": 0.85
   },
   {
     "relationId": "rel_0004",
@@ -47,13 +47,13 @@
     "to": "concept_mathematics",
     "type": "part_of",
     "inverseType": "has_part",
-    "confidence": 1.0,
-    "weight": 1.0,
+    "confidence": 1,
     "evidence": {
       "sitePath": "0:3:30:301",
       "siteId": 301
     },
-    "note": "数学基礎論は数学の下位領域。"
+    "note": "数学基礎論は数学の下位領域。",
+    "strength": 1
   },
   {
     "relationId": "rel_0005",
@@ -61,13 +61,13 @@
     "to": "concept_mathematics",
     "type": "part_of",
     "inverseType": "has_part",
-    "confidence": 1.0,
-    "weight": 1.0,
+    "confidence": 1,
     "evidence": {
       "sitePath": "0:3:30:302",
       "siteId": 302
     },
-    "note": "数論は数学の下位領域。"
+    "note": "数論は数学の下位領域。",
+    "strength": 1
   },
   {
     "relationId": "rel_0006",
@@ -75,13 +75,13 @@
     "to": "concept_mathematics",
     "type": "part_of",
     "inverseType": "has_part",
-    "confidence": 1.0,
-    "weight": 1.0,
+    "confidence": 1,
     "evidence": {
       "sitePath": "0:3:30:303",
       "siteId": 303
     },
-    "note": "代数学は数学の下位領域。"
+    "note": "代数学は数学の下位領域。",
+    "strength": 1
   },
   {
     "relationId": "rel_0007",
@@ -89,13 +89,13 @@
     "to": "concept_mathematics",
     "type": "part_of",
     "inverseType": "has_part",
-    "confidence": 1.0,
-    "weight": 1.0,
+    "confidence": 1,
     "evidence": {
       "sitePath": "0:3:30:304",
       "siteId": 304
     },
-    "note": "解析学は数学の下位領域。"
+    "note": "解析学は数学の下位領域。",
+    "strength": 1
   },
   {
     "relationId": "rel_0008",
@@ -103,13 +103,13 @@
     "to": "concept_mathematics",
     "type": "part_of",
     "inverseType": "has_part",
-    "confidence": 1.0,
-    "weight": 1.0,
+    "confidence": 1,
     "evidence": {
       "sitePath": "0:3:30:307",
       "siteId": 307
     },
-    "note": "確率論は数学の下位領域。"
+    "note": "確率論は数学の下位領域。",
+    "strength": 1
   },
   {
     "relationId": "rel_0009",
@@ -117,13 +117,13 @@
     "to": "concept_formal_sciences",
     "type": "part_of",
     "inverseType": "has_part",
-    "confidence": 1.0,
-    "weight": 1.0,
+    "confidence": 1,
     "evidence": {
       "sitePath": "0:3:31",
       "siteId": 31
     },
-    "note": "統計学は形式科学の下位領域。"
+    "note": "統計学は形式科学の下位領域。",
+    "strength": 1
   },
   {
     "relationId": "rel_0010",
@@ -132,12 +132,19 @@
     "type": "depends_on",
     "inverseType": "supports",
     "confidence": 0.95,
-    "weight": 0.95,
     "evidence": {
       "siteId": 31,
-      "description": "確率論を基盤にして...推定するための処理・分析方法"
+      "description": "尤度は仮定した確率分布の確率質量関数または密度を、観測値を固定してパラメータの関数とみなすことで定義される。",
+      "source": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/mit18_05_s22_statistics.pdf",
+      "locator": "Class 10, Maximum Likelihood Estimates, §§3, 3.2 (PDF pp. 6–8)",
+      "reviewedAt": "2026-09-15"
     },
-    "note": "サイト上の説明に基づく依存関係。"
+    "note": "モデルを明示した推測の定義上の依存として採用する。学習順序や全統計業務に対する必須条件への拡張はしない。",
+    "context": {
+      "dependencyKind": "logical",
+      "scope": "確率モデルを仮定して定義する尤度・最尤推定。記述統計を含む統計学全体への一律の前提関係は主張しない。"
+    },
+    "strength": 0.95
   },
   {
     "relationId": "rel_0011",
@@ -146,12 +153,20 @@
     "type": "adjacent_to",
     "inverseType": "adjacent_to",
     "confidence": 0.75,
-    "weight": 0.7,
     "evidence": {
       "sitePath": "0:3:30:307",
-      "sitePath2": "0:3:31"
+      "sitePath2": "0:3:31",
+      "description": "教材は確率分布でデータの生成過程をモデル化し、データからそのパラメータを推測する問題を扱う。共有する対象を軸に近接関係と判断する。",
+      "source": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/mit18_05_s22_statistics.pdf",
+      "locator": "Class 10, Introduction to Statistics, §2.3 (PDF pp. 1–2)",
+      "reviewedAt": "2026-09-15"
     },
-    "note": "両者は方法・対象の近接性が高い。"
+    "note": "確率モデルを介した対象の近さについての編集上の判断。依存関係とは別の意味で採用し、別の近接関係との合成は行わない。",
+    "context": {
+      "axis": "object",
+      "scope": "確率分布と標本・観測データの関係を扱う領域。全対象の同一性は意味しない。"
+    },
+    "strength": 0.7
   },
   {
     "relationId": "rel_0012",
@@ -160,12 +175,19 @@
     "type": "methodologically_relevant_to",
     "inverseType": "benefits_from",
     "confidence": 0.45,
-    "weight": 0.45,
     "evidence": {
       "siteId": 301,
-      "description": "現代数学の基礎を支える主要分野"
+      "description": "Markerの講義ノートは群のクラスを一階の文で公理化する具体例を示す。この形式化方法を数学基礎論から代数学への方法論的関連として位置づける。",
+      "source": "https://homepages.math.uic.edu/~marker/orsay.pdf",
+      "locator": "Example 1.15 Groups, p. 9 (PDF p. 9)",
+      "reviewedAt": "2026-09-15"
     },
-    "note": "直接の前提というより、形式化・公理化の観点で関連が強い。"
+    "note": "具体的な形式化方法の関連として採用する。代数学の学習にモデル理論全体が必須であるとはしない。",
+    "context": {
+      "method": "一階言語による公理化とモデルの記述",
+      "scope": "群を演算・単位元の言語で表し、群のクラスを公理で指定する場面。"
+    },
+    "strength": 0.45
   },
   {
     "relationId": "rel_0013",
@@ -174,40 +196,19 @@
     "type": "methodologically_relevant_to",
     "inverseType": "benefits_from",
     "confidence": 0.45,
-    "weight": 0.45,
     "evidence": {
       "siteId": 301,
-      "description": "構文論と意味論、モデル理論、証明論、型理論、集合論、圏論など"
+      "description": "MITの実解析講義は体・順序体の公理、最小上界の公理を置いて平方根の存在などを扱う。仮定を明示して性質を導く方法を数学基礎論との関連として位置づける。",
+      "source": "https://ocw.mit.edu/courses/18-100c-real-analysis-fall-2012/44b016f2af1f63e84bce01708b01326d_MIT18_100CF12_l2sum.pdf",
+      "locator": "Lecture 2 Summary, p. 1",
+      "reviewedAt": "2026-09-15"
     },
-    "note": "解析学そのものの前提ではないが、厳密化の基盤として関係がある。"
-  },
-  {
-    "relationId": "rel_0014",
-    "from": "concept_mathematical_terms",
-    "to": "concept_analysis",
-    "type": "glossary_supports",
-    "inverseType": "supported_by_glossary",
-    "confidence": 0.6,
-    "weight": 0.5,
-    "evidence": {
-      "sitePath": "0:3:30:300",
-      "sitePath2": "0:3:30:304"
+    "note": "公理的な厳密化への方法論的関連として採用する。実数の完備性を一階の公理だけで特徴づけられるとは主張しない。",
+    "context": {
+      "method": "実数を扱うための公理的定式化と上限性の利用",
+      "scope": "実解析の基礎における順序体・上限公理からの性質の導出。"
     },
-    "note": "用語集は下位分野検索の入口として機能する。"
-  },
-  {
-    "relationId": "rel_0015",
-    "from": "concept_mathematical_terms",
-    "to": "concept_probability_theory",
-    "type": "glossary_supports",
-    "inverseType": "supported_by_glossary",
-    "confidence": 0.6,
-    "weight": 0.5,
-    "evidence": {
-      "sitePath": "0:3:30:300",
-      "sitePath2": "0:3:30:307"
-    },
-    "note": "同上。"
+    "strength": 0.45
   },
   {
     "relationId": "rel_0016",
@@ -215,13 +216,13 @@
     "to": "concept_academic_disciplines",
     "type": "part_of",
     "inverseType": "has_part",
-    "confidence": 1.0,
-    "weight": 1.0,
+    "confidence": 1,
     "evidence": {
       "sitePath": "0:1",
       "siteId": 1
     },
-    "note": "人文科学は学問の上位分類の一つ。"
+    "note": "人文科学は学問の上位分類の一つ。",
+    "strength": 1
   },
   {
     "relationId": "rel_0017",
@@ -229,13 +230,13 @@
     "to": "concept_academic_disciplines",
     "type": "part_of",
     "inverseType": "has_part",
-    "confidence": 1.0,
-    "weight": 1.0,
+    "confidence": 1,
     "evidence": {
       "sitePath": "0:2",
       "siteId": 2
     },
-    "note": "社会科学は学問の上位分類の一つ。"
+    "note": "社会科学は学問の上位分類の一つ。",
+    "strength": 1
   },
   {
     "relationId": "rel_0018",
@@ -243,13 +244,13 @@
     "to": "concept_academic_disciplines",
     "type": "part_of",
     "inverseType": "has_part",
-    "confidence": 1.0,
-    "weight": 1.0,
+    "confidence": 1,
     "evidence": {
       "sitePath": "0:4",
       "siteId": 4
     },
-    "note": "自然科学は学問の上位分類の一つ。"
+    "note": "自然科学は学問の上位分類の一つ。",
+    "strength": 1
   },
   {
     "relationId": "rel_0019",
@@ -257,13 +258,13 @@
     "to": "concept_academic_disciplines",
     "type": "part_of",
     "inverseType": "has_part",
-    "confidence": 1.0,
-    "weight": 1.0,
+    "confidence": 1,
     "evidence": {
       "sitePath": "0:5",
       "siteId": 5
     },
-    "note": "応用科学は学問の上位分類の一つ。"
+    "note": "応用科学は学問の上位分類の一つ。",
+    "strength": 1
   },
   {
     "relationId": "rel_0020",
@@ -271,12 +272,12 @@
     "to": "concept_academic_disciplines",
     "type": "part_of",
     "inverseType": "has_part",
-    "confidence": 1.0,
-    "weight": 1.0,
+    "confidence": 1,
     "evidence": {
       "sitePath": "0:6",
       "siteId": 6
     },
-    "note": "学際領域は学問の上位分類の一つ。"
+    "note": "学際領域は学問の上位分類の一つ。",
+    "strength": 1
   }
 ]

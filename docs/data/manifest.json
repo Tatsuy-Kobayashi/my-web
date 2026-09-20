@@ -1,0 +1,294 @@
+{
+  "schemaVersion": 1,
+  "contractVersion": 1,
+  "inputHashFormat": "utf8-lf",
+  "generatedAt": "2026-09-16T12:43:57.322Z",
+  "inputs": [
+    {
+      "path": "data/source/concepts.json",
+      "sha256": "31fe4c0dfa1567f1a65e29a3a60816232e0b78a0423b9b75a17d0314ed94202e"
+    },
+    {
+      "path": "data/source/learningRoadmaps.json",
+      "sha256": "9b055f193e9e6eff593255ac03f14751a9c7d4e7ad8208ce1fe78fb197093e34"
+    },
+    {
+      "path": "data/source/queryIntents.json",
+      "sha256": "eb4979d0e748f09e5186de5531940e973b448755ba4f5342747015b4f24d8ab8"
+    },
+    {
+      "path": "data/source/rankingConfig.json",
+      "sha256": "9fc0545671800dac40fe3a66d517725f53ed48995dd04ff60f5b7c24bc25d2a2"
+    },
+    {
+      "path": "data/source/relationTypes.json",
+      "sha256": "6c8e300f4c1a1c8389d83ceb96e6daa492773d468ea646d7fad004cff241e5de"
+    },
+    {
+      "path": "data/source/relations.json",
+      "sha256": "97041b0f7bcb1c6721f1685249248d5a97b72061b48102acb05c1950f4e96afc"
+    },
+    {
+      "path": "data/source/searchPolicy.json",
+      "sha256": "fd5a417c91219a4e0e82939e04b602774fff2d4f5b5cbbc04cd3359fbceb5887"
+    },
+    {
+      "path": "data/source/siteData.json",
+      "sha256": "0c4d3279b2fc09aa77cf2d7146bfb75f89ae201ef3ab8a2e060edee034966b0e"
+    },
+    {
+      "path": "data/source/viewStats.json",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/academic_discipline.html",
+      "sha256": "fbff8d9196cb7a6000f96d685672668146b89478deffc197255c2defb05155d7"
+    },
+    {
+      "path": "docs/academic_discipline/applied_science/informatics/informatics.html",
+      "sha256": "d2f05aaaded9311cdda378aa0b364e6228738d335dbf71eda6466592ceb40508"
+    },
+    {
+      "path": "docs/academic_discipline/applied_science/informatics/it_terms/it_terms.html",
+      "sha256": "0b7d0f639dba4585dee37e0aa8af4e29130ea3f930b86f95cd8ff04d9d1b3694"
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/formal_science.html",
+      "sha256": "7196aca17fed15d412906aef95265023fbe7f601a622ee0a00dcca45cf6d6841"
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/algebra/algebra.html",
+      "sha256": "702f38a419831e4c4fc42d5415d1ebdc1124ade5ab23254ba7a94be7f83f9000"
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/analysis/analysis.html",
+      "sha256": "baf7fb6f5d2d32cdec9013965dc6df3dc675600991d127530a15938ae6c307d1"
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/analysis/calculus/calculus.html",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/analysis/calculus/differential_calculus/derivative/derivative.html",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/analysis/calculus/differential_calculus/differential_calculus.html",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/analysis/calculus/differential_calculus/mean_value_theorem/mean_value_theorem.html",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/analysis/calculus/differential_calculus/taylor_theorem/taylor_theorem.html",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/analysis/calculus/integral_calculus/riemann_integral/riemann_integral.html",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/complex_analysis/complex_number_field/complex_number_field.html",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/foundations_of_analysis.html",
+      "sha256": "8040d78b9ccabc19c2f6b2c262fc631d01a513214bbf2659a8eb88d5f02655bd"
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/function_theory/function_theory.html",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/function_theory/general_theory_of_functions/general_theory_of_functions.html",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/function_theory/special_functions/special_functions.html",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/function_theory/special_standard_functions/standard_functions.html",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/real_analysis/construction_of_real_numbers/construction_of_real_numbers.html",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/real_analysis/construction_of_real_numbers/dedekind_cut/dedekind_cut.html",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/real_analysis/construction_of_real_numbers/rational_and_irrational_numbers/rational_and_irrational_numbers.html",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/real_analysis/convergence_and_divergence/convergence_and_divergence.html",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/real_analysis/limits_and_continuity_of_functions/limits_and_continuity_of_functions.html",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/real_analysis/real_analysis.html",
+      "sha256": "f2f240d83b783fe9d3647b98693dc0a4609dbab2b5e990ac4e9c9fadb1dd8c22"
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/real_analysis/sequences/sequences.html",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/real_analysis/series/series.html",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/analysis/foundations_of_analysis/real_analysis/taylor_and_power_series/taylor_and_power_series.html",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/discrete_mathematics/discrete_mathematics.html",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html",
+      "sha256": "09e1bc37009ace54a18e963607f444ae3817cb2ee94ccfb7f34e34d322114947"
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/axiomatic_set_theory.html",
+      "sha256": "3b6a135afebab1f30158f271196752f70bcd5eb77a35f099a90cdbeb49d39794"
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/axiomatic_set_theory/zermelo_fraenkel_choice_set_theory/zermelo_fraenkel_choice_set_theory.html",
+      "sha256": "9b6b1a9c8a1e8695f3ee32accd93dcbff404233ac43b291dc8462d9305668e32"
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/naive_set_theory/naive_set_theory.html",
+      "sha256": "b583ef70cc5b51fd283133c6c2ee7e4e456afa2e87222aa821b96fe3884309f1"
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/set_theory/set_theory.html",
+      "sha256": "e03f0ef88d7c1b7ad5e03089e34e044cc35eba6994dff962642ad0ad1f7fa14c"
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/geometry/geometry.html",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/mathematics.html",
+      "sha256": "98f7ef89d87bb1b9f7057ede28a1a16a6b44652ea395c5fc4f4eed9016d77fbc"
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/number_theory/mathematical_constant/mathematical_constant.html",
+      "sha256": "12a3647b786a1b70d5ac0d205ac630a02efa39eece35522fd300ec9639a6fd4f"
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/number_theory/number_theory.html",
+      "sha256": "aa69f605a18342c21bf286fdd43365cbc5d57763576ec2fae71dbcc30e39a656"
+    },
+    {
+      "path": "docs/academic_discipline/formal_science/mathematics/probability_theory/probability_theory.html",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/humanities/art_studies/art_studies.html",
+      "sha256": null
+    },
+    {
+      "path": "docs/academic_discipline/natural_science/natural_science.html",
+      "sha256": "b49d2168894dc12211036ae20fa4c0ee120f7d82513780dcca3537b35fa23e7d"
+    },
+    {
+      "path": "docs/academic_discipline/natural_science/physics/physics.html",
+      "sha256": "225b524f0ae473be33fd5b8a7b83b9ab811ef67520de70db4c0ff4e116e92fd5"
+    },
+    {
+      "path": "docs/data/generateKeywordEdges.js",
+      "sha256": "42faa2cab70f6f214801164c2df8d9a19834f605e65434b18337f760dcf794d6"
+    },
+    {
+      "path": "docs/data/generateRanking.js",
+      "sha256": "cae3cadb87e353bd63be577bba8031d86e322f9d6f565f83424b8a881a14f53b"
+    },
+    {
+      "path": "docs/data/generateSearchSource.js",
+      "sha256": "bbea6e63b087b590cd75e2fb6fa7d84fff65270d9ddaf6b30b5547e6eb9996a3"
+    },
+    {
+      "path": "docs/data/generateSiteHierarchy.js",
+      "sha256": "b0ef8283fa49558d4162a6b41c0b9ce363d4b24cf8f047f71fcc3836b655ea4f"
+    },
+    {
+      "path": "docs/data/validateRelations.js",
+      "sha256": "8a258bdc00cc2d83ae60846841459a267e9281209648efd9b1b9ceb2b4560be3"
+    },
+    {
+      "path": "docs/js/common/siteHierarchy/Hierarchy.mjs",
+      "sha256": "d2cb89efab9f4262967c5942e5a56f10841eac7cceb04dcba74d1b5113619950"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "e0a346d86929acc7eb3c59c15f9d183093c8b6f9ef6b05db4c7474a3968f6b63"
+    },
+    {
+      "path": "package.json",
+      "sha256": "26c95cc031d5b78308b49508c3ea65053edda117be80a9edf072975379908123"
+    },
+    {
+      "path": "schemas/data.schema.json",
+      "sha256": "bcb42fe84826789a12ce6552d5b3ddf9594e60bd07caddcebb4efda5755c991b"
+    },
+    {
+      "path": "scripts/data/build.cjs",
+      "sha256": "fb102e06ad1d83ba6e84da60dec645c8624bbc55a2300b9ea80c2fab71dfe27b"
+    },
+    {
+      "path": "scripts/data/contracts.cjs",
+      "sha256": "1394b7d03cd76ec5ce93855b6a978db164477de1cf72f003aca90d9647df49c8"
+    },
+    {
+      "path": "scripts/data/roadmaps.cjs",
+      "sha256": "cc76d65ef953e9120809e85afe7e81fddf816d4623b775ec7f5294403e5f8d47"
+    }
+  ],
+  "outputs": {
+    "siteData.json": "0c4d3279b2fc09aa77cf2d7146bfb75f89ae201ef3ab8a2e060edee034966b0e",
+    "concepts.json": "97b79f9b04dc9c20390fdabec0afa99873a73f8c5252b15ea349e168dbb8477f",
+    "relations.json": "97041b0f7bcb1c6721f1685249248d5a97b72061b48102acb05c1950f4e96afc",
+    "relationTypes.json": "6c8e300f4c1a1c8389d83ceb96e6daa492773d468ea646d7fad004cff241e5de",
+    "queryIntents.json": "eb4979d0e748f09e5186de5531940e973b448755ba4f5342747015b4f24d8ab8",
+    "siteHierarchy.json": "924d58a95cb79acb5e46f861138f7368a1680de39509b47792d614f4cee46154",
+    "searchSource.json": "9df98d3a831fc962d39d0b745293b7a745e2c2c8ebd9ad9771db972757e003ce",
+    "keywordEdges.json": "c0149d1a3d3e1ca5b47a9194ab28d95d69b4f175620f26d7c24ae96e3b6fbd52",
+    "rankingConfig.json": "9fc0545671800dac40fe3a66d517725f53ed48995dd04ff60f5b7c24bc25d2a2",
+    "ranking.json": "e32d0331dbbf5ae62efc9203dfae372a0b9a699688001548d5063ba28a8deaa5",
+    "learningRoadmaps.json": "9b055f193e9e6eff593255ac03f14751a9c7d4e7ad8208ce1fe78fb197093e34"
+  },
+  "warnings": [
+    "id=14: metadata only; 2026-09-15時点で登録URLのローカルHTMLが存在しない既存記事。本文は作らず登録メタデータだけを検索対象とする。記事の移動先・公開状態の確認は別途行う。",
+    "id=305: metadata only; 2026-09-15時点で登録URLのローカルHTMLが存在しない既存記事。本文は作らず登録メタデータだけを検索対象とする。記事の移動先・公開状態の確認は別途行う。",
+    "id=306: metadata only; 2026-09-15時点で登録URLのローカルHTMLが存在しない既存記事。本文は作らず登録メタデータだけを検索対象とする。記事の移動先・公開状態の確認は別途行う。",
+    "id=307: metadata only; 2026-09-15時点で登録URLのローカルHTMLが存在しない既存記事。本文は作らず登録メタデータだけを検索対象とする。記事の移動先・公開状態の確認は別途行う。",
+    "id=3041: metadata only; 2026-09-15時点で登録URLのローカルHTMLが存在しない既存記事。本文は作らず登録メタデータだけを検索対象とする。記事の移動先・公開状態の確認は別途行う。",
+    "id=30402: metadata only; 2026-09-15時点で登録URLのローカルHTMLが存在しない既存記事。本文は作らず登録メタデータだけを検索対象とする。記事の移動先・公開状態の確認は別途行う。",
+    "id=30410: metadata only; 2026-09-15時点で登録URLのローカルHTMLが存在しない既存記事。本文は作らず登録メタデータだけを検索対象とする。記事の移動先・公開状態の確認は別途行う。",
+    "id=304000: metadata only; 2026-09-15時点で登録URLのローカルHTMLが存在しない既存記事。本文は作らず登録メタデータだけを検索対象とする。記事の移動先・公開状態の確認は別途行う。",
+    "id=304001: metadata only; 2026-09-15時点で登録URLのローカルHTMLが存在しない既存記事。本文は作らず登録メタデータだけを検索対象とする。記事の移動先・公開状態の確認は別途行う。",
+    "id=304002: metadata only; 2026-09-15時点で登録URLのローカルHTMLが存在しない既存記事。本文は作らず登録メタデータだけを検索対象とする。記事の移動先・公開状態の確認は別途行う。",
+    "id=304003: metadata only; 2026-09-15時点で登録URLのローカルHTMLが存在しない既存記事。本文は作らず登録メタデータだけを検索対象とする。記事の移動先・公開状態の確認は別途行う。",
+    "id=304004: metadata only; 2026-09-15時点で登録URLのローカルHTMLが存在しない既存記事。本文は作らず登録メタデータだけを検索対象とする。記事の移動先・公開状態の確認は別途行う。",
+    "id=304005: metadata only; 2026-09-15時点で登録URLのローカルHTMLが存在しない既存記事。本文は作らず登録メタデータだけを検索対象とする。記事の移動先・公開状態の確認は別途行う。",
+    "id=304010: metadata only; 2026-09-15時点で登録URLのローカルHTMLが存在しない既存記事。本文は作らず登録メタデータだけを検索対象とする。記事の移動先・公開状態の確認は別途行う。",
+    "id=304020: metadata only; 2026-09-15時点で登録URLのローカルHTMLが存在しない既存記事。本文は作らず登録メタデータだけを検索対象とする。記事の移動先・公開状態の確認は別途行う。",
+    "id=304021: metadata only; 2026-09-15時点で登録URLのローカルHTMLが存在しない既存記事。本文は作らず登録メタデータだけを検索対象とする。記事の移動先・公開状態の確認は別途行う。",
+    "id=304022: metadata only; 2026-09-15時点で登録URLのローカルHTMLが存在しない既存記事。本文は作らず登録メタデータだけを検索対象とする。記事の移動先・公開状態の確認は別途行う。",
+    "id=304100: metadata only; 2026-09-15時点で登録URLのローカルHTMLが存在しない既存記事。本文は作らず登録メタデータだけを検索対象とする。記事の移動先・公開状態の確認は別途行う。",
+    "id=304101: metadata only; 2026-09-15時点で登録URLのローカルHTMLが存在しない既存記事。本文は作らず登録メタデータだけを検索対象とする。記事の移動先・公開状態の確認は別途行う。",
+    "id=304102: metadata only; 2026-09-15時点で登録URLのローカルHTMLが存在しない既存記事。本文は作らず登録メタデータだけを検索対象とする。記事の移動先・公開状態の確認は別途行う。",
+    "id=304120: metadata only; 2026-09-15時点で登録URLのローカルHTMLが存在しない既存記事。本文は作らず登録メタデータだけを検索対象とする。記事の移動先・公開状態の確認は別途行う。",
+    "id=3040040: metadata only; 2026-09-15時点で登録URLのローカルHTMLが存在しない既存記事。本文は作らず登録メタデータだけを検索対象とする。記事の移動先・公開状態の確認は別途行う。",
+    "id=3040041: metadata only; 2026-09-15時点で登録URLのローカルHTMLが存在しない既存記事。本文は作らず登録メタデータだけを検索対象とする。記事の移動先・公開状態の確認は別途行う。"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "rankingAlgorithmVersion": 3,
+  "description": "Versioned propagation coefficients for ranking. These values are ranking configuration, not relation semantics or presentation metadata.",
+  "edgeWeights": {
+    "typedRelation": {
+      "forwardMultiplier": 1,
+      "reverseMultiplier": 0.7
+    },
+    "hierarchy": {
+      "main_path": {
+        "forward": 0.55,
+        "reverse": 0.85
+      },
+      "aux_path": {
+        "forward": 0.25,
+        "reverse": 0.25
+      }
+    },
+    "keywordShared": {
+      "strengthMultiplier": 0.18,
+      "maximum": 0.6
+    }
+  }
+}

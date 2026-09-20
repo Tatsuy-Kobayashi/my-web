@@ -10,11 +10,61 @@
       "inverseType": "has_part",
       "directed": true,
       "symmetric": false,
-      "transitive": true,
+      "transitive": false,
       "category": "hierarchy",
-      "description": "分野・概念が上位概念に含まれる関係。",
-      "defaultWeight": 1.0,
-      "visual": {
+      "description": "本サイトの知識分類体系で、分野Xの直接の上位分類としてYが明示的に採用されている。",
+      "canonicalType": "part_of",
+      "materialization": "stored",
+      "relationFamily": "hierarchy",
+      "status": "active",
+      "categoricalStatus": "not_asserted",
+      "semanticDefinition": "本サイトの知識分類体系で、分野Xの直接の上位分類としてYが明示的に採用されている。",
+      "domain": [
+        "discipline"
+      ],
+      "range": [
+        "discipline",
+        "category_root"
+      ],
+      "relationScope": "direct_assertion",
+      "reflexive": false,
+      "irreflexive": true,
+      "antisymmetric": true,
+      "acyclic": true,
+      "composition": {
+        "mode": "no_automatic_inference",
+        "rules": [],
+        "note": "分類の到達可能性は別の閉包として計算できるが、part_ofへ書き戻さない。"
+      },
+      "evidencePolicy": {
+        "requiredFields": [
+          "note",
+          "evidence",
+          "evidence.siteId",
+          "evidence.sitePath"
+        ],
+        "description": "採用した分類体系と直接所属の判断をnoteに記す。現行のサイト分類由来の記録は編集的分類の根拠として扱い、サイト上の親を普遍的な学問上の包含と同一視しない。"
+      },
+      "examples": {
+        "positive": {
+          "statement": "X part_of Y",
+          "scenario": "数学Xを形式科学Yの直下の分野として採用した分類記録がある。",
+          "explanation": "分類の明示的な一段を保存し、到達可能性から直接所属を推論しない。"
+        },
+        "negative": {
+          "statement": "X part_of Y",
+          "scenario": "数学X→形式科学Z→学問Yという二段の経路があるだけで、X→Yを直接所属として追加する。",
+          "explanation": "分類の明示的な一段を保存し、到達可能性から直接所属を推論しない。"
+        }
+      },
+      "usage": {
+        "display": "existing_typed_relation_views",
+        "ranking": "existing_coefficients_without_composition",
+        "note": "statusは型定義の整備状態。事実の真偽・採用審査とは別。既存UIの表示対象・重み・ランキング係数はこの意味論追加だけでは変更しない。"
+      },
+      "specSection": "15.1",
+      "presentation": {
+        "visualPriority": 1,
         "dashes": false,
         "arrows": "to"
       }
@@ -27,11 +77,56 @@
       "inverseType": "part_of",
       "directed": true,
       "symmetric": false,
-      "transitive": true,
+      "transitive": false,
       "category": "hierarchy",
-      "description": "上位概念が下位概念を含む関係。",
-      "defaultWeight": 1.0,
-      "visual": {
+      "description": "has_part(X,Y) は part_of(Y,X) と同値な厳密な逆関係である。基準側の条件・根拠・意味の範囲をそのまま反転する。",
+      "canonicalType": "part_of",
+      "materialization": "derived",
+      "relationFamily": "hierarchy",
+      "status": "active",
+      "categoricalStatus": "not_asserted",
+      "semanticDefinition": "has_part(X,Y) は part_of(Y,X) と同値な厳密な逆関係である。基準側の条件・根拠・意味の範囲をそのまま反転する。",
+      "domain": [
+        "discipline",
+        "category_root"
+      ],
+      "range": [
+        "discipline"
+      ],
+      "relationScope": "direct_assertion",
+      "reflexive": false,
+      "irreflexive": true,
+      "antisymmetric": true,
+      "acyclic": true,
+      "composition": {
+        "mode": "no_automatic_inference",
+        "rules": [],
+        "note": "分類の到達可能性は別の閉包として計算できるが、part_ofへ書き戻さない。"
+      },
+      "evidencePolicy": {
+        "requiredFields": [],
+        "description": "根拠は基準型の事実に保存し、その条件を引き継ぐ。 採用した分類体系と直接所属の判断をnoteに記す。現行のサイト分類由来の記録は編集的分類の根拠として扱い、サイト上の親を普遍的な学問上の包含と同一視しない。"
+      },
+      "examples": {
+        "positive": {
+          "statement": "Y has_part X",
+          "scenario": "数学Xを形式科学Yの直下の分野として採用した分類記録がある。",
+          "explanation": "基準型の正例を逆向きから読む。同じ事実を追加保存しない。"
+        },
+        "negative": {
+          "statement": "Y has_part X",
+          "scenario": "数学X→形式科学Z→学問Yという二段の経路があるだけで、X→Yを直接所属として追加する。",
+          "explanation": "基準型で根拠にならない例は、逆側でも根拠にならない。"
+        }
+      },
+      "usage": {
+        "display": "existing_typed_relation_views",
+        "ranking": "existing_coefficients_without_composition",
+        "note": "statusは型定義の整備状態。事実の真偽・採用審査とは別。既存UIの表示対象・重み・ランキング係数はこの意味論追加だけでは変更しない。"
+      },
+      "specSection": "15.2",
+      "presentation": {
+        "visualPriority": 1,
         "dashes": false,
         "arrows": "to"
       }
@@ -44,11 +139,61 @@
       "inverseType": "supports",
       "directed": true,
       "symmetric": false,
-      "transitive": true,
+      "transitive": false,
       "category": "dependency",
-      "description": "理解、構成、利用に前提概念を必要とする関係。",
-      "defaultWeight": 0.9,
-      "visual": {
+      "description": "明示した論理的・認識論的な成立または正当化の条件Cの下で、分野Xの対象内容に分野Yの知識が必須である。",
+      "canonicalType": "depends_on",
+      "materialization": "stored",
+      "relationFamily": "dependency",
+      "status": "active",
+      "categoricalStatus": "not_asserted",
+      "semanticDefinition": "明示した論理的・認識論的な成立または正当化の条件Cの下で、分野Xの対象内容に分野Yの知識が必須である。",
+      "domain": [
+        "discipline"
+      ],
+      "range": [
+        "discipline"
+      ],
+      "relationScope": "contextual_assertion",
+      "reflexive": false,
+      "irreflexive": true,
+      "antisymmetric": false,
+      "acyclic": false,
+      "composition": {
+        "mode": "no_automatic_inference",
+        "rules": [],
+        "note": "同一条件・同一依存の意味・必要性の引継ぎが確認された閉包だけ将来別モデルで検討する。異なるcontextの二辺から新事実を推論しない。"
+      },
+      "evidencePolicy": {
+        "requiredFields": [
+          "note",
+          "evidence",
+          "context.dependencyKind",
+          "context.scope",
+          "evidence.description"
+        ],
+        "description": "dependencyKindはlogicalまたはepistemic。scopeには対象内容・条件・前提を記し、evidence.descriptionで必要性を説明する。出典がある場合はevidence.sourceを付す。"
+      },
+      "examples": {
+        "positive": {
+          "statement": "X depends_on Y",
+          "scenario": "条件Cで行うXの正当化がYの指定した命題を必要とし、代替前提を採用しないことが根拠に記されている。",
+          "explanation": "必要条件と、教育上の推奨・任意の利用を区別する。分野全体について無条件の必須性を主張しない。"
+        },
+        "negative": {
+          "statement": "X depends_on Y",
+          "scenario": "Yを先に学ぶと理解しやすい、またはYの道具を一例で利用するという理由だけでXがYに必須依存するとする。",
+          "explanation": "必要条件と、教育上の推奨・任意の利用を区別する。分野全体について無条件の必須性を主張しない。"
+        }
+      },
+      "usage": {
+        "display": "existing_typed_relation_views",
+        "ranking": "existing_coefficients_without_composition",
+        "note": "statusは型定義の整備状態。事実の真偽・採用審査とは別。既存UIの表示対象・重み・ランキング係数はこの意味論追加だけでは変更しない。"
+      },
+      "specSection": "15.3",
+      "presentation": {
+        "visualPriority": 0.9,
         "dashes": false,
         "arrows": "to"
       }
@@ -61,11 +206,55 @@
       "inverseType": "depends_on",
       "directed": true,
       "symmetric": false,
-      "transitive": true,
+      "transitive": false,
       "category": "dependency",
-      "description": "ある概念が別の概念の前提や基盤として働く関係。",
-      "defaultWeight": 0.9,
-      "visual": {
+      "description": "supports(X,Y) は depends_on(Y,X) と同値な厳密な逆関係である。基準側の条件・根拠・意味の範囲をそのまま反転する。",
+      "canonicalType": "depends_on",
+      "materialization": "derived",
+      "relationFamily": "dependency",
+      "status": "active",
+      "categoricalStatus": "not_asserted",
+      "semanticDefinition": "supports(X,Y) は depends_on(Y,X) と同値な厳密な逆関係である。基準側の条件・根拠・意味の範囲をそのまま反転する。",
+      "domain": [
+        "discipline"
+      ],
+      "range": [
+        "discipline"
+      ],
+      "relationScope": "contextual_assertion",
+      "reflexive": false,
+      "irreflexive": true,
+      "antisymmetric": false,
+      "acyclic": false,
+      "composition": {
+        "mode": "no_automatic_inference",
+        "rules": [],
+        "note": "同一条件・同一依存の意味・必要性の引継ぎが確認された閉包だけ将来別モデルで検討する。異なるcontextの二辺から新事実を推論しない。"
+      },
+      "evidencePolicy": {
+        "requiredFields": [],
+        "description": "根拠は基準型の事実に保存し、その条件を引き継ぐ。 dependencyKindはlogicalまたはepistemic。scopeには対象内容・条件・前提を記し、evidence.descriptionで必要性を説明する。出典がある場合はevidence.sourceを付す。"
+      },
+      "examples": {
+        "positive": {
+          "statement": "Y supports X",
+          "scenario": "条件Cで行うXの正当化がYの指定した命題を必要とし、代替前提を採用しないことが根拠に記されている。",
+          "explanation": "基準型の正例を逆向きから読む。同じ事実を追加保存しない。"
+        },
+        "negative": {
+          "statement": "Y supports X",
+          "scenario": "Yを先に学ぶと理解しやすい、またはYの道具を一例で利用するという理由だけでXがYに必須依存するとする。",
+          "explanation": "基準型で根拠にならない例は、逆側でも根拠にならない。"
+        }
+      },
+      "usage": {
+        "display": "existing_typed_relation_views",
+        "ranking": "existing_coefficients_without_composition",
+        "note": "statusは型定義の整備状態。事実の真偽・採用審査とは別。既存UIの表示対象・重み・ランキング係数はこの意味論追加だけでは変更しない。"
+      },
+      "specSection": "15.4",
+      "presentation": {
+        "visualPriority": 0.9,
         "dashes": false,
         "arrows": "to"
       }
@@ -80,9 +269,59 @@
       "symmetric": true,
       "transitive": false,
       "category": "related",
-      "description": "対象、方法、応用領域などが近い関係。",
-      "defaultWeight": 0.7,
-      "visual": {
+      "description": "明示した比較軸と範囲で、異なる分野XとYに対象・方法・応用領域の具体的な重なりがある。",
+      "canonicalType": "adjacent_to",
+      "materialization": "stored",
+      "relationFamily": "related",
+      "status": "active",
+      "categoricalStatus": "not_asserted",
+      "semanticDefinition": "明示した比較軸と範囲で、異なる分野XとYに対象・方法・応用領域の具体的な重なりがある。",
+      "domain": [
+        "discipline"
+      ],
+      "range": [
+        "discipline"
+      ],
+      "relationScope": "contextual_assertion",
+      "reflexive": false,
+      "irreflexive": true,
+      "antisymmetric": false,
+      "acyclic": false,
+      "composition": {
+        "mode": "no_automatic_inference",
+        "rules": [],
+        "note": "近接の合成は許可しない。異なる比較軸の連結は特に近接の証拠にならない。"
+      },
+      "evidencePolicy": {
+        "requiredFields": [
+          "note",
+          "evidence",
+          "context.axis",
+          "context.scope",
+          "evidence.description"
+        ],
+        "description": "axisはobject・method・applicationのいずれか。scopeで比較範囲、evidence.descriptionで共有点と判定理由を記す。"
+      },
+      "examples": {
+        "positive": {
+          "statement": "X adjacent_to Y",
+          "scenario": "対象という比較軸の下で、XとYが同じ対象群を研究することを具体例とともに記録している。",
+          "explanation": "比較軸と具体的な重なりが必要であり、画面位置や推移経路では判定しない。"
+        },
+        "negative": {
+          "statement": "X adjacent_to Y",
+          "scenario": "同じ画面で隣に描かれた、同じ親に属する、またはXとZ・ZとYが近接するだけでXとYを近接とする。",
+          "explanation": "比較軸と具体的な重なりが必要であり、画面位置や推移経路では判定しない。"
+        }
+      },
+      "usage": {
+        "display": "existing_typed_relation_views",
+        "ranking": "existing_coefficients_without_composition",
+        "note": "statusは型定義の整備状態。事実の真偽・採用審査とは別。既存UIの表示対象・重み・ランキング係数はこの意味論追加だけでは変更しない。"
+      },
+      "specSection": "15.6",
+      "presentation": {
+        "visualPriority": 0.7,
         "dashes": false,
         "arrows": ""
       }
@@ -97,9 +336,59 @@
       "symmetric": false,
       "transitive": false,
       "category": "related",
-      "description": "直接の前提ではないが、形式化、解法、視点、方法論として関係する。",
-      "defaultWeight": 0.45,
-      "visual": {
+      "description": "分野Xの特定の形式化・解法・視点が、分野Yの指定した課題に利用可能な方法論として説明されている。",
+      "canonicalType": "methodologically_relevant_to",
+      "materialization": "stored",
+      "relationFamily": "related",
+      "status": "active",
+      "categoricalStatus": "not_asserted",
+      "semanticDefinition": "分野Xの特定の形式化・解法・視点が、分野Yの指定した課題に利用可能な方法論として説明されている。",
+      "domain": [
+        "discipline"
+      ],
+      "range": [
+        "discipline"
+      ],
+      "relationScope": "contextual_assertion",
+      "reflexive": false,
+      "irreflexive": true,
+      "antisymmetric": false,
+      "acyclic": false,
+      "composition": {
+        "mode": "no_automatic_inference",
+        "rules": [],
+        "note": "方法の転用可能性は二段を通して保証されない。applied_toやdepends_onへの自動変換もしない。"
+      },
+      "evidencePolicy": {
+        "requiredFields": [
+          "note",
+          "evidence",
+          "context.method",
+          "context.scope",
+          "evidence.description"
+        ],
+        "description": "methodに移す手法・視点、scopeに対象課題、evidence.descriptionに両者の対応を記す。名称の類似だけは証拠にしない。"
+      },
+      "examples": {
+        "positive": {
+          "statement": "X methodologically_relevant_to Y",
+          "scenario": "Xの方法MをYの課題Cへ移す対応が説明されているが、Yで実際に適用した記録や必須性までは主張しない。",
+          "explanation": "利用可能性の対応を記録する。実際の適用はapplied_to、必須性はdepends_onとして別に根拠を判定する。"
+        },
+        "negative": {
+          "statement": "X methodologically_relevant_to Y",
+          "scenario": "対象が似ているだけ、単に引用しただけ、または方法と対象課題の対応を説明せず「応用がある」とだけ記して方法論の関係を判定する。",
+          "explanation": "利用可能性の対応を記録する。実際の適用はapplied_to、必須性はdepends_onとして別に根拠を判定する。"
+        }
+      },
+      "usage": {
+        "display": "existing_typed_relation_views",
+        "ranking": "existing_coefficients_without_composition",
+        "note": "statusは型定義の整備状態。事実の真偽・採用審査とは別。既存UIの表示対象・重み・ランキング係数はこの意味論追加だけでは変更しない。"
+      },
+      "specSection": "15.7",
+      "presentation": {
+        "visualPriority": 0.45,
         "dashes": true,
         "arrows": "to"
       }
@@ -114,9 +403,53 @@
       "symmetric": false,
       "transitive": false,
       "category": "related",
-      "description": "別概念の方法論や視点から支援を受ける関係。",
-      "defaultWeight": 0.45,
-      "visual": {
+      "description": "benefits_from(X,Y) は methodologically_relevant_to(Y,X) と同値な厳密な逆関係である。基準側の条件・根拠・意味の範囲をそのまま反転する。",
+      "canonicalType": "methodologically_relevant_to",
+      "materialization": "derived",
+      "relationFamily": "related",
+      "status": "active",
+      "categoricalStatus": "not_asserted",
+      "semanticDefinition": "benefits_from(X,Y) は methodologically_relevant_to(Y,X) と同値な厳密な逆関係である。基準側の条件・根拠・意味の範囲をそのまま反転する。",
+      "domain": [
+        "discipline"
+      ],
+      "range": [
+        "discipline"
+      ],
+      "relationScope": "contextual_assertion",
+      "reflexive": false,
+      "irreflexive": true,
+      "antisymmetric": false,
+      "acyclic": false,
+      "composition": {
+        "mode": "no_automatic_inference",
+        "rules": [],
+        "note": "方法の転用可能性は二段を通して保証されない。applied_toやdepends_onへの自動変換もしない。"
+      },
+      "evidencePolicy": {
+        "requiredFields": [],
+        "description": "根拠は基準型の事実に保存し、その条件を引き継ぐ。 methodに移す手法・視点、scopeに対象課題、evidence.descriptionに両者の対応を記す。名称の類似だけは証拠にしない。"
+      },
+      "examples": {
+        "positive": {
+          "statement": "Y benefits_from X",
+          "scenario": "Xの方法MをYの課題Cへ移す対応が説明されているが、Yで実際に適用した記録や必須性までは主張しない。",
+          "explanation": "基準型の正例を逆向きから読む。同じ事実を追加保存しない。"
+        },
+        "negative": {
+          "statement": "Y benefits_from X",
+          "scenario": "対象が似ているだけ、単に引用しただけ、または方法と対象課題の対応を説明せず「応用がある」とだけ記して方法論の関係を判定する。",
+          "explanation": "基準型で根拠にならない例は、逆側でも根拠にならない。"
+        }
+      },
+      "usage": {
+        "display": "existing_typed_relation_views",
+        "ranking": "existing_coefficients_without_composition",
+        "note": "statusは型定義の整備状態。事実の真偽・採用審査とは別。既存UIの表示対象・重み・ランキング係数はこの意味論追加だけでは変更しない。"
+      },
+      "specSection": "15.8",
+      "presentation": {
+        "visualPriority": 0.45,
         "dashes": true,
         "arrows": "to"
       }
@@ -131,9 +464,58 @@
       "symmetric": false,
       "transitive": false,
       "category": "lexicon",
-      "description": "用語集や索引が特定分野に属する関係。",
-      "defaultWeight": 0.85,
-      "visual": {
+      "description": "用語集Xが分野Yを明示的な編集対象として組織化された用語・索引資源である。",
+      "canonicalType": "glossary_of",
+      "materialization": "stored",
+      "relationFamily": "lexicon",
+      "status": "active",
+      "categoricalStatus": "not_asserted",
+      "semanticDefinition": "用語集Xが分野Yを明示的な編集対象として組織化された用語・索引資源である。",
+      "domain": [
+        "term_collection"
+      ],
+      "range": [
+        "discipline"
+      ],
+      "relationScope": "direct_assertion",
+      "reflexive": false,
+      "irreflexive": true,
+      "antisymmetric": false,
+      "acyclic": false,
+      "composition": {
+        "mode": "no_automatic_inference",
+        "rules": [],
+        "note": "所属先の上位分野や下位分野へ用語集の所属を自動拡張しない。"
+      },
+      "evidencePolicy": {
+        "requiredFields": [
+          "note",
+          "evidence",
+          "evidence.siteId",
+          "evidence.sitePath"
+        ],
+        "description": "対象分野と編集上の位置づけをnoteに記す。既存のサイト配置記録はその根拠の一つとして使用する。"
+      },
+      "examples": {
+        "positive": {
+          "statement": "X glossary_of Y",
+          "scenario": "用語集Xの対象分野がYであると編集上の説明と配置記録に明記されている。",
+          "explanation": "語が含まれることと用語集の編集対象を区別する。"
+        },
+        "negative": {
+          "statement": "X glossary_of Y",
+          "scenario": "用語集XにYの語が一つ載っているだけで、X全体がYの用語集であるとする。",
+          "explanation": "語が含まれることと用語集の編集対象を区別する。"
+        }
+      },
+      "usage": {
+        "display": "existing_typed_relation_views",
+        "ranking": "existing_coefficients_without_composition",
+        "note": "statusは型定義の整備状態。事実の真偽・採用審査とは別。既存UIの表示対象・重み・ランキング係数はこの意味論追加だけでは変更しない。"
+      },
+      "specSection": "15.15",
+      "presentation": {
+        "visualPriority": 0.85,
         "dashes": true,
         "arrows": "to"
       }
@@ -148,9 +530,53 @@
       "symmetric": false,
       "transitive": false,
       "category": "lexicon",
-      "description": "分野が用語集や索引を持つ関係。",
-      "defaultWeight": 0.85,
-      "visual": {
+      "description": "has_glossary(X,Y) は glossary_of(Y,X) と同値な厳密な逆関係である。基準側の条件・根拠・意味の範囲をそのまま反転する。",
+      "canonicalType": "glossary_of",
+      "materialization": "derived",
+      "relationFamily": "lexicon",
+      "status": "active",
+      "categoricalStatus": "not_asserted",
+      "semanticDefinition": "has_glossary(X,Y) は glossary_of(Y,X) と同値な厳密な逆関係である。基準側の条件・根拠・意味の範囲をそのまま反転する。",
+      "domain": [
+        "discipline"
+      ],
+      "range": [
+        "term_collection"
+      ],
+      "relationScope": "direct_assertion",
+      "reflexive": false,
+      "irreflexive": true,
+      "antisymmetric": false,
+      "acyclic": false,
+      "composition": {
+        "mode": "no_automatic_inference",
+        "rules": [],
+        "note": "所属先の上位分野や下位分野へ用語集の所属を自動拡張しない。"
+      },
+      "evidencePolicy": {
+        "requiredFields": [],
+        "description": "根拠は基準型の事実に保存し、その条件を引き継ぐ。 対象分野と編集上の位置づけをnoteに記す。既存のサイト配置記録はその根拠の一つとして使用する。"
+      },
+      "examples": {
+        "positive": {
+          "statement": "Y has_glossary X",
+          "scenario": "用語集Xの対象分野がYであると編集上の説明と配置記録に明記されている。",
+          "explanation": "基準型の正例を逆向きから読む。同じ事実を追加保存しない。"
+        },
+        "negative": {
+          "statement": "Y has_glossary X",
+          "scenario": "用語集XにYの語が一つ載っているだけで、X全体がYの用語集であるとする。",
+          "explanation": "基準型で根拠にならない例は、逆側でも根拠にならない。"
+        }
+      },
+      "usage": {
+        "display": "existing_typed_relation_views",
+        "ranking": "existing_coefficients_without_composition",
+        "note": "statusは型定義の整備状態。事実の真偽・採用審査とは別。既存UIの表示対象・重み・ランキング係数はこの意味論追加だけでは変更しない。"
+      },
+      "specSection": "15.16",
+      "presentation": {
+        "visualPriority": 0.85,
         "dashes": true,
         "arrows": "to"
       }
@@ -165,9 +591,58 @@
       "symmetric": false,
       "transitive": false,
       "category": "lexicon",
-      "description": "用語集が特定分野の探索や理解を支援する関係。",
-      "defaultWeight": 0.5,
-      "visual": {
+      "description": "用語集Xに、分野Yの指定した探索・理解課題を支援する具体的な項目または参照導線がある。",
+      "canonicalType": "glossary_supports",
+      "materialization": "stored",
+      "relationFamily": "lexicon",
+      "status": "active",
+      "categoricalStatus": "not_asserted",
+      "semanticDefinition": "用語集Xに、分野Yの指定した探索・理解課題を支援する具体的な項目または参照導線がある。",
+      "domain": [
+        "term_collection"
+      ],
+      "range": [
+        "discipline"
+      ],
+      "relationScope": "contextual_assertion",
+      "reflexive": false,
+      "irreflexive": true,
+      "antisymmetric": false,
+      "acyclic": false,
+      "composition": {
+        "mode": "no_automatic_inference",
+        "rules": [],
+        "note": "glossary_ofとpart_ofの連結から自動生成しない。個々の支援内容を確認する。"
+      },
+      "evidencePolicy": {
+        "requiredFields": [
+          "note",
+          "evidence",
+          "context.useCase",
+          "evidence.description"
+        ],
+        "description": "useCaseで利用課題、evidence.descriptionで項目群または導線を特定する。サイト経路だけでは支援内容の証拠として不足する。"
+      },
+      "examples": {
+        "positive": {
+          "statement": "X glossary_supports Y",
+          "scenario": "用語集Xの項目群・導線がYの課題Cの検索入口になることを具体的に記録している。",
+          "explanation": "編集対象としての所属と、実際に利用できる支援内容を分ける。"
+        },
+        "negative": {
+          "statement": "X glossary_supports Y",
+          "scenario": "XがYの上位分野の用語集であるというだけで、Yの課題を支援すると推論する。",
+          "explanation": "編集対象としての所属と、実際に利用できる支援内容を分ける。"
+        }
+      },
+      "usage": {
+        "display": "existing_typed_relation_views",
+        "ranking": "existing_coefficients_without_composition",
+        "note": "statusは型定義の整備状態。事実の真偽・採用審査とは別。既存UIの表示対象・重み・ランキング係数はこの意味論追加だけでは変更しない。"
+      },
+      "specSection": "15.17",
+      "presentation": {
+        "visualPriority": 0.5,
         "dashes": true,
         "arrows": "to"
       }
@@ -182,9 +657,53 @@
       "symmetric": false,
       "transitive": false,
       "category": "lexicon",
-      "description": "分野が用語集によって探索や理解を支援される関係。",
-      "defaultWeight": 0.5,
-      "visual": {
+      "description": "supported_by_glossary(X,Y) は glossary_supports(Y,X) と同値な厳密な逆関係である。基準側の条件・根拠・意味の範囲をそのまま反転する。",
+      "canonicalType": "glossary_supports",
+      "materialization": "derived",
+      "relationFamily": "lexicon",
+      "status": "active",
+      "categoricalStatus": "not_asserted",
+      "semanticDefinition": "supported_by_glossary(X,Y) は glossary_supports(Y,X) と同値な厳密な逆関係である。基準側の条件・根拠・意味の範囲をそのまま反転する。",
+      "domain": [
+        "discipline"
+      ],
+      "range": [
+        "term_collection"
+      ],
+      "relationScope": "contextual_assertion",
+      "reflexive": false,
+      "irreflexive": true,
+      "antisymmetric": false,
+      "acyclic": false,
+      "composition": {
+        "mode": "no_automatic_inference",
+        "rules": [],
+        "note": "glossary_ofとpart_ofの連結から自動生成しない。個々の支援内容を確認する。"
+      },
+      "evidencePolicy": {
+        "requiredFields": [],
+        "description": "根拠は基準型の事実に保存し、その条件を引き継ぐ。 useCaseで利用課題、evidence.descriptionで項目群または導線を特定する。サイト経路だけでは支援内容の証拠として不足する。"
+      },
+      "examples": {
+        "positive": {
+          "statement": "Y supported_by_glossary X",
+          "scenario": "用語集Xの項目群・導線がYの課題Cの検索入口になることを具体的に記録している。",
+          "explanation": "基準型の正例を逆向きから読む。同じ事実を追加保存しない。"
+        },
+        "negative": {
+          "statement": "Y supported_by_glossary X",
+          "scenario": "XがYの上位分野の用語集であるというだけで、Yの課題を支援すると推論する。",
+          "explanation": "基準型で根拠にならない例は、逆側でも根拠にならない。"
+        }
+      },
+      "usage": {
+        "display": "existing_typed_relation_views",
+        "ranking": "existing_coefficients_without_composition",
+        "note": "statusは型定義の整備状態。事実の真偽・採用審査とは別。既存UIの表示対象・重み・ランキング係数はこの意味論追加だけでは変更しない。"
+      },
+      "specSection": "15.18",
+      "presentation": {
+        "visualPriority": 0.5,
         "dashes": true,
         "arrows": "to"
       }
@@ -199,9 +718,53 @@
       "symmetric": true,
       "transitive": false,
       "category": "keyword",
-      "description": "同じ siteData.keywords を持つページ同士を結ぶ弱い双方向関係。",
-      "defaultWeight": 0.2,
-      "visual": {
+      "description": "異なるサイト記事XとYが、現行生成規則で正規化したkeywordsを一つ以上共有する。",
+      "canonicalType": "keyword_shared",
+      "materialization": "generated",
+      "relationFamily": "keyword",
+      "status": "active",
+      "categoricalStatus": "not_asserted",
+      "semanticDefinition": "異なるサイト記事XとYが、現行生成規則で正規化したkeywordsを一つ以上共有する。",
+      "domain": [
+        "site_node"
+      ],
+      "range": [
+        "site_node"
+      ],
+      "relationScope": "generated_pair",
+      "reflexive": false,
+      "irreflexive": true,
+      "antisymmetric": false,
+      "acyclic": false,
+      "composition": {
+        "mode": "no_automatic_inference",
+        "rules": [],
+        "note": "XとZがa、ZとYがbを共有してもXとYの共有は導けない。"
+      },
+      "evidencePolicy": {
+        "requiredFields": [],
+        "description": "siteData.keywordsを入力とし、共有語をkeywordEdges.keywords、語ごとの件数をevidence.keywordStatsに残す。大文字小文字・Unicode・同義語を追加で正規化しない。"
+      },
+      "examples": {
+        "positive": {
+          "statement": "X keyword_shared Y",
+          "scenario": "trim・空文字除去・重複除去後のXとYのkeywordsに同じ文字列kが含まれる。",
+          "explanation": "現行の文字列一致による生成であり、意味上の近接や同義語判定ではない。"
+        },
+        "negative": {
+          "statement": "X keyword_shared Y",
+          "scenario": "Xがa、Yがbだけを持つ場合にaとbを同義語と推測して結ぶ、またはX自身へ自己辺を作る。",
+          "explanation": "現行の文字列一致による生成であり、意味上の近接や同義語判定ではない。"
+        }
+      },
+      "usage": {
+        "display": "generated_keyword_layer",
+        "ranking": "existing_coefficients_without_composition",
+        "note": "statusは型定義の整備状態。事実の真偽・採用審査とは別。既存UIの表示対象・重み・ランキング係数はこの意味論追加だけでは変更しない。"
+      },
+      "specSection": "15.19",
+      "presentation": {
+        "visualPriority": 0.2,
         "dashes": true,
         "arrows": ""
       }
@@ -216,9 +779,60 @@
       "symmetric": false,
       "transitive": false,
       "category": "application",
-      "description": "概念や方法が別領域へ応用される関係。",
-      "defaultWeight": 0.65,
-      "visual": {
+      "description": "分野Xの特定の知識・手法を、分野Yの指定した課題に実際に適用した事例がある。",
+      "canonicalType": "applied_to",
+      "materialization": "stored",
+      "relationFamily": "application",
+      "status": "active",
+      "categoricalStatus": "not_asserted",
+      "semanticDefinition": "分野Xの特定の知識・手法を、分野Yの指定した課題に実際に適用した事例がある。",
+      "domain": [
+        "discipline"
+      ],
+      "range": [
+        "discipline"
+      ],
+      "relationScope": "contextual_assertion",
+      "reflexive": false,
+      "irreflexive": true,
+      "antisymmetric": false,
+      "acyclic": false,
+      "composition": {
+        "mode": "no_automatic_inference",
+        "rules": [],
+        "note": "Xの手法をYへ適用しYをZへ適用しても、XをZへ適用した実例は導けない。"
+      },
+      "evidencePolicy": {
+        "requiredFields": [
+          "note",
+          "evidence",
+          "context.method",
+          "context.useCase",
+          "evidence.source",
+          "evidence.description"
+        ],
+        "description": "method、useCase、出典source、適用内容descriptionを記す。単なる引用や同じ用語の登場は実利用の証拠にしない。"
+      },
+      "examples": {
+        "positive": {
+          "statement": "X applied_to Y",
+          "scenario": "Xの手法MをYの課題Cに適用した手順・用途・出典が記録されている。",
+          "explanation": "実際の適用と、方法論の候補や学習の順序を区別する。"
+        },
+        "negative": {
+          "statement": "X applied_to Y",
+          "scenario": "Xの手法がYにも使えそうだという提案だけ、またはYがXを先に学ぶとよいという推奨だけで応用事例とする。",
+          "explanation": "実際の適用と、方法論の候補や学習の順序を区別する。"
+        }
+      },
+      "usage": {
+        "display": "existing_typed_relation_views",
+        "ranking": "existing_coefficients_without_composition",
+        "note": "statusは型定義の整備状態。事実の真偽・採用審査とは別。既存UIの表示対象・重み・ランキング係数はこの意味論追加だけでは変更しない。"
+      },
+      "specSection": "15.9",
+      "presentation": {
+        "visualPriority": 0.65,
         "dashes": false,
         "arrows": "to"
       }
@@ -233,9 +847,53 @@
       "symmetric": false,
       "transitive": false,
       "category": "application",
-      "description": "ある領域が別概念や方法を利用する関係。",
-      "defaultWeight": 0.65,
-      "visual": {
+      "description": "uses(X,Y) は applied_to(Y,X) と同値な厳密な逆関係である。基準側の条件・根拠・意味の範囲をそのまま反転する。",
+      "canonicalType": "applied_to",
+      "materialization": "derived",
+      "relationFamily": "application",
+      "status": "active",
+      "categoricalStatus": "not_asserted",
+      "semanticDefinition": "uses(X,Y) は applied_to(Y,X) と同値な厳密な逆関係である。基準側の条件・根拠・意味の範囲をそのまま反転する。",
+      "domain": [
+        "discipline"
+      ],
+      "range": [
+        "discipline"
+      ],
+      "relationScope": "contextual_assertion",
+      "reflexive": false,
+      "irreflexive": true,
+      "antisymmetric": false,
+      "acyclic": false,
+      "composition": {
+        "mode": "no_automatic_inference",
+        "rules": [],
+        "note": "Xの手法をYへ適用しYをZへ適用しても、XをZへ適用した実例は導けない。"
+      },
+      "evidencePolicy": {
+        "requiredFields": [],
+        "description": "根拠は基準型の事実に保存し、その条件を引き継ぐ。 method、useCase、出典source、適用内容descriptionを記す。単なる引用や同じ用語の登場は実利用の証拠にしない。"
+      },
+      "examples": {
+        "positive": {
+          "statement": "Y uses X",
+          "scenario": "Xの手法MをYの課題Cに適用した手順・用途・出典が記録されている。",
+          "explanation": "基準型の正例を逆向きから読む。同じ事実を追加保存しない。"
+        },
+        "negative": {
+          "statement": "Y uses X",
+          "scenario": "Xの手法がYにも使えそうだという提案だけ、またはYがXを先に学ぶとよいという推奨だけで応用事例とする。",
+          "explanation": "基準型で根拠にならない例は、逆側でも根拠にならない。"
+        }
+      },
+      "usage": {
+        "display": "existing_typed_relation_views",
+        "ranking": "existing_coefficients_without_composition",
+        "note": "statusは型定義の整備状態。事実の真偽・採用審査とは別。既存UIの表示対象・重み・ランキング係数はこの意味論追加だけでは変更しない。"
+      },
+      "specSection": "15.10",
+      "presentation": {
+        "visualPriority": 0.65,
         "dashes": false,
         "arrows": "to"
       }
@@ -250,9 +908,120 @@
       "symmetric": false,
       "transitive": false,
       "category": "history",
-      "description": "概念や分野が別概念から発想や影響を受けた関係。",
-      "defaultWeight": 0.55,
-      "visual": {
+      "description": "分野Xの指定した発想・研究方向の形成エピソードで、分野Yが影響源だったことを出典が示す。",
+      "canonicalType": "inspired_by",
+      "materialization": "stored",
+      "relationFamily": "history",
+      "status": "experimental",
+      "categoricalStatus": "not_asserted",
+      "semanticDefinition": "分野Xの指定した発想・研究方向の形成エピソードで、分野Yが影響源だったことを出典が示す。",
+      "domain": [
+        "discipline"
+      ],
+      "range": [
+        "discipline"
+      ],
+      "relationScope": "contextual_assertion",
+      "reflexive": false,
+      "irreflexive": true,
+      "antisymmetric": false,
+      "acyclic": false,
+      "composition": {
+        "mode": "no_automatic_inference",
+        "rules": [],
+        "note": "影響の二段の連結は、第三者からの直接・間接の影響の証拠にならない。"
+      },
+      "evidencePolicy": {
+        "requiredFields": [
+          "note",
+          "evidence",
+          "context.episode",
+          "evidence.source",
+          "evidence.description"
+        ],
+        "description": "episodeで対象となる形成・発想を特定し、sourceとdescriptionで影響を確認できる記録を示す。"
+      },
+      "examples": {
+        "positive": {
+          "statement": "X inspired_by Y",
+          "scenario": "Xの形成エピソードEについて、Yから発想を得たとする記録と、その記述箇所がある。",
+          "explanation": "時間順序や類似から影響を捏造しない。influencedもこのエピソード上の影響の厳密な逆に限定する。"
+        },
+        "negative": {
+          "statement": "X inspired_by Y",
+          "scenario": "Yが時間的に先行した、名称が似ている、後から同じ方法を使ったというだけで影響源とする。",
+          "explanation": "時間順序や類似から影響を捏造しない。influencedもこのエピソード上の影響の厳密な逆に限定する。"
+        }
+      },
+      "usage": {
+        "display": "existing_typed_relation_views",
+        "ranking": "existing_coefficients_without_composition",
+        "note": "statusは型定義の整備状態。事実の真偽・採用審査とは別。既存UIの表示対象・重み・ランキング係数はこの意味論追加だけでは変更しない。"
+      },
+      "specSection": "15.11",
+      "presentation": {
+        "visualPriority": 0.55,
+        "dashes": true,
+        "arrows": "to"
+      }
+    },
+    {
+      "type": "influenced",
+      "label": "影響を与える",
+      "labelEn": "Influenced",
+      "edgeLabel": "影響先",
+      "inverseType": "inspired_by",
+      "directed": true,
+      "symmetric": false,
+      "transitive": false,
+      "category": "history",
+      "description": "influenced(X,Y) は inspired_by(Y,X) と同値な厳密な逆関係である。基準側の条件・根拠・意味の範囲をそのまま反転する。",
+      "canonicalType": "inspired_by",
+      "materialization": "derived",
+      "relationFamily": "history",
+      "status": "experimental",
+      "categoricalStatus": "not_asserted",
+      "semanticDefinition": "influenced(X,Y) は inspired_by(Y,X) と同値な厳密な逆関係である。基準側の条件・根拠・意味の範囲をそのまま反転する。",
+      "domain": [
+        "discipline"
+      ],
+      "range": [
+        "discipline"
+      ],
+      "relationScope": "contextual_assertion",
+      "reflexive": false,
+      "irreflexive": true,
+      "antisymmetric": false,
+      "acyclic": false,
+      "composition": {
+        "mode": "no_automatic_inference",
+        "rules": [],
+        "note": "影響の二段の連結は、第三者からの直接・間接の影響の証拠にならない。"
+      },
+      "evidencePolicy": {
+        "requiredFields": [],
+        "description": "根拠は基準型の事実に保存し、その条件を引き継ぐ。 episodeで対象となる形成・発想を特定し、sourceとdescriptionで影響を確認できる記録を示す。"
+      },
+      "examples": {
+        "positive": {
+          "statement": "Y influenced X",
+          "scenario": "Xの形成エピソードEについて、Yから発想を得たとする記録と、その記述箇所がある。",
+          "explanation": "基準型の正例を逆向きから読む。同じ事実を追加保存しない。"
+        },
+        "negative": {
+          "statement": "Y influenced X",
+          "scenario": "Yが時間的に先行した、名称が似ている、後から同じ方法を使ったというだけで影響源とする。",
+          "explanation": "基準型で根拠にならない例は、逆側でも根拠にならない。"
+        }
+      },
+      "usage": {
+        "display": "existing_typed_relation_views",
+        "ranking": "existing_coefficients_without_composition",
+        "note": "statusは型定義の整備状態。事実の真偽・採用審査とは別。既存UIの表示対象・重み・ランキング係数はこの意味論追加だけでは変更しない。"
+      },
+      "specSection": "15.12",
+      "presentation": {
+        "visualPriority": 0.55,
         "dashes": true,
         "arrows": "to"
       }
@@ -265,11 +1034,124 @@
       "inverseType": "historically_follows",
       "directed": true,
       "symmetric": false,
-      "transitive": true,
+      "transitive": false,
       "category": "history",
-      "description": "ある概念や分野が別概念に歴史的に先行する関係。",
-      "defaultWeight": 0.55,
-      "visual": {
+      "description": "明示した比較軸における分野Xの成立・展開上の節目が、分野Yの指定した節目より先であるという編集的記録である。",
+      "canonicalType": "historically_precedes",
+      "materialization": "stored",
+      "relationFamily": "history",
+      "status": "experimental",
+      "categoricalStatus": "not_asserted",
+      "semanticDefinition": "明示した比較軸における分野Xの成立・展開上の節目が、分野Yの指定した節目より先であるという編集的記録である。",
+      "domain": [
+        "discipline"
+      ],
+      "range": [
+        "discipline"
+      ],
+      "relationScope": "editorial_summary",
+      "reflexive": false,
+      "irreflexive": true,
+      "antisymmetric": false,
+      "acyclic": false,
+      "composition": {
+        "mode": "no_automatic_inference",
+        "rules": [],
+        "note": "比較する節目が同一とは限らないため推移推論をしない。単一の出来事・時間基準を固定した順序モデルとは分ける。"
+      },
+      "evidencePolicy": {
+        "requiredFields": [
+          "note",
+          "evidence",
+          "context.axis",
+          "context.fromMilestone",
+          "context.toMilestone",
+          "evidence.source",
+          "evidence.description"
+        ],
+        "description": "axis、両側のmilestone、出典source、前後関係を支えるdescriptionを必須とする。年代の不確実性や異説も記す。"
+      },
+      "examples": {
+        "positive": {
+          "statement": "X historically_precedes Y",
+          "scenario": "比較軸CとX側・Y側の節目を特定し、出典がその前後関係を確認できる。",
+          "explanation": "分野全体には一意な誕生日があると仮定しない。出来事ノード上の厳密な時間順序は将来別モデルにする。"
+        },
+        "negative": {
+          "statement": "X historically_precedes Y",
+          "scenario": "比較軸や各分野の節目が異なる二つの先行記録をつなぎ、第三の先行や影響関係を自動推論する。",
+          "explanation": "分野全体には一意な誕生日があると仮定しない。出来事ノード上の厳密な時間順序は将来別モデルにする。"
+        }
+      },
+      "usage": {
+        "display": "existing_typed_relation_views",
+        "ranking": "existing_coefficients_without_composition",
+        "note": "statusは型定義の整備状態。事実の真偽・採用審査とは別。既存UIの表示対象・重み・ランキング係数はこの意味論追加だけでは変更しない。"
+      },
+      "specSection": "15.13",
+      "presentation": {
+        "visualPriority": 0.55,
+        "dashes": true,
+        "arrows": "to"
+      }
+    },
+    {
+      "type": "historically_follows",
+      "label": "歴史的後続",
+      "labelEn": "Historically follows",
+      "edgeLabel": "後続",
+      "inverseType": "historically_precedes",
+      "directed": true,
+      "symmetric": false,
+      "transitive": false,
+      "category": "history",
+      "description": "historically_follows(X,Y) は historically_precedes(Y,X) と同値な厳密な逆関係である。基準側の条件・根拠・意味の範囲をそのまま反転する。",
+      "canonicalType": "historically_precedes",
+      "materialization": "derived",
+      "relationFamily": "history",
+      "status": "experimental",
+      "categoricalStatus": "not_asserted",
+      "semanticDefinition": "historically_follows(X,Y) は historically_precedes(Y,X) と同値な厳密な逆関係である。基準側の条件・根拠・意味の範囲をそのまま反転する。",
+      "domain": [
+        "discipline"
+      ],
+      "range": [
+        "discipline"
+      ],
+      "relationScope": "editorial_summary",
+      "reflexive": false,
+      "irreflexive": true,
+      "antisymmetric": false,
+      "acyclic": false,
+      "composition": {
+        "mode": "no_automatic_inference",
+        "rules": [],
+        "note": "比較する節目が同一とは限らないため推移推論をしない。単一の出来事・時間基準を固定した順序モデルとは分ける。"
+      },
+      "evidencePolicy": {
+        "requiredFields": [],
+        "description": "根拠は基準型の事実に保存し、その条件を引き継ぐ。 axis、両側のmilestone、出典source、前後関係を支えるdescriptionを必須とする。年代の不確実性や異説も記す。"
+      },
+      "examples": {
+        "positive": {
+          "statement": "Y historically_follows X",
+          "scenario": "比較軸CとX側・Y側の節目を特定し、出典がその前後関係を確認できる。",
+          "explanation": "基準型の正例を逆向きから読む。同じ事実を追加保存しない。"
+        },
+        "negative": {
+          "statement": "Y historically_follows X",
+          "scenario": "比較軸や各分野の節目が異なる二つの先行記録をつなぎ、第三の先行や影響関係を自動推論する。",
+          "explanation": "基準型で根拠にならない例は、逆側でも根拠にならない。"
+        }
+      },
+      "usage": {
+        "display": "existing_typed_relation_views",
+        "ranking": "existing_coefficients_without_composition",
+        "note": "statusは型定義の整備状態。事実の真偽・採用審査とは別。既存UIの表示対象・重み・ランキング係数はこの意味論追加だけでは変更しない。"
+      },
+      "specSection": "15.14",
+      "presentation": {
+        "visualPriority": 0.55,
         "dashes": true,
         "arrows": "to"
       }
@@ -282,11 +1164,116 @@
       "inverseType": "main_path_parent",
       "directed": true,
       "symmetric": false,
-      "transitive": true,
+      "transitive": false,
       "category": "site_path",
-      "description": "siteData.mainPath から生成されるページ階層の主経路。",
-      "defaultWeight": 1.0,
-      "visual": {
+      "description": "サイト記事YのprimaryParentIdが記事Xであり、XからYへの直接の主所属を表す。",
+      "canonicalType": "main_path",
+      "materialization": "generated",
+      "relationFamily": "site_path",
+      "status": "active",
+      "categoricalStatus": "not_asserted",
+      "semanticDefinition": "サイト記事YのprimaryParentIdが記事Xであり、XからYへの直接の主所属を表す。",
+      "domain": [
+        "site_node"
+      ],
+      "range": [
+        "site_node"
+      ],
+      "relationScope": "direct_membership",
+      "reflexive": false,
+      "irreflexive": true,
+      "antisymmetric": true,
+      "acyclic": true,
+      "composition": {
+        "mode": "no_automatic_inference",
+        "rules": [],
+        "note": "主経路として連結できるが、到達可能性をmain_pathの新しい直接辺として保存しない。"
+      },
+      "evidencePolicy": {
+        "requiredFields": [],
+        "description": "siteData.primaryParentIdが正本。primaryOrderは兄弟順、levelは主経路深さであり関係の強さではない。"
+      },
+      "examples": {
+        "positive": {
+          "statement": "X main_path Y",
+          "scenario": "Y.primaryParentIdがXのIDとして保存されている。",
+          "explanation": "主親はルート以外に一つ。主経路はこの直接所属から生成する。"
+        },
+        "negative": {
+          "statement": "X main_path Y",
+          "scenario": "主経路X→Z→YがあるだけでX→Yを直接の主所属として追加する。",
+          "explanation": "主親はルート以外に一つ。主経路はこの直接所属から生成する。"
+        }
+      },
+      "usage": {
+        "display": "generated_hierarchy_layer",
+        "ranking": "existing_coefficients_without_composition",
+        "note": "statusは型定義の整備状態。事実の真偽・採用審査とは別。既存UIの表示対象・重み・ランキング係数はこの意味論追加だけでは変更しない。"
+      },
+      "specSection": "15.20",
+      "presentation": {
+        "visualPriority": 1,
+        "dashes": false,
+        "arrows": "to"
+      }
+    },
+    {
+      "type": "main_path_parent",
+      "label": "主分類の親",
+      "labelEn": "Main path parent",
+      "edgeLabel": "主親",
+      "inverseType": "main_path",
+      "directed": true,
+      "symmetric": false,
+      "transitive": false,
+      "category": "site_path",
+      "description": "main_path_parent(X,Y) は main_path(Y,X) と同値な厳密な逆関係である。基準側の条件・根拠・意味の範囲をそのまま反転する。",
+      "canonicalType": "main_path",
+      "materialization": "derived",
+      "relationFamily": "site_path",
+      "status": "active",
+      "categoricalStatus": "not_asserted",
+      "semanticDefinition": "main_path_parent(X,Y) は main_path(Y,X) と同値な厳密な逆関係である。基準側の条件・根拠・意味の範囲をそのまま反転する。",
+      "domain": [
+        "site_node"
+      ],
+      "range": [
+        "site_node"
+      ],
+      "relationScope": "direct_membership",
+      "reflexive": false,
+      "irreflexive": true,
+      "antisymmetric": true,
+      "acyclic": true,
+      "composition": {
+        "mode": "no_automatic_inference",
+        "rules": [],
+        "note": "主経路として連結できるが、到達可能性をmain_pathの新しい直接辺として保存しない。"
+      },
+      "evidencePolicy": {
+        "requiredFields": [],
+        "description": "根拠は基準型の事実に保存し、その条件を引き継ぐ。 siteData.primaryParentIdが正本。primaryOrderは兄弟順、levelは主経路深さであり関係の強さではない。"
+      },
+      "examples": {
+        "positive": {
+          "statement": "Y main_path_parent X",
+          "scenario": "Y.primaryParentIdがXのIDとして保存されている。",
+          "explanation": "基準型の正例を逆向きから読む。同じ事実を追加保存しない。"
+        },
+        "negative": {
+          "statement": "Y main_path_parent X",
+          "scenario": "主経路X→Z→YがあるだけでX→Yを直接の主所属として追加する。",
+          "explanation": "基準型で根拠にならない例は、逆側でも根拠にならない。"
+        }
+      },
+      "usage": {
+        "display": "generated_hierarchy_layer",
+        "ranking": "existing_coefficients_without_composition",
+        "note": "statusは型定義の整備状態。事実の真偽・採用審査とは別。既存UIの表示対象・重み・ランキング係数はこの意味論追加だけでは変更しない。"
+      },
+      "specSection": "15.21",
+      "presentation": {
+        "visualPriority": 1,
         "dashes": false,
         "arrows": "to"
       }
@@ -301,12 +1288,124 @@
       "symmetric": false,
       "transitive": false,
       "category": "site_path",
-      "description": "siteData.auxPath から生成されるページ階層の補助経路。",
-      "defaultWeight": 0.6,
-      "visual": {
+      "description": "サイト記事YのauxParentsに記事Xが含まれ、XからYへの追加の直接副所属を表す。",
+      "canonicalType": "aux_path",
+      "materialization": "generated",
+      "relationFamily": "site_path",
+      "status": "active",
+      "categoricalStatus": "not_asserted",
+      "semanticDefinition": "サイト記事YのauxParentsに記事Xが含まれ、XからYへの追加の直接副所属を表す。",
+      "domain": [
+        "site_node"
+      ],
+      "range": [
+        "site_node"
+      ],
+      "relationScope": "direct_membership",
+      "reflexive": false,
+      "irreflexive": true,
+      "antisymmetric": true,
+      "acyclic": true,
+      "composition": {
+        "mode": "no_automatic_inference",
+        "rules": [],
+        "note": "主副の経路は表示のため連結できるが、新たな副所属を推論しない。"
+      },
+      "evidencePolicy": {
+        "requiredFields": [],
+        "description": "siteData.auxParentsが正本。orderは親の下での表示順であって重みではない。主副を合わせた階層は非巡回とする。"
+      },
+      "examples": {
+        "positive": {
+          "statement": "X aux_path Y",
+          "scenario": "Y.auxParentsにparentId=Xと表示順orderが明示されている。",
+          "explanation": "多親の表示経路と直接の副所属を区別する。末端の旧順序値をノードIDとして使わない。"
+        },
+        "negative": {
+          "statement": "X aux_path Y",
+          "scenario": "X→Z→Yの副分類を含む表示経路があるだけで、Yへ副親Xを追加する。",
+          "explanation": "多親の表示経路と直接の副所属を区別する。末端の旧順序値をノードIDとして使わない。"
+        }
+      },
+      "usage": {
+        "display": "generated_hierarchy_layer",
+        "ranking": "existing_coefficients_without_composition",
+        "note": "statusは型定義の整備状態。事実の真偽・採用審査とは別。既存UIの表示対象・重み・ランキング係数はこの意味論追加だけでは変更しない。"
+      },
+      "specSection": "15.22",
+      "presentation": {
+        "visualPriority": 0.6,
+        "dashes": true,
+        "arrows": "to"
+      }
+    },
+    {
+      "type": "aux_path_parent",
+      "label": "副分類の親",
+      "labelEn": "Auxiliary path parent",
+      "edgeLabel": "副親",
+      "inverseType": "aux_path",
+      "directed": true,
+      "symmetric": false,
+      "transitive": false,
+      "category": "site_path",
+      "description": "aux_path_parent(X,Y) は aux_path(Y,X) と同値な厳密な逆関係である。基準側の条件・根拠・意味の範囲をそのまま反転する。",
+      "canonicalType": "aux_path",
+      "materialization": "derived",
+      "relationFamily": "site_path",
+      "status": "active",
+      "categoricalStatus": "not_asserted",
+      "semanticDefinition": "aux_path_parent(X,Y) は aux_path(Y,X) と同値な厳密な逆関係である。基準側の条件・根拠・意味の範囲をそのまま反転する。",
+      "domain": [
+        "site_node"
+      ],
+      "range": [
+        "site_node"
+      ],
+      "relationScope": "direct_membership",
+      "reflexive": false,
+      "irreflexive": true,
+      "antisymmetric": true,
+      "acyclic": true,
+      "composition": {
+        "mode": "no_automatic_inference",
+        "rules": [],
+        "note": "主副の経路は表示のため連結できるが、新たな副所属を推論しない。"
+      },
+      "evidencePolicy": {
+        "requiredFields": [],
+        "description": "根拠は基準型の事実に保存し、その条件を引き継ぐ。 siteData.auxParentsが正本。orderは親の下での表示順であって重みではない。主副を合わせた階層は非巡回とする。"
+      },
+      "examples": {
+        "positive": {
+          "statement": "Y aux_path_parent X",
+          "scenario": "Y.auxParentsにparentId=Xと表示順orderが明示されている。",
+          "explanation": "基準型の正例を逆向きから読む。同じ事実を追加保存しない。"
+        },
+        "negative": {
+          "statement": "Y aux_path_parent X",
+          "scenario": "X→Z→Yの副分類を含む表示経路があるだけで、Yへ副親Xを追加する。",
+          "explanation": "基準型で根拠にならない例は、逆側でも根拠にならない。"
+        }
+      },
+      "usage": {
+        "display": "generated_hierarchy_layer",
+        "ranking": "existing_coefficients_without_composition",
+        "note": "statusは型定義の整備状態。事実の真偽・採用審査とは別。既存UIの表示対象・重み・ランキング係数はこの意味論追加だけでは変更しない。"
+      },
+      "specSection": "15.23",
+      "presentation": {
+        "visualPriority": 0.6,
         "dashes": true,
         "arrows": "to"
       }
     }
-  ]
+  ],
+  "semanticsVersion": 1,
+  "entityKinds": {
+    "category_root": "知識分類全体の根。現行のconcepts.kindと同じ綴り。",
+    "discipline": "現行conceptsで分野を表す型。理論文書のDiscipline/Field/ResearchFieldを現行プロファイルではこの型で記録する。",
+    "term_collection": "用語集・索引資源。文書のGlossaryの現行kind。",
+    "site_node": "siteDataの記事。concepts.kindへ追加する値ではなく、別データ集合の端点型。"
+  }
 }

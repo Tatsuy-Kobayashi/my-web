@@ -5,12 +5,17 @@
       "id": 0,
       "label": "学問",
       "labelEn": "Academic Disciplines",
-      "mainPath": [
-        "0"
-      ],
       "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html",
       "released": 1,
-      "isPaid": 0
+      "isPaid": 0,
+      "datePublished": "2024-09-28",
+      "dateModified": "2024-12-25",
+      "description": "あらゆる事物は何かしらの学問の一領域として捉えることができる",
+      "iconClass": "fa-graduation-cap",
+      "imageUrl": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/Yukichi_Fukuzawa_1891.png",
+      "mainPath": [
+        "0"
+      ]
     },
     "labels": {
       "ja": "学問",
@@ -49,12 +54,13 @@
       "id": 1,
       "label": "人文科学",
       "labelEn": "Humanities",
-      "mainPath": [
-        "0:1"
-      ],
       "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/humanities/humanities.html",
       "released": 0,
-      "isPaid": 0
+      "isPaid": 0,
+      "iconClass": "fa-folder fa-fw",
+      "mainPath": [
+        "0:1"
+      ]
     },
     "labels": {
       "ja": "人文科学",
@@ -91,13 +97,14 @@
       "id": 2,
       "label": "社会科学",
       "labelEn": "Social Sciences",
-      "mainPath": [
-        "0:2"
-      ],
       "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/social_science/social_science.html",
       "released": 0,
       "isPaid": 0,
-      "datePublished": "2025-02-10"
+      "datePublished": "2025-02-10",
+      "iconClass": "fa-folder fa-fw",
+      "mainPath": [
+        "0:2"
+      ]
     },
     "labels": {
       "ja": "社会科学",
@@ -134,12 +141,14 @@
       "id": 3,
       "label": "形式科学",
       "labelEn": "Formal Sciences",
-      "mainPath": [
-        "0:3"
-      ],
       "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/formal_science.html",
       "released": 1,
-      "isPaid": 0
+      "isPaid": 0,
+      "datePublished": "2024-10-10",
+      "iconClass": "fa-shapes",
+      "mainPath": [
+        "0:3"
+      ]
     },
     "labels": {
       "ja": "形式科学",
@@ -176,13 +185,14 @@
       "id": 4,
       "label": "自然科学",
       "labelEn": "Natural Sciences",
-      "mainPath": [
-        "0:4"
-      ],
       "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/natural_science/natural_science.html",
       "released": 1,
       "isPaid": 0,
-      "datePublished": "2025-02-04"
+      "datePublished": "2025-02-04",
+      "iconClass": "fa-leaf",
+      "mainPath": [
+        "0:4"
+      ]
     },
     "labels": {
       "ja": "自然科学",
@@ -219,12 +229,13 @@
       "id": 5,
       "label": "応用科学",
       "labelEn": "Applied Sciences",
+      "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/academic_discipline.html",
+      "released": 0,
+      "isPaid": 0,
+      "iconClass": "fa-folder fa-fw",
       "mainPath": [
         "0:5"
-      ],
-      "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/applied_science/applied_science.html",
-      "released": 0,
-      "isPaid": 0
+      ]
     },
     "labels": {
       "ja": "応用科学",
@@ -261,12 +272,13 @@
       "id": 6,
       "label": "学際領域",
       "labelEn": "Interdisciplinary Fields",
+      "url": "https://tatsuy-kobayashi.github.io/my-web/docs/#",
+      "released": 0,
+      "isPaid": 0,
+      "iconClass": "fa-folder fa-fw",
       "mainPath": [
         "0:6"
-      ],
-      "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/interdisciplinary_fields/interdisciplinary_fields.html",
-      "released": 0,
-      "isPaid": 0
+      ]
     },
     "labels": {
       "ja": "学際領域",
@@ -301,14 +313,21 @@
       "id": 30,
       "label": "数学",
       "labelEn": "Mathematics",
-      "mainPath": [
-        "0:3:30"
-      ],
       "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematics.html",
       "released": 1,
       "isPaid": 0,
       "datePublished": "2024-09-30",
-      "dateModified": "2025-01-04"
+      "dateModified": "2025-01-04",
+      "description": "数学とは、数量および空間図形の性質について研究する学問。",
+      "iconClass": "fa-folder fa-fw",
+      "thumbnailUrl": [
+        "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-120x68.png",
+        "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-160x90.png",
+        "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-320x180.png"
+      ],
+      "mainPath": [
+        "0:3:30"
+      ]
     },
     "labels": {
       "ja": "数学",
@@ -353,13 +372,14 @@
       "id": 300,
       "label": "数学用語",
       "labelEn": "Mathematical Terms",
-      "mainPath": [
-        "0:3:30:300"
-      ],
       "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/mathematical_terms/mathematical_terms.html",
       "released": 0,
       "isPaid": 0,
-      "datePublished": "2024-12-22"
+      "datePublished": "2024-12-22",
+      "iconClass": "fa-folder fa-fw",
+      "mainPath": [
+        "0:3:30:300"
+      ]
     },
     "labels": {
       "ja": "数学用語",
@@ -394,14 +414,21 @@
       "id": 301,
       "label": "数学基礎論",
       "labelEn": "Foundations of Mathematics",
-      "mainPath": [
-        "0:3:30:301"
-      ],
       "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/foundations_of_mathematics/foundations_of_mathematics.html",
       "released": 1,
       "isPaid": 1,
       "datePublished": "2025-12-28",
-      "dateModified": "2026-01-04"
+      "dateModified": "2026-01-04",
+      "description": "数学基礎論の全体像を解説。構文論と意味論、モデル理論、証明論、型理論、集合論、圏論など、現代数学の基礎を支える主要分野をPythonの実装例とともに学べる包括的な入門記事。",
+      "iconClass": "fa-folder fa-fw",
+      "thumbnailUrl": [
+        "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-120x68.png",
+        "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-160x90.png",
+        "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-320x180.png"
+      ],
+      "mainPath": [
+        "0:3:30:301"
+      ]
     },
     "labels": {
       "ja": "数学基礎論",
@@ -440,13 +467,14 @@
       "id": 302,
       "label": "数論",
       "labelEn": "Number Theory",
-      "mainPath": [
-        "0:3:30:302"
-      ],
       "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/number_theory/number_theory.html",
       "released": 1,
       "isPaid": 0,
-      "datePublished": "2024-10-20"
+      "datePublished": "2024-10-20",
+      "iconClass": "fa-folder fa-fw",
+      "mainPath": [
+        "0:3:30:302"
+      ]
     },
     "labels": {
       "ja": "数論",
@@ -480,12 +508,13 @@
       "id": 303,
       "label": "代数学",
       "labelEn": "Algebra",
-      "mainPath": [
-        "0:3:30:303"
-      ],
       "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/algebra/algebra.html",
       "released": 1,
-      "isPaid": 1
+      "isPaid": 1,
+      "iconClass": "fa-folder fa-fw",
+      "mainPath": [
+        "0:3:30:303"
+      ]
     },
     "labels": {
       "ja": "代数学",
@@ -520,12 +549,13 @@
       "id": 304,
       "label": "解析学",
       "labelEn": "Analysis",
-      "mainPath": [
-        "0:3:30:304"
-      ],
       "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/analysis/analysis.html",
       "released": 1,
-      "isPaid": 1
+      "isPaid": 1,
+      "iconClass": "fa-folder fa-fw",
+      "mainPath": [
+        "0:3:30:304"
+      ]
     },
     "labels": {
       "ja": "解析学",
@@ -561,12 +591,13 @@
       "id": 307,
       "label": "確率論",
       "labelEn": "Probability Theory",
-      "mainPath": [
-        "0:3:30:307"
-      ],
       "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/mathematics/probability_theory/probability_theory.html",
       "released": 1,
-      "isPaid": 1
+      "isPaid": 1,
+      "iconClass": "fa-folder fa-fw",
+      "mainPath": [
+        "0:3:30:307"
+      ]
     },
     "labels": {
       "ja": "確率論",
@@ -600,13 +631,18 @@
       "id": 31,
       "label": "統計学",
       "labelEn": "Statistics",
-      "mainPath": [
-        "0:3:31"
-      ],
       "url": "https://tatsuy-kobayashi.github.io/my-web/docs/academic_discipline/formal_science/statistics/statistics.html",
       "released": 0,
       "isPaid": 0,
-      "description": "確率論を基盤にして、集団全体の性質を一部の標本を調べることによって推定するための処理・分析方法について研究する学問。"
+      "description": "統計学とは、確率論を基盤にして、集団全体の性質を一部の標本を調べることによって推定するための処理・分析方法について研究する学問。",
+      "thumbnailUrl": [
+        "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-120x68.png",
+        "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-160x90.png",
+        "https://tatsuy-kobayashi.github.io/my-web/docs/images/image-30-320x180.png"
+      ],
+      "mainPath": [
+        "0:3:31"
+      ]
     },
     "labels": {
       "ja": "統計学",
